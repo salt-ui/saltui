@@ -1,0 +1,140 @@
+.home-banner {
+  position: relative;
+  height: 680px;
+  background-image: linear-gradient(#2599f2,#85c6f8);
+  text-align: center;
+  .brand {
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    margin-left: -50px;
+    width: 500px;
+    height: 67px;
+    background: url('//gtms02.alicdn.com/tps/i2/TB1IeBdKVXXXXXZXFXXMDVcGpXX-1026-137.png') 0 0/contain no-repeat;
+    text-indent: -999em;
+    animation-delay: 3s;
+  }
+  .slogan {
+    position: absolute;
+    left: 50%;
+    top: 300px;
+    opacity: 0;
+    margin-left: -50px;
+    width: 400px;
+    height: 47px;
+    background: url('//gtms02.alicdn.com/tps/i2/TB1FoxgKVXXXXXBXFXXvmCsWVXX-1280-150.png')  0 0/contain no-repeat;
+    text-indent: -999em;
+    animation-delay: 5s;
+    animation-duration: 1s;
+  }
+  .canvas {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    margin-left: -100px;
+    animation-delay: 2s;
+  }
+}
+.site-feature {
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  .feature-item {
+    position: relative;
+    flex: 0 1 28%;
+    height: 150px;
+    .alifont {
+      position: absolute;
+      font-style: normal;
+      font-size: 36px;
+      &.icon-react {
+        &:before {
+          content: '\e605';
+        }
+      }
+      &.icon-component {
+        &:before {
+          content: '\e603';
+        }
+      }
+      &.icon-efficient {
+        &:before {
+          content: '\e602';
+        }
+      }
+      &.icon-pattern {
+        &:before {
+          content: '\e604';
+        }
+      }
+      &.icon-customise {
+        &:before {
+          content: '\e601';
+        }
+      }
+      &.icon-reliable {
+        &:before {
+          content: '\e600';
+        }
+      }
+    }
+    &-text {
+      margin-left: 46px;
+      width: 200px;
+    }
+    &-title {
+      margin-top: 10px;
+      font-size: 24px;
+      font-weight: 400;
+    }
+    &-des {
+      font-size: 16px;
+    }
+  }
+}
+
+@keyframes zoomInRight {
+  from {
+    opacity: 0;
+    transform: scale3d(.1, .1, .1) translate3d(1000px, 0, 0);
+    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(.475, .475, .475) translate3d(-10px, 0, 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  }
+}
+
+.flash {
+  animation-name: flash;
+}
+
+.zoomInRight {
+  animation-name: zoomInRight;
+}
+
+.translate {
+  animation-name: translate;
+}
+
+.animated {
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  &.infinite {
+    animation-iteration-count: infinite;
+  }
+
+  &.hinge {
+    animation-duration: 2s;
+  }
+  &.flipOutX,
+  &.flipOutY,
+  &.bounceIn,
+  &.bounceOut {
+    animation-duration: .75s;
+  }
+
+}

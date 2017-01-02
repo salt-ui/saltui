@@ -1,0 +1,36 @@
+{
+  "name": "saltui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "bisheng start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macisi/saltui.git"
+  },
+  "author": "vincent.bian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/macisi/saltui/issues"
+  },
+  "homepage": "https://github.com/macisi/saltui#readme",
+  "engines": {
+    "node": "6.1.0"
+  },
+  "devDependencies": {
+    "bisheng": "^0.18.3"
+  },
+  "dependencies": {
+    "bisheng-plugin-react": "^0.3.1",
+    "bisheng-plugin-uxcore": "^1.0.2",
+    "classnames": "^2.2.5",
+    "fabric": "^1.7.2",
+    "object-assign": "^4.1.0",
+    "react-addons-css-transition-group": "^15.4.1",
+    "react-document-title": "^2.0.2",
+    "tingle-button": "^1.0.0",
+    "uxcore-select2": "^0.4.1"
+  }
+}

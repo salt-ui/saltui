@@ -1,0 +1,313 @@
+pre {
+  &[class^="language-"] {
+    padding: 12px 20px;
+    background-color: #f5f5f5;
+
+    .token {
+      &.function {
+        color: #4078f2;
+      }
+      &.string {
+        color: #50a14f;
+      }
+      &.punctuation {
+        color: #383a42;
+      }
+      &.comment {
+        color: #a0a1a7;
+        font-style: italic;
+      }
+      &.operator {
+        color: #0184bc;
+      }
+      &.tag {
+        color: #e45649;
+      }
+      &.attr-name {
+        color: #986801;
+      } 
+      &.attr-value {
+        color: #50a14f;
+      } 
+      &.keyword {
+        color: #a626a4;
+        &.control {
+          color: #a626a4;
+        }
+        &.operator {
+          color: #383a42;
+        }
+      }
+      &.class-name {
+        color: #e45649;
+      }
+    }
+  }
+}
+
+// .comment .markup.link {
+//   color: #a0a1a7;
+// }
+// .entity.name.type {
+//   color: #c18401;
+// }
+// .entity.other.inherited-class {
+//   color: #50a14f;
+// }
+// .storage {
+//   color: #a626a4;
+// }
+// .storage.type.annotation,
+// .storage.type.primitive {
+//   color: #a626a4;
+// }
+// .storage.modifier.package,
+// .storage.modifier.import {
+//   color: #383a42;
+// }
+// .constant {
+//   color: #986801;
+// }
+// .constant.variable {
+//   color: #986801;
+// }
+// .constant.character.escape {
+//   color: #0184bc;
+// }
+// .constant.numeric {
+//   color: #986801;
+// }
+// .constant.other.color {
+//   color: #0184bc;
+// }
+// .constant.other.symbol {
+//   color: #0184bc;
+// }
+// .variable {
+//   color: #e45649;
+// }
+// .variable.interpolation {
+//   color: #ca1243;
+// }
+// .variable.parameter {
+//   color: #383a42;
+// }
+// .string {
+//   color: #50a14f;
+// }
+// .string.regexp {
+//   color: #0184bc;
+// }
+// .string.regexp .source.ruby.embedded {
+//   color: #c18401;
+// }
+// .string.other.link {
+//   color: #e45649;
+// }
+// .punctuation.definition.comment {
+//   color: #a0a1a7;
+// }
+// .punctuation.definition.method-parameters,
+// .punctuation.definition.function-parameters,
+// .punctuation.definition.parameters,
+// .punctuation.definition.separator,
+// .punctuation.definition.seperator,
+// .punctuation.definition.array {
+//   color: #383a42;
+// }
+// .punctuation.definition.heading,
+// .punctuation.definition.identity {
+//   color: #4078f2;
+// }
+// .punctuation.definition.bold {
+//   color: #c18401;
+//   font-weight: bold;
+// }
+// .punctuation.definition.italic {
+//   color: #a626a4;
+//   font-style: italic;
+// }
+// .punctuation.section.embedded {
+//   color: #ca1243;
+// }
+// .punctuation.section.method,
+// .punctuation.section.class,
+// .punctuation.section.inner-class {
+//   color: #383a42;
+// }
+// .support.class {
+//   color: #c18401;
+// }
+// .support.type {
+//   color: #0184bc;
+// }
+// .support.function {
+//   color: #0184bc;
+// }
+// .support.function.any-method {
+//   color: #4078f2;
+// }
+// .entity.name.function {
+//   color: #4078f2;
+// }
+// .entity.name.class,
+// .entity.name.type.class {
+//   color: #c18401;
+// }
+// .entity.name.section {
+//   color: #4078f2;
+// }
+// .entity.name.tag {
+//   color: #e45649;
+// }
+// .meta.class {
+//   color: #c18401;
+// }
+// .meta.class.body {
+//   color: #383a42;
+// }
+// .meta.method-call,
+// .meta.method {
+//   color: #383a42;
+// }
+// .meta.definition.variable {
+//   color: #e45649;
+// }
+// .meta.link {
+//   color: #986801;
+// }
+// .meta.require {
+//   color: #4078f2;
+// }
+// .meta.selector {
+//   color: #a626a4;
+// }
+// .meta.separator {
+//   background-color: #373b41;
+//   color: #383a42;
+// }
+// .meta.tag {
+//   color: #383a42;
+// }
+// .underline {
+//   text-decoration: underline;
+// }
+// .none {
+//   color: #383a42;
+// }
+// .invalid.deprecated {
+//   color: #000000 !important;
+//   background-color: #f2a60d !important;
+// }
+// .invalid.illegal {
+//   color: #ffffff !important;
+//   background-color: #ff1414 !important;
+// }
+// .markup.bold {
+//   color: #986801;
+//   font-weight: bold;
+// }
+// .markup.changed {
+//   color: #a626a4;
+// }
+// .markup.deleted {
+//   color: #e45649;
+// }
+// .markup.italic {
+//   color: #a626a4;
+//   font-style: italic;
+// }
+// .markup.heading {
+//   color: #e45649;
+// }
+// .markup.heading .punctuation.definition.heading {
+//   color: #4078f2;
+// }
+// .markup.link {
+//   color: #a626a4;
+// }
+// .markup.inserted {
+//   color: #50a14f;
+// }
+// .markup.quote {
+//   color: #986801;
+// }
+// .markup.raw {
+//   color: #50a14f;
+// }
+// .source.cs .keyword.operator {
+//   color: #a626a4;
+// }
+// .source.css .property-name,
+// .source.css .property-value {
+//   color: #696c77;
+// }
+// .source.css .property-name.support,
+// .source.css .property-value.support {
+//   color: #383a42;
+// }
+// .source.gfm .markup {
+//   -webkit-font-smoothing: auto;
+// }
+// .source.gfm .link .entity {
+//   color: #4078f2;
+// }
+// .source.go .storage.type.string {
+//   color: #a626a4;
+// }
+// .source.ini .keyword.other.definition.ini {
+//   color: #e45649;
+// }
+// .source.java .storage.modifier.import {
+//   color: #c18401;
+// }
+// .source.java .storage.type {
+//   color: #c18401;
+// }
+// .source.java .keyword.operator.instanceof {
+//   color: #a626a4;
+// }
+// .source.java-properties .meta.key-pair {
+//   color: #e45649;
+// }
+// .source.java-properties .meta.key-pair > .punctuation {
+//   color: #383a42;
+// }
+// .source.js .keyword.operator {
+//   color: #0184bc;
+// }
+// .source.js .keyword.operator.delete,
+// .source.js .keyword.operator.in,
+// .source.js .keyword.operator.of,
+// .source.js .keyword.operator.instanceof,
+// .source.js .keyword.operator.new,
+// .source.js .keyword.operator.typeof,
+// .source.js .keyword.operator.void {
+//   color: #a626a4;
+// }
+// .source.json .meta.structure.dictionary.json > .string.quoted.json {
+//   color: #e45649;
+// }
+// .source.json .meta.structure.dictionary.json > .string.quoted.json > .punctuation.string {
+//   color: #e45649;
+// }
+// .source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json,
+// .source.json .meta.structure.array.json > .value.json > .string.quoted.json,
+// .source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json > .punctuation,
+// .source.json .meta.structure.array.json > .value.json > .string.quoted.json > .punctuation {
+//   color: #50a14f;
+// }
+// .source.json .meta.structure.dictionary.json > .constant.language.json,
+// .source.json .meta.structure.array.json > .constant.language.json {
+//   color: #0184bc;
+// }
+// .source.ruby .constant.other.symbol > .punctuation {
+//   color: inherit;
+// }
+// .source.python .keyword.operator.logical.python {
+//   color: #a626a4;
+// }
+// .source.python .variable.parameter {
+//   color: #986801;
+// }
+
