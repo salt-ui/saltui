@@ -1,14 +1,55 @@
 {
-  "name": "tingle-style",
+  "_args": [
+    [
+      {
+        "raw": "tingle-style@~0.3.1",
+        "scope": null,
+        "escapedName": "tingle-style",
+        "name": "tingle-style",
+        "rawSpec": "~0.3.1",
+        "spec": ">=0.3.1 <0.4.0",
+        "type": "range"
+      },
+      "/Users/ens/pwd/uxcore/saltui/node_modules/tingle-button"
+    ]
+  ],
+  "_from": "tingle-style@>=0.3.1 <0.4.0",
+  "_id": "tingle-style@0.3.1",
+  "_inCache": true,
+  "_location": "/tingle-style",
+  "_nodeVersion": "0.12.7",
+  "_npmUser": {
+    "name": "gnosaij",
+    "email": "gnosaij@yeah.net"
+  },
+  "_npmVersion": "2.11.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "tingle-style@~0.3.1",
+    "scope": null,
+    "escapedName": "tingle-style",
+    "name": "tingle-style",
+    "rawSpec": "~0.3.1",
+    "spec": ">=0.3.1 <0.4.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/tingle-button"
+  ],
+  "_resolved": "https://registry.npmjs.org/tingle-style/-/tingle-style-0.3.1.tgz",
+  "_shasum": "b0edd7ce719181ce3f29875128829280880c0a33",
+  "_shrinkwrap": null,
+  "_spec": "tingle-style@~0.3.1",
+  "_where": "/Users/ens/pwd/uxcore/saltui/node_modules/tingle-button",
   "author": {
     "name": "gnosaij",
     "email": "gnosaij@yeah.net"
   },
-  "main": "src/util.js",
-  "version": "0.3.1",
-  "description": "tingle 基础样式。",
-  "repository": "https://github.com/tinglejs/tingle-style",
+  "bugs": {
+    "url": "https://github.com/tinglejs/tingle-style/issues"
+  },
   "dependencies": {},
+  "description": "tingle 基础样式。",
   "devDependencies": {
     "browser-sync": "~1.9.1",
     "del": "^1.1.1",
@@ -20,7 +61,32 @@
     "gulp-sourcemaps": "~1.5.1",
     "gulp-stylus": "~2.0.1"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "b0edd7ce719181ce3f29875128829280880c0a33",
+    "tarball": "https://registry.npmjs.org/tingle-style/-/tingle-style-0.3.1.tgz"
+  },
+  "gitHead": "fbda3d018b7251fa94a28c5543721cabb04230f5",
+  "homepage": "https://github.com/tinglejs/tingle-style#readme",
   "license": "MIT",
-  "_from": "tingle-style@0.3.1",
-  "_resolved": "http://registry.npm.alibaba-inc.com/tingle-style/download/tingle-style-0.3.1.tgz"
+  "main": "src/util.js",
+  "maintainers": [
+    {
+      "name": "gnosaij",
+      "email": "gnosaij@yeah.net"
+    },
+    {
+      "name": "yize",
+      "email": "yize.shc@gmail.com"
+    }
+  ],
+  "name": "tingle-style",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinglejs/tingle-style.git"
+  },
+  "scripts": {},
+  "version": "0.3.1"
 }

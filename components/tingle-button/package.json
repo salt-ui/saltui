@@ -1,26 +1,63 @@
 {
-  "name": "tingle-button",
-  "version": "1.0.0",
-  "description": "tingle-button component for tingle.",
-  "repository": "https://github.com/tinglejs/tingle-button.git",
-  "author": "zhangyang",
-  "main": "dist/index.js",
-  "files": [
-    "dist",
-    "src",
-    "README.md"
+  "_args": [
+    [
+      {
+        "raw": "tingle-button@^1.0.0",
+        "scope": null,
+        "escapedName": "tingle-button",
+        "name": "tingle-button",
+        "rawSpec": "^1.0.0",
+        "spec": ">=1.0.0 <2.0.0",
+        "type": "range"
+      },
+      "/Users/ens/pwd/uxcore/saltui"
+    ]
   ],
-  "keywords": [
-    "tingle-button",
-    "Button",
-    ""
+  "_from": "tingle-button@>=1.0.0 <2.0.0",
+  "_id": "tingle-button@1.0.0",
+  "_inCache": true,
+  "_location": "/tingle-button",
+  "_nodeVersion": "5.9.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/tingle-button-1.0.0.tgz_1459398309070_0.680513903265819"
+  },
+  "_npmUser": {
+    "name": "lpgray",
+    "email": "px.zhangyang@gmail.com"
+  },
+  "_npmVersion": "3.7.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "tingle-button@^1.0.0",
+    "scope": null,
+    "escapedName": "tingle-button",
+    "name": "tingle-button",
+    "rawSpec": "^1.0.0",
+    "spec": ">=1.0.0 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
   ],
+  "_resolved": "https://registry.npmjs.org/tingle-button/-/tingle-button-1.0.0.tgz",
+  "_shasum": "f3daa12def81ee63ed3b798f6f7d99f85dd51186",
+  "_shrinkwrap": null,
+  "_spec": "tingle-button@^1.0.0",
+  "_where": "/Users/ens/pwd/uxcore/saltui",
+  "author": {
+    "name": "zhangyang"
+  },
+  "bugs": {
+    "url": "https://github.com/tinglejs/tingle-button/issues"
+  },
   "dependencies": {
     "classnames": "~2.2.3",
     "fastclick": "~1.0.6",
     "tingle-context": "^1.0.1",
     "tingle-style": "~0.3.1"
   },
+  "description": "tingle-button component for tingle.",
   "devDependencies": {
     "babel": "~6.3.26",
     "babel-core": "~6.4.0",
@@ -30,6 +67,8 @@
     "babel-preset-react": "~6.3.13",
     "babel-preset-stage-1": "~6.3.13",
     "browser-sync": "~2.11.1",
+    "eslint": "^2.5.3",
+    "eslint-plugin-react": "^4.2.3",
     "gulp": "~3.9.0",
     "gulp-babel": "~6.1.1",
     "gulp-concat": "~2.6.0",
@@ -40,20 +79,58 @@
     "gulp-svg-symbols": "~1.0.0",
     "gulp-uglify": "~1.5.1",
     "gulp-unique-files": "~0.1.2",
+    "node-notifier": "^4.5.0",
     "react": "^15.0.0-rc.2",
     "react-dom": "^15.0.0-rc.2",
     "through2": "~2.0.1",
-    "webpack": "~1.12.11",
-    "node-notifier": "^4.5.0",
-    "eslint": "^2.5.3",
-    "eslint-plugin-react": "^4.2.3"
+    "webpack": "~1.12.11"
   },
-  "scripts": {
-    "start": "gulp d",
-    "build": "gulp b"
+  "dist": {
+    "shasum": "f3daa12def81ee63ed3b798f6f7d99f85dd51186",
+    "tarball": "http://registry.npmjs.org/tingle-button/-/tingle-button-1.0.0.tgz"
   },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "gitHead": "a63be5ba47d892e221aba4e8e3a81bf54a9a7e5c",
+  "homepage": "https://github.com/tinglejs/tingle-button#readme",
+  "keywords": [
+    "tingle-button",
+    "Button"
+  ],
   "license": "MIT",
+  "main": "dist/index.js",
+  "maintainers": [
+    {
+      "name": "gbk",
+      "email": "ck0123456@gmail.com"
+    },
+    {
+      "name": "gnosaij",
+      "email": "gnosaij@yeah.net"
+    },
+    {
+      "name": "lpgray",
+      "email": "px.zhangyang@gmail.com"
+    },
+    {
+      "name": "yize",
+      "email": "yize.shc@gmail.com"
+    }
+  ],
+  "name": "tingle-button",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinglejs/tingle-button.git"
+  },
   "screenshots": "",
-  "_from": "tingle-button@1.0.0",
-  "_resolved": "http://registry.npm.alibaba-inc.com/tingle-button/download/tingle-button-1.0.0.tgz"
+  "scripts": {
+    "build": "gulp b",
+    "start": "gulp d"
+  },
+  "version": "1.0.0"
 }

@@ -7,9 +7,6 @@ import Aside from '../component/Aside';
 import Nav from '../component/Nav';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-window.react = React;
-window['react-dom'] = ReactDOM;
-
 const config = require('../../index');
 
 export default class Layout extends React.Component {

@@ -71,6 +71,11 @@ module.exports = {
     'bisheng-plugin-uxcore'
 	],
   webpackConfig(config) {
+		config.externals = {
+			react: 'var React',
+			'react-dom': 'var ReactDOM',
+			'react/lib/ReactCSSTransitionGroup': 'var React.addons.CSSTransitionGroup',
+		};
     return config;
   }
 };

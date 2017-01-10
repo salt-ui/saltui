@@ -20,7 +20,11 @@
     "node": "6.1.0"
   },
   "devDependencies": {
-    "bisheng": "^0.18.3"
+    "bisheng": "^0.18.3",
+    "jsonml.js": "^0.1.0",
+    "react-dom": "^15.4.2",
+    "react-router": "^3.0.0",
+    "rimraf": "^2.5.4"
   },
   "dependencies": {
     "bisheng-plugin-react": "^0.3.1",
