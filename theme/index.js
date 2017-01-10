@@ -13,10 +13,16 @@ let routes = [
     indexRoute: {
       component: './template/Dashboard', 
     },
-    childRoutes: [{
-      path: '/components/:component',
-      component: './template/Component'
-    }]
+    childRoutes: [
+      {
+        path: '/components/:component',
+        component: './template/Component'
+      },
+    ]
+  },
+  {
+    path: '/components/:component/:name',
+    component: './template/Kitchen',
   },
 ];
 

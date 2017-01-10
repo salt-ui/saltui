@@ -47,7 +47,7 @@ class Nav extends React.PureComponent {
     return (
         <nav className="nav">
           <h1 className="logo">
-            <Link to={`/`}>UXCore</Link>
+            <Link to={`/`}>SaltUI</Link>
           </h1>
           <h2>{route.name}</h2>
           <div className="search-container">

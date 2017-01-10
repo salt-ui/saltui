@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const sourceDir = path.join(__dirname, 'components');
 const rimraf = require('rimraf');
+const assign = require('object-assign');
 
 rimraf.sync('./components/*');
 
@@ -64,8 +65,12 @@ module.exports = {
 	lazyLoad: false,
 	theme: './theme',
 	port: 8000,
+	htmlTemplate: path.join(__dirname, './template.html'),
 	plugins: [
-		'bisheng-plugin-react?lang=__react',
-		'bisheng-plugin-uxcore'
-	]
+    'bisheng-plugin-react?lang=__react',
+    'bisheng-plugin-uxcore'
+	],
+  webpackConfig(config) {
+    return config;
+  }
 };

@@ -26,9 +26,10 @@ export default class Aside extends React.PureComponent {
 
   render() {
     const { route, sideNav } = this.props;
+    const renderNavData = sideNav.filter(d => !!d.name);
     return (
         <div className="aside">
-          { this.renderNavList(sideNav, route) }
+          { this.renderNavList(renderNavData, route) }
         </div>
     );
   }

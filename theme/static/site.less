@@ -291,11 +291,17 @@ body {
 }
 .card {
   margin: 10px 0;
+  max-width: 100%;
   background-color: #fff;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .14);
 }
 
+.demo-wrapper {
+  display: flex;
+}
 .demo-card {
+  flex: 1 0 auto;
+  margin-left: 20px;
   border: 1px solid #eee;
   &.demo-expand {
     .code {
@@ -319,10 +325,6 @@ body {
       max-height: 400px;
     }
   }
-  .preview {
-    padding: 10px 20px;
-
-  }
   .toggle-btn {
     position: absolute;
     right: 20px;
@@ -339,6 +341,44 @@ body {
     }
     &:hover {
       text-decoration: none
+    }
+  }
+}
+.preview-wrapper {
+  float: left;
+  width: 377px;
+  height: 620px;
+  .preview-header {
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(rgba(55,55,55,.98),#545456);
+    text-align: center;
+    .preview-statbar {
+      margin-bottom: 4px;
+      height: 20px;
+      > img {
+        margin-top: 6px;
+      }
+    }
+    .preview-navbar {
+      height: 40px;
+    }
+    .preview-url {
+      margin: 0px auto;
+      width: 350px;
+      height: 28px;
+      line-height: 28px;
+      color: #fff;
+      background-color: #a2a2a2;
+      border-radius: 4px;
+    }
+  }
+  .preview-content {
+    > iframe {
+      width: 377px;
+      height: 548px;
+      box-shadow: rgb(235, 235, 235) 0px 2px 4px;
+      border: 1px solid #f7f7f7;
+      border-top: 0 none;
     }
   }
 }
