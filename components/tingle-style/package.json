@@ -10,9 +10,10 @@
         "spec": ">=0.3.1 <0.4.0",
         "type": "range"
       },
-      "/Users/ens/pwd/uxcore/saltui/node_modules/tingle-button"
+      "/Users/Poling/Documents/Project/Mine/saltui/node_modules/tingle-button"
     ]
   ],
+  "_cnpm_publish_time": 1446044880966,
   "_from": "tingle-style@>=0.3.1 <0.4.0",
   "_id": "tingle-style@0.3.1",
   "_inCache": true,
@@ -36,11 +37,11 @@
   "_requiredBy": [
     "/tingle-button"
   ],
-  "_resolved": "https://registry.npmjs.org/tingle-style/-/tingle-style-0.3.1.tgz",
+  "_resolved": "https://registry.npm.taobao.org/tingle-style/download/tingle-style-0.3.1.tgz",
   "_shasum": "b0edd7ce719181ce3f29875128829280880c0a33",
   "_shrinkwrap": null,
   "_spec": "tingle-style@~0.3.1",
-  "_where": "/Users/ens/pwd/uxcore/saltui/node_modules/tingle-button",
+  "_where": "/Users/Poling/Documents/Project/Mine/saltui/node_modules/tingle-button",
   "author": {
     "name": "gnosaij",
     "email": "gnosaij@yeah.net"
@@ -64,7 +65,9 @@
   "directories": {},
   "dist": {
     "shasum": "b0edd7ce719181ce3f29875128829280880c0a33",
-    "tarball": "https://registry.npmjs.org/tingle-style/-/tingle-style-0.3.1.tgz"
+    "size": 39378,
+    "noattachment": false,
+    "tarball": "http://registry.npm.taobao.org/tingle-style/download/tingle-style-0.3.1.tgz"
   },
   "gitHead": "fbda3d018b7251fa94a28c5543721cabb04230f5",
   "homepage": "https://github.com/tinglejs/tingle-style#readme",
@@ -82,6 +85,7 @@
   ],
   "name": "tingle-style",
   "optionalDependencies": {},
+  "publish_time": 1446044880966,
   "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",

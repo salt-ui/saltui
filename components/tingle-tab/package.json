@@ -1,0 +1,118 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "tingle-tab",
+        "scope": null,
+        "escapedName": "tingle-tab",
+        "name": "tingle-tab",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/Poling/Documents/Project/Mine/saltui"
+    ]
+  ],
+  "_cnpm_publish_time": 1452158439582,
+  "_from": "tingle-tab@latest",
+  "_id": "tingle-tab@0.2.2",
+  "_inCache": true,
+  "_location": "/tingle-tab",
+  "_nodeVersion": "4.2.3",
+  "_npmUser": {
+    "name": "gnosaij",
+    "email": "gnosaij@yeah.net"
+  },
+  "_npmVersion": "2.14.7",
+  "_phantomChildren": {
+    "classnames": "2.2.5"
+  },
+  "_requested": {
+    "raw": "tingle-tab",
+    "scope": null,
+    "escapedName": "tingle-tab",
+    "name": "tingle-tab",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/tingle-tab/download/tingle-tab-0.2.2.tgz",
+  "_shasum": "aa7c003bfb08180bac86ccb8be53ee52fce53174",
+  "_shrinkwrap": null,
+  "_spec": "tingle-tab",
+  "_where": "/Users/Poling/Documents/Project/Mine/saltui",
+  "author": {
+    "name": "zhangshun",
+    "email": "kangning1206@163.com"
+  },
+  "bugs": {
+    "url": "https://github.com/tinglejs/tingle-tab/issues"
+  },
+  "dependencies": {
+    "classnames": "^2.1.2",
+    "tingle-context": "~0.1.0",
+    "tingle-scroller": "~0.1.1",
+    "tingle-style": "~0.2.0"
+  },
+  "description": "tingle-tab tab选项",
+  "devDependencies": {
+    "babel-core": "^5.8.19",
+    "babel-loader": "^5.3.2",
+    "fastclick": "^1.0.6",
+    "gulp": "^3.9.0",
+    "react": "^0.13.3",
+    "tingle-dev-tools": "latest"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "aa7c003bfb08180bac86ccb8be53ee52fce53174",
+    "size": 4934,
+    "noattachment": false,
+    "tarball": "http://registry.npm.taobao.org/tingle-tab/download/tingle-tab-0.2.2.tgz"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "gitHead": "3bd840102e36674c48bad0ec2a935b7f7d61800c",
+  "homepage": "https://github.com/tinglejs/tingle-tab#readme",
+  "keywords": [
+    "tingle-tab",
+    "tab",
+    "选项",
+    "tingle"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "maintainers": [
+    {
+      "name": "gbk",
+      "email": "ck0123456@gmail.com"
+    },
+    {
+      "name": "gnosaij",
+      "email": "gnosaij@yeah.net"
+    },
+    {
+      "name": "yize",
+      "email": "yize.shc@gmail.com"
+    }
+  ],
+  "name": "tingle-tab",
+  "optionalDependencies": {},
+  "publish_time": 1452158439582,
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinglejs/tingle-tab.git"
+  },
+  "screenshots": "https://img.alicdn.com/tps/TB1yoIXJpXXXXaEXXXXXXXXXXXX-750-1254.png",
+  "scripts": {
+    "start": "gulp server"
+  },
+  "version": "0.2.2"
+}

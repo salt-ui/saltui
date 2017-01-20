@@ -1,0 +1,119 @@
+.demo-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+.demo-card-wrap {
+  /*flex: 1 0 auto;*/
+  margin-left: 20px;
+  flex: 1;
+
+  .demo-card{
+  	position: relative;
+  	border: 1px solid #eee;
+  	margin-bottom: 20px;
+
+	&.demo-expand {
+		.code {
+		  display: block;
+		}
+	}
+  }
+
+  .title {
+    padding: 10px 20px;
+    line-height: 2;
+  }
+  .desc {
+    position: relative;    
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+  }
+  .code {
+    display: none;
+    margin: 20px;
+    font-size: 12px;
+    line-height: 1.5;
+    > pre {
+      max-height: 400px;
+      code {
+        display: inline;
+        max-width: initial;
+        margin: 0;
+        padding: 0;
+        font-size: 1em;
+        word-break: break-word;
+        white-space: pre-wrap;
+        background-color: inherit;
+        color: #333;
+        font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+        border-radius: 0;
+        line-height: 1.5;
+      }
+    }
+  }
+  .toggle-btn {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    /*bottom: -12px;*/
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border: 1px solid #d0d0d0;
+    border-radius: 11px;
+    text-align: center;
+    line-height: 22px;
+    cursor: pointer;
+    i {
+      font-size: 12px;
+    }
+    &:hover {
+      text-decoration: none
+    }
+  }
+}
+.preview-wrapper {
+  /*float: left;*/
+  width: 377px;
+  max-width: 377px;
+  height: 620px;
+  flex: 1;
+  .preview-header {
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(rgba(55,55,55,.98),#545456);
+    text-align: center;
+    .preview-statbar {
+      margin-bottom: 4px;
+      height: 20px;
+      > img {
+        margin-top: 6px;
+      }
+    }
+    .preview-navbar {
+      height: 40px;
+    }
+    .preview-url {
+      margin: 0px auto;
+      width: 350px;
+      height: 28px;
+      line-height: 28px;
+      color: #fff;
+      background-color: #a2a2a2;
+      border-radius: 4px;
+    }
+  }
+  .preview-content {
+    > iframe {
+      width: 377px;
+      height: 548px;
+      box-shadow: rgb(235, 235, 235) 0px 2px 4px;
+      border: 1px solid #f7f7f7;
+      border-top: 0 none;
+    }
+  }
+}
+.preview-content{
+	/*min-height: 570px;*/
+    /*margin-top: -4px;*/
+    /*box-shadow: 0 0 5px #ddd;*/
+}
