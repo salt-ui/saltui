@@ -12,11 +12,11 @@
   	border: 1px solid #eee;
   	margin-bottom: 20px;
 
-	&.demo-expand {
-		.code {
-		  display: block;
-		}
-	}
+  	&.demo-expand {
+  		.code {
+  		  display: block;
+  		}
+  	}
   }
 
   .title {
@@ -51,18 +51,16 @@
       }
     }
   }
-  .toggle-btn {
+  .demo-btn{
     position: absolute;
-    right: 20px;
     top: 12px;
-    /*bottom: -12px;*/
     width: 24px;
     height: 24px;
     background-color: #fff;
     border: 1px solid #d0d0d0;
     border-radius: 11px;
     text-align: center;
-    line-height: 22px;
+    line-height: 2;
     cursor: pointer;
     i {
       font-size: 12px;
@@ -70,6 +68,15 @@
     &:hover {
       text-decoration: none
     }
+  }
+  .toggle-btn {
+    right: 20px;
+  }
+  .expand-btn{
+    right: 50px;
+  }
+  .copy-btn{
+    right: 80px;
   }
 }
 .preview-wrapper {
@@ -116,4 +123,11 @@
 	/*min-height: 570px;*/
     /*margin-top: -4px;*/
     /*box-shadow: 0 0 5px #ddd;*/
+}
+
+.demo-dialog{
+
+  pre{
+    max-height: 500px;
+  }
 }

@@ -18,6 +18,6 @@ export default class Icon extends React.PureComponent {
 
   render() {
     const { name, className, ...props } = this.props;
-    return <i className={classnames('alifont', className, `icon-${name}`)} {...props}></i>;
+    return <i className={classnames('iconfont', className, `icon-${name}`)} {...props}></i>;
   }
 }

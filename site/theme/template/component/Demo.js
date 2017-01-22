@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM, {findDOMNode} from 'react-dom';
+import Dialog from 'uxcore-dialog';
+import Button from 'uxcore-button';
 import brace from 'brace';
 require('brace/mode/jsx');
 require('brace/mode/javascript');
@@ -16,13 +18,19 @@ export default class Demo extends React.Component {
 	    super(props);
 	    this.state = {
 	      selectDemoIndex: -1,
-	      demos: this.sortDemos(props.demos)
+	      demos: this.sortDemos(props.demos),
+	      dialog: {
+	      	title: '',
+	      	content: ''
+	      },
+	      showDialog: false
 	    };
 
 
 	    this.toggleDemoCard = this.toggleDemoCard.bind(this);
 	    this.transform = this.transform.bind(this);
-
+	    this.showExpandDemo = this.showExpandDemo.bind(this);
+	    this.hideDialog = this.hideDialog.bind(this);
 	    
 	}
 
@@ -74,9 +82,7 @@ export default class Demo extends React.Component {
 			}catch (error){
 				console.log(error)
 			}
-		}
-
-		
+		}	
 	}
 
 	toggleDemoCard(index){
@@ -96,9 +102,23 @@ export default class Demo extends React.Component {
 		
 	}
 
+	showExpandDemo(dialog){
+		this.setState({
+			dialog,
+			showDialog: true
+		})
+	}
+
+	hideDialog(){
+		this.setState({
+			showDialog: false
+		})
+	}
+
 	render(){
-		const { selectDemoIndex, demos } = this.state;
-		const { params } = this.props;
+		const { selectDemoIndex, demos, dialog, showDialog } = this.state;
+		const { params, utils } = this.props;
+
 		const selectDemo = demos[selectDemoIndex > -1 ? selectDemoIndex : 0];
 		const isLocalMode = window.location.port;
 		const protocol = window.location.protocol;
@@ -132,10 +152,21 @@ export default class Demo extends React.Component {
 								selectIndex={selectDemoIndex}
 								toggleCode={this.toggleDemoCard}
 								transform={this.transform}
+								showExpandDemo={this.showExpandDemo}
 								/>
 						)
 					}
 				</div>
+				<Dialog title={dialog.title}
+                    visible={showDialog}
+                    closable={true}
+                    onCancel={this.hideDialog}
+                    width={900}
+                    footer={<Button type="primary" onClick={e => this.hideDialog()}>Back</Button>}
+                    className='demo-dialog'
+                    >
+                    {utils.toReactComponent(dialog.content)}
+                </Dialog>
 			</div>
 		)
 	}

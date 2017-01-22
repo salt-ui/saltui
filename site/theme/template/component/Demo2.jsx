@@ -53,7 +53,7 @@ export default class Demo extends React.Component {
           <h3 className="title">{title}</h3>
           <div className="desc">
             
-            <a href="#" className="toggle-btn" onClick={this.toggleCode}><i className={classnames('alifont', {
+            <a href="#" className="toggle-btn" onClick={this.toggleCode}><i className={classnames('iconfont', {
               'icon-arrow-up': expand,
               'icon-arrow-down': !expand,
             })}></i></a>

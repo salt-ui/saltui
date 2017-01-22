@@ -69,7 +69,7 @@ export default (props) => {
         <CardWrap width="100%">
           <Card>
           {
-            Object.keys(demos).length > 0 && <Demo demos={demos} params={params.component}/>
+            Object.keys(demos).length > 0 && <Demo demos={demos} params={params.component} utils={utils}/>
             // demos.map(demo => <Card style={{width: demo.raw.width}} key={demo.name}><Demo utils={utils} content={demo} /></Card>)
           }
           </Card>
