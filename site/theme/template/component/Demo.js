@@ -1,23 +1,23 @@
 import React from 'react';
-import ReactDOM, {findDOMNode} from 'react-dom';
 import Dialog from 'uxcore-dialog';
 import Button from 'uxcore-button';
 import brace from 'brace';
 require('brace/mode/jsx');
 require('brace/mode/javascript');
 require('brace/theme/github');
-require('brace/theme/twilight');
+// require('brace/theme/twilight');
 
 
 import DemoItem from './DemoItem';
-import { transformCode } from '../../utils';
+import { transformCode } from '../../../utils';
 
 
 export default class Demo extends React.Component {
+
 	constructor(props) {
 	    super(props);
 	    this.state = {
-	      selectDemoIndex: -1,
+	      selectDemoIndex: 0,
 	      demos: this.sortDemos(props.demos),
 	      dialog: {
 	      	title: '',
@@ -27,7 +27,8 @@ export default class Demo extends React.Component {
 	    };
 
 
-	    this.toggleDemoCard = this.toggleDemoCard.bind(this);
+	    // this.toggleDemoCard = this.toggleDemoCard.bind(this);
+	    this.toggleFrame = this.toggleFrame.bind(this);
 	    this.transform = this.transform.bind(this);
 	    this.showExpandDemo = this.showExpandDemo.bind(this);
 	    this.hideDialog = this.hideDialog.bind(this);
@@ -40,15 +41,19 @@ export default class Demo extends React.Component {
 				selectDemoIndex: -1,
 				demos: this.sortDemos(next.demos)
 			}, () =>{
-				this.transform(this.state.demos[0].content);
+				window.setTimeout(() => {
+					this.transform(this.state.demos[0].content);
+				}, 1000)
 			})
 		}
 	}
 
 	componentDidMount(){
-		const { demos } = this.state;
+		const { demos, selectDemoIndex } = this.state;
 
-		this.transform(demos[0].content);
+		window.setTimeout(() => {
+			this.transform(demos[selectDemoIndex].content);
+		}, 1000)
 	}
 
 	sortDemos(demos){
@@ -70,36 +75,41 @@ export default class Demo extends React.Component {
 	transform(contents){
 		const { code, err } = transformCode(contents);
 
-		const mount = this.refs.mountNode;
-		const args = 'ReactDOM, React, SaltUI, mountNode';
-		const argsCmps = [ReactDOM, React, SaltUI, mount];
-
 		if(!err){
-			try{
-				// let f = new Function(args, code);
-				// f.apply(null, argsCmps);
-
-			}catch (error){
-				console.log(error)
-			}
+			this.container.contentWindow.postMessage(code, '*');
 		}	
 	}
 
-	toggleDemoCard(index){
+	// toggleDemoCard(index){
+	// 	const { selectDemoIndex, demos } = this.state;
+
+	// 	if(selectDemoIndex == index){
+	// 		this.setState({
+	// 			selectDemoIndex: -1,
+	// 		});
+	// 	}else{
+	// 		this.transform(demos[index].content);
+	// 		this.setState({
+	// 			selectDemoIndex: index,
+	// 		});
+	// 	}
+	// 	// const newIndex = selectDemoIndex == index ? -1 : index;
+		
+	// }
+
+	toggleFrame(index){
 		const { selectDemoIndex, demos } = this.state;
 
-		if(selectDemoIndex == index){
+		if(selectDemoIndex != index){
+			window.setTimeout(() => {
+				this.transform(demos[index].content);
+			}, 1000)
+
 			this.setState({
-				selectDemoIndex: -1,
+				selectDemoIndex: index
 			});
-		}else{
-			this.transform(demos[index].content);
-			this.setState({
-				selectDemoIndex: index,
-			});
+			
 		}
-		// const newIndex = selectDemoIndex == index ? -1 : index;
-		
 	}
 
 	showExpandDemo(dialog){
@@ -139,7 +149,12 @@ export default class Demo extends React.Component {
 			            </div>
 					</div>
 					<div className="preview-content">
-						<iframe src={demoUrl} />
+						<iframe 
+							src={demoUrl} 
+							ref = {e => {
+					            this.container = e;
+					          }}
+							/>
 					</div>
 				</div>
 				<div className="demo-card-wrap">
@@ -150,9 +165,9 @@ export default class Demo extends React.Component {
 								data={demo} 
 								index={i} 
 								selectIndex={selectDemoIndex}
-								toggleCode={this.toggleDemoCard}
 								transform={this.transform}
 								showExpandDemo={this.showExpandDemo}
+								toggleFrame={this.toggleFrame}
 								/>
 						)
 					}

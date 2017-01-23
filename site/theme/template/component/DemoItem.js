@@ -7,17 +7,28 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 export default class DemoItem extends React.Component {
 	constructor(props) {
 	    super(props);
+	    this.state = {
+	    	expand: false
+	    }
+
+	    this.toggleCode = this.toggleCode.bind(this);
 	}
 
 
 	onChangeValue(newValue){
 		this.props.transform(newValue);
 	}
+
+	toggleCode(e){
+		this.setState({
+			expand: !this.state.expand
+		})
+	}
 	
 
 	render(){
-		const { data, selectIndex, index, toggleCode, showExpandDemo } = this.props;
-		const expand = selectIndex === index;
+		const { data, selectIndex, index, toggleCode, showExpandDemo, toggleFrame } = this.props;
+		const { expand } = this.state;
 
 		const paneProps = {
 			theme: 'github',
@@ -35,7 +46,10 @@ export default class DemoItem extends React.Component {
 		return(
 			<div className={classnames('demo-card', {
 	          'demo-expand': expand,
-	        })}>
+	          'demo-selected': selectIndex == index
+	        })}
+				onClick={e => toggleFrame(index)}
+	        >
 				<h3 className="title">{data.meta.title}</h3>
 				<CopyToClipboard 
 					text={data.content}
@@ -48,7 +62,7 @@ export default class DemoItem extends React.Component {
 				<span className="demo-btn expand-btn">
 					<i className='iconfont icon-expand' onClick={e => showExpandDemo({ title: data.name, content: data.highlightedCode})}/>
 				</span>
-				<span className="demo-btn toggle-btn" onClick={e => toggleCode(index)}>
+				<span className="demo-btn toggle-btn" onClick={e => this.toggleCode()}>
 
 					<i className={classnames('iconfont', {
 		              'icon-arrow-up': expand,

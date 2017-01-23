@@ -6,7 +6,7 @@ title: basic
 
 
 ```jsx
-import Button from '@ali/tingle-button';
+const { Button } = SaltUI;
 
 ReactDOM.render(
   <div>

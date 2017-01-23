@@ -4,7 +4,7 @@ title: sample1
 ---
 
 ```jsx
-import Tab from '@ali/tingle-tab';
+const { Tab } = SaltUI;
 
 ReactDOM.render(
     <Tab active={1}>

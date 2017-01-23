@@ -9,7 +9,7 @@ module.exports = {
 			// component: './template/Demo',
 			// childRoutes: [{ 
 				path: '/demos/:demo/:name', 
-				component: './template/Demo',
+				component: './template/Layout',
 			// }]
 		}]
 		}, 
