@@ -1,146 +1,144 @@
 .home-banner {
   position: relative;
   height: 600px;
-  /*background-image: linear-gradient(#2599f2,#85c6f8);*/
+  padding: 30px;
   background-image: linear-gradient(#71a8d2,#c6dcec);
-  text-align: center;
-  .brand {
-    position: absolute;
-    left: 50%;
-    top: 200px;
-    margin-left: -50px;
-    width: 500px;
-    height: 67px;
-    background: url('//gtms02.alicdn.com/tps/i2/TB1IeBdKVXXXXXZXFXXMDVcGpXX-1026-137.png') 0 0/contain no-repeat;
-    text-indent: -999em;
-    animation-delay: 3s;
+  h1{
+    color: #fff;
+    font-size: 36px;
+    font-weight: normal;
+    margin: 100px 0 40px;
   }
-  .slogan {
-    position: absolute;
-    left: 50%;
-    top: 300px;
+  p{
+    color: #fff;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 50px;
+  }
+  .start-btn{
+    width: 200px;
+    height: 40px;
+    font-size: 18px;
+    background-color: #71a8d2;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    &:hover{
+      
+      box-shadow: 0 4px 8px rgba(50,50,50,.1);
+      transition: all .2s;
+    }
+  }
+  .bg-back{
     opacity: 0;
-    margin-left: -50px;
-    width: 400px;
-    height: 47px;
-    background: url('//gtms02.alicdn.com/tps/i2/TB1FoxgKVXXXXXBXFXXvmCsWVXX-1280-150.png')  0 0/contain no-repeat;
-    text-indent: -999em;
-    animation-delay: 5s;
-    animation-duration: 1s;
-  }
-  .canvas {
     position: absolute;
-    top: 100px;
-    left: 50%;
-    margin-left: -100px;
-    animation-delay: 2s;
+    width: 430px;
+    height: 478px;
+    top: 30px;
+    left: -50px;
+    background: url('./imgs/bg-back.png') 0 0/contain no-repeat;
+    animation-delay: .5s;
+    animation-duration: .7s;
+    animation-name:fadeInDown;
+    animation-fill-mode: forwards;
   }
+  .bg-front{
+    opacity: 0;
+    top: -10px;
+    position: absolute;
+    width: 544px;
+    height: 544px;
+    left: 50px;
+    background: url('./imgs/bg-front.png') 0 0/contain no-repeat;
+    animation-delay: .7s;
+    animation-duration: .7s;
+    animation-name:fadeInDown;
+    animation-fill-mode: forwards;
+  }
+  
 }
 .site-feature {
-  padding-top: 40px;
+  padding: 40px 80px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  background-image: linear-gradient(#c6dcec, #fff);
 
-  .feature-item {
+  >div{
+    padding: 20px;
+  }
+
+  .feature-item{
     position: relative;
-    flex: 0 1 28%;
-    height: 140px;
+    height: 300px;
+    background-color: rgba(240, 246, 250, 0.35);
 
-    .alifont {
-      position: absolute;
-      font-style: normal;
-      font-size: 70px;
-      color: #71a8d2;
-      &.icon-react {
-        &:before {
-          content: '\e605';
-        }
-      }
-      &.icon-component {
-        &:before {
-          content: '\e603';
-        }
-      }
-      &.icon-efficient {
-        &:before {
-          content: '\e602';
-        }
-      }
-      &.icon-pattern {
-        &:before {
-          content: '\e604';
-        }
-      }
-      &.icon-customise {
-        &:before {
-          content: '\e601';
-        }
-      }
-      &.icon-reliable {
-        &:before {
-          content: '\e600';
-        }
-      }
+    &:hover{
+      margin-top:-5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,.12);
+      transition: all .3s;
     }
-    &-text {
-      margin-left: 90px;
-      /*width: 200px;*/
+  }
+
+  .feature-body{
+    height: 250px;
+    padding-top: 40px;
+  }
+
+  .feature-footer{
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    line-height: 50px;
+    height: 50px;
+    text-decoration: none;
+    color: #71a8d2;
+    border-top: 1px solid #d1e3f0;
+
+    &:hover{
+      background-color: #c6dcec;
+      color: #fff;
+      transition: all .2s;
     }
-    &-title {
-      margin: 0 0 10px;
-      font-size: 24px;
-      font-weight: 400;
+  }
+
+  .feature-img{
+    width: 104px;
+    height: 80px;
+    margin: 0 auto 20px;
+
+    &.img-intro{
+      background: url('./imgs/feature1.png') 0 0/contain no-repeat;
     }
-    &-des {
-      font-size: 16px;
-      line-height: 20px;
-      color: #888;
+    &.img-comp{
+      background: url('./imgs/feature2.png') 0 0/contain no-repeat;
     }
+    &.img-res{
+      background: url('./imgs/feature3.png') 0 0/contain no-repeat;
+    }
+  }
+
+  h3{
+    text-align: center;
+    color: #4379a2;
+    font-size: 16px;
+  }
+
+  .intro{
+    padding: 10px;
+    text-align: center;
+    color: #9eb4c5;
   }
 }
 
-@keyframes zoomInRight {
+@keyframes fadeInDown{
   from {
-    opacity: 0;
-    transform: scale3d(.1, .1, .1) translate3d(1000px, 0, 0);
-    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+    /*top: -10px;*/
   }
 
-  60% {
+  to {
     opacity: 1;
-    transform: scale3d(.475, .475, .475) translate3d(-10px, 0, 0);
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+    top: 20px;
   }
 }
 
-.flash {
-  animation-name: flash;
-}
-
-.zoomInRight {
-  animation-name: zoomInRight;
-}
-
-.translate {
-  animation-name: translate;
-}
-
-.animated {
-  animation-duration: 2s;
-  animation-fill-mode: both;
-  &.infinite {
-    animation-iteration-count: infinite;
-  }
-
-  &.hinge {
-    animation-duration: 2s;
-  }
-  &.flipOutX,
-  &.flipOutY,
-  &.bounceIn,
-  &.bounceOut {
-    animation-duration: .75s;
-  }
-
-}
