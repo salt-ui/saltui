@@ -1,25 +1,39 @@
 
+const prefix = window.location.port ? '/' : '/saltui';
 
 let routes = [
   {
-    path: '/',
+    path: prefix,
     component: './template/Home',
     name: '首页',
     // icon: 'home'
   },
   {
-    path: '/components',
+    path: `${prefix}/components`,
     name: '组件',
     component: './template/layout/Layout', 
     
     childRoutes: [
       {
-        path: '/components/:component',
+        path: `${prefix}/components/:component`,
         component: './template/Component'
       },
     ]
   },
-  /*{
+  
+  {
+    path: `${prefix}/components/:component/:name`,
+    component: './template/Kitchen',
+  },
+];
+
+module.exports = {
+  home: './',
+  sideNav: routes,
+  routes: routes
+};
+
+/*{
     path: '/components',
     name: '组件',
     icon: 'dashboard',
@@ -34,14 +48,3 @@ let routes = [
       },
     ]
   },*/
-  {
-    path: '/components/:component/:name',
-    component: './template/Kitchen',
-  },
-];
-
-module.exports = {
-  home: './',
-  sideNav: routes,
-  routes: routes
-};
