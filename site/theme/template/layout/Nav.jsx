@@ -24,8 +24,8 @@ class Nav extends React.PureComponent {
 
   renderSearchOption(components) {
     return Object
-        .keys(components)
-        .map(component => <Option key={component} value={component} >{component}</Option>);
+      .keys(components)
+      .map(component => <Option key={component} value={component} >{component}</Option>);
   }
   
   render() {
@@ -46,7 +46,7 @@ class Nav extends React.PureComponent {
           <div className="dropdown-container" ref="dropdownContainer"></div>
         </div>
 
-        <h1 className="logo">SaltUI</h1>
+        <div className="logo" />
         <NavLink href={`/`} name="首页" route={route} activeLink={`/`}/>
         <NavLink href={`/components/${defaultComp}`} name="组件" route={route} activeLink={`/components`}/>
         

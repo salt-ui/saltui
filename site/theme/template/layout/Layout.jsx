@@ -24,7 +24,6 @@ export default class Layout extends React.Component {
     
   }
 
-
   render() {
     const { data, children, routeParams, route, hasAside, params } = this.props;
     

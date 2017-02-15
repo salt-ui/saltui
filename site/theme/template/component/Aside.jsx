@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
+import {upperFirstCharactor, removeTingle, mappingNavItem } from '../../../utils';
 
 export default ({ sideNav, components, params }) => {
-
-
-  const upperFirstCharactor = (word) => word.slice(0, 1).toUpperCase() + word.slice(1);
 
   return (
     <div className="aside">
@@ -18,7 +16,10 @@ export default ({ sideNav, components, params }) => {
               className={classnames({
                 active: params.component === component,
               })}> 
-              <Link to={`/components/${component}`}>{ upperFirstCharactor(component)}</Link>
+              <Link to={`/components/${component}`}>
+                { upperFirstCharactor(removeTingle(component))}
+                <span>{ mappingNavItem(component)}</span>
+              </Link>
             </li>
           )) 
       }

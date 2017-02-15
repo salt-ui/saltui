@@ -9,6 +9,7 @@ import CardWrap from './layout/CardWrap';
 import Card from './layout/Card';
 import Markdown from './component/Markdown';
 import Demo from './component/Demo';
+import {upperFirstCharactor } from '../../utils';
 
 const parseDemoRaw = (demos) => {
 
@@ -63,7 +64,7 @@ export default (props) => {
     <DocumentTitle title={`${params.component} - Component`}>
       <div>
         <h2 className="component-page-title">
-          <a href={`//gitlab.alibaba-inc.com/uxcore/${params.component}`} target="_blank">{params.component}</a>
+          <a href={`//gitlab.alibaba-inc.com/uxcore/${params.component}`} target="_blank">{upperFirstCharactor(params.component)}</a>
         </h2>
 
         <CardWrap width="100%">

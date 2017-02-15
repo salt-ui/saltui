@@ -15,24 +15,21 @@ import { transformCode } from '../../../utils';
 export default class Demo extends React.Component {
 
 	constructor(props) {
-	    super(props);
-	    this.state = {
-	      selectDemoIndex: 0,
-	      demos: this.sortDemos(props.demos),
-	      dialog: {
-	      	title: '',
-	      	content: ''
-	      },
-	      showDialog: false
-	    };
+    super(props);
+    this.state = {
+      selectDemoIndex: 0,
+      demos: this.sortDemos(props.demos),
+      dialog: {
+      	title: '',
+      	content: ''
+      },
+      showDialog: false
+    };
 
-
-	    // this.toggleDemoCard = this.toggleDemoCard.bind(this);
-	    this.toggleFrame = this.toggleFrame.bind(this);
-	    this.transform = this.transform.bind(this);
-	    this.showExpandDemo = this.showExpandDemo.bind(this);
-	    this.hideDialog = this.hideDialog.bind(this);
-	    
+    this.toggleFrame = this.toggleFrame.bind(this);
+    this.transform = this.transform.bind(this);
+    this.showExpandDemo = this.showExpandDemo.bind(this);
+    this.hideDialog = this.hideDialog.bind(this);
 	}
 
 	componentWillReceiveProps(next){
@@ -79,23 +76,6 @@ export default class Demo extends React.Component {
 			this.container.contentWindow.postMessage(code, '*');
 		}	
 	}
-
-	// toggleDemoCard(index){
-	// 	const { selectDemoIndex, demos } = this.state;
-
-	// 	if(selectDemoIndex == index){
-	// 		this.setState({
-	// 			selectDemoIndex: -1,
-	// 		});
-	// 	}else{
-	// 		this.transform(demos[index].content);
-	// 		this.setState({
-	// 			selectDemoIndex: index,
-	// 		});
-	// 	}
-	// 	// const newIndex = selectDemoIndex == index ? -1 : index;
-		
-	// }
 
 	toggleFrame(index){
 		const { selectDemoIndex, demos } = this.state;
@@ -145,15 +125,15 @@ export default class Demo extends React.Component {
 							<img src="https://os.alipayobjects.com/rmsportal/VfVHYcSUxreetec.png" width="350" alt=""/>
 						</div>
 						<div className="preview-navbar">
-			            	<div className="preview-url">{`/demos/${params}/${selectDemo.name}`}</div>
-			            </div>
+            	<div className="preview-url">{`/demos/${params}/${selectDemo.name}`}</div>
+            </div>
 					</div>
 					<div className="preview-content">
 						<iframe 
 							src={demoUrl} 
 							ref = {e => {
-					            this.container = e;
-					          }}
+		            this.container = e;
+		          }}
 							/>
 					</div>
 				</div>
@@ -173,15 +153,15 @@ export default class Demo extends React.Component {
 					}
 				</div>
 				<Dialog title={dialog.title}
-                    visible={showDialog}
-                    closable={true}
-                    onCancel={this.hideDialog}
-                    width={900}
-                    footer={<Button type="primary" onClick={e => this.hideDialog()}>Back</Button>}
-                    className='demo-dialog'
-                    >
-                    {utils.toReactComponent(dialog.content)}
-                </Dialog>
+          visible={showDialog}
+          closable={true}
+          onCancel={this.hideDialog}
+          width={900}
+          footer={<Button type="primary" onClick={e => this.hideDialog()}>Back</Button>}
+          className='demo-dialog'
+          >
+         	 {utils.toReactComponent(dialog.content)}
+        </Dialog>
 			</div>
 		)
 	}

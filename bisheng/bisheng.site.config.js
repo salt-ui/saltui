@@ -14,13 +14,13 @@ module.exports = Object.assign({}, commonConfig, {
   doraConfig: {
     verbose: true,
   },
-  // pick: {
-  //   components(markdownData) {
-  //     console.log(markdownData)
-  //     return {
-  //       meta: markdownData.meta,
-  //       // description: markdownData.description,
-  //     };
-  //   }
-  // }
+  pick: {
+    trans(markdownData) {
+      console.log(markdownData.meta)
+      return {
+        meta: markdownData.meta,
+        // description: markdownData.description,
+      };
+    }
+  }
 });

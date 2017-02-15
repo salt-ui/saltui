@@ -6,12 +6,13 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 export default class DemoItem extends React.Component {
 	constructor(props) {
-	    super(props);
-	    this.state = {
-	    	expand: false
-	    }
+    super(props);
+    this.state = {
+    	// expand: false
+    	expand: props.selectIndex === props.index
+    }
 
-	    this.toggleCode = this.toggleCode.bind(this);
+    this.toggleCode = this.toggleCode.bind(this);
 	}
 
 
@@ -49,7 +50,7 @@ export default class DemoItem extends React.Component {
 	          'demo-selected': selectIndex == index
 	        })}
 				onClick={e => toggleFrame(index)}
-	        >
+	      >
 				<h3 className="title">{data.meta.title}</h3>
 				<CopyToClipboard 
 					text={data.content}
@@ -65,12 +66,12 @@ export default class DemoItem extends React.Component {
 				<span className="demo-btn toggle-btn" onClick={e => this.toggleCode()}>
 
 					<i className={classnames('iconfont', {
-		              'icon-arrow-up': expand,
-		              'icon-arrow-down': !expand,
-		            })} />
-	            </span>
-	            {expand && <AceEditor {...paneProps} />}
-	            <input type="text" ref="content" style={{ display:'none'}} value={data.content}/>
+              'icon-arrow-up': expand,
+              'icon-arrow-down': !expand,
+            })} />
+        </span>
+          {expand && <AceEditor {...paneProps} />}
+          <input type="text" ref="content" style={{ display:'none'}} value={data.content}/>
 			</div>
 		)
 	}

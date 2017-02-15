@@ -8,6 +8,7 @@
     "predo": "node ./bisheng/predo.js",
     "bisheng1": "bisheng start -c ./bisheng/bisheng.site.config.js --no-livereload",
     "bisheng2": "bisheng start -c ./bisheng/bisheng.mobile.config.js --no-livereload",
+    "build": "concurrently \"bisheng build -c ./bisheng/bisheng.site.config.js \" \"bisheng build -c ./bisheng/bisheng.mobile.config.js \"",
     "bisheng": "concurrently \"bisheng start -c ./bisheng/bisheng.site.config.js --no-livereload\" \"bisheng start -c ./bisheng/bisheng.mobile.config.js --no-livereload\"",
     "start-o": "bisheng start"
   },

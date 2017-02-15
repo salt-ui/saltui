@@ -21,6 +21,10 @@
     &.demo-selected{
       background-color: #ddf0ff;
       border-color: #ddf0ff;
+
+      .demo-btn{
+        border-color: #ddf0ff;
+      }
     }
   }
 
@@ -84,6 +88,10 @@
   .copy-btn{
     right: 80px;
   }
+  .ace-github .ace_gutter {
+    background: #f0f7fc;
+    color: #5480a6;
+  }
 }
 .preview-wrapper {
   /*float: left;*/
@@ -125,15 +133,21 @@
     }
   }
 }
-.preview-content{
-	/*min-height: 570px;*/
-    /*margin-top: -4px;*/
-    /*box-shadow: 0 0 5px #ddd;*/
-}
+
 
 .demo-dialog{
+  .kuma-dlg-footer,
+  .kuma-dlg-header,
+  .kuma-dlg-content{
+    background-color: #fafafa;
+  }
+
+  .kuma-dlg-title{
+    font-size: 20px;
+  }
 
   pre{
     max-height: 500px;
   }
 }
+

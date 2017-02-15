@@ -9,7 +9,7 @@ import classnames from 'classnames';
 
 export default ({ data, pageData, params, utils }) => {
   // const c = utils.get(data.demos, params.component);
-  console.log(data, pageData, params)
+  // console.log(data, pageData, params)
   // let demos = utils.get(utils.get(data.demos, params.component) || {}, params.name) || {};
 
   return (
