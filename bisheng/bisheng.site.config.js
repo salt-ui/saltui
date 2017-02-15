@@ -8,7 +8,8 @@ module.exports = Object.assign({}, commonConfig, {
     './components',
     './demos'
   ],
-  output: './build',
+  root: '/saltui/',
+  output: './docs',
   theme: './site/theme',
   htmlTemplate: path.join(__dirname, '..', 'template.html'),
   doraConfig: {

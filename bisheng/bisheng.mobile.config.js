@@ -6,7 +6,7 @@ module.exports = Object.assign({}, commonConfig, {
   source: [
     './demos',
   ],
-  output: './build/mobile',
+  output: './docs/mobile',
   root: '/mobile/',
   entryName: 'mobile',
   theme: './site/mobile',
