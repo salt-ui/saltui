@@ -1,8 +1,9 @@
+const prefix = window.location.port ? '/' : '/saltui';
 
 module.exports = {
 
 	routes: [{
-		path: '/',
+		path: prefix,
 		component: './template/Layout',
 		childRoutes: [{ 
 			// path: '/demos/:demo', 
