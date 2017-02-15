@@ -1,4 +1,4 @@
-const prefix = window.location.port ? '/' : '/saltui';
+const prefix = (global.location && global.location.port) ? '/' : '/saltui';
 
 module.exports = {
 
