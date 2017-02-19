@@ -48,7 +48,7 @@ const generateComponents = (components, componentDir) => {
 		);
 	});
 }
-fs.readdir('./node_modules', (err, files) => {
+fs.readdir('./node_modules/@ali', (err, files) => {
 	const components = files
 		.filter(file => file.startsWith('tingle-'));
 
