@@ -1,0 +1,51 @@
+/**
+ * Collection Component Demo for tingle
+ * @author gnosaij, changming.zy
+ *
+ * Copyright 2014-2017, Tingle Team, Alinw.
+ * All rights reserved.
+ */
+
+unless $prefix is defined
+    $prefix = 't'
+
+$line_color = $normal-alpha-7
+
+.{$prefix}-grid-cell-full
+    width 100%
+    height 100%
+
+.{$prefix}-grid
+    hairline 'border-top' $line_color
+
+.{$prefix}-grid-row
+    hairline 'border-bottom' $line_color
+
+.{$prefix}-grid-item + .{$prefix}-grid-item
+    hairline 'border-left' $line_color
+
+.{$prefix}-grid.{$prefix}-no-line
+    border-top none !important
+    .{$prefix}-grid-item + .{$prefix}-grid-item
+        border-left none !important
+    .{$prefix}-grid-row
+        border-bottom none !important
+
+.{$prefix}-grid-touchable.{$prefix}-has-line
+    .{$prefix}-grid-item:active
+        background-color $normal-alpha-7
+        border-color $normal-alpha-7
+
+.{$prefix}-grid-touchable.{$prefix}-no-line
+    .{$prefix}-grid-item:active
+        position relative
+        background-color initial
+        &:before
+          content " "
+          width 100%
+          height 100%
+          top 0
+          left 0
+          background-color $white-alpha-5
+          z-index 1
+          position absolute

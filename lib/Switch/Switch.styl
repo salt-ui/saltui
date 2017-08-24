@@ -1,0 +1,68 @@
+/**
+ * OnOff Component Style for tingle
+ * @author ruiyang.dry
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+.{$prefix}-switch
+    display block
+    pointer-events auto
+    position relative
+    -webkit-tap-highlight-color rgba(0, 0, 0, 0)
+    -webkit-touch-callout none
+    user-select none
+    cursor pointer
+    overflow hidden
+    float right
+
+.{$prefix}-switch-back
+    -webkit-transition all 0.3s ease-in-out
+    -o-transition all 0.3s ease-in-out
+    transition all 0.3s ease-in-out
+    background-color $normal-alpha-6
+    border-radius 40px
+    border solid 1px $sw_border
+    box-sizing border-box
+    content ' '
+    cursor pointer
+    display inline-block
+    height 30px
+    pointer-events none
+    width 48px
+    -webkit-background-clip padding-box
+
+.{$prefix}-switch-radius
+    -webkit-transition 0.3s cubic-bezier(0, 1.1, 1, 1.1)
+    -o-transition 0.3s cubic-bezier(0, 1.1, 1, 1.1)
+    transition 0.3s cubic-bezier(0, 1.1, 1, 1.1)
+    background-color white
+    border-radius 40px
+    display block
+    height 24px
+    left 2px
+    position absolute
+    top 3px
+    width 24px
+    &:before
+        content " "
+        left -21.5px
+        padding 18.5px 34px
+        position absolute
+        top -4px
+
+.{$prefix}-switch.active
+    .{$prefix}-switch-back
+        border-color $brand-primary
+        background-color $brand-primary
+    .{$prefix}-switch-radius
+        -webkit-transform translate3d(20px, 0, 0)
+        transform translate3d(20px, 0, 0)
+        background-color $white-alpha-1
+
+.{$prefix}-switch.readOnly 
+    .{$prefix}-switch-back
+        background-color $normal-alpha-8
+    .{$prefix}-switch-radius  
+        background-color $normal-alpha-7

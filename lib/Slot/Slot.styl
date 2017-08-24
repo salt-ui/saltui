@@ -1,0 +1,96 @@
+/**
+ * Slot Component Style for tingle
+ * @author caoke.ck
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+// size
+$slot-item-height = 48px
+$slot-columns-height = 26px
+
+// border color
+$slot-border-color = $normal-alpha-7
+
+// background color
+$slot-header-bgcolor = $basic-100
+$slot-body-bgcolor = $basic-100
+
+// text color
+$slot-primary-color = $dark-alpha-2
+$slot-secondary-color = $dark-alpha-3
+$slot-confirm-color = $brand-primary
+
+// font
+$slot-header-font-size = $font-size-t4
+$slot-option-font-size = $font-size-t4
+
+.{$prefix}-slot-header
+    background-color $slot-header-bgcolor
+    hairline('border-top', $slot-border-color)
+    hairline('border-bottom', $slot-border-color)
+    border-style solid none
+    height $slot-item-height
+    font-size $slot-header-font-size
+    color $slot-secondary-color
+
+.{$prefix}-slot-columns
+    background-color $slot-header-bgcolor
+    hairline('border-bottom', $slot-border-color)
+    height $slot-columns-height
+    line-height $slot-columns-height
+    font-size $slot-header-font-size
+    color $slot-secondary-color
+
+.{$prefix}-slot-cancel
+    margin-left 16px
+    color $normal-alpha-3
+
+.{$prefix}-slot-confirm
+    margin-right 16px
+    color $normal-alpha-7
+
+.{$prefix}-slot-cancel, .{$prefix}-slot-confirm
+    min-width 29px
+    line-height $slot-item-height
+    white-space nowrap
+
+.{$prefix}-slot-confirm.enable
+    color $slot-confirm-color
+
+.{$prefix}-slot-title
+    color $dark-alpha-2
+
+.{$prefix}-slot-body
+    height $slot-item-height * 5
+    overflow hidden
+    background-color $slot-body-bgcolor
+    font-size $slot-option-font-size
+    color $slot-primary-color
+    > .{$prefix}-scroller > .{$prefix}-DIB
+        width 100%
+    > div
+        // -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(40%, rgba(0, 0, 0, 1)), color-stop(60%, rgba(0, 0, 0, 1)), color-stop(100%, rgba(0, 0, 0, 0)));
+        // -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.1) 100%);
+    li
+        height $slot-item-height
+        line-height $slot-item-height
+        overflow hidden
+        text-align center
+        text-overflow ellipsis
+        white-space nowrap
+
+.{$prefix}-slot-body:before, .{$prefix}-slot-body:after
+    content ""
+    display inline-block
+    position absolute
+    top $slot-item-height * 2
+    left 0
+    height 0
+    width 100%
+    hairline('border-top', $slot-border-color)
+
+.{$prefix}-slot-body:after
+    top $slot-item-height * 3

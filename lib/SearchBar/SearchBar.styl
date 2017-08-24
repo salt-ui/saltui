@@ -1,0 +1,226 @@
+/**
+ * SearchBar Component Style for tingle
+ * @author zhouquan.yezq
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+$searchBarZIndex = 90
+$searchBarHeight = 44px
+$searchBarBtnWidth = 50px
+$searchBarBtnWidthEn = 68px
+$searchBarInputHeight = 28px
+$searchBarInputRadius = 4px
+$searchBarIconSpace = 30px
+$searchBarHistoryHeaderHeight = 30px
+$searchBarPlaceholderFontSize = 12px
+
+$searchBarWrapperBg = $basic-100
+$searchBarInputBg = $normal-alpha-8
+$searchBarListBg = $basic-400
+$searchBarPlaceholderColor = $normal-alpha-5
+
+$searchBarHistoryActionColor = $function-blue
+$searchBarHistoryHeaderColor = $text-helper
+$searchBarHistoryListColor = $text-seconary
+
+$searchBarWrapperTopPadding = ($searchBarHeight - $searchBarInputHeight) / 2
+$searchBarWrapperRightPadding = 16px
+
+.{$prefix}-search-bar
+    display block
+    hairline border-bottom $normal-alpha-7    
+
+// 这一行只是演示 按需删除
+
+/* input wrapper */
+.{$prefix}-search-bar-wrapper
+    position relative
+    background $searchBarWrapperBg
+    padding $searchBarWrapperTopPadding $searchBarWrapperRightPadding
+    height $searchBarHeight
+    overflow-x hidden
+
+.{$prefix}-search-bar-box
+    position relative
+    text-align center
+    background-color: #fff
+    border-radius $searchBarInputRadius
+
+.{$prefix}-search-bar-placeholder
+    font-size $searchBarPlaceholderFontSize
+    &.hidden
+        opacity 0
+
+.{$prefix}-search-bar-holder-wrapper
+    position absolute
+    text-align center
+    left 0
+    top 0
+    right 0
+    bottom 0
+    z-index 10
+    color $searchBarPlaceholderColor
+    background transparent
+    height $searchBarInputHeight
+    line-height $searchBarInputHeight
+    border-radius $searchBarInputRadius
+
+.{$prefix}-search-bar-holder
+    position absolute
+    left 50%
+    transform translate(-50%, 0)
+    padding-left $searchBarIconSpace
+    display inline-block
+    transition all 0.3s
+
+.{$prefix}-search-bar-btn
+.{$prefix}-search-bar-input
+    height $searchBarInputHeight
+
+.{$prefix}-search-bar-btn
+    color $brand-primary
+    position absolute
+    top $searchBarWrapperTopPadding
+    right (- $searchBarBtnWidth)
+    width $searchBarBtnWidth
+    line-height $searchBarInputHeight
+    font-size 14px
+    text-align right
+    padding-right 10px
+    background transparent
+    z-index 99
+
+.{$prefix}-search-bar-input[type="search"]
+    width 100%
+    padding-left $searchBarIconSpace
+    padding-right $searchBarIconSpace
+    background $searchBarInputBg
+    border-radius $searchBarInputRadius
+    border none
+    outline none
+    font-size 12px
+    color $dark-alpha-2
+    -webkit-appearance none
+    box-sizing border-box
+    line-height $searchBarInputHeight - 8
+    &::-webkit-input-placeholder
+        color $searchBarPlaceholderColor
+
+/* icon search&cross*/
+.{$prefix}-search-bar-icon-cross
+.{$prefix}-search-bar-icon-search
+.{$prefix}-search-bar-icon-search-active
+    display inline-block
+    position absolute
+    top 50%
+    -webkit-transform translateY(-50%)
+    transform translateY(-50%)
+    svg
+        vertical-align middle
+
+.{$prefix}-search-bar-icon-search-active
+.{$prefix}-search-bar-icon-search
+    left 6px
+    svg
+        fill $normal-alpha-5
+        width 16px
+        height 16px
+
+.{$prefix}-search-bar-icon-search-active
+    display none
+
+.{$prefix}-search-bar-icon-cross
+    right 6px
+    z-index 11
+    -webkit-transform scale(0) translateY(-50%)
+    transform scale(0) translateY(-50%)
+    transform-origin center top
+    svg
+        fill $normal-alpha-4
+        width 18px
+        height 18px
+    &.active
+        -webkit-transform scale(1) translateY(-50%)
+        transform scale(1) translateY(-50%)
+
+/* active */
+.{$prefix}-search-bar.active
+    .{$prefix}-search-bar-wrapper
+        padding-right $searchBarBtnWidth
+    .{$prefix}-search-bar-holder
+        left 30px
+    .{$prefix}-search-bar-btn
+        right 0
+
+/* list */
+.{$prefix}-search-bar-list
+    -webkit-overflow-scrolling touch
+
+.{$prefix}-search-bar-wrapper
+.{$prefix}-search-bar-btn
+.{$prefix}-search-bar-icon-cross
+    transition all 0.3s
+
+.{$prefix}-search-bar-history
+    display none
+    &.active
+        display block
+
+.{$prefix}-search-bar-history-list
+    margin 5px 0
+    & > li
+        & > span
+            max-width 60%
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
+            display inline-block
+            padding 8px 10px
+            border-radius 1em
+            color $searchBarHistoryListColor
+
+.{$prefix}-search-bar-history-header
+    font-size 12px
+    padding 0 $searchBarWrapperTopPadding
+    height $searchBarHistoryHeaderHeight
+    line-height $searchBarHistoryHeaderHeight
+    color $searchBarHistoryHeaderColor
+
+.{$prefix}-search-bar-history-action
+    float right
+    padding-left 20px
+    color $function-blue
+    letter-spacing 1px
+
+.{$prefix}-search-bar-container
+    &-mask__active
+        position fixed
+        z-index 900
+        right 0
+        left 0
+        top 0 
+        bottom 0
+    &__active 
+        position fixed
+        z-index 1000
+        right 0
+        left 0
+        top 0 
+        bottom 0
+        background white
+
+    
+
+
+/* style in en */
+.{$prefix}-search-bar.en_US
+    .{$prefix}-search-bar-btn
+        right (- $searchBarBtnWidthEn)
+        width $searchBarBtnWidthEn
+
+    &.active
+        .{$prefix}-search-bar-btn
+            right 0
+        .{$prefix}-search-bar-wrapper
+            padding-right $searchBarBtnWidthEn

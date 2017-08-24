@@ -1,0 +1,53 @@
+hsv(h-hsv, s-hsv, v-hsv, a = 1)
+    if v-hsv == 0
+        return hsla(0, 0, 0, a)
+    else
+        s-hsv = unit(s-hsv, '')
+        v-hsv = unit(v-hsv, '')
+        l-hsl = (v-hsv / 2) * (2 - (s-hsv / 100))
+        s-hsl = (v-hsv * s-hsv) / (l-hsl < 50 ? l-hsl * 2 : 200 - l-hsl * 2)
+        return hsla(h-hsv, s-hsl, l-hsl, a)
+
+toHsv(color)
+    r = red(color);
+    g = green(color);
+    b = blue(color);
+    return rgbToHsv(r, g, b)
+
+hsvhue(color)
+    hsv = toHsv(color);
+    return round(unit(hsv[0], ''))
+
+hsvsaturation(color)
+    hsv = toHsv(color);
+    return round(unit(hsv[1], '%'))
+
+hsvvalue(color)
+    hsv = toHsv(color);
+    return round(unit(hsv[2], '%'))
+
+rgbToHsv(r, g, b)
+    r = (r / 255);
+    g = (g / 255);
+    b = (b / 255);
+    max = max(max(r, g), b);
+    min = min(min(r, g), b);
+    h = s = v = max;
+    d = max - min;
+    s = (max == 0) ? 0 : (d / max);
+    if max == min
+        h = 0;
+    else
+        if max == r
+            h = ((g - b) / d) + (g < b ? 6 : 0);
+        else if max == g
+            h = ((b - r) / d) + 2;
+        else if max == b
+            h = ((r - g) / d) + 4;
+
+    h = (h / 6);
+
+    return round(h * 360) round(s * 100) round(v * 100)
+
+hsvTransform(color, h, s, v)
+    return hsv(round(hsvhue(color) + h), round(hsvsaturation(color) + unit(s, '%')), round(hsvvalue(color) + unit(v, '%')))

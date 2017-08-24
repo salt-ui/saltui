@@ -1,0 +1,72 @@
+/**
+ * EmployeeField Component Style for tingle
+ * @author quanyun.mqy
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+.{$prefix}-employee-field-value
+    > *
+        vertical-align middle
+
+.{$prefix}-employee-field-icon
+    margin-left 6px
+    svg
+        fill $normal-alpha-5
+    &.active svg
+        fill $normal-alpha-4
+
+.{$prefix}-employee-field-placeholder
+    max-width 100%
+    height 24px
+    line-height 24px
+    color $normal-alpha-3
+
+.{$prefix}-employee-field-readonly
+    color $normal-alpha-5
+
+.{$prefix}-employee-field-num
+    text-align right
+    font-size $font-size-t2
+    color $normal-alpha-3
+
+.{$prefix}-employee-field-foldable-pane
+    border-top $normal-alpha-7 1px solid
+    padding: 0 0 8px 0
+
+.hairline.dpr2 .{$prefix}-employee-field-foldable-pane
+    border-top-width .5px
+
+.{$prefix}-employee-field-list
+    padding 0 16px
+
+.{$prefix}-employee-field-list-row
+    padding-bottom 12px
+    &:first-child
+        padding-top: 16px
+
+.{$prefix}-employee-field-list-item, .{$prefix}-employee-field-list-item-placeholder
+    width 60px
+    text-align center
+
+.{$prefix}-employee-field-list-item-avatar
+    display inline-block
+
+.{$prefix}-employee-field-list-item-name
+    color $normal-alpha-3
+    font-size $font-size-t2
+    line-height $font-size-t2-lh
+    text-align center
+    margin-top: 4px
+
+.{$prefix}-employee-field-list-item-del
+    width 44px
+    height 44px
+    right -12px
+    top -14px
+    text-align center
+    padding-top: 13px
+    svg
+        fill $dark-alpha-3
+
+

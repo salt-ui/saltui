@@ -1,0 +1,162 @@
+/**
+ * NumberPicker Component Style for tingle
+ * @author sujingjing
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+.{$prefix}-number-picker{
+    display:inline-block; // 这一行只是演示 按需删除
+    background:#fff; 
+    width:108px; 
+    height:30px;
+}
+.rc-input-number,.showNumber{
+    position: relative;
+    margin: 0;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    vertical-align: middle;
+    overflow-y:hidden;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.rc-input-number-handler-wrap {
+    position: absolute;
+    width: 100%;
+    font-size: 14px;
+}
+
+.rc-input-number-handler,.rc-input-number-handler-down-inner,.rc-input-number-handler-up-inner {
+    width: 30px;
+    height: 30px;
+    box-sizing:border-box;
+    line-height: 30px;
+}
+
+.rc-input-number-handler {
+    text-align: center;
+    overflow: hidden;
+    color: #000;
+    background:#ffffff;
+    position: absolute;
+    display: inline-block;
+}
+.rc-input-number-handler:active{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+
+.rc-input-number-handler-active {
+    z-index: 2;
+}
+
+.rc-input-number-handler-up {
+    border-left: 1px solid #ccc;
+    border-radius: 0 3px 3px 0;
+    -webkit-border-radius:0 3px 3px 0;
+
+}
+
+.rc-input-number-handler-down {
+    border-right: 1px solid #ccc;
+    border-radius: 3px 0 0 3px;
+    -webkit-border-radius:3px 0 0 3px;
+}
+.rc-input-number-input-wrap {
+    display: none;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    overflow: hidden
+}
+
+.rc-input-number-input {
+    width: 100%;
+    font-size: 14px;
+    height:30px;
+    line-height:30px;
+    color: #333;
+    text-align: center;
+    border: 0;
+    padding: 0;
+    background: none;
+    outline:none;
+    padding: 0 33px;
+    vertical-align: middle
+}
+
+.rc-input-number-input[disabled] {
+    opacity: 1;
+    color: #000
+}
+
+.rc-input-number.showNumber .rc-input-number-input,.rc-input-number.showNumber .rc-input-number-input-wrap {
+    display: inline-block
+}
+.rc-input-number-handler-up {
+    cursor: pointer;
+    right: 0
+}
+.rc-input-number-handler-up-inner:before {
+    text-align: center;
+    content: "+"
+}
+
+.rc-input-number-handler-down {
+    cursor: pointer;
+    left: 0
+}
+
+.rc-input-number-handler-down-inner:before {
+    text-align: center;
+    content: "-"
+}
+
+.rc-input-number-handler-down-disabled,.rc-input-number-handler-up-disabled {
+    background-color:#f8f8f8;
+}
+
+.rc-input-number-handler-active {
+    background: #fff;
+}
+
+
+.rc-input-number-disabled .rc-input-number-handler-down,.rc-input-number-disabled .rc-input-number-handler-up {
+    background: #f8f8f8;
+}
+
+.rc-input-number-disabled .rc-input-number-handler,.rc-input-number-disabled .rc-input-number-input-wrap {
+   
+}
+.up-icon{
+    fill:red;
+}
+.reference{
+    visibility:hidden;
+    min-width: 108px;
+    padding: 0 40px;
+    text-align:center;
+    opacity:0;
+    position:absolute;
+    z-index:0;
+}
+.readonly-status .rc-input-number{
+    border:none;
+}
+
+.readonly-status .rc-input-number-handler-up,.readonly-status .rc-input-number-handler-down{
+    border: 1px solid  #ccc;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.hairline .rc-input-number-handler-up,.hairline .rc-input-number-handler-down,.hairline .rc-input-number{
+    border-width:0.5px;
+}
+        
+
+

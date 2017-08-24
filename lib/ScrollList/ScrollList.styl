@@ -1,0 +1,125 @@
+/**
+ * ScrollList Component Style for tingle
+ * @author zhouquan.yezq
+ * 
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+$scrollListPrefixCls = t-scroll-list;
+
+.{$scrollListPrefixCls} {
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+
+  .empty-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bottom-tip {
+    width: 100%;
+    color: #999;
+    font-size: 12px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon {
+      width: 30px;
+      height: 27px;
+      background: url('https://img.alicdn.com/tps/TB1fPYRMXXXXXcdXFXXXXXXXXXX-480-238.svg') center no-repeat; // img.alicdn.com/tps/TB1fPYRMXXXXXcdXFXXXXXXXXXX-480-238.svg) center no-repeat;
+      background-size: contain;
+      display: inline-block;
+      margin-right: 4px;
+      vertical-align: middle;
+
+      svg {
+        margin-top: -4px;
+      }
+    }
+
+    .text {
+      display: inline-block;
+      line-height: 27px;
+      height: 27px;
+      vertical-align: top;
+      padding-left: 0;
+    }
+  }
+}
+
+.{$scrollListPrefixCls}-item {
+  padding: 16px 16px 12px;
+  background: white;
+  display: flex;
+  line-height: 1.5;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    border-bottom: 1px solid $normal-alpha-7;
+    width: 100%;
+    bottom: 0;
+    left: 16px;
+  }
+  &:active {
+    background: $normal-alpha-7;
+  }
+}
+
+.{$scrollListPrefixCls}-item-img {
+  width: 40px;
+  height: 40px;
+  border-radius: $global-border-radius;
+  align-self: baseline;
+  margin-right: 12px;
+}
+
+.{$scrollListPrefixCls}-item-content {
+  flex: 1;
+  // very important, make ellipsis in flexbox work
+  // https://css-tricks.com/flexbox-truncated-text/
+  min-width: 0;
+}
+
+.{$scrollListPrefixCls}-item-extra {
+  margin-left: 16px;
+}
+.{$scrollListPrefixCls}-item-extra-inner {
+}
+
+.{$scrollListPrefixCls}-item-title {
+  font-size: 16px;
+}
+
+.{$scrollListPrefixCls}-item-des-inner {
+  font-size: 12px;
+  color: $dark-alpha-3;
+  padding-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+
+.hairline {
+  .{$scrollListPrefixCls}-item {
+    &:after {
+      border-width: 0.5px;
+    }
+  }
+}

@@ -1,0 +1,135 @@
+/**
+ * Totop Component Style for tingle
+ * @author shaochao.wsc
+ * 
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+.{$prefix}-totop {
+  display: block; // 这一行只是演示 按需删除
+  position: fixed;
+  top: auto;
+  left: auto;
+  right: 20px;
+  bottom: 20px;
+
+  &__hide {
+    display: none;
+  }
+}
+
+.{$prefix}-totop-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-top: 12px;
+  background-color: #fff;
+  position: relative;
+
+  // box-shadow: 2px 2px 2px $dark-alpha-2;
+  &:before {
+    content: '';
+    background: $normal-alpha-6;
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.5;
+    top: 6px;
+    filter: blur(6px);
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .{$prefix}-icon svg {
+    fill: $normal-alpha-2;
+    height: 24px;
+    width: 24px;
+  }
+
+  &-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  &:active {
+    .{$prefix}-totop-wrap-inner {
+      background-color: $normal-alpha-7;
+    }
+  }
+
+  &-small {
+    width: 40px;
+    height: 40px;
+  }
+
+  &-primary {
+    background-color: $brand-primary;
+
+    .{$prefix}-icon svg {
+      fill: $white-alpha-2;
+    }
+
+    &:active {
+      background-color: $brand-primary-focus;
+    }
+
+    &:before {
+      background: $brand-primary;
+    }
+  }
+}
+
+@keyframes totopIn {
+  0% {
+    transform: translate(0, 100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes totopOut {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0, 100%);
+    opacity: 0;
+    margin-top: -100%;
+  }
+}
+
+.{$prefix}-totop-button {
+  &-enter,
+  &-appear {
+    opacity: 0;
+    transform: translate(0, 100%);
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(.14,1.96,0,.75);
+  }
+
+  &-enter-active,
+  &-appear-active {
+    animation-name: totopIn;
+  }
+
+  &-leave {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+  }
+
+  &-leave-active {
+    animation-name: totopOut;
+  }
+}

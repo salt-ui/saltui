@@ -1,0 +1,148 @@
+//.{$prefix}-day-calendar
+$padding = 0 16px;
+$day-cell-inner-height = 36px;
+
+.{$prefix}-day-calendar-week-bar
+  height 28px
+  line-height 28px
+  padding $padding
+  background-color $basic-100
+  width 100%
+  text-align center
+  font-size $font-size-t2
+  color $normal-alpha-3
+  .week-bar-item
+    &.first, &.last
+      color $brand-primary
+
+.{$prefix}-day-calendar-panel.not-show-half-button
+  overflow scroll
+  //-webkit-overflow-scrolling touch
+
+.{$prefix}-month-area
+  overflow scroll
+  //-webkit-overflow-scrolling touch
+
+.{$prefix}-day-calendar-month-title
+  padding $padding
+  line-height 28px
+  text-align center
+  background-color $normal-alpha-9
+  color $normal-alpha-4
+  font-size $font-size-t2
+
+.{$prefix}-day-calendar-month-body
+  padding $padding
+  padding-top 8px
+  padding-bottom 12px
+  .week-block
+    height 68px
+    .day-cell
+      text-align center
+      position relative
+      -webkit-tap-highlight-color rgba(255, 255, 255, 0)
+    .back-block
+      display inline-block
+      position absolute
+      width: 50%
+      height $day-cell-inner-height
+      background-color $brand-primary
+      &.left
+        left 0
+      &.right
+        right 0
+    .day-cell-inner
+      position relative
+      display inline-block
+      width $day-cell-inner-height
+      height $day-cell-inner-height
+      line-height $day-cell-inner-height
+      font-size $font-size-t5
+      &.today
+        line-height ($day-cell-inner-height - 2)
+        border-radius 50%
+        border 1px solid $brand-primary
+        color $brand-primary
+      &.selected, &.start-date, &.end-date
+        line-height $day-cell-inner-height
+        border-radius 50%
+        background-color $brand-primary
+        color $basic-100
+      &.selected.in-range
+        width 100%
+        border-radius 0
+      &.half-day
+        background-color $function-orange
+      &.disabled
+        color $normal-alpha-3
+    .day-label
+      position absolute
+      bottom -17px
+      left 0
+      width 100%
+      text-align center
+      font-size $font-size-t2
+      transform scale(.8, .8)
+      color $normal-alpha-3
+      background-color $basic-100
+      padding 2px 0
+      &.start-label, &.end-label, &.am-label, &.pm-label
+        color $brand-primary
+    .badge-label
+      position absolute
+      right 0
+      top 0
+      width 16px
+      height @width
+      text-align center
+      font-size $font-size-t2
+      .workday-label, .holiday-label
+        display inline-block
+        width 100%
+        height 100%
+        background-color $brand-primary
+        color $basic-100
+        font-size $font-size-t2
+        line-height 15px
+        border-radius 50%
+        transform scale(.8, .8)
+      .workday-label
+        background-color $normal-alpha-3
+.{$prefix}-day-calendar-cascade-tip
+  width auto
+  position absolute
+  bottom 60px
+  top auto
+  height 60px
+  left 50%
+  transform translate(-50%)
+  .t-toast-content
+    line-height 40px
+
+.{$prefix}-day-calendar-half-day-wrapper
+  position fixed
+  bottom 0
+  width 100%
+  height 104px
+  background-color $basic-100
+  border-top 1px solid $normal-alpha-7
+
+.{$prefix}-day-calendar-half-day-container
+  height 60px
+  .day-type-list
+    padding 12px 24px
+  .day-type-item
+    display inline-block
+    margin-right 12px
+    width 36px
+    height @width
+    border-radius 50%
+    border 1px solid $normal-alpha-4
+    font-size $font-size-t2
+    line-height (@width - 2)
+    text-align center
+    -webkit-tap-highlight-color rgba(255, 255, 255, 0)
+    &.active
+      border-color $brand-primary
+      background-color $brand-primary
+      color $basic-100

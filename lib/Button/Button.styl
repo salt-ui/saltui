@@ -1,0 +1,342 @@
+/**
+ * Button Component Style for tingle
+ * @author cm
+ *
+ * Copyright 2014-2015, Tingle Team, Alinw.
+ * All rights reserved.
+ */
+
+// primary button colors
+$button-primary-bg = $brand-primary
+$button-primary-color = $white-alpha-1
+$button-primary-bg-active = $brand-primary-focus
+$button-primary-color-active = $white-alpha-1
+
+// secondary button colors
+$button-secondary-bg = $white-alpha-1
+$button-secondary-color = $brand-primary
+$button-secondary-border-color = $brand-primary-alpha-3
+$button-secondary-bg-active = $brand-primary-alpha-7
+$button-secondary-color-active = $brand-primary-focus
+$button-secondary-border-color-active = $brand-primary
+
+// minor button colors
+$button-minor-bg = $white-alpha-1
+$button-minor-color = $normal-alpha-3
+$button-minor-border-color = $normal-alpha-4
+$button-minor-bg-active = $normal-alpha-7
+$button-minor-color-active = $normal-alpha-2
+$button-minor-border-color-active = $normal-alpha-3
+
+// dangerous button colors
+$button-danger-bg = $function-red
+$button-danger-color = $white-alpha-1
+$button-danger-bg-active = $function-red-press
+$button-danger-color-active = $white-alpha-1
+
+// pure text button
+$button-text-bg = transparent
+$button-text-color = $function-blue
+$button-text-color-active = $function-blue-press
+$button-text-disabled-color = $normal-alpha-5
+
+// disabled button
+$button-disabled-bg = $normal-alpha-9
+$button-disabled-color = $normal-alpha-5
+$button-disabled-border-color = $normal-alpha-6
+
+.{$prefix}-button
+  border none
+  outline none
+  radius $button-radius
+  text-align center
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color
+  -webkit-tap-highlight-color transparent
+  &.disabled
+  &[disabled]
+    color $button-disabled-color
+    background $button-disabled-bg
+    hairline('border', $button-disabled-border-color)
+    pointer-events none
+    .t-icon
+      svg
+        fill $button-disabled-color
+  .t-icon
+    display inline-block
+    margin-top -2px
+    margin-right 8px
+    vertical-align middle
+
+@keyframes button-rotation
+  0%
+    transform rotate(0)
+  100%
+    transform rotate(360deg)
+
+.{$prefix}-button-loading-icon
+  svg
+    animation button-rotation 1s linear infinite
+
+/* Size */
+.{$prefix}-button-size-small
+  height 32px
+  line-height 30px
+  font-size 12px
+  padding 0 8px
+  .t-icon
+    margin-right 4px
+    width 16px
+    height 16px
+    line-height 16px
+    svg
+      width 16px
+      height 16px
+
+.{$prefix}-button-size-medium
+  height 44px
+  line-height 42px
+  font-size 14px
+  padding 0 10px
+  .t-icon
+    width 20px
+    height 20px
+    line-height 20px
+    svg
+      width 20px
+      height 20px
+
+.{$prefix}-button-size-large
+  height 48px
+  line-height 46px
+  font-size 16px
+  padding 0 12px
+  .t-icon
+    width 22px
+    height 22px
+    line-height 22px
+    svg
+      width 22px
+      height 22px
+
+/* Type */
+.{$prefix}-button-primary
+  background $button-primary-bg
+  color $button-primary-color
+  &:active
+    background $button-primary-bg-active
+    color $button-primary-color-active
+    .t-icon
+      svg
+        fill $button-primary-color-active
+  .t-icon
+    svg
+      fill $button-primary-color
+
+.{$prefix}-button-secondary
+  background $button-secondary-bg
+  color $button-secondary-color
+  hairline('border', $button-secondary-border-color)
+  &:active
+    background $button-secondary-bg-active
+    color $button-secondary-color-active
+    border-color $button-secondary-border-color-active
+    .t-icon
+      svg
+        fill $button-secondary-color-active
+  .t-icon
+    svg
+      fill $button-secondary-color
+
+.{$prefix}-button-minor
+  background $button-minor-bg
+  color $button-minor-color
+  hairline('border', $button-minor-border-color)
+  &:active
+    background $button-minor-bg-active
+    color $button-minor-color-active
+    border-color $button-minor-border-color-active
+    .t-icon
+      svg
+        fill $button-minor-color-active
+  .t-icon
+    svg
+      fill $button-minor-color
+
+.{$prefix}-button-danger
+  background $button-danger-bg
+  color $button-danger-color
+  &:active
+    background $button-danger-bg-active
+    color $button-danger-color-active
+    .t-icon
+      svg
+        fill $button-danger-color-active
+  .t-icon
+    svg
+      fill $button-danger-color
+
+/* Display */
+.{$prefix}-button-normal
+  margin 16px
+  display block
+
+.{$prefix}-button-inline
+  display inline-block
+  min-width 60px
+
+.{$prefix}-button-banner
+  radius 0
+  font-size 17px
+  hairline('border-top', $normal-alpha-6)
+  border-width: 0.5px 0 0;
+  .t-icon
+    width 24px
+    height 24px
+    line-height 24px
+    svg
+      width 24px
+      height 24px
+  &.{$prefix}-button-primary
+    border-top 0
+  &:first-child
+    border-left 0
+  &.disabled
+  &[disabled]
+    border-left 0
+    border-right 0
+    border-bottom 0
+
+/* Text Button */
+.{$prefix}-text-button
+  display block
+  padding 0 16px
+  height 44px
+  line-height 44px
+  font-size 14px
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+  text-align center
+  color $brand-primary
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color
+  -webkit-tap-highlight-color transparent
+  > *
+    display inline-block
+    vertical-align middle
+  &.disabled
+  &[disabled]
+    color $button-disabled-color
+    pointer-events none
+    .t-icon
+      svg
+        fill $button-disabled-color
+  .t-icon
+    display inline-block
+    margin-right 8px
+    height 20px
+    line-height 0
+    svg
+      width 20px
+      height 20px
+      fill $brand-primary
+  &:active,
+  &:focus
+    color $brand-primary-focus
+    .t-icon
+      svg
+        fill $brand-primary-focus
+
+.{$prefix}-text-button-secondary
+  color $function-blue
+  &:active,
+  &:focus
+    color $function-blue-press
+    .t-icon
+      svg
+        fill $function-blue-press
+
+.{$prefix}-text-button-size-small
+  padding 0 12px
+  font-size 12px
+  .t-icon
+    margin-right 4px
+    height 16px
+    svg
+      width 16px
+      height 16px
+
+.{$prefix}-text-button-size-large
+  padding 0 20px
+  font-size 16px
+  .t-icon
+    height 22px
+    svg
+      width 22px
+      height 22px
+
+.{$prefix}-text-button-inline
+  display inline-block
+
+/* Icon Button */
+.{$prefix}-icon-button
+  display inline-block
+  padding 10px
+  radius 50%
+  &.disabled
+  &[disabled]
+    pointer-events none
+    .t-icon
+      svg
+        fill $button-disabled-color
+  .t-icon
+    display block
+    margin 0
+    overflow hidden
+    line-height 0
+    min-width 24px
+    min-height 24px
+    svg
+      min-width 24px
+      min-height 24px
+
+.{$prefix}-icon-button-primary
+  background-color $brand-primary
+  &.disabled
+  &[disabled]
+    background-color $button-disabled-bg
+  .t-icon
+    svg
+      fill $white-alpha-1
+
+.{$prefix}-icon-button-secondary
+  color $brand-primary
+  &.disabled
+  &[disabled]
+    color $button-disabled-bg
+  .t-icon
+    svg
+      fill $brand-primary
+
+.{$prefix}-button-group
+  display flex
+  .{$prefix}-button-inline
+    flex 1
+    margin-left 6px
+    margin-right 6px
+    &:first-child
+      margin-left 0
+    &:last-child
+      margin-right 0
+  .{$prefix}-button-banner
+    flex 1
+    border-left 0
+    border-right 0
+    border-bottom 0
+    &.{$prefix}-button-secondary
+      hairline('border-top', $normal-alpha-6)
+      hairline('border-left', $normal-alpha-6)
+      &:first-child
+        border-left 0

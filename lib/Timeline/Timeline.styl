@@ -1,0 +1,102 @@
+/**
+ * Timeline Component Style for tingle
+ * @author zhongsisi
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+$dot-size = 8px
+$dot-active-size = 14px
+$dot-border = 4px
+$dot-active-border = 2px
+$tail-width = 2px
+$icon-size = 26px
+$icon-inner-size = 14px
+
+.{$prefix}-timeline
+  padding 0 36px
+
+.{$prefix}-timeline-item
+  position relative
+  &.active
+    .{$prefix}-timeline-main-title
+      color $brand-primary
+
+.{$prefix}-timeline-tail
+  position absolute
+  left (($dot-size + $dot-border * 2 - $tail-width) / 2)
+  height 100%
+  width $tail-width
+  padding 0
+  background-color: $basic-700
+
+.{$prefix}-timeline-header
+  float left
+  vertical-align top
+  width 42px
+  margin-top 3px
+  .{$prefix}-timeline-header-dot
+    box-sizing border-box
+    width $dot-size + $dot-border * 2
+    height $dot-size + $dot-border * 2
+    border $dot-border solid $basic-100
+    border-radius 50%
+    background $basic-700
+    &.active
+      width ($dot-active-size + $dot-active-border * 2)
+      height ($dot-active-size + $dot-active-border * 2)
+      border $dot-active-border solid $brand-primary-alpha-4
+      background-color $basic-100
+      .dot-core
+        display block
+        background-color $brand-primary
+        width 14px
+        height @width
+        border 2px solid $basic-100
+        border-radius 50%
+
+  .{$prefix}-timeline-icon
+    width $icon-size
+    height @width
+    border-radius 50%
+    padding (($icon-size - $icon-inner-size) / 2)
+    background $brand-primary
+    margin-top ($font-size-t6-lh - $icon-size)
+    img
+      width $icon-inner-size
+      height @width
+      border-radius 50%
+
+.{$prefix}-timeline-main
+  overflow hidden
+  display block
+  vertical-align top
+  margin-bottom 16px
+  .{$prefix}-timeline-main-title
+    color $dark-alpha-3
+    font-size $font-size-t4
+    line-height $font-size-t6-lh
+  .{$prefix}-timeline-main-description
+    color $dark-alpha-4
+    font-size $font-size-t2
+    line-height $font-size-t4-lh
+
+/* active 状态 */
+.{$prefix}-timeline.has-active
+  .{$prefix}-timeline-header-dot
+    margin-left ((($dot-active-size + $dot-active-border * 2) - ($dot-size + $dot-border * 2)) / 2)
+    &.active
+      margin-left 0
+  .{$prefix}-timeline-tail
+    left (($dot-active-size + $dot-active-border * 2 - $tail-width) / 2)
+
+/* 有 icon 状态 */
+.{$prefix}-timeline.has-icon
+  .{$prefix}-timeline-tail
+    left (($icon-size - $tail-width) / 2)
+  .{$prefix}-timeline-header-dot
+    margin-left (($icon-size - ($dot-size + $dot-border * 2)) / 2)
+    &.active
+      margin-left (($icon-size - ($dot-active-size + $dot-active-border * 2)) / 2)
+

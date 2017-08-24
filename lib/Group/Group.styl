@@ -1,0 +1,35 @@
+/**
+ * Group Component Style for tingle
+ * @author gnosaij
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+.{$prefix}-group-head
+    background-color $bg
+    color $gray-light
+    font-size  $font-size-field-title
+    line-height $font-size-field-title-lh
+
+.{$prefix}-group-list
+    background-color $white
+    hairline border-bottom $border
+
+.{$prefix}-group-list + .{$prefix}-group-list
+    border-top none !important
+
+.{$prefix}-group-list-item
+    position relative
+
+.{$prefix}-group-list-item:after
+    z-index 1
+    content ''
+    position absolute
+    bottom 0
+    left 0
+    right 0
+    hairline border-bottom $border
+
+.{$prefix}-group-list-item:last-child:after
+    border-bottom 0 !important

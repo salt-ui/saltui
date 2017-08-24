@@ -1,0 +1,92 @@
+/**
+ * CitySelectField Component Style for tingle
+ * @author qingnan.yqn
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+$city-field-tip-color = $gray-lighter
+$city-field-readonly-color = $gray-lighter
+$max-tab-width = 120px
+
+/* City Select Field */
+
+.{$prefix}-city-select-field
+  background: #fff
+
+.{$prefix}-city-field-value
+    > *
+        vertical-align middle
+
+.{$prefix}-city-field-icon svg
+    fill $city-field-tip-color
+
+.{$prefix}-city-field-placeholder
+    max-width 100%
+    height 24px
+    line-height 24px
+    color $city-field-tip-color
+
+.{$prefix}-city-field-readonly
+    color $city-field-readonly-color
+
+/* City Selector */
+
+.{$prefix}-city-selector
+  height: 267px
+  width: 100%
+  background: #f4f4f4
+
+.{$prefix}-city-selector-top-text-active
+  color: $brand-primary
+
+.{$prefix}-city-selector-top-bar
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  padding 12px
+  font-size: 14px
+  color: #666666
+
+  .{$prefix}-city-selector-top-bar-label
+    color: #222222
+
+.{$prefix}-city-selector-tab-bar
+  margin-top 6px
+  margin-left 12px
+  margin-right 12px
+
+  >div
+    max-width: $max-tab-width
+    padding-bottom 5px
+    color #222222
+
+  .{$prefix}-city-selector-tab-item
+    max-width: $max-tab-width
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  .{$prefix}-city-selector-tab-active
+    max-width: $max-tab-width
+    border-bottom: 2px solid $brand-primary
+
+.{$prefix}-city-selector-pane-anime
+  float: left
+
+.{$prefix}-city-selector-pane
+  width: 100%
+  height 204px
+  background #ffffff
+
+  /* native scroll with div */
+  overflow-y: scroll
+  -webkit-overflow-scrolling: touch
+
+  .{$prefix}-city-selector-item
+    padding: 10px
+    color: #333333
+    hairline(border-bottom, lightgray)
+
+  .{$prefix}-city-selector-item-active
+    color: $brand-primary

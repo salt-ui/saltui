@@ -1,0 +1,60 @@
+/**
+ * RadioField Component Style for tingle
+ * @author shanchao
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+$radio-disable-bg = $normal-alpha-5
+$radio-div-height = 54px
+
+.{$prefix}-radio-field-label
+    line-height $font-size-field-label-lh
+    padding 10px 15px
+    background-color $bg
+
+.{$prefix}-radio-field-label-required
+    vertical-align 1px
+
+.{$prefix}-radio-field-row
+    width 100%
+    min-height $radio-div-height
+    background-color $white-alpha-1
+    &.disable
+        position relative
+        .{$prefix}-radio-field-content
+            color $normal-alpha-3
+        .{$prefix}-radio-field-icon > svg
+            fill $dark-alpha-2
+        .{$prefix}-radio-field-disable-mask
+            position absolute
+            left 0
+            right 0
+            top 0
+            bottom 0
+            background-color $white-alpha-3
+
+.{$prefix}-radio-field-content
+    vertical-align middle
+    font-size $font-size-t5
+    color $dark-alpha-2
+    min-width 0
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+.{$prefix}-radio-field-icon-wrapper
+    width: 28px;
+    min-width 20px
+    min-height $radio-div-height
+    &.right
+        margin-left 12px
+
+.{$prefix}-radio-field-icon > svg
+    fill $brand-primary
+
+.{$prefix}-radio-field-icon.un-checked > svg
+    visibility hidden
+
+

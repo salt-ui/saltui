@@ -1,0 +1,164 @@
+/**
+ * PhotoField Component Style for tingle
+ * @author
+ * 
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+.{$prefix}-photo-field {
+    .{$prefix}-progress-circle {
+        &-trail {
+            stroke: $normal-alpha-7;
+        }
+
+        &-path {
+            stroke: $function-blue;
+        }
+    }
+
+    .{$prefix}-select-field-placeholder {
+        text-align: right;
+        color: $normal-alpha-4;
+        padding-right: 6px;
+        font-size: 12px;
+    }
+}
+
+.{$prefix}-photo-item {
+    padding: 16px 12px 0 0;
+
+    &-img {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: $global-border-radius;
+        display: block;
+    }
+}
+
+.{$prefix}-photo-upload-icon {
+    position: relative;
+    top: -1px;
+
+    svg {
+        fill: $normal-alpha-4;
+    }
+
+    &__disabled {
+        display: inline-block;
+
+        svg {
+            fill: $normal-alpha-6;
+        }
+    }
+}
+
+.{$prefix}-photo-upload-item,
+.{$prefix}-photo-upload-icon-item {
+    position: absolute;
+    padding: 16px 12px 0 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes circleRotation {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.{$prefix}-photo-upload-item-box {
+    width: 100%;
+    height: 100%;
+    hairline: border $normal-alpha-6;
+    align-items: center;
+    justify-content: center;
+    border-radius: $global-border-radius;
+    display: flex;
+    &__progress {
+        svg {
+            width: 20px;
+            height: 20px;
+            animation: circleRotation linear 2s;
+            animation-iteration-count: infinite;
+        }
+    }
+
+    &__error {
+        hairline: border $function-red;
+        background: $function-red-alpha-8;
+        flex-direction: column;
+
+        svg {
+            width: 20px;
+            height: 20px;
+            fill: $function-red;
+        }
+    }
+}
+
+.{$prefix}-photo-upload-error-msg {
+    font-size: 12px;
+    color: $function-red;
+    margin-top: 8px;
+}
+
+.{$prefix}-photo-list-upload-icon {
+    display: flex;
+    border: 1px dashed $normal-alpha-6;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: $global-border-radius;
+
+    svg {
+        fill: $normal-alpha-4;
+    }
+}
+
+.{$prefix}-photo-list {
+    hairline: border-top $normal-alpha-7;
+    padding: 4px 4px 30px 16px;
+    width: 100%;
+    overflow: hidden;
+
+    .{$prefix}-photo-field .{$prefix}-foldable-pane & {
+        padding-bottom: 0;
+    }
+}
+
+.{$prefix}-photo-delete-icon {
+    top: 8px;
+    right: 4px;
+    z-index: 2;
+    position: absolute;
+
+    svg {
+        fill: $dark-alpha-3;
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.{$prefix}-field-layout-label-required {
+    display: inline;
+
+    svg {
+        vertical-align: middle;
+    }
+}
+
+.{$prefix}-field-tip {
+    padding: 8px 15px;
+    hairline: border-top $border;
+    background-color: $bg;
+    color: $gray-light;
+    font-size: $font-size-t2;
+}

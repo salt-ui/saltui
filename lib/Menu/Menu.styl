@@ -1,0 +1,183 @@
+/**
+ * Menu Component Style for tingle
+ * @author wb-cq231719 chenqiu
+ * 
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+@keyframes submenuIn {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: 0% 0%;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: 0% 0%;
+  }
+}
+
+@keyframes submenuOut {
+  0% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleY(0);
+  }
+}
+
+.{$prefix}-menu {
+  &-content {
+    height: 100%;
+    background: $basic-100;
+    overflow-y: auto;
+  }
+
+  
+}
+
+.{$prefix}-menu-submenu {
+  &-unit {
+    height: 56px;
+    line-height: 22px;
+    margin-left: 16px;
+    padding: 17px 0;
+    background: $basic-100;
+    border-bottom: 1px solid $normal-alpha-7;
+    font-size: 14px;
+    color: $dark-alpha-2;
+    letter-spacing: 0;
+    position: relative;
+    display: block;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+    &-selected {
+      font-weight: bold;
+    }
+
+    &.{$prefix}-menu-submenu-unit-sub {
+      border-bottom: none;
+    }
+
+    &.{$prefix}-menu-submenu-unit-superSub {
+      font-size: 12px;
+    }
+
+    &.{$prefix}-menu-submenu-unit-disabled {
+      color: $dark-alpha-4;
+    }
+
+    &.{$prefix}-menu-submenu-unit-sub-isLastLeft {
+      border-bottom: 1px solid $normal-alpha-7;
+    }
+  }
+
+  &-line {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    border-bottom: 1px solid $normal-alpha-7;
+  }
+
+  &-title {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+    max-width: 100%;
+
+    &-inner {
+      width: 100%;
+      min-width: 76px;
+      display: inline-block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+      
+
+    .{$prefix}-icon {
+      display: inline-block;
+      line-height: 1;
+      margin-right: 8px;
+      vertical-align: middle;
+      svg {
+        fill: $normal-alpha-4;
+      }
+    }
+    .{$prefix}-badge {
+      margin-left: 8px;
+    }
+  }
+
+  &-confIcon {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &-num {
+    // todo 宽度设置成百分比
+    font-size: 12px;
+    color: $basic-100;
+    letter-spacing: 0;
+    background: $function-red;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    font-size: 11px;
+    text-align: center;
+    margin-left: 3px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &-icon {
+    display: inline-block;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    height: 20px;
+    line-height: 20px;
+    transform: translateY(-10px);
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+
+    svg {
+      fill: $normal-alpha-4;
+    }
+
+    &.{$prefix}-menu-submenu-icon-selected {
+      svg {
+        fill: #ff6300;
+      }
+    }
+
+    &.{$prefix}-menu-submenu-icon-expand {
+      transform: translateY(-10px) rotate(180deg);
+    }
+  }
+}
+
+.hairline {
+  .{$prefix}-menu-submenu {
+    &-unit {
+      border-width: 0.5px;
+
+      &.{$prefix}-menu-submenu-unit-sub-isLastLeft {
+        border-width: 0.5px;
+      }
+    }
+
+    &-line {
+      border-width: 0.5px;
+    }
+  }
+}

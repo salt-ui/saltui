@@ -1,0 +1,69 @@
+/**
+ * Refreshcontrol Component Style for tingle
+ * @author xiaohe.wp
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+.{$prefix}-refresh-control {
+  position relative
+
+  &-inner {
+    position absolute
+    top 0
+    left 0
+    right 0
+    overflow hidden
+    z-index -1
+
+    background transparent
+    display flex
+    align-items center
+    justify-content center
+    height 74px
+
+    .refresh-svg-icon {
+      width: 20px;
+      height: 20px;
+
+      svg {
+        width 100%
+        height 100%
+      }
+    }
+
+    .refresh-text {
+      margin-left 10px
+      font-size 12px
+    }
+  }
+
+  &.refreshing .refresh-svg-icon {
+    animation loading 2s infinite linear
+  }
+
+  &-area {
+    transition all 0.1s linear
+
+  }
+
+  &.draging &-area {
+    transition-duration 0.1s
+  }
+
+  &.dragAnimate &-area {
+    transition-duration 0.45s
+  }
+
+}
+
+@keyframes loading {
+  0% {
+    transform rotate(0deg)
+  }
+
+  100% {
+    transform rotate(360deg)
+  }
+}
