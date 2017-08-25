@@ -8,7 +8,7 @@
 
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 import OpenedEyeIcon from '@ali/tingle-icon/lib/Eye';
 import ClosedEyeIcon from '@ali/tingle-icon/lib/EyeClose';
 import LockIcon from '@ali/tingle-icon/lib/Lock';

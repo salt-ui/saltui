@@ -1,5 +1,5 @@
 import React from 'react';
-import Badge from '@ali/tingle-badge';
+import Badge from '../Badge';
 import TabBarItemIcon from './TabBarItemIcon';
 import TabBarItemTitle from './TabBarItemTitle';
 

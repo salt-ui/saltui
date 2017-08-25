@@ -9,8 +9,8 @@
 import React from 'react';
 
 import classnames from 'classnames';
-import { unitize } from '@ali/tingle-style';
-import Context from '@ali/tingle-context';
+import { unitize } from '../Style';
+import Context from '../Context';
 import Icon from '@ali/tingle-icon';
 
 class Rate extends React.Component {

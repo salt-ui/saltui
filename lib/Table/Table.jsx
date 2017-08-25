@@ -10,9 +10,9 @@ const deepcopy = require('lodash/cloneDeep');
 const deepEqual = require('lodash/isEqual');
 const React = require('react');
 
-const Scroller = require('@ali/tingle-scroller');
-const Context = require('@ali/tingle-context');
-const Pagination = require('@ali/tingle-pagination');
+const Scroller = require('../Scroller');
+const Context = require('../Context');
+const Pagination = require('../Pagination');
 
 
 class Table extends React.Component {

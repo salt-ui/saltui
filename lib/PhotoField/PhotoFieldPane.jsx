@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
-import Field from '@ali/tingle-field';
+import Field from '../Field';
 import IconPhoto from '@ali/tingle-icon/lib/Photo';
-import { prefixClass } from '@ali/tingle-context';
+import { prefixClass } from '../Context';
 import PlusThin from '@ali/tingle-icon/lib/PlusThin';
-import FoldablePane from '@ali/tingle-foldable-pane';
+import FoldablePane from '../FoldablePane';
 import PhotoFieldItem from './PhotoFieldItem';
 import PhotoFieldUploadItem from './PhotoFieldUploadItem';
 import { getData } from './util';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 import DelIcon from '@ali/tingle-icon/lib/MinusRound';
 
 

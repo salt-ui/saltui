@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { prefixClass } from '@ali/tingle-context';
+import { prefixClass } from '../Context';
 import { Status } from 'uploadcore';
 import UploadIcon from '@ali/tingle-icon/lib/Upload';
 import Circle from './Circle';

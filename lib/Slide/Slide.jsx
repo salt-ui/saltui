@@ -7,7 +7,7 @@
 */
 const React = require('react');
 const classnames = require('classnames');
-const Context = require('@ali/tingle-context');
+const Context = require('../Context');
 const SlideNav = require('./SlideNav');
 const SlideItem = require('./SlideItem');
 const prefixClass = require('./utils').prefixClass;

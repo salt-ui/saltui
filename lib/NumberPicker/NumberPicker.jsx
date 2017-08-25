@@ -8,7 +8,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import RcInputNumber from 'rc-input-number';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 import Icon from '@ali/tingle-icon';
 
 

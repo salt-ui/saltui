@@ -8,7 +8,7 @@
 const classnames = require('classnames');
 const debounce = require('lodash/debounce');
 const React = require('react');
-const Context = require('@ali/tingle-context');
+const Context = require('../Context');
 const IconSearch = require('@ali/tingle-icon/lib/Search');
 const IconCrossRound = require('@ali/tingle-icon/lib/CrossRound');
 

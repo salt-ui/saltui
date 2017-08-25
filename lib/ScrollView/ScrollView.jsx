@@ -8,9 +8,9 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import _throttle from 'lodash/throttle';
-import Context from '@ali/tingle-context';
-import InfiniteScroll from '@ali/tingle-infinite-scroll';
-import RefreshControl from '@ali/tingle-refreshcontrol';
+import Context from '../Context';
+import InfiniteScroll from '../InfiniteScroll';
+import RefreshControl from '../Refreshcontrol';
 
 class ScrollView extends React.Component {
   static displayName = 'ScrollView';

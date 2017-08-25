@@ -7,9 +7,9 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import { prefixClass } from '@ali/tingle-context';
-import Field from '@ali/tingle-field';
-import Calendar from '@ali/tingle-calendar';
+import { prefixClass } from '../Context';
+import Field from '../Field';
+import Calendar from '../Calendar';
 import Formatter from 'uxcore-formatter';
 
 const defaultFormatter = {

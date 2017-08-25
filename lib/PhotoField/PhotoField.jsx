@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import ImageViewer from '@ali/tingle-image-viewer';
+import ImageViewer from '../ImageViewer';
 import { Events, Status } from 'uploadcore';
 import UploadCore from 'uploadcore/dist/uploadcore';
 import PhotoFieldPane from './PhotoFieldPane';

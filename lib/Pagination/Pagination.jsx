@@ -7,9 +7,9 @@
  */
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
-import Button from '@ali/tingle-button';
-import Slot from '@ali/tingle-slot';
+import Context from '../Context';
+import Button from '../Button';
+import Slot from '../Slot';
 import i18n from './i18n';
 
 const makeArray = (length) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Slide from '@ali/tingle-slide';
+import Slide from '../Slide';
 import Animate from 'rc-animate';
 import Hammer from 'hammerjs';
 import classnames from 'classnames';

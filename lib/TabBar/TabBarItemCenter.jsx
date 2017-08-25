@@ -1,8 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
-import { Box, HBox } from '@ali/tingle-box';
-import Layer from '@ali/tingle-layer';
+import Context from '../Context';
+import { Box, HBox } from '../Box';
+import Layer from '../Layer';
 import Animate from 'rc-animate';
 import TabBarItemIcon from './TabBarItemIcon';
 import TabBarItemMore from './TabBarItemMore';

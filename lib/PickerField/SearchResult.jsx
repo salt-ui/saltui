@@ -7,9 +7,9 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
-import ScrollView from '@ali/tingle-scroll-view';
-import Button from '@ali/tingle-button';
+import Context from '../Context';
+import ScrollView from '../ScrollView';
+import Button from '../Button';
 import Icon from '@ali/tingle-icon';
 import utils from './utils';
 

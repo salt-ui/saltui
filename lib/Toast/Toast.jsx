@@ -8,9 +8,9 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const classnames = require('classnames');
-const { VBox } = require('@ali/tingle-box');
+const { VBox } = require('../Box');
 const Icon = require('@ali/tingle-icon');
-const { prefixClass, noop } = require('@ali/tingle-context');
+const { prefixClass, noop } = require('../Context');
 const Dialog = require('rc-dialog');
 
 const iconNames = {

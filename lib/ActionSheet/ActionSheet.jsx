@@ -7,8 +7,8 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
-import Popup from '@ali/tingle-popup';
+import Context from '../Context';
+import Popup from '../Popup';
 
 import Panel from './Panel';
 import SharePanel from './SharePanel';

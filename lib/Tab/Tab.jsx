@@ -7,7 +7,7 @@ import InkTabBar from 'rc-tabs/lib/InkTabBar';
 import SwipeableInkTabBar from 'rc-tabs/lib/SwipeableInkTabBar';
 import Bottom from '@ali/tingle-icon/lib/DirectionBottom';
 import Top from '@ali/tingle-icon/lib/DirectionTop';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 
 const { prefixClass } = Context;
 

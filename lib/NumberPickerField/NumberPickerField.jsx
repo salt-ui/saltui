@@ -7,9 +7,9 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
-import NumberPicker from '@ali/tingle-number-picker';
-import Field from '@ali/tingle-field';
+import Context from '../Context';
+import NumberPicker from '../NumberPicker';
+import Field from '../Field';
 
 class NumberPickerField extends React.Component {
 

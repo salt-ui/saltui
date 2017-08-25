@@ -21,7 +21,7 @@ const runCmd = (cmd, args = [], fn, stdoutFn) => {
   });
 };
 
-const upperInitWord = str => str.split('-').slice(1).map(key => (key[0].toUpperCase() + key.slice(1))).join('');
+const upperInitWord = str => str.split('-').map(key => (key[0].toUpperCase() + key.slice(1))).join('');
 const removePrefix = str => str.split('-').slice(1).join('-');
 
 gulp.task('copy', () => {
@@ -47,7 +47,7 @@ gulp.task('replace', () => {
       const stats = fs.statSync(filePath);
       if (stats.isFile() && /[.js|.jsx]$/.test(file)) {
         let fileData = fs.readFileSync(filePath).toString();
-        fileData = fileData.replace(/@ali\/tingle-(.+)'/, (match, s1) => {
+        fileData = fileData.replace(/@ali\/tingle-(.+)'/g, (match, s1) => {
           if (/^icon/.test(s1)) {
             return match;
           }

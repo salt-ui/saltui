@@ -7,8 +7,8 @@
  */
 const React = require('react');
 const classnames = require('classnames');
-const Context = require('@ali/tingle-context');
-const Field = require('@ali/tingle-field');
+const Context = require('../Context');
+const Field = require('../Field');
 const CrossRound = require('@ali/tingle-icon/lib/CrossRound');
 
 const prefixClass = Context.prefixClass;

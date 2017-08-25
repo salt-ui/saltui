@@ -8,7 +8,7 @@
 import React from 'react';
 import Icon from '@ali/tingle-icon';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 
 const { prefixClass } = Context;
 

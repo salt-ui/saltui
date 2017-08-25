@@ -1,10 +1,10 @@
 import React from 'react';
-import Context from '@ali/tingle-context';
-import Avatar from '@ali/tingle-avatar';
+import Context from '../Context';
+import Avatar from '../Avatar';
 import DelIcon from '@ali/tingle-icon/lib/MinusRound';
 import deepCopy from 'deep-copy';
 import deepEqual from 'deep-equal';
-import FoldablePane from '@ali/tingle-foldable-pane';
+import FoldablePane from '../FoldablePane';
 
 class EmployeeList extends React.Component {
   static propTypes = {

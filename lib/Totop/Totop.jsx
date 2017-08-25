@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 import debounce from 'lodash/fp/debounce';
 import IconToTop from '@ali/tingle-icon/lib/Totop';
 import Animate from 'rc-animate';

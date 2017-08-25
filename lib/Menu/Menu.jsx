@@ -8,7 +8,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import assign from 'object-assign';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 import classnames from 'classnames';
 import Submenu from './SubMenu';
 import MenuItem from './MenuItem';

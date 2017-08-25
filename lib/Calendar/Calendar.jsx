@@ -6,8 +6,8 @@
  * All rights reserved.
  */
 import React from 'react';
-import Popup from '@ali/tingle-popup';
-import Context from '@ali/tingle-context';
+import Popup from '../Popup';
+import Context from '../Context';
 import DayCalendar from './day';
 import util from './util';
 import locale from './locale';

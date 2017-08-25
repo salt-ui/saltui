@@ -8,7 +8,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import _throttle from 'lodash/throttle';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 import TingleIcon from '@ali/tingle-icon';
 
 class InfiniteScroll extends React.Component {

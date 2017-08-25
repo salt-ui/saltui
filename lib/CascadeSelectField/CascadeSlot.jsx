@@ -3,10 +3,10 @@
  * @author: changming <mailto:changming.zy@alibaba-inc.com>
  */
 const React = require('react');
-const Layer = require('@ali/tingle-layer');
-const TingleCtx = require('@ali/tingle-context');
-const Tab = require('@ali/tingle-tab');
-const Scroller = require('@ali/tingle-scroller');
+const Layer = require('../Layer');
+const TingleCtx = require('../Context');
+const Tab = require('../Tab');
+const Scroller = require('../Scroller');
 const classnames = require('classnames');
 const IconCheck = require('@ali/tingle-icon/lib/Check');
 const i18n = require('./i18n');

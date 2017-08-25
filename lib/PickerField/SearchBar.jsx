@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 import Icon from '@ali/tingle-icon';
 
 class SearchBar extends React.Component {

@@ -9,7 +9,7 @@ const React = require('react');
 
 const classnames = require('classnames');
 
-const Context = require('@ali/tingle-context');
+const Context = require('../Context');
 const Item = require('./Item');
 
 class Timeline extends React.Component {

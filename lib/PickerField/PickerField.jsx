@@ -7,9 +7,9 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
-import Field from '@ali/tingle-field';
-import Popup from '@ali/tingle-popup';
+import Context from '../Context';
+import Field from '../Field';
+import Popup from '../Popup';
 import SearchPanel from './SearchPanel';
 import utils from './utils';
 

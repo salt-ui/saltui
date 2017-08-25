@@ -8,8 +8,8 @@
 
 const React = require('react');
 const classnames = require('classnames');
-const Context = require('@ali/tingle-context');
-const PopUp = require('@ali/tingle-popup');
+const Context = require('../Context');
+const PopUp = require('../Popup');
 const cloneDeep = require('lodash/cloneDeep');
 const SlotHeader = require('./tpls/Header');
 const SlotPane = require('./tpls/Pane');

@@ -7,8 +7,8 @@
  */
 
 const React = require('react');
-const Context = require('@ali/tingle-context');
-const { VBox } = require('@ali/tingle-box');
+const Context = require('../Context');
+const { VBox } = require('../Box');
 
 const prefixClass = Context.prefixClass;
 

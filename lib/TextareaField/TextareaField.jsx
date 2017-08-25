@@ -7,8 +7,8 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
-import Field from '@ali/tingle-field';
+import Context from '../Context';
+import Field from '../Field';
 import calculateHeight from './calculateHeight';
 
 const prefixClass = Context.prefixClass;

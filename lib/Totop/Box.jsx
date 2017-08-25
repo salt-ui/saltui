@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 
 class Box extends React.Component {
   static defaultProps = {

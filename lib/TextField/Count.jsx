@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
-import { prefixClass } from '@ali/tingle-context';
+import { prefixClass } from '../Context';
 
 const Count = props => <div
   className={classnames(prefixClass('text-field-count'), {

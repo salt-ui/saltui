@@ -1,5 +1,5 @@
 import React from 'react';
-import Context from '@ali/tingle-context';
+import Context from '../Context';
 
 class TabBarItemTitle extends React.Component {
   static displayName = 'TabBarItemTitle';
