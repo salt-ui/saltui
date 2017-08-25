@@ -49,8 +49,7 @@ gulp.task('replace', () => {
         let fileData = fs.readFileSync(filePath).toString();
         fileData = fileData.replace(/@ali\/tingle-(.+)(['/])/g, (match, s1, s2) => {
           if (/^icon/.test(s1)) {
-            console.log(s2);
-            return 'salt-icon';
+            return `salt-icon${s2}`;
           }
           return `../${upperInitWord(s1)}'`;
         });
