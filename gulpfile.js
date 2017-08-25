@@ -47,7 +47,7 @@ gulp.task('replace', () => {
       const stats = fs.statSync(filePath);
       if (stats.isFile() && /[.js|.jsx]$/.test(file)) {
         let fileData = fs.readFileSync(filePath).toString();
-        fileData = fileData.replace(/@ali\/tingle-(.+)(['/])/g, (match, s1, s2) => {
+        fileData = fileData.replace(/@ali\/tingle-(.+?)(['/])/g, (match, s1, s2) => {
           if (/^icon/.test(s1)) {
             return `salt-icon${s2}`;
           }
