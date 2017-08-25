@@ -22,18 +22,19 @@ const runCmd = (cmd, args = [], fn, stdoutFn) => {
 };
 
 const upperInitWord = str => str.split('-').slice(1).map(key => (key[0].toUpperCase() + key.slice(1))).join('');
+const removePrefix = str => str.split('-').slice(1).join('-');
 
 gulp.task('copy', () => {
   const dirs = fs.readdirSync('../tingle-ui/node_modules/@ali');
   dirs.filter(dir => dir !== 'tingle-ui').forEach((dir) => {
-    runCmd('cp', ['-rf', `../tingle-ui/node_modules/@ali/${dir}/src`, `./lib/${upperInitWord(dir)}`]);
+    runCmd('cp', ['-rf', `../tingle-ui/node_modules/@ali/${dir}/src`, `./lib/${upperInitWord(removePrefix(dir))}`]);
   });
 });
 
 gulp.task('remove', () => {
   const dirs = fs.readdirSync('../tingle-ui/node_modules/@ali');
   dirs.filter(dir => dir !== 'tingle-ui').forEach((dir) => {
-    runCmd('rm', ['-rf', `./lib/${upperInitWord(dir)}/svg`]);
+    runCmd('rm', ['-rf', `./lib/${upperInitWord(removePrefix(dir))}/svg`]);
   });
 });
 
