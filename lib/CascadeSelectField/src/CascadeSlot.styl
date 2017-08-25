@@ -1,0 +1,93 @@
+// size
+$slot-item-height = 40px
+$slot-columns-height = 36px
+
+// border color
+$slot-border-color = hsvTransform($basic-600, 0, 0, -2)
+
+// background color
+$slot-header-bgcolor = hsvTransform($basic-100, 0, 0, -3)
+$slot-body-bgcolor = $basic-100
+$slot-item-pressed-bgcolor = rgba(31,56,88,0.06)
+
+// text color
+$slot-primary-color = rgba(0,0,0,0.80);
+$slot-secondary-color = rgba(31,56,88,0.60)
+$slot-confirm-color = $brand-primary
+$slot-disabled-color = rgba(31,56,88,0.30);
+
+// font
+$slot-header-font-size = 16px
+$slot-option-font-size = $font-size-t4
+
+.{$prefix}-cascade-slot-header-wrap
+  background-color $slot-body-bgcolor
+  color $slot-primary-color
+  h1
+    height $slot-item-height
+    line-height $slot-item-height
+    text-align center
+    font-size $slot-header-font-size
+  button
+    background none
+    border none
+    padding 0
+    margin-top 2px
+  button:first-child
+    color $slot-secondary-color
+    margin-left 15px
+  button:last-child
+    color $slot-confirm-color
+    margin-right 15px
+    &:disabled
+      color $slot-disabled-color
+
+.{$prefix}-cascade-slot-body-wrap
+  background-color #fff
+  .{$prefix}-tab
+    border none
+  .{$prefix}-tab-bar
+    hairline('border-bottom', $slot-border-color)
+    .{$prefix}-tab-tab
+      border none
+      max-width 20%
+      > .title
+        white-space nowrap
+        text-overflow ellipsis
+        overflow hidden
+        width 100%
+        text-align center
+  .{$prefix}-tab-all
+    display none !important
+  .{$prefix}-tab-content
+    height 5 * $slot-columns-height !important
+
+.{$prefix}-cascade-slot-list
+  background-color $slot-body-bgcolor
+  padding 10px 0
+  li
+    button
+      height $slot-columns-height
+      line-height $slot-columns-height
+      text-overflow ellipsis
+      white-space nowrap
+      padding 0 15px
+      margin 0
+      border none
+      background none
+      display block
+      width 100%
+      text-align left
+      &:active, &.active
+        background-color $slot-item-pressed-bgcolor
+      svg
+        fill $slot-confirm-color
+        margin-left 5px
+        vertical-align middle
+        margin-top -2px
+      > .text
+        display inline-block
+        max-width 270px
+        vertical-align middle
+        overflow hidden
+        text-overflow ellipsis

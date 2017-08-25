@@ -1,0 +1,29 @@
+/**
+ * Layer Component Demo for tingle
+ * @author
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+// tingle-style's utils
+@require '../../node_modules/@ali/tingle-style/src/tingle';
+@require '../../node_modules/@ali/tingle-mask/src/Mask';
+@require '../../src/Layer'
+
+body
+    background-color #f2f2f2
+    .demo b
+      background-color #ccc
+      margin 5px
+      display inline-block
+      width 24px
+      height 24px
+      text-align center
+      line-height 24px
+    .demoItem
+      position fixed
+      top 50%
+      left 50%
+      -webkit-transform translateX(-50%) translateY(-50%)
+      transform translateX(-50%) translateY(-50%)

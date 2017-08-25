@@ -1,0 +1,49 @@
+/**
+ * Toast Component Demo for tingle
+ * @author
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+// tingle-style's utils
+@require '../../node_modules/@ali/tingle-style/src/tingle'
+@require '../../node_modules/@ali/tingle-button/src/Button'
+@require '../../src/Toast'
+@prefix = 't'
+body
+    background-color #f2f2f2
+.demo
+    margin 10px
+
+
+@keyframes toastFadeIn
+    0%
+        opacity 0
+    100%
+        opacity 1
+
+@keyframes toastFadeOut
+    0%
+        opacity 1
+    100%
+        opacity 0
+
+.t-toast-mask-test-enter,
+.t-toast-mask-test-appear
+    opacity 0
+    animation-duration 1s
+    animation-timing-function ease-in
+    animation-fill-mode both
+    
+.t-toast-mask-test-enter-active,
+.t-toast-mask-test-appear-active
+    animation-name toastFadeIn
+
+.t-toast-mask-test-leave
+    opacity 1
+    animation-duration 1s
+    animation-timing-function ease-out
+    animation-fill-mode both
+.t-toast-mask-test-leave-active
+    animation-name toastFadeOut

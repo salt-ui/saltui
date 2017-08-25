@@ -1,0 +1,72 @@
+/**
+ * TextField Component Style for tingle
+ * @author
+ * 
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+.{$prefix}-text-field-input {
+    padding: 0;
+    border: none;
+    outline: none;
+    color: $dark-alpha-2;
+    width: 100%;
+    font-size: $font-size-field-text;
+    line-height: $font-size-field-text-lh;
+    background-color: transparent;
+    z-index: 2;
+    position: relative;
+}
+
+/* 重要，解决UC、猎豹等浏览器z-index失效的问题 */
+.{$prefix}-text-field-placeholder {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    height: 20px;
+    line-height: 20px;
+    color: $normal-alpha-5;
+    z-index: 0;
+}
+
+.{$prefix}-text-field-content {
+    display: flex;
+    &-main {
+        flex: 1;
+        position: relative;
+    }
+}
+
+.{$prefix}-text-field-left-addon {
+    color: $normal-alpha-4;
+    font-size: 12px;
+    padding-right: 4px;
+}
+
+.{$prefix}-text-field-right-addon,
+.{$prefix}-text-field-count {
+    color: $normal-alpha-4;
+    font-size: 12px;
+    padding-right: 16px;
+    padding-left: 8px;
+}
+
+.{$prefix}-text-field-count-overflow {
+    color: $function-red;
+}
+
+.{$prefix}-text-field-clear-icon {
+    padding-left: 8px;
+    padding-right: 16px;
+    display: block;
+    line-height: 0;
+    svg {
+        width: 20px;
+        height: 20px;
+        fill: $normal-alpha-4;
+    }
+    &__hasRight {
+        padding-right: 4px;
+    }
+}

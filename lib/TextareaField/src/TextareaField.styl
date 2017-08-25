@@ -1,0 +1,48 @@
+// tingle-style's utils
+/**
+ * TextareaField Component Style for tingle
+ * @author zhangshun@alipay.com
+ * 
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+.{$prefix}-textarea-field-content {
+    position: relative;
+    padding: 0 12px 0 0;
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: transparent;
+    z-index: 2;
+    resize: none;
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar {
+        width: 6px;
+        background-color: #fff;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $normal-alpha-5;
+        radius: 3px;
+    }
+
+    &::-webkit-input-placeholder {
+        color: $normal-alpha-5;
+    }
+}
+
+.{$prefix}-textarea-field-count {
+    text-align: right;
+    color: $normal-alpha-4;
+    padding-right: 16px;
+    padding-top: 8px;
+    font-size: 12px;
+    line-height: 1;
+    &-overflow {
+        color: $function-red;
+    }
+}

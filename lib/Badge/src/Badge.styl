@@ -1,0 +1,97 @@
+/**
+ * Badge Component Style for tingle
+ * @author minjie.lmj
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+$badgeBgColor = $function-red
+
+.{$prefix}-badge
+	position relative
+	display inline-block
+	vertical-align middle
+	.badge-inner
+		position absolute
+		background $badgeBgColor
+		border-radius 8px
+		color #fff
+		padding 0 5px
+		font-weight bold
+		text-align center
+		font-size 12px
+		line-height 14px
+		height 16px
+		top 0
+		right 0
+		transform: translate(50%, -50%);
+		z-index 998
+.{$prefix}-badge.badge-dot
+	.badge-inner
+		width 6px
+		height 6px
+		border-radius 3px
+		padding 0
+		min-width auto
+		background $badgeBgColor
+		
+.{$prefix}-badge.badge-no-child
+	position static
+	.badge-inner
+		position static
+		transform none
+		top 50%
+		
+.{$prefix}-badge.badge-corner
+	overflow hidden
+	.badge-inner
+		position absolute
+		transform rotate(45deg)
+		border-radius 0
+		padding 0 20px
+		line-height 12px
+		top 11px
+		right -17px
+		white-space nowrap
+		width 70px
+.{$prefix}-badge.badge-corner.badge-rb, 
+.{$prefix}-badge.badge-corner.badge-no-child.badge-rb
+	.badge-inner
+		transform: rotate(-45deg);
+		top auto
+		bottom 9px
+.{$prefix}-badge.badge-corner.badge-lb, 
+.{$prefix}-badge.badge-corner.badge-no-child.badge-lb
+	.badge-inner
+		top auto
+		bottom 9px
+		right auto
+		left -15px
+.{$prefix}-badge.badge-corner.badge-lt, 
+.{$prefix}-badge.badge-corner.badge-no-child.badge-lt
+	.badge-inner
+		transform: rotate(-45deg);
+		right auto
+		left -15px
+	
+	
+.{$prefix}-badge.badge-corner.badge-no-child
+	position absolute
+	right 0
+	top 0
+	width 50px
+	height 50px	
+.{$prefix}-badge.badge-corner.badge-no-child.badge-lt, 
+.{$prefix}-badge.badge-corner.badge-no-child.badge-lb
+	right auto
+	left 0
+.{$prefix}-badge.badge-corner.badge-no-child.badge-rb, 
+.{$prefix}-badge.badge-corner.badge-no-child.badge-lb
+	top auto
+	bottom 0
+
+	
+		
+
+

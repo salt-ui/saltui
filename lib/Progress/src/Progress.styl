@@ -1,0 +1,54 @@
+/**
+ * Progress Component Style for tingle
+ * @author shallker.wxd(dongnan)
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+.{$prefix}-progress
+  position relative
+  height 12px
+  padding-top 2px
+
+  &.with-label
+    padding-right 40px
+
+    .bar-label
+      display block
+
+.{$prefix}-progress .progress-bar
+  width 100%
+  height 8px
+  background-color #e9e9e9
+  border-radius 5px
+
+  .bar-core
+    width 80%
+    height 8px
+    background-color $function-blue
+    transition width 0.2s
+    border-radius 5px
+
+  &.blue-bar
+    .bar-core
+      background-color $function-blue
+
+  &.red-bar
+    .bar-core
+      background-color $function-red
+
+  &.green-bar
+    .bar-core
+      background-color $function-green
+
+.{$prefix}-progress .bar-label
+  display none
+  font-family 'ArialMT', 'Arial'
+  font-weight 400
+  color #999999
+  font-size 12px
+  line-height 12px
+  position absolute
+  right 0
+  top 0

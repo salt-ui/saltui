@@ -1,0 +1,120 @@
+@require "./hsv.styl";
+
+// 品牌色
+$brand-secondary = #333130; // B1_2
+// 补色
+$brand-complement = #00b3e8; // B3_1
+// 复合
+$brand-comosite = #00c587; // B3_2
+// 浓度
+$brand-deep = #73461d; // B3_3
+
+// 功能色
+$function-red = #F04631; // F1_1
+$function-orange = #f5a12a; // F2_1
+$function-green = #66bd5c; // F3_1
+$function-blue = #45a8e6; // F4_1
+$function-cyan = #24bee8; // F5_1
+$function-purple = #9e9ee6; // F6_1
+
+// 功能色浅版 在保持色相的情况下，饱和度调至 5%，色调调至 100%
+$function-red-light = hsv(hsvhue($function-red), 5%, 100%); // F1_2
+$function-orange-light = hsv(hsvhue($function-orange), 5%, 100%); // F2_2
+$function-green-light = hsv(hsvhue($function-green), 5%, 100%); // F3_2
+$function-blue-light = hsv(hsvhue($function-blue), 5%, 100%); // F4_2
+$function-cyan-light = hsv(hsvhue($function-cyan), 5%, 100%); // F5_2
+
+// 中立色
+$basic-100 = #fff; // N1_1
+$basic-200 = darken($basic-100, 2%); // N1_2
+$basic-300 = darken($basic-100, 3%); // N1_3
+$basic-400 = darken($basic-100, 4%); // N1_4
+$basic-500 = darken($basic-100, 7%); // N1_5
+$basic-600 = darken($basic-100, 9%); // N1_6
+$basic-700 = darken($basic-100, 14%); // N1_7
+
+// 主灰
+$gray-darker = #222; // N2_5
+$gray-dark = #333; // N2_4
+$gray = #666; // N2_3
+$gray-light = #999; // N2_2
+$gray-lighter = #ccc; // N2_1
+
+// 文本色
+$text-primary = $gray-darker; // N2_5
+$text-seconary = $gray; // N2_3
+$text-placeholder = $gray-lighter; // N2_1
+$text-disabled = $gray-lighter; // N2_1
+$text-helper = $gray-light; // N2_2
+$text-ali = #ec6c00; // 阿里橙
+
+// 边框色
+$border = hsvTransform($basic-600, 0, 0, -2); // N1_6(B-2)
+// 背景色
+$white = $basic-100;
+$bg = hsvTransform($basic-100, 0, 0, -3); //N1_1(B-3)
+$bg-hover = hsvTransform($basic-100, 0, 0, -6); //N1_1(B-6)
+
+// 滚动条
+$scroller = hsvTransform($basic-100, 0, 0, 1) //N1_1(B+1)
+
+//开关
+$switch-bg = #44db5e 
+
+
+// ============== new DPL ==================
+
+$brand-primary = #F37327; // B1
+$brand-primary-focus = #F3620E; // B3
+
+// B1-3 (A60)
+$brand-primary-alpha-3 = rgba(red($brand-primary), green($brand-primary), blue($brand-primary), 0.6);
+// B1-4 (A40)
+$brand-primary-alpha-4 = rgba(red($brand-primary), green($brand-primary), blue($brand-primary), 0.4);
+// B1-6 (A20)
+$brand-primary-alpha-6 = rgba(red($brand-primary), green($brand-primary), blue($brand-primary), 0.3);
+// B1-7 (A10)
+$brand-primary-alpha-7 = rgba(red($brand-primary), green($brand-primary), blue($brand-primary), 0.1);
+// B1-8 (A6)
+$brand-primary-alpha-8 = rgba(red($brand-primary), green($brand-primary), blue($brand-primary), 0.06);
+
+$dark-alpha-1 = rgb(0, 0, 0); // D-1
+$dark-alpha-2 = rgba(0, 0, 0, 0.8); // D-2 A80
+$dark-alpha-3 = rgba(0, 0, 0, 0.6); // D-3 A60
+$dark-alpha-4 = rgba(0, 0, 0, 0.4); // D-4 A40
+$dark-alpha-5 = rgba(0, 0, 0, 0.3); // D-5 A30
+$dark-alpha-6 = rgba(0, 0, 0, 0.2); // D-6 A20
+
+
+$normal-alpha-2 = rgba(31,56,88,0.8); // N-2
+$normal-alpha-3 = rgba(31,56,88,0.6); // N-3
+$normal-alpha-4 = rgba(31,56,88,0.4); // N-4
+$normal-alpha-5 = rgba(31,56,88,0.3); // N-5
+$normal-alpha-6 = rgba(31,56,88,0.2); // N-6
+$normal-alpha-7 = rgba(31,56,88,0.1); // N-7
+$normal-alpha-8 = rgba(31,56,88,0.06); // N-8
+$normal-alpha-9 = rgba(31,56,88,0.04); // N-9
+
+$white-alpha-1 = rgb(255, 255, 255); // W-1
+$white-alpha-2 = rgba(255, 255, 255, 0.8); // W-2
+$white-alpha-3 = rgba(255, 255, 255, 0.6); // W-3
+$white-alpha-4 = rgba(255, 255, 255, 0.4); // W-4
+$white-alpha-5 = rgba(255, 255, 255, 0.3); // W-5
+$white-alpha-6 = rgba(255, 255, 255, 0.2); // W-6
+$white-alpha-7 = rgba(255, 255, 255, 0.1); // W-7
+
+
+$function-red = #F04631; // F1-1
+$function-red-alpha-2 = rgba(red($function-red), green($function-red), blue($function-red), 0.8); // F1-1-2
+$function-red-alpha-8 = rgba(red($function-red), green($function-red), blue($function-red), 0.06); // F1-1-8
+$function-red-press = #F03118; // F1-2
+$function-orange = #FABD0E; // F2-1
+$function-orange-alpha-2 = rgba(red($function-orange), green($function-orange), blue($function-orange), 0.8); // F2-1-2
+$function-green = #66BC5C; // F3-1
+$function-green-alpha-2 = rgba(red($function-green), green($function-green), blue($function-green), 0.8); // F3-1-2
+$function-blue = #3C99D8; // F4-1
+$function-blue-alpha-2 = rgba(red($function-blue), green($function-blue), blue($function-blue), 0.8); // F4-1-2
+$function-blue-press = #2E76A6; // F4-2
+
+$function-dark = #2C2F33; // F5-1
+$function-dark-toast = rgba(47, 47, 51, 0.8); // F5-2

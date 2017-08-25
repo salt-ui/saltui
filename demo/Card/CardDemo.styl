@@ -1,0 +1,81 @@
+/**
+ * Card Component Demo for tingle
+ * @author caiyongmin
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+// tingle-style's utils
+@require '../../node_modules/@ali/tingle-style/src/tingle'
+@require '../../src/Card'
+
+body
+  background-color: $bg;
+.card-wrap-title
+  margin: 15px 0 15px 15px;
+  font-size: $font-size-t2-lh;
+  color: #333;
+.t-card
+  &.card-example
+    height: 141px;
+    background-color: $basic-100;
+    font-size: $font-size-t2;
+    color: $text-helper;
+    text-align: center;
+    line-height: 141px;
+.t-card-header
+  display: flex;
+  padding: 12px 16px 0;
+.t-card-body
+  padding: 16px 16px 13px;
+.t-card-footer
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  font-size: $font-size-t2;
+
+.card-header-text
+  margin-left: 12px;
+.card-avatar
+  diplay: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+.card-username
+  display: block;
+  font-size: $font-size-t4;
+  color: $dark-alpha-3;
+  line-height: 22px;
+.card-date
+  font-size: $font-size-t2;
+  color: $normal-alpha-4;
+  line-height: 18px;
+.card-title
+  font-size: $font-size-t5;
+  color: $dark-alpha-2;
+  line-height: 24px;
+.card-desc
+  margin-top: 5px;
+  font-size: $font-size-t2;
+  color: $dark-alpha-3;
+  line-height: 18px;
+.card-footer-meta
+  display: flex;
+  color: $normal-alpha-3;
+  line-height: 18px;
+.card-footer-meta-item
+  display: flex;
+  margin-right: 17px;
+.card-icon
+  line-height: 1;
+  margin-right: 9px;
+  svg
+    fill: $normal-alpha-3;
+    width: 16px;
+    height: 18px;
+.card-footer-extra
+  color: $normal-alpha-4;
+  line-height: 18px;
+
+

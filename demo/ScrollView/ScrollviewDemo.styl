@@ -1,0 +1,57 @@
+/**
+ * Scrollview Component Demo for tingle
+ * @author xiaohe.wp
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+// tingle-style's utils
+@require '../../node_modules/@ali/tingle-ui/dist/default.min.css'
+@require '../../node_modules/@ali/tingle-style/src/tingle'
+@require '../../node_modules/@ali/tingle-refreshcontrol/src/Refreshcontrol'
+@require '../../node_modules/@ali/tingle-infinite-scroll/src/InfiniteScroll'
+@require '../../src/ScrollView'
+
+html, body
+  background-color #f2f2f2;
+  height: 100%
+
+.demo-item {
+  height: 80px;
+  line-height:80px;
+  text-align:center;
+  margin-bottom:10px;
+  background-color: #e2e2e2;
+}
+
+.demo-item:last-child {
+  margin-bottom: 0;
+}
+
+.other1{
+  background-color: green;
+}
+
+.other2{
+  background-color: #666;
+}
+
+.container{
+  margin:0;
+//height:400px;
+  position:fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  overflow auto
+
+  .t-scroll-view {
+    height 100%
+    overflow-x hidden
+    overflow-y auto
+    -webkit-overflow-scrolling touch
+  }
+}

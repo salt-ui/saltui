@@ -1,0 +1,49 @@
+/**
+ * Collection Component Demo for tingle
+ * @author gnosaij, changming.zy
+ *
+ * Copyright 2014-2017, Tingle Team, Alinw.
+ * All rights reserved.
+ */
+
+// tingle-style's utils
+@require '../../node_modules/@ali/tingle-style/src/tingle'
+@require '../../node_modules/@ali/tingle-icon/src/Icon'
+@require '../../node_modules/@ali/tingle-badge/src/Badge'
+@require '../../src/Grid'
+
+body
+    overflow-x hidden
+
+.demo
+    width 90px
+    height 90px
+    text-align center
+    display -webkit-flex
+    -webkit-align-items center
+    -webkit-justify-content center
+    flex-direction column
+
+.menu-title
+    font-size 12px
+    margin-top 10px
+    color #333
+
+.demo-cell
+   height 80px
+
+.icon-round
+    border-radius 4px
+    background-color #eee
+    width 40px
+    height 40px
+    text-align center
+
+
+.icon-desc
+    h5
+      font-size 13px
+    p
+      font-size 11px
+      color #666
+      margin-top 6px

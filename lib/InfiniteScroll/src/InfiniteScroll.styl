@@ -1,0 +1,46 @@
+/**
+ * InfiniteScroll Component Style for tingle
+ * @author xiaohe.wp
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+.{$prefix}-infinity-scroll {
+
+  height 44px
+
+  display flex
+  justify-content center
+  align-items center
+
+  .loading-icon {
+    width 20px
+    height 20px
+
+    svg {
+      width 100%
+      height 100%
+    }
+  }
+
+  .loading-text {
+    margin-left 10px
+    font-size 12px
+    color #666666
+  }
+
+  &.loading .loading-icon {
+    animation loading 2s infinite linear
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform rotate(0deg)
+  }
+
+  100% {
+    transform rotate(360deg)
+  }
+}

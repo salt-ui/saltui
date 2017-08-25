@@ -1,0 +1,88 @@
+/**
+ * ActionSheet Component Style for tingle
+ * @author 
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+__actionSheetPrefixCls = t-action-sheet
+
+.{__actionSheetPrefixCls}-panel,
+.{__actionSheetPrefixCls}-share-panel
+    background #f8f8f8
+.{__actionSheetPrefixCls}-panel-title,
+.{__actionSheetPrefixCls}-panel-message,
+.{__actionSheetPrefixCls}-share-panel-title,
+.{__actionSheetPrefixCls}-share-panel-message
+    padding 15px 0
+    text-align center
+.{__actionSheetPrefixCls}-panel-message,
+.{__actionSheetPrefixCls}-share-panel-message
+    color #929292
+    font-size 13px
+.{__actionSheetPrefixCls}-panel-item,
+.{__actionSheetPrefixCls}-share-panel-item-cancel
+    height 44px
+    line-height 44px
+    margin 0 10px
+    text-align center
+    color #007aff
+    border-top 1px solid #e4e4e4
+    transition background 0.2s ease
+    font-size 18px
+    &.hover
+        background #ddd
+    &.{__actionSheetPrefixCls}-panel-item-destructive
+        color #F04631
+.{__actionSheetPrefixCls}-panel-item-split,
+.{__actionSheetPrefixCls}-share-panel-item-split
+    height 10px
+    background white
+
+.{__actionSheetPrefixCls}-panel-item-cancel,
+.{__actionSheetPrefixCls}-share-panel-item-cancel
+    margin 0;
+    border-top 1px solid #e4e4e4
+    color #222
+    border-top none
+    background rgba(255, 255, 255, 0.87)
+.{__actionSheetPrefixCls}-share-panel-item-list-wrapper
+    overflow auto
+.{__actionSheetPrefixCls}-share-panel-item-list-split-line
+    border-top 1px solid #e4e4e4
+    margin 0 10px
+.{__actionSheetPrefixCls}-share-panel-item-list
+    background #f8f8f8
+    display inline-block
+    white-space nowrap
+    min-width 100%
+.{__actionSheetPrefixCls}-share-panel-item
+    display inline-block
+    padding 20px 0 20px 28px    
+.{__actionSheetPrefixCls}-share-panel-item-icon   
+    width 50px
+    height 50px
+    background white
+    border-radius 3px
+    margin-bottom 10px
+    > img,
+    > .t-icon
+        display inline-block
+        width 24px
+        height 24px
+        margin 13px 0 0 13px
+        > svg
+            width 24px
+            height 24px
+ .{__actionSheetPrefixCls}-share-panel-item-title
+    text-align center
+    color #666
+    font-size 12px
+
+.hairline
+    .{__actionSheetPrefixCls}-panel-item-cancel,
+    .{__actionSheetPrefixCls}-share-panel-item-cancel,
+    .{__actionSheetPrefixCls}-panel-item,
+    .{__actionSheetPrefixCls}-share-panel-item-list-split-line
+        border-width 0.5px

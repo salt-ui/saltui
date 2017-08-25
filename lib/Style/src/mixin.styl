@@ -1,0 +1,104 @@
+u(n)
+    n == 0 ? n : unit(n, px);
+
+// http://border-radius.com/
+radius(n)
+    -webkit-border-radius u(n)
+    border-radius u(n)
+    overflow hidden
+
+radiusL(n)
+    -webkit-border-top-left-radius u(n)
+    -webkit-border-bottom-left-radius u(n)
+    border-top-left-radius u(n)
+    border-bottom-left-radius u(n)
+    overflow hidden
+
+radiusT(n)
+    -webkit-border-top-left-radius u(n)
+    -webkit-border-top-right-radius u(n)
+    border-top-left-radius u(n)
+    border-top-right-radius u(n)
+    overflow hidden
+
+radiusR(n)
+    -webkit-border-top-right-radius u(n)
+    -webkit-border-bottom-right-radius u(n)
+    border-top-right-radius u(n)
+    border-bottom-right-radius u(n)
+    overflow hidden
+
+radiusB(n)
+    -webkit-border-bottom-right-radius u(n)
+    -webkit-border-bottom-left-radius u(n)
+    border-bottom-right-radius u(n)
+    border-bottom-left-radius u(n)
+    overflow hidden
+
+borderBox()
+    -webkit-box-sizing border-box
+    box-sizing border-box
+
+shadow(x, y, b, s, a)
+    -webkit-box-shadow u(x) u(y) u(b) u(s) rgba(0, 0, 0, a)
+    box-shadow u(x) u(y) u(b) u(s) rgba(0, 0, 0, a)
+
+omit(n)
+    overflow hidden
+    text-overflow ellipsis
+    display -webkit-box
+    -webkit-line-clamp n
+    -webkit-box-orient vertical
+
+paddingAll(n)
+    padding u(n)
+
+paddingTop(n)
+    padding-top u(n)
+
+paddingRight(n)
+    padding-right u(n)
+
+paddingBottom(n)
+    padding-bottom u(n)
+
+paddingLeft(n)
+    padding-left u(n)
+
+marginAll(n)
+    margin u(n)
+
+marginTop(n)
+    margin-top u(n)
+
+marginRight(n)
+    margin-right u(n)
+
+marginBottom(n)
+    margin-bottom u(n)
+
+marginLeft(n)
+    margin-left u(n)
+
+fontSize(n)
+    font-size u(n)
+
+w(n)
+    width u(n)
+
+h(n)
+    height u(n)
+
+rem(n)
+    if artBoardWidth is defined
+        unit(n * 10 / artBoardWidth, 'rem')
+    else
+        unit(n * 10 / 750, 'rem')
+
+px2rem(n, boardWidth = 375)
+    unit(n * 10 / boardWidth, 'rem')
+
+hairline(attribute, color)
+    {attribute} 1px solid color
+    .hairline &
+        {attribute} 0.5px solid color

@@ -1,0 +1,195 @@
+/**
+ * Toast Component Style for tingle
+ * @author
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+.{$prefix}-toast
+    background-color rgba(50, 54, 66, 0.9)
+    padding 10px
+    radius 5
+    position fixed
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    z-index 1001
+
+.{$prefix}-toast-icon
+    margin-top 14px
+
+.{$prefix}-toast-icon + .{$prefix}-toast-content
+    margin-top 14px
+    margin-bottom 10px
+
+@keyframes toastRot
+    from
+        -webkit-transform rotate(0deg)
+        transform rotate(0deg)
+    to
+        -webkit-transform rotate(359deg)
+        transform rotate(359deg)
+
+.{$prefix}-toast-icon.toast-loading
+    animation toastRot .9s infinite linear
+        
+.{$prefix}-toast-content
+    color #fff
+    text-align center
+    font-size 16px
+    min-width 100px
+    max-width 254px
+    padding 0 7px   
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+
+.{$prefix}-toast-has-icon .{$prefix}-toast-content
+    color #fff
+    text-align center
+    font-size 16px
+    width 100px
+    padding 0px
+    
+@keyframes toastFadeIn
+    0%
+        opacity 0
+    100%
+        opacity 1
+
+@keyframes toastFadeOut
+    0%
+        opacity 1
+    100%
+        opacity 0
+
+.{$prefix}-toast-fade-enter,
+.{$prefix}-toast-fade-appear
+    opacity 0
+    animation-duration 0.3s
+    animation-timing-function ease-in
+    animation-fill-mode both
+    
+.{$prefix}-toast-fade-enter-active,
+.{$prefix}-toast-fade-appear-active
+    animation-name toastFadeIn
+
+.{$prefix}-toast-fade-leave
+    opacity 1
+    animation-duration 0.3s
+    animation-timing-function ease-out
+    animation-fill-mode both
+.{$prefix}-toast-fade-leave-active
+    animation-name toastFadeOut
+
+
+
+
+.{$prefix}-toast-icon-loading
+    width 36px
+    height 36px
+    background url('//aliwork.alicdn.com/tps/TB1LV66MXXXXXbQXpXXXXXXXXXX-48-24.gif') center no-repeat
+    background-image url('//aliwork.alicdn.com/tps/TB1fPYRMXXXXXcdXFXXXXXXXXXX-480-238.svg'), none
+    background-size contain
+ 
+ .{$prefix}-toast-mask
+    position fixed
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background-color rgba(0,0,0,.6)
+    height 100%
+    z-index 1000
+
+ .{$prefix}-toast-light
+    width 100%
+    left 0
+    transform translate(0, 0)
+    radius 0
+    padding 9px 0
+    .t-FBV
+        flex-direction row
+        justify-content center
+    .info-round
+        margin-top 2px
+        margin-right 8px
+        svg
+            width 16px
+            height 16px
+    > .{$prefix}-toast-content
+        width 100%
+        max-width none
+        
+    .{$prefix}-toast-icon + .{$prefix}-toast-content
+        margin 0px
+        width auto
+        max-width 210px
+        font-size 14px
+        line-height 22px
+
+.{$prefix}-toast-light-fix-top
+    top 0
+
+ @keyframes toastLightFixTopIn
+    0%
+        transform translate(0, -100%)
+    100%
+        transform translate(0, 0)
+
+@keyframes toastLightFixTopOut
+    0%
+        transform translate(0, 0)
+    100%
+        transform translate(0, -100%)
+
+
+.{$prefix}-toast-light-fix-top-enter,
+.{$prefix}-toast-light-fix-top-appear
+    transform translate(0, -100%)
+    animation-duration 0.3s
+    animation-timing-function ease-out
+    animation-fill-mode both
+.{$prefix}-toast-light-fix-top-enter-active,
+.{$prefix}-toast-light-fix-top-appear-active
+    animation-name toastLightFixTopIn
+.{$prefix}-toast-light-fix-top-leave
+    animation-duration 0.3s
+    animation-timing-function ease-out;
+    animation-fill-mode both
+.{$prefix}-toast-light-fix-top-leave-active
+    animation-name toastLightFixTopOut
+
+.{$prefix}-toast-light-fix-bottom
+    bottom 0px
+    top auto
+
+@keyframes toastLightFixBottomIn
+    0%  
+        transform translate(0, 100%)
+    100%
+        transform translate(0, 0)
+
+@keyframes toastLightFixBottomOut
+    0%
+        transform translate(0, 0)
+    100%
+        transform translate(0, 100%)
+
+
+.{$prefix}-toast-light-fix-bottom-enter,
+.{$prefix}-toast-light-fix-bottom-appear
+    transform translate(0, 100%)
+    animation-duration 0.3s
+    animation-timing-function ease-out
+    animation-fill-mode both
+.{$prefix}-toast-light-fix-bottom-enter-active,
+.{$prefix}-toast-light-fix-bottom-appear-active
+    animation-name toastLightFixBottomIn
+.{$prefix}-toast-light-fix-bottom-leave
+    animation-duration 0.3s
+    animation-timing-function ease-out;
+    animation-fill-mode both
+.{$prefix}-toast-light-fix-bottom-leave-active
+    animation-name toastLightFixBottomOut

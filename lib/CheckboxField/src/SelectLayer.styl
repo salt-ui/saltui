@@ -1,0 +1,93 @@
+
+
+// size
+$select-layer-item-height = 44px
+$select-layer-columns-height = 26px
+
+// border color
+$select-layer-border-color = hsvTransform($basic-600, 0, 0, -2)
+
+// background color
+$select-layer-header-bgcolor = hsvTransform($basic-100, 0, 0, -3)
+$select-layer-body-bgcolor = $basic-100
+
+// text color
+$select-layer-primary-color = $gray-darker
+$select-layer-secondary-color = $gray
+$select-layer-confirm-color = $brand-primary
+
+// font
+$select-layer-header-font-size = $font-size-t4
+$select-layer-option-font-size = $font-size-t4
+
+.{$prefix}-select-layer-header
+    background-color $select-layer-header-bgcolor
+    hairline('border-top', $select-layer-border-color)
+    hairline('border-bottom', $select-layer-border-color)
+    border-style solid none
+    height $select-layer-item-height
+    font-size $select-layer-header-font-size
+    color $select-layer-secondary-color
+
+.{$prefix}-select-layer-cancel
+    margin-left 15px
+
+.{$prefix}-select-layer-confirm
+    margin-right 15px
+
+.{$prefix}-select-layer-cancel, .{$prefix}-select-layer-confirm
+    min-width 29px
+    line-height $select-layer-item-height
+    white-space nowrap
+
+.{$prefix}-select-layer-confirm
+    color $select-layer-confirm-color
+
+.{$prefix}-select-layer-title
+    color $select-layer-primary-color
+
+.{$prefix}-checkbox-field-icon
+    align-self center
+    border-radius 50%
+    width 26px
+    height 26px
+    background-color $white-alpha-1
+.{$prefix}-checkbox-field-icon.un-checked
+    border 1px solid $normal-alpha-5
+    background-color $white-alpha-1
+.{$prefix}-checkbox-field-icon.disable
+    background-color $normal-alpha-7
+
+.{$prefix}-select-layer-body
+    overflow hidden
+    height $select-layer-item-height * 5
+    background-color $select-layer-body-bgcolor
+    font-size $select-layer-option-font-size
+    color $select-layer-primary-color
+    .select-list 
+        padding 10px 20px 10px 15px
+    .select-layer-item
+        min-height $select-layer-item-height
+        -webkit-align-items center
+        align-items center
+        .checked svg
+            fill #f37327
+        .item-content
+            min-width 0
+            padding-left 12px
+            font-size $font-size-t5
+            color $dark-alpha-2
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
+        &.disable
+            position relative
+            svg
+                fill $normal-alpha-4
+            .{$prefix}-checkbox-field-disable-mask
+                position absolute
+                left 0
+                right 0
+                top 0
+                bottom 0
+                background-color $white-alpha-3

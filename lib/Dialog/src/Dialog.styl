@@ -1,0 +1,259 @@
+/**
+ * Dialog Component Style for tingle
+ * @author minjie
+ * 
+ * Copyright 2014-2016, Tingle Team, Alinw.
+ * All rights reserved.
+ */
+unless ($prefix is defined) {
+  $prefix = 't';
+}
+
+.{$prefix}-dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1020;
+  width: 100%;
+  height: 100%;
+  background-color: $dark-alpha-4;
+
+  &.{$prefix}-dialog-mask-hidden {
+    display: none;
+  }
+}
+
+.{$prefix}-dialog-wrap {
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+
+// 覆盖老样式，引入default.css就有了后续可以删除
+.{$prefix}-dialog-content {
+  padding: 0;
+}
+
+.{$prefix}-dialog {
+  position: relative;
+  padding-top: 0;
+  width: auto;
+  margin: 10px;
+  min-width: 260px;
+  max-width: 78.7%;
+  background-color: $white;
+  border-radius: $popup-border-radius;
+  overflow: auto;
+
+  &.{$prefix}-dialog-trans-mode {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &.{$prefix}-dialog-no-padding {
+    .{$prefix}-dialog-body {
+      padding: 0;
+    }
+  }
+}
+
+.{$prefix}-dialog-title {
+  color: $dark-alpha-2;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 18px 24px 13px 24px;
+  text-align: center;
+}
+
+.{$prefix}-dialog-header + .{$prefix}-dialog-body {
+  padding: 0 24px 13px;
+}
+
+.{$prefix}-dialog-body {
+  text-align: center;
+  padding: 18px 24px 13px;
+  line-height: 22px;
+  font-size: 14px;
+  margin: 0 auto;
+  color: $dark-alpha-3;
+  overflow: auto;
+}
+
+.{$prefix}-dialog-operation {
+  hairline: 'border-top' $normal-alpha-7;
+  font-size: 16px;
+  height: auto;
+  line-height: 47.5px;
+  text-align: center;
+
+  .{$prefix}-dialog-button {
+    hairline: 'border-left' $normal-alpha-7;
+
+    &.hover {
+      background: rgba(238, 238, 238, 0.4);
+    }
+
+    &:first-child {
+      border-left: none;
+      hairline: 'border-left' transparent;
+    }
+
+    &:last-child {
+      border-bottom: none;
+      hairline: 'border-bottom' transparent;
+    }
+  }
+}
+
+.{$prefix}-dialog-operation.{$prefix}-dialog-operation-vertical {
+  .{$prefix}-dialog-button {
+    border-left: none;
+    hairline: 'border-left' transparent;
+    hairline: 'border-bottom' $normal-alpha-7;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.{$prefix}-dialog-primary {
+  color: $brand-primary;
+}
+
+.{$prefix}-dialog-secondary {
+  color: $normal-alpha-3;
+}
+
+.{$prefix}-dialog-operation.{$prefix}-dialog-operation-trans-mode {
+  margin-top: 67px - 15px;
+  border-top: none;
+  hairline: 'border-top' transparent;
+
+  .{$perfix}-dialog-button {
+    border-bottom: none;
+  }
+}
+
+.{$prefix}-dialog-brbl5 {
+  border-bottom-left-radius: $button-radius;
+}
+
+.{$prefix}-dialog-brbr5 {
+  border-bottom-right-radius: $button-radius;
+}
+
+@keyframes dialogSlideDown {
+  0% {
+    opacity: 0;
+    top: -150px;
+  }
+
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+.{$prefix}-dialog-slideDown-appear,
+.{$prefix}-dialog-slideDown-enter {
+  animation-duration: 0.3s;
+  animation-timing-function: $transition-ease;
+  opacity: 0;
+}
+
+.{$prefix}-dialog-slideDown-appear-active,
+.{$prefix}-dialog-slideDown-enter-active {
+  visibility: visible;
+  animation-name: dialogSlideDown;
+}
+
+@keyframes dialogSlideDownLeave {
+  0% {
+    opacity: 1;
+    top: 0;
+  }
+
+  100% {
+    opacity: 0;
+    top: -150px;
+  }
+}
+
+.{$prefix}-dialog-slideDown-leave {
+  animation-duration: 0.3s;
+  animation-timing-function: $transition-ease;
+}
+
+.{$prefix}-dialog-slideDown-leave-active {
+  animation-name: dialogSlideDownLeave;
+}
+
+// React Animation Group
+.{$prefix}-dialog-fade-appear {
+  opacity: 0.01;
+
+  .{$prefix}-dialog {
+    transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    opacity: 0.01;
+  }
+
+  &.{$prefix}-dialog-fade-appear-active {
+    opacity: 1;
+    transition: opacity 0.1s ease-in;
+
+    .{$prefix}-dialog {
+      transform: scale(1);
+      -webkit-transform: scale(1);
+      opacity: 1;
+      transition: all 0.25s ease;
+      -webkit-transition: all 0.25s ease;
+    }
+  }
+}
+
+.{$prefix}-dialog-fade-enter {
+  opacity: 0.01;
+
+  .{$prefix}-dialog {
+    transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    opacity: 0.01;
+  }
+
+  &.{$prefix}-dialog-fade-enter-active {
+    opacity: 1;
+    transition: opacity 0.1s ease;
+
+    .{$prefix}-dialog {
+      transform: scale(1);
+      -webkit-transform: scale(1);
+      opacity: 1;
+      transition: all 0.25s ease;
+      -webkit-transition: all 0.25s ease;
+    }
+  }
+}
+
+.{$prefix}-dialog-fade-leave {
+  opacity: 1;
+
+  &.{$prefix}-dialog-fade-leave-active {
+    opacity: 0.01;
+    transition: opacity 0.2s ease-in;
+  }
+}

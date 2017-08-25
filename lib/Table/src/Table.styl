@@ -1,0 +1,139 @@
+/**
+ * Table Component Style for tingle
+ * @author sujingjing
+ * 
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+$table-split-line-color = $normal-alpha-6;
+$table-header-color = $normal-alpha-7;
+$tablePrefixCls = t-table;
+
+.{$tablePrefixCls} {
+  width: 100%;
+  overflow: hidden;
+  line-height: 18px;
+
+  &-content-container {
+    line-height: 0;
+  }
+
+  &-pager {
+    margin-top: 12px;
+  }
+}
+
+.{$tablePrefixCls}-left-fixed,
+.{$tablePrefixCls}-right-fixed {
+  top: 0;
+  background: white;
+  transition: box-shadow 0.3s ease-out;
+}
+
+.{$tablePrefixCls}-left-fixed {
+  left: 0;
+
+  &.{$tablePrefixCls}-fixed__has-scroll {
+    box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.{$tablePrefixCls}-right-fixed {
+  right: 0;
+  &.{$tablePrefixCls}-fixed__has-scroll {
+    box-shadow: -1px 0 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.{$tablePrefixCls}-header {
+  hairline: border-bottom $table-split-line-color;
+  height: 40px;
+  line-height: 39px;
+  white-space: nowrap;
+  background: $table-header-color;
+}
+
+.{$tablePrefixCls}-header-item {
+  hairline: border-right $table-split-line-color;
+  color: $normal-alpha-3;
+}
+
+.{$tablePrefixCls}-header-item:last-child {
+  border-right: none;
+}
+
+.{$tablePrefixCls}-body {
+  white-space: nowrap;
+
+  .{$tablePrefixCls}-left-fixed &,
+  .{$tablePrefixCls}-right-fixed & {
+    background: $normal-alpha-7;
+    color: $normal-alpha-3;
+  }
+
+  .{$tablePrefixCls}-left-fixed & {
+    hairline: border-right $table-split-line-color;
+  }
+
+  .{$tablePrefixCls}-right-fixed & {
+    hairline: border-left $table-split-line-color;
+  }
+}
+
+.{$tablePrefixCls}-row {
+  hairline: border-bottom $table-split-line-color;
+  white-space: nowrap;
+  height: 40px;
+}
+
+.{$tablePrefixCls}-row:last-child {
+  border-bottom: none;
+}
+
+.{$tablePrefixCls}-row-item {
+  min-height: 40px;
+  height: 100%;
+  hairline: border-right $table-split-line-color;
+  font-size: 12px;
+  line-height: 18px;
+  padding-top: 11px;
+  color: $dark-alpha-3;
+}
+
+.{$tablePrefixCls}-left-fixed .{$tablePrefixCls}-body .{$tablePrefixCls}-row-item {
+  color: $normal-alpha-3;
+}
+
+.{$tablePrefixCls}-row-item:last-child {
+  border-right: none;
+}
+
+.{$tablePrefixCls}-empty-content {
+  line-height: 40px;
+}
+
+.{$tablePrefixCls}-scroller {
+  overflow: hidden;
+}
+
+.{$tablePrefixCls}-scroller .{$tablePrefixCls}-body,
+.{$tablePrefixCls}-scroller .{$tablePrefixCls}-header {
+  border-right: none;
+}
+
+.{$tablePrefixCls} {
+  &.hide-rows-split-line {
+    .{$tablePrefixCls}-header-item,
+    .{$tablePrefixCls}-row-item,
+    .{$tablePrefixCls}-left-fixed .{$tablePrefixCls}-body {
+      border-right: none;
+    }
+  }
+
+  &.hide-cols-split-line {
+    .{$tablePrefixCls}-header,
+    .{$tablePrefixCls}-row {
+      border-bottom: none;
+    }
+  }
+}

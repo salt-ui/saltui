@@ -1,0 +1,83 @@
+/**
+ * NoticeBar Component Style for tingle
+ * @author
+ * 
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+noticeBarPrefixCls = t-notice-bar;
+
+.{noticeBarPrefixCls} {
+  max-height: 58px;
+  overflow: hidden;
+
+  .{noticeBarPrefixCls}-content {
+    color: $white;
+    padding: 11px 16px 11px 16px;
+
+    .notice-icon {
+      display: inline-block;
+      vertical-align: top;
+      width: 18px;
+    }
+
+    .icon-custom-class {
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    .notice-content-message {
+      margin-left: 8px;
+      flex: 1;
+      display: inline-block;
+      line-height: 18px;
+    }
+
+    .notice-options {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 8px;
+    }
+  }
+
+  .notice-info {
+    background: $function-blue-alpha-2;
+  }
+
+  .notice-success {
+    background: $function-green-alpha-2;
+  }
+
+  .notice-error {
+    background: $function-red-alpha-2;
+  }
+
+  .notice-warning {
+    background: $function-orange-alpha-2;
+  }
+}
+
+.{noticeBarPrefixCls}-fade-leave {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+
+.{noticeBarPrefixCls}-fade-leave.{noticeBarPrefixCls}-fade-leave-active {
+  animation-name: notice-bar-fade-out;
+  animation-play-state: running;
+}
+
+@keyframes notice-bar-fade-out {
+  0% {
+    opacity: 1;
+    max-height: 58;
+    transform: translate(0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    max-height: 0;
+    transform: translate(0, -100%);
+  }
+}

@@ -1,0 +1,257 @@
+/**
+ * Tab Component Style for tingle
+ * $author zhangshun$alipay.com
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+// tingle-style's utils
+
+$page-hide-color = rgba(255, 255, 255, 0)
+$page-show-color = rgba(255, 255, 255, 1)
+$ease-in-out-quint = cubic-bezier(.86, 0, .07, 1)
+$tabs-color = $brand-primary
+$tabs-height = 42px
+$tabs-font-size-heading = 30px
+$tabs-ink-bar-height = 3px
+$tabs-all-btn-width = 36px
+
+common-pagination() {
+  pointer-events none
+  position absolute
+  top 0
+  display block
+  width 118px
+  height 100%
+  content ' '
+  z-index 1000
+}
+
+
+.{$prefix}-tab-wrap
+  overflow hidden
+  .{$prefix}-tab-all
+    right 0
+    top 1px
+    height $tabs-height - 1
+    width $tabs-all-btn-width
+    background-color $basic-100
+    border-bottom 1px solid $normal-alpha-7
+    z-index 7
+    .{$prefix}-icon
+      transform-origin center center
+      transition transform 0.3s
+      svg
+        fill $normal-alpha-3
+  .{$prefix}-tab-curve-shadow
+    z-index 6
+  .{$prefix}-tab-curve-shadow:after
+    content ""
+    height 120%
+    position absolute
+    top 0
+    width 80%
+    z-index -1
+    left -10px
+    background radial-gradient(ellipse at 50% 50%, rgba(00, 00, 00, 0.2), rgba(214, 65, 35, 0.0) 40%)
+
+.{$prefix}-tab-all-title
+  top 0
+  background-color $basic-100
+  padding 0 16px
+  width 100%
+  height $tabs-height 
+  line-height $tabs-height
+  font-size $font-size-t4
+  color $dark-alpha-2
+  border-bottom 1px solid $normal-alpha-7
+  opacity 0  
+  z-index -1
+  border-top 1px solid $normal-alpha-7
+  color $dark-alpha-2
+  transition all 0.3s
+.show-all-layer 
+  .{$prefix}-tab-all-title
+    opacity 1
+    z-index 7
+  .{$prefix}-tab-all-wrap
+    .{$prefix}-tab-popup-container
+      top $tabs-height
+      transform translateY(0)
+      
+.show-all-title 
+  .{$prefix}-tab-all-title
+    opacity 1
+    z-index 7
+.{$prefix}-tab-popup-container
+  top 0
+  background $basic-100
+  transform translateY(-100%)
+  transition all 0.3s
+  .{$prefix}-tab-all-body
+    padding 25px 16px 30px
+    justify-content space-between
+    flex-wrap wrap
+    overflow-y auto
+    max-height 300px
+    .{$prefix}-tab-all-item
+      width px2rem(102)
+      padding 11px 
+      border-radius 3px
+      text-align center
+      text-overflow ellipsis
+      overflow hidden 
+      white-space nowrap
+      background $normal-alpha-8
+      font-size $font-size-t4
+      color $dark-alpha-3
+      margin-bottom px2rem(8)
+      &__disabled
+        background $normal-alpha-8
+        color $normal-alpha-5
+.{$prefix}-tab
+  overflow hidden
+  &-bar
+    display flex
+    position relative
+    z-index 5
+    .{$prefix}-tab-prevpage:before
+      common-pagination()
+      left 0
+    .{$prefix}-tab-nextpage:after
+      common-pagination()
+      right 0
+    .{$prefix}-tab-nav-swipe-container
+      width 100%
+      .{$prefix}-tab-nav-swipe
+        position relative
+        left 0
+        .{$prefix}-tab-nav
+          width 100%
+          display flex
+          flex 1
+          .{$prefix}-tab-tab
+            justify-content center
+            flex-shrink 0
+    .{$prefix}-tab-tab
+      display flex
+      flex 1
+      justify-content center
+      border-top 1px solid $normal-alpha-7
+      border-bottom 1px solid $normal-alpha-7
+      font-size $font-size-t4
+      height $tabs-height
+      line-height $tabs-height
+      color $normal-alpha-3
+      background-color $basic-100
+      box-sizing border-box
+      overflow hidden
+      &-active
+        color $dark-alpha-2
+        font-weight bold
+  &-ink-bar
+    position absolute
+    bottom 0
+    height $tabs-ink-bar-height
+    background-color $tabs-color
+    &-animated
+      transition transform .3s $ease-in-out-quint
+  &&-bottom
+    .{$prefix}-tab-ink-bar
+      bottom auto
+      top 0
+    .{$prefix}-tab-tab
+      border-top 1px solid $normal-alpha-7
+      border-bottom 0
+  &-content
+    zoom 1
+    .{$prefix}-tab-tabpane
+      overflow auto
+      line-height 1.5
+    &-animated
+      transition transform .3s $ease-in-out-quint
+      display flex
+      will-change transform
+      .{$prefix}-tab-tabpane
+        box-sizing border-box
+        width 100%
+        flex-shrink 0
+    &-no-animated
+      .{$prefix}-tab-tabpane-inactive
+        display none
+    .{$prefix}-tab-tabpane-inactive
+      height 0
+      overflow visible
+
+.show-all-btn
+  .{$prefix}-tab-nav-wrap
+    padding-right $tabs-all-btn-width
+
+.{$prefix}-tab-wrap.{$prefix}-fix-top, .{$prefix}-tab-wrap.{$prefix}-fix-bottom
+  position fixed
+  .{$prefix}-tab-all-wrap
+    position fixed
+    width 100%
+    z-index 7
+  .{$prefix}-tab-all-title
+    z-index -2
+    visibility hidden
+    
+.{$prefix}-fix-top.show-all-layer,  .{$prefix}-fix-bottom.show-all-layer
+  .{$prefix}-tab-all-title
+    visibility visible
+    z-index 7
+    
+.{$prefix}-fix-top
+  top 0
+  .{$prefix}-tab-all-wrap
+    top $tabs-height
+  .{$prefix}-tab-popup-container
+    top - $tabs-height
+  .{$prefix}-tab-all
+    top - $tabs-height + 1
+  .{$prefix}-tab-all-title
+    top - $tabs-height
+.{$prefix}-fix-top.show-all-layer 
+  .{$prefix}-tab-popup-container
+    top 0
+    
+.{$prefix}-fix-bottom
+  bottom 0
+  .{$prefix}-tab-ink-bar
+    top 0
+  .{$prefix}-tab-all-wrap
+    bottom $tabs-height
+  .{$prefix}-tab-popup-container
+    bottom - $tabs-height
+    transform translateY(100%)
+  .{$prefix}-tab-all
+    bottom - $tabs-height + 1
+  .{$prefix}-tab-all-title
+    bottom - $tabs-height
+  .{$prefix}-tab-bar
+    position fixed
+    bottom 0
+    width 100%
+  .{$prefix}-tab-content
+    margin-bottom $tabs-height
+.{$prefix}-fix-bottom.show-all-layer 
+  .{$prefix}-tab-popup-container
+    top auto
+    bottom 0
+
+// https://github.com/hammerjs/hammer.js/issues/1050
+// a hack bug fix for chrome 55, side effect may be involved.
+.{$prefix}-tab-pan-bugfix {
+    .{$prefix}-tab-ink-bar,
+    .{$prefix}-tab-content {
+        touch-action: none !important;
+
+        * {
+            touch-action: none !important;
+        }
+    }
+}
+      
+      

@@ -1,0 +1,68 @@
+/**
+ * List Component Style for tingle
+ * @author muxin
+ *
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+
+$list-title-color = $gray-darker;
+$list-content-color = $gray-light;
+$list-icon-color = $gray-lighter;
+
+$list-delete-btn-bg-color = hsvTransform($function-red,0,+2,+13)
+
+
+.{$prefix}-list-wrap
+    position : relative
+    padding : 12px 10px
+    background : #fff
+    z-index : 1
+    transition-duration : .5s
+.{$prefix}-list-img
+    width : 28px
+    height : 28px
+    border-radius : 50%
+    margin-right : 10px
+    margin-left : 5px
+.{$prefix}-list-text-content
+    margin-right : 10px
+.{$prefix}-list-title
+    color : $list-title-color
+    font-size : $font-size-t5
+    line-height : $font-size-t5-lh
+.{$prefix}-list-title-date
+    float : right
+    color : $list-content-color
+    font-size : $font-size-t2
+.{$prefix}-list-text
+    color : $list-content-color
+    font-size : $font-size-t2
+    line-height : $font-size-t2-lh
+.{$prefix}-list-img-right
+    -webkit-flex-direction : row-reverse
+    flex-direction : row-reverse
+.{$prefix}-list-behind
+    width : 100%
+    height : 100%
+    position : absolute
+    top : 0
+    right : 0
+.{$prefix}-list-delete-btn
+    color : #fff
+    background : $list-delete-btn-bg-color
+    width : 80px
+    text-align : center
+    height : 100%
+    float : right
+    font-size : $font-size-t6
+    padding : .7em 1em
+    position : relative
+    text-overflow : ellipsis
+    overflow : hidden
+    white-space : nowrap
+    cursor : pointer
+    display : table
+.{$prefix}-list-delete-btn-text
+    display : table-cell
+    vertical-align : middle
