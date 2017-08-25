@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import Icon from '@ali/tingle-icon';
+import Icon from 'salt-icon';
 import { prefixClass } from './utils';
 
 class IconButton extends React.Component {

@@ -9,7 +9,7 @@ const React = require('react');
 const classnames = require('classnames');
 const Context = require('../Context');
 const Field = require('../Field');
-const CrossRound = require('@ali/tingle-icon/lib/CrossRound');
+const CrossRound = require('salt-icon/lib/CrossRound');
 
 const prefixClass = Context.prefixClass;
 

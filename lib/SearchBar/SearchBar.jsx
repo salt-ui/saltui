@@ -9,8 +9,8 @@ const classnames = require('classnames');
 const debounce = require('lodash/debounce');
 const React = require('react');
 const Context = require('../Context');
-const IconSearch = require('@ali/tingle-icon/lib/Search');
-const IconCrossRound = require('@ali/tingle-icon/lib/CrossRound');
+const IconSearch = require('salt-icon/lib/Search');
+const IconCrossRound = require('salt-icon/lib/CrossRound');
 
 const locale = require('./locale');
 

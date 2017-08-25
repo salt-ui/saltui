@@ -9,7 +9,7 @@ import React from 'react';
 import classnames from 'classnames';
 import RcInputNumber from 'rc-input-number';
 import Context from '../Context';
-import Icon from '@ali/tingle-icon';
+import Icon from 'salt-icon';
 
 
 class NumberPicker extends React.Component {

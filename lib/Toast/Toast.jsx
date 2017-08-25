@@ -9,7 +9,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const classnames = require('classnames');
 const { VBox } = require('../Box');
-const Icon = require('@ali/tingle-icon');
+const Icon = require('salt-icon');
 const { prefixClass, noop } = require('../Context');
 const Dialog = require('rc-dialog');
 

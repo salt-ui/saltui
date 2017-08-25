@@ -11,7 +11,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { unitize } from '../Style';
 import Context from '../Context';
-import Icon from '@ali/tingle-icon';
+import Icon from 'salt-icon';
 
 class Rate extends React.Component {
 

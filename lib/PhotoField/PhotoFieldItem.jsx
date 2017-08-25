@@ -1,6 +1,6 @@
 import React from 'react';
 import Context from '../Context';
-import DelIcon from '@ali/tingle-icon/lib/MinusRound';
+import DelIcon from 'salt-icon/lib/MinusRound';
 
 
 const prefixClass = Context.prefixClass;

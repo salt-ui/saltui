@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { prefixClass } from '../Context';
 import { Status } from 'uploadcore';
-import UploadIcon from '@ali/tingle-icon/lib/Upload';
+import UploadIcon from 'salt-icon/lib/Upload';
 import Circle from './Circle';
 import i18n from './i18n';
 

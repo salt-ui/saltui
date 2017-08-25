@@ -2,7 +2,7 @@ import React from 'react';
 import assign from 'object-assign';
 import classnames from 'classnames';
 import Context from '../Context';
-import Icon from '@ali/tingle-icon';
+import Icon from 'salt-icon';
 
 const isUrl = str => /((\/\/)|^\.{0,2}\/).+/g.test(str);
 const isArray = obj => Object.prototype.toString.call(obj) === '[object Array]';

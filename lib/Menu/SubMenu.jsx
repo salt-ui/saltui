@@ -8,8 +8,8 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import Animate from 'rc-animate';
-import DirectionBottomIcon from '@ali/tingle-icon/lib/DirectionBottom';
-import CheckIcon from '@ali/tingle-icon/lib/Check';
+import DirectionBottomIcon from 'salt-icon/lib/DirectionBottom';
+import CheckIcon from 'salt-icon/lib/Check';
 import { getParentPos, toArray } from './utils';
 
 class Submenu extends Component {

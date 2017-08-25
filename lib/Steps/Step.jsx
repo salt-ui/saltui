@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-import Icon from '@ali/tingle-icon';
+import Icon from 'salt-icon';
 import classnames from 'classnames';
 import Context from '../Context';
 

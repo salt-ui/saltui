@@ -8,7 +8,7 @@ const TingleCtx = require('../Context');
 const Tab = require('../Tab');
 const Scroller = require('../Scroller');
 const classnames = require('classnames');
-const IconCheck = require('@ali/tingle-icon/lib/Check');
+const IconCheck = require('salt-icon/lib/Check');
 const i18n = require('./i18n');
 
 const getOptionsByValue = (options, valueItem = {}) => {

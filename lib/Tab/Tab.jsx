@@ -5,8 +5,8 @@ import SwipeableTabContent from 'rc-tabs/lib/SwipeableTabContent';
 import TabContent from 'rc-tabs/lib/TabContent';
 import InkTabBar from 'rc-tabs/lib/InkTabBar';
 import SwipeableInkTabBar from 'rc-tabs/lib/SwipeableInkTabBar';
-import Bottom from '@ali/tingle-icon/lib/DirectionBottom';
-import Top from '@ali/tingle-icon/lib/DirectionTop';
+import Bottom from 'salt-icon/lib/DirectionBottom';
+import Top from 'salt-icon/lib/DirectionTop';
 import Context from '../Context';
 
 const { prefixClass } = Context;

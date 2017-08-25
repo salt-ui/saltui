@@ -9,7 +9,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Context from '../Context';
 import debounce from 'lodash/fp/debounce';
-import IconToTop from '@ali/tingle-icon/lib/Totop';
+import IconToTop from 'salt-icon/lib/Totop';
 import Animate from 'rc-animate';
 import util from './utils';
 import Box from './Box';

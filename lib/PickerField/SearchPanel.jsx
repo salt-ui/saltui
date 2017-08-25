@@ -12,7 +12,7 @@ import NattyFetch from 'natty-fetch/dist/natty-fetch';
 import Context from '../Context';
 import ScrollView from '../ScrollView';
 import Button from '../Button';
-import Icon from '@ali/tingle-icon';
+import Icon from 'salt-icon';
 import Popup from '../Popup';
 import SearchBar from './SearchBar';
 import SearchResult from './SearchResult';

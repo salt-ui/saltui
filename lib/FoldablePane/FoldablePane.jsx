@@ -8,7 +8,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Context from '../Context';
-import DirectionBottomIcon from '@ali/tingle-icon/lib/DirectionBottom';
+import DirectionBottomIcon from 'salt-icon/lib/DirectionBottom';
 
 class FoldablePane extends React.Component {
 

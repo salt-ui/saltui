@@ -17,12 +17,11 @@
   },
   "homepage": "https://github.com/salt-ui/saltui#readme",
   "devDependencies": {
-    "eslint": "^4.4.1",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.2.0",
-    "gulp": "^3.9.1"
+    "@ali/gitlab-apis": "^2.1.0",
+    "co": "^4.6.0",
+    "gulp": "^3.9.1",
+    "rimraf": "^2.6.1",
+    "to-case": "^2.0.0"
   },
   "dependencies": {
     "salt-icon": "^3.1.4"
