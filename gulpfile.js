@@ -41,17 +41,19 @@ gulp.task('replace', () => {
   const dirs = fs.readdirSync('./lib');
   dirs.forEach((dir) => {
     const files = fs.readdirSync(`./lib/${dir}`);
-    files.forEach((file, index) => {
+    files.forEach((file) => {
       const filePath = `./lib/${dir}/${file}`;
       const stats = fs.statSync(filePath);
       if (stats.isFile() && /[.js|.jsx]$/.test(file)) {
-        // console.log(filePath);
-        const fileData = fs.readFileSync(filePath).toString();
-        if (index === 0) {
-          console.log(fileData);
-        }
+        let fileData = fs.readFileSync(filePath).toString();
+        fileData = fileData.replace(/@ali\/tingle-(.+)'/, (match, s1) => {
+          if (/^icon/.test(s1)) {
+            return match;
+          }
+          return `../${upperInitWord(s1)}'`;
+        });
+        fs.writeFileSync(filePath, fileData);
       } else if (stats.isDirectory()) {
-        // console.log(filePath);
       }
     });
   });
