@@ -5,13 +5,13 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-require('@ali/tingle-context');
-window.FastClick && FastClick.attach(document.body);
+import 'salt-context';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// 插入svg
-var IconSymbols = require('./svg/tingle-icon-symbols.svg');
-ReactDOM.render(<IconSymbols/>, document.getElementById('TingleIconSymbols'));
+import Demo from './MaskDemo';
 
-// 渲染demo
-var Demo = require('./MaskDemo');
-ReactDOM.render(<Demo/>, document.getElementById('TingleDemo'));
+if (window.FastClick) {
+  window.FastClick.attach(document.body);
+}
+ReactDOM.render(<Demo />, document.getElementById('TingleDemo'));

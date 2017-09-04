@@ -7,11 +7,11 @@
  */
 
 const React = require('react');
-const Context = require('@ali/tingle-context');
+const Context = require('salt-context');
 
-const IconEye = require('@ali/tingle-icon/lib/Eye');
-const IconStarLine = require('@ali/tingle-icon/lib/StarLine');
-const Card = require('../../src');
+const IconEye = require('salt-icon/lib/Eye');
+const IconStarLine = require('salt-icon/lib/StarLine');
+const Card = require('salt-card');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const Card = require('../../dist');

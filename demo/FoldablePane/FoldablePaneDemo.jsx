@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import FoldablePane from '../../src';
+import FoldablePane from 'salt-foldable-pane';
 
 class FoldablePaneDemo extends React.Component {
 

@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import Group from '@ali/tingle-group';
-import SelectField from '@ali/tingle-select-field';
-import Badge from '../../src';
+import Group from 'salt-group';
+import SelectField from 'salt-select-field';
+import Badge from 'salt-badge';
 
 
 const monthArray = [

@@ -7,10 +7,10 @@
  */
 
 const classnames = require('classnames');
-const Context = require('@ali/tingle-context');
-const Group = require('@ali/tingle-group');
-const CheckboxField = require('../../src');
-const Icon = require('@ali/tingle-icon');
+const Context = require('salt-context');
+const Group = require('salt-group');
+const CheckboxField = require('salt-checkbox-field');
+const Icon = require('salt-icon');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 //const CheckboxField = require('../../dist');

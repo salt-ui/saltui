@@ -5,10 +5,10 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-require('@ali/tingle-context');
+require('salt-context');
 window.FastClick && FastClick.attach(document.body);
 
-const IconSource = require('../../src');
+const IconSource = require('salt-icon-source');
 // const IconSource = require('../../dist');
 
 // 渲染demo

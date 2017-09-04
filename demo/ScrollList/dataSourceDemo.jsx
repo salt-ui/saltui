@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-import ScrollList from '../../src';
+import ScrollList from 'salt-scroll-list';
 
 const { PropTypes } = React;
 

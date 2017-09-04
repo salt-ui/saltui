@@ -7,8 +7,8 @@
 */
 
 const React = require('react');
-const Button = require('@ali/tingle-button');
-const Dialog = require('../../src');
+const Button = require('salt-button');
+const Dialog = require('salt-dialog');
 class Demo extends React.Component {
 
   constructor(props) {

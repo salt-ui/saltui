@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 
-import '@ali/tingle-context';
+import 'salt-context';
 import ReactDOM from 'react-dom';
 
 const Demo = require('./DatetimeFieldDemo');

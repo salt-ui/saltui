@@ -7,8 +7,8 @@
  */
 
 const React = require('react');
-const Group = require('@ali/tingle-group');
-const TextField = require('../../src');
+const Group = require('salt-group');
+const TextField = require('salt-text-field');
 
 const { LeftAddon, RightAddon, Count } = TextField;
 

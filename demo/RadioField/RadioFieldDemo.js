@@ -7,9 +7,9 @@
  */
 
 const classnames = require('classnames');
-const Context = require('@ali/tingle-context');
+const Context = require('salt-context');
 
-const RadioField = require('../../src');
+const RadioField = require('salt-radio-field');
 
 class Demo extends React.Component {
 

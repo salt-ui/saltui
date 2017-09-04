@@ -6,9 +6,7 @@
  * All rights reserved.
  */
 
-const classnames = require('classnames');
-
-const Mask = require('../../src');
+import Mask from 'salt-mask';
 
 class Demo extends React.Component {
 
@@ -108,4 +106,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

@@ -5,7 +5,7 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-require('@ali/tingle-context');
+require('salt-context');
 
 // 渲染demo
 var Demo = require('./TabBarDemo');

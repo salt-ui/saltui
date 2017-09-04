@@ -5,7 +5,7 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-import '@ali/tingle-context';
+import 'salt-context';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import Demo from './TextareaFieldDemo';

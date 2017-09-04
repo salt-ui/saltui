@@ -7,9 +7,9 @@
  */
 
 const React = require('react');
-const Group = require('@ali/tingle-group');
+const Group = require('salt-group');
 
-const CalendarField = require('../../src');
+const CalendarField = require('salt-calendar-field');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const CalendarField = require('../../dist');

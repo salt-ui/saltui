@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import Button from '@ali/tingle-button';
-import Tab from '../../src';
+import Button from 'salt-button';
+import Tab from 'salt-tab';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const Tab = require('../../dist');

@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import Menu from '@ali/tingle-menu';
-import Popover from '../../src';
+import Menu from 'salt-menu';
+import Popover from 'salt-popover';
 
 const { MenuItem } = Menu;
 

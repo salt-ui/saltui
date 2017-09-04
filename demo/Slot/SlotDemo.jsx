@@ -8,10 +8,10 @@
 
 // 这是一个比较复杂的例子，演示了年月日选择的交互逻辑，
 // 如果仅需要简单使用帮助，请参考 README.md 的 Simple Usage。
-const Button = require('@ali/tingle-button');
+const Button = require('salt-button');
 const React = require('react');
 
-const Slot = require('../../src');
+const Slot = require('salt-slot');
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const Slot = require('../../dist');
 

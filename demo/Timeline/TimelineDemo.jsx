@@ -7,8 +7,8 @@
  */
 
 const React = require('react');
-const Timeline = require('../../src');
-const Icon = require('@ali/tingle-icon');
+const Timeline = require('salt-timeline');
+const Icon = require('salt-icon');
 
 class Demo extends React.Component {
 

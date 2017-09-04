@@ -6,10 +6,10 @@
  * All rights reserved.
  */
 
-import Icon from '@ali/tingle-icon';
-import Button from '@ali/tingle-button';
+import Icon from 'salt-icon';
+import Button from 'salt-button';
 import React from 'react';
-import Totop from '../../src';
+import Totop from 'salt-totop';
 
 const { Box } = Totop;
 

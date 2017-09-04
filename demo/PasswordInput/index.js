@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import ReactDOM from 'react-dom';
-import '@ali/tingle-context';
+import 'salt-context';
 import Demo from './PasswordInputDemo';
 
 window.FastClick && FastClick.attach(document.body);

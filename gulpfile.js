@@ -5,7 +5,8 @@ const getGitlabApi = require('@ali/gitlab-apis');
 const co = require('co');
 const rm = require('rimraf');
 const to = require('to-case');
-
+const webpack = require('webpack');
+const commonWebpackCfg = require('./webpack.dev.js');
 
 const runCmd = (cmd, args = [], fn, stdoutFn) => {
   console.log(`Run CMD: ${cmd} ${args.join(' ')}`);
@@ -79,23 +80,27 @@ gulp.task('gitlab', () => {
       const prjs = response.projects.map(prj => ({ path: prj.path, id: prj.id }));
       function* getFileList() {
         const results = [];
-        for (let i = 0; i < prjs.length; i++) {
+        for (let i = 0; i < prjs.length; i += 1) {
           const prj = prjs[i];
           try {
-            results[i] = yield repositories.listTree(prj.id, 'demo/src');
+            results[i] = {
+              name: prj.path,
+              list: yield repositories.listTree(prj.id, 'demo/src'),
+            };
           } catch (e) {
             console.log(e);
           }
-          console.log(`${prj.path} Done`);
+          console.log(`${prj.path} FileList Done`);
         }
         return results;
       }
       co(getFileList).then((results) => {
         prjs.forEach((prj, index) => {
           const fileList = results[index] || [];
+
           try {
-            fs.statSync(`./lib/${upperInitWord(removePrefix(prj.path))}`);
-            fileList.forEach((file) => {
+            fs.statSync(`./src/${upperInitWord(removePrefix(prj.path))}`);
+            fileList.list.forEach((file) => {
               if (file.type === 'blob') {
                 repositories.rawFile(prj.id, 'master', `demo/src/${file.name}`).then((fileBlob) => {
                   const dirPath = `./demo/${upperInitWord(removePrefix(prj.path))}`;
@@ -109,7 +114,11 @@ gulp.task('gitlab', () => {
               }
             });
           } catch (e) {
-            console.log(`${upperInitWord(removePrefix(prj.path))} is not a necessary prj`);
+            try {
+              console.log(`${upperInitWord(removePrefix(prj.path))} is not a necessary prj`);
+            } catch (err) {
+              console.log(err);
+            }
           }
         });
       });
@@ -117,8 +126,7 @@ gulp.task('gitlab', () => {
   });
 });
 
-let count = 0;
-gulp.task('demo-replace', () => {
+gulp.task('demo_replace', () => {
   const dirs = fs.readdirSync('./demo');
   dirs.forEach((dir) => {
     const files = fs.readdirSync(`./demo/${dir}`);
@@ -131,11 +139,44 @@ gulp.task('demo-replace', () => {
         });
         // replace ../../src with salt-current-comp
         fileData = fileData.replace('../../src', `salt-${to.slug(dir)}`);
-        count += 1;
-        if (count === 5) {
-          console.log(fileData);
-        }
+        // replace icon-source
+        fileData = fileData.replace('// 插入svg', '');
+        fileData = fileData.replace("var IconSymbols = require('./svg/tingle-icon-symbols.svg');", '');
+        fileData = fileData.replace("var IconSymbols = require('./svg/private-symbols.svg');", '');
+        fileData = fileData.replace("import IconSymbols from './svg/tingle-icon-symbols.svg';", '');
+        fileData = fileData.replace("ReactDOM.render(<IconSymbols/>, document.getElementById('TingleIconSymbols'));", '');
+        fileData = fileData.replace("ReactDOM.render(<IconSymbols />, document.getElementById('TingleIconSymbols'));", '');
+        fileData = fileData.replace("ReactDOM.render(<IconSymbols/>, document.getElementById('PrivateSymbols'));", '');
+        fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
+      } else if (/\.styl$/.test(file)) {
+        let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
+        // replace ../../node_modules/@ali/tingle-xxx/src/xxx.styl with salt-xxx/Xxx.styl
+        const regExpForCompStyl = /\.\.\/\.\.\/node_modules\/@ali\/tingle-(.+?)\/src\/(.+?).styl/g;
+        fileData = fileData.replace(regExpForCompStyl, (match, s1, s2) => {
+          return `salt-${s1}/${s2}.styl`;
+        });
       }
     });
+  });
+});
+
+
+gulp.task('server', (cb) => {
+  const compiler = webpack(commonWebpackCfg);
+  compiler.watch({}, (err, stats) => {
+    console.log(`webpack log:${stats}`);
+    if (stats.hasErrors()) {
+            // 异常日志打印到屏幕
+      fs.writeFileSync('./dist/demo.js', [
+        'document.body.innerHTML="<pre>',
+        stats.toJson().errors[0].replace(/[\n\r]/g, '<br>').replace(/\[\d+m/g, '').replace(/"/g, '\\"'),
+        '</pre>";',
+        'document.body.firstChild.style.fontFamily="monospace";',
+        'document.body.firstChild.style.lineHeight="1.5em";',
+        'document.body.firstChild.style.margin="1em";',
+      ].join(''));
+    }
+    console.info('###### pack_demo done ######');
+    cb();
   });
 });

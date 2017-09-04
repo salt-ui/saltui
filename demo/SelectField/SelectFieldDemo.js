@@ -6,9 +6,9 @@
  * All rights reserved.
  */
 
-const Group = require('@ali/tingle-group');
+const Group = require('salt-group');
 
-const SelectField = require('../../src');
+const SelectField = require('salt-select-field');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const SelectField = require('../../dist');

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import Rate from '../../src';
+import Rate from 'salt-rate';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // import Rate from '../../dist';

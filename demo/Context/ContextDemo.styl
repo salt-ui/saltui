@@ -1,0 +1,34 @@
+/**
+ * Tingle Context
+ * The environment for tingle's initialization
+ * @author gnosaij
+ *
+ * Copyright 2014-2015, Tingle Team, Alinw.
+ * All rights reserved.
+ */
+
+// tingle-style's utils
+@require '../../node_modules/@ali/tingle-style/src/tingle'
+@require '../../src/Context.styl'
+
+body
+    background-color $basic-700
+
+#TingleDemo
+    .lineByPx
+        border 1px solid #000
+        .hairline &
+            border-width 0.5px
+    .lineByPx2
+        border 1px solid #000
+    .lineByRem
+        border rem(1) solid #000
+    .lineByRem2
+        border rem(2) solid #000
+    .lineByRem3
+        border rem(3) solid #000
+    .touchDemo
+        background-color gray
+        color #fff
+        &.hover
+            background-color orange

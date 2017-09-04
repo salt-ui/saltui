@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import NumberPicker from '../../src';
+import NumberPicker from 'salt-number-picker';
 
 class NumberPickerDemo extends React.Component {
 
