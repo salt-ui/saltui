@@ -155,7 +155,7 @@ gulp.task('demo_replace', () => {
         const regExpForCompStyl = /\.\.\/\.\.\/node_modules\/@ali\/tingle-(.+?)\/src\/(.+?).styl/ig;
         fileData = fileData.replace(regExpForCompStyl, (match, s1, s2) => {
           if (s1 !== 'icon') {
-            return `../../src/${s2}/${s2}.styl`;
+            return `../../src/${upperInitWord(s1)}/${s2}.styl`;
           }
           return '~salt-icon/src/Icon.styl';
         });
