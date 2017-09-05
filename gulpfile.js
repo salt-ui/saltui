@@ -151,7 +151,7 @@ gulp.task('demo_replace', () => {
       } else if (/\.styl$/.test(file)) {
         let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
         // replace ../../src/Button.styl with ../../src/Button/Button.styl
-        fileData = fileData.replace(/\.\.\/\.\.\/src\/(.+)([.styl|'|"])/g, (match, s1, s2) => `../../src/${s1}/${s1}${s2}`);
+        fileData = fileData.replace(/\.\.\/\.\.\/src\/(.+)([.styl|'|"])/g, (match, s1, s2) => `../../src/${s1.split('.')[0]}/${s1.split('.')[0]}${s2}`);
         // replace ../../node_modules/@ali/tingle-xxx/src/xxx.styl with ../../src/Xxx/Xxx.styl
         // replace ../../node_modules/@ali/tingle-icon/src/icon.styl with ~salt-icon/src/Icon.styl
         const regExpForCompStyl = /\.\.\/\.\.\/node_modules\/@ali\/tingle-(.+?)\/src\/(.+)([.styl|'|"])/ig;
@@ -162,6 +162,8 @@ gulp.task('demo_replace', () => {
           }
           return '~salt-icon/src/Icon.styl';
         });
+        // replace @require '../../node_modules/@ali/tingle-ui/dist/default.min.css' with ''
+        fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/dist/default.min.css'", '');
         fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
       }
     });
