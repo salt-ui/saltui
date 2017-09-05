@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import Group from '@ali/tingle-group';
-import AngleRight from '@ali/tingle-icon/lib/AngleRight';
-import Toast from '@ali/tingle-toast';
-import Field from '../../src';
+import Group from 'salt-group';
+import AngleRight from 'salt-icon/lib/AngleRight';
+import Toast from 'salt-toast';
+import Field from 'salt-field';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const Field = require('../../dist');

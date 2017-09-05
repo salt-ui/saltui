@@ -5,8 +5,8 @@
  * Copyright 2014-2017, Tingle Team.
  * All rights reserved.
  */
-import ReactDOM from 'react-dom';
-import '@ali/tingle-context';
+
+import 'salt-context';
 import Demo from './PopoverDemo';
 
 if (window.FastClick) {
@@ -14,4 +14,4 @@ if (window.FastClick) {
 }
 
 // 渲染demo
-ReactDOM.render(<Demo />, document.getElementById('TingleDemo'));
+export default Demo ;

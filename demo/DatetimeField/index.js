@@ -6,8 +6,8 @@
  * All rights reserved.
  */
 
-import '@ali/tingle-context';
-import ReactDOM from 'react-dom';
+import 'salt-context';
+
 
 const Demo = require('./DatetimeFieldDemo');
 
@@ -15,4 +15,4 @@ if (window.FastClick) {
   window.FastClick.attach(document.body);
 }
 // 渲染demo
-ReactDOM.render(<Demo />, document.getElementById('TingleDemo'));
+export default Demo ;

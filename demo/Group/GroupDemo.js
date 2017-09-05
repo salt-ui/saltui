@@ -7,9 +7,9 @@
  */
 
 const classnames = require('classnames');
-const Context = require('@ali/tingle-context');
+const Context = require('salt-context');
 
-const Group = require('../../src');
+const Group = require('salt-group');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 //const Group = require('../../dist');

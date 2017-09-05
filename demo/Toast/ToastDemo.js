@@ -7,8 +7,8 @@
  */
 /* eslint-disable */
 const classnames = require('classnames');
-const Button = require('@ali/tingle-button');
-const Toast = require('../../src');
+const Button = require('salt-button');
+const Toast = require('salt-toast');
 
 class Demo extends React.Component {
     constructor(props) {

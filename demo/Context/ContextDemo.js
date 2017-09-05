@@ -8,7 +8,7 @@
  */
 
 const classnames = require('classnames');
-const Context = window.Tingle = require('../../src/Context');
+const Context = window.Tingle = require('salt-context/Context');
 
 class Demo extends React.Component {
 

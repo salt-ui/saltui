@@ -8,7 +8,7 @@
 
 const classnames = require('classnames');
 
-const {HBox, VBox, Box} = require('../../src');
+const {HBox, VBox, Box} = require('salt-box');
 
 class Demo extends React.Component {
 

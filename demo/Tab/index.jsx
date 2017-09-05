@@ -5,13 +5,13 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-import '@ali/tingle-context';
-import ReactDOM from 'react-dom';
-import React from 'react';
+import 'salt-context';
+
+
 import Demo from './TabDemo';
 
 if (window.FastClick) {
   window.FastClick.attach(document.body);
 }
 
-ReactDOM.render(<Demo />, document.getElementById('TingleDemo'));
+export default Demo ;

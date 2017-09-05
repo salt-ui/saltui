@@ -7,9 +7,9 @@
  */
 
 const React = require('react');
-const Button = require('@ali/tingle-button');
+const Button = require('salt-button');
 
-const ImageViewer = require('../../src/mix');
+const ImageViewer = require('salt-image-viewer/mix');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const ImageViewer = require('../../dist');

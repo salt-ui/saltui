@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import RateField from '../../src';
+import RateField from 'salt-rate-field';
 
 class RateFieldDemo extends React.Component {
 

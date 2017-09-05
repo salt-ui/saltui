@@ -6,9 +6,9 @@
  * All rights reserved.
  */
 
-const Context = require('@ali/tingle-context');
-const Icon = require('@ali/tingle-icon');
-const TabBar = require('../../src');
+const Context = require('salt-context');
+const Icon = require('salt-icon');
+const TabBar = require('salt-tab-bar');
 const React = require('react');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉

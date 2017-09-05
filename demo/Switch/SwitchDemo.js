@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 
-let Switch = require('../../src');
+let Switch = require('salt-switch');
 class Demo extends React.Component {
 
     constructor(props) {

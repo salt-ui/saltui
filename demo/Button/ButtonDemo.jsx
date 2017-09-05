@@ -6,8 +6,8 @@
  * All rights reserved.
  */
 import React from 'react';
-import Icon from '@ali/tingle-icon';
-import Button from '../../src';
+import Icon from 'salt-icon';
+import Button from 'salt-button';
 
 const {
   TextButton,

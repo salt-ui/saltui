@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import Group from '@ali/tingle-group';
-import EmployeeField from '../../src';
+import Group from 'salt-group';
+import EmployeeField from 'salt-employee-field';
 
 const testData = [
   {

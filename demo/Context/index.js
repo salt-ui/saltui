@@ -10,4 +10,4 @@ window.FastClick && FastClick.attach(document.body);
 
 const Demo = require('./ContextDemo');
 
-ReactDOM.render(<Demo/>, document.getElementById('TingleDemo'));
+export default Demo;

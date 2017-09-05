@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 
-import Mask from '../../src';
+import Mask from 'salt-mask';
 
 class Demo extends React.Component {
 

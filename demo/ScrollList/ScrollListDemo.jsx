@@ -6,8 +6,8 @@
  * All rights reserved.
  */
 import React from 'react';
-import Icon from '@ali/tingle-icon';
-import ScrollList from '../../src';
+import Icon from 'salt-icon';
+import ScrollList from 'salt-scroll-list';
 
 const { PropTypes } = React;
 

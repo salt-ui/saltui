@@ -7,7 +7,7 @@
  */
 
 const React = require('react');
-const DdPhotoField = require('../../src/');
+const DdPhotoField = require('salt-photo-field/');
 const PhotoField = require('../../src/PhotoField');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉

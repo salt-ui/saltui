@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import Style from '../../src';
+import Style from 'salt-style';
 
 class StyleDemo extends React.Component {
 
