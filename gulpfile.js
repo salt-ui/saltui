@@ -160,7 +160,7 @@ gulp.task('demo_replace', () => {
           return '~salt-icon/src/Icon.styl';
         });
         // replace ../../src/Button.styl with ../../src/Button/Button.styl
-        fileData.replace(/\.\.\/\.\.\/src\/(.+?).styl/g, (match, s1) => `../../src/${s1}/${s1}.styl`);
+        fileData = fileData.replace(/\.\.\/\.\.\/src\/(.+?).styl/g, (match, s1) => `../../src/${s1}/${s1}.styl`);
         fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
       }
     });
