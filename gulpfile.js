@@ -180,6 +180,28 @@ gulp.task('demo_replace', () => {
   });
 });
 
+gulp.task('demo_inject', () => {
+  const dirs = fs.readdirSync('./demo');
+  dirs.forEach((dir) => {
+    const files = fs.readdirSync(`./demo/${dir}`);
+    files.forEach((file) => {
+      if (/^index(.*)\.js(x)?$/.test(file) && dir !== 'Context') {
+        let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
+        const index = fileData.indexOf('salt-context');
+        console.log(`./demo/${dir}/${file}`);
+        const str = `\r\nimport './${upperInitWord(dir)}Demo.styl';`;
+        let splitIndex = index + 'salt-context'.length + 1;
+        const detectSpliter = fileData[splitIndex];
+        if (detectSpliter === ')') {
+          splitIndex += 1;
+        }
+        fileData = fileData.slice(0, splitIndex + 1) + str + fileData.slice(splitIndex + 1);
+        fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
+      }
+    });
+  });
+});
+
 
 gulp.task('server', (cb) => {
   const compiler = webpack(commonWebpackCfg);
