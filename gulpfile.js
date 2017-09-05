@@ -150,10 +150,10 @@ gulp.task('demo_replace', () => {
         fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
       } else if (/\.styl$/.test(file)) {
         let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
-        // replace ../../node_modules/@ali/tingle-xxx/src/xxx.styl with ~salt-xxx/Xxx.styl
+        // replace ../../node_modules/@ali/tingle-xxx/src/xxx.styl with ../../src/Xxx/Xxx.styl
         const regExpForCompStyl = /\.\.\/\.\.\/node_modules\/@ali\/tingle-(.+?)\/src\/(.+?).styl/g;
         fileData = fileData.replace(regExpForCompStyl, (match, s1, s2) => {
-          return `~salt-${s1}/${s2}.styl`;
+          return `../../src/${s2}/${s2}.styl`;
         });
         fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
       }
