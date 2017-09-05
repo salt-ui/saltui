@@ -147,6 +147,12 @@ gulp.task('demo_replace', () => {
         fileData = fileData.replace("ReactDOM.render(<IconSymbols/>, document.getElementById('TingleIconSymbols'));", '');
         fileData = fileData.replace("ReactDOM.render(<IconSymbols />, document.getElementById('TingleIconSymbols'));", '');
         fileData = fileData.replace("ReactDOM.render(<IconSymbols/>, document.getElementById('PrivateSymbols'));", '');
+        // replace ReactDOM.render(<Demo/>, document.getElementById('TingleDemo'));
+        // with export default Demo
+        const regExpDemoIndex = /ReactDOM\.render\(<(.+)\/>, document\.getElementById\('TingleDemo'\)\)/g;
+        fileData = fileData.replace(regExpDemoIndex, (match, s1) => {
+          return `export default ${s1}`;
+        });
         fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
       } else if (/\.styl$/.test(file)) {
         let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
