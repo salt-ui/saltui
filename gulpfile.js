@@ -158,7 +158,7 @@ gulp.task('demo_replace', () => {
         fileData = fileData.replace(regExpForCompStyl, (match, s1, s2) => {
           console.log(s2);
           if (s1 !== 'icon') {
-            return `../../src/${upperInitWord(s1)}/${s2}.styl`;
+            return `../../src/${upperInitWord(s1)}/${s2.replace("'", '').replace('"', '').split('.')[0]}.styl`;
           }
           return '~salt-icon/src/Icon.styl';
         });
