@@ -164,6 +164,7 @@ gulp.task('demo_replace', () => {
         });
         // replace @require '../../node_modules/@ali/tingle-ui/dist/default.min.css' with ''
         fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/dist/default.min.css'", '');
+        fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/dist/default.css'", '');
         fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
       }
     });
