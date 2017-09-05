@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import Progress from 'salt-progress';
+import Progress from '../../src';
 
 class ProgressDemo extends React.Component {
 

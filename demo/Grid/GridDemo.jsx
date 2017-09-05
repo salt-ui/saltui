@@ -7,11 +7,11 @@
  */
 const React = require('react');
 
-const Grid = require('salt-grid');
+const Grid = require('../../src');
 
-const Icon = require('salt-icon');
+const Icon = require('@ali/tingle-icon');
 
-const Badge = require('salt-badge');
+const Badge = require('@ali/tingle-badge');
 
 class Demo extends React.Component {
 

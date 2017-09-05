@@ -7,14 +7,14 @@
  */
 
 const classnames = require('classnames');
-const Context = require('salt-context');
-let Icon = require('salt-icon');
-let Group = require('salt-group');
-let Boxs = require('salt-box');
+const Context = require('@ali/tingle-context');
+let Icon = require('@ali/tingle-icon');
+let Group = require('@ali/tingle-group');
+let Boxs = require('@ali/tingle-box');
 let HBox = Boxs.HBox;
 let Box = Boxs.Box;
 
-const List = require('salt-list');
+const List = require('../../src');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 //const List = require('../../dist');

@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import ReactDOM from 'react-dom';
-import 'salt-context';
+import '@ali/tingle-context';
 import Demo from './TotopDemo';
 
 window.FastClick && FastClick.attach(document.body);

@@ -8,7 +8,7 @@
 
 const React = require('react');
 const districtData = require('./staticData');
-const CitySelectField = require('salt-city-select-field');
+const CitySelectField = require('../../src');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const CitySelectField = require('../../dist');

@@ -7,9 +7,9 @@
  */
 
 const classnames = require('classnames');
-const Context = require('salt-context');
+const Context = require('@ali/tingle-context');
 
-const Crumb = require('salt-crumb');
+const Crumb = require('../../src');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 //const Crumb = require('../../dist');

@@ -8,7 +8,7 @@
 
 const React = require('react');
 
-const SearchBar = require('salt-search-bar');
+const SearchBar = require('../../src');
 
 const { WithContainer } = SearchBar;
 

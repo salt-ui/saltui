@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import Pagination from 'salt-pagination';
+import Pagination from '../../src';
 
 class PaginationDemo extends React.Component {
 

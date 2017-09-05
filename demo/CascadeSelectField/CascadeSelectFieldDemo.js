@@ -6,9 +6,9 @@
  * All rights reserved.
  */
 const React = require('react');
-const Group = require('salt-group');
+const Group = require('@ali/tingle-group');
 
-const CascadeSelectField = require('salt-cascade-select-field');
+const CascadeSelectField = require('../../src');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const CascadeSelectField = require('../../dist');

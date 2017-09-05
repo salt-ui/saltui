@@ -7,7 +7,7 @@
  */
 import ReactDOM from 'react-dom';
 import React from 'react';
-import 'salt-context';
+import '@ali/tingle-context';
 // import Demo from './StyleDemo';
 // import Demo from './Reset';
 // import Demo from './Flexbox';

@@ -7,7 +7,7 @@
  */
 
 const React = require('react');
-const ScrollList = require('salt-scroll-list');
+const ScrollList = require('../../src');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const ScrollList = require('../../dist');

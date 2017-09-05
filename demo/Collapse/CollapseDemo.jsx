@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import Collapse from 'salt-collapse';
-import Lock from 'salt-icon/lib/Lock';
+import Collapse from '../../src';
+import Lock from '@ali/tingle-icon/lib/Lock';
 const Panel = Collapse.Panel;
 
 class CollapseDemo extends React.Component {

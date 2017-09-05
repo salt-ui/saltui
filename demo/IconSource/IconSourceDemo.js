@@ -5,7 +5,7 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const Icon = require('salt-icon');
+const Icon = require('@ali/tingle-icon');
 
 class Demo extends React.Component {
 

@@ -7,12 +7,12 @@
  */
 
 import React from 'react';
-import Icon from 'salt-icon';
-import Badge from 'salt-badge';
-import Button from 'salt-button';
-import Popup from 'salt-popup';
-import Popover from 'salt-popover';
-import Menu from 'salt-menu';
+import Icon from '@ali/tingle-icon';
+import Badge from '@ali/tingle-badge';
+import Button from '@ali/tingle-button';
+import Popup from '@ali/tingle-popup';
+import Popover from '@ali/tingle-popover';
+import Menu from '../../src';
 
 const { MenuItem } = Menu;
 

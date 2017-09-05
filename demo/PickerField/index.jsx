@@ -7,7 +7,7 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-import 'salt-context';
+import '@ali/tingle-context';
 import Demo from './PickerFieldDemo';
 
 const React = window.React;

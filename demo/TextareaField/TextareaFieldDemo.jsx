@@ -5,9 +5,9 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-import Group from 'salt-group';
+import Group from '@ali/tingle-group';
 import React from 'react';
-import TextareaField from 'salt-textarea-field';
+import TextareaField from '../../src';
 
 const { Count } = TextareaField;
 

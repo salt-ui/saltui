@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import Button from 'salt-button';
-import Calendar from 'salt-calendar';
+import Button from '@ali/tingle-button';
+import Calendar from '../../src';
 
 class CalendarDemo extends React.Component {
 

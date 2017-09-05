@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import Button from 'salt-button';
-import Popup from 'salt-popup';
+import Button from '@ali/tingle-button';
+import Popup from '../../src';
 
 class PopupDemo extends React.Component {
 

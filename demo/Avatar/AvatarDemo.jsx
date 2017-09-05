@@ -12,8 +12,8 @@ const avatarColors = ['#78C06E', '#3BC2B5', '#78919D', '#5EC9F6', '#F6BF26'];
 // avatarColors 在实际使用中是在 require 之前通过 `Context.setGlobal` 来全局设置:
 // Context.setGlobal({avatar: {colors: avatarColors}});
 // 这里为了展示默认的颜色, 所以使用 props 来设置。
-const Avatar = require('salt-avatar');
-const Icon = require('salt-icon');
+const Avatar = require('../../src');
+const Icon = require('@ali/tingle-icon');
 
 export default () => (
   <div>

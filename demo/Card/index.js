@@ -7,7 +7,7 @@
  */
 const React = window.React;
 const ReactDOM = window.ReactDOM;
-require('salt-context');
+require('@ali/tingle-context');
 
 if (window.FastClick) {
   window.FastClick.attach(document.body);

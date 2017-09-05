@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import Group from 'salt-group';
-import PasswordInput from 'salt-password-input';
+import Group from '@ali/tingle-group';
+import PasswordInput from '../../src';
 
 class PasswordInputDemo extends React.Component {
 

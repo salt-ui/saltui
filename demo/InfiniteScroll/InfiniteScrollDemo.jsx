@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import InfiniteScroll from 'salt-infinite-scroll';
+import InfiniteScroll from '../../src';
 
 function Item(props) {
   return <div className="demo-item">{props.children}</div>

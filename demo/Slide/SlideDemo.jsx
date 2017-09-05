@@ -7,7 +7,7 @@
 */
 let React = require('react');
 let classnames = require('classnames');
-let Slide = require('salt-slide');
+let Slide = require('../../src');
 
 class Demo extends React.Component {
 

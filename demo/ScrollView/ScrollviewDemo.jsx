@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-import ScrollView from 'salt-scroll-view';
+import ScrollView from '../../src';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const ScrollView = require('../../dist');

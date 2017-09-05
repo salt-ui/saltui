@@ -6,11 +6,11 @@
  * All rights reserved.
  */
 const React = require('react');
-const Grid = require('salt-grid');
+const Grid = require('@ali/tingle-grid');
 
-const Icon = require('salt-icon');
+const Icon = require('../../src');
 
-const SymbolIcon = require('salt-icon/Symbol');
+const SymbolIcon = require('../../src/Symbol');
 
 class Demo extends React.Component {
 

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import Steps, { Step } from 'salt-steps';
+import Steps, { Step } from '../../src';
 
 class StepsDemo extends React.Component {
 

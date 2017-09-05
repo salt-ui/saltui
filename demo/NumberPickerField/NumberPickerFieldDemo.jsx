@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import NumberPickerField from 'salt-number-picker-field';
+import NumberPickerField from '../../src';
 
 class NumberPickerFieldDemo extends React.Component {
 

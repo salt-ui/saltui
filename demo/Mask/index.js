@@ -5,7 +5,7 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-import 'salt-context';
+import '@ali/tingle-context';
 import React from 'react';
 import ReactDOM from 'react-dom';
 

@@ -7,7 +7,7 @@
  */
 
 const React = require('react' );
-const Layer = require('salt-layer');
+const Layer = require('../../src');
 
 class Demo extends React.Component {
 

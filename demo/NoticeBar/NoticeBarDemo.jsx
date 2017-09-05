@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import NoticeBar from 'salt-notice-bar';
+import NoticeBar from '../../src';
 
 class NoticeBarDemo extends React.Component {
 

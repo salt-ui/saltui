@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import Button from 'salt-button';
-import Icon from 'salt-icon';
+import Button from '@ali/tingle-button';
+import Icon from '@ali/tingle-icon';
 
-import ActionSheet from 'salt-action-sheet';
+import ActionSheet from '../../src';
 
 const iconList = [
   { icon: <img role="presentation" src="https://zos.alipayobjects.com/rmsportal/WmEzpOsElbbvgmrexFSH.png" />, title: '发送朋友' },

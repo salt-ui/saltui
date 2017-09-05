@@ -6,8 +6,8 @@
  * All rights reserved.
  */
 
-import Group from 'salt-group';
-import PickerField from 'salt-picker-field';
+import Group from '@ali/tingle-group';
+import PickerField from '../../src';
 
 const React = window.React;
 

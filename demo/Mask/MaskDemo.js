@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 
-import Mask from 'salt-mask';
+import Mask from '../../src';
 
 class Demo extends React.Component {
 
@@ -92,14 +92,13 @@ class Demo extends React.Component {
         <Mask visible={t.state.maskvisible2}
           onWillHide={t.handleWillHide2.bind(t)}
           onDidHide={t.handleDidHide.bind(t)}
-          type="light"
           opacity={0.8}
         />
         <Mask visible={t.state.maskvisible3}
           onWillHide={t.handleWillHide3.bind(t)}
           onDidHide={t.handleDidHide.bind(t)}
-          type="medium"
           opacity={1}
+          renderToBody={false}
         />
       </div>
     );

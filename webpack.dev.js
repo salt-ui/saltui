@@ -10,7 +10,7 @@ const upperInitWord = str => str.split('-').map(key => (key[0].toUpperCase() + k
 module.exports = {
   cache: true,
   entry: {
-    demo: './demo/Button/index',
+    demo: './dev/index',
   },
   output: {
     path: path.join(process.cwd(), './dist'),
@@ -22,7 +22,12 @@ module.exports = {
       {
 
         test: /\.js(x)*$/,
-        include: [path.join(process.cwd(), './src'), path.join(process.cwd(), './demo'), path.join(process.cwd(), './test')],
+        include: [
+          path.join(process.cwd(), './src'),
+          path.join(process.cwd(), './demo'),
+          path.join(process.cwd(), './test'),
+          path.join(process.cwd(), './dev'),
+        ],
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015-ie', 'stage-1'],
@@ -67,6 +72,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.web.ts', '.web.tsx', '.web.js', '.web.jsx', '.ts', '.tsx', '.js', '.jsx', '.json'],
+    mainFields: ['main'],
   },
   externals: {
     react: 'var React',

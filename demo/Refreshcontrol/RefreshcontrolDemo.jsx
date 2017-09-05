@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import Refreshcontrol from 'salt-refreshcontrol';
+import Refreshcontrol from '../../src';
 
 function Item(props) {
   return <div className="item">{`this is item ${props.index}`}</div>
