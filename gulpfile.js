@@ -153,6 +153,10 @@ gulp.task('demo_replace', () => {
         fileData = fileData.replace(regExpDemoIndex, (match, s1) => {
           return `export default ${s1}`;
         });
+        if (/^index/.test(file)) {
+          fileData = fileData.replace("import React from 'react';", '');
+          fileData = fileData.replace("import ReactDOM from 'react-dom';", '');
+        }
         fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
       } else if (/\.styl$/.test(file)) {
         let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
