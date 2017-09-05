@@ -151,10 +151,10 @@ gulp.task('demo_replace', () => {
       } else if (/\.styl$/.test(file)) {
         let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
         // replace ../../src/Button.styl with ../../src/Button/Button.styl
-        fileData = fileData.replace(/\.\.\/\.\.\/src\/(.+?).styl/g, (match, s1) => `../../src/${s1}/${s1}.styl`);
+        fileData = fileData.replace(/\.\.\/\.\.\/src\/(.+?)(.styl)?/g, (match, s1) => `../../src/${s1}/${s1}.styl`);
         // replace ../../node_modules/@ali/tingle-xxx/src/xxx.styl with ../../src/Xxx/Xxx.styl
         // replace ../../node_modules/@ali/tingle-icon/src/icon.styl with ~salt-icon/src/Icon.styl
-        const regExpForCompStyl = /\.\.\/\.\.\/node_modules\/@ali\/tingle-(.+?)\/src\/(.+?).styl/ig;
+        const regExpForCompStyl = /\.\.\/\.\.\/node_modules\/@ali\/tingle-(.+?)\/src\/(.+?)(.styl)?/ig;
         fileData = fileData.replace(regExpForCompStyl, (match, s1, s2) => {
           if (s1 !== 'icon') {
             return `../../src/${upperInitWord(s1)}/${s2}.styl`;
