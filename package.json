@@ -36,6 +36,7 @@
     "progress-bar-webpack-plugin": "^1.10.0",
     "react": "^0.14.9",
     "react-dom": "^0.14.9",
+    "react-router": "^4.2.0",
     "rimraf": "^2.6.1",
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
