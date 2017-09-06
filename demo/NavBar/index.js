@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 require('salt-context');
+import './NavBarDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 // 渲染demo

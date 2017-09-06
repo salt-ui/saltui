@@ -8,6 +8,7 @@
 
 
 import 'salt-context';
+import './ButtonDemo.styl';
 
 import Demo from './ButtonDemo';
 

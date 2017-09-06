@@ -8,6 +8,7 @@
 const React = window.React;
 const ReactDOM = window.ReactDOM;
 require('salt-context');
+import './CardDemo.styl';
 
 if (window.FastClick) {
   window.FastClick.attach(document.body);

@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 require('salt-context');
+import './CitySelectFieldDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 // 插入通用svg

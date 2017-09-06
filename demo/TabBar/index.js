@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 require('salt-context');
+import './TabBarDemo.styl';
 
 // 渲染demo
 var Demo = require('./TabBarDemo');

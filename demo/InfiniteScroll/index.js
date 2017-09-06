@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './InfiniteScrollDemo.styl';
 import Demo from './InfiniteScrollDemo';
 
 window.FastClick && FastClick.attach(document.body);

@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './StepsDemo.styl';
 import Demo from './StepsDemo';
 
 window.FastClick && FastClick.attach(document.body);

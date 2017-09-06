@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import 'salt-context';
+import './MaskDemo.styl';
 
 
 

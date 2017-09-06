@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './PasswordInputDemo.styl';
 import Demo from './PasswordInputDemo';
 
 window.FastClick && FastClick.attach(document.body);

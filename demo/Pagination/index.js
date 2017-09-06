@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './PaginationDemo.styl';
 import Demo from './PaginationDemo';
 
 window.FastClick && FastClick.attach(document.body);

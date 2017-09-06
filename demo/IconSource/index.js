@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 require('salt-context');
+import './IconSourceDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 const IconSource = require('salt-icon-source');

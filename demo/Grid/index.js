@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 require('salt-context');
+import './GridDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 

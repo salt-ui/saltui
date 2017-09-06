@@ -7,15 +7,28 @@ import {
   Link,
 } from 'react-router-dom';
 import App from './App';
-import Button from '../demo/Button/';
+import ButtonDemo from '../demo/Button/';
+// TODO: lazyload
+// import Bundle from './Bundle';
+// import loadButton from 'bundle-loader?lazy!../demo/Button/';
+
+// const ButtonDemo = props => (
+//   <Bundle load={loadButton}>
+//     {Button => <Button {...props} />}
+//   </Bundle>
+// );
 
 class Demo extends React.Component {
+  // TODO: lazyload
+  // componentDidMount() {
+  //   loadButton(() => {});
+  // }
   render() {
     return (
       <Router>
         <div>
           <Route exact path="/" component={App} />
-          <Route path="/button" component={Button} />
+          <Route path="/button" component={ButtonDemo} />
         </div>
       </Router>
     );

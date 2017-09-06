@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './EmployeeFieldDemo.styl';
 import Demo from './EmployeeFieldDemo';
 
 window.FastClick && FastClick.attach(document.body);

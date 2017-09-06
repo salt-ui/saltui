@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './FoldablePaneDemo.styl';
 import Demo from './FoldablePaneDemo';
 
 window.FastClick && FastClick.attach(document.body);

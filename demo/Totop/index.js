@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './TotopDemo.styl';
 import Demo from './TotopDemo';
 
 window.FastClick && FastClick.attach(document.body);

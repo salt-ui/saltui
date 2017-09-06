@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './NumberPickerDemo.styl';
 import Demo from './NumberPickerDemo';
 
 window.FastClick && FastClick.attach(document.body);

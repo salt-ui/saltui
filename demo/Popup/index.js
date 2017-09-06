@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './PopupDemo.styl';
 import Demo from './PopupDemo';
 
 window.FastClick && FastClick.attach(document.body);

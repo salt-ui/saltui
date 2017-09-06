@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './DatetimeFieldDemo.styl';
 
 
 const Demo = require('./DatetimeFieldDemo');

@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './CalendarDemo.styl';
 import Demo from './CalendarDemo';
 
 if (window.FastClick) {

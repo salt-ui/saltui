@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './BadgeDemo.styl';
 import Demo from './BadgeDemo';
 
 window.FastClick && FastClick.attach(document.body);

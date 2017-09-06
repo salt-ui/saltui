@@ -8,6 +8,7 @@
 
 
 import 'salt-context';
+import './StyleDemo.styl';
 // import Demo from './StyleDemo';
 // import Demo from './Reset';
 // import Demo from './Flexbox';

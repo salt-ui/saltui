@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './ActionSheetDemo.styl';
 import Demo from './ActionSheetDemo';
 
 window.FastClick && FastClick.attach(document.body);

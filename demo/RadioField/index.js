@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 require('salt-context');
+import './RadioFieldDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 // 渲染demo

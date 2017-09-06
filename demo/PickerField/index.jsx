@@ -8,6 +8,7 @@
  * All rights reserved.
  */
 import 'salt-context';
+import './PickerFieldDemo.styl';
 import Demo from './PickerFieldDemo';
 
 const React = window.React;

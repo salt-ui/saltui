@@ -27,6 +27,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "browser-sync-webpack-plugin": "^1.2.0",
+    "bundle-loader": "^0.5.5",
     "co": "^4.6.0",
     "css-loader": "^0.28.7",
     "es3ify-loader": "^0.2.0",

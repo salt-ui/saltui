@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './RateFieldDemo.styl';
 import Demo from './RateFieldDemo';
 
 window.FastClick && FastClick.attach(document.body);

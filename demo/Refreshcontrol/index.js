@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './RefreshcontrolDemo.styl';
 import Demo from './RefreshcontrolDemo';
 
 window.FastClick && FastClick.attach(document.body);

@@ -62,7 +62,12 @@ module.exports = {
         test: /\.styl$/,
         use: [
           'style-loader',
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
           {
             loader: 'stylus-loader',
           },

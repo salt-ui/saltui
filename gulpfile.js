@@ -203,7 +203,7 @@ gulp.task('demo_inject', () => {
 });
 
 
-gulp.task('server', (cb) => {
+gulp.task('server', () => {
   const compiler = webpack(commonWebpackCfg);
   compiler.watch({}, (err, stats) => {
     console.log(`webpack log:${stats}`);
@@ -219,6 +219,5 @@ gulp.task('server', (cb) => {
       ].join(''));
     }
     console.info('###### pack_demo done ######');
-    cb();
   });
 });

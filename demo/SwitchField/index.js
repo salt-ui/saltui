@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 require('salt-context');
+import './SwitchFieldDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 

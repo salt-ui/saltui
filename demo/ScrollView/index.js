@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './ScrollViewDemo.styl';
 import Demo from './ScrollViewDemo';
 
 window.FastClick && FastClick.attach(document.body);

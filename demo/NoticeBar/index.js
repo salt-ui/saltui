@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './NoticeBarDemo.styl';
 import Demo from './NoticeBarDemo';
 
 if (window.FastClick) {

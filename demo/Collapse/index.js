@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './CollapseDemo.styl';
 import Demo from './CollapseDemo';
 
 window.FastClick && FastClick.attach(document.body);

@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import 'salt-context';
+import './RateDemo.styl';
 import 'salt-icon-source';
 import Demo from './RateDemo';
 

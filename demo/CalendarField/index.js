@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 require('salt-context');
+import './CalendarFieldDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 // 渲染demo

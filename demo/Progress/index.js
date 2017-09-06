@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './ProgressDemo.styl';
 import Demo from './ProgressDemo';
 
 window.FastClick && FastClick.attach(document.body);

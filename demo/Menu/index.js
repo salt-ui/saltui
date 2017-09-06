@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './MenuDemo.styl';
 import Demo from './MenuDemo';
 
 window.FastClick && FastClick.attach(document.body);

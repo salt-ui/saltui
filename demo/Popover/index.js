@@ -7,6 +7,7 @@
  */
 
 import 'salt-context';
+import './PopoverDemo.styl';
 import Demo from './PopoverDemo';
 
 if (window.FastClick) {

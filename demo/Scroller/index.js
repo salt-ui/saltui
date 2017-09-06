@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 require('salt-context');
+import './ScrollerDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 
