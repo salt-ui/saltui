@@ -121,7 +121,6 @@ class Demo extends React.Component {
               {...CheckboxFieldProps}
               mode="slot"
               label="多选（slot）"
-              readOnly
               required={false}
             />
           </Group.List>

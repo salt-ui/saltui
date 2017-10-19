@@ -8,7 +8,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
-import { VBox } from '../Box';
+import { VBox } from '../Boxs';
 import { prefixClass, noop } from '../Context';
 import Dialog from 'rc-dialog';
 

@@ -34,10 +34,10 @@ class Demo extends React.Component {
             ImageViewer.show({
               photos: [
                 {
-                  src: '//img.alicdn.com/imgextra/i2/927018118/TB13fBjKFXXXXbPXpXXXXXXXXXX_!!0-tstar.jpg',
+                  src: 'http://img.alicdn.com/imgextra/i2/927018118/TB13fBjKFXXXXbPXpXXXXXXXXXX_!!0-tstar.jpg',
                 },
                 {
-                  src: '//img.alicdn.com/tps/i4/TB1bokgFVXXXXbKXFXXYCct.pXX-238-238.png',
+                  src: 'http://img.alicdn.com/tps/i4/TB1bokgFVXXXXbKXFXXYCct.pXX-238-238.png',
                 },
               ],
               current: 1,

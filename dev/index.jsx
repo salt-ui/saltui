@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import App from './App';
-import ButtonDemo from '../demo/Button/';
+import ImageViewerDemo from '../demo/ImageViewer/';
 // import '../build/salt-ui.css';
 // TODO: lazyload
 // import Bundle from './Bundle';
@@ -27,7 +27,7 @@ class Demo extends React.Component {
       <Router>
         <div>
           <Route exact path="/" component={App} />
-          <Route path="/button" component={ButtonDemo} />
+          <Route path="/image-viewer" component={ImageViewerDemo} />
         </div>
       </Router>
     );

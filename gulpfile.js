@@ -419,12 +419,14 @@ gulp.task('server', () => {
           },
           startPath: `#${component_name}`,
           open: 'external',
+        }, {
+          reload: false,
         }),
         // SourceMap plugin will define process.env.NODE_ENV as development
         new webpack.SourceMapDevToolPlugin({
           columns: false,
         }),
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         new ProgressBarPlugin(),
         new webpack.NormalModuleReplacementPlugin(
           /salt-(.+)/,

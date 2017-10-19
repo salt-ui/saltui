@@ -8,7 +8,7 @@
 const React = require('react');
 const classnames = require('classnames');
 const Context = require('../Context');
-const { VBox } = require('../Box');
+const { VBox } = require('../Boxs');
 const Row = require('./Row');
 
 const prefixClass = Context.prefixClass;

@@ -83,11 +83,6 @@ class PopupView extends React.Component {
     this.props.onClick();
   }
 
-  handleSlideEnd(option) {
-    this.setState({
-      current: option.index,
-    });
-  }
 
   renderNavBar() {
     if (!this.props.visible) return null;
@@ -110,7 +105,7 @@ class PopupView extends React.Component {
 
 
   render() {
-    const { prefixCls, photos, current, visible } = this.props;
+    const { prefixCls, photos, visible } = this.props;
     const windowHeight = window.innerHeight;
     return (
       <div className={`${prefixCls}`}>
@@ -129,14 +124,11 @@ class PopupView extends React.Component {
           >
             <Slide
               height={`${windowHeight - 40}px`}
-              active={current}
+              active={this.state.current}
               auto={false}
               showNav={false}
               ref={(c) => {
                 this.slider = c;
-              }}
-              onSlideEnd={(option) => {
-                this.handleSlideEnd(option);
               }}
             >
               {photos.map((item, index) => (

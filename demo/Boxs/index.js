@@ -6,9 +6,9 @@
  * All rights reserved.
  */
 require('salt-context');
-import './BoxDemo.styl';
+import './BoxsDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 // 渲染demo
-var Demo = require('./BoxDemo');
+var Demo = require('./BoxsDemo');
 export default Demo;
