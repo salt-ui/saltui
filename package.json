@@ -1,11 +1,12 @@
 {
   "name": "saltui",
-  "version": "3.1.6",
+  "version": "3.1.6-beta.5",
   "description": "React components for mobile",
   "main": "build/salt-ui.js",
   "scripts": {
     "start": "gulp server",
-    "build": "gulp build"
+    "build": "gulp build",
+    "pub": "gulp pub"
   },
   "repository": {
     "type": "git",
@@ -31,8 +32,10 @@
     "browser-sync-webpack-plugin": "^1.2.0",
     "bundle-loader": "^0.5.5",
     "co": "^4.6.0",
+    "colors": "^1.1.2",
     "css-loader": "^0.28.7",
     "fastclick": "^1.0.6",
+    "git-rev": "^0.2.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^7.0.0",
@@ -42,11 +45,14 @@
     "gulp-stylus": "^2.6.0",
     "gulp-uglify": "^3.0.0",
     "happypack": "^4.0.0-beta.2",
+    "inquirer": "^3.3.0",
     "progress-bar-webpack-plugin": "^1.10.0",
     "react": "^0.14.9",
     "react-dom": "^0.14.9",
     "react-router-dom": "^4.2.2",
     "rimraf": "^2.6.1",
+    "run-sequence": "^2.2.0",
+    "semver": "^5.4.1",
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",

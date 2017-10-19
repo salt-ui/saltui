@@ -26,3 +26,7 @@ sea-modules
 spm_modules
 .cache
 dist
+demo
+dev
+dist
+template

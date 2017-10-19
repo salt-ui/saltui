@@ -8,12 +8,17 @@ const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const fs = require('fs');
 const path = require('path');
-const { spawn } = require('child_process');
+const { spawn, spawnSync } = require('child_process');
 const getGitlabApi = require('@ali/gitlab-apis');
 const co = require('co');
 const rm = require('rimraf');
 const to = require('to-case');
 const assign = require('object-assign');
+const colors = require('colors/safe');
+const inquirer = require('inquirer');
+const gulpRun = require('run-sequence');
+const semver = require('semver');
+const git = require('git-rev');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -28,6 +33,10 @@ const cleancssOption = {
   compatibility: 'ie8',
   debug: true,
 };
+
+colors.setTheme({
+  info: ['bold', 'green'],
+});
 
 const runCmd = (cmd, args = [], fn, stdoutFn) => {
   console.log(`Run CMD: ${cmd} ${args.join(' ')}`);
@@ -47,9 +56,41 @@ const runCmd = (cmd, args = [], fn, stdoutFn) => {
   });
 };
 
+
 const upperInitWord = str => str.split('-').map(key => (key[0].toUpperCase() + key.slice(1))).join('');
 const removePrefix = str => str.split('-').slice(1).join('-');
 
+const getQuestions = () => (
+  new Promise((resolve) => {
+    git.branch((branch) => {
+      const defaultBranch = branch;
+      const questions = [
+        {
+          type: 'input',
+          name: 'version',
+          message: 'please enter the package version to publish (should be xx.xx.xx)',
+          default: pkg.version,
+          validate(input) {
+            if (semver.valid(input)) {
+              if (semver.gt(input, pkg.version)) {
+                return true;
+              }
+              return 'the version you entered should be larger than now';
+            }
+            return 'the version you entered is not valid';
+          },
+        },
+        {
+          type: 'input',
+          name: 'branch',
+          message: 'which branch you want to push',
+          default: defaultBranch,
+        },
+      ];
+      resolve(questions);
+    });
+  })
+);
 
 // 将 tingle-ui 组下的转移至 saltui 下
 gulp.task('copy', () => {
@@ -156,6 +197,7 @@ gulp.task('gitlab', () => {
 
 // demo 中替换一些变量
 gulp.task('demo_replace', () => {
+  /* eslint-disable max-len */
   const dirs = fs.readdirSync('./demo');
   dirs.forEach((dir) => {
     const files = fs.readdirSync(`./demo/${dir}`);
@@ -163,9 +205,7 @@ gulp.task('demo_replace', () => {
       if (/\.js(x)?$/.test(file)) {
         let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
         // replace @ali/tingle-context with salt-context
-        fileData = fileData.replace(/@ali\/tingle-(.+?)(['/])/g, (match, s1, s2) => {
-          return `salt-${s1}${s2}`;
-        });
+        fileData = fileData.replace(/@ali\/tingle-(.+?)(['/])/g, (match, s1, s2) => `salt-${s1}${s2}`);
         // replace ../../src with salt-current-comp
         fileData = fileData.replace('../../src', `salt-${to.slug(dir)}`);
         // replace icon-source
@@ -179,9 +219,8 @@ gulp.task('demo_replace', () => {
         // replace ReactDOM.render(<Demo/>, document.getElementById('TingleDemo'));
         // with export default Demo
         const regExpDemoIndex = /ReactDOM\.render\(<(.+)\/>, document\.getElementById\('TingleDemo'\)\)/g;
-        fileData = fileData.replace(regExpDemoIndex, (match, s1) => {
-          return `export default ${s1}`;
-        });
+        fileData = fileData.replace(regExpDemoIndex,
+          (match, s1) => `export default ${s1}`);
         if (/^index/.test(file)) {
           fileData = fileData.replace("import React from 'react';", '');
           fileData = fileData.replace("import ReactDOM from 'react-dom';", '');
@@ -209,6 +248,7 @@ gulp.task('demo_replace', () => {
       }
     });
   });
+  /* eslint-enable max-len */
 });
 
 // demo 中插入对于样式的引入
@@ -338,22 +378,22 @@ gulp.task('uglify_js', ['build_js'], (done) => {
 
 gulp.task('build', ['uglify_js', 'build_style']);
 
-gulp.task('pub', function () {
-  getQuestions().then(function (questions) {
-    inquirer.prompt(questions).then(function (answers) {
+gulp.task('pub', () => {
+  getQuestions().then((questions) => {
+    inquirer.prompt(questions).then((answers) => {
       pkg.version = answers.version;
-      // file.writeFileFromString(JSON.stringify(pkg, null, '  '), 'package.json');
       fs.writeFileSync('package.json', JSON.stringify(pkg, null, '  '));
-      gulpRun('build', function() {
+      gulpRun('build', () => {
         console.log(colors.info('#### Git Info ####'));
-        spawn.sync('git', ['add', '.'], { stdio: 'inherit' });
-        spawn.sync('git', ['commit', '-m', 'ver. ' + pkg.version], { stdio: 'inherit' });
-        spawn.sync('git', ['push', 'origin', answers.branch], { stdio: 'inherit' });
+        spawnSync('git', ['add', '.'], { stdio: 'inherit' });
+        spawnSync('git', ['commit', '-m', `ver. ${pkg.version}`], { stdio: 'inherit' });
+        spawnSync('git', ['tag', `${pkg.version}`], { stdio: 'inherit' });
+        spawnSync('git', ['push', 'origin', answers.branch], { stdio: 'inherit' });
         console.log(colors.info('#### Npm Info ####'));
-        spawn.sync(answers.npm, ['publish'], { stdio: 'inherit' });
+        spawnSync('npm', ['publish'], { stdio: 'inherit' });
       });
-    }).catch(function (err) { console.log(err); });
-  }).catch(function (err) { console.log(err); });
+    }).catch((err) => { console.log(err); });
+  }).catch((err) => { console.log(err); });
 });
 
 gulp.task('server', () => {
@@ -391,9 +431,7 @@ gulp.task('server', () => {
           (resource) => {
             /* eslint-disable no-param-reassign */
             if (resource.request.indexOf('salt-icon') === -1 && resource.request.indexOf('salt-ui') === -1) {
-              resource.request = resource.request.replace(/salt-(.+)/, (match, s1) => {
-                return require.resolve(`./src/${upperInitWord(s1)}`);
-              });
+              resource.request = resource.request.replace(/salt-(.+)/, (match, s1) => require.resolve(`./src/${upperInitWord(s1)}`));
             }
             /* eslint-enable no-param-reassign */
           }
@@ -419,5 +457,4 @@ gulp.task('server', () => {
     });
   /* eslint-enable camelcase */
 });
-
 

@@ -1,2 +1,3 @@
-SaltUI 即将于 8月 正式开源，敬请期待。  
-SaltUI will be open-source in August this year.
+SaltUI 开源版本，beta 中。
+
+SaltUI open-resource version, now beta.
