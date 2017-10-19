@@ -5,20 +5,25 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const ReactDOM = require('react-dom');
-const classnames = require('classnames');
-const { VBox } = require('../Box');
-const Icon = require('salt-icon');
-const { prefixClass, noop } = require('../Context');
-const Dialog = require('rc-dialog');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import classnames from 'classnames';
+import { VBox } from '../Box';
+import { prefixClass, noop } from '../Context';
+import Dialog from 'rc-dialog';
 
-const iconNames = {
-  success: 'check-round',
-  error: 'cross-round',
-  fail: 'toast-fail',
-  loading: 'toast-loading',
-  light: 'info-round',
+import IconCheckRound from 'salt-icon/lib/CheckRound';
+import IconCrossRound from 'salt-icon/lib/CrossRound';
+import IconToastFail from 'salt-icon/lib/ToastFail';
+import IconToastLoading from 'salt-icon/lib/ToastLoading';
+import IconInfoRound from 'salt-icon/lib/InfoRound';
+
+const iconCompMap = {
+  success: IconCheckRound,
+  error: IconCrossRound,
+  fail: IconToastFail,
+  loading: IconToastLoading,
+  light: IconInfoRound,
 };
 
 class Toast extends React.Component {
@@ -28,7 +33,6 @@ class Toast extends React.Component {
     this.state = {
       visible: props.visible,
       hasMask: props.hasMask,
-      icon: this.getIconName(props),
     };
   }
 
@@ -36,12 +40,15 @@ class Toast extends React.Component {
     this.setState({
       visible: nextProps.visible,
       hasMask: nextProps.hasMask,
-      icon: this.getIconName(nextProps),
     });
   }
 
-  getIconName(props) {
-    return props.icon || iconNames[props.type];
+  getIconComp() {
+    return iconCompMap[this.props.type];
+  }
+
+  hasIcon() {
+    return this.getIconComp() || this.props.icon;
   }
 
   startCountdown() {
@@ -59,31 +66,41 @@ class Toast extends React.Component {
     this.props.onDidHide();
   }
 
-  renderIcon(icon) {
-    if (!icon) {
+  renderIcon() {
+    const Icon = this.getIconComp();
+    const icon = this.props.icon;
+    if (!icon && !Icon) {
       return null;
     }
     // svg loader 无法解析 loading 的 svg
     // 使用 dangerouslySetInnerHTML={{__html: toastLoading}} 在 uc 内核也有问题
     // 临时方案使用 background
-    if (icon === 'toast-loading') {
+    if (Icon === IconToastLoading) {
       return (
         <div className={prefixClass('toast-icon toast-icon-loading')} />
       );
     }
+    const iconProps = {
+      fill: '#fff',
+      width: '44px',
+      height: '44px',
+      className: prefixClass('toast-icon'),
+    };
+    if (icon) {
+      return React.cloneElement(icon, iconProps);
+    }
     return (
-      <Icon
-        className={classnames(prefixClass('toast-icon'), {
-          [icon]: !!icon,
-        })} name={icon} fill="#fff" width="44px" height="44px"
-      />
+      <Icon {...iconProps} />
     );
   }
 
   render() {
     const t = this;
-    const { visible, icon, hasMask } = t.state;
-    const { className, content, autoHide, transitionName, prefixCls, type, maskTransitionName, ...other } = t.props;
+    const { visible, hasMask } = t.state;
+    const {
+      className, content, autoHide, transitionName,
+      prefixCls, type, maskTransitionName, ...other
+     } = t.props;
     const customStyle = {
       width: other.width,
       height: other.height,
@@ -103,33 +120,35 @@ class Toast extends React.Component {
       t.startCountdown();
     }
     let maskTransName;
-    if(!maskTransitionName) {
+    if (!maskTransitionName) {
       maskTransName = prefixClass('toast-fade');
-    }else {
-      maskTransName = prefixClass(`toast-mask-${maskTransitionName}`)
+    } else {
+      maskTransName = prefixClass(`toast-mask-${maskTransitionName}`);
     }
-    return (<Dialog
-      prefixCls={prefixCls}
-      visible={visible}
-      title=""
-      footer=""
-      style={customStyle}
-      closable={false}
-      mask={hasMask}
-      maskTransitionName={maskTransName}
-      className={classnames({
-        [prefixClass(`toast-${type} toast-has-icon`)]: !!icon,
-        [className]: !!className,
-        [transName]: !!transName,
-      })}
-      transitionName={transName}
-      afterClose={() => { t.handleDidHide(); }}
-    >
-      <VBox hAlign="center">
-        {this.renderIcon(icon)}
-        {content && <div className={prefixClass('toast-content')}>{content}</div>}
-      </VBox>
-    </Dialog>);
+    return (
+      <Dialog
+        prefixCls={prefixCls}
+        visible={visible}
+        title=""
+        footer=""
+        style={customStyle}
+        closable={false}
+        mask={hasMask}
+        maskTransitionName={maskTransName}
+        className={classnames({
+          [prefixClass(`toast-${type} toast-has-icon`)]: !!this.hasIcon(),
+          [className]: !!className,
+          [transName]: !!transName,
+        })}
+        transitionName={transName}
+        afterClose={() => { t.handleDidHide(); }}
+      >
+        <VBox hAlign="center">
+          {this.renderIcon()}
+          {content && <div className={prefixClass('toast-content')}>{content}</div>}
+        </VBox>
+      </Dialog>
+    );
   }
 }
 
@@ -140,7 +159,6 @@ Toast.defaultProps = {
   visible: false,
   autoHide: true,
   content: '',
-  icon: '',
   duration: 1500,
 };
 
@@ -158,6 +176,7 @@ Toast.propTypes = {
   icon: React.PropTypes.string,
   duration: React.PropTypes.number,
   transitionName: React.PropTypes.string,
+  type: React.PropTypes.string,
 };
 
 const WRAPPER_ID = '__TingleGlobalToast__';
@@ -171,13 +190,13 @@ if (!wrapper) {
 ReactDOM.render(<Toast visible={false} />, wrapper);
 
 Toast.show = (props) => {
-  ReactDOM.render(<Toast visible={true} {...props} />, wrapper);
+  ReactDOM.render(<Toast visible {...props} />, wrapper);
 };
 
 Toast.hide = (fn) => {
-  ReactDOM.render(<Toast visible={false} onDidHide={fn}/>, wrapper);
+  ReactDOM.render(<Toast visible={false} onDidHide={fn} />, wrapper);
 };
 
 Toast.displayName = 'Toast';
 
-module.exports = Toast;
+export default Toast;

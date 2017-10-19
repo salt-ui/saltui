@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-import Icon from 'salt-icon';
+import IconSetting from 'salt-icon/lib/Setting';
 import Button from 'salt-button';
 
 const {
@@ -30,11 +30,17 @@ class Demo extends React.Component {
           <h2 className="section-title">标准按钮</h2>
           <div className="section-content">
             <Button type="primary" onClick={this.handleClick}>一级按钮</Button>
+            <br />
             <Button type="secondary" onClick={this.handleClick}>二级按钮</Button>
+            <br />
             <Button type="minor" onClick={this.handleClick}>次要按钮</Button>
+            <br />
             <Button type="danger">警示按钮</Button>
+            <br />
             <Button loading>加载中</Button>
+            <br />
             <Button disabled>失效按钮</Button>
+            <br />
           </div>
         </div>
 
@@ -83,10 +89,10 @@ class Demo extends React.Component {
             </div>
             <div className="demo-row">
               <div className="demo-cell">
-                <Button type="danger" size="small" display="inline"><Icon name="setting"/>带图标</Button>
+                <Button type="danger" size="small" display="inline"><IconSetting />带图标</Button>
               </div>
               <div className="demo-cell">
-                <Button type="danger" size="small" display="inline" disabled><Icon name="setting"/>带图标</Button>
+                <Button type="danger" size="small" display="inline" disabled><IconSetting />带图标</Button>
               </div>
             </div>
           </div>
@@ -97,18 +103,18 @@ class Demo extends React.Component {
           <div className="section-content">
             <div className="demo-row">
               <div className="demo-cell">
-                <IconButton name="setting" onClick={this.handleClick}/>
+                <IconButton onClick={this.handleClick}><IconSetting /></IconButton>
               </div>
               <div className="demo-cell">
-                <IconButton name="setting" disabled onClick={this.handleClick}/>
+                <IconButton disabled onClick={this.handleClick}><IconSetting /></IconButton>
               </div>
             </div>
             <div className="demo-row">
               <div className="demo-cell">
-                <IconButton type="secondary" name="setting" onClick={this.handleClick}/>
+                <IconButton type="secondary" onClick={this.handleClick}><IconSetting /></IconButton>
               </div>
               <div className="demo-cell">
-                <IconButton type="secondary" name="setting" disabled onClick={this.handleClick}/>
+                <IconButton type="secondary" disabled onClick={this.handleClick}><IconSetting /></IconButton>
               </div>
             </div>
           </div>
@@ -143,26 +149,26 @@ class Demo extends React.Component {
             </div>
             <div className="demo-row">
               <div className="demo-cell">
-                <TextButton size="small" onClick={this.handleClick}><Icon name="setting"/>文字+图标(小)</TextButton>
+                <TextButton size="small" onClick={this.handleClick}><IconSetting />文字+图标(小)</TextButton>
               </div>
               <div className="demo-cell">
-                <TextButton size="small" disabled onClick={this.handleClick}><Icon name="setting"/>文字+图标(小)</TextButton>
-              </div>
-            </div>
-            <div className="demo-row">
-              <div className="demo-cell">
-                <TextButton onClick={this.handleClick}><Icon name="setting"/>文字+图标(中)</TextButton>
-              </div>
-              <div className="demo-cell">
-                <TextButton disabled onClick={this.handleClick}><Icon name="setting"/>文字+图标(中)</TextButton>
+                <TextButton size="small" disabled onClick={this.handleClick}><IconSetting />文字+图标(小)</TextButton>
               </div>
             </div>
             <div className="demo-row">
               <div className="demo-cell">
-                <TextButton size="large" onClick={this.handleClick}><Icon name="setting"/>文字+图标(大)</TextButton>
+                <TextButton onClick={this.handleClick}><IconSetting />文字+图标(中)</TextButton>
               </div>
               <div className="demo-cell">
-                <TextButton size="large" disabled onClick={this.handleClick}><Icon name="setting"/>文字+图标(大)</TextButton>
+                <TextButton disabled onClick={this.handleClick}><IconSetting />文字+图标(中)</TextButton>
+              </div>
+            </div>
+            <div className="demo-row">
+              <div className="demo-cell">
+                <TextButton size="large" onClick={this.handleClick}><IconSetting />文字+图标(大)</TextButton>
+              </div>
+              <div className="demo-cell">
+                <TextButton size="large" disabled onClick={this.handleClick}><IconSetting />文字+图标(大)</TextButton>
               </div>
             </div>
             <div className="demo-row">
@@ -170,8 +176,10 @@ class Demo extends React.Component {
                 <TextButton type="secondary" size="large" onClick={this.handleClick}>二级按钮</TextButton>
               </div>
               <div className="demo-cell">
-                <TextButton type="secondary" size="large" disabled
-                            onClick={this.handleClick}>二级按钮</TextButton>
+                <TextButton
+                  type="secondary" size="large" disabled
+                  onClick={this.handleClick}
+                >二级按钮</TextButton>
               </div>
             </div>
           </div>
@@ -180,23 +188,32 @@ class Demo extends React.Component {
         <div className="demo-section">
           <h2 className="section-title">按钮 + 图标</h2>
           <div className="section-content">
-            <Button type="primary" onClick={this.handleClick}><Icon name="setting"/>一级按钮</Button>
-            <Button type="secondary" onClick={this.handleClick}><Icon name="setting"/>二级按钮</Button>
-            <Button type="minor" onClick={this.handleClick}><Icon name="setting"/>次要按钮</Button>
-            <Button disabled><Icon name="setting"/>失效按钮</Button>
-            <Button type="danger"><Icon name="setting"/>危险按钮</Button>
+            <Button type="primary" onClick={this.handleClick}><IconSetting />一级按钮</Button>
+            <br />
+            <Button type="secondary" onClick={this.handleClick}><IconSetting />二级按钮</Button>
+            <br />
+            <Button type="minor" onClick={this.handleClick}><IconSetting />次要按钮</Button>
+            <br />
+            <Button disabled><IconSetting />失效按钮</Button>
+            <br />
+            <Button type="danger"><IconSetting />危险按钮</Button>
+            <br />
           </div>
         </div>
 
         <div className="demo-section">
           <h2 className="section-title">通栏按钮</h2>
-          <div className="section-content"
-               style={{ backgroundColor: 'rgba(31,56,88,0.06)', padding: '50px 0 100px 0' }}>
+          <div
+            className="section-content"
+            style={{ backgroundColor: 'rgba(31,56,88,0.06)', padding: '50px 0 100px 0' }}
+          >
             <Button type="primary" display="banner" onClick={this.handleClick}>通栏一级按钮</Button> <br />
             <Button type="secondary" display="banner" onClick={this.handleClick}>通栏二级按钮</Button> <br />
             <Button type="minor" display="banner" onClick={this.handleClick}>通栏次级按钮</Button> <br />
-            <Button type="primary" display="banner" onClick={this.handleClick}><Icon
-              name="setting"/>通栏按钮+图标</Button><br />
+            <Button type="primary" display="banner" onClick={this.handleClick}>
+              <IconSetting />通栏按钮+图标
+            </Button>
+            <br />
             <Button type="primary" display="banner" disabled onClick={this.handleClick}>通栏按钮 不可用</Button>
           </div>
         </div>

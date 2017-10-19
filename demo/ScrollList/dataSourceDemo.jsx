@@ -13,7 +13,8 @@ const { PropTypes } = React;
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // import ScrollList from  '../../dist';
 
-const Item = (props) => <div className="demo-item">{`${props.index} ${props.name}`}</div>;
+const Item = props => <div className="demo-item">{`${props.index} ${props.name}`}</div>;
+
 Item.propTypes = {
   index: PropTypes.number,
   name: PropTypes.string,

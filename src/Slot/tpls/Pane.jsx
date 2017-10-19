@@ -8,8 +8,8 @@
 
 const React = require('react');
 const classnames = require('classnames');
-const Context = require('@ali/tingle-context');
-const Scroller = require('@ali/tingle-scroller');
+const Context = require('../../Context');
+const Scroller = require('../../Scroller');
 
 // 滑动效果的动画函数
 const LINEAR_EASE = {
@@ -32,6 +32,7 @@ class SlotPane extends React.Component {
     onScrolling: React.PropTypes.func,
     scrollMod: React.PropTypes.string,
     columns: React.PropTypes.array,
+    columnsFlex: React.PropTypes.array,
   }
 
   static defaultProps = {
@@ -179,13 +180,13 @@ class SlotPane extends React.Component {
         } else {
           func = 'floor';
         }
-      } else { // 向上滚动
-        if (remainder > height * 0.3) {
-          func = 'floor';
-        } else {
-          func = 'ceil';
-        }
+      } else if (remainder > height * 0.3) {
+        // 向上滚动
+        func = 'floor';
+      } else {
+        func = 'ceil';
       }
+
 
       index = Math[func](scroller.y / height);
     }
@@ -262,40 +263,55 @@ class SlotPane extends React.Component {
 
   render() {
     const t = this;
-    const { visible } = t.props;
+    const { visible, columnsFlex } = t.props;
     return (
       <div ref={(c) => { this.pane = c; }} className={Context.prefixClass('slot-pane')}>
         {t.props.columns && t.props.columns.length ? (
           <ul className={Context.prefixClass('slot-columns FBH')}>
-            {t.props.columns.map((c, i) => <li key={`column${i}`} className={Context.prefixClass('FB1 FAC')}>{c}</li>)}
+            {t.props.columns.map((c, i) => {
+              const style = {};
+              if (columnsFlex instanceof Array && typeof columnsFlex[i] === 'number') {
+                style.flex = columnsFlex[i];
+              }
+              return (
+                <li key={`column${i}`} style={style} className={Context.prefixClass('FB1 FAC')}>{c}</li>
+              );
+            })}
           </ul>
         ) : null}
         <div className={Context.prefixClass('slot-body FBH FC9 PR')}>
-          {t.state.data.map((m, i) => (
-            <Scroller
-              ref={`scroller${i}`}
-              key={`scroller${i}`}
-              className={Context.prefixClass('FB1')}
-              tap="iscroll:tap"
-              autoRefresh={!!visible}
-              onScrollStart={() => { t.handleScrollStart(); }}
-              onScrollEnd={() => { t.handleScrollEnd(i); }}
-            >
-              <ul>
-                <li />
-                <li />
-                {m.map((n, j) => (
-                  <li
-                    key={`item${i}_${j}`} className={classnames(Context.prefixClass(`slot-item${i}_${j}`), {
-                      [Context.prefixClass('slot-item-active')]: j === t.state.selectedIndex[i],
-                    })}
-                  >{n.text}</li>
-                ))}
-                <li />
-                <li />
-              </ul>
-            </Scroller>
-            ))}
+          {t.state.data.map((m, i) => {
+            const style = {};
+            if (columnsFlex instanceof Array && typeof columnsFlex[i] === 'number') {
+              style.flex = columnsFlex[i];
+            }
+            return (
+              <Scroller
+                ref={`scroller${i}`}
+                key={`scroller${i}`}
+                className={Context.prefixClass('FB1')}
+                style={style}
+                tap="iscroll:tap"
+                autoRefresh={!!visible}
+                onScrollStart={() => { t.handleScrollStart(); }}
+                onScrollEnd={() => { t.handleScrollEnd(i); }}
+              >
+                <ul>
+                  <li />
+                  <li />
+                  {m.map((n, j) => (
+                    <li
+                      key={`item${i}_${j}`} className={classnames(Context.prefixClass(`slot-item${i}_${j}`), {
+                        [Context.prefixClass('slot-item-active')]: j === t.state.selectedIndex[i],
+                      })}
+                    >{n.text}</li>
+                  ))}
+                  <li />
+                  <li />
+                </ul>
+              </Scroller>
+            );
+          })}
         </div>
       </div>
     );

@@ -1,12 +1,33 @@
 const gulp = require('gulp');
+const ejs = require('gulp-ejs');
+const stylus = require('gulp-stylus');
+const rename = require('gulp-rename');
+const autoprefixer = require('gulp-autoprefixer');
+const cleancss = require('gulp-cleancss');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 const fs = require('fs');
+const path = require('path');
 const { spawn } = require('child_process');
 const getGitlabApi = require('@ali/gitlab-apis');
 const co = require('co');
 const rm = require('rimraf');
 const to = require('to-case');
+const assign = require('object-assign');
 const webpack = require('webpack');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const commonWebpackCfg = require('./webpack.dev.js');
+const pkg = require('./package.json');
+
+const cleancssOption = {
+  advanced: false,
+  aggressiveMerging: false,
+  sourceMap: true,
+  compatibility: 'ie8',
+  debug: true,
+};
 
 const runCmd = (cmd, args = [], fn, stdoutFn) => {
   console.log(`Run CMD: ${cmd} ${args.join(' ')}`);
@@ -29,27 +50,32 @@ const runCmd = (cmd, args = [], fn, stdoutFn) => {
 const upperInitWord = str => str.split('-').map(key => (key[0].toUpperCase() + key.slice(1))).join('');
 const removePrefix = str => str.split('-').slice(1).join('-');
 
+
+// 将 tingle-ui 组下的转移至 saltui 下
 gulp.task('copy', () => {
   const dirs = fs.readdirSync('../tingle-ui/node_modules/@ali');
-  dirs.filter(dir => dir !== 'tingle-ui').forEach((dir) => {
-    runCmd('cp', ['-rf', `../tingle-ui/node_modules/@ali/${dir}/src`, `./lib/${upperInitWord(removePrefix(dir))}`]);
+  dirs.filter(dir => ['tingle-ui', 'tingle-icon'].indexOf(dir) === -1).forEach((dir) => {
+    runCmd('cp', ['-rf', `../tingle-ui/node_modules/@ali/${dir}/src`, `./src/${upperInitWord(removePrefix(dir))}`]);
     runCmd('cp', ['-rf', `../tingle-ui/node_modules/@ali/${dir}/demo/src`, `./demo/${upperInitWord(removePrefix(dir))}`]);
+    runCmd('cp', ['-rf', `../tingle-ui/node_modules/@ali/${dir}/README.md`, `./docs/${upperInitWord(removePrefix(dir))}.md`]);
   });
 });
 
+// 删除对应 lib 下的 svg 文件夹
 gulp.task('remove', () => {
   const dirs = fs.readdirSync('../tingle-ui/node_modules/@ali');
   dirs.filter(dir => dir !== 'tingle-ui').forEach((dir) => {
-    runCmd('rm', ['-rf', `./lib/${upperInitWord(removePrefix(dir))}/svg`]);
+    runCmd('rm', ['-rf', `./src/${upperInitWord(removePrefix(dir))}/svg`]);
   });
 });
 
+// 将 src 中的 @ali/tingle-xxx 替换为 ../Xxx
 gulp.task('replace', () => {
-  const dirs = fs.readdirSync('./lib');
+  const dirs = fs.readdirSync('./src');
   dirs.forEach((dir) => {
-    const files = fs.readdirSync(`./lib/${dir}`);
+    const files = fs.readdirSync(`./src/${dir}`);
     files.forEach((file) => {
-      const filePath = `./lib/${dir}/${file}`;
+      const filePath = `./src/${dir}/${file}`;
       const stats = fs.statSync(filePath);
       if (stats.isFile() && /[.js|.jsx]$/.test(file)) {
         let fileData = fs.readFileSync(filePath).toString();
@@ -67,6 +93,7 @@ gulp.task('replace', () => {
   });
 });
 
+// 从 gitlab 拉取最新 Demo
 gulp.task('gitlab', () => {
   rm('./demo/*', () => {
     const gitlabApi = getGitlabApi({
@@ -115,6 +142,7 @@ gulp.task('gitlab', () => {
             });
           } catch (e) {
             try {
+              console.log(e);
               console.log(`${upperInitWord(removePrefix(prj.path))} is not a necessary prj`);
             } catch (err) {
               console.log(err);
@@ -126,6 +154,7 @@ gulp.task('gitlab', () => {
   });
 });
 
+// demo 中替换一些变量
 gulp.task('demo_replace', () => {
   const dirs = fs.readdirSync('./demo');
   dirs.forEach((dir) => {
@@ -174,12 +203,15 @@ gulp.task('demo_replace', () => {
         // replace @require '../../node_modules/@ali/tingle-ui/dist/default.min.css' with ''
         fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/dist/default.min.css'", '');
         fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/dist/default.css'", '');
+        fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/build/salt-ui.css'", '');
+        fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/build/salt-ui.min.css'", '');
         fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
       }
     });
   });
 });
 
+// demo 中插入对于样式的引入
 gulp.task('demo_inject', () => {
   const dirs = fs.readdirSync('./demo');
   dirs.forEach((dir) => {
@@ -202,22 +234,190 @@ gulp.task('demo_inject', () => {
   });
 });
 
+gulp.task('build_style', () => {
+  const dirs = fs.readdirSync('./src');
+  const ComponentNames = dirs.filter(dirName => dirName !== 'Style');
+  gulp.src('./template/component.styl')
+      .pipe(ejs({ ComponentNames }))
+      .pipe(gulp.dest('./style'))
+      .on('end', () => {
+        const themes = fs.readdirSync('./style/theme');
+        themes.forEach((theme) => {
+          gulp
+            .src(`./style/theme/${theme}/saltui.styl`)
+            .pipe(stylus())
+            .pipe(autoprefixer({
+              browsers: ['iOS >= 7', 'Android >= 2.3', 'FireFoxAndroid >= 46', '> 1%'],
+            }))
+            .pipe(rename(`${theme}.css`))
+            .pipe(gulp.dest('./build'))
+            .pipe(cleancss(cleancssOption))
+            .pipe(rename({
+              suffix: '.min',
+            }))
+            .pipe(gulp.dest('./build'));
+        });
+      });
+});
 
-gulp.task('server', () => {
-  const compiler = webpack(commonWebpackCfg);
-  compiler.watch({}, (err, stats) => {
-    console.log(`webpack log:${stats}`);
-    if (stats.hasErrors()) {
-            // 异常日志打印到屏幕
-      fs.writeFileSync('./dist/demo.js', [
-        'document.body.innerHTML="<pre>',
-        stats.toJson().errors[0].replace(/[\n\r]/g, '<br>').replace(/\[\d+m/g, '').replace(/"/g, '\\"'),
-        '</pre>";',
-        'document.body.firstChild.style.fontFamily="monospace";',
-        'document.body.firstChild.style.lineHeight="1.5em";',
-        'document.body.firstChild.style.margin="1em";',
-      ].join(''));
-    }
-    console.info('###### pack_demo done ######');
+gulp.task('build_lib', (cb) => {
+  rm('./lib/*', () => {
+    gulp
+    .src(['./src/**/*.js', './src/**/*.jsx'])
+    .pipe(babel({
+      presets: ['react', 'env', 'stage-1'],
+      plugins: ['add-module-exports'],
+    }))
+    .pipe(gulp.dest('./lib'))
+    .on('end', () => {
+      console.log('###### build_js done ######');
+      if (cb) {
+        cb();
+      }
+    });
   });
 });
+
+gulp.task('make_index', (done) => {
+  const dirs = fs.readdirSync('./src');
+  const ComponentNames = dirs.filter(dirName => dirName !== 'Style');
+  gulp
+    .src('./template/buildIndex.js')
+    .pipe(ejs({ ComponentNames }))
+    .pipe(rename('index.js'))
+    .pipe(gulp.dest('./'))
+    .on('end', () => {
+      done();
+    });
+});
+
+gulp.task('build_js', ['build_lib', 'make_index'], (done) => {
+  const plugins = [
+    // new BundleAnalyzerPlugin(),
+    new ProgressBarPlugin(),
+    new webpack.DefinePlugin({
+      webpack_set_version: `__SALT_VERSION__ = "${pkg.version}"`,
+    }),
+  ];
+  const webpackCfg = assign({}, commonWebpackCfg, {
+    entry: {
+      index: './index',
+    },
+    output: {
+      path: path.join(process.cwd(), './build'),
+      filename: 'salt-ui.js',
+      library: 'SaltUI',
+      libraryTarget: 'umd',
+    },
+    plugins,
+  });
+  webpack(webpackCfg, (err, stats) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(`webpack log:${stats.toString({
+        hash: false,
+        chunks: false,
+        children: false,
+      })}`);
+      done();
+    }
+  });
+});
+gulp.task('uglify_js', ['build_js'], (done) => {
+  gulp.src('./build/salt-ui.js')
+  .pipe(uglify({
+    mangle: false,
+  }))
+  .pipe(rename('salt-ui.min.js'))
+  .pipe(gulp.dest('./build'))
+  .on('end', () => {
+    done();
+  });
+});
+
+gulp.task('build', ['uglify_js', 'build_style']);
+
+gulp.task('pub', function () {
+  getQuestions().then(function (questions) {
+    inquirer.prompt(questions).then(function (answers) {
+      pkg.version = answers.version;
+      // file.writeFileFromString(JSON.stringify(pkg, null, '  '), 'package.json');
+      fs.writeFileSync('package.json', JSON.stringify(pkg, null, '  '));
+      gulpRun('build', function() {
+        console.log(colors.info('#### Git Info ####'));
+        spawn.sync('git', ['add', '.'], { stdio: 'inherit' });
+        spawn.sync('git', ['commit', '-m', 'ver. ' + pkg.version], { stdio: 'inherit' });
+        spawn.sync('git', ['push', 'origin', answers.branch], { stdio: 'inherit' });
+        console.log(colors.info('#### Npm Info ####'));
+        spawn.sync(answers.npm, ['publish'], { stdio: 'inherit' });
+      });
+    }).catch(function (err) { console.log(err); });
+  }).catch(function (err) { console.log(err); });
+});
+
+gulp.task('server', () => {
+  /* eslint-disable camelcase */
+  let component_name = 'button';
+  const options = process.argv.slice(3);
+  if (options[0] === '-m' && options[1]) {
+    component_name = options[1].toLowerCase();
+  }
+  gulp
+    .src('./template/devIndex.jsx')
+    .pipe(ejs({
+      ComponentName: upperInitWord(component_name),
+      component_name,
+    }))
+    .pipe(rename('index.jsx'))
+    .pipe(gulp.dest('./dev/'))
+    .on('end', () => {
+      const plugins = [
+        new BrowserSyncPlugin({
+          server: {
+            baseDir: './',
+          },
+          startPath: `#${component_name}`,
+          open: 'external',
+        }),
+        // SourceMap plugin will define process.env.NODE_ENV as development
+        new webpack.SourceMapDevToolPlugin({
+          columns: false,
+        }),
+        new BundleAnalyzerPlugin(),
+        new ProgressBarPlugin(),
+        new webpack.NormalModuleReplacementPlugin(
+          /salt-(.+)/,
+          (resource) => {
+            /* eslint-disable no-param-reassign */
+            if (resource.request.indexOf('salt-icon') === -1 && resource.request.indexOf('salt-ui') === -1) {
+              resource.request = resource.request.replace(/salt-(.+)/, (match, s1) => {
+                return require.resolve(`./src/${upperInitWord(s1)}`);
+              });
+            }
+            /* eslint-enable no-param-reassign */
+          }
+        ),
+      ];
+      // { ...commonWebpackCfg, plugins }
+      const compiler = webpack(assign({}, commonWebpackCfg, { plugins }));
+      compiler.watch({}, (err, stats) => {
+        console.log(`webpack log:${stats}`);
+        if (stats.hasErrors()) {
+          // 异常日志打印到屏幕
+          fs.writeFileSync('./dist/demo.js', [
+            'document.body.innerHTML="<pre>',
+            stats.toJson().errors[0].replace(/[\n\r]/g, '<br>').replace(/\[\d+m/g, '').replace(/"/g, '\\"'),
+            '</pre>";',
+            'document.body.firstChild.style.fontFamily="monospace";',
+            'document.body.firstChild.style.lineHeight="1.5em";',
+            'document.body.firstChild.style.margin="1em";',
+          ].join(''));
+        }
+        console.info('###### pack_demo done ######');
+      });
+    });
+  /* eslint-enable camelcase */
+});
+
+

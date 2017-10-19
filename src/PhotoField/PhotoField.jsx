@@ -103,6 +103,9 @@ class PhotoField extends React.Component {
     this.fileuploaderror = () => {
       this.forceUpdate();
     };
+    this.filecancel = () => {
+      this.forceUpdate();
+    };
     core.on(Events.FILE_UPLOAD_START, this.fileuploadstart);
     core.on(Events.FILE_UPLOAD_PROGRESS, this.fileuploadprogress);
     // core.on(Events.FILE_UPLOAD_COMPLETING, () => {
@@ -110,6 +113,7 @@ class PhotoField extends React.Component {
     // });
     core.on(Events.FILE_UPLOAD_SUCCESS, this.fileuploadsuccess);
     core.on(Events.FILE_UPLOAD_ERROR, this.fileuploaderror);
+    core.on(Events.FILE_CANCEL, this.filecancel);
     return core;
   }
 
@@ -178,15 +182,17 @@ class PhotoField extends React.Component {
   render() {
     const { columns, placeholder, label,
       photoList, required, layout, locale,
-      maxUpload, readOnly } = this.props;
+      maxUpload, readOnly, className, tip } = this.props;
     const paneProps = {
       columns,
       placeholder,
+      className,
       label,
       locale,
       photoList,
       maxUpload,
       readOnly,
+      tip,
       required,
       files: this.getFiles(),
       layout,
@@ -234,6 +240,8 @@ PhotoField.propTypes = {
   name: React.PropTypes.string,
   url: React.PropTypes.string,
   autoPending: React.PropTypes.bool,
+  className: React.PropTypes.string,
+  tip: React.PropTypes.string,
 };
 
 PhotoField.displayName = 'PhotoField';

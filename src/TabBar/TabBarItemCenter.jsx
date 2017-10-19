@@ -22,7 +22,7 @@ class TabBarItemCenter extends React.Component {
   };
 
   static defaultProps = {
-    onMoreVisibleChange: () => {},
+    onMoreVisibleChange: () => { },
   }
 
   hideMoreItems(e) {
@@ -53,34 +53,40 @@ class TabBarItemCenter extends React.Component {
       <Box
         className={classnames(Context.prefixClass('tabs-bar-item'), {
           active,
-        })} onClick={clickCB} flex={1}
+        })}
+        onClick={clickCB}
+        flex={1}
       >
         <TabBarItemIcon
           {...item.props}
           className={classnames(Context.prefixClass('tabs-bar-item-icon-more-center'), {
             [Context.prefixClass('tabs-bar-item-icon-more-center__more-visible')]: this.props.moreVisible,
           })}
-          active={active} iconHeight={t.props.iconHeight}
+          active={active}
+          iconHeight={t.props.iconHeight}
         />
 
         <Animate showProp="visible" transitionName={Context.prefixClass('tabs-bar-item-fade')} transitionAppear component="">
           <Layer
             key="fade"
             className={classnames(Context.prefixClass('tabs-bar-item-more-container'))}
-            visible={this.props.moreVisible} bottom="0" hasMask={false} renderToBody={false}
+            visible={this.props.moreVisible}
+            bottom="0"
+            hasMask={false}
+            renderToBody={false}
           >
             <HBox className={Context.prefixClass('tabs-bar-item-more-container-inner')}>
               {
                 item.props.items.map((it, idx) =>
-                   (<TabBarItemMore
-                     key={idx}
-                     index={`${t.props.index}-${idx}`}
-                     {...it}
-                     iconHeight={t.props.childIconHeight}
-                     onClick={t.props.onClick}
-                     hideMoreItems={(e) => { t.hideMoreItems(e); }}
-                     type={'more'}
-                   />)
+                  (<TabBarItemMore
+                    key={idx.toString()}
+                    index={t.props.index - idx}
+                    {...it}
+                    iconHeight={t.props.childIconHeight}
+                    onClick={t.props.onClick}
+                    hideMoreItems={(e) => { t.hideMoreItems(e); }}
+                    type={'more'}
+                  />),
                 )
               }
             </HBox>
@@ -91,4 +97,4 @@ class TabBarItemCenter extends React.Component {
   }
 }
 
-module.exports = TabBarItemCenter;
+export default TabBarItemCenter;

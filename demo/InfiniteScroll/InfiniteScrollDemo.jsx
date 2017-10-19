@@ -10,7 +10,7 @@ import React from 'react';
 import InfiniteScroll from 'salt-infinite-scroll';
 
 function Item(props) {
-  return <div className="demo-item">{props.children}</div>
+  return <div className="demo-item">{props.children}</div>;
 }
 
 class InfiniteScrollDemo extends React.Component {
@@ -24,25 +24,24 @@ class InfiniteScrollDemo extends React.Component {
   }
 
   onLoad() {
-    this.setState({loading: true});
+    this.setState({ loading: true });
 
     setTimeout(() => {
-      this.setState({loading: false, page: this.state.page + 1});
+      this.setState({ loading: false, page: this.state.page + 1 });
     }, 2000);
   }
 
   renderItems() {
     const pages = [];
 
-    for(let p = this.state.page;p >= 0;p--) {
+    for (let p = this.state.page; p >= 0; p--) {
       pages.push(<div key={`page-${p}`}>
         <Item>{`page ${p} item 1`}</Item>
         <Item>{`page ${p} item 2`}</Item>
-      </div>)
+      </div>);
     }
 
     return pages;
-
   }
 
   render() {

@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Toast');
+export default from './Toast';

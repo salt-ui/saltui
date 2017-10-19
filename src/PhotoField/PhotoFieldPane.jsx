@@ -74,7 +74,9 @@ class PhotoFieldPane extends React.Component {
         ref={(c) => { this.listUploadIcon = c; }}
       >
         <div className={prefixClass('photo-upload-icon-item')}>
-          <PlusThin className={prefixClass('photo-list-upload-icon')} />
+          <div className={prefixClass('photo-list-upload-icon')}>
+            <PlusThin />
+          </div>
         </div>
       </div>
     );
@@ -165,6 +167,8 @@ class PhotoFieldPane extends React.Component {
         <Field
           required={t.props.required}
           label={t.props.label}
+          tip={t.props.tip}
+          layout={t.props.layout}
           icon={!t.props.readOnly
             ? <IconPhoto
               onClick={() => { if (!t.isUploadDisabled()) { t.props.onPickerClick(); } }}

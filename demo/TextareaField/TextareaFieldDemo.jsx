@@ -39,7 +39,10 @@ class Demo extends React.Component {
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">多行文本框</Group.Head>
         <Group.List>
           <TextareaField
-            layout="v" label="俩字" minRows={2} maxRows={5}
+            layout="h"
+            label="俩字"
+            minRows={2}
+            maxRows={5}
             placeholder="设置2个行高"
             value={t.state.t2}
             tip={<p>这里有个tip<a href="http://www.taobao.com" target="_blank" rel="noopener noreferrer">这是个链接</a></p>}
@@ -58,6 +61,7 @@ class Demo extends React.Component {
           <TextareaField
             layout="v" label="标题如果特别长，可以选择使用上下结构"
             placeholder="请输入"
+            tip="这里也有个提示"
             onChange={(value) => { t.handleChange('t3', value); }}
           />
         </Group.List>

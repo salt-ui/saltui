@@ -8,9 +8,6 @@
 require('salt-context');
 import './SwitchDemo.styl';
 
-
-
-
 // 渲染demo
 var Demo = require('./SwitchDemo');
 export default Demo;

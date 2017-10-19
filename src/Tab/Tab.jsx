@@ -64,7 +64,7 @@ export default class Tabs extends React.Component {
     prefixCls: 't-tab',
     activeKey: '0',
     animated: true,
-    swipeable: true,
+    swipeable: false,
     showExpandAll: true,
     fixedTop: false,
     fixedBottom: false,

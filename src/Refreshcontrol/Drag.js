@@ -1,4 +1,4 @@
-const IS_TOUCH = window !== undefined && (('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch);
+const IS_TOUCH = window !== undefined && (('ontouchstart' in window) || (window.DocumentTouch && document instanceof window.DocumentTouch));
 
 export default class Drag {
   constructor(element) {
@@ -52,7 +52,7 @@ export default class Drag {
     this.endPos = {};
     this.el.addEventListener('touchmove', this, false);
     this.el.addEventListener('touchend', this, false);
-    this.starts.map((func) => func.call(this, this.startPos, event));
+    this.starts.map(func => func.call(this, this.startPos, event));
   }
 
   touchMove(event) {
@@ -64,7 +64,7 @@ export default class Drag {
       y: touch.pageY - this.startPos.y,
       time: new Date().getTime() - this.startPos.time,
     };
-    this.drags.map((func) => func.call(this, this.endPos, event));
+    this.drags.map(func => func.call(this, this.endPos, event));
   }
 
   touchEnd(event) {
@@ -72,7 +72,7 @@ export default class Drag {
 
     this.el.removeEventListener('touchmove', this, false);
     this.el.removeEventListener('touchend', this, false);
-    this.ends.map((func) => func.call(this, this.endPos, event));
+    this.ends.map(func => func.call(this, this.endPos, event));
   }
 
   mouseStart(event) {
@@ -84,7 +84,7 @@ export default class Drag {
     this.endPos = {};
     this.el.addEventListener('mousemove', this, false);
     this.el.addEventListener('mouseup', this, false);
-    this.starts.map((func) => func.call(this, this.startPos, event));
+    this.starts.map(func => func.call(this, this.startPos, event));
   }
 
   mouseMove(event) {
@@ -93,7 +93,7 @@ export default class Drag {
       y: event.clientY - this.startPos.y,
     };
 
-    this.drags.map((func) => func.call(this, this.endPos, event));
+    this.drags.map(func => func.call(this, this.endPos, event));
   }
 
   mouseEnd(event) {
@@ -102,7 +102,7 @@ export default class Drag {
 
     this.endPos.time = new Date().getTime() - this.startPos.time;
 
-    this.ends.map((func) => func.call(this, this.endPos, event));
+    this.ends.map(func => func.call(this, this.endPos, event));
   }
 
   start(fun) {

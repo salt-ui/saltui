@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Mask');
+export default from './Mask';

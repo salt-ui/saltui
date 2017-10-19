@@ -34,10 +34,10 @@ class PickerField extends React.Component {
     t.state = {
       value,
       confirmedValue: value,
+      popupVisible: false,
     };
 
     t.listener = t.handleHidePopup.bind(t);
-    t.popup = Popup.newInstance();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,51 +49,30 @@ class PickerField extends React.Component {
     });
   }
 
+
   handleHidePopup(e) {
     const { state } = e;
     if (!state || !state.PickerField) {
       const t = this;
       window.removeEventListener('popstate', t.listener, false);
-      t.popup.hide();
+      t.setState({
+        popupVisible: false,
+      });
     }
   }
 
   handleClick() {
     const t = this;
     if (!t.props.readOnly) {
-      const props = {
-        value: t.state.confirmedValue,
-        confirmText: t.props.confirmText,
-        cancelText: t.props.cancelText,
-        onConfirm: (value) => {
-          t.handleConfirm(value);
-          history.go(-1);
-        },
-        fetchUrl: t.props.fetchUrl,
-        fetchDataOnOpen: t.props.fetchDataOnOpen,
-        dataType: t.props.dataType,
-        beforeFetch: t.props.beforeFetch,
-        fitResponse: t.props.fitResponse,
-        afterFetch: t.props.afterFetch,
-        showSearch: t.props.showSearch,
-        searchTitle: t.props.searchTitle || t.props.placeholder,
-        searchDelay: t.props.searchDelay,
-        searchPlaceholder: t.props.searchPlaceholder,
-        searchNotFoundContent: t.props.searchNotFoundContent,
-        formatter: t.props.formatter,
-        multiple: t.props.multiple,
-        selectText: t.props.selectText,
-      };
+      t.setState({
+        popupVisible: true,
+      }, () => {
+        history.pushState({
+          PickerField: 'SearchPanel.index',
+        }, '', utils.addUrlParam('PICKER', Date.now()));
 
-      t.popup.show(<SearchPanel {...props} />, {
-        animationType: 'slide-left',
+        window.addEventListener('popstate', t.listener, false);
       });
-
-      history.pushState({
-        PickerField: 'SearchPanel.index',
-      }, '', utils.addUrlParam('PICKER', Date.now()));
-
-      window.addEventListener('popstate', t.listener, false);
     }
   }
 
@@ -131,6 +110,32 @@ class PickerField extends React.Component {
         t.handleClick(e);
       },
     };
+
+    const panelProps = {
+      value: t.state.confirmedValue,
+      confirmText: t.props.confirmText,
+      cancelText: t.props.cancelText,
+      onConfirm: (value) => {
+        t.handleConfirm(value);
+        history.go(-1);
+      },
+      fetchUrl: t.props.fetchUrl,
+      fetchDataOnOpen: t.props.fetchDataOnOpen,
+      dataType: t.props.dataType,
+      beforeFetch: t.props.beforeFetch,
+      fitResponse: t.props.fitResponse,
+      afterFetch: t.props.afterFetch,
+      showSearch: t.props.showSearch,
+      searchTitle: t.props.searchTitle || t.props.placeholder,
+      searchDelay: t.props.searchDelay,
+      searchPlaceholder: t.props.searchPlaceholder,
+      searchNotFoundContent: t.props.searchNotFoundContent,
+      formatter: t.props.formatter,
+      multiple: t.props.multiple,
+      selectText: t.props.selectText,
+      searchText: t.props.searchText,
+    };
+
     return (
       <Field
         {...t.props}
@@ -154,6 +159,7 @@ class PickerField extends React.Component {
             >{t.renderResult()}</span>
           </div>
         </div>
+        <Popup visible={this.state.popupVisible} animationType="slide-left" content={<SearchPanel {...panelProps} />} />
       </Field>
     );
   }

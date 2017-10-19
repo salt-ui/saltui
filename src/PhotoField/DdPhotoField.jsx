@@ -103,15 +103,17 @@ class PhotoField extends React.Component {
   render() {
     const { columns, placeholder, label,
       photoList, required, layout,
-      maxUpload, readOnly } = this.props;
+      maxUpload, readOnly, className, tip } = this.props;
     const paneProps = {
       columns,
+      className,
       placeholder,
       label,
       photoList,
       maxUpload,
       readOnly,
       required,
+      tip,
       layout,
       onPickerClick: () => { this.onPickHandler(); },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
@@ -142,6 +144,7 @@ PhotoField.propTypes = {
   columns: React.PropTypes.number,
   multiple: React.PropTypes.bool,
   corpId: React.PropTypes.string,
+  className: React.PropTypes.string,
   layout: React.PropTypes.string,
   placeholder: React.PropTypes.string,
   locale: React.PropTypes.string,
@@ -153,6 +156,7 @@ PhotoField.propTypes = {
   onChange: React.PropTypes.func,
   onDelete: React.PropTypes.func,
   required: React.PropTypes.bool,
+  tip: React.PropTypes.string,
 };
 
 PhotoField.displayName = 'PhotoField';

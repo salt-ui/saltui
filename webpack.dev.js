@@ -1,11 +1,5 @@
-const webpack = require('webpack');
 const path = require('path');
-const Happypack = require('happypack');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-
-const upperInitWord = str => str.split('-').map(key => (key[0].toUpperCase() + key.slice(1))).join('');
-
+// const Happypack = require('happypack');
 
 module.exports = {
   cache: true,
@@ -27,10 +21,11 @@ module.exports = {
           path.join(process.cwd(), './demo'),
           path.join(process.cwd(), './test'),
           path.join(process.cwd(), './dev'),
+          path.join(process.cwd(), './index.js'),
         ],
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015-ie', 'stage-1'],
+          presets: ['react', 'env', 'stage-1'],
           plugins: [
             'transform-es3-member-expression-literals',
             'transform-es3-property-literals',
@@ -54,11 +49,6 @@ module.exports = {
         include: [path.join(process.cwd(), './src')],
       },
       {
-        test: /\.js(x)*$/,
-        loader: 'es3ify-loader',
-        enforce: 'post',
-      },
-      {
         test: /\.styl$/,
         use: [
           'style-loader',
@@ -73,6 +63,18 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
@@ -83,30 +85,5 @@ module.exports = {
     react: 'var React',
     'react-dom': 'var ReactDOM',
   },
-  plugins: [
-    new BrowserSyncPlugin({
-      server: {
-        baseDir: './',
-      },
-      open: 'external',
-    }),
-    // SourceMap plugin will define process.env.NODE_ENV as development
-    new webpack.SourceMapDevToolPlugin({
-      columns: false,
-    }),
-    new ProgressBarPlugin(),
-    new webpack.NormalModuleReplacementPlugin(
-      /salt-(.+)/,
-      (resource) => {
-        /* eslint-disable no-param-reassign */
-        if (resource.request.indexOf('salt-icon') === -1) {
-          resource.request = resource.request.replace(/salt-(.+)/, (match, s1) => {
-            return require.resolve(`./src/${upperInitWord(s1)}`);
-          });
-          console.log(resource.request);
-        }
-        /* eslint-enable no-param-reassign */
-      }
-    ),
-  ],
+  plugins: [],
 };

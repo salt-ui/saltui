@@ -187,7 +187,7 @@ class Steps extends React.Component {
       current = Number(current);
     }
     return (
-      <div className={clsName} style={{ position: 'relative' }} ref={(c) => { this.root = c; }}>
+      <div className={clsName} ref={(c) => { this.root = c; }}>
         {React.Children.map(children, (ele, idx) => {
           const np = {
             stepNumber: showIcon ? (idx + 1).toString() : '',
@@ -234,6 +234,7 @@ Steps.defaultProps = {
   currentDetail: 0,
   onChange: () => {
   },
+  children: [],
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

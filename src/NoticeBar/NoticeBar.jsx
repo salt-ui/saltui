@@ -7,12 +7,12 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
-import InfoRoundIcon from '@ali/tingle-icon/lib/InfoRound';
-import CheckRoundIcon from '@ali/tingle-icon/lib/CheckRound';
-import CrossRoundIcon from '@ali/tingle-icon/lib/CrossRound';
-import DirectionRightIcon from '@ali/tingle-icon/lib/DirectionRight';
-import CrossIcon from '@ali/tingle-icon/lib/Cross';
+import Context from '../Context';
+import InfoRoundIcon from 'salt-icon/lib/InfoRound';
+import CheckRoundIcon from 'salt-icon/lib/CheckRound';
+import CrossRoundIcon from 'salt-icon/lib/CrossRound';
+import DirectionRightIcon from 'salt-icon/lib/DirectionRight';
+import CrossIcon from 'salt-icon/lib/Cross';
 import Animate from 'rc-animate';
 
 class NoticeBar extends React.Component {

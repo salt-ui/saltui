@@ -2,16 +2,22 @@ import React, { PropTypes } from 'react';
 import { prefixClass } from '../Context';
 import { Status } from 'uploadcore';
 import UploadIcon from 'salt-icon/lib/Upload';
+import DelIcon from 'salt-icon/lib/MinusRound';
 import Circle from './Circle';
 import i18n from './i18n';
 
 
 class PhotoFieldUploadItem extends React.Component {
+  handleDelete() {
+    this.props.file.cancel();
+  }
+
   renderProgress() {
     if (this.props.file.status === Status.PROGRESS) {
       return (
         <div className={prefixClass('photo-upload-item-box photo-upload-item-box__progress')}>
-          <Circle percent={this.props.file.progress.percentage} />
+          <Circle className={prefixClass('photo-progress-icon')} percent={this.props.file.progress.percentage} />
+          <DelIcon className={prefixClass('photo-delete-icon')} onClick={() => { this.handleDelete(); }} />
         </div>
       );
     }
@@ -29,6 +35,7 @@ class PhotoFieldUploadItem extends React.Component {
         >
           <UploadIcon className={prefixClass('photo-upload-error-icon')} fill="" />
           <span className={prefixClass('photo-upload-error-msg')}>{locale.retry}</span>
+          <DelIcon className={prefixClass('photo-delete-icon')} onClick={() => { this.handleDelete(); }} />
         </div>
       );
     }

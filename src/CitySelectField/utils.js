@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash.clonedeep';
+import cloneDeep from 'lodash/cloneDeep'
 
 export function find(ds, value) {
   let item = null;

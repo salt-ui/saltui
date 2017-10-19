@@ -7,9 +7,11 @@
 */
 import React from 'react';
 import classnames from 'classnames';
-import Icon from 'salt-icon';
+import LoadingRound from 'salt-icon/lib/LoadingRound';
 import { prefixClass } from './utils';
 import TextButton from './TextButton';
+
+
 
 class Button extends React.Component {
 
@@ -65,7 +67,7 @@ class Button extends React.Component {
 
     let iconHTML;
     if (loading) {
-      iconHTML = <Icon name="loading-round" className={prefixClass('button-loading-icon')} />;
+      iconHTML = <LoadingRound className={prefixClass('button-loading-icon')} />;
     }
 
     return (

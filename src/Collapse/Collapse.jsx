@@ -8,13 +8,14 @@
 import React from 'react';
 import RcCollapse from 'rc-collapse';
 import assign from 'object-assign';
+import Context from '../Context';
 
 class Collapse extends RcCollapse {}
 
-Collapse.displayName = 'tingle-collapse';
+Collapse.displayName = 'Collapse';
 Collapse.propTypes = RcCollapse.propTypes;
 Collapse.defaultProps = assign({}, RcCollapse.defaultProps, {
-  prefixCls: 'tingle-collapse',
+  prefixCls: Context.prefixClass('collapse'),
 });
 
 export default Collapse;

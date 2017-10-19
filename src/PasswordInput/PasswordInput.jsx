@@ -33,6 +33,7 @@ class PasswordInput extends React.Component {
     onDecryptedChange: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onBlur: React.PropTypes.func,
+    hideIcon: React.PropTypes.func,
   };
 
   static defaultProps = {
@@ -44,6 +45,7 @@ class PasswordInput extends React.Component {
     onDecryptedChange: Context.noop,
     onFocus: Context.noop,
     onBlur: Context.noop,
+    hideIcon: false,
   };
 
   static displayName = 'PasswordInput';
@@ -116,7 +118,7 @@ class PasswordInput extends React.Component {
     return (
       <EyeIcon
         className={classnames(prefixClass('password-input-right-icon'))}
-        witdh={iconSize}
+        width={iconSize}
         height={iconSize}
         onClick={(e) => { this.handleEyeIconClick(e); }}
       />
@@ -130,11 +132,11 @@ class PasswordInput extends React.Component {
           [this.props.className]: !!this.props.className,
         })}
       >
-        <LockIcon
+        {!this.props.hideIcon ? <LockIcon
           className={classnames(prefixClass('password-input-left-icon'))}
-          witdh={iconSize}
+          width={iconSize}
           height={iconSize}
-        />
+        /> : null}
         <div className={classnames(prefixClass('password-input-core'))}>
           {this.renderPlaceHolder()}
           {this.renderInput()}

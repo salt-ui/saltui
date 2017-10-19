@@ -9,7 +9,7 @@
 const React = require('react');
 const classnames = require('classnames');
 const Context = require('../Context');
-const PopUp = require('../Popup');
+const Popup = require('../Popup');
 const cloneDeep = require('lodash/cloneDeep');
 const SlotHeader = require('./tpls/Header');
 const SlotPane = require('./tpls/Pane');
@@ -24,22 +24,13 @@ class Slot extends React.Component {
 
     const t = this;
 
-    this.lastChoose = null;
-    this.popupInstance = null;
+    this.lastChoose = cloneDeep(props.value);
 
     // 初始状态
     t.state = {
       childPaneIsScrolling: false,
       visible: false,
     };
-  }
-
-  componentDidUpdate() {
-    if (this.state.visible) {
-      this.showPane();
-    } else {
-      this.hidePane();
-    }
   }
 
 
@@ -61,7 +52,7 @@ class Slot extends React.Component {
     const t = this;
     const {
       className, title, value, data, scrollMod,
-      columns, cancelText, confirmText } = t.props;
+      columns, cancelText, confirmText, columnsFlex } = t.props;
 
     const headerProps = {
       title,
@@ -79,6 +70,7 @@ class Slot extends React.Component {
       onChange: t.handleChange.bind(t),
       scrollMod,
       columns,
+      columnsFlex,
       onScrolling: t.childPaneOnScrolling.bind(t),
     };
 
@@ -94,25 +86,6 @@ class Slot extends React.Component {
     );
   }
 
-
-  showPane() {
-    if (this.popupInstance) {
-      this.popupInstance.update(this.createPaneContent());
-    } else {
-      const options = {
-        onMaskClose: () => { this.popupInstance = null; },
-      };
-      if (this.props.maskCloseable !== undefined) {
-        options.maskClosable = this.props.maskCloseable;
-      }
-      this.popupInstance = PopUp.show(this.createPaneContent(), options);
-    }
-  }
-
-  hidePane() {
-    PopUp.hide();
-    this.popupInstance = null;
-  }
 
   show() {
     this.setState({
@@ -155,7 +128,13 @@ class Slot extends React.Component {
   handleChange(data, column, index) {
     const t = this;
     t.lastChoose = data;
-    t.props.onChange(data, column, index);
+    t.props.onChange(cloneDeep(data), column, index);
+  }
+
+  handleMaskClick() {
+    if (this.props.maskCloseable) {
+      this.setState({ visible: false });
+    }
   }
 
   childPaneOnScrolling(scrollingState) {
@@ -165,7 +144,13 @@ class Slot extends React.Component {
   }
 
   render() {
-    return null;
+    return (
+      <Popup
+        visible={this.state.visible}
+        content={this.createPaneContent()}
+        onMaskClick={() => { this.handleMaskClick(); }}
+      />
+    );
   }
 }
 

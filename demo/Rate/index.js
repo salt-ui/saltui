@@ -7,14 +7,11 @@
  */
 import 'salt-context';
 import './RateDemo.styl';
-import 'salt-icon-source';
 import Demo from './RateDemo';
 
 if (window.FastClick) {
     FastClick.attach(document.body);
 }
-
-// 
 
 // 渲染demo
 export default Demo;

@@ -1,7 +1,7 @@
 /**
  * Field Component Style for tingle
  * @author
- *
+ * 
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
@@ -10,51 +10,89 @@ $field-padding-left = 16px;
 $field-label-color = $dark-alpha-3;
 $field-text-color = $dark-alpha-2;
 
-.{$prefix}-field
-    font-size $font-size-field-text
-    color $field-text-color
+.{$prefix}-field {
+    font-size: $font-size-field-text;
+    color: $field-text-color;
+}
 
-.{$prefix}-field-icon
-    margin 0 6px
+.{$prefix}-field-icon {
+    margin: 0 0 0 8px;
+    line-height: 0;
+}
 
-.{$prefix}-field-box
-    min-height 44px
-    line-height $font-size-field-text-lh
-    padding-left $field-padding-left
+.{$prefix}-field-error-icon {
+    svg {
+        fill: $function-red;
+        width: 20px;
+        height: 20px;
+    }
+}
 
-.{$prefix}-field-layout-h-label
-    padding (($field-min-height - $font-size-field-label-lh) / 2) 0
-    padding-right 24px
-    width 108px
-    line-height $font-size-field-label-lh
-    .{$prefix}-field-box.loose &
-        width auto
-        max-width 50%
-    .{$prefix}-field-box.vertical &
-        width auto
-        padding 4px 0
+.{$prefix}-field-box {
+    min-height: 44px;
+    line-height: $font-size-field-text-lh;
+    padding-left: $field-padding-left;
+    padding-right: $field-padding-left;
+}
 
-.{$prefix}-field-layout-v-label
-    hairline border-bottom $border
-    line-height $font-size-field-label-lh
-    padding 10px $field-padding-left
-    background-color $bg
+
+
+.{$prefix}-field-layout-h-label {
+    padding: (($field-min-height - $font-size-field-label-lh) / 2) 0;
+    padding-right: 24px;
+    width: 108px;
+    line-height: $font-size-field-label-lh;
+
+    .{$prefix}-field-box.loose & {
+        width: auto;
+        max-width: 50%;
+    }
+
+    .{$prefix}-field-box.vertical & {
+        width: auto;
+        padding: 4px 0;
+    }
+}
+
+.{$prefix}-field-layout-v-label {
+    hairline: border-bottom $border;
+    line-height: $font-size-field-label-lh;
+    padding: 10px $field-padding-left;
+    background-color: $bg;
+}
 
 .{$prefix}-field-layout-h-label,
-.{$prefix}-field-layout-v-label
-    color $field-label-color
+.{$prefix}-field-layout-v-label {
+    color: $field-label-color;
+}
 
-.{$prefix}-field-multi
-    padding (($field-min-height - $font-size-field-label-lh) / 2) 0
+.{$prefix}-field-multi {
+    padding: (($field-min-height - $font-size-field-label-lh) / 2) 0;
+}
 
-.{$prefix}-field-layout-label-required
-    display inline
-    svg
-        vertical-align middle
+.{$prefix}-field-layout-label-required {
+    display: inline;
 
-.{$prefix}-field-tip
-    padding 8px $field-padding-left
-    hairline border-top $border
-    background-color $bg
-    color $gray-light
-    font-size $font-size-t2
+    svg {
+        vertical-align: middle;
+    }
+}
+
+.{$prefix}-field-tip-box {
+    min-height: auto;
+    padding-right: 0px;
+}
+
+.{$prefix}-field-tip {
+    flex: 1;
+    padding: 8px 16px 8px 0;
+    hairline: border-top $border;
+    font-size: $font-size-t2;
+    color: $normal-alpha-4;
+
+    &-placeholder {
+        opacity: 0;
+        font-size: 12px;
+        padding: 0;
+    }
+}

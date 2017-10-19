@@ -12,9 +12,10 @@ import NattyFetch from 'natty-fetch/dist/natty-fetch';
 import Context from '../Context';
 import ScrollView from '../ScrollView';
 import Button from '../Button';
-import Icon from 'salt-icon';
+import IconCheck from 'salt-icon/lib/Check';
+import IconCheckRound from 'salt-icon/lib/CheckRound';
 import Popup from '../Popup';
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar';
 import SearchResult from './SearchResult';
 import utils from './utils';
 
@@ -36,10 +37,10 @@ class SearchPanel extends React.Component {
       searchEmpty: false,
       isOpenSearch: false,
       hasKeyword: false,
+      popupVisible: false,
     };
     t.delaySearch = utils.debounce(t.search.bind(t), t.props.searchDelay);
     t.handleLeaveResultView = t.handleLeaveResultView.bind(t);
-    t.popup = Popup.newInstance();
   }
 
   componentDidMount() {
@@ -163,36 +164,24 @@ class SearchPanel extends React.Component {
   }
 
   handleEnterResultView() {
-    const props = {
-      value: [...this.state.value],
-      confirmText: this.props.confirmText,
-      onConfirm: (value) => {
-        this.setState({
-          value,
-        }, () => {
-          history.go(-1);
-        });
-      },
-      formatter: this.props.formatter,
-      selectText: this.props.selectText,
-    };
+    this.setState({
+      popupVisible: true,
+    }, () => {
+      history.pushState({
+        PickerField: 'SearchPanel.result',
+      }, '', utils.addUrlParam('PICKER', Date.now()));
 
-    this.popup.show(<SearchResult {...props} />, {
-      animationType: 'slide-left',
+      window.addEventListener('popstate', this.handleLeaveResultView, false);
     });
-
-    history.pushState({
-      PickerField: 'SearchPanel.result',
-    }, '', utils.addUrlParam('PICKER', Date.now()));
-
-    window.addEventListener('popstate', this.handleLeaveResultView, false);
   }
 
   handleLeaveResultView(e) {
     const { state } = e;
     if (state && state.PickerField === 'SearchPanel.index') {
       window.removeEventListener('popstate', this.handleLeaveResultView, false);
-      this.popup.hide();
+      this.setState({
+        popupVisible: false,
+      });
     }
   }
 
@@ -236,19 +225,17 @@ class SearchPanel extends React.Component {
     let iconHTML;
     if (t.props.multiple) {
       iconHTML = (
-        <Icon
+        <IconCheckRound
           className={classnames({
             'un-checked': !checked,
           })}
-          name="check-round"
           width={20}
           height={20}
         />
       );
     } else if (checked) {
       iconHTML = (
-        <Icon
-          name="check"
+        <IconCheck
           width={14}
           height={14}
         />
@@ -292,6 +279,19 @@ class SearchPanel extends React.Component {
     } = t.props;
     const pageSize = utils.getPageSize();
     const length = this.state.value.length;
+    const resultProps = {
+      value: [...this.state.value],
+      confirmText: this.props.confirmText,
+      onConfirm: (value) => {
+        this.setState({
+          value,
+        }, () => {
+          history.go(-1);
+        });
+      },
+      formatter: this.props.formatter,
+      selectText: this.props.selectText,
+    };
     return (
       <div
         className={classnames(Context.prefixClass('picker-field-searchpanel'), {
@@ -333,7 +333,8 @@ class SearchPanel extends React.Component {
             <div className={Context.prefixClass('picker-field-searchpanel-footer')}>
               <Button
                 className={Context.prefixClass('picker-field-searchpanel-btn-ok')}
-                type="primary"
+                size="small"
+                display="inline"
                 disabled={t.isEmpty()}
                 onClick={(e) => {
                   t.handleConfirm(e);
@@ -350,6 +351,7 @@ class SearchPanel extends React.Component {
             </div>
           ) : null}
         </div>
+        <Popup content={<SearchResult {...resultProps} />} animationType="slide-left" visible={this.state.popupVisible} />
       </div>
     );
   }

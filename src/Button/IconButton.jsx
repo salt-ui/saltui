@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import Icon from 'salt-icon';
 import { prefixClass } from './utils';
 
 class IconButton extends React.Component {
@@ -17,6 +16,9 @@ class IconButton extends React.Component {
   }
 
   render() {
+    if (!this.props.children) {
+      return null;
+    }
     const className = this.props.className;
     const style = this.props.style;
     const type = this.props.type;
@@ -34,12 +36,8 @@ class IconButton extends React.Component {
       disabled,
     };
 
-    const name = this.props.name;
-    const fill = this.props.fill;
     const size = this.props.size;
-    const iconHTML = React.createElement(Icon, {
-      name,
-      fill,
+    const iconHTML = React.cloneElement(this.props.children, {
       width: size,
       height: size,
     });
@@ -61,8 +59,6 @@ IconButton.defaultProps = {
   className: '',
   style: {},
   type: 'primary',
-  name: '',
-  fill: null,
   size: 24,
   onClick() { },
   disabled: false,
@@ -73,14 +69,13 @@ IconButton.propTypes = {
   className: React.PropTypes.string,
   style: React.PropTypes.object,
   type: React.PropTypes.oneOf(['primary', 'secondary']),
-  name: React.PropTypes.string.isRequired,
-  fill: React.PropTypes.string,
   size: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.number,
   ]),
   onClick: React.PropTypes.func,
   disabled: React.PropTypes.bool,
+  children: React.PropTypes.node.isRequired,
 };
 
 IconButton.displayName = 'IconButton';

@@ -31,9 +31,15 @@ class Item extends React.Component {
 
   render() {
     const t = this;
-    const iconBackground = {
+    const tailBackground = {
       background: t.props.color,
     };
+    const dotStyle = {
+      background: t.props.color,
+    };
+    if (t.props.active) {
+      dotStyle['border-color'] = t.props.color;
+    }
     return (
       <div
         className={classnames(Context.prefixClass('timeline-item'), {
@@ -54,7 +60,7 @@ class Item extends React.Component {
                 }
               </div> :
               <div
-                style={t.props.icon && iconBackground}
+                style={dotStyle}
                 className={classnames(Context.prefixClass('timeline-header-dot'), {
                   active: t.props.active,
                 })}
@@ -64,7 +70,7 @@ class Item extends React.Component {
           }
           {
             !t.props.last && <div
-              style={iconBackground}
+              style={tailBackground}
               className={classnames(Context.prefixClass('timeline-tail'))}
             />
           }

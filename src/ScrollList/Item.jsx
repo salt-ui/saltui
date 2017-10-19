@@ -6,7 +6,7 @@ class Item extends React.Component {
     prefixCls: PropTypes.string,
     className: PropTypes.string,
     img: PropTypes.string,
-    title: PropTypes.string,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     description: PropTypes.string,
     desMaxLine: PropTypes.number,
     extra: PropTypes.any,
@@ -19,7 +19,7 @@ class Item extends React.Component {
   renderImg() {
     const { img, prefixCls } = this.props;
     if (typeof img === 'string') {
-      return (<img className={`${prefixCls}-img`} role="presentation" src={img} />);
+      return (<img alt="" className={`${prefixCls}-img`} src={img} />);
     }
     return img;
   }

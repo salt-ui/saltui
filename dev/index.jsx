@@ -1,13 +1,12 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   HashRouter as Router,
   Route,
-  Link,
 } from 'react-router-dom';
 import App from './App';
 import ButtonDemo from '../demo/Button/';
+// import '../build/salt-ui.css';
 // TODO: lazyload
 // import Bundle from './Bundle';
 // import loadButton from 'bundle-loader?lazy!../demo/Button/';

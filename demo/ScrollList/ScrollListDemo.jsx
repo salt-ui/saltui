@@ -6,7 +6,8 @@
  * All rights reserved.
  */
 import React from 'react';
-import Icon from 'salt-icon';
+import DirectionRight from 'salt-icon/lib/DirectionRight';
+import Map from 'salt-icon/lib/Map';
 import ScrollList from 'salt-scroll-list';
 
 const { PropTypes } = React;
@@ -19,7 +20,6 @@ Item.propTypes = {
   index: PropTypes.number,
   name: PropTypes.string,
 };
-
 function Other1() {
   return <div className="newlist-demo-item other1">{'Other1'}</div>;
 }
@@ -42,31 +42,31 @@ const propsMap = [
   },
   {
     title: '标题文字',
-    extra: <Icon name="direction-right" className="newlist-demo-icon" />,
+    extra: <DirectionRight className="newlist-demo-icon" />,
   },
   {
     img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
     title: '标题文字',
-    extra: <Icon name="direction-right" className="newlist-demo-icon" />,
+    extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
   },
   {
-    title: <span className="newlist-demo-has-icon"><Icon name="map" className="newlist-demo-front-icon" />标题文字</span>,
-    extra: <Icon name="direction-right" className="newlist-demo-icon" />,
-  },
-  {
-    title: '标题文字',
-    description: '副标题',
+    title: <span className="newlist-demo-has-icon"><Map className="newlist-demo-front-icon" />标题文字</span>,
+    extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
   },
   {
     title: '标题文字',
     description: '副标题',
-    extra: <Icon name="direction-right" className="newlist-demo-icon" />,
+  },
+  {
+    title: '标题文字',
+    description: '副标题',
+    extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
   },
   {
     img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
     title: '标题文字',
     description: '副标题',
-    extra: <Icon name="direction-right" className="newlist-demo-icon" />,
+    extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
   },
   {
     title: '2017财年绩效评估',
@@ -81,12 +81,11 @@ const propsMap = [
     img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
     title: '2017财年绩效评估',
     description: '多行模式，文字超长则换行；文本内容文本内容文本内容文本内容文本内容文本内容',
-    extra: <Icon name="direction-right" className="newlist-demo-icon" />,
+    extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
   },
 ];
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -189,7 +188,7 @@ class Demo extends React.Component {
           <Other1 />
           <Other2 />
           {(data, index) => {
-            const itemProps = propsMap[index % 6];
+            const itemProps = propsMap[index % 9];
             return (
               <ScrollList.Item
                 key={index}

@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
+import Context from '../../Context';
 import cloneDeep from 'lodash/cloneDeep';
 import locale from '../locale';
 import formatter from '../formatter';
@@ -125,9 +125,13 @@ class MonthBody extends React.Component {
   renderSingModeDay(day, idx) {
     const t = this;
     const today = util.isSameDay(day, Date.now());
-    const value = !util.isNil(t.props.value) && typeof t.props.value === 'object' ?
-      t.props.value.startDate || t.props.value.endDate :
-      t.props.value;
+    let value = t.props.value;
+    if (!util.isNil(t.props.value) && typeof t.props.value === 'object') {
+      value = t.props.value.startDate || t.props.value.endDate;
+      if (t.props.value.value) {
+        value = t.props.value.value;
+      }
+    }
     const selected = util.isSameDay(day, value);
     const disabled = t.isDisabledDate(day);
     return (

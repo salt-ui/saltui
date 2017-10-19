@@ -149,14 +149,14 @@ popupPrefixCls = t-popup
 .{popupPrefixCls}-slide-right-appear
     transform translate(-100%, 0)
     animation-duration 0.3s
-    animation-timing-function ease-out
+    animation-timing-function $transition-ease
     animation-fill-mode both
 .{popupPrefixCls}-slide-right-enter-active,
 .{popupPrefixCls}-slide-right-appear-active
     animation-name popupSlideRightIn
 .{popupPrefixCls}-slide-right-leave
     animation-duration 0.3s
-    animation-timing-function ease-out;
+    animation-timing-function $transition-ease;
     animation-fill-mode both
 .{popupPrefixCls}-slide-right-leave-active
     animation-name popupSlideRightOut

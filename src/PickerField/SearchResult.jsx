@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import Context from '../Context';
 import ScrollView from '../ScrollView';
 import Button from '../Button';
-import Icon from 'salt-icon';
+import CheckRound from 'salt-icon/lib/CheckRound';
 import utils from './utils';
 
 class SearchResult extends React.Component {
@@ -78,11 +78,10 @@ class SearchResult extends React.Component {
 
     const checked = t.isItemChecked(item);
     const iconHTML = (
-      <Icon
+      <CheckRound
         className={classnames({
           'un-checked': !checked,
         })}
-        name="check-round"
         width={20}
         height={20}
       />
@@ -125,7 +124,8 @@ class SearchResult extends React.Component {
           <div className={Context.prefixClass('picker-field-searchpanel-footer')}>
             <Button
               className={Context.prefixClass('picker-field-searchpanel-btn-ok')}
-              type="primary"
+              display="inline"
+              size="small"
               onClick={(e) => {
                 t.handleConfirm(e);
               }}

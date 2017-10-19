@@ -12,7 +12,6 @@ import FieldRequiredIcon from 'salt-icon/lib/FieldRequired';
 import Context from '../Context';
 import Group from '../Group';
 
-
 const prefixClass = Context.prefixClass;
 
 
@@ -59,9 +58,13 @@ class RadioField extends React.Component {
 
   render() {
     const t = this;
-    const { rootClassName,
-      className, data: radioArray,
-      groupListArgument, groupListFlag, label,
+    const {
+      rootClassName,
+      className,
+      data: radioArray,
+      groupListArgument,
+      groupListFlag,
+      label,
     } = t.props;
 
     const radioArrayComponent = radioArray.map((item, index, data) => {

@@ -6,8 +6,9 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const ScrollList = require('salt-scroll-list');
+import React from 'react';
+
+import ScrollList from 'salt-scroll-list';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const ScrollList = require('../../dist');
@@ -24,7 +25,6 @@ Item.propTypes = {
   index: React.PropTypes.number,
   name: React.PropTypes.string,
 };
-
 
 class Other1 extends React.Component {
   render() {
@@ -88,7 +88,6 @@ window.testData = {
 };
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -134,23 +133,25 @@ class Demo extends React.Component {
         window.testCount = 1;
         res.content.data = window.testData.content.data.slice(0, 3);
       }
-
-            // res.content.data = [];
+      // res.content.data = [];
       callback(res);
     }, 1000);
 
-        // const script = document.createElement('script');
-        // window.jsonpCallbak = window.jsonpCallbak || callback;
-        // script.src = `http://dip.alibaba-inc.com/api/v2/services/schema/mock/36906.jsonp?callback=jsonpCallbak&pageNum=${me.state.pageNum}&pageSize=${me.state.pageSize}&rnd=${(new Date).getTime()}`;
-        // document.head.appendChild(script);
+    // const script = document.createElement('script');
+    // window.jsonpCallbak = window.jsonpCallbak || callback;
+    // script.src = `http://dip.alibaba-inc.com/api/v2/services/schema/mock/36906.jsonp?callback=jsonpCallbak&pageNum=${me.state.pageNum}&pageSize=${me.state.pageSize}&rnd=${(new Date).getTime()}`;
+    // document.head.appendChild(script);
   }
 
   render() {
     return (<div >
       <div className="container">
         <ScrollList
-          dataGetted={this.state.dataGetted} data={this.state.data} hasError={this.state.hasError}
-          className="scroll-list-demo" onLoad={(loadMore) => { this.onLoad(loadMore); }}
+          dataGetted={this.state.dataGetted}
+          data={this.state.data}
+          hasError={this.state.hasError}
+          className="scroll-list-demo"
+          onLoad={(loadMore) => { this.onLoad(loadMore); }}
         >
           <Other1 />
           <Other2 />
@@ -161,4 +162,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

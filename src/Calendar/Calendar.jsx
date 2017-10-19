@@ -20,6 +20,26 @@ class Calendar extends React.Component {
 
   static displayName = 'Calendar';
 
+  static propTypes = {
+    ...DayCalendar.propTypes,
+    ...MonthCalendar.propTypes,
+    ...YearCalendar.propTypes,
+    maskClosable: React.PropTypes.bool,
+    onMaskClose: React.PropTypes.func,
+    onOk: React.PropTypes.func,
+    onCancel: React.PropTypes.func,
+  };
+
+  static defaultProps = {
+    ...DayCalendar.defaultProps,
+    ...MonthCalendar.defaultProps,
+    ...YearCalendar.defaultProps,
+    maskClosable: true,
+    onMaskClose: () => {},
+    onOk: () => {},
+    onCancel: () => {},
+  };
+
   constructor(props) {
     super(props);
     this.slideBackListener = this.handleSlideBack.bind(this);
@@ -35,16 +55,24 @@ class Calendar extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.props.viewMode === 'slide' && this.props.visible) {
+    if (this.props.animationType === 'slideLeft' && this.props.visible) {
       history.go(-1);
     }
   }
 
   onOk(value) {
-    if (this.props.viewMode === 'slide') {
+    if (this.props.animationType === 'slideLeft') {
       history.go(-1);
     }
     this.props.onOk(value);
+  }
+
+  // slide-up模式下才有该方法
+  onMaskClose() {
+    const t = this;
+    t.popup.close();
+    t.popup = null;
+    t.props.onMaskClose();
   }
 
   showCalendar(props) {
@@ -65,10 +93,12 @@ class Calendar extends React.Component {
       return;
     }
 
-    if (props.viewMode === 'popup') {
+    if (props.animationType === 'slideUp') {
       t.popup = Popup.show(calendar, {
         animationType: 'slide-up',
         className: prefixClass('calendar-popup'),
+        maskClosable: props.maskClosable,
+        onMaskClose: t.onMaskClose.bind(t),
       });
     } else {
       t.popup = Popup.show(calendar, {

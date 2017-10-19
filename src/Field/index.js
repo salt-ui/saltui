@@ -6,4 +6,6 @@
  * All rights reserved.
  */
 
-module.exports = require('./Field');
+import Field from './Field';
+
+export default Field;

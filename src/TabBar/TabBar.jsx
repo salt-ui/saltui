@@ -12,7 +12,6 @@ import { HBox } from '../Box';
 import { TabBarItem, TabBarItemCenter } from './TabBarItem';
 
 class TabBar extends React.Component {
-
   static displayName = 'TabBar';
 
   static propTypes = {
@@ -100,20 +99,22 @@ class TabBar extends React.Component {
       }
       if (child.props.items) {
         t.centerTabIndex = idx;
-        return (<TabBarItemCenter
-          key={idx}
-          index={idx}
-          item={child}
-          moreVisible={this.state.centerMoreVisible}
-          iconHeight={child.cIconHeight || t.props.cIconHeight}
-          onMoreVisibleChange={(visible) => { this.handleCenterMoreVisibleChange(visible); }}
-          childIconHeight={36}
-          active={idx === t.state.activeIndex}
-          type={'center'}
-          onClick={() => {
-            t.onItemClick();
-          }}
-        />);
+        return (
+          <TabBarItemCenter
+            key={idx}
+            index={idx}
+            item={child}
+            moreVisible={this.state.centerMoreVisible}
+            iconHeight={child.cIconHeight || t.props.cIconHeight}
+            onMoreVisibleChange={(visible) => { this.handleCenterMoreVisibleChange(visible); }}
+            childIconHeight={36}
+            active={idx === t.state.activeIndex}
+            type={'center'}
+            onClick={() => {
+              t.onItemClick();
+            }}
+          />
+        );
       }
       return (
         <TabBarItem
@@ -121,7 +122,6 @@ class TabBar extends React.Component {
           item={child}
           iconHeight={t.props.iconHeight}
           active={idx === t.state.activeIndex}
-          type={'center'}
           onClick={() => {
             t.onItemClick(idx, child.props.path);
           }}
@@ -141,7 +141,7 @@ class TabBar extends React.Component {
         return (
           <TabBarItemCenter
             {...item}
-            key={idx}
+            key={idx.toString()}
             index={idx}
             moreVisible={this.state.centerMoreVisible}
             onMoreVisibleChange={(visible) => { this.handleCenterMoreVisibleChange(visible); }}
@@ -157,11 +157,10 @@ class TabBar extends React.Component {
       }
       return (
         <TabBarItem
-          key={idx}
+          key={idx.toString()}
           {...item}
           iconHeight={t.props.iconHeight}
           active={idx === t.state.activeIndex}
-          type={'center'}
           onClick={() => {
             t.onItemClick(idx, item.path);
           }}
@@ -189,7 +188,7 @@ class TabBar extends React.Component {
         hAlign="center"
         vAlign="center"
       >
-        { content }
+        {content}
       </HBox>
     );
   }

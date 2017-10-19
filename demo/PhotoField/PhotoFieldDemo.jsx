@@ -90,6 +90,7 @@ class Demo extends React.Component {
           required
           max={4}
           maxUpload={9}
+          layout="v"
           name="file"
           url="http://eternalsky.me:8122/file/upload"
           photoList={this.state.photoList}

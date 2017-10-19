@@ -81,8 +81,9 @@
     justify-content: center;
     border-radius: $global-border-radius;
     display: flex;
+
     &__progress {
-        svg {
+        .{$prefix}-progress-circle {
             width: 20px;
             height: 20px;
             animation: circleRotation linear 2s;
@@ -145,20 +146,4 @@
         width: 18px;
         height: 18px;
     }
-}
-
-.{$prefix}-field-layout-label-required {
-    display: inline;
-
-    svg {
-        vertical-align: middle;
-    }
-}
-
-.{$prefix}-field-tip {
-    padding: 8px 15px;
-    hairline: border-top $border;
-    background-color: $bg;
-    color: $gray-light;
-    font-size: $font-size-t2;
 }

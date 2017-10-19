@@ -2,7 +2,6 @@ import React from 'react';
 import assign from 'object-assign';
 import classnames from 'classnames';
 import Context from '../Context';
-import Icon from 'salt-icon';
 
 const isUrl = str => /((\/\/)|^\.{0,2}\/).+/g.test(str);
 const isArray = obj => Object.prototype.toString.call(obj) === '[object Array]';
@@ -47,8 +46,12 @@ class TabBarItemIcon extends React.Component {
       className = Context.prefixClass('tabs-bar-img-icon');
     }
     return (<img
-      className={className} style={style} src={icon} alt={title}
-      width={this.props.iconHeight} height={this.props.iconHeight}
+      className={className}
+      style={style}
+      src={icon}
+      alt={title}
+      width={this.props.iconHeight}
+      height={this.props.iconHeight}
     />);
   }
 
@@ -63,10 +66,11 @@ class TabBarItemIcon extends React.Component {
     } else {
       className = Context.prefixClass('tabs-bar-item-tingle-icon');
     }
-    return (<Icon
-      width={this.props.iconHeight}
-      height={this.props.iconHeight} className={className} style={style} name={icon}
-    />);
+    if (React.isValidElement(icon)) {
+      return (React.cloneElement(icon,
+        { width: this.props.iconHeight, height: this.props.iconHeight, className, style }));
+    }
+    return null;
   }
 
   render() {
@@ -115,4 +119,4 @@ class TabBarItemIcon extends React.Component {
   }
 }
 
-module.exports = TabBarItemIcon;
+export default TabBarItemIcon;

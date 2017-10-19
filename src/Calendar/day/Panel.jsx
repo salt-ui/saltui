@@ -7,11 +7,11 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
+import Context from '../../Context';
 import cloneDeep from 'lodash/cloneDeep';
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
-import deepEqual from 'deep-equal';
+import deepEqual from 'lodash/isEqual';
 import locale from '../locale';
 import MonthBody from './MonthBody';
 import MonthTitle from './MonthTitle';
@@ -114,7 +114,7 @@ class Panel extends React.Component {
       value: timestamp,
     });
     // singleMode = true，且 viewMode = slide，点击即关闭，所以触发 onOk
-    if (this.props.viewMode === 'slide') {
+    if (this.props.animationType === 'slideLeft') {
       this.props.onOk({
         value: timestamp,
       });
@@ -211,7 +211,7 @@ class Panel extends React.Component {
         if (!firstDayInLastMonth) {
           let firstValue = !util.isNil(t.props.value) ? t.props.value : Date.now();
           if (isObject(firstValue)) {
-            firstValue = firstValue.startDate || firstValue.endDate || Date.now();
+            firstValue = firstValue.startDate || firstValue.endDate || firstValue.value || Date.now();
           } else if (isArray(firstValue)) {
             firstValue = firstValue[0] || Date.now();
           }

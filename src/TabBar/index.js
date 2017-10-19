@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./TabBar');
+export default from './TabBar';

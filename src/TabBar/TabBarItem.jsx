@@ -27,7 +27,9 @@ class TabBarItem extends React.Component {
       <Box
         className={classnames(Context.prefixClass('tabs-bar-item'), {
           active,
-        })} onClick={t.props.onClick} flex={1}
+        })}
+        onClick={t.props.onClick}
+        flex={1}
       >
         <TabBarItemBadge {...item.props} iconHeight={t.props.iconHeight} active={active} />
       </Box>
@@ -35,4 +37,4 @@ class TabBarItem extends React.Component {
   }
 }
 
-module.exports = { TabBarItem, TabBarItemCenter };
+export default { TabBarItem, TabBarItemCenter };

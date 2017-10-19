@@ -8,7 +8,7 @@
 
 const React = require('react'); 
 const classnames = require('classnames');
-const {prefixClass} = require('@ali/tingle-context');
+const {prefixClass} = require('../Context');
 
 const START = 'start';
 const CENTER = 'center';

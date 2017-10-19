@@ -16,6 +16,7 @@ class PopupDemo extends React.Component {
     super(props);
     this.state = {
       keyword: 1,
+      visible: false,
     };
   }
 
@@ -80,6 +81,23 @@ class PopupDemo extends React.Component {
             , {});
         }}
         >测试内部数据透传</Button>
+        <Popup
+          content={
+            <div>
+              <input
+                value={this.state.keyword}
+                onChange={(e) => { this.setState({ keyword: e.target.value }); }}
+              />
+              <Button onClick={() => { this.setState({ visible: false }); }}>关闭 Popup</Button>
+            </div>
+          }
+          animationType="slide-down"
+          onMaskClick={() => { this.setState({ visible: false }); }}
+          visible={this.state.visible}
+        >
+          {null}
+        </Popup>
+        <Button onClick={() => { this.setState({ visible: true }); }}>手动控制 Visible</Button>
       </div>
     );
   }

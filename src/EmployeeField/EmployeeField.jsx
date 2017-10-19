@@ -5,16 +5,18 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
+
+
 import React from 'react';
 import classnames from 'classnames';
 import Context from '../Context';
 import Field from '../Field';
-import deepCopy from 'deep-copy';
+import deepCopy from 'lodash/cloneDeep';
 import remove from 'lodash/remove';
+import PlusCircle from 'salt-icon/lib/PlusCircle';
 import EmployeeList from './EmployeeList';
 import locale from './locale';
 
-const Ali = window.Ali || {};
 
 class EmployeeField extends React.Component {
 
@@ -61,7 +63,8 @@ class EmployeeField extends React.Component {
       users: this.props.value.map(v => v.key),
       disabledUsers: this.props.disabledUsers,
     };
-    if (Ali.isDingDing && Ali.contacts) {
+    const Ali = window.Ali || {};
+    if (Ali.contacts) {
       if (!this.props.corpId) {
         Ali.alert({
           message: i18n.corpIdRequired,
@@ -69,7 +72,9 @@ class EmployeeField extends React.Component {
         });
         return;
       }
-      option.corpId = this.props.corpId;
+      if (Ali.isDingDing) {
+        option.corpId = this.props.corpId;
+      }
       Ali.contacts.get(option, (result) => {
         if (result && !result.errorCode) {
           this.props.onChange(this.transToValue(result.results));
@@ -99,7 +104,7 @@ class EmployeeField extends React.Component {
     return (list || []).map(item => (
       {
         key: item.emplId,
-        label: item.name,
+        label: item.nickNameCn || item.name,
         avatar: item.avatar,
       }
     ));
@@ -117,24 +122,27 @@ class EmployeeField extends React.Component {
 
   render() {
     const t = this;
-    const icon = {
+    const iconProps = {
       className: classnames(Context.prefixClass('employee-field-icon'), {
         active: !t.props.readOnly,
       }),
-      name: 'plus-circle',
+      // name: 'plus-circle',
       width: 20,
       height: 20,
       onClick(e) {
         t.onPickHandler(e);
       },
     };
+
+    const icon = <PlusCircle {...iconProps} />;
+    const { className, ...otherProps } = t.props;
     return (
       <div
         className={classnames(Context.prefixClass('employee-field'), {
-          [t.props.className]: !!t.props.className,
+          [className]: !!className,
         })}
       >
-        <Field {...t.props} icon={icon}>
+        <Field {...otherProps} icon={icon}>
           <div onClick={(e) => { t.onPickHandler(e); }}>
             {
               !t.props.value.length ?

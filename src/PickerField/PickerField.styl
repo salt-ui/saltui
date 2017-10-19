@@ -6,8 +6,8 @@
  * All rights reserved.
  */
 
-$picker-field-tip-color = $gray-lighter
-$picker-field-readonly-color = $gray-lighter
+$picker-field-tip-color = $normal-alpha-5
+$picker-field-readonly-color = $normal-alpha-5
 
 $picker-field-searchbar-height = 45px
 
@@ -72,7 +72,7 @@ $picker-field-searchbar-height = 45px
   hairline('border-top', $border)
 
   .{$prefix}-picker-field-searchpanel-result-summary
-    padding-left 11px
+    padding-left 12px
     text-align left
     overflow hidden
     line-height 40px
@@ -83,9 +83,8 @@ $picker-field-searchbar-height = 45px
 
   .{$prefix}-button
     float right
-    width 115px
-    line-height 40px
-    margin-right 11px
+    margin-right 12px
+    margin-top 4px
 
 .{$prefix}-picker-field-search-empty
   position relative
@@ -137,100 +136,3 @@ $picker-field-searchbar-height = 45px
   display block
   margin-left 34px
   line-height $font-size-t4-lh
-
-.{$prefix}-picker-field-searchbar
-  position relative
-  background-color $basic-700
-  height $picker-field-searchbar-height
-  padding 12px 11px 11px
-  font-size 12px
-
-  .{$prefix}-icon
-    display inline-block
-
-.{$prefix}-picker-field-searchbar-active
-  .{$prefix}-picker-field-searchbar-placeholder
-    display none
-
-.{$prefix}-picker-field-searchbar-placeholder
-  position absolute
-  z-index 99
-  left 11px
-  top 12px
-  right 11px
-  bottom 11px
-  line-height 22px
-  text-align center
-  background-color $basic-100
-  border-radius 3px
-  color $gray-lighter
-
-  .{$prefix}-icon
-    vertical-align text-top
-
-    svg
-      fill $gray-lighter
-
-.{$prefix}-picker-field-searchbar-input
-  overflow hidden
-
-.{$prefix}-picker-field-searchbar-input-text
-  position relative
-  overflow hidden
-  background-color $basic-100
-  border-radius 3px
-  line-height 22px
-
-  input
-    outline none
-    border none
-    display block
-    height 22px
-    padding-left 25px
-    padding-right 28px
-    font-size 12px
-    color $text-primary
-    width 100%
-    background-color transparent
-    z-index 2
-    position relative
-
-.{$prefix}-picker-field-searchbar-input-icon
-  position absolute
-  left 7px
-  top 0
-
-  .{$prefix}-icon
-    vertical-align text-top
-
-    svg
-      fill $gray-lighter
-
-.{$prefix}-picker-field-searchbar-input-clear
-  position absolute
-  z-index 3
-  right 8px
-  top 4px
-  border-radius 100%
-  width 14px
-  height 14px
-  line-height 14px
-  text-align center
-  background-color $gray-lighter
-  transform scale(0)
-  transform-origin center center
-  transition all 0.3s ease-in-out
-
-  .{$prefix}-icon
-    svg
-      fill $basic-100
-
-.{$prefix}-picker-field-searchbar-input-filled
-  .{$prefix}-picker-field-searchbar-input-clear
-    transform scale(1)
-
-.{$prefix}-picker-field-searchbar-input-cancel
-  float right
-  margin-left 15px
-  margin-top 5px
-  color $brand-primary

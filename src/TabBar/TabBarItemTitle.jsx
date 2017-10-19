@@ -9,7 +9,6 @@ class TabBarItemTitle extends React.Component {
     titleStyle: React.PropTypes.object,
     activeTitleStyle: React.PropTypes.object,
   };
-
   render() {
     const { active, title, titleStyle, activeTitleStyle } = this.props;
     const currentTitleStyle = active ? activeTitleStyle : titleStyle;
@@ -20,4 +19,4 @@ class TabBarItemTitle extends React.Component {
   }
 }
 
-module.exports = TabBarItemTitle;
+export default TabBarItemTitle;

@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import Context from '@ali/tingle-context';
+import Context from '../../Context';
 import cloneDeep from 'lodash/cloneDeep';
 import WeekBar from './WeekBar';
 import Panel from './Panel';
@@ -21,14 +21,14 @@ class DayCalendar extends React.Component {
   static propTypes = {
     className: React.PropTypes.string,
     locale: React.PropTypes.string, // 国际化语言
-    viewMode: React.PropTypes.string,
+    animationType: React.PropTypes.string,
     singleMode: React.PropTypes.bool, // 是否是单选模式
     onChange: React.PropTypes.func,
   };
 
   static defaultProps = {
     locale: 'zh-cn',
-    viewMode: 'slide', //  slide | popup
+    animationType: 'slideLeft', //  slideUp | slideLeft
     singleMode: true,
     onChange: () => {},
   };
@@ -37,7 +37,7 @@ class DayCalendar extends React.Component {
 
   constructor(props) {
     super(props);
-    this.height = props.viewMode === 'popup' ? 446 : document.documentElement.clientHeight;
+    this.height = props.animationType === 'slideUp' ? 446 : document.documentElement.clientHeight;
     this.value = cloneDeep(props.value);
   }
 
@@ -62,7 +62,7 @@ class DayCalendar extends React.Component {
         })}
       >
         {
-          t.props.viewMode === 'popup' &&
+          t.props.animationType === 'slideUp' &&
             <TopBar {...t.props} onOk={() => { t.onTopBarOk(); }} />
         }
         <WeekBar locale={t.props.locale} />

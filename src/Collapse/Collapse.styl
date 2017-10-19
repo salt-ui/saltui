@@ -11,13 +11,13 @@
   src: url('//at.alicdn.com/t/font_2rlrsccxhkf0f6r.woff') format('woff');
 }
 
-.tingle-collapse {
+.{$prefix}-collapse {
   background-color: #fff;
 
-  > .tingle-collapse-item {
+  > .{$prefix}-collapse-item {
     border-top: 1px solid $normal-alpha-7;
 
-    > .tingle-collapse-header {
+    > .{$prefix}-collapse-header {
       height: 56px;
       line-height: 24px;
       padding: 16px;
@@ -42,7 +42,7 @@
         }
       }
 
-      .t-icon {
+      .{$prefix}-icon {
         display: inline-block;
         vertical-align: top;
         margin-right: 12px;
@@ -60,13 +60,13 @@
       }
     }
 
-    .tingle-collapse-content {
+    .{$prefix}-collapse-content {
       overflow: hidden;
       border-top: 1px solid $normal-alpha-7;
       color: #666;
       background-color: #fff;
 
-      > &-box {
+      &-box {
         color: $dark-alpha-3;
         font-size: 14px;
         line-height: 22px;
@@ -81,7 +81,7 @@
       border-top: none;
     }
 
-    &-active > .tingle-collapse-header .arrow {
+    &-active > .{$prefix}-collapse-header .arrow {
       transform: rotateZ(-180deg);
       transform-origin: 50% 25%;
     }

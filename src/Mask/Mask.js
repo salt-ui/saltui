@@ -5,12 +5,15 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const { prefixClass, noop } = require('../Context');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-class Mask extends React.Component {
+import Animate from 'rc-animate';
+import cssAnim from 'css-animation';
+import classnames from 'classnames';
+import { prefixClass, noop } from '../Context';
 
+class MaskBody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,33 +47,68 @@ class Mask extends React.Component {
     });
   }
 
+  toggle(node, show, done) {
+    const { opacity } = this.props;
+    cssAnim(node, `__css-animation__${prefixClass('mask')}`, {
+      start() {
+        if (show) {
+          node.style.opacity = 0;
+        }
+      },
+      active() {
+        node.style.opacity = show ? opacity : 0;
+      },
+      end() {
+        done();
+      },
+    });
+  }
+
   render() {
     const t = this;
-    const { className, opacity, zIndex, type, ...other } = t.props;
+    const { className, zIndex, ...other } = t.props;
     const { visible } = t.state;
 
     const styleMap = {
       display: visible ? 'block' : 'none',
-      opacity,
       zIndex,
     };
 
     return (
-      <div
-        ref={(c) => { this.root = c; }}
-        className={classnames(prefixClass('mask'), {
-          visible,
-          [className]: !!className,
-        })}
-        style={styleMap}
-        onClick={() => { t.handleClick(); }}
-        {...other}
-      />
+      <Animate
+        component=""
+        animation={{
+          appear: (node, done) => {
+            this.toggle(node, true, done);
+          },
+          enter: (node, done) => {
+            this.toggle(node, true, done);
+          },
+          leave: (node, done) => {
+            this.toggle(node, false, done);
+          },
+        }}
+      >
+        {
+          visible ? (
+            <div
+              ref={(c) => { this.root = c; }}
+              className={classnames(prefixClass('mask'), {
+                visible,
+                [className]: !!className,
+              })}
+              style={styleMap}
+              onClick={() => { t.handleClick(); }}
+              {...other}
+            />
+          ) : null
+        }
+      </Animate>
     );
   }
 }
 
-Mask.defaultProps = {
+MaskBody.defaultProps = {
   opacity: 0.4,
   closeable: true,
   onDidHide: noop,
@@ -80,7 +118,7 @@ Mask.defaultProps = {
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
-Mask.propTypes = {
+MaskBody.propTypes = {
   className: React.PropTypes.string,
   closeable: React.PropTypes.bool,
   opacity: React.PropTypes.number,
@@ -90,6 +128,65 @@ Mask.propTypes = {
   zIndex: React.PropTypes.number,
 };
 
-Mask.displayName = 'Mask';
+MaskBody.displayName = 'MaskBody';
 
-module.exports = Mask;
+class Mask extends React.Component {
+  componentDidMount() {
+    const div = document.createElement('div');
+    document.body.appendChild(div);
+    this.wrapper = div;
+    if (this.props.renderToBody) {
+      this.mountInBody();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.renderToBody && !nextProps.renderToBody) {
+      this.unmountInBody();
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.renderToBody) {
+      this.mountInBody();
+    }
+  }
+
+  componentWillUnmount() {
+    this.unmountInBody();
+    document.body.removeChild(this.wrapper);
+  }
+
+  mountInBody() {
+    ReactDOM.render(this.renderMaskBody(), this.wrapper);
+  }
+
+  unmountInBody() {
+    ReactDOM.unmountComponentAtNode(this.wrapper);
+  }
+
+  renderMaskBody() {
+    const newProps = { ...this.props };
+    delete newProps.renderToBody;
+    return <MaskBody {...newProps} />;
+  }
+
+  render() {
+    if (this.props.renderToBody) {
+      return null;
+    }
+    return this.renderMaskBody();
+  }
+}
+
+Mask.defaultProps = {
+  ...MaskBody.defaultProps,
+  renderToBody: true,
+};
+
+Mask.propTypes = {
+  ...MaskBody.propTypes,
+  renderToBody: React.PropTypes.bool,
+};
+
+export default Mask;

@@ -18,6 +18,10 @@ class TabBarItemMore extends React.Component {
     index: React.PropTypes.number,
   };
 
+  constructor(props) {
+    super(props);
+    this.doClick = this.doClick.bind(this);
+  }
   doClick(e) {
     e.stopPropagation();
     this.props.onClick(this.props.index, this.props.path);
@@ -33,9 +37,8 @@ class TabBarItemMore extends React.Component {
           Context.prefixClass('tabs-bar-item-more'), {
             active,
           })}
-        onClick={() => {
-          t.doClick();
-        }} flex={1}
+        onClick={this.doClick}
+        flex={1}
       >
         <TabBarItemBadge {...t.props} iconHeight={iconHeight} active={active} showTitle={false} />
       </Box>
@@ -43,4 +46,4 @@ class TabBarItemMore extends React.Component {
   }
 }
 
-module.exports = TabBarItemMore;
+export default TabBarItemMore;

@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./ScrollList');
+export default from './ScrollList';

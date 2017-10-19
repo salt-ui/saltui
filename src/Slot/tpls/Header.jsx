@@ -1,6 +1,6 @@
 const React = require('react');
 const classnames = require('classnames');
-const Context = require('@ali/tingle-context');
+const Context = require('../../Context');
 
 class SlotHeader extends React.Component {
 

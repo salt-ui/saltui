@@ -9,13 +9,6 @@ require('salt-context');
 import './CitySelectFieldDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
-// 插入通用svg
-require('salt-icon-source');
-
-// 插入私有svg
-
-
-
 // 渲染demo
 var Demo = require('./CitySelectFieldDemo');
 export default Demo;

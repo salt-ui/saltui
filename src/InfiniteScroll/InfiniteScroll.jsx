@@ -9,7 +9,7 @@ import React from 'react';
 import classnames from 'classnames';
 import _throttle from 'lodash/throttle';
 import Context from '../Context';
-import TingleIcon from 'salt-icon';
+import IconLoading from 'salt-icon/lib/Loading';
 
 class InfiniteScroll extends React.Component {
 
@@ -73,7 +73,7 @@ class InfiniteScroll extends React.Component {
 
     if (props.loading && props.showIcon) {
       iconElement = props.loadingIcon ||
-        <TingleIcon name="loading" className="loading-icon" key="icon" />;
+        <IconLoading className="loading-icon" key="icon" />;
     }
 
     if (props.loading && props.showText && props.loadingText) {

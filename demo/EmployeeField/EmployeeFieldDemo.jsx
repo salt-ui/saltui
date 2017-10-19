@@ -70,6 +70,7 @@ class EmployeeFieldDemo extends React.Component {
         <Group.List>
           <EmployeeField
             corpId="dingd8e1123006514592"
+            tip="这是一个 tip"
             label="选择人员"
             placeholder="请选择"
             value={this.state.value}

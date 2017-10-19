@@ -42,6 +42,12 @@ class TabBarItemBadge extends React.Component {
           <TabBarItemIcon {...this.props} iconHeight={iconHeight} active={active} />
           {showTitle ? <TabBarItemTitle {...this.props} active={active} /> : null}
         </Badge>);
+    } else {
+      contentBadge.push(
+        <div>
+          <TabBarItemIcon {...this.props} iconHeight={iconHeight} active={active} />
+          {showTitle ? <TabBarItemTitle {...this.props} active={active} /> : null}
+        </div>);
     }
     return (<div>
       {contentBadge}
@@ -49,4 +55,4 @@ class TabBarItemBadge extends React.Component {
   }
 }
 
-module.exports = TabBarItemBadge;
+export default TabBarItemBadge;

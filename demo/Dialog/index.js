@@ -9,10 +9,6 @@ require('salt-context');
 import './DialogDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
-
-
-
-
 // 渲染demo
 var Demo = require('./DialogDemo');
 export default Demo;

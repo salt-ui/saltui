@@ -9,10 +9,6 @@ require('salt-context');
 import './GridDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
-
-
-
-
 // 渲染demo
 var Demo = require('./GridDemo');
 export default Demo;

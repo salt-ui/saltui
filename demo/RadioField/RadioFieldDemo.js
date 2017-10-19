@@ -80,6 +80,7 @@ class Demo extends React.Component {
       className: 'ccc',
       iconPosition: 'left',
       required: true,
+      tip: '这里是提示信息'
     };
     return (<div>
       <RadioField {...radioFieldProps} />

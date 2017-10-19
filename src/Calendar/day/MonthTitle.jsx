@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-import Context from '@ali/tingle-context';
+import Context from '../../Context';
 import locale from '../locale';
 import formatter from '../formatter';
 

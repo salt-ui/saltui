@@ -9,5 +9,6 @@ require('salt-context');
 import './TabBarDemo.styl';
 
 // 渲染demo
-var Demo = require('./TabBarDemo');
-export default Demo;
+const Demo = require('./TabBarDemo');
+
+export default Demo ;

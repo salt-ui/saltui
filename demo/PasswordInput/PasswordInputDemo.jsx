@@ -39,6 +39,7 @@ class PasswordInputDemo extends React.Component {
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">密码输入框测试</Group.Head>
         <Group.List>
           <PasswordInput
+            hideIcon
             placeholder="请输入密码"
             value={this.state.value}
             decrypted={this.state.decrypted}

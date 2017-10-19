@@ -2,8 +2,8 @@ import React from 'react';
 import Context from '../Context';
 import Avatar from '../Avatar';
 import DelIcon from 'salt-icon/lib/MinusRound';
-import deepCopy from 'deep-copy';
-import deepEqual from 'deep-equal';
+import deepCopy from 'lodash/cloneDeep';
+import deepEqual from 'lodash/isEqual';
 import FoldablePane from '../FoldablePane';
 
 class EmployeeList extends React.Component {

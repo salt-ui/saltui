@@ -6,14 +6,17 @@
  * All rights reserved.
  */
 import React from 'react';
-import Icon from 'salt-icon';
+import Check from 'salt-icon/lib/Check';
 import classnames from 'classnames';
 import Context from '../Context';
 
 const { prefixClass } = Context;
 
 class Step extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.onIconClick = this.onIconClick.bind(this);
+  }
   onIconClick() {
     if (this.props.hasDetail) {
       this.props.onChange(Number(this.props.stepNumber) - 1);
@@ -37,7 +40,7 @@ class Step extends React.Component {
       icon = <span className={prefixClass('steps-icon')}>{props.stepNumber}</span>;
     } else {
       icon = (<span className={prefixClass('steps-icon')}>
-        <Icon name="check" width={20} height={20} fill="#FFF" />
+        <Check width={20} height={20} fill="#FFF" />
       </span>);
     }
 
@@ -65,7 +68,7 @@ class Step extends React.Component {
     return (
       <div className={stepCls} style={fixStyle}>
         {tail}
-        <div className={prefixClass('steps-head')} style={headStyleFixed} onClick={this.onIconClick.bind(this)}>
+        <div className={prefixClass('steps-head')} style={headStyleFixed} onClick={this.onIconClick}>
           <div className={prefixClass('steps-head-inner')}>{icon}</div>
         </div>
         <div className={prefixClass('steps-main')} style={{ maxWidth }}>
@@ -96,5 +99,10 @@ Step.propTypes = {
     React.PropTypes.number,
   ]),
 };
+Step.defaultProps = {
+  hasDetail: true,
+  onChange() {},
+  stepNumber: '',
+};
 
-module.exports = Step;
+export default Step;

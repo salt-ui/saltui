@@ -9,9 +9,9 @@
  */
 import React from 'react';
 import cloneDeep from 'lodash/cloneDeep';
-import Toast from '@ali/tingle-toast';
-import Context from '@ali/tingle-context';
-import Button from '@ali/tingle-button';
+import Toast from '../../Toast';
+import Context from '../../Context';
+import Button from '../../Button';
 import classnames from 'classnames';
 import util from '../util';
 import Panel from './Panel';
@@ -206,7 +206,7 @@ class CascadePanel extends Panel {
     });
 
     // 在 slide 模式，且不显示 halfDay 的情况下，只要起止值都已经完整，则触发 onOk
-    if (t.props.viewMode === 'slide' & !t.props.showHalfDay && newValue.startDate && newValue.endDate) {
+    if (t.props.animationType === 'slideLeft' & !t.props.showHalfDay && newValue.startDate && newValue.endDate) {
       t.props.onOk(cloneDeep(newValue));
     }
   }

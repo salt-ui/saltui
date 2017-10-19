@@ -9,10 +9,6 @@ require('salt-context');
 import './BoxDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
-
-
-
-
 // 渲染demo
 var Demo = require('./BoxDemo');
 export default Demo;

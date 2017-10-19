@@ -11,7 +11,8 @@ import React from 'react';
 import classnames from 'classnames';
 import { unitize } from '../Style';
 import Context from '../Context';
-import Icon from 'salt-icon';
+import StarFullIcon from 'salt-icon/lib/StarFull';
+import StarLineIcon from 'salt-icon/lib/StarLine';
 
 class Rate extends React.Component {
 
@@ -21,10 +22,9 @@ class Rate extends React.Component {
     total: 5,
     value: 0,
     showTip: true,
-
     size: 'normal',
-
     scoreTips: ['不满意', '一般', '基本满意', '满意', '非常满意'],
+    readOnly: false,
     onChange: () => { },
   };
 
@@ -37,6 +37,7 @@ class Rate extends React.Component {
     showTip: React.PropTypes.bool,
     score: React.PropTypes.number,
     value: React.PropTypes.number,
+    readOnly: React.PropTypes.bool,
     onChange: React.PropTypes.func,
   };
 
@@ -60,7 +61,11 @@ class Rate extends React.Component {
   }
 
   handleItemClick(v) {
-    this.props.onChange(v);
+    const t = this;
+    if (t.props.readOnly) {
+      return;
+    }
+    t.props.onChange(v);
   }
 
   render() {
@@ -88,7 +93,11 @@ class Rate extends React.Component {
             paddingRight: unitize(gap),
           }}
         >
-          <Icon name={i <= value ? 'star-full' : 'star-line'} className={classnames(Context.prefixClass('rate-icon'))} />
+          {
+            i <= value ?
+              <StarFullIcon className={classnames(Context.prefixClass('rate-icon'))} /> :
+              <StarLineIcon className={classnames(Context.prefixClass('rate-icon'))} />
+          }
         </div>
       );
       items.push(item);
@@ -98,6 +107,7 @@ class Rate extends React.Component {
         className={classnames(Context.prefixClass('rate'),
           {
             't-FBH': t.props.size === 'normal',
+            readOnly: t.props.readOnly,
             [t.props.className]: !!t.props.className,
           })}
       >

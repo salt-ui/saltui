@@ -1,10 +1,11 @@
 {
   "name": "saltui",
-  "version": "3.0.8",
+  "version": "3.1.6",
   "description": "React components for mobile",
   "main": "build/salt-ui.js",
   "scripts": {
-    "start": "gulp server"
+    "start": "gulp server",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -23,16 +24,23 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
     "babel-plugin-transform-es3-property-literals": "^6.22.0",
-    "babel-preset-es2015-ie": "^6.7.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "browser-sync": "^2.18.13",
     "browser-sync-webpack-plugin": "^1.2.0",
     "bundle-loader": "^0.5.5",
     "co": "^4.6.0",
     "css-loader": "^0.28.7",
-    "es3ify-loader": "^0.2.0",
     "fastclick": "^1.0.6",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-cleancss": "^0.2.2",
+    "gulp-ejs": "^3.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-stylus": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
     "happypack": "^4.0.0-beta.2",
     "progress-bar-webpack-plugin": "^1.10.0",
     "react": "^0.14.9",
@@ -44,9 +52,21 @@
     "stylus-loader": "^3.0.1",
     "svg2react-loader": "^1.0.3",
     "to-case": "^2.0.0",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.5",
+    "webpack-bundle-analyzer": "^2.9.0"
   },
   "dependencies": {
-    "salt-icon": "^3.1.4"
+    "hammerjs": "^2.0.8",
+    "lie": "^3.1.1",
+    "lodash": "^4.17.4",
+    "natty-fetch": "^2.5.2",
+    "rc-collapse": "^1.7.6",
+    "rc-dialog": "^6.5.11",
+    "rc-input-number": "^3.6.8",
+    "rc-tabs": "^9.1.4",
+    "rc-tooltip": "^3.5.0",
+    "salt-icon": "^3.1.4",
+    "uploadcore": "^2.3.1",
+    "uxcore-formatter": "^0.1.6"
   }
 }

@@ -9,7 +9,8 @@ import React from 'react';
 import classnames from 'classnames';
 import RcInputNumber from 'rc-input-number';
 import Context from '../Context';
-import Icon from 'salt-icon';
+import PlusThin from 'salt-icon/lib/PlusThin';
+import MinusThin from 'salt-icon/lib/MinusThin';
 
 
 class NumberPicker extends React.Component {
@@ -35,7 +36,7 @@ class NumberPicker extends React.Component {
     disabled: false,
     focusOnUpDown: false,
     useTouch: true,
-    onChange: () => {},
+    onChange: () => { },
   };
   static displayName = 'NumberPicker';
   constructor(props) {
@@ -59,7 +60,7 @@ class NumberPicker extends React.Component {
   // 获得当前值所占的宽度，给予组件，实现可根据输入的内容来变宽
   processingWidth(length) {
     const t = this;
-    let width = t.refs.reference.offsetWidth;
+    let width = t.reference.offsetWidth;
     width = length && length <= 4 ? 108 : width;
     // rc-input-number的input框最宽的宽度为185px
     if (width > 185) {
@@ -87,12 +88,12 @@ class NumberPicker extends React.Component {
         style={{ width: t.state.width }}
       >
         <RcInputNumber
-          upHandler={<Icon name="plus-thin" fill={fillColorUp} width="14" height="14" />}
-          downHandler={<Icon name="minus-thin" fill={fillColorDown} width="14" height="14" />}
+          upHandler={<PlusThin name="plus-thin" fill={fillColorUp} width="14" height="14" />}
+          downHandler={<MinusThin name="minus-thin" fill={fillColorDown} width="14" height="14" />}
           {...restProps}
           className={stepperClass}
         />
-        <div ref="reference" className="reference" >{t.props.value}</div>
+        <div ref={(c) => { this.reference = c; }} className="reference" >{t.props.value}</div>
       </div>
     );
   }

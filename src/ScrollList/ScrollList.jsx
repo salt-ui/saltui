@@ -230,7 +230,7 @@ class ScrollList extends React.Component {
     } else {
       this.setState({
         fetchData: true,
-        showRefreshing: this.props.url ? false : true,
+        showRefreshing: !this.props.url,
       });
     }
   }
@@ -282,11 +282,11 @@ class ScrollList extends React.Component {
     if (!Array.isArray(children)) {
       return null;
     }
-
     const prevs = children.slice(0, children.length - 1);
-
     return prevs.map((element, i) => React.cloneElement(element, {
+      /* eslint-disable react/no-array-index-key */
       key: `prev-sibling-${i}`,
+      /* eslint-enable react/no-array-index-key */
       index: i,
     }));
   }
@@ -302,7 +302,9 @@ class ScrollList extends React.Component {
     const isLastChildFunc = typeof lastChild === 'function';
     if (!isLastChildFunc) {
       return data.map((item, i) => React.cloneElement(lastChild, {
+        /* eslint-disable react/no-array-index-key */
         key: `child-${i}`,
+        /* selint-enable react/no-array-index-key */
         index: i,
         first: i === 0,
         last: i === len,

@@ -5,14 +5,20 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-require('salt-context');
+
+
+
+// import Content from 'salt-context';
 import './ScrollListDemo.styl';
-//window.FastClick && FastClick.attach(document.body);
+
+// window.FastClick && FastClick.attach(document.body);
+
 
 
 
 
 
 // 渲染demo
-var Demo = require('./ScrollListDemo');
-export default Demo;
+import Demo from './ScrollListDemo';
+
+export default Demo ;

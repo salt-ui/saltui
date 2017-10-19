@@ -8,6 +8,7 @@
 
 const React = require('react');
 const Group = require('salt-group');
+const Toast = require('salt-toast');
 const TextField = require('salt-text-field');
 
 const { LeftAddon, RightAddon, Count } = TextField;
@@ -34,6 +35,15 @@ class Demo extends React.Component {
     this.setState({
       [name]: newValue,
     });
+    if (newValue.length > 5) {
+      this.setState({
+        errMsg: '最多输入5个字',
+      });
+    } else {
+      this.setState({
+        errMsg: null,
+      });
+    }
   }
 
   handleNumberChange(newValue) {
@@ -68,14 +78,14 @@ class Demo extends React.Component {
             placeholder="请输入"
             value={t.state.t1}
             tip="这里是提示信息"
-            onChange={t.handleTextChange.bind(t, 't1')}
+            onChange={(value) => { t.handleTextChange('t1', value); }}
           />
           <TextField
             label="仅限数字" placeholder="请输入"
-            filter={t.numberFilter.bind(t)}
+            filter={value => t.numberFilter(value)}
             value={t.state.number}
-            onBlur={t.handleNumberBlur.bind(t)}
-            onChange={t.handleNumberChange.bind(t)}
+            onBlur={(value) => { t.handleNumberBlur(value); }}
+            onChange={(value) => { t.handleNumberChange(value); }}
           />
         </Group.List>
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">不可修改</Group.Head>
@@ -92,7 +102,7 @@ class Demo extends React.Component {
             label="上下结构"
             layout="v"
             value={t.state.t2}
-            onChange={t.handleTextChange.bind(t, 't2')}
+            onChange={(value) => { t.handleTextChange('t2', value); }}
           />
         </Group.List>
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">前缀</Group.Head>
@@ -100,7 +110,7 @@ class Demo extends React.Component {
           <TextField
             label="前缀"
             value={t.state.t1}
-            onChange={t.handleTextChange.bind(t, 't1')}
+            onChange={(value) => { t.handleTextChange('t1', value); }}
             placeholder="请输入"
           >
             <LeftAddon>
@@ -112,7 +122,7 @@ class Demo extends React.Component {
         <Group.List>
           <TextField
             label="后缀" value={t.state.t1}
-            onChange={t.handleTextChange.bind(t, 't1')}
+            onChange={(value) => { t.handleTextChange('t1', value); }}
           >
             <RightAddon>
               <span>PST</span>
@@ -123,10 +133,19 @@ class Demo extends React.Component {
         <Group.List>
           <TextField
             label="计数器" value={t.state.t1}
-            onChange={t.handleTextChange.bind(t, 't1')}
+            onChange={(value) => { t.handleTextChange('t1', value); }}
           >
             <Count total={20} length={t.state.t1.length} />
           </TextField>
+        </Group.List>
+        <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">即时校验</Group.Head>
+        <Group.List>
+          <TextField
+            label="即时校验" value={t.state.t1}
+            onChange={(value) => { t.handleTextChange('t1', value); }}
+            errMsg={t.state.errMsg}
+            toastComponent={Toast}
+          />
         </Group.List>
       </div>
     );
