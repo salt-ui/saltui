@@ -8,7 +8,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Context from '../Context';
-import { HBox } from '../Box';
+import { HBox } from '../Boxs';
 import { TabBarItem, TabBarItemCenter } from './TabBarItem';
 
 class TabBar extends React.Component {

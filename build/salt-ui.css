@@ -2692,8 +2692,8 @@ a:hover {
 .t-dialog-slideDown-enter {
   -webkit-animation-duration: 0.3s;
           animation-duration: 0.3s;
-  -webkit-animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
   opacity: 0;
 }
 .t-dialog-slideDown-appear-active,
@@ -2705,8 +2705,8 @@ a:hover {
 .t-dialog-slideDown-leave {
   -webkit-animation-duration: 0.3s;
           animation-duration: 0.3s;
-  -webkit-animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
 }
 .t-dialog-slideDown-leave-active {
   -webkit-animation-name: dialogSlideDownLeave;
@@ -3352,8 +3352,8 @@ a:hover {
   display: none;
   opacity: 0;
   z-index: 1000;
-  -webkit-transition: opacity 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
-  transition: opacity 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  -webkit-transition: opacity 300ms ease;
+  transition: opacity 300ms ease;
   background-color: #000;
 }
 .t-mask.visible {
@@ -4416,8 +4416,8 @@ a:hover {
           transform: translate(-100%, 0);
   -webkit-animation-duration: 0.3s;
           animation-duration: 0.3s;
-  -webkit-animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
 }
@@ -4429,8 +4429,8 @@ a:hover {
 .t-popup-slide-right-leave {
   -webkit-animation-duration: 0.3s;
           animation-duration: 0.3s;
-  -webkit-animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
 }
@@ -6203,8 +6203,8 @@ a:hover {
           animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
-  -webkit-animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
 }
 .t-tabs-bar-item-fade-enter .t-badge,
 .t-tabs-bar-item-fade-appear .t-badge {
@@ -6214,8 +6214,8 @@ a:hover {
           animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
-  -webkit-animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
 }
 .t-tabs-bar-item-fade-enter-active,
 .t-tabs-bar-item-fade-appear-active {
@@ -6232,16 +6232,16 @@ a:hover {
           animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
-  -webkit-animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
 }
 .t-tabs-bar-item-fade-leave .t-badge {
   -webkit-animation-duration: 0.3s;
           animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
-  -webkit-animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-          animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
 }
 .t-tabs-bar-item-fade-leave-active {
   -webkit-animation-name: tabBarItemFadeOut;

@@ -13,14 +13,14 @@ class StepsDemo extends React.Component {
   render() {
     return (
       <div>
-        <Steps current={2} showIcon={false} maxDescriptionWidth={10}>
+        <Steps current={2} showIcon={true} maxDescriptionWidth={10}>
           <Step key={0} />
           <Step key={1} />
           <Step key={2} />
           <Step key={3} />
           <Step key={4} />
         </Steps>
-        <Steps current={2} showIcon={false} direction="vertical">
+        <Steps current={2} showIcon={true} direction="vertical">
           <Step key={0} title="步骤一" />
           <Step key={1} title="步骤二" />
           <Step key={2} title="步骤三" />

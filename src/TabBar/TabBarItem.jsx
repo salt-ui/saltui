@@ -8,7 +8,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Context from '../Context';
-import { Box } from '../Box';
+import { Box } from '../Boxs';
 import TabBarItemCenter from './TabBarItemCenter';
 import TabBarItemBadge from './TabBarItemBadge';
 

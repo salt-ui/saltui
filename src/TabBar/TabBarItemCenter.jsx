@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Context from '../Context';
-import { Box, HBox } from '../Box';
+import { Box, HBox } from '../Boxs';
 import Layer from '../Layer';
 import Animate from 'rc-animate';
 import TabBarItemIcon from './TabBarItemIcon';

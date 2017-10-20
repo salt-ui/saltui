@@ -45,7 +45,7 @@ class Demo extends React.Component {
               要如何处理数据？要如何连接服务器？JSX 到底是什么？“组件”又是如何定义的？
             </div>
           </Tab.Item>
-          <Tab.Item title="已完成" disabled >
+          <Tab.Item title="已完成">
             <div style={{ padding: 10 }}>
               移动互联网，就是将移动通信和互联网二者结合起来，成为一体。
               是指互联网的技术、平台、商业模式和应用与移动通信技术结合并实践的活动的总称。

@@ -36,7 +36,7 @@ class Demo extends React.Component {
                   <td className="info-td"><div className="name">周姮</div><div className="postName">资深交互设计师</div></td>
                 </tr>
               </tbody></table>),
-          disable: true,
+          disable: false,
         },
         {
           value: {
@@ -65,7 +65,7 @@ class Demo extends React.Component {
           value: '2',
           checked: false,
           content: '大家都好大家都好大家都好大家都好大家都好大家都好',
-          disable: true,
+          disable: false,
         },
       ],
       onChange(value, index, data) {
@@ -80,7 +80,7 @@ class Demo extends React.Component {
       className: 'ccc',
       iconPosition: 'left',
       required: true,
-      tip: '这里是提示信息'
+      tip: '这里是提示信息',
     };
     return (<div>
       <RadioField {...radioFieldProps} />

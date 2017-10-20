@@ -5,7 +5,6 @@
   import ActionSheet from './lib/ActionSheet';
   import Avatar from './lib/Avatar';
   import Badge from './lib/Badge';
-  import Box from './lib/Box';
   import Boxs from './lib/Boxs';
   import Button from './lib/Button';
   import Calendar from './lib/Calendar';
@@ -77,7 +76,6 @@ const __SALT_BUNDLE__ = {
   ActionSheet,
   Avatar,
   Badge,
-  Box,
   Boxs,
   Button,
   Calendar,

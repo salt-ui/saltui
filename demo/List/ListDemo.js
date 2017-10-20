@@ -8,7 +8,7 @@
 
 import Icon from 'salt-icon';
 import Group from 'salt-group';
-import Boxs from 'salt-box';
+import Boxs from 'salt-boxs';
 import AngleRight from 'salt-icon/lib/AngleRight';
 import List from 'salt-list';
 
