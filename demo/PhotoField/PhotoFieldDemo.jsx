@@ -7,8 +7,8 @@
  */
 
 const React = require('react');
-const DdPhotoField = require('salt-photo-field/');
-const PhotoField = require('../../src/PhotoField');
+const DdPhotoField = require('salt-photo-field');
+const PhotoField = require('../../src/PhotoField/PhotoField');
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const PhotoField = require('../../dist');
@@ -45,22 +45,6 @@ class Demo extends React.Component {
           url: 'http://gtms02.alicdn.com/tps/i2/TB1Xe3SMpXXXXX6XpXXTCU0QpXX-300-300.jpg',
           name: '222',
         },
-        // {
-        //   url: 'http://gtms02.alicdn.com/tps/i2/TB1Xe3SMpXXXXX6XpXXTCU0QpXX-300-300.jpg',
-        //   name: '222',
-        // },
-        // {
-        //   url: 'http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/tingle-ui/tingle-photo-field/eed863a778315746f6f0bf736a3200fc/image.png',
-        //   name: '222',
-        // },
-        // {
-        //   url: 'http://gtms02.alicdn.com/tps/i2/TB1Xe3SMpXXXXX6XpXXTCU0QpXX-300-300.jpg',
-        //   name: '222',
-        // },
-        // {
-        //   url: 'http://gtms02.alicdn.com/tps/i2/TB1Xe3SMpXXXXX6XpXXTCU0QpXX-300-300.jpg',
-        //   name: '222',
-        // },
       ],
     };
   }
@@ -90,7 +74,6 @@ class Demo extends React.Component {
           required
           max={4}
           maxUpload={9}
-          layout="v"
           name="file"
           url="http://eternalsky.me:8122/file/upload"
           photoList={this.state.photoList}

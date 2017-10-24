@@ -14,7 +14,6 @@ module.exports = {
   module: {
     rules: [
       {
-
         test: /\.js(x)*$/,
         include: [
           path.join(process.cwd(), './src'),
@@ -27,8 +26,6 @@ module.exports = {
         query: {
           presets: ['react', 'env', 'stage-1'],
           plugins: [
-            'transform-es3-member-expression-literals',
-            'transform-es3-property-literals',
             'add-module-exports',
           ],
           cacheDirectory: true,
@@ -39,7 +36,7 @@ module.exports = {
         loader: 'babel-loader',
         include: [path.join(process.cwd(), './src')],
         query: {
-          presets: ['react', 'es2015-ie'],
+          presets: ['react', 'env', 'stage-1'],
           cacheDirectory: true,
         },
       },

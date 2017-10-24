@@ -117,7 +117,7 @@ class PhotoFieldPane extends React.Component {
     const list = (
       <div
         className={classnames(prefixClass('photo-list'), {
-          [prefixClass('hide')]: !photoItem.length,
+          [prefixClass('hide')]: photoItem.length === 0 && files.length === 0,
         })}
         ref={(c) => { this.list = c; }}
       >

@@ -439,7 +439,6 @@ gulp.task('server', () => {
           }
         ),
       ];
-      // { ...commonWebpackCfg, plugins }
       const compiler = webpack(assign({}, commonWebpackCfg, { plugins }));
       compiler.watch({}, (err, stats) => {
         console.log(`webpack log:${stats}`);
