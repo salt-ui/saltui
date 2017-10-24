@@ -1,4 +1,6 @@
 
+中文 | [English](./README_EN.md)
+
 # [SaltUI](https://salt-ui.github.io/)
 
 [![npm version](https://img.shields.io/npm/v/saltui.svg?style=flat-square)](https://www.npmjs.com/package/saltui) [![Dependency Status](https://img.shields.io/david/salt-ui/saltui.svg?label=deps&style=flat-square)](https://david-dm.org/salt-ui/saltui) [![devDependency Status](https://img.shields.io/david/dev/salt-ui/saltui.svg?label=devDeps&style=flat-square)](https://david-dm.org/salt-ui/saltui#info=devDependencies)
@@ -48,4 +50,4 @@ ReactDOM.render(<Button />, mountNode);
 
 ## 许可
 
-本项目基于 MIT 协议进行开发和发布。
+本项目基于 [MIT 协议](./LICENSE)进行开发和发布。
