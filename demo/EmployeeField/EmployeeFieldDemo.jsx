@@ -11,41 +11,6 @@ import Group from 'salt-group';
 import EmployeeField from 'salt-employee-field';
 
 const testData = [
-  {
-    key: '087181',
-    label: '王思佳',
-    avatar: '',
-  },
-  {
-    key: '006938',
-    label: '欧阳丹林',
-    avatar: '',
-  },
-  {
-    key: '002155',
-    label: '上官汉峰',
-    avatar: '//static.dingtalk.com/media/lADOAAkA5M0C7s0C7g_750_750.jpg',
-  },
-  {
-    key: '095988',
-    label: 'EVANS, John Michael',
-    avatar: '//static.dingtalk.com/media/lADOAKMxp8zAzME_193_192.jpg',
-  },
-  {
-    key: '096792',
-    label: 'FREIHERR VON BIBRA,Theodore Terry',
-    avatar: '//static.dingtalk.com/media/lADOA4xDIs0E2s0E1w_1239_1242.jpg',
-  },
-  {
-    key: '067955',
-    label: '曹柯',
-    avatar: '//static.dingtalk.com/media/lADOAH-AccyWzJU_149_150.jpg',
-  },
-  {
-    key: '065301',
-    label: '马泉蕴',
-    avatar: '//static.dingtalk.com/media/lADOEZlvDs0C7s0C7A_748_750.jpg',
-  },
 ];
 
 class EmployeeFieldDemo extends React.Component {
@@ -69,7 +34,6 @@ class EmployeeFieldDemo extends React.Component {
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">EmployeeField演示</Group.Head>
         <Group.List>
           <EmployeeField
-            corpId="dingd8e1123006514592"
             tip="这是一个 tip"
             label="选择人员"
             placeholder="请选择"

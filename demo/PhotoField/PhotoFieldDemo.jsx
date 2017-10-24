@@ -94,7 +94,6 @@ class Demo extends React.Component {
           name="file"
           url="http://eternalsky.me:8122/file/upload"
           photoList={this.state.photoList}
-          corpId={'dingd8e1123006514592'}
           tip="这里是提示信息"
           onChange={this.onChange.bind(this)}
           onDelete={this.onDelete.bind(this)}
@@ -106,7 +105,6 @@ class Demo extends React.Component {
           max={4}
           maxUpload={12}
           photoList={this.state.photoList}
-          corpId={'dingd8e1123006514592'}
           tip="这里是提示信息"
           onChange={this.onChange.bind(this)}
           onDelete={this.onDelete.bind(this)}
