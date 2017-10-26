@@ -21600,7 +21600,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var __SALT_VERSION__ = void 0; /* eslint-disable */
 
-__SALT_VERSION__ = "3.1.6";
+__SALT_VERSION__ = "3.1.7";
 
 var __SALT_BUNDLE__ = {
   version: __SALT_VERSION__,
