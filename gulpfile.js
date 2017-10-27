@@ -9,10 +9,7 @@ const uglify = require('gulp-uglify');
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
-const getGitlabApi = require('@ali/gitlab-apis');
-const co = require('co');
 const rm = require('rimraf');
-const to = require('to-case');
 const assign = require('object-assign');
 const colors = require('colors/safe');
 const inquirer = require('inquirer');
@@ -22,7 +19,7 @@ const git = require('git-rev');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const commonWebpackCfg = require('./webpack.dev.js');
 const pkg = require('./package.json');
 
@@ -58,7 +55,6 @@ const runCmd = (cmd, args = [], fn, stdoutFn) => {
 
 
 const upperInitWord = str => str.split('-').map(key => (key[0].toUpperCase() + key.slice(1))).join('');
-const removePrefix = str => str.split('-').slice(1).join('-');
 
 const getQuestions = () => (
   new Promise((resolve) => {
@@ -91,188 +87,6 @@ const getQuestions = () => (
     });
   })
 );
-
-// 将 tingle-ui 组下的转移至 saltui 下
-gulp.task('copy', () => {
-  const dirs = fs.readdirSync('../tingle-ui/node_modules/@ali');
-  dirs.filter(dir => ['tingle-ui', 'tingle-icon'].indexOf(dir) === -1).forEach((dir) => {
-    runCmd('cp', ['-rf', `../tingle-ui/node_modules/@ali/${dir}/src`, `./src/${upperInitWord(removePrefix(dir))}`]);
-    runCmd('cp', ['-rf', `../tingle-ui/node_modules/@ali/${dir}/demo/src`, `./demo/${upperInitWord(removePrefix(dir))}`]);
-    runCmd('cp', ['-rf', `../tingle-ui/node_modules/@ali/${dir}/README.md`, `./docs/${upperInitWord(removePrefix(dir))}.md`]);
-  });
-});
-
-// 删除对应 lib 下的 svg 文件夹
-gulp.task('remove', () => {
-  const dirs = fs.readdirSync('../tingle-ui/node_modules/@ali');
-  dirs.filter(dir => dir !== 'tingle-ui').forEach((dir) => {
-    runCmd('rm', ['-rf', `./src/${upperInitWord(removePrefix(dir))}/svg`]);
-  });
-});
-
-// 将 src 中的 @ali/tingle-xxx 替换为 ../Xxx
-gulp.task('replace', () => {
-  const dirs = fs.readdirSync('./src');
-  dirs.forEach((dir) => {
-    const files = fs.readdirSync(`./src/${dir}`);
-    files.forEach((file) => {
-      const filePath = `./src/${dir}/${file}`;
-      const stats = fs.statSync(filePath);
-      if (stats.isFile() && /[.js|.jsx]$/.test(file)) {
-        let fileData = fs.readFileSync(filePath).toString();
-        fileData = fileData.replace(/@ali\/tingle-(.+?)(['/])/g, (match, s1, s2) => {
-          if (/^icon/.test(s1)) {
-            return `salt-icon${s2}`;
-          }
-          return `../${upperInitWord(s1)}'`;
-        });
-        fs.writeFileSync(filePath, fileData);
-      } else if (stats.isDirectory()) {
-        console.log(filePath);
-      }
-    });
-  });
-});
-
-// 从 gitlab 拉取最新 Demo
-gulp.task('gitlab', () => {
-  rm('./demo/*', () => {
-    const gitlabApi = getGitlabApi({
-      private_token: 'bz9D5Y4aYygvC6axeMJK',
-      base_url: 'http://gitlab.alibaba-inc.com',
-      timeout: 10000,
-    });
-    const { groups, projects } = gitlabApi;
-    const { repositories } = projects;
-    groups.detail('tingle-ui').then((response) => {
-      const prjs = response.projects.map(prj => ({ path: prj.path, id: prj.id }));
-      function* getFileList() {
-        const results = [];
-        for (let i = 0; i < prjs.length; i += 1) {
-          const prj = prjs[i];
-          try {
-            results[i] = {
-              name: prj.path,
-              list: yield repositories.listTree(prj.id, 'demo/src'),
-            };
-          } catch (e) {
-            console.log(e);
-          }
-          console.log(`${prj.path} FileList Done`);
-        }
-        return results;
-      }
-      co(getFileList).then((results) => {
-        prjs.forEach((prj, index) => {
-          const fileList = results[index] || [];
-
-          try {
-            fs.statSync(`./src/${upperInitWord(removePrefix(prj.path))}`);
-            fileList.list.forEach((file) => {
-              if (file.type === 'blob') {
-                repositories.rawFile(prj.id, 'master', `demo/src/${file.name}`).then((fileBlob) => {
-                  const dirPath = `./demo/${upperInitWord(removePrefix(prj.path))}`;
-                  try {
-                    fs.statSync(dirPath);
-                  } catch (e) {
-                    fs.mkdirSync(dirPath);
-                  }
-                  fs.writeFileSync(`${dirPath}/${file.name}`, fileBlob);
-                });
-              }
-            });
-          } catch (e) {
-            try {
-              console.log(e);
-              console.log(`${upperInitWord(removePrefix(prj.path))} is not a necessary prj`);
-            } catch (err) {
-              console.log(err);
-            }
-          }
-        });
-      });
-    });
-  });
-});
-
-// demo 中替换一些变量
-gulp.task('demo_replace', () => {
-  /* eslint-disable max-len */
-  const dirs = fs.readdirSync('./demo');
-  dirs.forEach((dir) => {
-    const files = fs.readdirSync(`./demo/${dir}`);
-    files.forEach((file) => {
-      if (/\.js(x)?$/.test(file)) {
-        let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
-        // replace @ali/tingle-context with salt-context
-        fileData = fileData.replace(/@ali\/tingle-(.+?)(['/])/g, (match, s1, s2) => `salt-${s1}${s2}`);
-        // replace ../../src with salt-current-comp
-        fileData = fileData.replace('../../src', `salt-${to.slug(dir)}`);
-        // replace icon-source
-        fileData = fileData.replace('// 插入svg', '');
-        fileData = fileData.replace("var IconSymbols = require('./svg/tingle-icon-symbols.svg');", '');
-        fileData = fileData.replace("var IconSymbols = require('./svg/private-symbols.svg');", '');
-        fileData = fileData.replace("import IconSymbols from './svg/tingle-icon-symbols.svg';", '');
-        fileData = fileData.replace("ReactDOM.render(<IconSymbols/>, document.getElementById('TingleIconSymbols'));", '');
-        fileData = fileData.replace("ReactDOM.render(<IconSymbols />, document.getElementById('TingleIconSymbols'));", '');
-        fileData = fileData.replace("ReactDOM.render(<IconSymbols/>, document.getElementById('PrivateSymbols'));", '');
-        // replace ReactDOM.render(<Demo/>, document.getElementById('TingleDemo'));
-        // with export default Demo
-        const regExpDemoIndex = /ReactDOM\.render\(<(.+)\/>, document\.getElementById\('TingleDemo'\)\)/g;
-        fileData = fileData.replace(regExpDemoIndex,
-          (match, s1) => `export default ${s1}`);
-        if (/^index/.test(file)) {
-          fileData = fileData.replace("import React from 'react';", '');
-          fileData = fileData.replace("import ReactDOM from 'react-dom';", '');
-        }
-        fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
-      } else if (/\.styl$/.test(file)) {
-        let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
-        // replace ../../src/Button.styl with ../../src/Button/Button.styl
-        fileData = fileData.replace(/\.\.\/\.\.\/src\/(.+)([.styl|'|"])/g, (match, s1, s2) => `../../src/${s1.split('.')[0]}/${s1.split('.')[0]}${s2}`);
-        // replace ../../node_modules/@ali/tingle-xxx/src/xxx.styl with ../../src/Xxx/Xxx.styl
-        // replace ../../node_modules/@ali/tingle-icon/src/icon.styl with ~salt-icon/src/Icon.styl
-        const regExpForCompStyl = /\.\.\/\.\.\/node_modules\/@ali\/tingle-(.+?)\/src\/(.+)([.styl|'|"])/ig;
-        fileData = fileData.replace(regExpForCompStyl, (match, s1, s2, s3) => {
-          if (s1 !== 'icon') {
-            return `../../src/${upperInitWord(s1)}/${s2.split('.')[0]}${s3}`;
-          }
-          return `~salt-icon/src/Icon${s3}`;
-        });
-        // replace @require '../../node_modules/@ali/tingle-ui/dist/default.min.css' with ''
-        fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/dist/default.min.css'", '');
-        fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/dist/default.css'", '');
-        fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/build/salt-ui.css'", '');
-        fileData = fileData.replace("@require '../../node_modules/@ali/tingle-ui/build/salt-ui.min.css'", '');
-        fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
-      }
-    });
-  });
-  /* eslint-enable max-len */
-});
-
-// demo 中插入对于样式的引入
-gulp.task('demo_inject', () => {
-  const dirs = fs.readdirSync('./demo');
-  dirs.forEach((dir) => {
-    const files = fs.readdirSync(`./demo/${dir}`);
-    files.forEach((file) => {
-      if (/^index(.*)\.js(x)?$/.test(file) && dir !== 'Context') {
-        let fileData = fs.readFileSync(`./demo/${dir}/${file}`).toString();
-        const index = fileData.indexOf('salt-context');
-        console.log(`./demo/${dir}/${file}`);
-        const str = `\r\nimport './${upperInitWord(dir)}Demo.styl';`;
-        let splitIndex = index + 'salt-context'.length + 1;
-        const detectSpliter = fileData[splitIndex];
-        if (detectSpliter === ')') {
-          splitIndex += 1;
-        }
-        fileData = fileData.slice(0, splitIndex + 1) + str + fileData.slice(splitIndex + 1);
-        fs.writeFileSync(`./demo/${dir}/${file}`, fileData);
-      }
-    });
-  });
-});
 
 gulp.task('build_style', () => {
   const dirs = fs.readdirSync('./src');
