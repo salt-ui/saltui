@@ -30,9 +30,9 @@ $ npm install saltui --save
 
 import js
 ```jsx
-import { Button } from 'uxcore';
+import { Button } from 'saltui';
 // or
-import Button from 'uxcore/lib/Button';
+import Button from 'saltui/lib/Button';
 ReactDOM.render(<Button />, mountNode);
 ```
 
