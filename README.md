@@ -48,4 +48,4 @@ ReactDOM.render(<Button />, mountNode);
 
 ## 许可
 
-本项目基于 [MIT 协议](./LICENSE) 进行开发和发布。
+本项目基于 [MIT 协议](./LICENSE) 进行开发和发布。
