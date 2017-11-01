@@ -6,4 +6,9 @@
  * All rights reserved.
  */
 
-module.exports = require('./DdPhotoField');
+import DdPhotoField from './DdPhotoField';
+import PhotoField from './PhotoField';
+
+DdPhotoField.H5 = PhotoField;
+
+export default DdPhotoField;
