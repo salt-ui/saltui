@@ -9,6 +9,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Context from '../Context';
 import InfoRoundIcon from 'salt-icon/lib/InfoRound';
+import NoteRoundIcon from 'salt-icon/lib/NoteRound';
 import CheckRoundIcon from 'salt-icon/lib/CheckRound';
 import CrossRoundIcon from 'salt-icon/lib/CrossRound';
 import DirectionRightIcon from 'salt-icon/lib/DirectionRight';
@@ -16,7 +17,6 @@ import CrossIcon from 'salt-icon/lib/Cross';
 import Animate from 'rc-animate';
 
 class NoticeBar extends React.Component {
-
   static propTypes = {
     className: React.PropTypes.string,
     visible: React.PropTypes.bool,
@@ -56,14 +56,20 @@ class NoticeBar extends React.Component {
     };
     const { type, message, optionsType } = t.props;
     const iconClassName = iconMap[type];
-    let iconName;
-    if (type === 'info' || type === 'warning') {
-      iconName = <InfoRoundIcon width={18} height={18} fill="#fff" className={"icon-custom-class"} />;
-    } else if (type === 'success') {
-      iconName = <CheckRoundIcon width={18} height={18} fill="#fff" className={"icon-custom-class"} />;
-    } else if (type === 'error') {
-      iconName = <CrossRoundIcon width={18} height={18} fill={"#fff"} className={"icon-custom-class"} />;
-    }
+    const iconProps = {
+      width: 18,
+      height: 18,
+      fill: '#fff',
+      className: 'icon-custom-class',
+    };
+    const iconCompMap = {
+      info: InfoRoundIcon,
+      warning: NoteRoundIcon,
+      success: CheckRoundIcon,
+      error: CrossRoundIcon,
+    };
+    const Icon = iconCompMap[type];
+    const iconName = <Icon {...iconProps} />;
     return (
       <div
         className={classnames(Context.prefixClass('FBH notice-bar-content'), {

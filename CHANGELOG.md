@@ -1,4 +1,8 @@
 
+## 3.1.8 / 2017-11-01
+
+* `fix` NoticeBar wrong icon when type is warning.
+
 ## 3.1.5 / 2017-10-09
 * `feat` 统一了所有组件对于 `icon` 的依赖。
 * checkbox-field@2.0.0
