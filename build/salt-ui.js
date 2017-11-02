@@ -22027,7 +22027,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var __SALT_VERSION__ = void 0; /* eslint-disable */
 
-__SALT_VERSION__ = "3.1.8";
+__SALT_VERSION__ = "3.1.9";
 
 var __SALT_BUNDLE__ = {
   version: __SALT_VERSION__,
@@ -69576,6 +69576,10 @@ var Context = __webpack_require__(2);
 var Slot = __webpack_require__(55);
 var Field = __webpack_require__(8);
 
+var isNil = function isNil(value) {
+  return value === null || value === undefined;
+};
+
 var SelectField = function (_React$Component) {
   _inherits(SelectField, _React$Component);
 
@@ -69587,7 +69591,7 @@ var SelectField = function (_React$Component) {
     var t = _this;
     var value = props.value;
     t.state = {
-      value: [value],
+      value: isNil(value) ? value : [value],
       confirmedValue: [value]
     };
     return _this;
@@ -69610,7 +69614,9 @@ var SelectField = function (_React$Component) {
     key: 'handleClick',
     value: function handleClick() {
       var t = this;
-      !t.props.readOnly && t.refs.slot.show();
+      if (!t.props.readOnly) {
+        t.slot.show();
+      }
     }
   }, {
     key: 'handleChange',
@@ -69635,6 +69641,8 @@ var SelectField = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var t = this;
       var icon = t.props.readOnly ? null : {
         className: Context.prefixClass('select-field-icon'),
@@ -69661,13 +69669,26 @@ var SelectField = function (_React$Component) {
             { className: Context.prefixClass('select-field-value FBH FBAC') },
             React.createElement(
               'span',
-              { className: classnames(Context.prefixClass('FB1 omit'), _defineProperty({}, Context.prefixClass('select-field-readonly'), !!t.props.readOnly))
+              {
+                className: classnames(Context.prefixClass('FB1 omit'), _defineProperty({}, Context.prefixClass('select-field-readonly'), !!t.props.readOnly))
               },
               t.props.formatter(t.state.confirmedValue[0])
             )
           )
         ),
-        React.createElement(Slot, { ref: 'slot', title: t.props.label, confirmText: t.props.confirmText, cancelText: t.props.cancelText, data: [t.props.options], value: t.state.value, onChange: t.handleChange.bind(t), onCancel: t.handleCancel.bind(t), onConfirm: t.handleConfirm.bind(t) })
+        React.createElement(Slot, {
+          ref: function ref(c) {
+            _this2.slot = c;
+          },
+          title: t.props.label,
+          confirmText: t.props.confirmText,
+          cancelText: t.props.cancelText,
+          data: [t.props.options],
+          value: t.state.value,
+          onChange: t.handleChange.bind(t),
+          onCancel: t.handleCancel.bind(t),
+          onConfirm: t.handleConfirm.bind(t)
+        })
       );
     }
   }]);

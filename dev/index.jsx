@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import App from './App';
-import NoticeBarDemo from '../demo/NoticeBar/';
+import SelectFieldDemo from '../demo/SelectField/';
 // import '../build/salt-ui.css';
 // TODO: lazyload
 // import Bundle from './Bundle';
@@ -27,7 +27,7 @@ class Demo extends React.Component {
       <Router>
         <div>
           <Route exact path="/" component={App} />
-          <Route path="/notice-bar" component={NoticeBarDemo} />
+          <Route path="/select-field" component={SelectFieldDemo} />
         </div>
       </Router>
     );

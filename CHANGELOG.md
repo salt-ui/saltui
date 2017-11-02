@@ -1,4 +1,8 @@
 
+## 3.1.9 / 2017-11-02
+
+* `fix` the first option can not be selected if user confirm without rolling the slot and value is null/undefined
+
 ## 3.1.8 / 2017-11-01
 
 * `fix` NoticeBar wrong icon when type is warning.

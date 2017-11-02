@@ -11,19 +11,20 @@ const Context = require('../Context');
 const Slot = require('../Slot');
 const Field = require('../Field');
 
-class SelectField extends React.Component {
+const isNil = value => (value === null || value === undefined);
 
+class SelectField extends React.Component {
   constructor(props) {
     super(props);
     const t = this;
     const value = props.value;
     t.state = {
-      value: [value],
+      value: isNil(value) ? value : [value],
       confirmedValue: [value],
     };
   }
 
-    // 外部变更选中值
+  // 外部变更选中值
   componentWillReceiveProps(nextProps) {
     const t = this;
     const value = nextProps.value;
@@ -35,7 +36,9 @@ class SelectField extends React.Component {
 
   handleClick() {
     const t = this;
-    !t.props.readOnly && t.refs.slot.show();
+    if (!t.props.readOnly) {
+      t.slot.show();
+    }
   }
 
   handleChange(value) {
@@ -65,7 +68,8 @@ class SelectField extends React.Component {
       onClick: t.handleClick.bind(t),
     };
     return (
-      <Field {...t.props} icon={icon}
+      <Field
+        {...t.props} icon={icon}
         className={classnames(Context.prefixClass('select-field'), {
           [t.props.className]: !!t.props.className,
         })}
@@ -73,13 +77,24 @@ class SelectField extends React.Component {
         <div onClick={t.handleClick.bind(t)}>
           {!t.state.confirmedValue[0] ? <div className={Context.prefixClass('omit select-field-placeholder')}>{t.props.placeholder}</div> : ''}
           <div className={Context.prefixClass('select-field-value FBH FBAC')}>
-            <span className={classnames(Context.prefixClass('FB1 omit'), {
-              [Context.prefixClass('select-field-readonly')]: !!t.props.readOnly,
-            })}
+            <span
+              className={classnames(Context.prefixClass('FB1 omit'), {
+                [Context.prefixClass('select-field-readonly')]: !!t.props.readOnly,
+              })}
             >{t.props.formatter(t.state.confirmedValue[0])}</span>
           </div>
         </div>
-        <Slot ref="slot" title={t.props.label} confirmText={t.props.confirmText} cancelText={t.props.cancelText} data={[t.props.options]} value={t.state.value} onChange={t.handleChange.bind(t)} onCancel={t.handleCancel.bind(t)} onConfirm={t.handleConfirm.bind(t)} />
+        <Slot
+          ref={(c) => { this.slot = c; }}
+          title={t.props.label}
+          confirmText={t.props.confirmText}
+          cancelText={t.props.cancelText}
+          data={[t.props.options]}
+          value={t.state.value}
+          onChange={t.handleChange.bind(t)}
+          onCancel={t.handleCancel.bind(t)}
+          onConfirm={t.handleConfirm.bind(t)}
+        />
       </Field>
     );
   }
@@ -87,7 +102,7 @@ class SelectField extends React.Component {
 
 SelectField.defaultProps = {
   options: [],
-  formatter: value => value ? value.text : '',
+  formatter: value => (value ? value.text : ''),
   onSelect() {},
   readOnly: false,
   placeholder: '',
