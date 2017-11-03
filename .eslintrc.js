@@ -9,6 +9,7 @@ module.exports = {
     },
     "parser": "babel-eslint",
     "rules": {
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "react/prefer-stateless-function": "off"
     }
 };

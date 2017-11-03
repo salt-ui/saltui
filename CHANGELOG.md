@@ -1,4 +1,8 @@
 
+## 3.1.10 / 2017-11-03
+
+* `fix` refactor Toast.hide logic, fix the weird leaving animation.
+
 ## 3.1.9 / 2017-11-02
 
 * `fix` the first option can not be selected if user confirm without rolling the slot and value is null/undefined

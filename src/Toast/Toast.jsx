@@ -18,6 +18,8 @@ import IconToastFail from 'salt-icon/lib/ToastFail';
 import IconToastLoading from 'salt-icon/lib/ToastLoading';
 import IconInfoRound from 'salt-icon/lib/InfoRound';
 
+let globalInstance;
+
 const iconCompMap = {
   success: IconCheckRound,
   error: IconCrossRound,
@@ -27,7 +29,6 @@ const iconCompMap = {
 };
 
 class Toast extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -54,12 +55,20 @@ class Toast extends React.Component {
   startCountdown() {
     const t = this;
     t.timer = setTimeout(() => {
-      t.setState({
-        visible: false,
-        hasMask: false,
-      });
+      this.hide();
       clearTimeout(t.timer);
     }, t.props.duration);
+  }
+
+  hide(fn) {
+    this.setState({
+      visible: false,
+      hasMask: false,
+    }, () => {
+      if (typeof fn === 'function') {
+        fn();
+      }
+    });
   }
 
   handleDidHide() {
@@ -100,7 +109,7 @@ class Toast extends React.Component {
     const {
       className, content, autoHide, transitionName,
       prefixCls, type, maskTransitionName, ...other
-     } = t.props;
+    } = t.props;
     const customStyle = {
       width: other.width,
       height: other.height,
@@ -190,11 +199,13 @@ if (!wrapper) {
 ReactDOM.render(<Toast visible={false} />, wrapper);
 
 Toast.show = (props) => {
-  ReactDOM.render(<Toast visible {...props} />, wrapper);
+  ReactDOM.render(<Toast visible {...props} ref={(c) => { globalInstance = c; }} />, wrapper);
 };
 
 Toast.hide = (fn) => {
-  ReactDOM.render(<Toast visible={false} onDidHide={fn} />, wrapper);
+  if (globalInstance) {
+    globalInstance.hide(fn);
+  }
 };
 
 Toast.displayName = 'Toast';

@@ -28,7 +28,6 @@ const showLoadingToast = () => {
 };
 
 class Demo extends React.Component {
-
   render() {
     return (<div className="demoWrap">
       <Button
@@ -37,7 +36,8 @@ class Demo extends React.Component {
           showToast({
             type: 'success',
             content: '提交成功你好',
-          }); }}
+          });
+        }}
       >success</Button>
       <Button
         className="demo"
@@ -94,8 +94,14 @@ class Demo extends React.Component {
             type: 'success',
             content: '带遮罩层',
             hasMask: true,
+            autoHide: false,
             duration: 2000,
           });
+          setTimeout(() => {
+            Toast.hide(() => {
+              console.log(888);
+            });
+          }, 4000);
         }}
       >with mask</Button>
       <Button

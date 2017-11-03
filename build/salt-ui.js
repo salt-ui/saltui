@@ -22027,7 +22027,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var __SALT_VERSION__ = void 0; /* eslint-disable */
 
-__SALT_VERSION__ = "3.1.9";
+__SALT_VERSION__ = "3.1.10";
 
 var __SALT_BUNDLE__ = {
   version: __SALT_VERSION__,
@@ -31412,6 +31412,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 
+var globalInstance = void 0;
+
 var iconCompMap = {
   success: _CheckRound2.default,
   error: _CrossRound2.default,
@@ -31456,14 +31458,25 @@ var Toast = function (_React$Component) {
   }, {
     key: 'startCountdown',
     value: function startCountdown() {
+      var _this2 = this;
+
       var t = this;
       t.timer = setTimeout(function () {
-        t.setState({
-          visible: false,
-          hasMask: false
-        });
+        _this2.hide();
         clearTimeout(t.timer);
       }, t.props.duration);
+    }
+  }, {
+    key: 'hide',
+    value: function hide(fn) {
+      this.setState({
+        visible: false,
+        hasMask: false
+      }, function () {
+        if (typeof fn === 'function') {
+          fn();
+        }
+      });
     }
   }, {
     key: 'handleDidHide',
@@ -31608,11 +31621,15 @@ if (!wrapper) {
 _reactDom2.default.render(_react2.default.createElement(Toast, { visible: false }), wrapper);
 
 Toast.show = function (props) {
-  _reactDom2.default.render(_react2.default.createElement(Toast, _extends({ visible: true }, props)), wrapper);
+  _reactDom2.default.render(_react2.default.createElement(Toast, _extends({ visible: true }, props, { ref: function ref(c) {
+      globalInstance = c;
+    } })), wrapper);
 };
 
 Toast.hide = function (fn) {
-  _reactDom2.default.render(_react2.default.createElement(Toast, { visible: false, onDidHide: fn }), wrapper);
+  if (globalInstance) {
+    globalInstance.hide(fn);
+  }
 };
 
 Toast.displayName = 'Toast';
