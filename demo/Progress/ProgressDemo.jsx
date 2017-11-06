@@ -10,7 +10,6 @@ import React from 'react';
 import Progress from 'salt-progress';
 
 class ProgressDemo extends React.Component {
-
   constructor(props) {
     super(props);
 

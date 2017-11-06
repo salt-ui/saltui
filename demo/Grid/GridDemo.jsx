@@ -5,16 +5,13 @@
  * Copyright 2014-2017, Tingle Team, Alinw.
  * All rights reserved.
  */
-const React = require('react');
+import React from 'react';
 
-const Grid = require('salt-grid');
-
-const Icon = require('salt-icon');
-
-const Badge = require('salt-badge');
+import Grid from 'salt-grid';
+import Icon from 'salt-icon';
+import Badge from 'salt-badge';
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -222,4 +219,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

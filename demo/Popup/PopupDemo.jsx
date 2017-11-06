@@ -11,7 +11,6 @@ import Button from 'salt-button';
 import Popup from 'salt-popup';
 
 class PopupDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

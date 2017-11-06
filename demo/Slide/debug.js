@@ -11,7 +11,7 @@ export default function debugFunc(...args) {
     content += '<br />';
   }
   const arr = [];
-  Array.prototype.slice.call(args, 0).forEach(param => {
+  Array.prototype.slice.call(args, 0).forEach((param) => {
     try {
       arr.push(typeof param === 'object' ? JSON.stringify(param) : param);
     } catch (error) {

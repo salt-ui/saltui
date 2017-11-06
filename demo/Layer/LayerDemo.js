@@ -6,11 +6,11 @@
  * All rights reserved.
  */
 
-const React = require('react' );
-const Layer = require('salt-layer');
+import React from 'react';
+
+import Layer from 'salt-layer';
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -79,4 +79,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

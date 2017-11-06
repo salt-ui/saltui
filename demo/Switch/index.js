@@ -5,9 +5,11 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-require('salt-context');
+import 'salt-context';
+
 import './SwitchDemo.styl';
 
 // 渲染demo
-var Demo = require('./SwitchDemo');
+import Demo from './SwitchDemo';
+
 export default Demo;

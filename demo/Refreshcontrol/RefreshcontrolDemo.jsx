@@ -10,34 +10,33 @@ import React from 'react';
 import Refreshcontrol from 'salt-refreshcontrol';
 
 function Item(props) {
-  return <div className="item">{`this is item ${props.index}`}</div>
+  return <div className="item">{`this is item ${props.index}`}</div>;
 }
 
 class RefreshcontrolDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       refreshing: true,
-      repeat: 1
+      repeat: 1,
     };
   }
 
   onRefresh() {
-    this.setState({refreshing: true});
+    this.setState({ refreshing: true });
 
     setTimeout(() => {
       this.setState({
         refreshing: false,
-        repeat: this.state.repeat + 2
+        repeat: this.state.repeat + 2,
       });
-    }, 2000)
+    }, 2000);
   }
 
   renderItems() {
     const items = [];
-    for(let i = this.state.repeat; i >=0; i--) {
-      items.push(<Item key={i} index={i} />)
+    for (let i = this.state.repeat; i >= 0; i--) {
+      items.push(<Item key={i} index={i} />);
     }
 
     return items;

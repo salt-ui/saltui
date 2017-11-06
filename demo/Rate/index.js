@@ -10,7 +10,7 @@ import './RateDemo.styl';
 import Demo from './RateDemo';
 
 if (window.FastClick) {
-    FastClick.attach(document.body);
+  FastClick.attach(document.body);
 }
 
 // 渲染demo

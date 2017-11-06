@@ -9,12 +9,11 @@ import 'salt-context';
 import './PhotoFieldDemo.styl';
 
 
-
 if (window.FastClick) {
   window.FastClick.attach(document.body);
 }
 
 // 渲染demo
-const Demo = require('./PhotoFieldDemo');
+import Demo from './PhotoFieldDemo';
 
-export default Demo ;
+export default Demo;

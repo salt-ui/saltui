@@ -15,4 +15,4 @@ if (window.FastClick) {
 }
 
 // 渲染demo
-export default Demo ;
+export default Demo;

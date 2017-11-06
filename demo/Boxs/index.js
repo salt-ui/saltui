@@ -5,10 +5,12 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-require('salt-context');
+import 'salt-context';
+
 import './BoxsDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 // 渲染demo
-var Demo = require('./BoxsDemo');
+import Demo from './BoxsDemo';
+
 export default Demo;

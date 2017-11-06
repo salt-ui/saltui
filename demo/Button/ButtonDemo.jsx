@@ -16,7 +16,6 @@ const {
 } = Button;
 
 class Demo extends React.Component {
-
   handleClick(evt) {
     console.log(this, evt.target); // eslint-disable-line
   }
@@ -265,4 +264,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

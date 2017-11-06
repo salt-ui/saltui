@@ -5,10 +5,10 @@
  * Copyright 2014-2017, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const Group = require('salt-group');
+import React from 'react';
 
-const DatetimeField = require('salt-datetime-field');
+import Group from 'salt-group';
+import DatetimeField from 'salt-datetime-field';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const DatetimeField = require('../../dist');
@@ -70,4 +70,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

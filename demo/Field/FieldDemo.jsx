@@ -16,7 +16,6 @@ import Field from 'salt-field';
 // const Field = require('../../dist');
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {};

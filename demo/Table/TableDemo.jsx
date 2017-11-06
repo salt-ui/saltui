@@ -6,15 +6,14 @@
  * All rights reserved.
  */
 
-const React = require('react');
+import React from 'react';
 
-const Table = require('salt-table');
+import Table from 'salt-table';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const Table = require('../../dist');
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -97,18 +96,18 @@ class Demo extends React.Component {
         totalCount: 20,
       },
       columns: [
-            { dataKey: 'title', title: '表头', align: 'center' },
-            { dataKey: 'name', title: '姓名', align: 'center' },
-            { dataKey: 'sex', title: '性别', align: 'center' },
-            { dataKey: 'age', title: '邮件', align: 'center' },
-            { dataKey: 'city', title: '城市', align: 'center' },
+        { dataKey: 'title', title: '表头', align: 'center' },
+        { dataKey: 'name', title: '姓名', align: 'center' },
+        { dataKey: 'sex', title: '性别', align: 'center' },
+        { dataKey: 'age', title: '邮件', align: 'center' },
+        { dataKey: 'city', title: '城市', align: 'center' },
       ],
       columns2: [
-            { dataKey: 'city', title: '城市', align: 'center' },
-            { dataKey: 'name', title: '姓名', align: 'center' },
-            { dataKey: 'email', title: '邮件', align: 'center' },
-            { dataKey: 'email', title: '邮件', align: 'center' },
-            { dataKey: 'email', title: '邮件', align: 'center' },
+        { dataKey: 'city', title: '城市', align: 'center' },
+        { dataKey: 'name', title: '姓名', align: 'center' },
+        { dataKey: 'email', title: '邮件', align: 'center' },
+        { dataKey: 'email', title: '邮件', align: 'center' },
+        { dataKey: 'email', title: '邮件', align: 'center' },
       ],
     };
   }
@@ -161,4 +160,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

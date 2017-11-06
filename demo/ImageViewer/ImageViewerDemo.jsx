@@ -6,16 +6,15 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const Button = require('salt-button');
+import React from 'react';
 
-const ImageViewer = require('salt-image-viewer/mix');
+import Button from 'salt-button';
+import ImageViewer from 'salt-image-viewer/mix';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const ImageViewer = require('../../dist');
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -67,4 +66,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

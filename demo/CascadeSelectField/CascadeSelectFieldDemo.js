@@ -5,10 +5,10 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const Group = require('salt-group');
+import React from 'react';
 
-const CascadeSelectField = require('salt-cascade-select-field');
+import Group from 'salt-group';
+import CascadeSelectField from 'salt-cascade-select-field';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const CascadeSelectField = require('../../dist');
@@ -58,7 +58,6 @@ const options = [{
 const columns = ['省', '市', '景点'];
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -97,4 +96,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

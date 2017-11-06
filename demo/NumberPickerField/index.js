@@ -13,4 +13,4 @@ import Demo from './NumberPickerFieldDemo';
 window.FastClick && FastClick.attach(document.body);
 
 // 渲染demo
-export default Demo ;
+export default Demo;

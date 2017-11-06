@@ -11,4 +11,4 @@ import './AvatarDemo.styl';
 
 import Demo from './AvatarDemo';
 
-export default Demo ;
+export default Demo;

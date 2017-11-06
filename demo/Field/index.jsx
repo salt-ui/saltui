@@ -9,7 +9,6 @@ import 'salt-context';
 import './FieldDemo.styl';
 
 
-
 import Demo from './FieldDemo';
 
 if (window.FastClick) {
@@ -17,4 +16,4 @@ if (window.FastClick) {
 }
 
 // 渲染demo
-export default Demo ;
+export default Demo;

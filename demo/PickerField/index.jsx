@@ -18,4 +18,4 @@ if (window.FastClick) {
   FastClick.attach(document.body);
 }
 
-export default Demo ;
+export default Demo;

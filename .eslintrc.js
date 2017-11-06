@@ -10,6 +10,8 @@ module.exports = {
     "parser": "babel-eslint",
     "rules": {
         "import/no-extraneous-dependencies": "off",
-        "react/prefer-stateless-function": "off"
+        "react/prefer-stateless-function": "off",
+        "import/no-unresolved": "off",
+        "import/extensions": "off"
     }
 };

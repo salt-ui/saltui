@@ -6,53 +6,50 @@
  * All rights reserved.
  */
 
-const classnames = require('classnames');
-const Context = require('salt-context');
+import classnames from 'classnames';
 
-const Crumb = require('salt-crumb');
+import Context from 'salt-context';
+import Crumb from 'salt-crumb';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
-//const Crumb = require('../../dist');
+// const Crumb = require('../../dist');
 
 class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+    this.crumbs = [
+      { text: '刘一' },
+      { text: '陈二' },
+      { text: '张三' },
+      { text: '李四' },
+      { text: '王五' },
+      { text: '赵六' },
+      { text: '孙七' },
+      { text: '周八' },
+      { text: '吴九' },
+      { text: '郑十' },
+    ];
+  }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-        this.crumbs = [
-            { text: '刘一' },
-            { text: '陈二' },
-            { text: '张三' },
-            { text: '李四' },
-            { text: '王五' },
-            { text: '赵六' },
-            { text: '孙七' },
-            { text: '周八' },
-            { text: '吴九' },
-            { text: '郑十' },
-        ];
-    }
+  onClick(idx) {
+    console.log(idx);
+    alert(this.crumbs[idx].text);
+  }
 
-    onClick(idx) {
-        console.log(idx);
-        alert(this.crumbs[idx].text);
-    }
+  render() {
+    const t = this;
+    return (
+      <div>
+        <Crumb onClick={t.onClick.bind(t)}>
+          {
+            this.crumbs.map((crumb, key) => <Crumb.Item key={key}>{crumb.text}</Crumb.Item>)
+          }
+        </Crumb>
+      </div>
+    );
+  }
+}
 
-    render() {
-        const t = this;
-        return(
-            <div>
-                <Crumb onClick={t.onClick.bind(t)}>
-                    {
-                        this.crumbs.map((crumb, key) => {
-                            return <Crumb.Item key={key}>{crumb.text}</Crumb.Item>
-                        })
-                    }
-                </Crumb>
-            </div>
-        );
-    }
-};
-
-module.exports = Demo;
+export default Demo;

@@ -10,7 +10,6 @@ import React from 'react';
 import NumberPickerField from 'salt-number-picker-field';
 
 class NumberPickerFieldDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

@@ -10,7 +10,6 @@ import React from 'react';
 import RateField from 'salt-rate-field';
 
 class RateFieldDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

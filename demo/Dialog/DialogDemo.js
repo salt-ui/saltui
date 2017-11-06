@@ -6,11 +6,11 @@
 * All rights reserved.
 */
 
-const React = require('react');
-const Button = require('salt-button');
-const Dialog = require('salt-dialog');
-class Demo extends React.Component {
+import React from 'react';
 
+import Button from 'salt-button';
+import Dialog from 'salt-dialog';
+class Demo extends React.Component {
   constructor(props) {
     super(props);
 
@@ -121,7 +121,7 @@ class Demo extends React.Component {
           onConfirm={() => { console.log('confirm confirm'); this.handleShow('showConfirm', false); }}
           onCancel={() => { console.log('cancel confirm'); this.handleShow('showConfirm', false); }}
         >
-          {/*<textarea value={this.state.text} onChange={e => this.setState({ text: e.target.value })} />*/}
+          {/* <textarea value={this.state.text} onChange={e => this.setState({ text: e.target.value })} />*/}
           <h3>{this.state.text}</h3>
         </Dialog>
 
@@ -152,7 +152,7 @@ class Demo extends React.Component {
             {
               content: '按钮1',
               callback: () => { console.log('click btn1'); this.handleShow('showMultiBtns', false); },
-             
+
             },
             {
               content: '按钮2',
@@ -167,7 +167,7 @@ class Demo extends React.Component {
                 console.log('click btn3');
                 this.handleShow('showMultiBtns', false);
               },
-               // 设置 primary 展示为主要按钮样式(文本为品牌色)
+              // 设置 primary 展示为主要按钮样式(文本为品牌色)
               primary: true,
             },
           ]}
@@ -213,4 +213,4 @@ class Demo extends React.Component {
     );
   }
 }
-module.exports = Demo;
+export default Demo;

@@ -13,7 +13,6 @@ import Rate from 'salt-rate';
 // import Rate from '../../dist';
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

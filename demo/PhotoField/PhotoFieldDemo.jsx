@@ -6,15 +6,15 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const DdPhotoField = require('salt-photo-field');
-const PhotoField = require('../../src/PhotoField/PhotoField');
+import React from 'react';
+
+import DdPhotoField from 'salt-photo-field';
+import PhotoField from '../../src/PhotoField/PhotoField';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const PhotoField = require('../../dist');
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -97,4 +97,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

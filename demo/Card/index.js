@@ -7,7 +7,7 @@
  */
 const React = window.React;
 const ReactDOM = window.ReactDOM;
-require('salt-context');
+import 'salt-context';
 import './CardDemo.styl';
 
 if (window.FastClick) {
@@ -15,6 +15,6 @@ if (window.FastClick) {
 }
 
 // 渲染demo
-const Demo = require('./CardDemo');
+import Demo from './CardDemo';
 
-export default Demo ;
+export default Demo;

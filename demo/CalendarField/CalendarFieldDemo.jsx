@@ -6,16 +6,15 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const Group = require('salt-group');
+import React from 'react';
 
-const CalendarField = require('salt-calendar-field');
+import Group from 'salt-group';
+import CalendarField from 'salt-calendar-field';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const CalendarField = require('../../dist');
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -76,4 +75,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

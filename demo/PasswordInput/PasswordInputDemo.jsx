@@ -11,7 +11,6 @@ import Group from 'salt-group';
 import PasswordInput from 'salt-password-input';
 
 class PasswordInputDemo extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -48,7 +47,7 @@ class PasswordInputDemo extends React.Component {
           />
         </Group.List>
       </div>
-      );
+    );
   }
 }
 

@@ -10,7 +10,6 @@ import React from 'react';
 import Pagination from 'salt-pagination';
 
 class PaginationDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

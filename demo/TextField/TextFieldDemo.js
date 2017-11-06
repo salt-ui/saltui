@@ -6,10 +6,11 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const Group = require('salt-group');
-const Toast = require('salt-toast');
-const TextField = require('salt-text-field');
+import React from 'react';
+
+import Group from 'salt-group';
+import Toast from 'salt-toast';
+import TextField from 'salt-text-field';
 
 const { LeftAddon, RightAddon, Count } = TextField;
 
@@ -21,7 +22,6 @@ console.log(RightAddon);
 const numberRegExp = /^(\d+\.\d*)|(\d+\.)|\d+/;
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -151,4 +151,4 @@ class Demo extends React.Component {
     );
   }
 }
-module.exports = Demo;
+export default Demo;

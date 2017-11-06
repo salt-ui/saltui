@@ -11,16 +11,15 @@ import Button from 'salt-button';
 import Calendar from 'salt-calendar';
 
 class CalendarDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       // value: {
-        // value: 1499702400000,
-        // startDate: 1499702400000,
-        // startDateType: 'PM',
-        // endDate: 1499961600000,
-        // endDateType: 'PM',
+      // value: 1499702400000,
+      // startDate: 1499702400000,
+      // startDateType: 'PM',
+      // endDate: 1499961600000,
+      // endDateType: 'PM',
       // },
       value: 1489702400000, // 1499961600000
     };
@@ -72,7 +71,8 @@ class CalendarDemo extends React.Component {
             animationType: 'slideLeft',
             showHalfDay: false,
           });
-        }}>打开单点日历</Button>
+        }}
+        >打开单点日历</Button>
         <Button onClick={() => {
           this.setState({
             visible: true,
@@ -80,7 +80,8 @@ class CalendarDemo extends React.Component {
             animationType: 'slideLeft',
             showHalfDay: false,
           });
-        }}>打开级联日历</Button>
+        }}
+        >打开级联日历</Button>
         <Button onClick={() => {
           this.setState({
             visible: true,
@@ -88,7 +89,8 @@ class CalendarDemo extends React.Component {
             showHalfDay: true,
             animationType: 'slideLeft',
           });
-        }}>打开级联日历，可选择半天</Button>
+        }}
+        >打开级联日历，可选择半天</Button>
         <Button onClick={() => {
           this.setState({
             visible: true,
@@ -96,7 +98,8 @@ class CalendarDemo extends React.Component {
             animationType: 'slideUp',
             showHalfDay: true,
           });
-        }}>展示Popup模式</Button>
+        }}
+        >展示Popup模式</Button>
         <Calendar
           {...this.calendarProps}
           {...this.state}

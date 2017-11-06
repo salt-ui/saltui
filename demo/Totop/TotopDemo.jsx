@@ -33,7 +33,6 @@ for (let i = 0; i < len; i++) {
 
 
 class TotopDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

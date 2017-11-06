@@ -11,7 +11,6 @@ import Button from 'salt-button';
 import Datetime from 'salt-datetime';
 
 class DatetimeDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -47,10 +46,11 @@ class DatetimeDemo extends React.Component {
       <div className="t-datetime-demo">
         <Button onClick={() => {
           t.showSlot('slot1');
-        }}>日期选择</Button>
+        }}
+        >日期选择</Button>
         <Datetime
           {...this.datetimeProps}
-          slotRef={(s) => t.slot1 = s}
+          slotRef={s => t.slot1 = s}
           title="日期选择"
           value={t.state.value1}
           columns={Datetime.YMD}
@@ -59,10 +59,11 @@ class DatetimeDemo extends React.Component {
         />
         <Button onClick={() => {
           t.showSlot('slot2');
-        }}>日期/上下午选择</Button>
+        }}
+        >日期/上下午选择</Button>
         <Datetime
           {...this.datetimeProps}
-          slotRef={(s) => t.slot2 = s}
+          slotRef={s => t.slot2 = s}
           title="日期/上下午选择"
           value={t.state.value2}
           columns={Datetime.YMDT}
@@ -71,10 +72,11 @@ class DatetimeDemo extends React.Component {
         />
         <Button onClick={() => {
           t.showSlot('slot3');
-        }}>时间选择</Button>
+        }}
+        >时间选择</Button>
         <Datetime
           {...this.datetimeProps}
-          slotRef={(s) => t.slot3 = s}
+          slotRef={s => t.slot3 = s}
           title="时间选择"
           value={t.state.value3}
           columns={Datetime.YMDWHM}
@@ -85,7 +87,8 @@ class DatetimeDemo extends React.Component {
           t.setState({
             value1: '***',
           });
-        }}>设置第一个value为***</Button>
+        }}
+        >设置第一个value为***</Button>
       </div>
     );
   }

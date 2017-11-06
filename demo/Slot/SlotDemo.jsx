@@ -8,13 +8,10 @@
 
 // 这是一个比较复杂的例子，演示了年月日选择的交互逻辑，
 // 如果仅需要简单使用帮助，请参考 README.md 的 Simple Usage。
-const Button = require('salt-button');
-const React = require('react');
+import Button from 'salt-button';
 
-const Slot = require('salt-slot');
-// build之后, 测试一下下面一行, 把上面一行注释掉
-// const Slot = require('../../dist');
-
+import React from 'react';
+import Slot from 'salt-slot';
 
 // 是否是闰年的判断
 function isLeapYear(year) {
@@ -23,7 +20,7 @@ function isLeapYear(year) {
 
 function makeArray(max) {
   const arr = [];
-  for (let i = 1; i <= max; i++) {
+  for (let i = 1; i <= max; i += 1) {
     arr.push(i);
   }
   return arr;
@@ -42,7 +39,6 @@ function getDates(year, month) {
 }
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -53,11 +49,11 @@ class Demo extends React.Component {
         [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
           2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
         [{ text: 'Jan', value: 0 }, { text: 'Feb', value: 1 },
-        { text: 'Mar', value: 2 }, { text: 'Apr', value: 3 },
-        { text: 'May', value: 4 }, { text: 'Jun', value: 5 },
-        { text: 'Jul', value: 6 }, { text: 'Aug', value: 7 },
-        { text: 'Sep', value: 8 }, { text: 'Oct', value: 9 },
-        { text: 'Nov', value: 10 }, { text: 'Dec', value: 11 }],
+          { text: 'Mar', value: 2 }, { text: 'Apr', value: 3 },
+          { text: 'May', value: 4 }, { text: 'Jun', value: 5 },
+          { text: 'Jul', value: 6 }, { text: 'Aug', value: 7 },
+          { text: 'Sep', value: 8 }, { text: 'Oct', value: 9 },
+          { text: 'Nov', value: 10 }, { text: 'Dec', value: 11 }],
         getDates(now.getFullYear(), now.getMonth()), // [ 1, 2, 3, ..., 31 ]
       ],
       [now.getFullYear(), now.getMonth(), now.getDate()] // [ 2015, 8, 7 ]
@@ -121,6 +117,7 @@ class Demo extends React.Component {
   }
 
   paneHandleChange(value, column) {
+    console.log(value, column);
     const t = this;
     let dates;
     if (column === 1) {
@@ -134,16 +131,12 @@ class Demo extends React.Component {
       // 同时变更日期和选中项
       const ret = Slot.formatColumnValue(dates, value[2]);
       value[2] = ret.columnValue;
-      t.setState(React.addons.update(t.state, {
-        paneData: {
-          2: {
-            $set: ret.columnData,
-          },
-        },
-        paneValue: {
-          $set: value,
-        },
-      }));
+      const paneData = [...this.state.paneData];
+      paneData[2] = ret.columnData;
+      this.setState({
+        paneData,
+        paneValue: value,
+      });
     } else {
       // 仅改变了选中项
       t.setState({
@@ -215,5 +208,5 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;
 

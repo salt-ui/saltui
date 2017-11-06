@@ -15,7 +15,6 @@ const { Count } = TextareaField;
 // const TextareaField = require('../../dist');
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

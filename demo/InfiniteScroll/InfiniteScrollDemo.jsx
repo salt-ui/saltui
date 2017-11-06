@@ -14,7 +14,6 @@ function Item(props) {
 }
 
 class InfiniteScrollDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

@@ -37,7 +37,6 @@ function Other2() {
 
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

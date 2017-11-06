@@ -12,7 +12,6 @@ import Lock from 'salt-icon/lib/Lock';
 const Panel = Collapse.Panel;
 
 class CollapseDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {};

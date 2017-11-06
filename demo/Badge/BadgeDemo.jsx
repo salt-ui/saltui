@@ -22,7 +22,6 @@ const monthArray = [
 ];
 
 class BadgeDemo extends React.Component {
-
   constructor(props) {
     super(props);
 

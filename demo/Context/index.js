@@ -8,6 +8,6 @@
  */
 window.FastClick && FastClick.attach(document.body);
 
-const Demo = require('./ContextDemo');
+import Demo from './ContextDemo';
 
 export default Demo;

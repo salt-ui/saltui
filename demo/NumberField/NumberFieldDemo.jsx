@@ -12,7 +12,6 @@ import Toast from 'salt-toast';
 import NumberField from 'salt-number-field';
 
 class NumberFieldDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

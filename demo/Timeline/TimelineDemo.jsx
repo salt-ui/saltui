@@ -6,12 +6,12 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const Timeline = require('salt-timeline');
-const Icon = require('salt-icon');
+import React from 'react';
+
+import Timeline from 'salt-timeline';
+import Icon from 'salt-icon';
 
 class Demo extends React.Component {
-
   render() {
     return (
       <div className="timeline-demo">
@@ -69,4 +69,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

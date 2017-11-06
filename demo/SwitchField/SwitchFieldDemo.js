@@ -5,15 +5,15 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const SwitchField = require('salt-switch-field');
+import React from 'react';
+
+import SwitchField from 'salt-switch-field';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const SwitchField = require('../../dist');
-const Group = require('salt-group');
+import Group from 'salt-group';
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -43,4 +43,4 @@ class Demo extends React.Component {
     );
   }
 }
-module.exports = Demo;
+export default Demo;

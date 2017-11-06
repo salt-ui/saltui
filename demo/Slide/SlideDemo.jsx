@@ -5,12 +5,12 @@
 * Copyright 2014-2015, Tingle Team, Alinw.
 * All rights reserved.
 */
-let React = require('react');
-let classnames = require('classnames');
-let Slide = require('salt-slide');
+import React from 'react';
+
+import classnames from 'classnames';
+import Slide from 'salt-slide';
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -57,7 +57,7 @@ class Demo extends React.Component {
   }
 
   componentDidMount() {
-    let t = this;
+    const t = this;
     t.setState({
       ajaxList: [{
         img: 'https://img.alicdn.com/tfs/TB147.cRXXXXXaiXpXXXXXXXXXX-640-387.jpg',
@@ -100,7 +100,7 @@ class Demo extends React.Component {
   }
 
   render() {
-    let t = this;
+    const t = this;
     console.log(this.state.dynamicList);
     return (<div>
 
@@ -183,11 +183,10 @@ class Demo extends React.Component {
         onSlideEnd={this.onSlideEnd.bind(this)}
       >
         {
-          t.state.slideList.map((item, index) => {
-            return (<Slide.Item key={index} className="t-image-slide-item" title="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试" style={{
-              backgroundImage: "url(" + item.img + ")"
-            }}></Slide.Item>);
-          })
+          t.state.slideList.map((item, index) => (<Slide.Item key={index} className="t-image-slide-item" title="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试" style={{
+            backgroundImage: `url(${item.img})`,
+          }}
+          />))
         }
       </Slide>
 
@@ -202,11 +201,10 @@ class Demo extends React.Component {
         onSlideEnd={this.onSlideEnd.bind(this)}
       >
         {
-          t.state.slideList.map((item, index) => {
-            return (<Slide.Item key={index} className="t-image-slide-item" style={{
-              backgroundImage: "url(" + item.img + ")"
-            }}></Slide.Item>);
-          })
+          t.state.slideList.map((item, index) => (<Slide.Item key={index} className="t-image-slide-item" style={{
+            backgroundImage: `url(${item.img})`,
+          }}
+          />))
         }
       </Slide>
 
@@ -217,17 +215,15 @@ class Demo extends React.Component {
         auto
       >
         {
-          t.state.slideList2.map((item, index) => {
-            return (
-              <Slide.Item>
-                <a href="//work.alibaba-inc.com"><img src={item.img} /></a>
-              </Slide.Item>
-            );
-          })
+          t.state.slideList2.map((item, index) => (
+            <Slide.Item>
+              <a href="//work.alibaba-inc.com"><img src={item.img} /></a>
+            </Slide.Item>
+          ))
         }
       </Slide>
     </div>);
   }
 }
 
-module.exports = Demo;
+export default Demo;

@@ -9,7 +9,6 @@
 import Mask from 'salt-mask';
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -63,8 +62,8 @@ class Demo extends React.Component {
 
   handleWillHide3() {
     console.log('mask will hide');
-      // 如果返回false 则Mask是不能关闭的
-      // return false;
+    // 如果返回false 则Mask是不能关闭的
+    // return false;
     this.setState({
       maskvisible3: false,
     });

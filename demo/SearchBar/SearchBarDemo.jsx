@@ -6,9 +6,9 @@
  * All rights reserved.
  */
 
-const React = require('react');
+import React from 'react';
 
-const SearchBar = require('salt-search-bar');
+import SearchBar from 'salt-search-bar';
 
 const { WithContainer } = SearchBar;
 
@@ -16,7 +16,6 @@ const { WithContainer } = SearchBar;
 // const SearchBar = require('../../dist');
 
 class List extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +42,6 @@ class List extends React.Component {
 }
 
 class Demo extends React.Component {
-
   render() {
     const t = this;
     const props = {
@@ -76,4 +74,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

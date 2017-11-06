@@ -9,10 +9,9 @@ import 'salt-context';
 import './MaskDemo.styl';
 
 
-
 import Demo from './MaskDemo';
 
 if (window.FastClick) {
   window.FastClick.attach(document.body);
 }
-export default Demo ;
+export default Demo;

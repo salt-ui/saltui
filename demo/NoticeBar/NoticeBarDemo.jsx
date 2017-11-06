@@ -10,7 +10,6 @@ import React from 'react';
 import NoticeBar from 'salt-notice-bar';
 
 class NoticeBarDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +32,7 @@ class NoticeBarDemo extends React.Component {
             message={'这是一个message这是这是这是这是这是这是这是这是这是这是'}
             type="info"
             visible={this.state.visible}
-            optionsType={"close"}
+            optionsType={'close'}
             onClose={() => {
               t.handleClose();
             }}
@@ -44,7 +43,7 @@ class NoticeBarDemo extends React.Component {
             className="noticeMessage"
             message={'这是一个message'}
             type="success"
-            optionsType={"jumpto"}
+            optionsType={'jumpto'}
             onClick={() => {
               console.log('1');
             }}

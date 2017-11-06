@@ -24,7 +24,6 @@ const monthArray = [
 ];
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
 

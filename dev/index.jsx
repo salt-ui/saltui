@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import App from './App';
-import ToastDemo from '../demo/Toast/';
+import SlotDemo from '../demo/Slot/';
 // import '../build/salt-ui.css';
 // TODO: lazyload
 // import Bundle from './Bundle';
@@ -27,7 +27,7 @@ class Demo extends React.Component {
       <Router>
         <div>
           <Route exact path="/" component={App} />
-          <Route path="/toast" component={ToastDemo} />
+          <Route path="/slot" component={SlotDemo} />
         </div>
       </Router>
     );

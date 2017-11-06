@@ -6,9 +6,9 @@
  * All rights reserved.
  */
 
-const Switch = require('salt-switch');
-class Demo extends React.Component {
+import Switch from 'salt-switch';
 
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,4 +37,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

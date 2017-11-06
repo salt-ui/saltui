@@ -6,13 +6,12 @@
  * All rights reserved.
  */
 
-const classnames = require('classnames');
-const Context = require('salt-context');
+import classnames from 'classnames';
 
-const RadioField = require('salt-radio-field');
+import Context from 'salt-context';
+import RadioField from 'salt-radio-field';
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -52,7 +51,7 @@ class Demo extends React.Component {
                   <td className="info-td"><div className="name">李伟（孟则）</div><div className="postName">资深交互设计师</div></td>
                 </tr>
               </tbody></table>
-                ),
+          ),
           disable: false,
         },
         {
@@ -89,4 +88,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

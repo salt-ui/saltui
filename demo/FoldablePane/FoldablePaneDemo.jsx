@@ -10,7 +10,6 @@ import React from 'react';
 import FoldablePane from 'salt-foldable-pane';
 
 class FoldablePaneDemo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {

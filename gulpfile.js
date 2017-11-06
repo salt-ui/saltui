@@ -6,6 +6,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleancss = require('gulp-cleancss');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
+const eslint = require('gulp-eslint');
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
@@ -92,43 +93,43 @@ gulp.task('build_style', () => {
   const dirs = fs.readdirSync('./src');
   const ComponentNames = dirs.filter(dirName => dirName !== 'Style');
   gulp.src('./template/component.styl')
-      .pipe(ejs({ ComponentNames }))
-      .pipe(gulp.dest('./style'))
-      .on('end', () => {
-        const themes = fs.readdirSync('./style/theme');
-        themes.forEach((theme) => {
-          gulp
-            .src(`./style/theme/${theme}/saltui.styl`)
-            .pipe(stylus())
-            .pipe(autoprefixer({
-              browsers: ['iOS >= 7', 'Android >= 2.3', 'FireFoxAndroid >= 46', '> 1%'],
-            }))
-            .pipe(rename(`${theme}.css`))
-            .pipe(gulp.dest('./build'))
-            .pipe(cleancss(cleancssOption))
-            .pipe(rename({
-              suffix: '.min',
-            }))
-            .pipe(gulp.dest('./build'));
-        });
+    .pipe(ejs({ ComponentNames }))
+    .pipe(gulp.dest('./style'))
+    .on('end', () => {
+      const themes = fs.readdirSync('./style/theme');
+      themes.forEach((theme) => {
+        gulp
+          .src(`./style/theme/${theme}/saltui.styl`)
+          .pipe(stylus())
+          .pipe(autoprefixer({
+            browsers: ['iOS >= 7', 'Android >= 2.3', 'FireFoxAndroid >= 46', '> 1%'],
+          }))
+          .pipe(rename(`${theme}.css`))
+          .pipe(gulp.dest('./build'))
+          .pipe(cleancss(cleancssOption))
+          .pipe(rename({
+            suffix: '.min',
+          }))
+          .pipe(gulp.dest('./build'));
       });
+    });
 });
 
 gulp.task('build_lib', (cb) => {
   rm('./lib/*', () => {
     gulp
-    .src(['./src/**/*.js', './src/**/*.jsx'])
-    .pipe(babel({
-      presets: ['react', 'env', 'stage-1'],
-      plugins: ['add-module-exports'],
-    }))
-    .pipe(gulp.dest('./lib'))
-    .on('end', () => {
-      console.log('###### build_js done ######');
-      if (cb) {
-        cb();
-      }
-    });
+      .src(['./src/**/*.js', './src/**/*.jsx'])
+      .pipe(babel({
+        presets: ['react', 'env', 'stage-1'],
+        plugins: ['add-module-exports'],
+      }))
+      .pipe(gulp.dest('./lib'))
+      .on('end', () => {
+        console.log('###### build_js done ######');
+        if (cb) {
+          cb();
+        }
+      });
   });
 });
 
@@ -180,14 +181,14 @@ gulp.task('build_js', ['build_lib', 'make_index'], (done) => {
 });
 gulp.task('uglify_js', ['build_js'], (done) => {
   gulp.src('./build/salt-ui.js')
-  .pipe(uglify({
-    mangle: false,
-  }))
-  .pipe(rename('salt-ui.min.js'))
-  .pipe(gulp.dest('./build'))
-  .on('end', () => {
-    done();
-  });
+    .pipe(uglify({
+      mangle: false,
+    }))
+    .pipe(rename('salt-ui.min.js'))
+    .pipe(gulp.dest('./build'))
+    .on('end', () => {
+      done();
+    });
 });
 
 gulp.task('build', ['uglify_js', 'build_style']);
@@ -250,7 +251,7 @@ gulp.task('server', () => {
               resource.request = resource.request.replace(/salt-(.+)/, (match, s1) => require.resolve(`./src/${upperInitWord(s1)}`));
             }
             /* eslint-enable no-param-reassign */
-          }
+          },
         ),
       ];
       const compiler = webpack(assign({}, commonWebpackCfg, { plugins }));
@@ -271,5 +272,11 @@ gulp.task('server', () => {
       });
     });
   /* eslint-enable camelcase */
+});
+
+gulp.task('eslint', () => {
+  gulp.src(['./demo/**/*.js', './demo/**/*.jsx'])
+    .pipe(eslint())
+    .pipe(eslint.format('checkstyle'));
 });
 

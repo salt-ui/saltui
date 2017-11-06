@@ -6,12 +6,12 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const districtData = require('./staticData');
-const CitySelectField = require('salt-city-select-field');
+import React from 'react';
+
+import districtData from './staticData';
+import CitySelectField from 'salt-city-select-field';
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -84,7 +84,7 @@ class Demo extends React.Component {
           districtText="区"
           // readOnly
           districtData={districtData}
-        // onSelect={value => this.setState({ value })}
+          // onSelect={value => this.setState({ value })}
           tip="这里是提示信息"
         />
         <CitySelectField
@@ -100,7 +100,7 @@ class Demo extends React.Component {
           cityText="市"
           districtText="区"
           readOnly
-          value={["***"]}
+          value={['***']}
           districtData={districtData}
         />
       </div>
@@ -108,4 +108,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

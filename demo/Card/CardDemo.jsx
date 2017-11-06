@@ -6,18 +6,17 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const Context = require('salt-context');
+import React from 'react';
 
-const IconEye = require('salt-icon/lib/Eye');
-const IconStarLine = require('salt-icon/lib/StarLine');
-const Card = require('salt-card');
+import Context from 'salt-context';
+import IconEye from 'salt-icon/lib/Eye';
+import IconStarLine from 'salt-icon/lib/StarLine';
+import Card from 'salt-card';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const Card = require('../../dist');
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -77,4 +76,4 @@ class Demo extends React.Component {
   }
 }
 
-module.exports = Demo;
+export default Demo;

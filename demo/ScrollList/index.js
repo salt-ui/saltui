@@ -7,18 +7,13 @@
  */
 
 
-
 // import Content from 'salt-context';
 import './ScrollListDemo.styl';
 
 // window.FastClick && FastClick.attach(document.body);
 
 
-
-
-
-
 // 渲染demo
 import Demo from './ScrollListDemo';
 
-export default Demo ;
+export default Demo;

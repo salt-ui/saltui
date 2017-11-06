@@ -5,10 +5,12 @@
  * Copyright 2014-2017, Tingle Team, Alinw.
  * All rights reserved.
  */
-require('salt-context');
+import 'salt-context';
+
 import './GridDemo.styl';
 window.FastClick && FastClick.attach(document.body);
 
 // 渲染demo
-var Demo = require('./GridDemo');
+import Demo from './GridDemo';
+
 export default Demo;

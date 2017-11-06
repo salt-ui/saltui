@@ -10,10 +10,10 @@ import 'salt-context';
 import './DatetimeFieldDemo.styl';
 
 
-const Demo = require('./DatetimeFieldDemo');
+import Demo from './DatetimeFieldDemo';
 
 if (window.FastClick) {
   window.FastClick.attach(document.body);
 }
 // 渲染demo
-export default Demo ;
+export default Demo;
