@@ -1,4 +1,8 @@
 
+## 3.1.11 / 2017-11-09
+
+* `feat`: TabBar: isUrl can pass base64 dataUrl.
+
 ## 3.1.10 / 2017-11-03
 
 * `fix` refactor Toast.hide logic, fix the weird leaving animation.

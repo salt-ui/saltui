@@ -12,6 +12,7 @@ module.exports = {
         "import/no-extraneous-dependencies": "off",
         "react/prefer-stateless-function": "off",
         "import/no-unresolved": "off",
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "react/forbid-prop-types": "off"
     }
 };

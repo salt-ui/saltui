@@ -3,7 +3,7 @@ import assign from 'object-assign';
 import classnames from 'classnames';
 import Context from '../Context';
 
-const isUrl = str => /((\/\/)|^\.{0,2}\/).+/g.test(str);
+const isUrl = str => /((\/\/)|^\.{0,2}\/|(^data:image)).+/g.test(str);
 const isArray = obj => Object.prototype.toString.call(obj) === '[object Array]';
 
 class TabBarItemIcon extends React.Component {
@@ -40,8 +40,10 @@ class TabBarItemIcon extends React.Component {
   renderImgIcon(icon, title, style) {
     let className;
     if (this.props.type === 'more') {
-      className = classnames(Context.prefixClass('tabs-bar-item-img-icon'),
-        Context.prefixClass('tabs-bar-item-img-more-icon'));
+      className = classnames(
+        Context.prefixClass('tabs-bar-item-img-icon'),
+        Context.prefixClass('tabs-bar-item-img-more-icon'),
+      );
     } else {
       className = Context.prefixClass('tabs-bar-img-icon');
     }
@@ -58,17 +60,25 @@ class TabBarItemIcon extends React.Component {
   renderTingleIcon(icon, style = {}) {
     let className;
     if (this.props.type === 'more') {
-      className = classnames(Context.prefixClass('tabs-bar-item-tingle-icon'),
-        Context.prefixClass('tabs-bar-item-more-tingle-icon'));
+      className = classnames(
+        Context.prefixClass('tabs-bar-item-tingle-icon'),
+        Context.prefixClass('tabs-bar-item-more-tingle-icon'),
+      );
     } else if (this.props.type === 'center') {
-      className = classnames(Context.prefixClass('tabs-bar-item-tingle-icon'),
-        Context.prefixClass('tabs-bar-item-center-tingle-icon'));
+      className = classnames(
+        Context.prefixClass('tabs-bar-item-tingle-icon'),
+        Context.prefixClass('tabs-bar-item-center-tingle-icon'),
+      );
     } else {
       className = Context.prefixClass('tabs-bar-item-tingle-icon');
     }
     if (React.isValidElement(icon)) {
-      return (React.cloneElement(icon,
-        { width: this.props.iconHeight, height: this.props.iconHeight, className, style }));
+      return (React.cloneElement(
+        icon,
+        {
+          width: this.props.iconHeight, height: this.props.iconHeight, className, style,
+        },
+      ));
     }
     return null;
   }
@@ -76,7 +86,9 @@ class TabBarItemIcon extends React.Component {
   render() {
     let iconElem;
     let className;
-    const { active, title, iconStyle, activeIconStyle } = this.props;
+    const {
+      active, title, iconStyle, activeIconStyle,
+    } = this.props;
     const currentIconStyle = assign({}, iconStyle, active ? activeIconStyle : {});
     const currentIcon = active ? this.getActiveIcon() : this.getIcon();
     if (!currentIcon) {
@@ -88,11 +100,15 @@ class TabBarItemIcon extends React.Component {
       // TODO, DRY the code
       let IconClassName;
       if (this.props.type === 'more') {
-        IconClassName = classnames(Context.prefixClass('tabs-bar-item-tingle-icon'),
-          Context.prefixClass('tabs-bar-item-more-tingle-icon'));
+        IconClassName = classnames(
+          Context.prefixClass('tabs-bar-item-tingle-icon'),
+          Context.prefixClass('tabs-bar-item-more-tingle-icon'),
+        );
       } else if (this.props.type === 'center') {
-        IconClassName = classnames(Context.prefixClass('tabs-bar-item-tingle-icon'),
-          Context.prefixClass('tabs-bar-item-center-tingle-icon'));
+        IconClassName = classnames(
+          Context.prefixClass('tabs-bar-item-tingle-icon'),
+          Context.prefixClass('tabs-bar-item-center-tingle-icon'),
+        );
       } else {
         IconClassName = Context.prefixClass('tabs-bar-item-tingle-icon');
       }
@@ -108,14 +124,18 @@ class TabBarItemIcon extends React.Component {
     }
 
     if (this.props.type === 'more') {
-      className = classnames(Context.prefixClass('tabs-bar-item-icon'),
-        Context.prefixClass('tabs-bar-item-more-icon'));
+      className = classnames(
+        Context.prefixClass('tabs-bar-item-icon'),
+        Context.prefixClass('tabs-bar-item-more-icon'),
+      );
     } else {
       className = Context.prefixClass('tabs-bar-item-icon');
     }
-    return (<div className={classnames(className, this.props.className)}>
-      {iconElem}
-    </div>);
+    return (
+      <div className={classnames(className, this.props.className)}>
+        {iconElem}
+      </div>
+    );
   }
 }
 

@@ -43,12 +43,6 @@ class TabBar extends React.Component {
     super(props);
     this.state = {
       activeIndex: props.activeIndex,
-      className: props.className,
-      height: props.height,
-      cIconHeight: props.cIconHeight,
-      iconHeight: props.iconHeight,
-      tabBarStyle: props.tabBarStyle,
-      menuFlat: props.menuFlat,
       centerMoreVisible: false,
     };
   }
@@ -109,7 +103,7 @@ class TabBar extends React.Component {
             onMoreVisibleChange={(visible) => { this.handleCenterMoreVisibleChange(visible); }}
             childIconHeight={36}
             active={idx === t.state.activeIndex}
-            type={'center'}
+            type="center"
             onClick={() => {
               t.onItemClick();
             }}
@@ -148,7 +142,7 @@ class TabBar extends React.Component {
             iconHeight={item.cIconHeight || t.props.cIconHeight}
             childIconHeight={36}
             active={idx === t.state.activeIndex}
-            type={'center'}
+            type="center"
             onClick={() => {
               t.onItemClick();
             }}
@@ -202,9 +196,11 @@ class TabBar extends React.Component {
     if (this.state.centerMoreVisible) {
       style.zIndex = 1010;
     }
-    return (<div className={className} style={style}>
-      {t.renderItems()}
-    </div>);
+    return (
+      <div className={className} style={style}>
+        {t.renderItems()}
+      </div>
+    );
   }
 }
 
