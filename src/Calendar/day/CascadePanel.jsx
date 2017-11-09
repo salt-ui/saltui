@@ -21,7 +21,6 @@ import { halfDayType } from './const';
 const prefixClass = Context.prefixClass;
 
 class CascadePanel extends Panel {
-
   static propTypes = {
     ...Panel.propTypes,
   };
@@ -49,13 +48,6 @@ class CascadePanel extends Panel {
   adaptCascadeDate(sDate, eDate) {
     const startDate = util.isNil(sDate) ? sDate : new Date(sDate).getTime();
     let endDate = util.isNil(eDate) ? eDate : new Date(eDate).getTime();
-    // if (!startDate && endDate) {
-    //   startDate = endDate;
-    // } else if (startDate && !endDate) {
-    //   endDate = startDate;
-    // } else if (util.isNil(startDate) && util.isNil(endDate)) {
-    //   startDate = endDate = Date.now();
-    // }
     // 如果开始时间大于结束时间，则把结束时间置为同开始时间相同的时间
     if (startDate && endDate && startDate > endDate) {
       endDate = startDate;
@@ -114,10 +106,6 @@ class CascadePanel extends Panel {
       activeDate = newValue.endDate;
       activeType = 'end';
     }
-
-    // 测试使用，记得删除
-    window.activeDate = formatter(activeDate, 'YYYY-MM-DD');
-    window.activeType = activeType;
 
     this.setState({
       value: newValue,
@@ -237,7 +225,8 @@ class CascadePanel extends Panel {
         })}
         key="half-day-full"
         onClick={(e) => { t.onHalfButtonClick(halfDayType.FULL, e); }}
-      >{t.locale.dayTipMap.FULL}</li>);
+      >{t.locale.dayTipMap.FULL}
+      </li>);
 
     const am =
       (<li
@@ -246,7 +235,8 @@ class CascadePanel extends Panel {
         })}
         key="half-day-am"
         onClick={(e) => { t.onHalfButtonClick(halfDayType.AM, e); }}
-      >{t.locale.dayTipMap.AM}</li>);
+      >{t.locale.dayTipMap.AM}
+      </li>);
 
     const pm =
       (<li
@@ -255,7 +245,8 @@ class CascadePanel extends Panel {
         })}
         key="half-day-pm"
         onClick={(e) => { t.onHalfButtonClick(halfDayType.PM, e); }}
-      >{t.locale.dayTipMap.PM}</li>);
+      >{t.locale.dayTipMap.PM}
+      </li>);
 
     let halfButtons = [full, am, pm];
 
@@ -279,11 +270,11 @@ class CascadePanel extends Panel {
           type="primary"
           display="banner"
           onClick={(e) => { t.onOk(e); }}
-        >{t.locale.button.confirm}</Button>
+        >{t.locale.button.confirm}
+        </Button>
       </div>
     );
   }
-
 }
 
 export default CascadePanel;
