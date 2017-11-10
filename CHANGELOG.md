@@ -2,6 +2,7 @@
 ## 3.1.11 / 2017-11-09
 
 * `feat`: TabBar: isUrl can pass base64 dataUrl.
+* `fix`: Tab underline bar style
 
 ## 3.1.10 / 2017-11-03
 
