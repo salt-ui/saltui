@@ -1,4 +1,8 @@
 
+## 3.1.12 / 2017-11-13
+
+* `fix`: `Tab` showAll panel item align bug
+
 ## 3.1.11 / 2017-11-09
 
 * `feat`: TabBar: isUrl can pass base64 dataUrl.
