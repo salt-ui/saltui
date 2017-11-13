@@ -91,12 +91,13 @@ common-pagination() {
   transition all 0.3s
   .{$prefix}-tab-all-body
     padding 25px 16px 30px
-    justify-content space-between
+    // justify-content space-between
     flex-wrap wrap
     overflow-y auto
     max-height 300px
     .{$prefix}-tab-all-item
       width px2rem(102)
+      margin-right px2rem(18)
       padding 11px 
       border-radius 3px
       text-align center
@@ -107,6 +108,8 @@ common-pagination() {
       font-size $font-size-t4
       color $dark-alpha-3
       margin-bottom px2rem(8)
+      &-row-last
+        margin-right 0
       &__disabled
         background $normal-alpha-8
         color $normal-alpha-5

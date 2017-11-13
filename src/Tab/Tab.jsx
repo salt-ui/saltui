@@ -173,7 +173,9 @@ export default class Tabs extends React.Component {
   }
 
   renderTabBar = () => {
-    const { children, animated, speed, pageSize, tabBarhammerOptions, onTabClick } = this.props;
+    const {
+      children, animated, speed, pageSize, tabBarhammerOptions, onTabClick,
+    } = this.props;
     if (children.length > pageSize) {
       return (
         <SwipeableInkTabBar
@@ -222,7 +224,8 @@ export default class Tabs extends React.Component {
           ref={(ref) => {
             this.arrowBtnWrap = ref;
           }}
-          className={prefixClass('tab-all PA FBH FBAC FBJC')} onClick={() => {
+          className={prefixClass('tab-all PA FBH FBAC FBJC')}
+          onClick={() => {
             this.toggleAll();
           }}
         >
@@ -242,6 +245,7 @@ export default class Tabs extends React.Component {
                 onClick={(e) => { this.handleItemClick(item.key, item.datas, e); }}
                 className={classnames(prefixClass('tab-all-item'), {
                   [prefixClass('tab-all-item__disabled')]: `${item.key}` === `${this.state.activeKey}`,
+                  [prefixClass('tab-all-item-row-last')]: i % 3 == 2,
                 })}
               >
                 {item.title}
