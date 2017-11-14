@@ -18,7 +18,6 @@ const SlotPane = require('./tpls/Pane');
 const isArray = arr => Object.prototype.toString.call(arr) === '[object Array]';
 
 class Slot extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -52,7 +51,8 @@ class Slot extends React.Component {
     const t = this;
     const {
       className, title, value, data, scrollMod,
-      columns, cancelText, confirmText, columnsFlex } = t.props;
+      columns, cancelText, confirmText, columnsFlex,
+    } = t.props;
 
     const headerProps = {
       title,
@@ -116,8 +116,10 @@ class Slot extends React.Component {
     if (t.state.childPaneIsScrolling) {
       return;
     }
+    // value can be only an array or undefined or null
+    const isEmptyValue = value => !!(value && value.length);
     try {
-      const confirmValue = t.lastChoose || t.setDefaultLastChoose();
+      const confirmValue = isEmptyValue(t.lastChoose) || t.setDefaultLastChoose();
       t.props.onConfirm(confirmValue);
     } finally {
       t.hide();

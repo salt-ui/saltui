@@ -1,8 +1,10 @@
 
-## 3.1.12 / 2017-11-14
+## 3.1.13 / 2017-11-14
 
 * `fix`: `Tab` showAll panel item align bug
 * `fix`: `CascadeSelect` tab type change bug (#27)
+* `fix`: `CascadeSelect` incorrect placeholder color
+* `fix`: `CascadeSelect` normal mode cannot select the first Option if `props.value` is not set
 
 
 ## 3.1.11 / 2017-11-09

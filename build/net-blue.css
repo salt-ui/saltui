@@ -2046,16 +2046,16 @@ a:hover {
   vertical-align: middle;
 }
 .t-cascade-select-field-icon svg {
-  fill: #ccc;
+  fill: rgba(31,56,88,0.3);
 }
 .t-cascade-select-field-placeholder {
   max-width: 100%;
   height: 24px;
   line-height: 24px;
-  color: #ccc;
+  color: rgba(31,56,88,0.3);
 }
 .t-cascade-select-field-readonly {
-  color: #ccc;
+  color: rgba(31,56,88,0.3);
 }
 .t-cascade-slot-header-wrap {
   background-color: #fff;
