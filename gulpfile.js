@@ -239,7 +239,7 @@ gulp.task('server', () => {
         }),
         // SourceMap plugin will define process.env.NODE_ENV as development
         new webpack.SourceMapDevToolPlugin({
-          columns: false,
+          // columns: false,
         }),
         // new BundleAnalyzerPlugin(),
         new ProgressBarPlugin(),

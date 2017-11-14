@@ -93,8 +93,6 @@ height
 * 默认：'auto'
 * 必填：否
 
-#### hide(onDidHide)
-
 onDidHide
 
 * 描述：关闭后的回调函数
@@ -115,6 +113,8 @@ transitionName
 * 类型：string
 * 默认：'fix-top',包括'fix-top', 'fix-bottom'
 * 必填：否
+
+#### hide(onDidHide)
 
 
 ## Links

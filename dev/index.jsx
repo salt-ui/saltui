@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import App from './App';
-import TabDemo from '../demo/Tab/';
+import CascadeSelectFieldDemo from '../demo/CascadeSelectField/';
 // import '../build/salt-ui.css';
 // TODO: lazyload
 // import Bundle from './Bundle';
@@ -27,7 +27,7 @@ class Demo extends React.Component {
       <Router>
         <div>
           <Route exact path="/" component={App} />
-          <Route path="/tab" component={TabDemo} />
+          <Route path="/cascade-select-field" component={CascadeSelectFieldDemo} />
         </div>
       </Router>
     );

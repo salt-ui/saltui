@@ -8,15 +8,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
-import { VBox } from '../Boxs';
-import { prefixClass, noop } from '../Context';
 import Dialog from 'rc-dialog';
-
 import IconCheckRound from 'salt-icon/lib/CheckRound';
 import IconCrossRound from 'salt-icon/lib/CrossRound';
 import IconToastFail from 'salt-icon/lib/ToastFail';
 import IconToastLoading from 'salt-icon/lib/ToastLoading';
 import IconInfoRound from 'salt-icon/lib/InfoRound';
+import { VBox } from '../Boxs';
+import { prefixClass, noop } from '../Context';
 
 let globalInstance;
 
@@ -173,6 +172,7 @@ Toast.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Toast.propTypes = {
+  prefixCls: React.PropTypes.string,
   visible: React.PropTypes.bool,
   hasMask: React.PropTypes.bool,
   autoHide: React.PropTypes.bool,

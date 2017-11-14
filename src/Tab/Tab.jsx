@@ -86,8 +86,7 @@ export default class Tabs extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.active !== this.props.active ||
+    if (nextProps.active !== this.props.active ||
       nextProps.activeKey !== this.props.activeKey) {
       this.setState({
         activeKey: getActiveKey(nextProps),

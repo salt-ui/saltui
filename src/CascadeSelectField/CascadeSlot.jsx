@@ -29,14 +29,14 @@ export default class CascadeSlot extends React.Component {
   }
 
   onItemClick(level = 0, selectedValue) {
-    let value = this.state.value;
+    let { value } = this.state;
     value = value.slice(0, level);
     value[level] = {
       value: selectedValue.value,
       text: selectedValue.label,
     };
 
-    let activeTab = this.state.activeTab;
+    let { activeTab } = this.state;
 
     if (selectedValue.children && selectedValue.children.length) {
       value[level + 1] = {};
@@ -71,6 +71,12 @@ export default class CascadeSlot extends React.Component {
     }
   }
 
+  handleTabChange({ activeKey }) {
+    this.setState({
+      activeTab: activeKey,
+    });
+  }
+
   renderHeader() {
     const { title, locale } = this.props;
     const { value } = this.state;
@@ -98,7 +104,7 @@ export default class CascadeSlot extends React.Component {
     let loopOptions;
     return (
       <div className={TingleCtx.prefixClass('cascade-slot-body-wrap')}>
-        <Tab activeKey={this.state.activeTab} swipeable={false} speed={1}>
+        <Tab activeKey={this.state.activeTab} swipeable={false} speed={1} onChange={(tabData) => { this.handleTabChange(tabData); }}>
           {
             value.map((val, index) => {
               if (index === 0) {
