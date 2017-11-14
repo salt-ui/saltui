@@ -20586,7 +20586,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var __SALT_VERSION__ = void 0; /* eslint-disable */
 
-__SALT_VERSION__ = "3.1.11";
+__SALT_VERSION__ = "3.1.12";
 
 var __SALT_BUNDLE__ = {
   version: __SALT_VERSION__,
@@ -29913,10 +29913,6 @@ var _classnames2 = __webpack_require__(1);
 
 var _classnames3 = _interopRequireDefault(_classnames2);
 
-var _Boxs = __webpack_require__(18);
-
-var _Context = __webpack_require__(2);
-
 var _rcDialog = __webpack_require__(102);
 
 var _rcDialog2 = _interopRequireDefault(_rcDialog);
@@ -29940,6 +29936,10 @@ var _ToastLoading2 = _interopRequireDefault(_ToastLoading);
 var _InfoRound = __webpack_require__(138);
 
 var _InfoRound2 = _interopRequireDefault(_InfoRound);
+
+var _Boxs = __webpack_require__(18);
+
+var _Context = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30146,6 +30146,7 @@ Toast.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Toast.propTypes = {
+  prefixCls: _react2.default.PropTypes.string,
   visible: _react2.default.PropTypes.bool,
   hasMask: _react2.default.PropTypes.bool,
   autoHide: _react2.default.PropTypes.bool,
@@ -38503,8 +38504,8 @@ var CascadeSlot = function (_React$Component) {
 
       var level = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
       var selectedValue = arguments[1];
-
       var value = this.state.value;
+
       value = value.slice(0, level);
       value[level] = {
         value: selectedValue.value,
@@ -38512,6 +38513,7 @@ var CascadeSlot = function (_React$Component) {
       };
 
       var activeTab = this.state.activeTab;
+
 
       if (selectedValue.children && selectedValue.children.length) {
         value[level + 1] = {};
@@ -38545,6 +38547,15 @@ var CascadeSlot = function (_React$Component) {
         default:
           break;
       }
+    }
+  }, {
+    key: 'handleTabChange',
+    value: function handleTabChange(_ref) {
+      var activeKey = _ref.activeKey;
+
+      this.setState({
+        activeTab: activeKey
+      });
     }
   }, {
     key: 'renderHeader',
@@ -38599,7 +38610,9 @@ var CascadeSlot = function (_React$Component) {
         { className: TingleCtx.prefixClass('cascade-slot-body-wrap') },
         React.createElement(
           Tab,
-          { activeKey: this.state.activeTab, swipeable: false, speed: 1 },
+          { activeKey: this.state.activeTab, swipeable: false, speed: 1, onChange: function onChange(tabData) {
+              _this3.handleTabChange(tabData);
+            } },
           value.map(function (val, index) {
             if (index === 0) {
               loopOptions = options;
@@ -39533,7 +39546,8 @@ var Tabs = function (_React$Component) {
             ref: function ref(_ref2) {
               _this3.arrowBtnWrap = _ref2;
             },
-            className: prefixClass('tab-all PA FBH FBAC FBJC'), onClick: function onClick() {
+            className: prefixClass('tab-all PA FBH FBAC FBJC'),
+            onClick: function onClick() {
               _this3.toggleAll();
             }
           },
@@ -39552,6 +39566,8 @@ var Tabs = function (_React$Component) {
               className: prefixClass('tab-all-body FBH')
             },
             this.tabs.map(function (item, i) {
+              var _classnames;
+
               return _react2.default.createElement(
                 'li',
                 {
@@ -39559,7 +39575,7 @@ var Tabs = function (_React$Component) {
                   onClick: function onClick(e) {
                     _this3.handleItemClick(item.key, item.datas, e);
                   },
-                  className: (0, _classnames4.default)(prefixClass('tab-all-item'), _defineProperty({}, prefixClass('tab-all-item__disabled'), '' + item.key === '' + _this3.state.activeKey))
+                  className: (0, _classnames4.default)(prefixClass('tab-all-item'), (_classnames = {}, _defineProperty(_classnames, prefixClass('tab-all-item__disabled'), '' + item.key === '' + _this3.state.activeKey), _defineProperty(_classnames, prefixClass('tab-all-item-row-last'), i % 3 == 2), _classnames))
                 },
                 item.title
               );

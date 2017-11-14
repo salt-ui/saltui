@@ -1,7 +1,9 @@
 
-## 3.1.12 / 2017-11-13
+## 3.1.12 / 2017-11-14
 
 * `fix`: `Tab` showAll panel item align bug
+* `fix`: `CascadeSelect` tab type change bug (#27)
+
 
 ## 3.1.11 / 2017-11-09
 

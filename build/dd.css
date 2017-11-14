@@ -5782,9 +5782,6 @@ a:hover {
 }
 .t-tab-popup-container .t-tab-all-body {
   padding: 25px 16px 30px;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
   -webkit-flex-wrap: wrap;
           flex-wrap: wrap;
   overflow-y: auto;
@@ -5792,6 +5789,7 @@ a:hover {
 }
 .t-tab-popup-container .t-tab-all-body .t-tab-all-item {
   width: 2.72rem;
+  margin-right: 0.48rem;
   padding: 11px;
   border-radius: 3px;
   text-align: center;
@@ -5802,6 +5800,9 @@ a:hover {
   font-size: 14px;
   color: rgba(0,0,0,0.6);
   margin-bottom: 0.213333333333333rem;
+}
+.t-tab-popup-container .t-tab-all-body .t-tab-all-item-row-last {
+  margin-right: 0;
 }
 .t-tab-popup-container .t-tab-all-body .t-tab-all-item__disabled {
   background: rgba(31,56,88,0.06);
