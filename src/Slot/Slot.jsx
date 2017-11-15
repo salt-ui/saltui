@@ -117,9 +117,9 @@ class Slot extends React.Component {
       return;
     }
     // value can be only an array or undefined or null
-    const isEmptyValue = value => !!(value && value.length);
+    const isNotEmptyValue = value => !!(value && value.length);
     try {
-      const confirmValue = isEmptyValue(t.lastChoose) || t.setDefaultLastChoose();
+      const confirmValue = isNotEmptyValue(t.lastChoose) ? t.lastChoose : t.setDefaultLastChoose();
       t.props.onConfirm(confirmValue);
     } finally {
       t.hide();

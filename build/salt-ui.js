@@ -20586,7 +20586,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var __SALT_VERSION__ = void 0; /* eslint-disable */
 
-__SALT_VERSION__ = "3.1.14";
+__SALT_VERSION__ = "3.1.15";
 
 var __SALT_BUNDLE__ = {
   version: __SALT_VERSION__,
@@ -31756,11 +31756,11 @@ var Slot = function (_React$Component) {
         return;
       }
       // value can be only an array or undefined or null
-      var isEmptyValue = function isEmptyValue(value) {
+      var isNotEmptyValue = function isNotEmptyValue(value) {
         return !!(value && value.length);
       };
       try {
-        var confirmValue = isEmptyValue(t.lastChoose) || t.setDefaultLastChoose();
+        var confirmValue = isNotEmptyValue(t.lastChoose) ? t.lastChoose : t.setDefaultLastChoose();
         t.props.onConfirm(confirmValue);
       } finally {
         t.hide();

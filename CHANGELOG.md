@@ -1,4 +1,8 @@
 
+## 3.1.15 / 2017-11-15
+
+* `fix`: `Slot` onConfirm pass wrong value
+
 ## 3.1.14 / 2017-11-15
 
 * `fix`: `CascadeSelect` options can not be scrolled
