@@ -5,5 +5,6 @@
  * Copyright 2014-2016, Tingle Team, Alinw.
  * All rights reserved.
  */
+import Boxs from './Boxs';
 
-module.exports = require('./Boxs');
+export default Boxs;

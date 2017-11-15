@@ -49,7 +49,9 @@ const Panel = (props) => {
         onClick={() => {
           onItemClick(-1, -1);
         }}
-      >{cancelButton || lang.cancel}</div>
+      >
+        {cancelButton || lang.cancel}
+      </div>
     </div>
   );
 };
@@ -61,7 +63,7 @@ Panel.defaultProps = {
   onItemClick: () => {},
   onCancel: () => {},
 };
-
+/* eslint-disable */
 Panel.propTypes = {
   title: React.PropTypes.oneOfType([
     React.PropTypes.string,
@@ -81,5 +83,5 @@ Panel.propTypes = {
   options: React.PropTypes.array,
   locale: React.PropTypes.string,
 };
-
+/* eslint-enable */
 export default Panel;

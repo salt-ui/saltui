@@ -16,12 +16,14 @@ class TextButton extends React.Component {
   }
 
   render() {
-    const className = this.props.className;
-    const style = this.props.style;
-    const type = this.props.type;
-    const size = this.props.size;
-    const display = this.props.display;
-    const disabled = this.props.disabled;
+    const {
+      className,
+      style,
+      type,
+      disabled,
+      display,
+      size,
+    } = this.props;
 
     const classSet = {
       [`${prefixClass('FBH FBAC FBJC')}`]: true,

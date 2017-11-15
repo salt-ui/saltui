@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import Context from '../Context';
 
 class Badge extends React.Component {
-
+  /* eslint-disable  */
   static propTypes = {
     className: React.PropTypes.string,
     count: React.PropTypes.oneOfType([
@@ -25,7 +25,7 @@ class Badge extends React.Component {
       React.PropTypes.number,
     ]),
   };
-
+ /* eslint-enable */
   static defaultProps = {
     text: '',
     dot: false,
@@ -39,7 +39,12 @@ class Badge extends React.Component {
     const cls = {
       [t.props.className]: !!t.props.className,
     };
-    const { dot, text, corner, overflowCount } = this.props;
+    const {
+      dot,
+      text,
+      corner,
+      overflowCount,
+    } = this.props;
 
 
     let { count } = this.props;
@@ -81,9 +86,11 @@ class Badge extends React.Component {
 
     return (
       <div className={classnames(Context.prefixClass('badge'), cls)}>
-        {showBadge ? <div className="badge-inner" style={style}>
-          {count}
-        </div> : null}
+        {showBadge ?
+          <div className="badge-inner" style={style}>
+            {count}
+          </div> :
+        null}
         {t.props.children}
       </div>
     );
