@@ -2116,6 +2116,7 @@ a:hover {
 .t-cascade-slot-list {
   background-color: #fff;
   padding: 10px 0;
+  -webkit-overflow-scrolling: touch;
 }
 .t-cascade-slot-list li button {
   height: 36px;
@@ -2126,6 +2127,7 @@ a:hover {
   margin: 0;
   border: none;
   background: none;
+  outline: none;
   display: block;
   width: 100%;
   text-align: left;

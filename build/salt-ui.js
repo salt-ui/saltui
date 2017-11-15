@@ -20586,7 +20586,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var __SALT_VERSION__ = void 0; /* eslint-disable */
 
-__SALT_VERSION__ = "3.1.13";
+__SALT_VERSION__ = "3.1.14";
 
 var __SALT_BUNDLE__ = {
   version: __SALT_VERSION__,
@@ -38631,32 +38631,30 @@ var CascadeSlot = function (_React$Component) {
                   val.text || textPleaseSelect
                 ) },
               React.createElement(
-                Scroller,
-                null,
-                React.createElement(
-                  'ul',
-                  { className: TingleCtx.prefixClass('cascade-slot-list') },
-                  loopOptions.map(function (level, levelIndex) {
-                    return React.createElement(
-                      'li',
-                      { key: level.value },
+                'ul',
+                { className: TingleCtx.prefixClass('cascade-slot-list') },
+                loopOptions.map(function (level, levelIndex) {
+                  return React.createElement(
+                    'li',
+                    { key: level.value },
+                    React.createElement(
+                      'button',
+                      {
+                        className: classnames(TingleCtx.prefixClass('cascade-slot-list-button'), {
+                          active: _this3.state.value[index].value === level.value
+                        }),
+                        onClick: _this3.onItemClick.bind(_this3, index, level, levelIndex)
+                      },
                       React.createElement(
-                        'button',
-                        {
-                          className: classnames({ active: _this3.state.value[index].value === level.value }),
-                          onClick: _this3.onItemClick.bind(_this3, index, level, levelIndex)
-                        },
-                        React.createElement(
-                          'span',
-                          { className: 'text' },
-                          level.label
-                        ),
-                        ' ',
-                        _this3.state.value[index].value === level.value ? React.createElement(IconCheck, { width: 16, height: 16 }) : null
-                      )
-                    );
-                  })
-                )
+                        'span',
+                        { className: 'text' },
+                        level.label
+                      ),
+                      ' ',
+                      _this3.state.value[index].value === level.value ? React.createElement(IconCheck, { width: 16, height: 16 }) : null
+                    )
+                  );
+                })
               )
             );
           })
