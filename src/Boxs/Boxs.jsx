@@ -6,9 +6,10 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const classnames = require('classnames');
-const { prefixClass } = require('../Context');
+import React from 'react';
+
+import classnames from 'classnames';
+import { prefixClass } from '../Context';
 
 const START = 'start';
 const CENTER = 'center';
@@ -46,14 +47,18 @@ const HBox = (props) => {
     </div>
   );
 };
-/* eslint-disable */
+
 HBox.propTypes = {
   className: React.PropTypes.string,
   flex: React.PropTypes.number,
   hAlign: React.PropTypes.oneOf(ALIGN_VALUES),
   vAlign: React.PropTypes.oneOf(ALIGN_VALUES),
 };
-/* eslint-enable */
+HBox.defaultProps = {
+  className: '',
+  flex: 0,
+};
+
 HBox.displayName = 'HBox';
 
 /**
@@ -83,14 +88,16 @@ const VBox = (props) => {
     </div>
   );
 };
-/* eslint-disable */
 VBox.propTypes = {
   className: React.PropTypes.string,
   flex: React.PropTypes.number,
   hAlign: React.PropTypes.oneOf(ALIGN_VALUES),
   vAlign: React.PropTypes.oneOf(ALIGN_VALUES),
 };
-/* eslint-enable */
+VBox.defaultProps = {
+  className: '',
+  flex: 0,
+};
 VBox.displayName = 'VBox';
 
 /**
@@ -112,14 +119,17 @@ const Box = (props) => {
     </div>
   );
 };
-/* eslint-disable */
+
 Box.propTypes = {
   className: React.PropTypes.string,
   flex: React.PropTypes.number,
   hAlign: React.PropTypes.oneOf(ALIGN_VALUES),
   vAlign: React.PropTypes.oneOf(ALIGN_VALUES),
 };
-/* eslint-enable */
+Box.defaultProps = {
+  className: '',
+  flex: 0,
+};
 Box.displayName = 'Box';
 
-export { HBox, VBox, Box };
+export default { HBox, VBox, Box };

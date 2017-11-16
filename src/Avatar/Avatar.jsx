@@ -57,7 +57,7 @@ export default class Avatar extends Component {
       ? formattedName.slice(0, 2)
       : formattedName.slice(formattedName.length - 2, formattedName.length);
   };
-  /* eslint-disable */
+
   static propTypes = {
     className: React.PropTypes.string,
     colors: React.PropTypes.array,
@@ -74,7 +74,7 @@ export default class Avatar extends Component {
     src: React.PropTypes.string,
     style: React.PropTypes.object,
   };
-  /* eslint-enable */
+
   static defaultProps = {
     className: '',
     colors: global.colors || avatarColors,
@@ -128,11 +128,11 @@ export default class Avatar extends Component {
     }
     if (props.defaultColor) {
       style.backgroundColor = props.defaultColor;
-      // eslint-disable-next-line no-unused-expressions, no-console
-      console && console.warn && console.warn('Avatar: defaultColor is deprecated, use colors instead.');
+      if (console && console.warn) {
+        console.warn('Avatar: defaultColor is deprecated, use colors instead.');
+      }
     } else if (props.colors.length === 1) {
-      // eslint-disable-next-line
-      style.backgroundColor = props.colors[0];
+      [style.backgroundColor] = props.colors;
     } else {
       const hashCode = props.hashCode(props.name, props.isLong);
       style.backgroundColor = props.colors[Math.abs(hashCode) % props.colors.length];
@@ -144,7 +144,7 @@ export default class Avatar extends Component {
         style={style}
       >
         {
-          !!props.icon // eslint-disable-line no-extra-boolean-cast
+          props.icon
             ? <span style={iconWrapperStyle}>{props.icon}</span>
             : Avatar.formatName(props.name)
         }

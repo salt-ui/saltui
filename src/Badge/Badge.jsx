@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import Context from '../Context';
 
 class Badge extends React.Component {
-  /* eslint-disable  */
+
   static propTypes = {
     className: React.PropTypes.string,
     count: React.PropTypes.oneOfType([
@@ -25,8 +25,10 @@ class Badge extends React.Component {
       React.PropTypes.number,
     ]),
   };
- /* eslint-enable */
+
   static defaultProps = {
+    className: '',
+    count: 0,
     text: '',
     dot: false,
     overflowCount: 99,

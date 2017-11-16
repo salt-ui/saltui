@@ -47,13 +47,15 @@ const Panel = (props) => {
 };
 
 Panel.defaultProps = {
+  title: '',
+  message: '',
+  cancelButton: '',
   prefixCls: 't-action-sheet-panel',
   locale: 'zh-cn',
   options: [],
   onItemClick: () => {},
   onCancel: () => {},
 };
-/* eslint-disable */
 Panel.propTypes = {
   title: React.PropTypes.oneOfType([
     React.PropTypes.string,
@@ -74,5 +76,4 @@ Panel.propTypes = {
   options: React.PropTypes.array,
   locale: React.PropTypes.string,
 };
-/* eslint-enable */
 export default Panel;
