@@ -2,14 +2,14 @@
  * 级联 Slot
  * @author: changming <mailto:changming.zy@alibaba-inc.com>
  */
-const React = require('react');
-const Layer = require('../Layer');
-const TingleCtx = require('../Context');
-const Tab = require('../Tab');
-const Scroller = require('../Scroller');
-const classnames = require('classnames');
-const IconCheck = require('salt-icon/lib/Check');
-const i18n = require('./i18n');
+import React from 'react';
+import classnames from 'classnames';
+import IconCheck from 'salt-icon/lib/Check';
+
+import TingleCtx from '../Context';
+import Tab from '../Tab';
+import Scroller from '../Scroller';
+import i18n from './i18n';
 
 const getOptionsByValue = (options, valueItem = {}) => {
   const backArr = options.filter(item => item.value === valueItem.value);
@@ -82,12 +82,13 @@ export default class CascadeSlot extends React.Component {
     const { value } = this.state;
     let { confirmText, cancelText } = this.props;
     if (!confirmText) {
-      confirmText = i18n[locale].confirmText;
+      ({ confirmText } = i18n[locale]);
     }
     if (!cancelText) {
-      cancelText = i18n[locale].cancelText;
+      ({ cancelText } = i18n[locale]);
     }
     const confirmEnabled = value && value.length && value[value.length - 1].value !== undefined;
+    
     return (
       <div className={TingleCtx.prefixClass('cascade-slot-header-wrap FBH')}>
         <button onClick={this.handleEvent.bind(this, 'cancel')}>{cancelText}</button>
@@ -140,7 +141,7 @@ export default class CascadeSlot extends React.Component {
   }
 
   render() {
-    const { visible } = this.props;
+    // const { visible } = this.props;
     return (
       <div>
         {this.renderHeader()}

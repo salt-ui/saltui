@@ -5,15 +5,15 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const cloneDeep = require('lodash/fp/cloneDeep');
+import React from 'react';
 
-const Context = require('../Context');
-const Slot = require('../Slot');
-const Field = require('../Field');
-const Popup = require('../Popup');
-const CascadeSlot = require('./CascadeSlot');
+import classnames from 'classnames';
+import cloneDeep from 'lodash/fp/cloneDeep';
+import Context from '../Context';
+import Slot from '../Slot';
+import Field from '../Field';
+import Popup from '../Popup';
+import CascadeSlot from './CascadeSlot';
 
 function parseProps(p) {
   const props = cloneDeep(p);
@@ -22,7 +22,7 @@ function parseProps(p) {
   options = [];
   value = value || [];
   const confirmedValue = value.length ? value : [];
-  for (let deep = 0; cursor && deep < props.columns.length; deep++) {
+  for (let deep = 0; cursor && deep < props.columns.length; deep += 1) {
     let index = 0;
     options[deep] = cursor.map((o, i) => {
       const option = {
@@ -61,25 +61,26 @@ function parseProps(p) {
 
 function parseState(value, options) {
   let cursor = options;
-  options = [];
-  for (let deep = 0; cursor; deep++) {
+  const newOptions = [];
+  const newValue = value;
+  for (let deep = 0; cursor; deep += 1) {
     let index = 0;
-    options[deep] = cursor.map((o, i) => {
+    newOptions[deep] = cursor.map((o, i) => {
       const option = {
         value: o.value,
         text: o.label,
       };
-      if ((deep in value) && o.value == value[deep].value) {
+      if ((deep in newValue) && o.value === newValue[deep].value) {
         index = i;
-        value[deep] = option;
+        newValue[deep] = option;
       }
       return option;
     });
     cursor = cursor[index] ? cursor[index].children : null;
   }
   return {
-    options,
-    value,
+    newOptions,
+    newValue,
   };
 }
 
@@ -91,6 +92,10 @@ class CascadeSelectField extends React.Component {
     // 数据格式化
     t.state = parseProps(props);
     t.state.confirmedValue = props.value ? t.state.value : [];
+    t.handleClick = t.handleClick.bind(t);
+    t.handleCancel = t.handleCancel.bind(t);
+    t.handleChange = t.handleChange.bind(t);
+    t.handleConfirm = t.handleConfirm.bind(t);
   }
 
   // 外部变更选中值
@@ -103,7 +108,7 @@ class CascadeSelectField extends React.Component {
     const t = this;
     if (!t.props.readOnly) {
       if (t.props.mode === 'normal') {
-        t.refs.slot.show();
+        t.slot.show();
       } else if (t.props.mode === 'complex') {
         // this.setState({ cascadeSlotVisible: true });
         this.showCascadeSlot();
@@ -120,9 +125,9 @@ class CascadeSelectField extends React.Component {
       cancelText={t.props.cancelText}
       options={t.state.originOptions}
       value={t.state.value}
-      onChange={t.handleChange.bind(t)}
-      onCancel={t.handleCancel.bind(t)}
-      onConfirm={t.handleConfirm.bind(t)}
+      onChange={t.handleChange}
+      onCancel={t.handleCancel}
+      onConfirm={t.handleConfirm}
     />, { maskClosable: false });
   }
 
@@ -156,13 +161,13 @@ class CascadeSelectField extends React.Component {
           name: 'angle-right',
           width: 26,
           height: 26,
-          onClick: t.handleClick.bind(t),
+          onClick: t.handleClick,
         }}
         className={classnames(Context.prefixClass('cascade-select-field'), {
           [t.props.className]: !!t.props.className,
         })}
       >
-        <div onClick={t.handleClick.bind(t)}>
+        <div onClick={t.handleClick}>
           {!t.state.confirmedValue.length ? <div className={Context.prefixClass('omit cascade-select-field-placeholder')}>{t.props.placeholder}</div> : ''}
           <div className={Context.prefixClass('cascade-select-field-value FBH FBAC')}>
             <span
@@ -176,15 +181,15 @@ class CascadeSelectField extends React.Component {
         {
           this.props.mode === 'normal' ?
             <Slot
-              ref="slot"
+              ref={(c) => { this.slot = c; }}
               title={t.props.label}
               confirmText={t.props.confirmText}
               cancelText={t.props.cancelText}
               data={t.state.options}
               value={t.state.value}
-              onChange={t.handleChange.bind(t)}
-              onCancel={t.handleCancel.bind(t)}
-              onConfirm={t.handleConfirm.bind(t)}
+              onChange={t.handleChange}
+              onCancel={t.handleCancel}
+              onConfirm={t.handleConfirm}
               columns={t.props.columns}
             /> :
             null
@@ -222,7 +227,10 @@ CascadeSelectField.propTypes = {
   columns: React.PropTypes.array,
   mode: React.PropTypes.oneOf(['normal', 'complex']),
 };
+CascadeSelectField.defaultProps = {
+  className: '',
+};
 
 CascadeSelectField.displayName = 'CascadeSelectField';
 
-module.exports = CascadeSelectField;
+export default CascadeSelectField;
