@@ -46,6 +46,16 @@ ReactDOM.render(<Button />, mountNode);
 * iOS
 * Android 4.0+
 
+## 集成开发工具
+
+1. 推荐使用 [Nowa](https://nowa-webpack.github.io/) 作为项目的开发工具
+* [Windows 版下载地址](https://alixux.org/downloads/nowa-gui.exe)
+* [Mac 版下载地址](https://alixux.org/downloads/nowa-gui.dmg)
+
+2. 选择 nowa-template-salt 项目模板 Create
+
+3. 点击 Start 启动项目，在浏览器中打开
+
 ## 许可
 
 本项目基于 [MIT 协议](./LICENSE) 进行开发和发布。

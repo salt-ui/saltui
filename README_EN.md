@@ -46,6 +46,16 @@ import style package
 * iOS
 * Android 4.0+
 
+## Project Developing Tools
+
+1. We recommend [Nowa](https://nowa-webpack.github.io/) as the project developing tools
+* [Windows Version Download](https://alixux.org/downloads/nowa-gui.exe)
+* [Mac version Download](https://alixux.org/downloads/nowa-gui.dmg)
+
+2. choose `nowa-template-salt` project template, and then Create
+
+3. click Start to start the project，and then open it in the browser.
+
 ## License
 
 This project is licensed under the terms of the [MIT license](./LICENSE)
