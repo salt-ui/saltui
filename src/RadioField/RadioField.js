@@ -16,7 +16,6 @@ const prefixClass = Context.prefixClass;
 
 
 class RadioField extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -44,7 +43,8 @@ class RadioField extends React.Component {
     return (
       <div className={classnames(prefixClass('radio-field-icon-wrapper FBAC FBH'), {
         [position]: !!position,
-      })}>
+      })}
+      >
         <OptionCheckedIcon
           width={16}
           height={16}
@@ -130,11 +130,13 @@ class RadioField extends React.Component {
 
     if (!groupListFlag) {
       finalJSX = (
-        <div ref="root" className={classnames(prefixClass('radio-field'), {
-          [rootClassName]: !!rootClassName,
-        }, {
-          [className]: !!className,
-        })}
+        <div
+          ref="root"
+          className={classnames(prefixClass('radio-field'), {
+            [rootClassName]: !!rootClassName,
+            [className]: !!className,
+          })
+        }
         >
           {radioArrayComponent}
         </div>

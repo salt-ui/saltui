@@ -115,13 +115,14 @@ export default class CascadeSlot extends React.Component {
               }
               return (
                 <Tab.Item key={`tab-${index + 1}`} title={<div className="title">{val.text || textPleaseSelect}</div>}>
-                  <Scroller>
-                    <ul className={TingleCtx.prefixClass('cascade-slot-list')}>
-                      {
+                  <ul className={TingleCtx.prefixClass('cascade-slot-list')}>
+                    {
                         loopOptions.map((level, levelIndex) => (
                           <li key={level.value}>
                             <button
-                              className={classnames({ active: this.state.value[index].value === level.value })}
+                              className={classnames(TingleCtx.prefixClass('cascade-slot-list-button'), {
+                                active: this.state.value[index].value === level.value,
+                              })}
                               onClick={this.onItemClick.bind(this, index, level, levelIndex)}
                             >
                               <span className="text">{level.label}</span> {this.state.value[index].value === level.value ? <IconCheck width={16} height={16} /> : null }
@@ -129,8 +130,7 @@ export default class CascadeSlot extends React.Component {
                           </li>
                         ))
                       }
-                    </ul>
-                  </Scroller>
+                  </ul>
                 </Tab.Item>
               );
             })
