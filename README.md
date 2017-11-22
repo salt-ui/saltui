@@ -31,7 +31,7 @@ $ npm install saltui --save
 引入 js
 ```jsx
 import { Button } from 'saltui';
-// 或者
+// 或者按需加载
 import Button from 'saltui/lib/Button';
 ReactDOM.render(<Button />, mountNode);
 ```
