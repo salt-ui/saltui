@@ -19,10 +19,13 @@ class IconButton extends React.Component {
     if (!this.props.children) {
       return null;
     }
-    const className = this.props.className;
-    const style = this.props.style;
-    const type = this.props.type;
-    const disabled = this.props.disabled;
+    const {
+      className,
+      style,
+      type,
+      disabled,
+      size,
+    } = this.props;
 
     const primary = type === 'primary';
     const secondary = type === 'secondary';
@@ -36,7 +39,6 @@ class IconButton extends React.Component {
       disabled,
     };
 
-    const size = this.props.size;
     const iconHTML = React.cloneElement(this.props.children, {
       width: size,
       height: size,

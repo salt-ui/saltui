@@ -13,10 +13,15 @@ import Context from '../Context';
 const avatarColors = ['#78C06E', '#3BC2B5', '#78919D', '#5EC9F6', '#F6BF26'];
 const defaultSrc = 'https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png';
 const global = Context.getGlobal('avatar') || {};
-const iconWrapperStyle = { position: 'absolute', lineHeight: 1, top: '50%', left: '50%', transform: 'translate(-50%, -50%)' };
+const iconWrapperStyle = {
+  position: 'absolute',
+  lineHeight: 1,
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+};
 
 export default class Avatar extends Component {
-
   static displayName = 'Avatar';
 
   static hashCode = (strKey, isLong) => {
@@ -31,7 +36,7 @@ export default class Avatar extends Component {
 
     let hash = 0;
     if (typeof strKey === 'string') {
-      for (let i = 0, l = strKey.length; i < l; i++) {
+      for (let i = 0, l = strKey.length; i < l; i += 1) {
         hash = (hash * 31) + strKey.charCodeAt(i);
         if (!isLong) {
           hash = intValue(hash);
@@ -113,32 +118,33 @@ export default class Avatar extends Component {
     if ((!props.name && !props.icon) || props.src) {
       return (
         <img
-          ref={r => (this.root = r)}
+          ref={(r) => { this.root = r; }}
           className={classnames(Context.prefixClass('avatar'), { [props.className]: !!props.className })}
           src={props.src || props.defaultSrc}
           style={style}
-          alt={''}
+          alt=""
         />
       );
     }
     if (props.defaultColor) {
       style.backgroundColor = props.defaultColor;
-      // eslint-disable-next-line no-unused-expressions, no-console
-      console && console.warn && console.warn('Avatar: defaultColor is deprecated, use colors instead.');
+      if (console && console.warn) {
+        console.warn('Avatar: defaultColor is deprecated, use colors instead.');
+      }
     } else if (props.colors.length === 1) {
-      style.backgroundColor = props.colors[0];
+      [style.backgroundColor] = props.colors;
     } else {
       const hashCode = props.hashCode(props.name, props.isLong);
       style.backgroundColor = props.colors[Math.abs(hashCode) % props.colors.length];
     }
     return (
       <div
-        ref={r => (this.root = r)}
+        ref={(r) => { this.root = r; }}
         className={classnames(Context.prefixClass('avatar'), { [props.className]: !!props.className })}
         style={style}
       >
         {
-          !!props.icon  // eslint-disable-line no-extra-boolean-cast
+          props.icon
             ? <span style={iconWrapperStyle}>{props.icon}</span>
             : Avatar.formatName(props.name)
         }

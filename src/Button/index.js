@@ -12,6 +12,6 @@ import ButtonGroup from './ButtonGroup';
 
 Button.TextButton = TextButton;
 Button.IconButton = IconButton;
-Button.ButtonGroup = Button.Group = ButtonGroup;
-
+Button.ButtonGroup = ButtonGroup;
+Button.Group = ButtonGroup;
 export default Button;

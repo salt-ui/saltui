@@ -6,9 +6,10 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
+import React from 'react';
+
+import classnames from 'classnames';
+import Context from '../Context';
 
 class Card extends React.Component {
 
@@ -43,4 +44,4 @@ Card.propTypes = {
 
 Card.displayName = 'Card';
 
-module.exports = Card;
+export default Card;
