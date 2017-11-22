@@ -66,8 +66,3 @@ npm run tnpm-update
 ### API
 - toTop
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-totop/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)
-- [视觉稿地址](http://axure.alibaba-inc.com/lark/5922a99caa847ea271c4cf87/index)

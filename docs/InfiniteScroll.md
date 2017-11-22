@@ -98,8 +98,3 @@ InfiniteScroll组件对内容的dom结构和样式有要求：
 |showIcon|optional|bool|true|自定义选项，loading时是否显示icon|
 |showText|optional|bool|true|自定义选项，loading时是否显示文案|
 |getRef|optional|func|noop|获取滚动的根节点|
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-infinite-scroll/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

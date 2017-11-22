@@ -53,7 +53,3 @@ SearchBar 本身只关心本身自己的逻辑，移除history 和 result 面板
 | historyName | `string` | 否 | `'SEARCH_BAR_HISTORY'` | 历史记录存储键名 |
 
 
-
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)

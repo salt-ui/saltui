@@ -109,7 +109,3 @@ module.exports = Demo;
 * onChange 
  * type:function
  * 点击每个item的时候触发的事件；
-
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)

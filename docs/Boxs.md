@@ -1,5 +1,3 @@
-# tingle-box [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-box.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-box)
-
 包括三个子Component：
 
 * HBox：水平方向的弹性容器
@@ -7,16 +5,6 @@
 * Box：弹性元素
 
 弹性容器(HBox和VBox)的可以多层嵌套的。
-
-## Preview
-
-![](https://img.alicdn.com/tps/TB1r5zkIVXXXXauXXXXXXXXXXXX-383-740.png)
-
-## Install
-
-```
-tnpm install @ali/tingle-box --save
-```
 
 ## Simple Usage
 
@@ -69,7 +57,3 @@ flex
 
 可以把`HBox`、`VBox`和`Box`看做是不同的`div`元素，所以`onClick`等原生事件默认支持。
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-box/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

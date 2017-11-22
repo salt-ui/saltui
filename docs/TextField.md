@@ -184,6 +184,3 @@ class Demo extends React.Component {
     </div>
 ```
 
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)

@@ -233,6 +233,3 @@ title | string | 标题
 style | object | 样式
 className | string | 类名
 
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)

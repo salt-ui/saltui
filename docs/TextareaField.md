@@ -171,9 +171,3 @@ onChange(newValue,e) {
 
 必填：否
 
-## APIs
-
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)
-

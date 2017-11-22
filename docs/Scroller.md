@@ -94,6 +94,3 @@ t.refs.sc.scroller.on('scrollEnd', t.handleScrollEnd.bind(t));
 
 - 开启横向滚动时，可增加 `eventPassthrough={true}` 属性解决页面无法滚动的问题
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-scroller/issues)

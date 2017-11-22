@@ -128,6 +128,3 @@ npm install tingle-popover --save
 
 更多 Props/API 可以看 [这里](https://github.com/react-component/tooltip/blob/master/README.md) 以及 [这里](https://github.com/react-component/trigger)
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-popover/issues)

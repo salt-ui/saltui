@@ -86,9 +86,3 @@ handleChange(obj) {
     });
 }
 ```
-
-
-
-## Links 相关链接
-
-- [Fire a bug/Issues 提 Bug](https://github.com/tinglejs/tingle-tab/issues)

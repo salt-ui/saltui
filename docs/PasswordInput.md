@@ -154,10 +154,3 @@ ReactDOM.render(<Demo />, document.getElementById('TingleDemo'));
 类型：Function
 
 默认：Context.noop
-
-## APIs
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-password-input/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

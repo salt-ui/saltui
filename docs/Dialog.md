@@ -336,7 +336,3 @@ Dialog.confirm({
 ```javascript
 Dialog.hide()
 ```
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-dialog/issues)

@@ -102,6 +102,3 @@ var images = [{
 <Gallery images={images} onGalleryClick={(index, image) => console.debug(index, image)}/>
 ```
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-gallery/issues)

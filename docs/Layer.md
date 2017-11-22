@@ -62,9 +62,3 @@ renderToBody
 * 默认：true
 * 必填：否
 
-## APIs
- -暂无
- 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-layer/issues)

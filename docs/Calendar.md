@@ -1,8 +1,4 @@
-# tingle-calendar [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-calendar.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-calendar)
-日期区间选择。
-
-
-![效果图](https://img.alicdn.com/tfs/TB1ZvqhSpXXXXXIXVXXXXXXXXXX-1382-1040.png)
+# 日期区间选择
 
 ## Simple Usage
 
@@ -188,8 +184,3 @@ export default CalendarDemo;
 <Calendar onChange={(value)=>{console.log('arguments:', arguments)}} />
 ```
 
-## APIs
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-calendar/issues)
