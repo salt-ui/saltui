@@ -61,26 +61,25 @@ function parseProps(p) {
 
 function parseState(value, options) {
   let cursor = options;
-  const newOptions = [];
-  const newValue = value;
+  options = [];
   for (let deep = 0; cursor; deep += 1) {
     let index = 0;
-    newOptions[deep] = cursor.map((o, i) => {
+    options[deep] = cursor.map((o, i) => {
       const option = {
         value: o.value,
         text: o.label,
       };
-      if ((deep in newValue) && o.value === newValue[deep].value) {
+      if ((deep in value) && o.value === value[deep].value) {
         index = i;
-        newValue[deep] = option;
+        value[deep] = option;
       }
       return option;
     });
     cursor = cursor[index] ? cursor[index].children : null;
   }
   return {
-    newOptions,
-    newValue,
+    options,
+    value,
   };
 }
 
