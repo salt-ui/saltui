@@ -71,27 +71,40 @@ class ScrollView extends React.Component {
     });
   }
 
+  tryEmitScrollEvent() {
+    if (this.infiniteScroll) {
+      this.infiniteScroll.tryEmitScrollEvent();
+    }
+  }
+
   render() {
-    let element = (<div
-      ref={(ref) => { this.scrollView = ref; }}
-      onScroll={this.onScroll}
-      className={classnames(Context.prefixClass('scroll-view'), this.props.className)}
-    >
-      {this.tryWrapRefreshControl()}
-    </div>);
+    let element = (
+      <div
+        ref={(ref) => { this.scrollView = ref; }}
+        onScroll={this.onScroll}
+        className={classnames(Context.prefixClass('scroll-view'), this.props.className)}
+      >
+        {this.tryWrapRefreshControl()}
+      </div>
+    );
 
     if (this.props.infiniteScroll) {
-      element = (<InfiniteScroll
-        key="infiniteScroll"
-        {...this.props.infiniteScrollOptions}
-        getRef={(node) => {
-          if (node) {
-            this.scrollNode = node;
-          }
-        }}
-      >
-        {element}
-      </InfiniteScroll>);
+      element = (
+        <InfiniteScroll
+          key="infiniteScroll"
+          ref={(ref) => {
+            this.infiniteScroll = ref;
+          }}
+          {...this.props.infiniteScrollOptions}
+          getRef={(node) => {
+            if (node) {
+              this.scrollNode = node;
+            }
+          }}
+        >
+          {element}
+        </InfiniteScroll>
+      );
       this.hasInfiniteScroll = true;
     } else if (this.hasInfiniteScroll) {
       this.scrollTop = this.scrollNode.scrollTop;

@@ -1,3 +1,7 @@
+## 3.1.16 / 2017-11-21
+
+* `fix`: `SrollList` only load one page after refresh
+
 
 ## 3.1.15 / 2017-11-15
 
