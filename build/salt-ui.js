@@ -63899,8 +63899,6 @@ var RefreshControl = function (_React$Component) {
       this.status = Status.dragStart;
 
       var top = (0, _getOffset3.default)(this.trigger).top;
-
-      console.log(top, this.initTop);
       if (top === this.initTop) {
         this.draging = true;
       }
@@ -63921,7 +63919,6 @@ var RefreshControl = function (_React$Component) {
         return;
       }
 
-      console.log(top, initTop);
       if (top === initTop && !this.draging) {
         this.draging = true;
         this.drager.reset(event);
