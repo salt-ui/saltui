@@ -1,3 +1,7 @@
+## 3.1.17 / 2017-11-23
+
+* `fix`: CascadeSelect bug caused by duplicated defaultProps declaration. 
+
 ## 3.1.16 / 2017-11-22
 
 * `doc`: remove useless link

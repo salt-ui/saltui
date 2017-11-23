@@ -20598,7 +20598,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var __SALT_VERSION__ = void 0; /* eslint-disable */
 
-__SALT_VERSION__ = "3.1.16";
+__SALT_VERSION__ = "3.1.17";
 
 var __SALT_BUNDLE__ = {
   version: __SALT_VERSION__,
@@ -35689,7 +35689,8 @@ CascadeSelectField.defaultProps = {
   readOnly: false,
   placeholder: '',
   columns: [],
-  mode: 'normal'
+  mode: 'normal',
+  className: ''
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -35707,9 +35708,6 @@ CascadeSelectField.propTypes = {
   cancelText: _react2.default.PropTypes.string,
   columns: _react2.default.PropTypes.array,
   mode: _react2.default.PropTypes.oneOf(['normal', 'complex'])
-};
-CascadeSelectField.defaultProps = {
-  className: ''
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';
