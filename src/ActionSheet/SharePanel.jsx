@@ -49,19 +49,23 @@ const Panel = (props) => {
         onClick={() => {
           onItemClick(-1, -1);
         }}
-      >{cancelButton || lang.cancel}</div>
+      >
+        {cancelButton || lang.cancel}
+      </div>
     </div>
   );
 };
 
 Panel.defaultProps = {
+  title: '',
+  message: '',
+  cancelButton: '',
   prefixCls: 't-action-sheet-share-panel',
   locale: 'zh-cn',
   options: [],
   onItemClick: () => {},
   onCancel: () => {},
 };
-
 Panel.propTypes = {
   title: React.PropTypes.oneOfType([
     React.PropTypes.string,
@@ -81,5 +85,4 @@ Panel.propTypes = {
   options: React.PropTypes.array,
   locale: React.PropTypes.string,
 };
-
 export default Panel;

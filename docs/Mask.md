@@ -125,6 +125,3 @@ Mask是否显示。依赖Mask的组件，需要通过切换该值来控制Mask�
 
 无
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-mask/issues)

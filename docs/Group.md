@@ -115,7 +115,3 @@ render() {
     </Group>);
 }
 ```
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-group/issues)

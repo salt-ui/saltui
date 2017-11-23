@@ -18,9 +18,11 @@ class ButtonGroup extends React.Component {
     const classes = {
       [`${prefixClass('button-group')}`]: true,
     };
-    return (<div className={classnames(classes)}>
-      {this.props.children}
-    </div>);
+    return (
+      <div className={classnames(classes)}>
+        {this.props.children}
+      </div>
+    );
   }
 }
 

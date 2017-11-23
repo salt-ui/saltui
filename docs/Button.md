@@ -1,12 +1,4 @@
-# tingle-button 按钮 [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-button.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-button)
-
-<img src="https://img.alicdn.com/tfs/TB1hrMhRXXXXXXiXpXXXXXXXXXX-724-1472.png" width="300"/>
-
-## Install
-
-```
-tnpm install @ali/tingle-button --save
-```
+#  按钮
 
 ## Button 普通按钮
 
@@ -319,7 +311,3 @@ const { ButtonGroup } = Button; // 或者直接使用 Buttom.Group
   <Button type="primary" display="inline" onClick={this.handleClick}>同意</Button>
 </ButtonGroup>
 ```
-
-## Links 相关链接
-
-- [Fire a bug/Issues 提Bug](http://gitlab.alibaba-inc.com/tingle-ui/tingle-button/issues)

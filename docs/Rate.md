@@ -101,7 +101,3 @@ tnpm install @ali/tingle-rate --save
 
 必选：是
 
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-rate/issues)

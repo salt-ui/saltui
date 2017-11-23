@@ -32,9 +32,3 @@ NumberField 共享 TextField 所有配置，除此外
 | format | function(value, delimiter) | optional | noop | 自定义格式化函数，优先级高于 type |
 | deFormat | func(value, delimiter) | optional | (str, delimiter) => str.split(delimiter).join('') | 去格式化的函数，在自己指定 format 的时候会用到。|
 
-## APIs
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-number-field/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

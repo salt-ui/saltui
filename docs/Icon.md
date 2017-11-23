@@ -96,7 +96,3 @@ render() {
 类型：Function
 
 默认：`() => {}`
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-icon/issues)

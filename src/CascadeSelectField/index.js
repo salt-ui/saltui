@@ -5,5 +5,6 @@
  * Copyright 2014-2016, Tingle Team, Alinw.
  * All rights reserved.
  */
+import CascadeSelectField from './CascadeSelectField';
 
-module.exports = require('./CascadeSelectField');
+export default CascadeSelectField;

@@ -131,30 +131,3 @@ this.slot.show();
 <Datetime onCancel={()=>{console.log('Canceled!')}} />
 ```
 
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
-
-## Simple Usage
-
-## Props
-
-## APIs
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-datetime/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

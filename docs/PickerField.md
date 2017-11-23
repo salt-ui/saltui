@@ -380,7 +380,3 @@ onSelect(value) {
 ```
 <PickerField selectText="已选择："></PickerField>
 ```
-
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)

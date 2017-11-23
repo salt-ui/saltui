@@ -370,7 +370,3 @@ t.setState(Slot.formatDataValue(xxData, xxValue));
 ```js
 t.setState(Slot.formatColumnValue(xxData, xxValue));
 ```
-
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)

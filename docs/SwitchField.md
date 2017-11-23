@@ -120,8 +120,3 @@ class Demo extends React.Component {
     }
 
 ```
-
-
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)

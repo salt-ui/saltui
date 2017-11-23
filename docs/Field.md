@@ -142,6 +142,3 @@ tnpm install @ali/tingle-field --save
 
 ```
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-field/issues)

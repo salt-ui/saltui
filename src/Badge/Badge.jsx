@@ -27,6 +27,8 @@ class Badge extends React.Component {
   };
 
   static defaultProps = {
+    className: '',
+    count: 0,
     text: '',
     dot: false,
     overflowCount: 99,
@@ -39,7 +41,12 @@ class Badge extends React.Component {
     const cls = {
       [t.props.className]: !!t.props.className,
     };
-    const { dot, text, corner, overflowCount } = this.props;
+    const {
+      dot,
+      text,
+      corner,
+      overflowCount,
+    } = this.props;
 
 
     let { count } = this.props;
@@ -81,9 +88,11 @@ class Badge extends React.Component {
 
     return (
       <div className={classnames(Context.prefixClass('badge'), cls)}>
-        {showBadge ? <div className="badge-inner" style={style}>
-          {count}
-        </div> : null}
+        {showBadge ?
+          <div className="badge-inner" style={style}>
+            {count}
+          </div> :
+        null}
         {t.props.children}
       </div>
     );

@@ -19,7 +19,9 @@ class ActionSheet extends React.Component {
     className: React.PropTypes.string,
   };
 
-  static defaultProps = {};
+  static defaultProps = {
+    className: '',
+  };
 
   static displayName = 'ActionSheet';
 

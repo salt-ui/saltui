@@ -11,8 +11,6 @@ import LoadingRound from 'salt-icon/lib/LoadingRound';
 import { prefixClass } from './utils';
 import TextButton from './TextButton';
 
-
-
 class Button extends React.Component {
 
   constructor(props) {
@@ -27,17 +25,18 @@ class Button extends React.Component {
   }
 
   render() {
-    const type = this.props.type;
+    const {
+      type,
+      className,
+      style,
+      size,
+      loading,
+      display,
+      disabled,
+    } = this.props;
     if (type === 'text') {
       return <TextButton {...this.props} />;
     }
-
-    const className = this.props.className;
-    const style = this.props.style;
-    const size = this.props.size;
-    const loading = this.props.loading;
-    const display = this.props.display;
-    const disabled = this.props.disabled;
 
     const normal = display === 'normal';
     const inline = display === 'inline';

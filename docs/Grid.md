@@ -89,6 +89,3 @@
 |itemVAlign|string|optional|center|单元格中元素的垂直对齐方式 (`'center'`, `'start'`, `'end'` 之一)|
 |touchable|boolean|optional|false|单元格是否可点击|
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-grid/issues)

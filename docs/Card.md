@@ -66,11 +66,3 @@ module.exports = Demo;
 |className|optional|string|''|className|
 |mode|optional|string|'normal'|使用场景，可选 normal/full|
 
-## APIs
-
-no
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-card/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

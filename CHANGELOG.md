@@ -1,6 +1,11 @@
-## 3.1.16 / 2017-11-21
+## 3.1.17 / 2017-11-23
 
 * `fix`: `SrollList` only load one page after refresh
+
+## 3.1.16 / 2017-11-22
+
+* `doc`: remove useless link
+* `refactor`: eslint source code (20%)
 
 
 ## 3.1.15 / 2017-11-15

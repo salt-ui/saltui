@@ -1,6 +1,4 @@
-# tingle-avatar [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-avatar.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-avatar)
-
-  用于头像显示, 如果没有头像则根据名字随机生成一个带背景颜色的头像，如果没有名字则显示一个默认图片。可给人员或公司默认 logo 等场景使用。
+用于头像显示, 如果没有头像则根据名字随机生成一个带背景颜色的头像，如果没有名字则显示一个默认图片。可给人员或公司默认 logo 等场景使用。
 
   头像生成规则如下：
   1. 定义一组颜色集合
@@ -12,11 +10,6 @@
    
 
   <img src="http://git.cn-hangzhou.oss-cdn.aliyun-inc.com/uploads/tingle-ui/tingle-avatar/de9e01f2e0117a1158750e365aa9af22/image.png" width="375"/>
-## Install
-
-```
-tnpm install @ali/tingle-avatar --save
-```
 
 ## Simple Usage
 
@@ -175,6 +168,3 @@ module.exports = Demo;
 
 静态方法，按照名字显示规则返回名字
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-avatar/issues)

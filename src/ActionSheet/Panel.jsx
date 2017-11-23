@@ -27,28 +27,35 @@ const Panel = (props) => {
           onClick={() => {
             onItemClick(index);
           }}
+          // eslint-disable-next-line
           key={index}
-        >{option}</div>
+        >
+          {option}
+        </div>
       ))}
-      {/* <div className={`${prefixCls}-item-split`} />*/}
+      {/* <div className={`${prefixCls}-item-split`} /> */}
       <div
         className={`${prefixCls}-item ${prefixCls}-item-cancel tTE`}
         onClick={() => {
           onItemClick(-1);
         }}
-      >{cancelButton || lang.cancel}</div>
+      >
+        {cancelButton || lang.cancel}
+      </div>
     </div>
   );
 };
 
 Panel.defaultProps = {
+  title: '',
+  message: '',
+  cancelButton: '',
   prefixCls: 't-action-sheet-panel',
   locale: 'zh-cn',
   options: [],
   onItemClick: () => {},
   onCancel: () => {},
 };
-
 Panel.propTypes = {
   title: React.PropTypes.oneOfType([
     React.PropTypes.string,
@@ -69,5 +76,4 @@ Panel.propTypes = {
   options: React.PropTypes.array,
   locale: React.PropTypes.string,
 };
-
 export default Panel;
