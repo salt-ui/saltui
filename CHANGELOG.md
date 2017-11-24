@@ -1,3 +1,7 @@
+## 3.1.18 / 2017-11-24
+
+* `fix`: searchbar placeholder style bug when search is active.
+
 ## 3.1.17 / 2017-11-23
 
 * `fix`: CascadeSelect bug caused by duplicated defaultProps declaration. 
@@ -6,7 +10,6 @@
 
 * `doc`: remove useless link
 * `refactor`: eslint source code (20%)
-
 
 ## 3.1.15 / 2017-11-15
 
