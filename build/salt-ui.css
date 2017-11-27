@@ -5022,37 +5022,30 @@ a:hover {
   color: rgba(31,56,88,0.3);
 }
 .t-search-bar-icon-cross,
-.t-search-bar-icon-search,
-.t-search-bar-icon-search-active {
+.t-search-bar-icon-search {
   display: inline-block;
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 .t-search-bar-icon-cross svg,
-.t-search-bar-icon-search svg,
-.t-search-bar-icon-search-active svg {
+.t-search-bar-icon-search svg {
   vertical-align: middle;
 }
-.t-search-bar-icon-search-active,
 .t-search-bar-icon-search {
   left: 6px;
 }
-.t-search-bar-icon-search-active svg,
 .t-search-bar-icon-search svg {
   fill: rgba(31,56,88,0.3);
   width: 16px;
   height: 16px;
 }
-.t-search-bar-icon-search-active {
-  display: none;
-}
 .t-search-bar-icon-cross {
   right: 6px;
   z-index: 11;
   -webkit-transform: scale(0) translateY(-50%);
-  transform: scale(0) translateY(-50%);
+          transform: scale(0) translateY(-50%);
   -webkit-transform-origin: center top;
           transform-origin: center top;
 }
@@ -5063,13 +5056,15 @@ a:hover {
 }
 .t-search-bar-icon-cross.active {
   -webkit-transform: scale(1) translateY(-50%);
-  transform: scale(1) translateY(-50%);
+          transform: scale(1) translateY(-50%);
 }
 .t-search-bar.active .t-search-bar-wrapper {
   padding-right: 50px;
 }
 .t-search-bar.active .t-search-bar-holder {
-  left: 30px;
+  left: 0px;
+  -webkit-transform: none;
+          transform: none;
 }
 .t-search-bar.active .t-search-bar-btn {
   right: 0;

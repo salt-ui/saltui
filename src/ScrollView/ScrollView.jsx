@@ -96,7 +96,7 @@ class ScrollView extends React.Component {
             this.infiniteScroll = ref;
           }}
           {...this.props.infiniteScrollOptions}
-          getRef={(node) => {
+          getDOMNode={(node) => {
             if (node) {
               this.scrollNode = node;
             }

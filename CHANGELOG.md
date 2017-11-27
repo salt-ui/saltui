@@ -1,12 +1,20 @@
-## 3.1.17 / 2017-11-23
+## 3.1.19 / 2017-11-27
 
 * `fix`: `SrollList` only load one page after refresh
+* `refactor`: rename InfiniteScroll's getRef to getDOMNode
+
+## 3.1.18 / 2017-11-24
+
+* `fix`: searchbar placeholder style bug when search is active.
+
+## 3.1.17 / 2017-11-23
+
+* `fix`: CascadeSelect bug caused by duplicated defaultProps declaration. 
 
 ## 3.1.16 / 2017-11-22
 
 * `doc`: remove useless link
 * `refactor`: eslint source code (20%)
-
 
 ## 3.1.15 / 2017-11-15
 

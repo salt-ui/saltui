@@ -31,9 +31,6 @@ $searchBarWrapperRightPadding = 16px
     display block
     hairline border-bottom $normal-alpha-7    
 
-// 这一行只是演示 按需删除
-
-/* input wrapper */
 .{$prefix}-search-bar-wrapper
     position relative
     background $searchBarWrapperBg
@@ -110,16 +107,13 @@ $searchBarWrapperRightPadding = 16px
 /* icon search&cross*/
 .{$prefix}-search-bar-icon-cross
 .{$prefix}-search-bar-icon-search
-.{$prefix}-search-bar-icon-search-active
     display inline-block
     position absolute
     top 50%
-    -webkit-transform translateY(-50%)
     transform translateY(-50%)
     svg
         vertical-align middle
 
-.{$prefix}-search-bar-icon-search-active
 .{$prefix}-search-bar-icon-search
     left 6px
     svg
@@ -127,13 +121,9 @@ $searchBarWrapperRightPadding = 16px
         width 16px
         height 16px
 
-.{$prefix}-search-bar-icon-search-active
-    display none
-
 .{$prefix}-search-bar-icon-cross
     right 6px
     z-index 11
-    -webkit-transform scale(0) translateY(-50%)
     transform scale(0) translateY(-50%)
     transform-origin center top
     svg
@@ -141,7 +131,6 @@ $searchBarWrapperRightPadding = 16px
         width 18px
         height 18px
     &.active
-        -webkit-transform scale(1) translateY(-50%)
         transform scale(1) translateY(-50%)
 
 /* active */
@@ -149,7 +138,8 @@ $searchBarWrapperRightPadding = 16px
     .{$prefix}-search-bar-wrapper
         padding-right $searchBarBtnWidth
     .{$prefix}-search-bar-holder
-        left 30px
+        left 0px
+        transform none;
     .{$prefix}-search-bar-btn
         right 0
 

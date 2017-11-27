@@ -21984,7 +21984,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var __SALT_VERSION__ = void 0; /* eslint-disable */
 
-__SALT_VERSION__ = "3.1.16";
+__SALT_VERSION__ = "3.1.17";
 
 var __SALT_BUNDLE__ = {
   version: __SALT_VERSION__,
@@ -37079,7 +37079,8 @@ CascadeSelectField.defaultProps = {
   readOnly: false,
   placeholder: '',
   columns: [],
-  mode: 'normal'
+  mode: 'normal',
+  className: ''
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -37097,9 +37098,6 @@ CascadeSelectField.propTypes = {
   cancelText: _react2.default.PropTypes.string,
   columns: _react2.default.PropTypes.array,
   mode: _react2.default.PropTypes.oneOf(['normal', 'complex'])
-};
-CascadeSelectField.defaultProps = {
-  className: ''
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';
@@ -53015,7 +53013,7 @@ var InfiniteScroll = function (_React$Component) {
       return _react2.default.cloneElement(element, _extends({}, element.props, {
         ref: function ref(node) {
           _this2.$scroller = node;
-          _this2.props.getRef(node);
+          _this2.props.getDOMNode(node);
         },
         onScroll: this.onScroll,
         children: _react2.default.cloneElement(elementChildren, {
@@ -53038,7 +53036,7 @@ InfiniteScroll.defaultProps = {
   threshold: 66,
   onLoad: function onLoad() {},
   onScroll: function onScroll() {},
-  getRef: function getRef() {}
+  getDOMNode: function getDOMNode() {}
 };
 InfiniteScroll.propTypes = {
   loading: _react2.default.PropTypes.bool,
@@ -53051,7 +53049,7 @@ InfiniteScroll.propTypes = {
   onLoad: _react2.default.PropTypes.func,
   onScroll: _react2.default.PropTypes.func,
   children: _react2.default.PropTypes.element,
-  getRef: _react2.default.PropTypes.func
+  getDOMNode: _react2.default.PropTypes.func
 };
 exports.default = InfiniteScroll;
 module.exports = exports['default'];
@@ -63875,7 +63873,7 @@ var ScrollView = function (_React$Component) {
               _this2.infiniteScroll = _ref2;
             }
           }, this.props.infiniteScrollOptions, {
-            getRef: function getRef(node) {
+            getDOMNode: function getDOMNode(node) {
               if (node) {
                 _this2.scrollNode = node;
               }
