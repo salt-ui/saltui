@@ -1,11 +1,17 @@
-## 3.1.19 / 2017-11-27
+## 3.1.20 / 2017-11-28
 
 * `fix`: `SrollList` only load one page after refresh
 * `refactor`: rename InfiniteScroll's getRef to getDOMNode
 
+## 3.1.19 / 2017-11-28
+
+* `fix`: umd build webpack wrong externals  
+* `change`: git igonre build folder & `dev/index.jsx`
+
 ## 3.1.18 / 2017-11-24
 
 * `fix`: searchbar placeholder style bug when search is active.
+* `fix`: PhotoField readOnly fails to work
 
 ## 3.1.17 / 2017-11-23
 

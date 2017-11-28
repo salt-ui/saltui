@@ -75,6 +75,7 @@ class Demo extends React.Component {
           max={4}
           maxUpload={9}
           name="file"
+          readOnly
           url="http://eternalsky.me:8122/file/upload"
           photoList={this.state.photoList}
           tip="这里是提示信息"

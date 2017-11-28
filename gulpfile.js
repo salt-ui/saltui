@@ -165,6 +165,22 @@ gulp.task('build_js', ['build_lib', 'make_index'], (done) => {
       libraryTarget: 'umd',
     },
     plugins,
+    externals: {
+      react: {
+        root: 'React',
+        var: 'React',
+        commonjs: 'react',
+        commonjs2: 'react',
+        amd: 'react',
+      },
+      'react-dom': {
+        root: 'ReactDOM',
+        var: 'ReactDOM',
+        commonjs: 'react-dom',
+        commonjs2: 'react-dom',
+        amd: 'react-dom',
+      },
+    }
   });
   webpack(webpackCfg, (err, stats) => {
     if (err) {
