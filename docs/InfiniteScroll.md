@@ -97,4 +97,4 @@ InfiniteScroll组件对内容的dom结构和样式有要求：
 |loadingIcon|optional|ReactElement|''|loading时的icon，指定此值时, 将使用用户自定义的icon|
 |showIcon|optional|bool|true|自定义选项，loading时是否显示icon|
 |showText|optional|bool|true|自定义选项，loading时是否显示文案|
-|getRef|optional|func|noop|获取滚动的根节点|
+|getDOMNode|optional|func|noop|获取滚动的根节点|

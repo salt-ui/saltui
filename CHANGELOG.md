@@ -1,3 +1,8 @@
+## 3.1.20 / 2017-11-28
+
+* `fix`: `SrollList` only load one page after refresh
+* `refactor`: rename InfiniteScroll's getRef to getDOMNode
+
 ## 3.1.19 / 2017-11-28
 
 * `fix`: umd build webpack wrong externals  
