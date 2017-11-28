@@ -1,3 +1,8 @@
+## 3.1.19 / 2017-11-28
+
+* `fix`: umd build webpack wrong externals  
+* `change`: git igonre build folder & `dev/index.jsx`
+
 ## 3.1.18 / 2017-11-24
 
 * `fix`: searchbar placeholder style bug when search is active.
