@@ -1,3 +1,7 @@
+## 3.1.21 / 2017-11-28
+
+* `fix`: typo in PhotoField
+
 ## 3.1.20 / 2017-11-28
 
 * `fix`: CitySelectField readOnly fails to work
