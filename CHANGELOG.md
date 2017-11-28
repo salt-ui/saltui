@@ -1,3 +1,7 @@
+## 3.1.20 / 2017-11-28
+
+* `fix`: CitySelectField readOnly fails to work
+
 ## 3.1.19 / 2017-11-28
 
 * `fix`: umd build webpack wrong externals  
