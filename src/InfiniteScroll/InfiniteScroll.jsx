@@ -27,7 +27,7 @@ class InfiniteScroll extends React.Component {
     onScroll() {
 
     },
-    getRef() {
+    getDOMNode() {
 
     },
   };
@@ -46,7 +46,7 @@ class InfiniteScroll extends React.Component {
     onLoad: React.PropTypes.func,
     onScroll: React.PropTypes.func,
     children: React.PropTypes.element,
-    getRef: React.PropTypes.func,
+    getDOMNode: React.PropTypes.func,
   };
 
   constructor(props) {
@@ -114,7 +114,7 @@ class InfiniteScroll extends React.Component {
       ...element.props,
       ref: (node) => {
         this.$scroller = node;
-        this.props.getRef(node);
+        this.props.getDOMNode(node);
       },
       onScroll: this.onScroll,
       children: React.cloneElement(elementChildren, {

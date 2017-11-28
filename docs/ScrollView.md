@@ -37,3 +37,11 @@ tnpm install @ali/tingle-scroll-list --save
 |infiniteScrollOptions|optional|object|{}|底部自动加载的自定义配置项，参见InfiniteScroll的配置项|
 
 
+
+## APIs
+
+### tryEmitScrollEvent
+触发一次上拉滚动事件
+
+
+
