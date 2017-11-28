@@ -17745,6 +17745,7 @@ var PhotoFieldPane = function (_React$Component) {
             label: t.props.label,
             tip: t.props.tip,
             layout: t.props.layout,
+            readOnly: t.props.readOnly,
             icon: !t.props.readOnly ? _react2.default.createElement(_Photo2.default, {
               onClick: function onClick() {
                 if (!t.isUploadDisabled()) {
@@ -20598,7 +20599,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var __SALT_VERSION__ = void 0; /* eslint-disable */
 
-__SALT_VERSION__ = "3.1.17";
+__SALT_VERSION__ = "3.1.18";
 
 var __SALT_BUNDLE__ = {
   version: __SALT_VERSION__,

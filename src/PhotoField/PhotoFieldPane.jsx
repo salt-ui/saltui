@@ -169,6 +169,7 @@ class PhotoFieldPane extends React.Component {
           label={t.props.label}
           tip={t.props.tip}
           layout={t.props.layout}
+          readOnly={t.props.readOnly}
           icon={!t.props.readOnly
             ? <IconPhoto
               onClick={() => { if (!t.isUploadDisabled()) { t.props.onPickerClick(); } }}

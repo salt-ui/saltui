@@ -1,6 +1,7 @@
 ## 3.1.18 / 2017-11-24
 
 * `fix`: searchbar placeholder style bug when search is active.
+* `fix`: PhotoField readOnly fails to work
 
 ## 3.1.17 / 2017-11-23
 
