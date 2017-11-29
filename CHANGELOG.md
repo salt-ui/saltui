@@ -1,3 +1,7 @@
+## 3.1.22 / 2017-11-29
+
+* `fix`: searchBar active animation in iphone
+
 ## 3.1.21 / 2017-11-28
 
 * `fix`: typo in PhotoField
