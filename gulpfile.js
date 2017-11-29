@@ -219,6 +219,7 @@ gulp.task('pub', () => {
         spawnSync('git', ['add', '.'], { stdio: 'inherit' });
         spawnSync('git', ['commit', '-m', `ver. ${pkg.version}`], { stdio: 'inherit' });
         spawnSync('git', ['tag', `${pkg.version}`], { stdio: 'inherit' });
+        spawnSync('git', ['push', 'origin', `${pkg.version}`], { stdio: 'inherit' });
         spawnSync('git', ['push', 'origin', answers.branch], { stdio: 'inherit' });
         console.log(colors.info('#### Npm Info ####'));
         spawnSync('npm', ['publish'], { stdio: 'inherit' });
