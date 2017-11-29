@@ -1,3 +1,7 @@
+## 3.1.25 / 2017-11-29
+
+* `fix`: CheckboxField icon style
+
 ## 3.1.24 / 2017-11-29
 
 * `fix`: queueCapacity logic error
