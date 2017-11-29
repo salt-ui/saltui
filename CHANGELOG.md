@@ -1,3 +1,7 @@
+## 3.1.23 / 2017-11-29
+
+* `fix`: remove searchBar low performance animation.
+
 ## 3.1.22 / 2017-11-29
 
 * `fix`: searchBar active animation in iphone
