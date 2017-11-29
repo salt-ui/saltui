@@ -108,9 +108,6 @@ class PhotoField extends React.Component {
     };
     core.on(Events.FILE_UPLOAD_START, this.fileuploadstart);
     core.on(Events.FILE_UPLOAD_PROGRESS, this.fileuploadprogress);
-    // core.on(Events.FILE_UPLOAD_COMPLETING, () => {
-    //   throw new Error('test');
-    // });
     core.on(Events.FILE_UPLOAD_SUCCESS, this.fileuploadsuccess);
     core.on(Events.FILE_UPLOAD_ERROR, this.fileuploaderror);
     core.on(Events.FILE_CANCEL, this.filecancel);
@@ -150,6 +147,7 @@ class PhotoField extends React.Component {
     const photos = [result];
     const newPhotoList = photoList.concat(photos);
     file.cancel(true);
+    this.core.getStat().remove(file);
     onChange({
       value: photos,
     }, newPhotoList);

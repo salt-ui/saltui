@@ -1,3 +1,7 @@
+## 3.1.24 / 2017-11-29
+
+* `fix`: queueCapacity logic error
+
 ## 3.1.23 / 2017-11-29
 
 * `fix`: remove searchBar low performance animation.
