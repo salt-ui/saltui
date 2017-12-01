@@ -1,3 +1,7 @@
+## 3.1.26 / 2017-12-01
+
+* `feat`: remove input change trim
+
 ## 3.1.25 / 2017-11-29
 
 * `fix`: CheckboxField icon style
