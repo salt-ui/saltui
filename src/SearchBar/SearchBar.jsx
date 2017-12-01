@@ -44,7 +44,7 @@ class SearchBar extends React.Component {
   }
 
   onChange(e) {
-    const value = e.target.value.trim();
+    const value = e.target.value;
     const t = this;
     this.setState({
       keyword: value,
@@ -70,7 +70,7 @@ class SearchBar extends React.Component {
     t.setState({
       keyword: key,
     }, () => {
-      t.props.onSearch(key, from);
+      t.props.onSearch(key.trim(), from);
     });
   }
 
