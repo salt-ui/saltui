@@ -1,3 +1,7 @@
+## 3.1.28 / 2017-12-01
+
+* `fix`: cancel button style bug if locale is en_US
+
 ## 3.1.26 / 2017-12-01
 
 * `feat`: remove input change trim
