@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       isActive: props.isActive, // whether in search mode
-      keyword: '',
+      keyword: props.value,
     };
     // this.lastSearch = '';
     this.doDebouceSearch = debounce(this.doSearch, props.searchDelay);
@@ -32,6 +32,11 @@ class SearchBar extends React.Component {
       this.setState({
         isActive: nextProps.isActive,
       });
+    }
+    if (nextProps.value !== this.props.value) {
+      this.setState({
+        keyword: nextProps.value,
+      })
     }
   }
 
@@ -57,7 +62,7 @@ class SearchBar extends React.Component {
   }
 
   onKeyUp(e) {
-    const value = e.target.value.trim();
+    const value = e.target.value;
     if (e.keyCode === 13 && value) {
       this.doSearch('click', value);
       this.input.blur();
@@ -70,7 +75,7 @@ class SearchBar extends React.Component {
     t.setState({
       keyword: key,
     }, () => {
-      t.props.onSearch(key.trim(), from);
+      t.props.onSearch(key, from);
     });
   }
 
@@ -78,9 +83,11 @@ class SearchBar extends React.Component {
     const t = this;
     t.setState({
       keyword: '',
+    }, () => {
+      t.props.onChange('', 'clear', null);
+      t.input.focus();
     });
-    t.input.focus();
-    t.props.onChange('', 'clear', null);
+    
   }
 
   enterSearch() {
@@ -113,7 +120,7 @@ class SearchBar extends React.Component {
     if (typeof placeholder === 'object' && placeholder !== null) {
       placeholder = placeholder[t.props.locale];
     }
-    const keyword = t.state.keyword || t.props.value;
+    const keyword = t.state.keyword;
     return (
       <div
         className={classnames(Context.prefixClass('search-bar'), {
@@ -140,7 +147,7 @@ class SearchBar extends React.Component {
                 />
                 <span
                   className={classnames(Context.prefixClass('omit search-bar-placeholder'), {
-                    hidden: t.state.keyword,
+                    hidden: keyword,
                   })}
                 >
                   {placeholder}</span>
