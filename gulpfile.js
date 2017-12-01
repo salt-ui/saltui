@@ -268,7 +268,7 @@ gulp.task('server', () => {
               resource.request = resource.request.replace(/salt-(.+)/, (match, s1) => require.resolve(`./src/${upperInitWord(s1)}`));
             }
             /* eslint-enable no-param-reassign */
-          },
+          }
         ),
       ];
       const compiler = webpack(assign({}, commonWebpackCfg, { plugins }));
