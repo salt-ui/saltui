@@ -26,3 +26,4 @@ spm_modules
 dist
 build
 dev/index.jsx
+package-lock.json 
