@@ -1,3 +1,7 @@
+## 3.1.29 / 2017-12-04
+
+* `doc`: remove tingle keyword from docs
+
 ## 3.1.28 / 2017-12-01
 
 * `fix`: cancel button style bug if locale is en_US
