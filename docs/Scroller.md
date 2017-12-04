@@ -1,15 +1,9 @@
-# tingle-scroller [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-scroller.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-scroller)
+
 
 
 Scroller 是对 [iScroll](http://iscrolljs.com/) 的 React 封装，用作滑动容器。内部 iScroll 的版本是 5.1.3。
 
 <img src="https://img.alicdn.com/tps/TB1jnocJpXXXXcmXpXXXXXXXXXX-750-1254.png" width="375"/>
-
-## Install
-
-```
-tnpm install @ali/tingle-scroller --save
-```
 
 ## Props
 

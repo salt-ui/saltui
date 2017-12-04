@@ -1,14 +1,9 @@
-# tingle-radio-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-radio-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-radio-field)
+
 
 单选框。
 
 ![](http://gtms01.alicdn.com/tps/i1/TB1NxzWJFXXXXXiXVXXbLzyZVXX-320-194.png)
 
-## Install
-
-```
-tnpm install @ali/tingle-radio-field --save
-```
 
 ## Simple Usage
 ```javascript
@@ -96,7 +91,7 @@ return <div>
 
 #### groupListFlag
 
-描述：是否使用tingle-group来布局checkbox
+描述：是否使用 Group 组件来布局 Checkbox
 
 类型：Boolen
 
@@ -126,7 +121,7 @@ return <div>
 
 #### groupListArgument
 
-描述：如果tingle-group为true，可以传入tingle-group相关参数。参考`http://gitlab.alibaba-inc.com/tingle-ui/tingle-group`
+描述：如果 groupListFlag 为true，可以传入 Group 相关参数。参考 `https://salt-ui.github.io/components/group`
 
 类型：Object
 

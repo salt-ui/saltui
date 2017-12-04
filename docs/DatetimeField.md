@@ -1,4 +1,4 @@
-# tingle-datetime-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-datetime-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-datetime-field)
+
 
 DatetimeField 是时间选择输入表单域。
 

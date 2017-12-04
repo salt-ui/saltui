@@ -1,22 +1,6 @@
-# tingle-popup [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-popup.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-popup)
+
 一句话描述
 一张截图
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 

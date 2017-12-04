@@ -1,14 +1,9 @@
-# tingle-gallery [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-gallery.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-gallery)
+
 
 图片轮播
 
 <img src="https://img.alicdn.com/tps/TB1pu_pJFXXXXX2XFXXXXXXXXXX-640-320.png" width="300"/>
 
-## Install
-
-```
-tnpm install @ali/tingle-gallery --save
-```
 
 ## Simple Usage
 
@@ -61,7 +56,7 @@ var images = [{
 
 ## Props
 
-> 与 `tingle-slide` 的参数一致，`tingle-slide` 的参数可以 [[参考这里]](http://gitlab.alibaba-inc.com/tingle-ui/tingle-slide) ，此外还有两个额外参数：
+> 与 `Slide` 的参数一致，`Slide` 的参数可以 [[参考这里]](https://salt-ui.github.io/components/slide) ，此外还有两个额外参数：
 
 ### images
 

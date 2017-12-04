@@ -1,4 +1,4 @@
-# tingle-group [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-group.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-group)
+
 
 `Group`是列表容器组件。封装了以下功能：
 
@@ -8,12 +8,6 @@
 效果预览：
 
 ![](https://gw.alicdn.com/tps/TB1efEEKFXXXXXLXFXXXXXXXXXX-347-574.png)
-
-## Install
-
-```
-tnpm install @ali/tingle-group --save
-```
 
 ## Props
 
@@ -92,19 +86,13 @@ tnpm install @ali/tingle-group --save
 
 ## Demos
 
-首先引入`Group`，其中`Group`下面包含`Head`和`List`两个子组件。
+首先引入 `Group`，其中 `Group` 下面包含 `Head` 和 `List` 两个子组件。
 
-项目环境下，`Tingle`是全局变量：
-
-```
-// ES5
-var Group = Tingle.Group;
-// ES2015
-let {Group} = Tingle;
+```jsx
+import { Group } from 'saltui';
 ```
 
-```
-...
+```jsx
 render() {
     return (<Group>
         <Group.Head>title</Group.Head>

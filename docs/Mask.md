@@ -1,18 +1,13 @@
-# tingle-mask [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-mask.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-mask)
+
 
 提供蒙层基础服务
 
 
-## Install
-
-```
-tnpm install @ali/tingle-mask --save
-```
-
 ## Simple Usage
 
 ```js
-const Mask = require('@ali/tingle-mask');
+
+import { Mask } from 'saltui';
 
 class Demo extends React.Component {
 

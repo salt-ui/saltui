@@ -1,32 +1,13 @@
-# tingle-card [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-card.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-card)
+
 
 通用卡片容器，可承载文字、列表、图片、段落等内容。
-
-组件效果截图：
-
-![image](http://git.cn-hangzhou.oss-cdn.aliyun-inc.com/uploads/tingle-ui/tingle-style/ca2776081075e44c55073aa6fb93cd92/image.png)
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 
 ```js
 import React from 'react';
-import Card from '@ali/tingle-card';
+
+import { Card } from 'saltui'
 
 class Demo extends React.Component {
 

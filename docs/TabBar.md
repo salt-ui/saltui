@@ -1,4 +1,4 @@
-# tingle-tab-bar
+
 
 ## 底部选项卡菜单
 
@@ -96,7 +96,7 @@ module.exports = Demo;
 |title|*|`string`|-|选项卡标题
 |titleStyle|-|`object`|-|选项卡标题样式(version>=1.1.4)
 |activeTitleStyle|-|`object`|-|选项卡标题样式(激活态)(version>=1.1.4)
-|icon|-|`React Element`|-|选项卡图标(tingle-icon名称或者图片地址)
+|icon|-|`React Element`|-|选项卡图标(Icon 名称或者图片地址)
 |iconStyle|-|`object`|-|选项卡图标样式(version>=1.1.4)
 |activeIcon|-|`String`|-|选项卡图标(激活态, 图标为图片地址时建议必填)
 |activeIconStyle|-|`object`|-|选项卡图标样式(激活态)(version>=1.1.4)

@@ -1,14 +1,9 @@
-# tingle-rate [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-rate.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-rate)
+
 
 评分组件.
 
-![tingle-rate](https://img.alicdn.com/tfs/TB1YrN7QXXXXXagXXXXXXXXXXXX-350-227.png)
+![rate](https://img.alicdn.com/tfs/TB1YrN7QXXXXXagXXXXXXXXXXXX-350-227.png)
 
-## Install
-
-```
-tnpm install @ali/tingle-rate --save
-```
 
 ## Simple Usage
 

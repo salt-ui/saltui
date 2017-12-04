@@ -1,21 +1,15 @@
-# tingle-scroll-list [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-scroll-list.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-scroll-list)
+
 
 专注滑动列表, 功能: 下拉刷新，上拉加载更多,迭代渲染List, 渲染OtherItem+Repeat Item,见Demo
 
 ![](https://img.alicdn.com/tfs/TB1Ou9eQXXXXXXSXXXXXXXXXXXX-364-648.gif)
 
 
-## Install
-
-```
-tnpm install @ali/tingle-scroll-list --save
-```
-
 ## note
 
-- tingle-scroll-list 组件所在的容器必须要限定高度
-- 传给 tingle-scroll-list 的子组件, 只有最后一个会用后端返回的数据循环渲染, 其他子组件正常渲染, 详见 Demo
-- 如果要使用内置数据源(数据加载在组件内部完成), 需要给 tingle-scroll-list 传url, 这时自定义数据源相关的属性不需要传, 相反不需要传内置数据源相关属性
+- ScrollList 组件所在的容器必须要限定高度
+- 传给 ScrollList 的子组件, 只有最后一个会用后端返回的数据循环渲染, 其他子组件正常渲染, 详见 Demo
+- 如果要使用内置数据源(数据加载在组件内部完成), 需要给 ScrollList 传 url, 这时自定义数据源相关的属性不需要传, 相反不需要传内置数据源相关属性
 
 
 ## 使用内置数据源的Demo
@@ -258,7 +252,7 @@ class Demo extends React.Component {
 
 #### 运行机制变动
 
-* 使用 `tingle-scroll-view` 封装实现，去除了 `iscroll` 的依赖
+* 使用 `ScrollView` 封装实现，去除了 `iscroll` 的依赖
 * 底部加载的交互方式从手动上拉加载更换为触底自动加载
 * `onLoad` 回调分解为两个方法：`onRefresh` 和 `onLoad`。分别对应下拉刷新和触底加载的回调。
 
@@ -280,11 +274,10 @@ class Demo extends React.Component {
 
 
 
-## 相关项目
+## 相关组件
 
-
-* [tingle-scroll-view](http://gitlab.alibaba-inc.com/tingle-ui/tingle-scroll-view)
-* [tingle-refreshcontrol](http://gitlab.alibaba-inc.com/tingle-ui/tingle-refreshcontrol)
-* [tingle-infinite-scroll](http://gitlab.alibaba-inc.com/tingle-ui/tingle-infinite-scroll)
+* [ScrollView](https://salt-ui.github.io/components/scroll-view)
+* [Refreshcontrol](https://salt-ui.github.io/components/refreshcontrol)
+* [InfiniteScroll](https://salt-ui.github.io/components/infinite-scroll)
 
 

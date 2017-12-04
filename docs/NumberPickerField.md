@@ -1,4 +1,4 @@
-# tingle-number-picker-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-number-picker-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-number-picker-field)
+
 
 数字步进器表单域。
 
@@ -43,20 +43,4 @@ class Demo extends React.Component {
     }
 };
 
-```
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
 ```

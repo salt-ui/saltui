@@ -1,24 +1,8 @@
-# tingle-rate-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-rate-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-rate-field)
+
 
 评分展示表单
 
-![tingle-rate-field](https://img.alicdn.com/tfs/TB1HiJgQXXXXXb3apXXXXXXXXXX-396-410.png)
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
+![rate-field](https://img.alicdn.com/tfs/TB1HiJgQXXXXXb3apXXXXXXXXXX-396-410.png)
 
 ## Simple Usage
 
@@ -28,7 +12,7 @@ npm run tnpm-update
 
 ## Props
 
-该组件继承自 [tingle-field](https://salt-ui.github.io/components/tingle-field)，继承基类的全部 props
+该组件继承自 [Field](https://salt-ui.github.io/components/field)，继承基类的全部 props
 
 #### className
 

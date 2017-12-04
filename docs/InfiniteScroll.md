@@ -1,14 +1,7 @@
-# tingle-infinite-scroll [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-infinite-scroll.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-infinite-scroll)
+
 一句话描述
 一张截图
 
-### install
-
-```
-
-tnpm install @ali/tingle-infinite-scroll --save
-
-```
 
 ## Simple Usage
 

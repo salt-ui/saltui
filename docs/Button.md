@@ -77,7 +77,7 @@
 ### Simple Usage
 
 ```javascript
-import { Button } from '@ali/tingle-button';
+import { Button } from 'saltui';
 
 let View = React.createClass({
   handleClick() {
@@ -182,7 +182,7 @@ let View = React.createClass({
 
 用法：
 ```
-import { Button } from '@ali/tingle-button';
+import { Button } from 'saltui';
 
 const { TextButton } = Button;
 
@@ -228,7 +228,7 @@ const { TextButton } = Button;
 
 #### name
 
-描述：按钮名称，对应tingle-icon组件中的ICON名称
+描述：按钮名称，对应 icon 组件中的 ICON 名称
 
 类型：String
 
@@ -280,7 +280,7 @@ const { TextButton } = Button;
 
 用法：
 ```
-import { Button } from '@ali/tingle-button';
+import { Button } from 'saltui';
 
 const { IconButton } = Button;
 
@@ -300,7 +300,7 @@ const { IconButton } = Button;
 
 用法：
 ```
-import { Button } from '@ali/tingle-button';
+import { Button } from 'saltui';
 
 const { ButtonGroup } = Button; // 或者直接使用 Buttom.Group
 

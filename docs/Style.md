@@ -1,6 +1,6 @@
-# tingle-style
 
-`tingle-style`是`tingle`的底层样式实现方案，包括两个部分的实现：
+
+`Style`是`saltui`的底层样式实现方案，包括两个部分的实现：
 
 #### CSS
 
@@ -15,7 +15,7 @@
 
 ## CSS Reset
 
-> 文件：[reset.styl](https://github.com/tinglejs/tingle-style/blob/master/src/reset.styl)
+> 文件：[reset.styl](https://github.com/salt-ui/saltui/blob/master/src/Style/reset.styl)
 
 #### border box：
 
@@ -36,10 +36,10 @@
 
 ## CSS Flexbox
 
-> 文件：[flexbox.styl](https://github.com/tinglejs/tingle-style/blob/master/src/flexbox.styl)
+> 文件：[flexbox.styl](https://github.com/salt-ui/saltui/blob/master/src/Style/flexbox.styl)
 
 
-`tingle`中，所有`flexbox`相关的`class`值，都以`tFB`为前缀。
+`saltui` 中，所有 `flexbox` 相关的 `class` 值，都以 `tFB` 为前缀。
 
 #### 定义伸缩容器：
 
@@ -57,7 +57,7 @@
 
 ## CSS Utils
 
-> 文件：[util.styl](https://github.com/tinglejs/tingle-style/blob/master/src/util.styl)
+> 文件：[util.styl](https://github.com/salt-ui/saltui/blob/master/src/Style/util.styl)
 
 #### float(移动端不建议使用float)：
 
@@ -159,7 +159,7 @@
 
 ## CSS Var
 
-> 文件：[var.styl](https://github.com/tinglejs/tingle-style/blob/master/src/var.styl)
+> 文件：[var.styl](https://github.com/salt-ui/saltui/blob/master/src/Style/var.styl)
 
 #### radius(n)
 
@@ -175,7 +175,7 @@
 
 ## JS Utils
 
-> 文件：[util.js](https://github.com/tinglejs/tingle-style/blob/master/src/util.js)
+> 文件：[util.js](https://github.com/salt-ui/saltui/blob/master/src/Style/util.js)
 
 #### createStyleContext
 
@@ -188,7 +188,9 @@
 
 ```js
 // 第一步：引入模块
-const {createStyleContext} = require('tingle-style');
+import { Style } from 'saltui';
+
+const { createStyleContext } = Style;
 
 // 第二步：创建一个样式对象
 let style = createStyleContext(contextId);
@@ -206,7 +208,9 @@ style.add(ruleId, ruleString); // ruleId可选，但强烈建议使用它。
 
 ```js
 // 第一步：引入模块
-const {createStyleContext} = require('tingle-style');
+import { Style } from 'saltui';
+
+const { createStyleContext } = Style;
 
 // 第二步：创建一个样式对象
 let style = createStyleContext('tGroup_List');
@@ -229,7 +233,9 @@ style.add(`lineIndent${indent}`, `
 
 ```js
 // 第一步：引入模块
-const {unitize} = require('tingle-style');
+import { Style } from 'saltui';
+
+const { unitize } = Style;
 
 // 第二步：语法
 let value = unitize(any);
@@ -247,19 +253,3 @@ unitize('10px'); // 10px
 unitize('1rem'); // 1rem
 unitize();       // 0
 ```
-
-## Local Dev
-
-```bash
-$ gulp server
-```
-
-启动之后，对任何`styl`文件的改动都会触发重新编译，得到同步更新的`css`文件。
-
-## Updates
-
-* tingle-style@0.3.0 / 2015-10-25
-  - `radius、padding、margin`样式顺序优化
-  - 添加`util.js`模块
-* tingle-style@0.3.1 / 2015-10-28
-  - 添加文档

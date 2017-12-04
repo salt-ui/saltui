@@ -1,24 +1,7 @@
-# tingle-switch-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-switch-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-switch-field)
-
-tingle-switch-field 是一个切换开关的field.
-
-![](http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/tingle-ui/tingle-select-field/5917c929182b295571e90ed45db85ade/image.png)
-
-
-## Install
-
-```
-tnpm install @ali/tingle-switch-field --save
-```
 
 ## Simple Usage
 
-```html
-<div id="TingleDemo"></div>
-
-```
-
-```js
+```jsx
 class Demo extends React.Component {
 
     constructor(props) {

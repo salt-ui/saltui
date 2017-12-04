@@ -1,9 +1,8 @@
-# tingle-picker-field
 
-## PickerField 一个表单域，从右侧滑出面板，上面包含搜索和列表，支持单选和多选两种模式，选择后返回
 
-<img src="http://git.cn-hangzhou.oss-cdn.aliyun-inc.com/uploads/tingle-ui/tingle-picker-field/8cc6ac97fec56e009a9507e73b712264/image.png" width="375"/>
+## PickerField 
 
+一个表单域，从右侧滑出面板，上面包含搜索和列表，支持单选和多选两种模式，选择后返回
 
 ## Simple Usage
 

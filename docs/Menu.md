@@ -1,23 +1,6 @@
-# tingle-menu [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-menu.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-menu)
+
 一句话描述
 ![img](https://img.alicdn.com/tfs/TB11PhARVXXXXXDXFXXXXXXXXXX-337-855.png)
-
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 

@@ -1,24 +1,8 @@
-# tingle-notice-bar [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-notice-bar.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-notice-bar)
+
 
 移动端的tip提示信息组件
 
  ![3e3c726c78b76f7c.png](https://private-alipayobjects.alipay.com/alipay-rmsdeploy-image/skylark/png/15565/3e3c726c78b76f7c.png) 
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 

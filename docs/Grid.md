@@ -1,4 +1,4 @@
-# tingle-grid [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-grid.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-grid)
+
 
 删格布局方案
 

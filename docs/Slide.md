@@ -1,4 +1,4 @@
-# tingle-slide
+
 
 ## 轮播组件
 

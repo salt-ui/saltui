@@ -1,4 +1,4 @@
-# tingle-datetime [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-datetime.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-datetime)
+
 
 日期及时间、上下午选择组件。
 
@@ -6,10 +6,9 @@
 
 ## Simple Usage
 
-```javascript
+```jsx
 import React from 'react';
-import Button from '@ali/tingle-button';
-import Datetime from '../../src';
+import { Datetime, Button } from 'saltui';
 
 class DatetimeDemo extends React.Component {
 
