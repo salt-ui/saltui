@@ -45,12 +45,14 @@ class Crumb extends React.Component {
           onClick: t.props.onClick.bind(t, idx),
         }));
         if (idx !== len - 1) {
-          crumbArray.push(<span
-            key={`nav-${idx}`}
-            className={classnames(Context.prefixClass('crumb-nav-icon'), {
+          crumbArray.push((
+            <span
+              key={`nav-${idx}`}
+              className={classnames(Context.prefixClass('crumb-nav-icon'), {
                 [Context.prefixClass('FL')]: t.props.showScroll,
               })}
-          >&gt;           </span>);
+            >&gt;
+            </span>));
         }
       }
     });
