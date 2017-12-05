@@ -1,4 +1,4 @@
-module.exports = function (str, pattern) {
+export default function (str, pattern) {
   const date = new Date(str);
   if (Object.prototype.toString.call(date) === '[object Date]') {
     if (isNaN(date.getTime())) {
@@ -22,12 +22,14 @@ module.exports = function (str, pattern) {
     if (/(y+)/i.test(actualPattern)) {
       actualPattern = actualPattern.replace(RegExp.$1, (`${date.getFullYear()}`).substr(4 - RegExp.$1.length));
     }
-    for (const k in o) {
+
+    const keys = Object.keys(o);
+    keys.forEach((k) => {
       if (new RegExp(`(${k})`).test(actualPattern)) {
         actualPattern = actualPattern.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : ((`00${o[k]}`).substr((`${o[k]}`).length)));
       }
-    }
+    });
     return actualPattern;
   }
   return '';
-};
+}

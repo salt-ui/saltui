@@ -7,14 +7,15 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const isUndefined = require('lodash/isUndefined');
-const isArray = require('lodash/isArray');
-const isObject = require('lodash/isObject');
-const Context = require('../Context');
-const Slot = require('../Slot');
-const dateFormat = require('./dateFormat');
-const locale = require('./locale');
+import React from 'react';
+
+import isUndefined from 'lodash/isUndefined';
+import isArray from 'lodash/isArray';
+import isObject from 'lodash/isObject';
+import Context from '../Context';
+import Slot from '../Slot';
+import dateFormat from './dateFormat';
+import locale from './locale';
 
 const colFlags = ['Y', 'M', 'D', 'T', 'h', 'H', 'm', 's', 'YMD', 'YMDW'];
 
@@ -56,7 +57,7 @@ function getNowIfDateInvalid(dataObj) {
 function makeRange(start, end) {
   const arr = [];
 
-  for (let i = start; i <= end; i++) {
+  for (let i = start; i <= end; i += 1) {
     arr.push(i);
   }
 
@@ -118,7 +119,7 @@ function parseValue(value) {
 function getDaysByYear(year) {
   const days = [];
 
-  for (let i = 0; i < 13; i++) {
+  for (let i = 0; i < 13; i += 1) {
     getDates(year, i - 1).forEach((el) => {
       days.push(`${year}${addZero(i)}${addZero(el)}` - 0);
     });
@@ -188,9 +189,9 @@ function addDayOfWeek(days, props, sure = true) {
 
 // 根据props定制渲染
 function formatFromProps(arr, props) {
-  const columns = props.columns;
+  const { columns } = props;
   const displayList = [];
-  for (let i = 0; i < columns.length; i++) {
+  for (let i = 0; i < columns.length; i += 1) {
     if (colFlags.indexOf(columns[i]) !== -1) {
       displayList.push(arr[colFlags.indexOf(columns[i])]);
     }
@@ -244,8 +245,10 @@ class Datetime extends React.Component {
     const ret = Slot.formatDataValue([].concat(this.options), [].concat(currentValue));
 
     this.state = {
+      /* eslint-disable react/no-unused-state */
       data: formatFromProps(this.formatText(ret.data), props),
       value: formatFromProps(this.formatText(ret.value), props),
+      /* eslint-enable react/no-unused-state */
       // confirmedValue: props.value ? formatFromProps(ret.value, props) : [],
     };
 
@@ -255,7 +258,7 @@ class Datetime extends React.Component {
   // 外部变更选中值
   componentWillReceiveProps(nextProps) {
     const t = this;
-    const value = nextProps.value;
+    const { value } = nextProps;
 
     if (value) {
       t.setValue(parseValue(nextProps.value), true, nextProps);
@@ -264,16 +267,16 @@ class Datetime extends React.Component {
      t.setState({
      confirmedValue: [],
      });
-     }*/
+     } */
   }
 
   // value to time stamp
   getPlainDate(value) {
     const date = new Date();
-    const columns = this.props.columns;
+    const { columns } = this.props;
     let timeType = 0;
 
-    for (let i = 0; i < columns.length; i++) {
+    for (let i = 0; i < columns.length; i += 1) {
       if (columns[i] === 'Y') {
         date.setFullYear(value[i].value);
       } else if (columns[i] === 'M') {
@@ -310,7 +313,7 @@ class Datetime extends React.Component {
   setValue(val, confirm, props) {
     const t = this;
     const options = genOptions(val, props);
-    props = props || t.props;
+    const newProps = props || t.props;
 
     /* if (val.length && isNaN(val[0])) {
      const ret = Slot.formatDataValue(
@@ -321,7 +324,7 @@ class Datetime extends React.Component {
      confirmedValue: props.value ? formatFromProps(ret.value, props) : [],
      });
      return;
-     }*/
+     } */
 
     const { data, value } = Slot.formatDataValue(options, val);
     let changes = null;
@@ -332,11 +335,11 @@ class Datetime extends React.Component {
       const ret = Slot.formatColumnValue(dates);
       data[2] = ret.columnData;
       changes = {
-        data: formatFromProps(this.formatText(data), props),
-        value: formatFromProps(this.formatText(value), props),
+        data: formatFromProps(this.formatText(data), newProps),
+        value: formatFromProps(this.formatText(value), newProps),
       };
     } else {
-      changes = { value: formatFromProps(this.formatText(value), props) };
+      changes = { value: formatFromProps(this.formatText(value), newProps) };
     }
     // if (confirm) {
     //   changes.confirmedValue = formatFromProps(value, props);
@@ -349,17 +352,15 @@ class Datetime extends React.Component {
     const formatArray = [];
     const localeCode = this.props.locale;
 
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i += 1) {
       const el = arr[i];
-      formatArray.push(
-        isArray(el) ?
-          this.formatText(el, locale[localeCode].surfix[colFlags[i]]) :
-          {
-            text: addZero(el.text) +
+      formatArray.push(isArray(el) ?
+        this.formatText(el, locale[localeCode].surfix[colFlags[i]]) :
+        {
+          text: addZero(el.text) +
               (isUndefined(text) ? locale[localeCode].surfix[colFlags[i]] : text),
-            value: el.value,
-          },
-      );
+          value: el.value,
+        });
     }
     return formatArray;
   }
@@ -424,9 +425,9 @@ class Datetime extends React.Component {
         cancelText={t.props.cancelText || locale[this.props.locale].cancelText}
         data={t.state.data}
         value={t.state.value}
-        onChange={t.handleChange.bind(t)}
-        onCancel={t.handleCancel.bind(t)}
-        onConfirm={t.handleConfirm.bind(t)}
+        onChange={() => { t.handleChange(); }}
+        onCancel={() => { t.handleCancel(); }}
+        onConfirm={() => { t.handleConfirm(); }}
       />
     );
   }
@@ -442,7 +443,6 @@ Datetime.getSlotFormattedValue = getSlotFormattedValue;
 
 Datetime.defaultProps = {
   className: '',
-  title: '',
   locale: 'zh-cn',
   columns: Datetime.YMD,
   onConfirm: _ => _,
@@ -470,4 +470,4 @@ Datetime.propTypes = {
 
 Datetime.displayName = 'Datetime';
 
-module.exports = Datetime;
+export default Datetime;

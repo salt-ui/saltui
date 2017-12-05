@@ -5,34 +5,30 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Scroller = require('../Scroller');
-const Item = require('./CrumbItem');
+import React from 'react';
+
+import classnames from 'classnames';
+import Context from '../Context';
+import Scroller from '../Scroller';
+import Item from './CrumbItem';
 
 class Crumb extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     // 计算宽度和滚动
     const t = this;
     if (t.props.showScroll) {
       let w = 0;
-      const scrollEl = ReactDOM.findDOMNode(t.refs.scroll);
+      const scrollEl = t.scroll;
       const chNodes = scrollEl.childNodes;
-      for (let i = 0, l = chNodes.length; i < l; i++) {
+      for (let i = 0, l = chNodes.length; i < l; i += 1) {
         w += chNodes[i].offsetWidth + 1;
       }
 
       scrollEl.style.width = `${w}px`;
       // t.refs.root.scroller.scrollTo(-w, 0, 1000, IScroll.utils.ease.elastic);
-      t.refs.root.scroller.scrollTo(-w);
+      t.root.scroller.scrollTo(-w);
       // 实例化滚动
-      t.refs.root.scroller.refresh();
+      t.root.scroller.refresh();
     }
   }
 
@@ -42,23 +38,21 @@ class Crumb extends React.Component {
     const crumbArray = [];
     React.Children.forEach(t.props.children, (child, idx) => {
       if (child.type.displayName === 'CrumbItem') {
-        crumbArray.push(
-          React.cloneElement(child, {
-            key: idx,
-            className: t.props.showScroll ? Context.prefixClass('FL') : '',
-            disabled: idx === len - 1,
-            onClick: t.props.onClick.bind(t, idx),
-          })
-        );
+        crumbArray.push(React.cloneElement(child, {
+          key: idx,
+          className: t.props.showScroll ? Context.prefixClass('FL') : '',
+          disabled: idx === len - 1,
+          onClick: t.props.onClick.bind(t, idx),
+        }));
         if (idx !== len - 1) {
-          crumbArray.push(
+          crumbArray.push((
             <span
               key={`nav-${idx}`}
               className={classnames(Context.prefixClass('crumb-nav-icon'), {
                 [Context.prefixClass('FL')]: t.props.showScroll,
               })}
-            >&gt;</span>
-          );
+            >&gt;
+            </span>));
         }
       }
     });
@@ -74,12 +68,12 @@ class Crumb extends React.Component {
     if (scroll) {
       return (
         <Scroller
-          ref="root"
+          ref={(c) => { this.root = c; }}
           className={classNames}
           scrollX
           scrollY={false}
         >
-          <div className={Context.prefixClass('CL crumb-scroll')} ref="scroll">
+          <div className={Context.prefixClass('CL crumb-scroll')} ref={(c) => { this.scroll = c; }}>
             {
               t.renderItems()
             }
@@ -89,7 +83,7 @@ class Crumb extends React.Component {
     }
     return (
       <div
-        ref="root"
+        ref={(c) => { this.root = c; }}
         className={classNames}
       >
         {
@@ -117,4 +111,4 @@ Crumb.displayName = 'Crumb';
 
 Crumb.Item = Item;
 
-module.exports = Crumb;
+export default Crumb;
