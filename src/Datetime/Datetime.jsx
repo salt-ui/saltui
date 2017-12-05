@@ -425,9 +425,9 @@ class Datetime extends React.Component {
         cancelText={t.props.cancelText || locale[this.props.locale].cancelText}
         data={t.state.data}
         value={t.state.value}
-        onChange={() => { t.handleChange(); }}
+        onChange={(value, column) => { t.handleChange(value, column); }}
         onCancel={() => { t.handleCancel(); }}
-        onConfirm={() => { t.handleConfirm(); }}
+        onConfirm={(value) => { t.handleConfirm(value); }}
       />
     );
   }
