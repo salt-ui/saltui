@@ -7,6 +7,7 @@
  */
 const React = require('react');
 const classnames = require('classnames');
+const AngleRight = require('salt-icon/lib/AngleRight');
 const Context = require('../Context');
 const Slot = require('../Slot');
 const Field = require('../Field');
@@ -60,13 +61,14 @@ class SelectField extends React.Component {
 
   render() {
     const t = this;
-    const icon = t.props.readOnly ? null : {
-      className: Context.prefixClass('select-field-icon'),
-      name: 'angle-right',
-      width: 26,
-      height: 26,
-      onClick: t.handleClick.bind(t),
-    };
+    const icon = !t.props.readOnly ? (
+      <AngleRight 
+        className={Context.prefixClass('select-field-icon')}
+        width={26}
+        height={26}
+        onClick={t.handleClick.bind(t)}
+      />
+    ) : null;
     return (
       <Field
         {...t.props} icon={icon}

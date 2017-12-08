@@ -1,3 +1,7 @@
+## 3.1.30 / 2017-12-08
+
+* `fix`: SelectField Icon missing
+
 ## 3.1.29 / 2017-12-04
 
 * `doc`: remove tingle keyword from docs
