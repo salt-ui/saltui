@@ -1,6 +1,7 @@
 ## 3.1.30 / 2017-12-08
 
 * `fix`: SelectField Icon missing
+* `feat`: SearchBar support `exitAfterEnter`
 
 ## 3.1.29 / 2017-12-04
 

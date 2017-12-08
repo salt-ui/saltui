@@ -65,6 +65,9 @@ class SearchBar extends React.Component {
     const value = e.target.value;
     if (e.keyCode === 13 && value) {
       this.doSearch('click', value);
+      if (this.props.exitAfterEnter) {
+        this.exitSearch();
+      }
       this.input.blur();
     }
   }
@@ -202,6 +205,7 @@ SearchBar.defaultProps = {
   onEnter: noop,
   onExit: noop,
   isActive: false,
+  exitAfterEnter: false,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -225,6 +229,7 @@ SearchBar.propTypes = {
   onExit: React.PropTypes.func,
   disabled: React.PropTypes.bool,
   isActive: React.PropTypes.bool,
+  exitAfterEnter: React.PropTypes.bool,
 };
 
 SearchBar.displayName = 'SearchBar';

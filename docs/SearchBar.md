@@ -40,6 +40,7 @@ SearchBar 本身只关心本身自己的逻辑，移除history 和 result 面板
 | value | `string` | 否 | - | 填充值 |
 | instantSearch | `boolean` | 否 | `true` | 是否开启即时搜索，即输入过程中触发搜索，和属性searchDelay配合使用 |
 | searchDelay | `number` | 否 | `350` | 触发频率限制，输入过程中多少毫秒后未输入才触发搜索 |
+| exitAfterEnter | `boolean` | 否 | `false` | 是否在回车后退出搜索模式 | 
 | onSearch | `funtion` | 否 | noop | 搜索触发 callback |
 | onChange | `funtion` | 否 | noop | 输入内容变化 callback (from为变化来源 输入'input'和清空'clear') |
 | onEnter | `funtion` | 否 | noop | 进入搜索模式 callback |
