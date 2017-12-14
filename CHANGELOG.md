@@ -1,4 +1,4 @@
-## 3.1.31 / 2017-12-14
+## 3.1.32 / 2017-12-14
 
 * `fix`: scrolling to the window's end when popup is shown.
 
