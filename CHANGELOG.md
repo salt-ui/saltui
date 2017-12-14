@@ -1,3 +1,7 @@
+## 3.1.31 / 2017-12-14
+
+* `fix`: scrolling to the window's end when popup is shown.
+
 ## 3.1.30 / 2017-12-08
 
 * `fix`: SelectField Icon missing
