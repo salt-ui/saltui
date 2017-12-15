@@ -1,3 +1,8 @@
+
+## 3.1.33 / 2017-12-15
+
+* `fix`: scrolling to the window's end when toast is shown.
+
 ## 3.1.32 / 2017-12-14
 
 * `fix`: scrolling to the window's end when popup is shown.
