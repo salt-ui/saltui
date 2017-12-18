@@ -1,4 +1,8 @@
 
+## 3.2.0 / 2017-12-18
+
+* `feat`: Crumb support new prop `separator`
+
 ## 3.1.33 / 2017-12-15
 
 * `fix`: scrolling to the window's end when toast is shown.

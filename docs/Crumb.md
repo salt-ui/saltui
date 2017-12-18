@@ -75,3 +75,13 @@ module.exports = Demo;
 
 * index: 当前点击的项的索引
 
+### separator
+
+描述：分隔符	
+
+类型：`String`
+
+默认：`>`
+
+必选：否
+
