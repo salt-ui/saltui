@@ -30,7 +30,7 @@ class Demo extends React.Component {
           name: '222',
         },
         {
-          url: 'http://gtms02.alicdn.com/tps/i2/TB1Xe3SMpXXXXX6XpXXTCU0QpXX-300-300.jpg',
+          url: 'http://via.placeholder.com/120x500',
           name: '222',
         },
         {

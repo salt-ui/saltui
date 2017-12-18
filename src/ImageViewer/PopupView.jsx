@@ -83,6 +83,12 @@ class PopupView extends React.Component {
     this.props.onClick();
   }
 
+  updateActive(active) {
+    this.setState({
+      current: active.index
+    })
+  }
+
 
   renderNavBar() {
     if (!this.props.visible) return null;
@@ -123,10 +129,12 @@ class PopupView extends React.Component {
             }}
           >
             <Slide
-              height={`${windowHeight - 40}px`}
+              height="100%"
               active={this.state.current}
               auto={false}
               showNav={false}
+              loop={false}
+              onSlideEnd={this.updateActive.bind(this)}
               ref={(c) => {
                 this.slider = c;
               }}

@@ -112,7 +112,7 @@ class PhotoFieldPane extends React.Component {
         };
         return (
           <PhotoFieldUploadItem {...props} />
-      );
+        );
       });
     const list = (
       <div
