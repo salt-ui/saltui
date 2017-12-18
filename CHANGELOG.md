@@ -1,4 +1,9 @@
 
+## 3.3.0 / 2017-12-18
+
+* `feat`: TabBar iphoneX compatible 
+* `feat`: Tab force browser repaint when component mount
+
 ## 3.2.0 / 2017-12-18
 
 * `feat`: Crumb support new prop `separator`

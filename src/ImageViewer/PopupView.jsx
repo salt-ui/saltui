@@ -129,7 +129,7 @@ class PopupView extends React.Component {
             }}
           >
             <Slide
-              height="100%"
+              height={`${windowHeight - 40}px`}
               active={this.state.current}
               auto={false}
               showNav={false}
