@@ -26,6 +26,7 @@ class SlotDemo extends Component {
   }
 
   showSlot() {
+    this.setState({ value: [{ text: 2004, value: 2004 }] });
     this.refs.slot.show();
   }
 

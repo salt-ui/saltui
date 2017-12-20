@@ -1,4 +1,8 @@
 
+## 3.3.2 / 2017-12-20
+
+* `fix`: Slot lastChoose fail to be updated after props.value change.
+
 ## 3.3.1 / 2017-12-20
 
 * `fix`: Slot.formatDataValue fail to return formatted value

@@ -11,6 +11,7 @@ const classnames = require('classnames');
 const Context = require('../Context');
 const Popup = require('../Popup');
 const cloneDeep = require('lodash/cloneDeep');
+const isEqual = require('lodash/isEqual');
 const SlotHeader = require('./tpls/Header');
 const SlotPane = require('./tpls/Pane');
 
@@ -30,6 +31,12 @@ class Slot extends React.Component {
       childPaneIsScrolling: false,
       visible: false,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.props.value, nextProps.value)) {
+      this.lastChoose = cloneDeep(nextProps.value);
+    }
   }
 
 
@@ -208,10 +215,11 @@ Slot.formatColumnValue = (columnData, value) => {
 
     // 兼容非对象的数据
     if (typeof cell !== 'object') {
-      cell = newColumnData[i] = {
+      newColumnData[i] = {
         text: cell,
         value: cell,
       };
+      cell = newColumnData[i];
     }
 
     // 补全缺失数据
