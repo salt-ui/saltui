@@ -8,10 +8,12 @@
 import 'salt-context';
 
 import './SlotDemo.styl';
-window.FastClick && FastClick.attach(document.body);
+// import Demo from './SlotDemo';
+import Demo from './SlotSimpleDemo';
 
-
+if (window.FastClick) {
+  window.FastClick.attach(document.body);
+}
 // 渲染demo
-import Demo from './SlotDemo';
 
 export default Demo;

@@ -230,7 +230,7 @@ Slot.formatColumnValue = (columnData, value) => {
 
   // 默认选中第一项
   if (typeof newValue !== 'object') {
-    newValue = columnData[0];
+    [newValue] = newColumnData;
   }
 
   return {

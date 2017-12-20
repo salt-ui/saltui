@@ -1,4 +1,8 @@
 
+## 3.3.1 / 2017-12-20
+
+* `fix`: Slot.formatDataValue fail to return formatted value
+
 ## 3.3.0 / 2017-12-18
 
 * `feat`: TabBar iphoneX compatible 
