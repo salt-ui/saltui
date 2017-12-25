@@ -276,7 +276,7 @@ class Slide extends React.Component {
   */
   _moveItem(item, dir) {
     const t = this;
-    item.style.webkitTransitionDuration = `${t.duration}ms`;
+    item.style.WebkitTransitionDuration = `${t.duration}ms`;
 
     const newOffset = +item.getAttribute(OFFSET) + dir;
 
@@ -302,10 +302,10 @@ class Slide extends React.Component {
     const item = t.refs[`item${targetPosIndex}`];
     item.classList.add('ready');
     item.setAttribute(OFFSET, offset);
-    item.style.webkitTransform = makeTranslate(t._getPosX(offset));
+    item.style.WebkitTransform = makeTranslate(t._getPosX(offset));
 
     if (noAnimation) {
-      item.style.webkitTransitionDuration = '0ms';
+      item.style.WebkitTransitionDuration = '0ms';
     }
 
     t[POS_MAP[offset]] = item;
@@ -321,8 +321,8 @@ class Slide extends React.Component {
     const t = this;
     item.classList.remove('ready');
     item.removeAttribute(OFFSET);
-    item.style.webkitTransitionDuration = '0';
-    item.style.webkitTransform = 'none';
+    item.style.WebkitTransitionDuration = '0';
+    item.style.WebkitTransform = 'none';
   }
 
   /**
@@ -344,7 +344,7 @@ class Slide extends React.Component {
   */
   _setItemX(item, x) {
     this[`${POS_MAP[item.getAttribute(OFFSET)]}X`] = x;
-    item.style.webkitTransform = makeTranslate(x);
+    item.style.WebkitTransform = makeTranslate(x);
   }
 
   /**
@@ -400,9 +400,9 @@ class Slide extends React.Component {
     clearTimeout(t._autoSlideTimer);
 
     // 恢复到0 拖拽过程中快速响应移动距离
-    t._prevEl.style.webkitTransitionDuration = '0ms';
-    t._currentEl.style.webkitTransitionDuration = '0ms';
-    t._nextEl.style.webkitTransitionDuration = '0ms';
+    t._prevEl.style.WTransitionDuration = '0ms';
+    t._currentEl.style.WebkitTransitionDuration = '0ms';
+    t._nextEl.style.WebkitTransitionDuration = '0ms';
 
     // 移动初始值
     t._prevElX = t._getPosX(-1);

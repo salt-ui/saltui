@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Slide from '../Slide';
 import Animate from 'rc-animate';
 import Hammer from 'hammerjs';
 import classnames from 'classnames';
+import ReactDOM from 'react-dom';
+import Slide from '../Slide';
 import Mask from './Mask';
 
 const pinch = new Hammer.Pinch();
@@ -57,16 +57,16 @@ class PopupView extends React.Component {
       if (currentScale < 0) {
         currentScale = ev.scale;
       }
-      sliderNode.style.webkitTransition = 'none';
-      sliderNode.style.webkitTransform = `scale(${currentScale},${currentScale})`;
+      sliderNode.style.WebkitTransition = 'none';
+      sliderNode.style.WebkitTransform = `scale(${currentScale},${currentScale})`;
     });
 
     this.mc.on('pinchend', () => {
       scale = currentScale;
       if (scale < 1) {
         scale = 1;
-        sliderNode.style.webkitTransition = 'transform 0.5s ease-out';
-        sliderNode.style.webkitTransform = 'scale(1,1)';
+        sliderNode.style.WebkitTransition = 'transform 0.5s ease-out';
+        sliderNode.style.WebkitTransform = 'scale(1,1)';
       }
     });
   }
@@ -85,10 +85,9 @@ class PopupView extends React.Component {
 
   updateActive(active) {
     this.setState({
-      current: active.index
-    })
+      current: active.index,
+    });
   }
-
 
   renderNavBar() {
     if (!this.props.visible) return null;
