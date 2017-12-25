@@ -5,20 +5,14 @@
  * Copyright 2014-2015, Tingle Team, Alinw.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
+import React from 'react';
+
+import classnames from 'classnames';
+import Context from '../Context';
 
 class Item extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
-  genIcon(icon) {
+  static genIcon(icon) {
     if (React.isValidElement(icon) && icon.type && icon.type.displayName === 'Icon') {
       return React.cloneElement(icon, {
         width: 14,
@@ -28,6 +22,14 @@ class Item extends React.Component {
     }
     return icon;
   }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
 
   render() {
     const t = this;
@@ -45,7 +47,8 @@ class Item extends React.Component {
         className={classnames(Context.prefixClass('timeline-item'), {
           [t.props.className]: !!t.props.className,
           active: t.props.active,
-        })} key={t.props.index}
+        })}
+        key={t.props.index}
       >
         <div className={classnames(Context.prefixClass('timeline-header'))}>
           {
@@ -56,7 +59,7 @@ class Item extends React.Component {
                     <img
                       src={t.props.icon}
                       alt=""
-                    /> : t.genIcon(t.props.icon)
+                    /> : Item.genIcon(t.props.icon)
                 }
               </div> :
               <div
@@ -111,7 +114,9 @@ Item.propTypes = {
   description: indentType,
 };
 
-Item.defaultProps = {};
+Item.defaultProps = {
+  className: '',
+};
 
-module.exports = Item;
+export default Item;
 

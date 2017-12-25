@@ -5,12 +5,11 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
+import React from 'react';
 
-const classnames = require('classnames');
-
-const Context = require('../Context');
-const Item = require('./Item');
+import classnames from 'classnames';
+import Context from '../Context';
+import Item from './Item';
 
 class Timeline extends React.Component {
   constructor(props) {
@@ -54,6 +53,7 @@ class Timeline extends React.Component {
 }
 
 Timeline.defaultProps = {
+  className: '',
 };
 
 Timeline.propTypes = {
@@ -63,4 +63,4 @@ Timeline.propTypes = {
 Timeline.displayName = 'Timeline';
 Timeline.Item = Item;
 
-module.exports = Timeline;
+export default Timeline;

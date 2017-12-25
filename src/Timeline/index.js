@@ -6,4 +6,6 @@
  * All rights reserved.
  */
 
-module.exports = require('./Timeline');
+import Timeline from './Timeline';
+
+export default Timeline;
