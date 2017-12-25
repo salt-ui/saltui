@@ -175,7 +175,7 @@ class Demo extends React.Component {
 
 ```
     <div>
-        <Group.Head className='tFS12 tLH2 tPT16'>文本框</Group.Head>
+        <Group.Head className='t-FS12 t-LH2 t-PT16'>文本框</Group.Head>
         <Group.List >
             <TextField label="姓名" placeholder="请输入" value={t.state.text} onChange={t.handleTextChange.bind(t)}/>
         </Group.List>
