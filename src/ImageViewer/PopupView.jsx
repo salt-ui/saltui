@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Slide from '../Slide';
 import Animate from 'rc-animate';
 import Hammer from 'hammerjs';
 import classnames from 'classnames';
+import ReactDOM from 'react-dom';
+import Slide from '../Slide';
 import Mask from './Mask';
 
 const pinch = new Hammer.Pinch();
@@ -85,10 +85,9 @@ class PopupView extends React.Component {
 
   updateActive(active) {
     this.setState({
-      current: active.index
-    })
+      current: active.index,
+    });
   }
-
 
   renderNavBar() {
     if (!this.props.visible) return null;
