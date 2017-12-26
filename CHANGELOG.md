@@ -1,4 +1,8 @@
 
+## 3.3.3 / 2017-12-27
+
+* `fix`: SearchBar can doSearch when value is empty string.
+
 ## 3.3.2 / 2017-12-20
 
 * `fix`: Slot lastChoose fail to be updated after props.value change.

@@ -16,7 +16,6 @@ const locale = require('./locale');
 
 
 class SearchBar extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +35,7 @@ class SearchBar extends React.Component {
     if (nextProps.value !== this.props.value) {
       this.setState({
         keyword: nextProps.value,
-      })
+      });
     }
   }
 
@@ -49,7 +48,7 @@ class SearchBar extends React.Component {
   }
 
   onChange(e) {
-    const value = e.target.value;
+    const { value } = e.target;
     const t = this;
     this.setState({
       keyword: value,
@@ -62,8 +61,8 @@ class SearchBar extends React.Component {
   }
 
   onKeyUp(e) {
-    const value = e.target.value;
-    if (e.keyCode === 13 && value) {
+    const { value } = e.target;
+    if (e.keyCode === 13) {
       this.doSearch('click', value);
       if (this.props.exitAfterEnter) {
         this.exitSearch();
@@ -90,7 +89,6 @@ class SearchBar extends React.Component {
       t.props.onChange('', 'clear', null);
       t.input.focus();
     });
-    
   }
 
   enterSearch() {
@@ -119,11 +117,11 @@ class SearchBar extends React.Component {
   render() {
     const t = this;
     const i18n = locale[t.props.locale];
-    let placeholder = t.props.placeholder;
+    let { placeholder } = t.props;
     if (typeof placeholder === 'object' && placeholder !== null) {
       placeholder = placeholder[t.props.locale];
     }
-    const keyword = t.state.keyword;
+    const { keyword } = t.state;
     return (
       <div
         className={classnames(Context.prefixClass('search-bar'), {
@@ -145,7 +143,8 @@ class SearchBar extends React.Component {
               <div className={Context.prefixClass('search-bar-holder')}>
                 <IconSearch
                   className={Context.prefixClass('search-bar-icon-search')}
-                  width={this.props.iconWidth} height={this.props.iconHeight}
+                  width={this.props.iconWidth}
+                  height={this.props.iconHeight}
                   fill={this.props.iconColor}
                 />
                 <span
@@ -153,7 +152,8 @@ class SearchBar extends React.Component {
                     hidden: keyword,
                   })}
                 >
-                  {placeholder}</span>
+                  {placeholder}
+                </span>
               </div>
             </div>
             <form action="javascript:;">
@@ -172,13 +172,15 @@ class SearchBar extends React.Component {
                 active: keyword,
               })}
               width={this.props.iconWidth}
-              height={this.props.iconHeight} fill={this.props.iconColor}
+              height={this.props.iconHeight}
+              fill={this.props.iconColor}
             />
           </div>
           <span
             className={Context.prefixClass('search-bar-btn')}
             onClick={(e) => { t.exitSearch(e); }}
-          >{i18n.cancel}</span>
+          >{i18n.cancel}
+          </span>
         </div>
       </div>);
   }

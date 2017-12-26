@@ -68,7 +68,7 @@ class Demo extends React.Component {
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">选择器演示</Group.Head>
           <Group.List>
             <PickerField
-              fetchUrl={'http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp'}
+              fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               fetchDataOnOpen
               label="没有默认值"
               onSelect={(e) => {
@@ -78,7 +78,7 @@ class Demo extends React.Component {
               placeholder="请输入"
             />
             <PickerField
-              fetchUrl={'http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp'}
+              fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               label="有默认值"
               onSelect={(e) => {
                 t.handleChange1(e);
@@ -87,7 +87,7 @@ class Demo extends React.Component {
               tip="这里是tip"
             />
             <PickerField
-              fetchUrl={'http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp'}
+              fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               label="无搜索框"
               onSelect={(e) => {
                 t.handleChange2(e);
@@ -97,7 +97,7 @@ class Demo extends React.Component {
               showSearch={false}
             />
             <PickerField
-              fetchUrl={'http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp'}
+              fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               label="多选"
               onSelect={(e) => {
                 t.handleChange3(e);
@@ -107,7 +107,7 @@ class Demo extends React.Component {
               multiple
             />
             <PickerField
-              fetchUrl={'http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp'}
+              fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               label="不可选"
               value={t.state.value1}
               readOnly
