@@ -400,7 +400,7 @@ class Slide extends React.Component {
     clearTimeout(t._autoSlideTimer);
 
     // 恢复到0 拖拽过程中快速响应移动距离
-    t._prevEl.style.WTransitionDuration = '0ms';
+    t._prevEl.style.webkitTransitionDuration = '0ms';
     t._currentEl.style.webkitTransitionDuration = '0ms';
     t._nextEl.style.webkitTransitionDuration = '0ms';
 
