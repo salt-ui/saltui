@@ -91,12 +91,12 @@ class Demo extends React.Component {
       </VBox>
 
       <HBox className="wrapper">
-        <VBox className="tBCa" flex={2}>
-          <Box className="tBCd" flex={1}>1</Box>
-          <Box className="tBCe" flex={2}>2</Box>
+        <VBox className="t-BCa" flex={2}>
+          <Box className="t-BCd" flex={1}>1</Box>
+          <Box className="t-BCe" flex={2}>2</Box>
         </VBox>
-        <Box className="tBCb" flex={2}>2</Box>
-        <Box className="tBCc" flex={1}>1</Box>
+        <Box className="t-BCb" flex={2}>2</Box>
+        <Box className="t-BCc" flex={1}>1</Box>
       </HBox>
     </div>);
   }
