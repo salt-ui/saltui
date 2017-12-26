@@ -57,16 +57,16 @@ class PopupView extends React.Component {
       if (currentScale < 0) {
         currentScale = ev.scale;
       }
-      sliderNode.style.WebkitTransition = 'none';
-      sliderNode.style.WebkitTransform = `scale(${currentScale},${currentScale})`;
+      sliderNode.style.webkitTransition = 'none';
+      sliderNode.style.webkitTransform = `scale(${currentScale},${currentScale})`;
     });
 
     this.mc.on('pinchend', () => {
       scale = currentScale;
       if (scale < 1) {
         scale = 1;
-        sliderNode.style.WebkitTransition = 'transform 0.5s ease-out';
-        sliderNode.style.WebkitTransform = 'scale(1,1)';
+        sliderNode.style.webkitTransition = 'transform 0.5s ease-out';
+        sliderNode.style.webkitTransform = 'scale(1,1)';
       }
     });
   }
