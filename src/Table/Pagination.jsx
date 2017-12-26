@@ -1,5 +1,5 @@
-const React = require('react');
-const classnames = require('classnames');
+import React from 'react';
+import classnames from 'classnames';
 
 class Pagination extends React.Component {
   constructor(props) {
@@ -70,4 +70,4 @@ Pagination.propTypes = {
 
 Pagination.displayName = 'Pagination';
 
-module.exports = Pagination;
+export default Pagination;

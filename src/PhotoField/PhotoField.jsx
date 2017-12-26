@@ -244,4 +244,4 @@ PhotoField.propTypes = {
 
 PhotoField.displayName = 'PhotoField';
 
-module.exports = PhotoField;
+export default PhotoField;

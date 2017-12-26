@@ -5,11 +5,11 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Field = require('../Field');
-const CrossRound = require('salt-icon/lib/CrossRound');
+import React from 'react';
+import classnames from 'classnames';
+import CrossRound from 'salt-icon/lib/CrossRound';
+import Context from '../Context';
+import Field from '../Field';
 
 const prefixClass = Context.prefixClass;
 
@@ -150,4 +150,4 @@ TextField.propTypes = {
 
 TextField.displayName = 'TextField';
 
-module.exports = TextField;
+export default TextField;

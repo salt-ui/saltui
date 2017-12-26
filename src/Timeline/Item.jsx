@@ -5,9 +5,9 @@
  * Copyright 2014-2015, Tingle Team, Alinw.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
+import React from 'react';
+import classnames from 'classnames';
+import Context from '../Context';
 
 class Item extends React.Component {
 
@@ -113,5 +113,5 @@ Item.propTypes = {
 
 Item.defaultProps = {};
 
-module.exports = Item;
+export default Item;
 

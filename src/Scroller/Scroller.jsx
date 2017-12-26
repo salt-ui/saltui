@@ -5,11 +5,11 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const ReactDOM = require('react-dom');
-const classnames = require('classnames');
-const IScroll = require('./iscroll');
-const Context = require('../Context');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import classnames from 'classnames';
+import IScroll from './iscroll';
+import Context from '../Context';
 
 class Scroller extends React.Component {
 
@@ -109,4 +109,4 @@ Scroller.propTypes = {
   children: React.PropTypes.node,
 };
 
-module.exports = Scroller;
+export default Scroller;

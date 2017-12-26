@@ -5,12 +5,13 @@
 * Copyright 2014-2017, Tingle Team, Alinw.
 * All rights reserved.
 */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const SlideNav = require('./SlideNav');
-const SlideItem = require('./SlideItem');
-const prefixClass = require('./utils').prefixClass;
+import React from 'react';
+
+import classnames from 'classnames';
+import Context from '../Context';
+import SlideNav from './SlideNav';
+import SlideItem from './SlideItem';
+import { prefixClass } from './utils';
 
 const {
   TOUCH_START,
@@ -677,4 +678,4 @@ Slide.displayName = 'Slide';
 
 Slide.Item = SlideItem;
 
-module.exports = Slide;
+export default Slide;

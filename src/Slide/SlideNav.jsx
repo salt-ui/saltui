@@ -5,9 +5,10 @@
 * Copyright 2014-2015, Tingle Team, Alinw.
 * All rights reserved.
 */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
+import React from 'react';
+
+import classnames from 'classnames';
+import Context from '../Context';
 
 const prefixClass = function prefixClass(name) {
   return Context.prefixClass ? Context.prefixClass(name) : `t-${name}`;
@@ -59,4 +60,4 @@ SlideNav.propTypes = {
 
 SlideNav.displayName = 'SlideNav';
 
-module.exports = SlideNav;
+export default SlideNav;

@@ -82,4 +82,4 @@ ImageViewer.propTypes = {
 
 ImageViewer.displayName = 'ImageViewer';
 
-module.exports = ImageViewer;
+export default ImageViewer;

@@ -6,14 +6,14 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Popup = require('../Popup');
-const cloneDeep = require('lodash/cloneDeep');
-const isEqual = require('lodash/isEqual');
-const SlotHeader = require('./tpls/Header');
-const SlotPane = require('./tpls/Pane');
+import React from 'react';
+import classnames from 'classnames';
+import Context from '../Context';
+import Popup from '../Popup';
+import cloneDeep from 'lodash/cloneDeep';
+import isEqual from 'lodash/isEqual';
+import SlotHeader from './tpls/Header';
+import SlotPane from './tpls/Pane';
 
 
 const isArray = arr => Object.prototype.toString.call(arr) === '[object Array]';
@@ -276,4 +276,4 @@ Slot.formatDataValue = (data = [], value = []) => {
 Slot.displayName = 'Slot';
 
 Slot.Pane = SlotPane;
-module.exports = Slot;
+export default Slot;

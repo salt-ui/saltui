@@ -5,12 +5,13 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const AngleRight = require('salt-icon/lib/AngleRight');
-const Context = require('../Context');
-const Slot = require('../Slot');
-const Field = require('../Field');
+import React from 'react';
+
+import classnames from 'classnames';
+import AngleRight from 'salt-icon/lib/AngleRight';
+import Context from '../Context';
+import Slot from '../Slot';
+import Field from '../Field';
 
 const isNil = value => (value === null || value === undefined);
 
@@ -124,4 +125,4 @@ SelectField.propTypes = {
 
 SelectField.displayName = 'SelectField';
 
-module.exports = SelectField;
+export default SelectField;

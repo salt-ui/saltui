@@ -5,11 +5,11 @@
  * Copyright 2014-2017, Tingle Team, Alinw.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const { VBox } = require('../Boxs');
-const Row = require('./Row');
+import React from 'react';
+import classnames from 'classnames';
+import Context from '../Context';
+import { VBox } from '../Boxs';
+import Row from './Row';
 
 const prefixClass = Context.prefixClass;
 
@@ -95,4 +95,4 @@ Grid.propTypes = {
 
 Grid.displayName = 'Grid';
 
-module.exports = Grid;
+export default Grid;

@@ -5,14 +5,14 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const classnames = require('classnames');
-const debounce = require('lodash/debounce');
-const React = require('react');
-const Context = require('../Context');
-const IconSearch = require('salt-icon/lib/Search');
-const IconCrossRound = require('salt-icon/lib/CrossRound');
+import classnames from 'classnames';
 
-const locale = require('./locale');
+import debounce from 'lodash/debounce';
+import React from 'react';
+import Context from '../Context';
+import IconSearch from 'salt-icon/lib/Search';
+import IconCrossRound from 'salt-icon/lib/CrossRound';
+import locale from './locale';
 
 
 class SearchBar extends React.Component {
@@ -236,4 +236,4 @@ SearchBar.propTypes = {
 
 SearchBar.displayName = 'SearchBar';
 
-module.exports = SearchBar;
+export default SearchBar;

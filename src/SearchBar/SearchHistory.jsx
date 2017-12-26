@@ -127,4 +127,4 @@ SearchHistory.propTypes = {
 
 SearchHistory.displayName = 'SearchHistory';
 
-module.exports = SearchHistory;
+export default SearchHistory;

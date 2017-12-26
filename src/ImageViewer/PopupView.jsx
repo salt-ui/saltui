@@ -171,4 +171,4 @@ PopupView.defaultProps = {
   visible: true,
 };
 
-module.exports = PopupView;
+export default PopupView;

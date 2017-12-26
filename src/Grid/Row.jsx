@@ -6,9 +6,10 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const Context = require('../Context');
-const { VBox } = require('../Boxs');
+import React from 'react';
+
+import Context from '../Context';
+import { VBox } from '../Boxs';
 
 const prefixClass = Context.prefixClass;
 
@@ -75,4 +76,4 @@ Row.propTypes = {
   itemVAlign: VBox.propTypes.vAlign,
 };
 
-module.exports = Row;
+export default Row;
