@@ -1,4 +1,8 @@
 
+## 3.3.4 / 2017-12-27
+
+* `fix`: vendor prefix typo in Badge
+
 ## 3.3.3 / 2017-12-27
 
 * `fix`: SearchBar can doSearch when value is empty string.
