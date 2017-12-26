@@ -173,4 +173,4 @@ RadioField.propTypes = {
 
 RadioField.displayName = 'RadioField';
 
-module.exports = RadioField;
+export default RadioField;

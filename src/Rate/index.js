@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Rate');
+export default from './Rate';

@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./RadioField');
+export default from './RadioField';

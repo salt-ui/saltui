@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./CalendarField');
+export default from './CalendarField';

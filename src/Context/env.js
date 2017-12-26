@@ -40,16 +40,16 @@ const TOUCH_END = supportTouch ? 'touchend' : 'mouseup';
 const TOUCH_CANCEL = supportTouch ? 'touchcancel' : 'mouseup';
 
 const env = {
-    // 是什么环境
+  // 是什么环境
   isPC,
   isMobile,
 
-    // 是否支持
+  // 是否支持
   support3D,
   supportHairline,
   supportTouch,
 
-    // 事件去差异
+  // 事件去差异
   TOUCH_START,
   TOUCH_MOVE,
   TOUCH_END,
@@ -57,4 +57,4 @@ const env = {
   RESIZE: 'resize',
 };
 
-module.exports = env;
+export default env;

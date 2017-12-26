@@ -3,12 +3,12 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Icon = require('salt-icon');
-const Layer = require('../Layer');
-const Scroller = require('../Scroller');
+import React from 'react';
+import classnames from 'classnames';
+import Icon from 'salt-icon';
+import Context from '../Context';
+import Layer from '../Layer';
+import Scroller from '../Scroller';
 
 const prefixClass = Context.prefixClass;
 
@@ -214,4 +214,4 @@ SelectLayer.propTypes = {
 
 SelectLayer.displayName = 'SelectLayer';
 
-module.exports = SelectLayer;
+export default SelectLayer;

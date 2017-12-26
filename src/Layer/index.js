@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Layer');
+export default from './Layer';

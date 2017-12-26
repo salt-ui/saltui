@@ -7,7 +7,8 @@
  * All rights reserved.
  */
 
-const env = require('./env');
+import env from './env';
+
 const {TOUCH_START, TOUCH_END, TOUCH_CANCEL} = env;
 
 class TouchEffect {
@@ -76,5 +77,5 @@ class TouchEffect {
 
 TouchEffect.attach = (layer, options) => new TouchEffect(layer, options);
 
-module.exports = TouchEffect;
+export default TouchEffect;
 

@@ -5,11 +5,11 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const Switch = require('../Switch');
-const Field = require('../Field');
-const classnames = require('classnames');
-const Context = require('../Context');
+import React from 'react';
+import classnames from 'classnames';
+import Switch from '../Switch';
+import Field from '../Field';
+import Context from '../Context';
 
 class SwitchField extends React.Component {
 
@@ -54,4 +54,4 @@ SwitchField.propTypes = {
 
 SwitchField.displayName = 'SwitchField';
 
-module.exports = SwitchField;
+export default SwitchField;

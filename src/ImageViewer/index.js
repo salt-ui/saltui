@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./ImageViewer');
+export default from './ImageViewer';

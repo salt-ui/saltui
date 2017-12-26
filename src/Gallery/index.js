@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Gallery');
+export default from './Gallery';

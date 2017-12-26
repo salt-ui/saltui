@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./NavBar');
+export default from './NavBar';

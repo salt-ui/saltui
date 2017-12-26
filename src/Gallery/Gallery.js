@@ -5,10 +5,10 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Slide = require('../Slide');
-const Context = require('../Context');
+import React from 'react';
+import classnames from 'classnames';
+import Slide from '../Slide';
+import Context from '../Context';
 
 const prefixClass = function(name) {
     return Context.prefixClass ? Context.prefixClass(name) : 't-' + name
@@ -153,4 +153,4 @@ Gallery.propTypes = {
 
 Gallery.displayName = 'Gallery';
 
-module.exports = Gallery;
+export default Gallery;

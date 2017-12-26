@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./SwitchField');
+export default from './SwitchField';

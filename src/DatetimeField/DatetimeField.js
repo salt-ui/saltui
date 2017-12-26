@@ -6,12 +6,12 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Field = require('../Field');
-const Datetime = require('../Datetime');
-const isObject = require('lodash/isObject');
+import React from 'react';
+import classnames from 'classnames';
+import isObject from 'lodash/isObject';
+import Context from '../Context';
+import Field from '../Field';
+import Datetime from '../Datetime';
 
 // 左边补零
 function addZero(num) {
@@ -162,4 +162,4 @@ DatetimeField.propTypes = {
 
 DatetimeField.displayName = 'DatetimeField';
 
-module.exports = DatetimeField;
+export default DatetimeField;

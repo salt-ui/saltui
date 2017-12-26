@@ -1,4 +1,9 @@
 
+
+## 3.3.5
+
+* `change`: all commonjs module are transformed to es6 module
+
 ## 3.3.4 / 2017-12-27
 
 * `fix`: vendor prefix typo in Badge

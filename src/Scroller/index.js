@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Scroller');
+export default from './Scroller';

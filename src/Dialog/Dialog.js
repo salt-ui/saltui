@@ -5,14 +5,13 @@
  * Copyright 2014-2016, Tingle Team, Alinw.
  * All rights reserved.
  */
-const React = require('react');
-const ReactDOM = require('react-dom');
-const classnames = require('classnames');
-const Context = require('../Context');
-const RcDialog = require('rc-dialog');
-const IconToastError = require('salt-icon/lib/ToastError');
-
-const i18nData = require('./i18n');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import classnames from 'classnames';
+import RcDialog from 'rc-dialog';
+import IconToastError from 'salt-icon/lib/ToastError';
+import Context from '../Context';
+import i18nData from './i18n';
 
 const { prefixClass } = Context;
 
@@ -354,4 +353,4 @@ Dialog.rcDialog = RcDialog;
 
 Dialog.displayName = 'Dialog';
 
-module.exports = Dialog;
+export default Dialog;
