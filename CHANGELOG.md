@@ -1,10 +1,8 @@
-## 3.3.6
-
-* `fix`: RadioField check icon style
-
-## 3.3.5
+## 3.3.5 / 2017-12-28
 
 * `change`: all commonjs module are transformed to es6 module
+* `fix`: RadioField check icon style
+
 
 ## 3.3.4 / 2017-12-27
 
