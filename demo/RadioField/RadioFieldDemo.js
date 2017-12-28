@@ -6,9 +6,7 @@
  * All rights reserved.
  */
 
-import classnames from 'classnames';
-
-import Context from 'salt-context';
+import React from 'react';
 import RadioField from 'salt-radio-field';
 
 class Demo extends React.Component {
@@ -34,7 +32,9 @@ class Demo extends React.Component {
                   <td className="avatar-td"><img className="avatar" src="https://img.alicdn.com/tps/TB1vZnyJFXXXXX5XpXXXXXXXXXX-32-32.png" /></td>
                   <td className="info-td"><div className="name">周姮</div><div className="postName">资深交互设计师</div></td>
                 </tr>
-              </tbody></table>),
+              </tbody>
+            </table>
+          ),
           disable: false,
         },
         {
@@ -50,7 +50,8 @@ class Demo extends React.Component {
                   <td className="avatar-td"><img className="avatar" src="https://img.alicdn.com/tps/TB1CmDsJFXXXXcxXpXXXXXXXXXX-32-32.png" /></td>
                   <td className="info-td"><div className="name">李伟（孟则）</div><div className="postName">资深交互设计师</div></td>
                 </tr>
-              </tbody></table>
+              </tbody>
+            </table>
           ),
           disable: false,
         },
@@ -81,10 +82,12 @@ class Demo extends React.Component {
       required: true,
       tip: '这里是提示信息',
     };
-    return (<div>
-      <RadioField {...radioFieldProps} />
-      <RadioField {...radioFieldProps} iconPosition="right" label="单选（图标在右）" />
-    </div>);
+    return (
+      <div>
+        <RadioField {...radioFieldProps} />
+        <RadioField {...radioFieldProps} iconPosition="right" label="单选（图标在右）" />
+      </div>
+    );
   }
 }
 

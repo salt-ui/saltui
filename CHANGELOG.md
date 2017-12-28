@@ -1,4 +1,6 @@
+## 3.3.6
 
+* `fix`: RadioField check icon style
 
 ## 3.3.5
 
