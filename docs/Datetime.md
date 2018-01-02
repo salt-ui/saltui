@@ -98,6 +98,24 @@ export default DatetimeDemo;
 必选：否  
 示例：`<Datetime columns={Datetime.DHM} />`  
 
+
+### minDate
+描述：最小可选日期。
+类型： `number, string, date`
+默认值： '2000-1-1'
+示例：`<Datetime minDate={new Date(2000,0,1).getTime()} />` 
+
+### maxDate
+描述：最大可选日期。
+类型： `number, string, date`
+默认值： '2030-12-31'
+示例：`<Datetime maxDate={new Date(2030,11,31).getTime()} />`
+
+### minuteStep
+描述： 分钟数递增步长设置
+类型： `Number`
+默认值： 1
+示例：`<Datetime minuteStep={5} />`
 ### slotRef  
 描述：通过 react ref 的方式获取 slot 浮窗的 ref，主要用于控制组件显隐。
 类型：`Function`  
@@ -129,4 +147,13 @@ this.slot.show();
 ```
 <Datetime onCancel={()=>{console.log('Canceled!')}} />
 ```
+### onChange
 
+描述：取消选择时触发的回调。  
+类型：`Function`  
+默认：`new Function`  
+必选：否  
+示例：
+```
+<Datetime onChange={(curr, value, column) => {console.log(curr, value, column);}}} />
+```

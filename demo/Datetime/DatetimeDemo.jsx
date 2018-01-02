@@ -14,7 +14,7 @@ class DatetimeDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value1: 1499702400000,
+      value1: '***',
       value2: {
         value: '2017-7-20 12:42:44',
         timeType: 'PM',
@@ -52,9 +52,13 @@ class DatetimeDemo extends React.Component {
           {...this.datetimeProps}
           slotRef={s => t.slot1 = s}
           title="日期选择"
-          value={t.state.value1}
+          value={this.state.value1}
           columns={Datetime.YMD}
+          disabledDate={(curr) => {
+            return curr.getTime() > new Date().getTime();
+          }}
           onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
+          onChange={(curr, value, column) => {console.log(curr, value, column);}}
           onCancel={() => { this.onCancel('value1'); }}
         />
         <Button onClick={() => {
@@ -78,7 +82,8 @@ class DatetimeDemo extends React.Component {
           {...this.datetimeProps}
           slotRef={s => t.slot3 = s}
           title="时间选择"
-          value={t.state.value3}
+          value={null}
+          minuteStep={5}
           columns={Datetime.YMDWHM}
           onConfirm={(value) => { this.onConfirm(value, 'value3'); }}
           onCancel={() => { this.onCancel('value3'); }}

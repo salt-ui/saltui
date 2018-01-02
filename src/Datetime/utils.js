@@ -58,7 +58,7 @@ function parseValue(value) {
     date = value.value ? new Date(value.value) : new Date();
     timeType = ({ AM: 0, PM: 1 })[value.timeType || 'AM'];
   } else {
-    date = value ? new Date(parseInt(value, 10)) : new Date();
+    date = !value || new Date(value) == 'Invalid Date' ? new Date() : new Date(parseInt(value, 10));
     timeType = date.getHours() >= 12 ? 1 : 0;
   }
 
@@ -179,6 +179,9 @@ function getMinMaxDate({value, currentValue, timeStyle}) {
 }
 
 function filterTime({ data, value, columns, disabledDate }) {
+  if (!value || !data.length) {
+    return;
+  }
   const arr = [];
   columns.forEach((item, index) => {
     arr[index] = data[index].filter((currentValue) => {
@@ -195,54 +198,55 @@ function filterTime({ data, value, columns, disabledDate }) {
   return arr;
 };
 
-function parseDate({columns, value}){
-  const firstStyle = columns[0];
+function parseDate({ columns, value }) {
   const dateStr = {
     YMD: [],
-    Hm: []
+    Hm: [],
   };
   columns.forEach((item, index) => {
-    if (item === "YMD" || item === "YMDW") {
+    if (item === 'YMD' || item === 'YMDW') {
       dateStr.YMD = `${numToDate(value[index].value)}`.split('-');
       return;
-    };
+    }
     if (item === 'H' || item === 'm') {
       dateStr.Hm.push(`${addZero(value[index].value)}`);
       return;
-    };
+    }
     if (item === 'T') {
       dateStr.Hm = value[index].value ? ['12', '00', '00'] : ['00', '00', '00'];
       return;
     }
     dateStr.YMD.push(value[index].value);
   });
-  return `${dateStr.YMD.join('-')} ${dateStr.Hm.join(':')}`;
+  return new Date(...dateStr.YMD, ...dateStr.Hm);
+}
+function getDaysByYear(item) {
+  const days = [];
+  const arr = [item - 1, item, item + 1];
+  arr.forEach((year) => {
+    for (let i = 1; i < 13; i += 1) {
+      getDates(`${year}-${i}`).forEach((el) => {
+        days.push(`${year}${addZero(i)}${addZero(el)}` - 0);
+      });
+    }
+  });
+  return days;
+}
+function makeRange(start, end, step) {
+  step = step || 1;
+  const arr = [];
+  for (let i = start; i <= end; i += step) {
+    arr.push(i);
+  }
+  return arr;
 }
 
-module.exports = {
+export default {
   isLeapYear,
   addZero,
-  makeRange: function (start, end, step) {
-    step = step || 1;
-    const arr = [];
-    for (let i = start; i <= end; i += step) {
-      arr.push(i);
-    }
-    return arr;
-  },
+  makeRange,
   getDates,
-  getDaysByYear: (item) => {
-    const days = [];
-    const arr = [item - 1, item, item + 1];
-    arr.forEach((year) => {
-      for (let i = 1; i < 13; i += 1) {
-        getDates(`${year}-${i}`).forEach((el) => {
-          days.push(`${year}${addZero(i)}${addZero(el)}` - 0);
-        });
-      }
-    });
-    return days;
-  },
+  getDaysByYear,
   parseValue,
   isUndefined,
   isArray,

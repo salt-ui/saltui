@@ -56,13 +56,21 @@ class Datetime extends React.Component {
       setValue(value, true, nextProps);
     }
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
+  setValue = (value, confirm, nextProps) => {
+    const ret = this.getOptions({ value }, nextProps);
+    const newProps = nextProps || this.props;
+    let data = formatFromProps(this.formatText(ret.data), newProps);
+    const newValue = formatFromProps(this.formatText(ret.value), newProps);
+    const { columns } = newProps;
+    if (newProps.disabledDate) {
+      data = filterTime({ data, disabledDate: newProps.disabledDate, newValue, columns });
+    }
+    this.state = {
+      data,
+      value: newValue,
+    };
   }
-  onConfirm = (value) => {
-    const val = this.slotChanged ? value : this.state.value;
-    this.props.onConfirm(this.getPlainDate(val));
-  };
+
   // 获取默认最小值
   getDefaultMinDate = (value) => {
     const date = new Date(value);
@@ -80,9 +88,40 @@ class Datetime extends React.Component {
     return date;
   };
   getPlainDate = (value) => {
-    const timeType = false;
+    const date = new Date();
+    const { columns } = this.props;
+    let timeType = 0;
+
+    for (let i = 0; i < columns.length; i += 1) {
+      if (columns[i] === 'Y') {
+        date.setFullYear(value[i].value);
+      } else if (columns[i] === 'M') {
+        date.setMonth(value[i].value);
+      } else if (columns[i] === 'D') {
+        date.setDate(value[i].value);
+      } else if (columns[i] === 'H') {
+        date.setHours(value[i].value);
+      } else if (columns[i] === 'm') {
+        date.setMinutes(value[i].value);
+      } else if (columns[i] === 's') {
+        date.setSeconds(value[i].value);
+      } else if (columns[i] === 'T') {
+        timeType = value[i].value;
+      } else if (columns[i] === 'YMD' || columns[i] === 'YMDW') {
+        date.setFullYear((`${value[i].value}`).substring(0, 4));
+        date.setMonth((`${value[i].value}`).substring(4, 6) - 1);
+        date.setDate((`${value[i].value}`).substring(6, 8));
+      }
+    }
+
+    // 如果需要显示上下午
+    if (columns.indexOf('T') !== -1) {
+      date.setHours(timeType ? 18 : 9);
+      date.setMinutes(0);
+    }
+
     return {
-      value: new Date(value),
+      value: date.getTime(),
       timeType: timeType ? 'PM' : 'AM',
     };
   };
@@ -100,14 +139,14 @@ class Datetime extends React.Component {
       makeRange(0, 12),
       makeRange(0, 23),
       makeRange(0, 59, minuteStep),
-      makeRange(0, 59, minuteStep),
+      makeRange(0, 59),
       datYear,
       datYear,
     ];
     const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
     return ret;
   }
-  setOptions = (props, me) => {
+  setOptions = (props) => {
     const ret = this.getOptions({ value: props.value }, props);
     let data = formatFromProps(this.formatText(ret.data), props);
     const value = formatFromProps(this.formatText(ret.value), props);
@@ -116,9 +155,13 @@ class Datetime extends React.Component {
       data = filterTime({ data, disabledDate: props.disabledDate, value, columns });
     };
     this.state = {
-      data: data,
-      value: value,
+      data,
+      value,
     };
+  };
+  handleConfirm = (value) => {
+    const output = this.getPlainDate(value);
+    this.props.onConfirm(output);
   };
   // 添加年月日等文本
   formatText = (arr, text) => {
@@ -138,14 +181,12 @@ class Datetime extends React.Component {
     return formatArray;
   }
   handleCancel = () => {
-    /* eslint no-unused-expressions: 0 */
-    (this.props.onCancel && this.props.onCancel());
+    this.props.onCancel && this.props.onCancel()
   };
   handleChange = (value, column) => {
     const { props } = this;
     const { columns } = props;
-    const dateStr = parseDate({ columns, value });
-    const now = new Date(dateStr);
+    const now = parseDate({ columns, value });
     const options = this.getOptions({ value: now.getTime() }, props);
     let data = formatFromProps(this.formatText(options.data), props);
     if (props.disabledDate) {
@@ -163,11 +204,10 @@ class Datetime extends React.Component {
   };
   render() {
     const { props, state } = this;
-    const { data, value, disabled } = state;
+    const { data, value } = state;
     return (
       <Slot
         className={Context.prefixClass('datetime-field-border-none')}
-        disabled={disabled}
         ref={props.slotRef}
         columnsFlex={columnsFlexMap[props.columns.join('')]}
         title={props.title}
@@ -175,8 +215,8 @@ class Datetime extends React.Component {
         data={data}
         value={value}
         onChange={this.handleChange}
-        onCancel={this.onCancel}
-        onConfirm={this.onConfirm}
+        onCancel={this.handleCancel}
+        onConfirm={this.handleConfirm}
       />
     );
   }
@@ -185,13 +225,13 @@ class Datetime extends React.Component {
 Datetime.defaultProps = {
   className: '',
   locale: 'zh-cn',
-  columns: YMDHM,
+  columns: YMD,
   onConfirm: _ => _,
   onCancel: _ => _,
   slotRef: _ => _,
   minuteStep: 1,
-  minDate: '2000-01-01',
-  maxDate: '2030-12-31',
+  minDate: 946656000000,
+  maxDate: 1924876800000,
 };
 
 Datetime.propTypes = {
@@ -210,8 +250,10 @@ Datetime.propTypes = {
   onCancel: React.PropTypes.func,
   slotRef: React.PropTypes.func,
   minuteStep: React.PropTypes.number,
-  minDate: React.PropTypes.string,
-  maxDate: React.PropTypes.string,
+  maxDate: React.PropTypes.oneOfType([
+    React.PropTypes.number,
+    React.PropTypes.string,
+  ]),
   disabledDate: React.PropTypes.func,
 };
 Datetime.Y = Y;
