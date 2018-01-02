@@ -5,16 +5,21 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Field = require('../Field');
-const CrossRound = require('salt-icon/lib/CrossRound');
+import React from 'react';
+import CrossRound from 'salt-icon/lib/CrossRound';
+import classnames from 'classnames';
+import Context from '../Context';
+import Field from '../Field';
 
-const prefixClass = Context.prefixClass;
+const { prefixClass } = Context;
 
 class TextField extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.renderLeft = this.renderLeft.bind(this);
+    this.renderClear = this.renderClear.bind(this);
+    this.renderRight = this.renderRight.bind(this);
+  }
   getAddons() {
     const addons = {};
     React.Children.forEach(this.props.children, (child) => {
@@ -54,31 +59,45 @@ class TextField extends React.Component {
           className={classnames(prefixClass('omit text-field-placeholder'), {
             [prefixClass('DN')]: t.props.value !== '',
           })}
-        >{t.props.placeholder}</div>
+        >
+          {t.props.placeholder}
+        </div>
         <input
           className={prefixClass('text-field-input')}
-          type={t.props.type} value={t.props.value} readOnly={t.props.readOnly}
-          onChange={(e) => { t.handleChange(e); }}
-          onFocus={(e) => { t.handleFocus(e); }}
-          onBlur={(e) => { t.handleBlur(e); }}
+          type={t.props.type}
+          value={t.props.value}
+          readOnly={t.props.readOnly}
+          onChange={(e) => {
+            t.handleChange(e);
+          }}
+          onFocus={(e) => {
+            t.handleFocus(e);
+          }}
+          onBlur={(e) => {
+            t.handleBlur(e);
+          }}
         />
       </div>
     );
   }
 
-  renderLeft(addons) {
+  renderLeft() {
+    const addons = this.getAddons();
     if (addons.left) {
       return addons.left;
     }
     return null;
   }
 
-  renderClear(addons) {
+  renderClear() {
+    const addons = this.getAddons();
     const { value, allowClear, readOnly } = this.props;
     if (value && allowClear && !readOnly) {
       return (
         <CrossRound
-          onClick={(e) => { this.props.onChange('', e); }}
+          onClick={(e) => {
+            this.props.onChange('', e);
+          }}
           className={classnames(prefixClass('text-field-clear-icon'), {
             [prefixClass('text-field-clear-icon__hasRight')]: addons.right || addons.count,
           })}
@@ -88,7 +107,8 @@ class TextField extends React.Component {
     return null;
   }
 
-  renderRight(addons) {
+  renderRight() {
+    const addons = this.getAddons();
     if (addons.right) {
       return addons.right;
     }
@@ -100,7 +120,6 @@ class TextField extends React.Component {
 
   render() {
     const t = this;
-    const addons = t.getAddons();
     return (
       <Field
         {...t.props}
@@ -109,10 +128,10 @@ class TextField extends React.Component {
         })}
       >
         <div className={prefixClass('text-field-content')}>
-          {t.renderLeft(addons)}
+          {t.renderLeft()}
           {t.renderInput()}
-          {t.renderClear(addons)}
-          {t.renderRight(addons)}
+          {t.renderClear()}
+          {t.renderRight()}
         </div>
       </Field>
     );
@@ -131,6 +150,7 @@ TextField.defaultProps = {
   type: 'text',
   value: '',
   allowClear: true,
+  children: '',
 };
 
 TextField.propTypes = {
@@ -150,4 +170,4 @@ TextField.propTypes = {
 
 TextField.displayName = 'TextField';
 
-module.exports = TextField;
+export default TextField;

@@ -6,7 +6,6 @@
  * All rights reserved.
  */
 
-
 import TextField from './TextField';
 
 import LeftAddon from './LeftAddon';
