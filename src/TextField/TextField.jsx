@@ -150,7 +150,7 @@ TextField.defaultProps = {
   type: 'text',
   value: '',
   allowClear: true,
-  children: '',
+  children: [],
 };
 
 TextField.propTypes = {

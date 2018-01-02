@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import App from './App';
-import TextfieldDemo from '../demo/Textfield/';
+import TextareafieldDemo from '../demo/Textareafield/';
 // import '../build/salt-ui.css';
 // TODO: lazyload
 // import Bundle from './Bundle';
@@ -27,7 +27,7 @@ class Demo extends React.Component {
       <Router>
         <div>
           <Route exact path="/" component={App} />
-          <Route path="/textfield" component={TextfieldDemo} />
+          <Route path="/textareafield" component={TextareafieldDemo} />
         </div>
       </Router>
     );

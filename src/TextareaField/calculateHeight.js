@@ -29,7 +29,7 @@ let shadowTextarea = null;
 const getPrefixedStyle = (computedStyle, name) => {
   const prefix = ['-o-', '-ms-', '-moz-', '-webkit-', ''];
   let tmp;
-  for (let i = prefix.length; i--;) {
+  for (let i = prefix.length - 1; i >= 0; i -= 1) {
     tmp = computedStyle.getPropertyValue(prefix[i] + name);
     if (tmp) {
       return tmp;
@@ -40,13 +40,15 @@ const getPrefixedStyle = (computedStyle, name) => {
 
 const getStyleNumber = (computedStyle, name) => parseFloat(computedStyle.getPropertyValue(name));
 
-
 function getStyleInfo(textarea) {
   const computedStyle = window.getComputedStyle(textarea);
   const boxSizing = getPrefixedStyle(computedStyle, 'box-sizing');
   let heightAdjust = 0;
-  const padding = getStyleNumber(computedStyle, 'padding-top') + getStyleNumber(computedStyle, 'padding-bottom');
-  const border = getStyleNumber(computedStyle, 'border-bottom-width') + getStyleNumber(computedStyle, 'border-top-width');
+  const padding =
+    getStyleNumber(computedStyle, 'padding-top') + getStyleNumber(computedStyle, 'padding-bottom');
+  const border =
+    getStyleNumber(computedStyle, 'border-bottom-width') +
+    getStyleNumber(computedStyle, 'border-top-width');
   if (boxSizing === 'border-box') {
     heightAdjust += border;
   } else if (boxSizing === 'content-box') {
@@ -71,13 +73,12 @@ const getSingleRowHeight = (textarea) => {
 /* eslint-enable no-param-reassign */
 
 const calculateHeight = (textarea, minRows, maxRows) => {
-  if (!shadowTextarea) document.body.appendChild(shadowTextarea = document.createElement('textarea'));
+  if (!shadowTextarea) {
+    document.body.appendChild((shadowTextarea = document.createElement('textarea')));
+  }
   const styleInfo = getStyleInfo(textarea);
-  const styles = styleInfo.styles;
-  const {
-    heightAdjust,
-    padding,
-  } = styleInfo;
+  const { styles } = styleInfo;
+  const { heightAdjust, padding } = styleInfo;
   shadowTextarea.setAttribute('style', styles.concat(HIDDEN_TEXTAREA_STYLE).join(';'));
   shadowTextarea.value = textarea.value;
   let height = shadowTextarea.scrollHeight + heightAdjust;
@@ -86,16 +87,16 @@ const calculateHeight = (textarea, minRows, maxRows) => {
   const singleRowHeight = getSingleRowHeight(shadowTextarea) - padding;
   if (minRows !== null || maxRows !== null) {
     if (minRows !== null) {
-      minHeight = (singleRowHeight * minRows) + padding + heightAdjust;
+      minHeight = singleRowHeight * minRows + padding + heightAdjust;
       height = Math.max(minHeight, height);
     }
     if (maxRows !== null) {
-      maxHeight = (singleRowHeight * maxRows) + padding + heightAdjust;
+      maxHeight = singleRowHeight * maxRows + padding + heightAdjust;
       height = Math.min(maxHeight, height);
     }
   }
   return {
-    rows: (height / singleRowHeight) > maxRows ? maxRows : (height / singleRowHeight),
+    rows: height / singleRowHeight > maxRows ? maxRows : height / singleRowHeight,
   };
 };
 

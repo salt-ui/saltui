@@ -13,7 +13,7 @@ const LeftAddon = props => (
 );
 
 LeftAddon.defaultProps = {
-  children: '',
+  children: [],
 };
 LeftAddon.propTypes = {
   // focus: React.PropTypes.bool,

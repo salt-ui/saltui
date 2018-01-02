@@ -13,7 +13,7 @@ const RightAddon = props => (
 );
 
 RightAddon.defaultProps = {
-  children: '',
+  children: [],
 };
 RightAddon.propTypes = {
   // focus: React.PropTypes.bool,
