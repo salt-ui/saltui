@@ -6,6 +6,6 @@
  * All rights reserved.
  */
 
-import Datetime from './Datetime-beta';
+import Datetime from './Datetime';
 
 export default Datetime;
