@@ -6,6 +6,8 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import classnames from 'classnames';
 import Context from '../Context';
 import { createStyleContext, unitize } from '../Style';
@@ -103,17 +105,17 @@ class List extends React.Component {
 
 List.displayName = 'Group.List';
 
-let indentType = React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string,
-    React.PropTypes.array
+let indentType = PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.array
 ]);
 
 List.propTypes = {
-    className: React.PropTypes.string,
+    className: PropTypes.string,
     lineIndent: indentType,
     itemIndent: indentType,
-    borderTopNone: React.PropTypes.bool
+    borderTopNone: PropTypes.bool
 };
 
 List.defaultProps = {

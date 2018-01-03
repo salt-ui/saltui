@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
@@ -21,7 +22,7 @@ const Head = props => (
 Head.displayName = 'Group.Head';
 
 Head.propTypes = {
-  className: React.PropTypes.string,
+  className: PropTypes.string,
 };
 
 Head.defaultProps = {};

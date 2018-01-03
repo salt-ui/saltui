@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Popup from '../Popup';
 import Context from '../Context';
 import DayCalendar from './day';
@@ -24,10 +25,10 @@ class Calendar extends React.Component {
     ...DayCalendar.propTypes,
     ...MonthCalendar.propTypes,
     ...YearCalendar.propTypes,
-    maskClosable: React.PropTypes.bool,
-    onMaskClose: React.PropTypes.func,
-    onOk: React.PropTypes.func,
-    onCancel: React.PropTypes.func,
+    maskClosable: PropTypes.bool,
+    onMaskClose: PropTypes.func,
+    onOk: PropTypes.func,
+    onCancel: PropTypes.func,
   };
 
   static defaultProps = {
