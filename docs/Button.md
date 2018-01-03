@@ -1,12 +1,4 @@
-# tingle-button 按钮 [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-button.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-button)
-
-<img src="https://img.alicdn.com/tfs/TB1hrMhRXXXXXXiXpXXXXXXXXXX-724-1472.png" width="300"/>
-
-## Install
-
-```
-tnpm install @ali/tingle-button --save
-```
+#  按钮
 
 ## Button 普通按钮
 
@@ -85,7 +77,7 @@ tnpm install @ali/tingle-button --save
 ### Simple Usage
 
 ```javascript
-import { Button } from '@ali/tingle-button';
+import { Button } from 'saltui';
 
 let View = React.createClass({
   handleClick() {
@@ -190,7 +182,7 @@ let View = React.createClass({
 
 用法：
 ```
-import { Button } from '@ali/tingle-button';
+import { Button } from 'saltui';
 
 const { TextButton } = Button;
 
@@ -234,36 +226,6 @@ const { TextButton } = Button;
 
 必填：否
 
-#### name
-
-描述：按钮名称，对应tingle-icon组件中的ICON名称
-
-类型：String
-
-默认：无
-
-必填：是
-
-#### fill
-
-描述：ICON背景填充颜色
-
-类型：String
-
-默认：无，若ICON本身无背景填充，则背景透明
-
-必填：否
-
-#### size
-
-描述：按钮的大小，整形数字，建议使用2的倍数值，最小不小于16
-
-类型：String
-
-默认：24
-
-必填：否
-
 #### onClick
 
 描述：按钮点击时的回调
@@ -288,7 +250,7 @@ const { TextButton } = Button;
 
 用法：
 ```
-import { Button } from '@ali/tingle-button';
+import { Button } from 'saltui';
 
 const { IconButton } = Button;
 
@@ -308,7 +270,7 @@ const { IconButton } = Button;
 
 用法：
 ```
-import { Button } from '@ali/tingle-button';
+import { Button } from 'saltui';
 
 const { ButtonGroup } = Button; // 或者直接使用 Buttom.Group
 
@@ -319,7 +281,3 @@ const { ButtonGroup } = Button; // 或者直接使用 Buttom.Group
   <Button type="primary" display="inline" onClick={this.handleClick}>同意</Button>
 </ButtonGroup>
 ```
-
-## Links 相关链接
-
-- [Fire a bug/Issues 提Bug](http://gitlab.alibaba-inc.com/tingle-ui/tingle-button/issues)

@@ -6,6 +6,11 @@
  * All rights reserved.
  */
 import React from 'react';
+<<<<<<< HEAD
+=======
+import classnames from 'classnames';
+import Context from '../Context';
+>>>>>>> upstream/master
 
 import classnames from 'classnames';
 import Context from '../Context';

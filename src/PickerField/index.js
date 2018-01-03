@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./PickerField');
+export default from './PickerField';

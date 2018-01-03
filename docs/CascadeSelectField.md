@@ -1,14 +1,8 @@
-# tingle-cascade-select-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-cascade-select-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-cascade-select-field)
+
 
 CascadeSelectField 是级联选择输入表单域。
 
 <img src="https://gw.alicdn.com/tfscom/TB1zxibLXXXXXbIaXXXXXXXXXXX.png" width="375">
-
-## Install
-
-```
-tnpm install @ali/tingle-cascade-select-field --save
-```
 
 ## Props
 
@@ -146,8 +140,3 @@ formatter(value) {
 
 <CascadeSelectField formatter={this.formatter}></CascadeSelectField>
 ```
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-cascade-select-field/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

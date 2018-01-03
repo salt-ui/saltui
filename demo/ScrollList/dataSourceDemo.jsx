@@ -43,7 +43,7 @@ class Demo extends React.Component {
             this.scrollList = ref;
           }}
           className="scroll-list-demo"
-          url={'http://dip.alibaba-inc.com/api/v2/services/schema/mock/36906.jsonp'}
+          url={'https://www.easy-mock.com/mock/5a2f75a26ce8af6869ec49f0/saltui/scroll-list-data.jsonp'}
           pageSize={10}
           cachedPages={3}
           beforeFetch={(data) => {

@@ -1,14 +1,8 @@
-# tingle-city-select-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-city-select-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-city-select-field)
+
 
 CitySelectField 是针对中国的城市选择输入表单域。
 
 ![CitySelectField](https://img.alicdn.com/tps/TB11mR4PFXXXXcYXVXXXXXXXXXX-314-565.jpg)
-
-## Install
-
-```
-tnpm install @ali/tingle-city-select-field --save
-```
 
 ## Simple Usage
 
@@ -264,8 +258,3 @@ onCancel(value) {
 
 <CitySelectField value={this.state.value}  onCancel={this.onCancel}></CitySelectField>
 ```
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-city-select-field/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

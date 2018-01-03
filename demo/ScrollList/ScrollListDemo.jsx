@@ -30,7 +30,7 @@ function Other2() {
 
 function getJsonp(page, size) {
   const now = (new Date()).getTime();
-  const url = `http://dip.alibaba-inc.com/api/v2/services/schema/mock/36906.jsonp?callback=jsonpCallbak&pageNum=${page}&pageSize=${size}&rnd=${now}`;
+  const url = `https://www.easy-mock.com/mock/5a2f75a26ce8af6869ec49f0/saltui/scroll-list-data?jsonp_param_name=callback&callback=jsonpCallbak&pageNum=${page}&pageSize=${size}&rnd=${now}`;
   const script = document.createElement('script');
   script.src = url;
   document.head.appendChild(script);

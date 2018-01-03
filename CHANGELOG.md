@@ -1,3 +1,103 @@
+## 3.3.5 / 2017-12-28
+
+* `change`: all commonjs module are transformed to es6 module
+* `fix`: RadioField check icon style
+
+
+## 3.3.4 / 2017-12-27
+
+* `fix`: vendor prefix typo in Badge
+
+## 3.3.3 / 2017-12-27
+
+* `fix`: SearchBar can doSearch when value is empty string.
+
+## 3.3.2 / 2017-12-20
+
+* `fix`: Slot lastChoose fail to be updated after props.value change.
+
+## 3.3.1 / 2017-12-20
+
+* `fix`: Slot.formatDataValue fail to return formatted value
+
+## 3.3.0 / 2017-12-18
+
+* `feat`: TabBar iphoneX compatible 
+* `feat`: Tab force browser repaint when component mount
+
+## 3.2.0 / 2017-12-18
+
+* `feat`: Crumb support new prop `separator`
+
+## 3.1.33 / 2017-12-15
+
+* `fix`: scrolling to the window's end when toast is shown.
+
+## 3.1.32 / 2017-12-14
+
+* `fix`: scrolling to the window's end when popup is shown.
+
+## 3.1.30 / 2017-12-08
+
+* `fix`: SelectField Icon missing
+* `feat`: SearchBar support `exitAfterEnter`
+
+## 3.1.29 / 2017-12-04
+
+* `doc`: remove tingle keyword from docs
+
+## 3.1.28 / 2017-12-01
+
+* `fix`: cancel button style bug if locale is en_US
+
+## 3.1.26 / 2017-12-01
+
+* `feat`: remove input change trim
+
+## 3.1.25 / 2017-11-29
+
+* `fix`: CheckboxField icon style
+
+## 3.1.24 / 2017-11-29
+
+* `fix`: queueCapacity logic error
+
+## 3.1.23 / 2017-11-29
+
+* `fix`: remove searchBar low performance animation.
+
+## 3.1.22 / 2017-11-29
+
+* `fix`: searchBar active animation in iphone
+
+## 3.1.21 / 2017-11-28
+
+* `fix`: typo in PhotoField
+
+## 3.1.20 / 2017-11-28
+
+* `fix`: CitySelectField readOnly fails to work
+* `fix`: `SrollList` only load one page after refresh
+* `refactor`: rename InfiniteScroll's getRef to getDOMNode
+
+## 3.1.19 / 2017-11-28
+
+* `fix`: umd build webpack wrong externals  
+* `change`: git igonre build folder & `dev/index.jsx`
+
+## 3.1.18 / 2017-11-24
+
+* `fix`: searchbar placeholder style bug when search is active.
+* `fix`: PhotoField readOnly fails to work
+
+## 3.1.17 / 2017-11-23
+
+* `fix`: CascadeSelect bug caused by duplicated defaultProps declaration. 
+
+## 3.1.16 / 2017-11-22
+
+* `doc`: remove useless link
+* `refactor`: eslint source code (20%)
 
 ## 3.1.15 / 2017-11-15
 

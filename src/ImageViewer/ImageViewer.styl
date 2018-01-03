@@ -13,11 +13,15 @@ prefixCls = t-image-viewer
     z-index 1010
     position fixed
     width 100%
-    height auto
+    // height 100%
     top 50%
     left 50%
     transform translate(-50%, -50%)
     overflow auto
+    padding constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left)
+    padding env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)
+    .t-slide
+        // height 100%
     .t-slide-item
         img
             width 100%
@@ -34,6 +38,7 @@ prefixCls = t-image-viewer
 .{prefixCls}-popup-nav
     position fixed
     bottom 20px
+    fix-safe-area bottom 20px
     left 50%
     transform translate(-50%, 0)
     z-index 1010

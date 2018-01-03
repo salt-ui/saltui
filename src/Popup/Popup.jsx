@@ -25,6 +25,7 @@ function create(instanceId, config, content, afterClose = () => { }) {
     maskClosable = true,
     animationType,
     className,
+    onClose,
   } = props;
 
   let div = document.createElement('div');
@@ -41,23 +42,27 @@ function create(instanceId, config, content, afterClose = () => { }) {
 
   const transName = `${prefixCls}-${animationType}`;
 
-  const maskProps = {
-    onClick: (e) => {
-      e.preventDefault();
-      if (maskClosable) {
-        if (props.onMaskClose && typeof props.onMaskClose === 'function') {
-          const res = props.onMaskClose();
-          if (res && res.then) {
-            res.then(() => {
-              close();
-            });
-          } else {
+  function handleMaskClick() {
+    if (maskClosable) {
+      if (props.onMaskClose && typeof props.onMaskClose === 'function') {
+        const res = props.onMaskClose();
+        if (res && res.then) {
+          res.then(() => {
             close();
-          }
+          });
         } else {
           close();
         }
+      } else {
+        close();
       }
+    }
+  }
+
+  const maskProps = {
+    onClick: (e) => {
+      e.preventDefault();
+      handleMaskClick();
     },
   };
 
@@ -71,6 +76,13 @@ function create(instanceId, config, content, afterClose = () => { }) {
         className={classnames(`${prefixCls}-${animationType}`, {
           [className]: !!className,
         })}
+        onClose={() => {
+          if (onClose) {
+            onClose();
+          } else {
+            handleMaskClick();
+          }
+        }}
         transitionName={transitionName || transName}
         maskTransitionName={maskTransitionName || 't-fade'}
         maskClosable={maskClosable}
@@ -174,6 +186,9 @@ class Popup extends React.Component {
           this.props.onMaskClick();
         },
       };
+      options.onClose = () => {
+        this.props.onMaskClick();
+      }
     }
     return options;
   }

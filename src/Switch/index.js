@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Switch');
+export default from './Switch';

@@ -5,10 +5,10 @@
  * Copyright 2014-2016, Tingle Team, Alinw.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const { createStyleContext, unitize } = require('../Style');
+import React from 'react';
+import classnames from 'classnames';
+import Context from '../Context';
+import { createStyleContext, unitize } from '../Style';
 
 let isEmptyValue = (v) => {
     return v === null || v === undefined || v === '';
@@ -120,4 +120,4 @@ List.defaultProps = {
     borderTopNone: false
 };
 
-module.exports = List;
+export default List;

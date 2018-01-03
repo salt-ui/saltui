@@ -1,14 +1,7 @@
-# tingle-infinite-scroll [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-infinite-scroll.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-infinite-scroll)
+
 一句话描述
 一张截图
 
-### install
-
-```
-
-tnpm install @ali/tingle-infinite-scroll --save
-
-```
 
 ## Simple Usage
 
@@ -97,9 +90,4 @@ InfiniteScroll组件对内容的dom结构和样式有要求：
 |loadingIcon|optional|ReactElement|''|loading时的icon，指定此值时, 将使用用户自定义的icon|
 |showIcon|optional|bool|true|自定义选项，loading时是否显示icon|
 |showText|optional|bool|true|自定义选项，loading时是否显示文案|
-|getRef|optional|func|noop|获取滚动的根节点|
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-infinite-scroll/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)
+|getDOMNode|optional|func|noop|获取滚动的根节点|

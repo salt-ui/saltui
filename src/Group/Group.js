@@ -5,11 +5,11 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Head = require('./Head');
-const List = require('./List');
+import React from 'react';
+import classnames from 'classnames';
+import Context from '../Context';
+import Head from './Head';
+import List from './List';
 
 let Group = (props) => {
     return (
@@ -30,4 +30,4 @@ Group.defaultProps = {};
 Group.Head = Head;
 Group.List = List;
 
-module.exports = Group;
+export default Group;

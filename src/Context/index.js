@@ -7,4 +7,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Context');
+export default from './Context';

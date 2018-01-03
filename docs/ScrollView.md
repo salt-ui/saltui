@@ -1,19 +1,13 @@
-# tingle-scroll-view [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-scroll-view.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-scroll-view)
+
 一句话描述
 
 专注滑动列表, 功能: 下拉刷新，上来加载更多, 见Demo
 
 ![](https://img.alicdn.com/tps/TB1WtTVLXXXXXbbXVXXXXXXXXXX-387-521.gif)
 
-### install
-
-```
-tnpm install @ali/tingle-scroll-list --save
-```
-
 ## note
 
-- tingle-scroll-view组件所在的容器必须要限定高度
+- ScrollView 组件所在的容器必须要限定高度
 
 ## Simple Usage
 
@@ -36,12 +30,12 @@ tnpm install @ali/tingle-scroll-list --save
 |infiniteScroll|required|bool|false| 是否需要底部自动加载功能，当需要此功能时，设置为true |
 |infiniteScrollOptions|optional|object|{}|底部自动加载的自定义配置项，参见InfiniteScroll的配置项|
 
-## 相关项目
-* [tingle-refreshcontrol](http://gitlab.alibaba-inc.com/tingle-ui/tingle-refreshcontrol)
-* [tingle-infinite-scroll](http://gitlab.alibaba-inc.com/tingle-ui/tingle-infinite-scroll)
 
 
-## Links
+## APIs
 
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-scroll-view/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)
+### tryEmitScrollEvent
+触发一次上拉滚动事件
+
+
+

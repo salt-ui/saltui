@@ -6,8 +6,13 @@
  * All rights reserved.
  */
 import React from 'react';
+<<<<<<< HEAD
 import CrossRound from 'salt-icon/lib/CrossRound';
 import classnames from 'classnames';
+=======
+import classnames from 'classnames';
+import CrossRound from 'salt-icon/lib/CrossRound';
+>>>>>>> upstream/master
 import Context from '../Context';
 import Field from '../Field';
 

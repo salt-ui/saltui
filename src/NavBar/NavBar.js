@@ -5,11 +5,9 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const classnames = require('classnames');
-
-const Context = require('../Context');
-
-const Icon = require('salt-icon');
+import classnames from 'classnames';
+import Icon from 'salt-icon';
+import Context from '../Context';
 
 let prefixClass = Context.prefixClass;
 
@@ -84,4 +82,4 @@ NavBar.propTypes = {
 
 NavBar.displayName = 'NavBar';
 
-module.exports = NavBar;
+export default NavBar;

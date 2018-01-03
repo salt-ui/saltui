@@ -5,11 +5,13 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Slot = require('../Slot');
-const Field = require('../Field');
+import React from 'react';
+
+import classnames from 'classnames';
+import AngleRight from 'salt-icon/lib/AngleRight';
+import Context from '../Context';
+import Slot from '../Slot';
+import Field from '../Field';
 
 const isNil = value => (value === null || value === undefined);
 
@@ -60,13 +62,14 @@ class SelectField extends React.Component {
 
   render() {
     const t = this;
-    const icon = t.props.readOnly ? null : {
-      className: Context.prefixClass('select-field-icon'),
-      name: 'angle-right',
-      width: 26,
-      height: 26,
-      onClick: t.handleClick.bind(t),
-    };
+    const icon = !t.props.readOnly ? (
+      <AngleRight 
+        className={Context.prefixClass('select-field-icon')}
+        width={26}
+        height={26}
+        onClick={t.handleClick.bind(t)}
+      />
+    ) : null;
     return (
       <Field
         {...t.props} icon={icon}
@@ -122,4 +125,4 @@ SelectField.propTypes = {
 
 SelectField.displayName = 'SelectField';
 
-module.exports = SelectField;
+export default SelectField;

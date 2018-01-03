@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Dialog');
+export default from './Dialog';

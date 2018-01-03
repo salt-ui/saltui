@@ -1,15 +1,9 @@
-# tingle-scroller [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-scroller.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-scroller)
+
 
 
 Scroller 是对 [iScroll](http://iscrolljs.com/) 的 React 封装，用作滑动容器。内部 iScroll 的版本是 5.1.3。
 
 <img src="https://img.alicdn.com/tps/TB1jnocJpXXXXcmXpXXXXXXXXXX-750-1254.png" width="375"/>
-
-## Install
-
-```
-tnpm install @ali/tingle-scroller --save
-```
 
 ## Props
 
@@ -94,6 +88,3 @@ t.refs.sc.scroller.on('scrollEnd', t.handleScrollEnd.bind(t));
 
 - 开启横向滚动时，可增加 `eventPassthrough={true}` 属性解决页面无法滚动的问题
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-scroller/issues)

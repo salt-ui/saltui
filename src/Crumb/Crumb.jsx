@@ -51,8 +51,10 @@ class Crumb extends React.Component {
               className={classnames(Context.prefixClass('crumb-nav-icon'), {
                 [Context.prefixClass('FL')]: t.props.showScroll,
               })}
-            >&gt;
-            </span>));
+            >
+              {t.props.separator}
+            </span>
+          ));
         }
       }
     });
@@ -98,6 +100,7 @@ Crumb.defaultProps = {
   className: '',
   showScroll: true,
   onClick: () => { },
+  separator: '>',
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -105,6 +108,7 @@ Crumb.propTypes = {
   className: React.PropTypes.string,
   showScroll: React.PropTypes.bool,
   onClick: React.PropTypes.func,
+  separator: React.PropTypes.string,
 };
 
 Crumb.displayName = 'Crumb';

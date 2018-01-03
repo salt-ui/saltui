@@ -69,4 +69,4 @@ PhotoFieldItem.propTypes = {
   onDeleteImage: React.PropTypes.func,
 };
 
-module.exports = PhotoFieldItem;
+export default PhotoFieldItem;

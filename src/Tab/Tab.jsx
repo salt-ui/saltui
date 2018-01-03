@@ -33,6 +33,20 @@ const isChromeLargerThan55 = () => {
   return false;
 };
 
+// https://stackoverflow.com/questions/3485365/how-can-i-force-webkit-to-redraw-repaint-to-propagate-style-changes
+// in some case(maybe iOS 11 & dingtalk 4.2 ?),
+// table content cannot be shown if repaint is not called
+
+const forceRepaint = (node) => {
+  /* eslint-disable no-param-reassign */
+  /* eslint-disable no-unused-expressions */
+  node.style.display = 'none';
+  node.offsetHeight; // no need to store this anywhere, the reference is enough
+  node.style.display = '';
+  /* eslint-enable no-unused-expressions */
+  /* eslint-enable no-param-reassign */
+};
+
 export default class Tabs extends React.Component {
   static TabPane = TabPane;
   static Item = TabPane;
@@ -83,6 +97,12 @@ export default class Tabs extends React.Component {
     this.state = {
       activeKey: getActiveKey(props),
     };
+  }
+
+  componentDidMount() {
+    if (this.root) {
+      forceRepaint(this.root);
+    }
   }
 
   componentWillReceiveProps(nextProps) {

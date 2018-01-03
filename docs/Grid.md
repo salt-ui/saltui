@@ -1,4 +1,4 @@
-# tingle-grid [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-grid.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-grid)
+
 
 删格布局方案
 
@@ -89,6 +89,3 @@
 |itemVAlign|string|optional|center|单元格中元素的垂直对齐方式 (`'center'`, `'start'`, `'end'` 之一)|
 |touchable|boolean|optional|false|单元格是否可点击|
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-grid/issues)

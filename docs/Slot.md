@@ -1,4 +1,4 @@
-# tingle-slot
+
 
 ## Slot 老虎机滚轮选择器
 
@@ -370,7 +370,3 @@ t.setState(Slot.formatDataValue(xxData, xxValue));
 ```js
 t.setState(Slot.formatColumnValue(xxData, xxValue));
 ```
-
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)

@@ -6,6 +6,10 @@
  * All rights reserved.
  */
 
+<<<<<<< HEAD
 import Timeline from './Timeline';
 
 export default Timeline;
+=======
+export default from './Timeline';
+>>>>>>> upstream/master

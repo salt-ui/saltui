@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./DatetimeField');
+export default from './DatetimeField';

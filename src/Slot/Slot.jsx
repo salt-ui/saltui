@@ -6,13 +6,14 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Popup = require('../Popup');
-const cloneDeep = require('lodash/cloneDeep');
-const SlotHeader = require('./tpls/Header');
-const SlotPane = require('./tpls/Pane');
+import React from 'react';
+import classnames from 'classnames';
+import Context from '../Context';
+import Popup from '../Popup';
+import cloneDeep from 'lodash/cloneDeep';
+import isEqual from 'lodash/isEqual';
+import SlotHeader from './tpls/Header';
+import SlotPane from './tpls/Pane';
 
 
 const isArray = arr => Object.prototype.toString.call(arr) === '[object Array]';
@@ -30,6 +31,12 @@ class Slot extends React.Component {
       childPaneIsScrolling: false,
       visible: false,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.props.value, nextProps.value)) {
+      this.lastChoose = cloneDeep(nextProps.value);
+    }
   }
 
 
@@ -208,10 +215,11 @@ Slot.formatColumnValue = (columnData, value) => {
 
     // 兼容非对象的数据
     if (typeof cell !== 'object') {
-      cell = newColumnData[i] = {
+      newColumnData[i] = {
         text: cell,
         value: cell,
       };
+      cell = newColumnData[i];
     }
 
     // 补全缺失数据
@@ -230,7 +238,7 @@ Slot.formatColumnValue = (columnData, value) => {
 
   // 默认选中第一项
   if (typeof newValue !== 'object') {
-    newValue = columnData[0];
+    [newValue] = newColumnData;
   }
 
   return {
@@ -268,4 +276,4 @@ Slot.formatDataValue = (data = [], value = []) => {
 Slot.displayName = 'Slot';
 
 Slot.Pane = SlotPane;
-module.exports = Slot;
+export default Slot;

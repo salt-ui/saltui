@@ -1,29 +1,13 @@
-# tingle-password-input [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-password-input.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-password-input)
+
 
 密码输入框
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PasswordInput from 'tingle-password-input';
+import { PasswordInput } from 'saltui';
 
 class Demo extends React.Component {
 
@@ -63,7 +47,7 @@ class Demo extends React.Component {
 }
 
 // 渲染demo
-ReactDOM.render(<Demo />, document.getElementById('TingleDemo'));
+ReactDOM.render(<Demo />, document.getElementById('SaltDemo'));
 
 ```
 
@@ -154,10 +138,3 @@ ReactDOM.render(<Demo />, document.getElementById('TingleDemo'));
 类型：Function
 
 默认：Context.noop
-
-## APIs
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-password-input/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

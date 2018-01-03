@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Group');
+export default from './Group';

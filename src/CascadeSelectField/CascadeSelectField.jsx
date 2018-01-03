@@ -208,6 +208,7 @@ CascadeSelectField.defaultProps = {
   placeholder: '',
   columns: [],
   mode: 'normal',
+  className: '',
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -225,9 +226,6 @@ CascadeSelectField.propTypes = {
   cancelText: React.PropTypes.string,
   columns: React.PropTypes.array,
   mode: React.PropTypes.oneOf(['normal', 'complex']),
-};
-CascadeSelectField.defaultProps = {
-  className: '',
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';

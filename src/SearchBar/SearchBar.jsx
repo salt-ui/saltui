@@ -5,23 +5,22 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const classnames = require('classnames');
-const debounce = require('lodash/debounce');
-const React = require('react');
-const Context = require('../Context');
-const IconSearch = require('salt-icon/lib/Search');
-const IconCrossRound = require('salt-icon/lib/CrossRound');
+import classnames from 'classnames';
 
-const locale = require('./locale');
+import debounce from 'lodash/debounce';
+import React from 'react';
+import Context from '../Context';
+import IconSearch from 'salt-icon/lib/Search';
+import IconCrossRound from 'salt-icon/lib/CrossRound';
+import locale from './locale';
 
 
 class SearchBar extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       isActive: props.isActive, // whether in search mode
-      keyword: '',
+      keyword: props.value,
     };
     // this.lastSearch = '';
     this.doDebouceSearch = debounce(this.doSearch, props.searchDelay);
@@ -31,6 +30,11 @@ class SearchBar extends React.Component {
     if (nextProps.isActive !== this.props.isActive) {
       this.setState({
         isActive: nextProps.isActive,
+      });
+    }
+    if (nextProps.value !== this.props.value) {
+      this.setState({
+        keyword: nextProps.value,
       });
     }
   }
@@ -44,7 +48,7 @@ class SearchBar extends React.Component {
   }
 
   onChange(e) {
-    const value = e.target.value.trim();
+    const { value } = e.target;
     const t = this;
     this.setState({
       keyword: value,
@@ -57,9 +61,12 @@ class SearchBar extends React.Component {
   }
 
   onKeyUp(e) {
-    const value = e.target.value.trim();
-    if (e.keyCode === 13 && value) {
+    const { value } = e.target;
+    if (e.keyCode === 13) {
       this.doSearch('click', value);
+      if (this.props.exitAfterEnter) {
+        this.exitSearch();
+      }
       this.input.blur();
     }
   }
@@ -78,9 +85,10 @@ class SearchBar extends React.Component {
     const t = this;
     t.setState({
       keyword: '',
+    }, () => {
+      t.props.onChange('', 'clear', null);
+      t.input.focus();
     });
-    t.input.focus();
-    t.props.onChange('', 'clear', null);
   }
 
   enterSearch() {
@@ -109,11 +117,11 @@ class SearchBar extends React.Component {
   render() {
     const t = this;
     const i18n = locale[t.props.locale];
-    let placeholder = t.props.placeholder;
+    let { placeholder } = t.props;
     if (typeof placeholder === 'object' && placeholder !== null) {
       placeholder = placeholder[t.props.locale];
     }
-    const keyword = t.state.keyword || t.props.value;
+    const { keyword } = t.state;
     return (
       <div
         className={classnames(Context.prefixClass('search-bar'), {
@@ -135,15 +143,17 @@ class SearchBar extends React.Component {
               <div className={Context.prefixClass('search-bar-holder')}>
                 <IconSearch
                   className={Context.prefixClass('search-bar-icon-search')}
-                  width={this.props.iconWidth} height={this.props.iconHeight}
+                  width={this.props.iconWidth}
+                  height={this.props.iconHeight}
                   fill={this.props.iconColor}
                 />
                 <span
                   className={classnames(Context.prefixClass('omit search-bar-placeholder'), {
-                    hidden: t.state.keyword,
+                    hidden: keyword,
                   })}
                 >
-                  {placeholder}</span>
+                  {placeholder}
+                </span>
               </div>
             </div>
             <form action="javascript:;">
@@ -162,13 +172,15 @@ class SearchBar extends React.Component {
                 active: keyword,
               })}
               width={this.props.iconWidth}
-              height={this.props.iconHeight} fill={this.props.iconColor}
+              height={this.props.iconHeight}
+              fill={this.props.iconColor}
             />
           </div>
           <span
             className={Context.prefixClass('search-bar-btn')}
             onClick={(e) => { t.exitSearch(e); }}
-          >{i18n.cancel}</span>
+          >{i18n.cancel}
+          </span>
         </div>
       </div>);
   }
@@ -195,6 +207,7 @@ SearchBar.defaultProps = {
   onEnter: noop,
   onExit: noop,
   isActive: false,
+  exitAfterEnter: false,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -218,8 +231,9 @@ SearchBar.propTypes = {
   onExit: React.PropTypes.func,
   disabled: React.PropTypes.bool,
   isActive: React.PropTypes.bool,
+  exitAfterEnter: React.PropTypes.bool,
 };
 
 SearchBar.displayName = 'SearchBar';
 
-module.exports = SearchBar;
+export default SearchBar;

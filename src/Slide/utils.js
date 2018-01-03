@@ -1,4 +1,4 @@
-const Context = require('../Context');
+import Context from '../Context';
 
 export const prefixClass = (name) => {
   if (Context.prefixClass) {

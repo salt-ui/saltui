@@ -31,7 +31,7 @@ $ npm install saltui --save
 引入 js
 ```jsx
 import { Button } from 'saltui';
-// 或者
+// 或者按需加载
 import Button from 'saltui/lib/Button';
 ReactDOM.render(<Button />, mountNode);
 ```
@@ -49,13 +49,18 @@ ReactDOM.render(<Button />, mountNode);
 ## 集成开发工具
 
 1. 推荐使用 [Nowa](https://nowa-webpack.github.io/) 作为项目的开发工具
-* [Windows 版下载地址](https://alixux.org/downloads/nowa-gui.exe)
-* [Mac 版下载地址](https://alixux.org/downloads/nowa-gui.dmg)
-
+	* [Windows 版下载地址](https://alixux.org/downloads/nowa-gui.exe)
+	* [Mac 版下载地址](https://alixux.org/downloads/nowa-gui.dmg)
 2. 选择 nowa-template-salt 项目模板 Create
-
 3. 点击 Start 启动项目，在浏览器中打开
 
 ## 许可
 
 本项目基于 [MIT 协议](./LICENSE) 进行开发和发布。
+
+## 遇到问题
+
+* 可以通过 [FAQ](https://github.com/salt-ui/saltui/issues/10) 进行自查。
+* 关于使用上的疑问和合作相关事宜，可以通过钉钉反馈群与开发者直接取得联系。
+
+<img src="https://img.alicdn.com/tfs/TB17wNbesrI8KJjy0FhXXbfnpXa-877-1078.jpg" width="300">

@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./CheckboxField');
+export default from './CheckboxField';

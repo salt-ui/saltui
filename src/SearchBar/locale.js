@@ -11,4 +11,4 @@ const locale = {
   },
 };
 
-module.exports = locale;
+export default locale;

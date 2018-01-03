@@ -5,14 +5,13 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const classnames = require('classnames');
-const deepcopy = require('lodash/cloneDeep');
-const deepEqual = require('lodash/isEqual');
-const React = require('react');
-
-const Scroller = require('../Scroller');
-const Context = require('../Context');
-const Pagination = require('../Pagination');
+import classnames from 'classnames';
+import deepcopy from 'lodash/cloneDeep';
+import deepEqual from 'lodash/isEqual';
+import React from 'react';
+import Scroller from '../Scroller';
+import Context from '../Context';
+import Pagination from '../Pagination';
 
 
 class Table extends React.Component {
@@ -301,4 +300,4 @@ Table.propTypes = {
 Table.displayName = 'Table';
 
 
-module.exports = Table;
+export default Table;

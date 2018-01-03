@@ -1,6 +1,4 @@
-# Tab [![npm version](https://badge.fury.io/js/tingle-tab.svg)](http://badge.fury.io/js/tingle-tab)
-
-标签切换控件
+## 标签切换控件
 
 <img src="https://img.alicdn.com/tps/TB1yoIXJpXXXXaEXXXXXXXXXXXX-750-1254.png" width="375"/>
 
@@ -86,9 +84,3 @@ handleChange(obj) {
     });
 }
 ```
-
-
-
-## Links 相关链接
-
-- [Fire a bug/Issues 提 Bug](https://github.com/tinglejs/tingle-tab/issues)

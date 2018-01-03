@@ -4,7 +4,7 @@ const getData = (response) => {
     if (response.content.data) {
       data = response.content.data;
     } else {
-      data = response.conent;
+      data = response.content;
     }
   } else if (response.data) {
     data = response.data;

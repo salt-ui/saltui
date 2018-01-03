@@ -1,14 +1,9 @@
-# tingle-radio-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-radio-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-radio-field)
+
 
 单选框。
 
 ![](http://gtms01.alicdn.com/tps/i1/TB1NxzWJFXXXXXiXVXXbLzyZVXX-320-194.png)
 
-## Install
-
-```
-tnpm install @ali/tingle-radio-field --save
-```
 
 ## Simple Usage
 ```javascript
@@ -96,7 +91,7 @@ return <div>
 
 #### groupListFlag
 
-描述：是否使用tingle-group来布局checkbox
+描述：是否使用 Group 组件来布局 Checkbox
 
 类型：Boolen
 
@@ -126,7 +121,7 @@ return <div>
 
 #### groupListArgument
 
-描述：如果tingle-group为true，可以传入tingle-group相关参数。参考`http://gitlab.alibaba-inc.com/tingle-ui/tingle-group`
+描述：如果 groupListFlag 为true，可以传入 Group 相关参数。参考 `https://salt-ui.github.io/components/group`
 
 类型：Object
 
@@ -159,8 +154,3 @@ return <div>
 
 1. 点击disable的复选框，不会触发用户注册的回调函数。
 2. 单选框语义上你只能传入一个checked:true，如果你传入多个，我不阻止。
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-radio-field/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

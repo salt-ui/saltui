@@ -1,23 +1,6 @@
-# tingle-menu [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-menu.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-menu)
+
 一句话描述
 ![img](https://img.alicdn.com/tfs/TB11PhARVXXXXXDXFXXXXXXXXXX-337-855.png)
-
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 
@@ -44,7 +27,3 @@ Menu API
 |key|item 的唯一标志| string/number |
 |disabled|是否可选| bool|
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-menu/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

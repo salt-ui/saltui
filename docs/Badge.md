@@ -1,23 +1,3 @@
-# tingle-badge [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-badge.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-badge)
-角标组件
-![角标](https://img.alicdn.com/tps/TB1kGhEQXXXXXc5XFXXXXXXXXXX-293-439.png)
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
-
 ## note
 假设A组件需要安装Badge
 
@@ -122,10 +102,3 @@ npm run tnpm-update
 必选：否
 
 
-
-## APIs
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-badge/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

@@ -12,7 +12,7 @@ import FieldRequiredIcon from 'salt-icon/lib/FieldRequired';
 import Context from '../Context';
 import Group from '../Group';
 
-const prefixClass = Context.prefixClass;
+const { prefixClass } = Context;
 
 
 class RadioField extends React.Component {
@@ -24,7 +24,7 @@ class RadioField extends React.Component {
     const t = this;
     const { data: radioArray, onChange } = t.props;
 
-    const disable = item.disable;
+    const { disable } = item;
     if (disable) {
       return;
     }
@@ -131,7 +131,6 @@ class RadioField extends React.Component {
     if (!groupListFlag) {
       finalJSX = (
         <div
-          ref="root"
           className={classnames(prefixClass('radio-field'), {
             [rootClassName]: !!rootClassName,
             [className]: !!className,
@@ -169,8 +168,9 @@ RadioField.propTypes = {
   groupListArgument: React.PropTypes.object,
   iconPosition: React.PropTypes.string,
   required: React.PropTypes.bool,
+  label: React.PropTypes.node,
 };
 
 RadioField.displayName = 'RadioField';
 
-module.exports = RadioField;
+export default RadioField;

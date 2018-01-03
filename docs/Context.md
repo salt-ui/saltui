@@ -1,6 +1,6 @@
 # Context
 
-`tingle`的上下文模块，提供全局性的属性和方法。
+上下文模块，提供全局性的属性和方法。
 
 ### 手势事件去差异
 
@@ -27,15 +27,6 @@
 ```js
 Context.getTID(); // 0
 Context.getTID(); // 1
-```
-
-### mixin
-
-合并对象，功能同`jQuery`的`extend`
-
-```js
-var obj = Context.mixin({name:'tingle'}, {age:'1'});
-// obj === {'name':'tingle', 'age':'1'}
 ```
 
 ### noop
@@ -75,8 +66,8 @@ Context.rem(750, 640); // 基于`640px`的设计稿，`750px`等于`11.71875rem`
 
 使用：
 
-```js
-var Context = require('tingle-context');
+```jsx
+import { Context } from 'saltui'
 var privateRem = Context.makePrivateRem(640); // 创建基于`640px`宽的`rem`方法
 privateRem(750); // 基于`640px`的设计稿，`750px`等于`11.71875rem`
 

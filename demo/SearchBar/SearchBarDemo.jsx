@@ -6,8 +6,8 @@
  * All rights reserved.
  */
 
+/* eslint-disable react/no-multi-comp */
 import React from 'react';
-
 import SearchBar from 'salt-search-bar';
 
 const { WithContainer } = SearchBar;
@@ -24,7 +24,7 @@ class List extends React.Component {
   }
 
   fetchData(params = {}) {
-    const keyword = params.keyword;
+    const { keyword } = params;
     if (!keyword) {
       return;
     }
@@ -45,10 +45,11 @@ class Demo extends React.Component {
   render() {
     const t = this;
     const props = {
-      locale: 'zh_CN',
+      locale: 'en_US',
       instantSearch: true,
       hasHistory: true,
       searchDelay: 450,
+      placeholder: 'xxxxxxxxxxxxxxxxxxxxxxxxx',
       onEnter: () => { console.log('enter'); },
       onExit: () => { console.log('exit'); },
       onChange: (value) => {
@@ -56,21 +57,23 @@ class Demo extends React.Component {
       },
       onSearch: (value) => {
         console.info(`Do search>>${value}`);
-        if (t.refs.list) {
-          t.refs.list.fetchData({
+        if (t.list) {
+          t.list.fetchData({
             keyword: value,
           });
         }
       },
     };
-    return (<div>
-      <div className="head">搜索栏</div>
-      <SearchBar {...props} />
-      <div className="head">带容器的搜索栏</div>
-      <WithContainer {...props}>
-        <List ref="list" />
-      </WithContainer>
-    </div>);
+    return (
+      <div>
+        <div className="head">搜索栏</div>
+        <SearchBar {...props} />
+        <div className="head">带容器的搜索栏</div>
+        <WithContainer {...props}>
+          <List ref={(c) => { this.list = c; }} />
+        </WithContainer>
+      </div>
+    );
   }
 }
 

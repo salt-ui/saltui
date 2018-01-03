@@ -72,7 +72,7 @@ class Badge extends React.Component {
       }
 
       if (t.props.children) {
-        style.webkitTransform = 'translate(50%, -50%)';
+        style.WebkitTransform = 'translate(50%, -50%)';
         style.transform = 'translate(50%, -50%)'; // fix https://aone.alibaba-inc.com/req/11690248
       }
     }

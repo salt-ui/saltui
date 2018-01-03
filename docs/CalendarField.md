@@ -1,32 +1,16 @@
-# tingle-calendar-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-calendar-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-calendar-field)
+
 
 级联日期表单组件
 
 <img src="https://img.alicdn.com/tps/TB1me1UPFXXXXajXVXXXXXXXXXX-750-1334.png" width="375">
 
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
-
 ## Simple Usage
 
 ## Props
 
-- 支持表单域的所有属性和方法，[参见这里](http://gitlab.alibaba-inc.com/tingle-ui/tingle-field#props)
-- 面板模式选择天、上下午：支持tingle-calendar的属性和方法，[参见这里](http://gitlab.alibaba-inc.com/tingle-ui/tingle-calendar#props)
-- 滚轮模式选择天、年、月、上下午、时间：支持tingle-datetime的属性和方法，[参见这里](http://gitlab.alibaba-inc.com/tingle-ui/tingle-datetime#props)
+- 支持表单域的所有属性和方法，[参见这里](https://salt-ui.github.io/components/field)
+- 面板模式选择天、上下午：支持Calendar的属性和方法，[参见这里](https://salt-ui.github.io/components/calendar)
+- 滚轮模式选择天、年、月、上下午、时间：支持Datetime的属性和方法，[参见这里](https://salt-ui.github.io/components/datetime)
 
 - 另外支持以下属性:
 
@@ -101,10 +85,3 @@ npm run tnpm-update
 <CalendarField onCancel={()=>{console.log('Canceled!')}} />
 ```
 
-
-## APIs
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-calendar-field/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

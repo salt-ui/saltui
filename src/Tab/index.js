@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Tab');
+export default from './Tab';

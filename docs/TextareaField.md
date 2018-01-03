@@ -1,4 +1,4 @@
-# tingle-textarea-field
+
 
 ## 表单多行文本框
 
@@ -170,10 +170,4 @@ onChange(newValue,e) {
 默认：'h'
 
 必填：否
-
-## APIs
-
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)
 

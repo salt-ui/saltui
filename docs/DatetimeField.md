@@ -1,4 +1,4 @@
-# tingle-datetime-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-datetime-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-datetime-field)
+
 
 DatetimeField 是时间选择输入表单域。
 
@@ -220,7 +220,3 @@ onSelect(value) {
 > ##### 版本 2.0.0
 > * 参数改为对象，value字段表示时间戳，timeType字段表示上/下午。
 
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-datetime-field/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

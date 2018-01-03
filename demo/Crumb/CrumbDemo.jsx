@@ -6,9 +6,7 @@
  * All rights reserved.
  */
 
-import classnames from 'classnames';
-
-import Context from 'salt-context';
+import React from 'react';
 import Crumb from 'salt-crumb';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
@@ -42,7 +40,7 @@ class Demo extends React.Component {
     const t = this;
     return (
       <div>
-        <Crumb onClick={t.onClick.bind(t)}>
+        <Crumb onClick={t.onClick.bind(t)} separator="/">
           {
             this.crumbs.map((crumb, key) => <Crumb.Item key={key}>{crumb.text}</Crumb.Item>)
           }

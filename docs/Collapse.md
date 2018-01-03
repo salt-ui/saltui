@@ -1,23 +1,4 @@
-# tingle-collapse [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-collapse.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-collapse)
-tingle-collapse ui component for react
-
 ![](https://img.alicdn.com/tfs/TB12cKiRXXXXXcNXpXXXXXXXXXX-374-665.png)
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 ```js
@@ -130,9 +111,3 @@ If `accordion` is true, only one panel can be open.  Opening another panel will 
     </tbody>
 </table>
 
-## APIs
-
-## Links
-
-- [Issues](http://gitlab.alibaba-inc.com/tingle-ui/tingle-collapse/issues)
-- [README 标准写法](http://gitlab.alibaba-inc.com/tingle-ui/doc/blob/master/README%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95.md)

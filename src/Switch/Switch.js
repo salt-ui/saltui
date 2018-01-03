@@ -55,4 +55,4 @@ Switch.propTypes = {
 
 Switch.displayName = 'Switch';
 
-module.exports = Switch;
+export default Switch;

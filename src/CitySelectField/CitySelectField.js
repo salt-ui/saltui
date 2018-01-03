@@ -94,7 +94,7 @@ export default class CitySelectField extends Component {
   render() {
     const { className, label, layout, required,
       placeholder, readOnly, districtData, tip } = this.props;
-    const fieldProps = { label, layout, required, tip };
+    const fieldProps = { label, layout, required, tip, readOnly };
     const isSelectedValue = !!this.state.value.length;
     const fieldClassName = classnames(
       prefixClass('city-select-field'),

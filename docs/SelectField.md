@@ -1,4 +1,4 @@
-# tingle-select-field
+
 
 ## SelectField 选择输入表单域
 
@@ -193,7 +193,3 @@ onSelect(value) {
 
 <SelectField value={this.state.value} onSelect={this.onSelect}></SelectField>
 ```
-
-## Links
-
-- [Issues](https://github.com/salt-ui/saltui/issues/new)
