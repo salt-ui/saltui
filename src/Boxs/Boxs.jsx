@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from '../Context';
 
@@ -49,10 +49,10 @@ const HBox = (props) => {
 };
 
 HBox.propTypes = {
-  className: React.PropTypes.string,
-  flex: React.PropTypes.number,
-  hAlign: React.PropTypes.oneOf(ALIGN_VALUES),
-  vAlign: React.PropTypes.oneOf(ALIGN_VALUES),
+  className: PropTypes.string,
+  flex: PropTypes.number,
+  hAlign: PropTypes.oneOf(ALIGN_VALUES),
+  vAlign: PropTypes.oneOf(ALIGN_VALUES),
 };
 HBox.defaultProps = {
   className: '',
@@ -89,10 +89,10 @@ const VBox = (props) => {
   );
 };
 VBox.propTypes = {
-  className: React.PropTypes.string,
-  flex: React.PropTypes.number,
-  hAlign: React.PropTypes.oneOf(ALIGN_VALUES),
-  vAlign: React.PropTypes.oneOf(ALIGN_VALUES),
+  className: PropTypes.string,
+  flex: PropTypes.number,
+  hAlign: PropTypes.oneOf(ALIGN_VALUES),
+  vAlign: PropTypes.oneOf(ALIGN_VALUES),
 };
 VBox.defaultProps = {
   className: '',
@@ -121,10 +121,10 @@ const Box = (props) => {
 };
 
 Box.propTypes = {
-  className: React.PropTypes.string,
-  flex: React.PropTypes.number,
-  hAlign: React.PropTypes.oneOf(ALIGN_VALUES),
-  vAlign: React.PropTypes.oneOf(ALIGN_VALUES),
+  className: PropTypes.string,
+  flex: PropTypes.number,
+  hAlign: PropTypes.oneOf(ALIGN_VALUES),
+  vAlign: PropTypes.oneOf(ALIGN_VALUES),
 };
 Box.defaultProps = {
   className: '',

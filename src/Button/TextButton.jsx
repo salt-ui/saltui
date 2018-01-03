@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from './utils';
 
@@ -64,14 +65,14 @@ TextButton.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 TextButton.propTypes = {
-  className: React.PropTypes.string,
-  style: React.PropTypes.object,
-  size: React.PropTypes.oneOf(['small', 'medium', 'large']),
-  type: React.PropTypes.oneOf(['primary', 'secondary']),
-  onClick: React.PropTypes.func,
-  children: React.PropTypes.node,
-  display: React.PropTypes.oneOf(['inline', 'normal']),
-  disabled: React.PropTypes.bool,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  type: PropTypes.oneOf(['primary', 'secondary']),
+  onClick: PropTypes.func,
+  children: PropTypes.node,
+  display: PropTypes.oneOf(['inline', 'normal']),
+  disabled: PropTypes.bool,
 };
 
 TextButton.displayName = 'TextButton';

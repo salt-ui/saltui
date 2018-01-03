@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Context from '../Context';
 import locale from './locale';
 
@@ -9,8 +10,8 @@ class TopBar extends React.Component {
   static displayName = 'TopBar';
 
   static propTypes = {
-    className: React.PropTypes.string,
-    locale: React.PropTypes.string,
+    className: PropTypes.string,
+    locale: PropTypes.string,
   };
 
   componentWillMount() {

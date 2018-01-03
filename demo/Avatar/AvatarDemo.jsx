@@ -73,7 +73,7 @@ export default () => (
       <div className="t-FBH">
         <Avatar name="tingle" size={60} />
         <Avatar name="天晟" size={80} style={{ fontSize: 16 }} />
-        <Avatar name="马天明" size={'100'} style={{ fontSize: 40 }} />
+        <Avatar name="马天明" size={'100px'} style={{ fontSize: 40 }} />
       </div>
       <h2>icon</h2>
       <div className="t-FBH">

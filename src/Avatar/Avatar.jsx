@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { unitize } from '../Style';
 import Context from '../Context';
@@ -59,20 +60,20 @@ export default class Avatar extends Component {
   };
 
   static propTypes = {
-    className: React.PropTypes.string,
-    colors: React.PropTypes.array,
-    defaultColor: React.PropTypes.string,
-    defaultSrc: React.PropTypes.string,
-    hashCode: React.PropTypes.func,
-    icon: React.PropTypes.element,
-    isLong: React.PropTypes.bool,
-    name: React.PropTypes.string,
-    size: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    className: PropTypes.string,
+    colors: PropTypes.array,
+    defaultColor: PropTypes.string,
+    defaultSrc: PropTypes.string,
+    hashCode: PropTypes.func,
+    icon: PropTypes.element,
+    isLong: PropTypes.bool,
+    name: PropTypes.string,
+    size: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
-    src: React.PropTypes.string,
-    style: React.PropTypes.object,
+    src: PropTypes.string,
+    style: PropTypes.object,
   };
 
   static defaultProps = {

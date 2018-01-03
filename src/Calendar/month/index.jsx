@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Context from '../../Context';
 
 const prefixClass = Context.prefixClass;
@@ -6,11 +7,11 @@ const prefixClass = Context.prefixClass;
 class MonthCalendar extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    locale: React.PropTypes.string, // 国际化语言
-    animationType: React.PropTypes.string,
-    singleMode: React.PropTypes.bool, // 是否是单选模式
-    onChange: React.PropTypes.func,
+    className: PropTypes.string,
+    locale: PropTypes.string, // 国际化语言
+    animationType: PropTypes.string,
+    singleMode: PropTypes.bool, // 是否是单选模式
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
