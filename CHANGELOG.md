@@ -1,3 +1,8 @@
+## 3.3.6 / 2018-01-03
+
+* `feat` React 15.x compatible for ActionSheet, Button, Avatar, Badge, Boxs, Calendar, Group
+* `fix`: SelectField value is not handled correctly in `componentWillReceiveProps`
+
 ## 3.3.5 / 2017-12-28
 
 * `change`: all commonjs module are transformed to es6 module
