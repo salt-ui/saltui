@@ -56,13 +56,17 @@ class DatetimeDemo extends React.Component {
           columns={Datetime.YMD}
           disabledDate={() => {
             return [
-              {
-                start: new Date(2017, 5, 1),
-                end: new Date(2017, 12, 31),
-              },
-              {
-                end: new Date(2016, 1, 21),
-              },
+              // {
+              //   start: new Date(2017, 5, 1),
+              //   end: new Date(2017, 12, 31),
+              // },
+              // {
+              //   end: new Date(2016, 1, 21),
+              // },
+              // {
+              //   start: new Date( 2016, 10, 1), // 2023- 11 - 1
+              //   end: new Date( 2016, 10, 1),
+              // },
             ];
           }}
           onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
@@ -89,8 +93,8 @@ class DatetimeDemo extends React.Component {
                 end: new Date(2017, 12, 31),
               },
               {
-                end: new Date(2013, 11, 1 ),
-                start: new Date(2013, 11, 31)
+                end: new Date(2013, 11, 1),
+                start: new Date(2013, 11, 1),
               },
             ];
           }}
@@ -108,6 +112,14 @@ class DatetimeDemo extends React.Component {
           value={null}
           minuteStep={5}
           columns={Datetime.YMDWHM}
+          disabledDate={() => {
+            return [
+              {
+                start: new Date( 2017, 10, 1), // 2023- 11 - 1
+                end: new Date( 2017, 10, 1)
+              },
+            ];
+          }}
           onConfirm={(value) => { this.onConfirm(value, 'value3'); }}
           onCancel={() => { this.onCancel('value3'); }}
         />

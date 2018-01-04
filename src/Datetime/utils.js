@@ -151,7 +151,7 @@ function getMonthsByYear({ minDate, maxDate, year }) {
   const minYear = min.getFullYear();
   let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item, index) => {
     return {
-      text: `${index + 1}月`,
+      text: `${addZero(index + 1)}月`,
       value: index,
     };
   });
@@ -184,7 +184,7 @@ function getDayByMonth({ minDate, maxDate, year, month }) {
   let arr = [];
   for (let i = 1; i <= NUM; i++) {
     arr.push({
-      text: `${i}日`,
+      text: `${addZero(i)}日`,
       value: i,
     });
   }
@@ -271,25 +271,32 @@ function getDateRangeArr({ disabledArr, minDateTime, maxDateTime }) {
   /* eslint no-continue:0 */
   for (let i = 0; i < startEnd.length; i++) { // 计算中间区间
     const { start, end } = startEnd[i];
-    if (start >= maxDateTime || end <= minDateTime) {
+    if (end < start) {
       continue;
     }
-    if (start <= minDateTime && end >= minDateTime) {
+    if (start >= minDateTime && end <= maxDateTime) { // start end 都在 取值范围内
+      dateRangeArr.push(startEnd[i]);
+    }
+    if (start <= minDateTime && end >= minDateTime && end <= maxDateTime ) { // start 不在 end 在
       dateRangeArr.push({
         start: minDateTime,
         end,
       });
       continue;
     }
-    if (start <= maxDateTime && end >= maxDateTime) {
+    if (start >= minDateTime && start <= maxDateTime && end >= maxDateTime) { // end 不在 start 在
       dateRangeArr.push({
         start,
         end: maxDateTime,
       });
       continue;
     }
-    if (start >= minDateTime && end <= maxDateTime) {
-      dateRangeArr.push(startEnd[i]);
+    if (start <= minDateTime && end >= maxDateTime) { // end 不在 start 不在
+      dateRangeArr.push({
+        start: minDateTime,
+        end: maxDateTime,
+      });
+      continue;
     }
   }
   // 计算中间时间区间

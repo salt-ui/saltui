@@ -156,10 +156,11 @@ class Datetime extends React.Component {
       value: newValue,
     };
   }
-  setOptions = (props) => {
-    let { data, value } = this.getOptions({ value: props.value }, props);
+  setOptions = (props, newValue) => {
+    let { data, value } = this.getOptions({ value: newValue || props.value }, props);
     const { columns, minDate, maxDate } = props;
-    if (props.disabledDate) {
+    const colStyle = columns[0];
+    if (props.disabledDate && colStyle !== 'YMDW' && colStyle !== 'YMD') {
       data = filterTime({ data, disabledDate: props.disabledDate, value, columns, minDate, maxDate });
     }
     this.state = {
@@ -205,8 +206,12 @@ class Datetime extends React.Component {
     const newData = this.getOptions({ value: date }, props);
     const YEARDATE = data[0];
     const NEWDATA = newData.data;
-    if (column[0] === 'Y') {
+    if (columns[0] === 'Y') {
       NEWDATA[0] = YEARDATE;
+    }
+    if (columnsStyle === 'D') {
+      props.onChange(date, column);
+      return;
     }
     const updateObj = {
       value,
@@ -214,15 +219,13 @@ class Datetime extends React.Component {
     };
     if (isArray(disabledArr) && disabledArr.length) {
       disabledArr = parseDisabledArr(disabledArr);
-      let AllData;
+      const AllData = NEWDATA;
       if (columnsStyle === 'Y') { // 计算月份
-        AllData = data;
         const year = value[column].value;
         const monthArr = getMonthsByYear({ minDate, maxDate, year });
         AllData[column + 1] = filterMonth(monthArr, year, disabledArr);
       }
       if (columnsStyle === 'M') { // 计算日
-        AllData = data;
         const month = value[column].value;
         const year = value[0].value;
         const dayArr = getDayByMonth({
@@ -230,9 +233,7 @@ class Datetime extends React.Component {
         });
         AllData[column + 1] = filterDay(dayArr, year, month, disabledArr);
       }
-      if (AllData) {
-        updateObj.data = AllData;
-      }
+      updateObj.data = AllData.length ? AllData : NEWDATA;
     }
     this.setState(updateObj);
     props.onChange(date, column);
