@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import PropTypes from 'prop-types';
 import Animate from 'rc-animate';
 import cssAnim from 'css-animation';
 import classnames from 'classnames';
@@ -66,8 +66,9 @@ class MaskBody extends React.Component {
 
   render() {
     const t = this;
-    const { className, zIndex, ...other } = t.props;
-    const { visible } = t.state;
+    const { className, zIndex, visible, onWillHide, onDidHide, closeable, ...other } = t.props;
+    //const { className, zIndex, ...other } = t.props;
+    //const { visible } = t.state;
 
     const styleMap = {
       display: visible ? 'block' : 'none',
@@ -119,13 +120,13 @@ MaskBody.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 MaskBody.propTypes = {
-  className: React.PropTypes.string,
-  closeable: React.PropTypes.bool,
-  opacity: React.PropTypes.number,
-  onDidHide: React.PropTypes.func,
-  onWillHide: React.PropTypes.func,
-  visible: React.PropTypes.bool,
-  zIndex: React.PropTypes.number,
+  className: PropTypes.string,
+  closeable: PropTypes.bool,
+  opacity: PropTypes.number,
+  onDidHide: PropTypes.func,
+  onWillHide: PropTypes.func,
+  visible: PropTypes.bool,
+  zIndex: PropTypes.number,
 };
 
 MaskBody.displayName = 'MaskBody';
@@ -186,7 +187,7 @@ Mask.defaultProps = {
 
 Mask.propTypes = {
   ...MaskBody.propTypes,
-  renderToBody: React.PropTypes.bool,
+  renderToBody: PropTypes.bool,
 };
 
 export default Mask;

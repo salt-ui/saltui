@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import RcDialog from 'rc-dialog';
@@ -243,28 +244,28 @@ Dialog.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Dialog.propTypes = {
-  transparentMode: React.PropTypes.bool,        // 是否为透明背景
+  transparentMode: PropTypes.bool,        // 是否为透明背景
   // 弹窗头信息
-  title: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.element]),
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   // 弹窗内容 String || React.Element
-  content: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.element]),
-  onConfirm: React.PropTypes.func,            // 点击确认的回调事件
-  onCancel: React.PropTypes.func,             // 点击取消的回调事件
-  type: React.PropTypes.string,               // alert | confirm 添加默认 buttons
-  buttons: React.PropTypes.arrayOf(React.PropTypes.shape({
-    content: React.PropTypes.string,
-    callback: React.PropTypes.func,
-    primary: React.PropTypes.bool,
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  onConfirm: PropTypes.func,            // 点击确认的回调事件
+  onCancel: PropTypes.func,             // 点击取消的回调事件
+  type: PropTypes.string,               // alert | confirm 添加默认 buttons
+  buttons: PropTypes.arrayOf(PropTypes.shape({
+    content: PropTypes.string,
+    callback: PropTypes.func,
+    primary: PropTypes.bool,
   })),                                        // 自定义按钮
-  btnDir: React.PropTypes.oneOf(['horizontal', 'vertical', '']),  // 按钮排布方式
-  show: React.PropTypes.bool,                 // 当前弹窗是否可见
-  locale: React.PropTypes.string,             // 语言信息
-  confirmText: React.PropTypes.string,        // 确认文字
-  cancelText: React.PropTypes.string,         // 取消文字
-  transitionName: React.PropTypes.string,     // 弹窗动画内容名称
-  maskTransitionName: React.PropTypes.string, // 遮罩背景动画内容名称
-  wrapClassName: React.PropTypes.string,      // 弹窗容器 CSS 类名
-  className: React.PropTypes.string,          // 弹窗内容 CSS 类名
+  btnDir: PropTypes.oneOf(['horizontal', 'vertical', '']),  // 按钮排布方式
+  show: PropTypes.bool,                 // 当前弹窗是否可见
+  locale: PropTypes.string,             // 语言信息
+  confirmText: PropTypes.string,        // 确认文字
+  cancelText: PropTypes.string,         // 取消文字
+  transitionName: PropTypes.string,     // 弹窗动画内容名称
+  maskTransitionName: PropTypes.string, // 遮罩背景动画内容名称
+  wrapClassName: PropTypes.string,      // 弹窗容器 CSS 类名
+  className: PropTypes.string,          // 弹窗内容 CSS 类名
 };
 
 // 全局 Dialog 组件 render 的 DOM ID

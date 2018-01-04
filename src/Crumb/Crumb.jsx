@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Scroller from '../Scroller';
@@ -105,10 +105,10 @@ Crumb.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Crumb.propTypes = {
-  className: React.PropTypes.string,
-  showScroll: React.PropTypes.bool,
-  onClick: React.PropTypes.func,
-  separator: React.PropTypes.string,
+  className: PropTypes.string,
+  showScroll: PropTypes.bool,
+  onClick: PropTypes.func,
+  separator: PropTypes.string,
 };
 
 Crumb.displayName = 'Crumb';

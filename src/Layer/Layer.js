@@ -8,13 +8,14 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import LayerBody from './LayerBody';
 
 class Layer extends React.Component {
 
   static propTypes = {
-    renderToBody: React.PropTypes.bool,
+    renderToBody: PropTypes.bool,
   };
 
   static defaultProps = {

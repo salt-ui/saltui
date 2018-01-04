@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Context from '../Context';
 import { VBox } from '../Boxs';
 
@@ -68,8 +68,8 @@ Row.defaultProps = {
 };
 
 Row.propTypes = {
-  col: React.PropTypes.number,
-  square: React.PropTypes.bool,
+  col: PropTypes.number,
+  square: PropTypes.bool,
   // 单个格子的水平对其方式
   itemHAlign: VBox.propTypes.hAlign,
   // 单个格子的垂直对其方式

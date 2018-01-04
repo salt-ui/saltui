@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass, noop } from '../Context';
 import Mask from '../Mask';
@@ -6,16 +7,16 @@ import Mask from '../Mask';
 class LayerBody extends React.Component {
 
   static propTypes = {
-    onDidShow: React.PropTypes.func,
-    onWillHide: React.PropTypes.func,
-    onMaskClick: React.PropTypes.func,
-    onDidHide: React.PropTypes.func,
-    maskOpacity: React.PropTypes.number,
-    maskCloseable: React.PropTypes.bool,
-    hasMask: React.PropTypes.bool,
-    visible: React.PropTypes.bool,
-    zIndex: React.PropTypes.number,
-    fullScreen: React.PropTypes.bool,
+    onDidShow: PropTypes.func,
+    onWillHide: PropTypes.func,
+    onMaskClick: PropTypes.func,
+    onDidHide: PropTypes.func,
+    maskOpacity: PropTypes.number,
+    maskCloseable: PropTypes.bool,
+    hasMask: PropTypes.bool,
+    visible: PropTypes.bool,
+    zIndex: PropTypes.number,
+    fullScreen: PropTypes.bool,
     // more: top, left, bottom, right, width, height
   };
 
@@ -115,7 +116,7 @@ class LayerBody extends React.Component {
 
   render() {
     const t = this;
-    const { className, style, ...other } = t.props;
+    const { className, top, left, right, bottom, visible, zIndex, maskCloseable, renderToBody, onDidShow, onWillHide, onDidHide, maskOpacity, hasMask, fullScreen, style, onMaskClick, ...other } = t.props;
     return (
       <div>
         <div

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from '../../Context';
 import Field from '../../Field';
@@ -336,23 +337,23 @@ DayField.propTypes = {
   ...Calendar.propTypes,
   ...Datetime.propTypes,
   ...Field.propTypes,
-  placeholder: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.array,
+  placeholder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
   ]),
-  locale: React.PropTypes.string,
-  type: React.PropTypes.string,
-  formatter: React.PropTypes.string,
-  readOnly: React.PropTypes.bool,
-  showWeek: React.PropTypes.bool,
-  showDateType: React.PropTypes.bool,
-  multiLine: React.PropTypes.bool,
-  onCancel: React.PropTypes.func,
-  onOk: React.PropTypes.func,
-  disabledDate: React.PropTypes.func,
-  renderDayBadge: React.PropTypes.func,
-  renderCustomDayLabel: React.PropTypes.func,
-  onChange: React.PropTypes.func,
+  locale: PropTypes.string,
+  type: PropTypes.string,
+  formatter: PropTypes.string,
+  readOnly: PropTypes.bool,
+  showWeek: PropTypes.bool,
+  showDateType: PropTypes.bool,
+  multiLine: PropTypes.bool,
+  onCancel: PropTypes.func,
+  onOk: PropTypes.func,
+  disabledDate: PropTypes.func,
+  renderDayBadge: PropTypes.func,
+  renderCustomDayLabel: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 export default DayField;

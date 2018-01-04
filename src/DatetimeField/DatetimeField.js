@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import isObject from 'lodash/isObject';
 import Context from '../Context';
@@ -154,10 +155,10 @@ DatetimeField.defaultProps = {
 // http://facebook.github.io/react/docs/reusable-components.html
 DatetimeField.propTypes = {
   ...Datetime.propTypes,
-  label: React.PropTypes.string.isRequired,
-  readOnly: React.PropTypes.bool,
-  placeholder: React.PropTypes.string,
-  onSelect: React.PropTypes.func,
+  label: PropTypes.string.isRequired,
+  readOnly: PropTypes.bool,
+  placeholder: PropTypes.string,
+  onSelect: PropTypes.func,
 };
 
 DatetimeField.displayName = 'DatetimeField';

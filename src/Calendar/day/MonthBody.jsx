@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../../Context';
 import cloneDeep from 'lodash/cloneDeep';
@@ -19,20 +20,20 @@ const prefixClass = Context.prefixClass;
 class MonthBody extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
+    className: PropTypes.string,
     // days：[timestamp1, timestamp1, ...]
-    days: React.PropTypes.array,
-    singleMode: React.PropTypes.bool, // 是否是单选模式
-    locale: React.PropTypes.string,
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
-      // React.PropTypes.array, // 传递过来的，不能存在array类型的value
-      React.PropTypes.object,
+    days: PropTypes.array,
+    singleMode: PropTypes.bool, // 是否是单选模式
+    locale: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      // PropTypes.array, // 传递过来的，不能存在array类型的value
+      PropTypes.object,
     ]),
-    disabledDate: React.PropTypes.func,
-    renderDayBadge: React.PropTypes.func,
-    renderCustomDayLabel: React.PropTypes.func,
+    disabledDate: PropTypes.func,
+    renderDayBadge: PropTypes.func,
+    renderCustomDayLabel: PropTypes.func,
   };
 
   componentWillMount() {

@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import PopupView from './PopupView';
@@ -76,7 +77,7 @@ ImageViewer.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 ImageViewer.propTypes = {
-  className: React.PropTypes.string,
+  className: PropTypes.string,
   prefixcls: 't-image-viewer',
 };
 

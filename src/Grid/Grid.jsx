@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import { VBox } from '../Boxs';
@@ -78,19 +79,19 @@ Grid.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Grid.propTypes = {
-  className: React.PropTypes.string,
+  className: PropTypes.string,
   // 列数
-  col: React.PropTypes.number,
+  col: PropTypes.number,
   // 是否自适应单元格的高度 使单元格成为正方形
-  square: React.PropTypes.bool,
+  square: PropTypes.bool,
   // 是否隐藏分割线
-  noLine: React.PropTypes.bool,
+  noLine: PropTypes.bool,
   // 单个格子的水平对其方式
   itemHAlign: VBox.propTypes.hAlign,
   // 单个格子的垂直对其方式
   itemVAlign: VBox.propTypes.vAlign,
   // 单元格是否可点击
-  touchable: React.PropTypes.bool,
+  touchable: PropTypes.bool,
 };
 
 Grid.displayName = 'Grid';

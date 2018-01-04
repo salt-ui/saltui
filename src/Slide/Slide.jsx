@@ -6,7 +6,7 @@
 * All rights reserved.
 */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import SlideNav from './SlideNav';
@@ -642,22 +642,22 @@ class Slide extends React.Component {
 }
 
 Slide.propTypes = {
-  className: React.PropTypes.string,
-  height: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string,
+  className: PropTypes.string,
+  height: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
   ]),
-  active: React.PropTypes.number,
-  auto: React.PropTypes.bool,
-  loop: React.PropTypes.bool,
-  showNav: React.PropTypes.bool,
-  onMount: React.PropTypes.func,
-  onSlideEnd: React.PropTypes.func,
-  onSlideClick: React.PropTypes.func,
-  autoSlideTime: React.PropTypes.number,
-  showTitle: React.PropTypes.bool,
-  children: React.PropTypes.object,
-  displayMode: React.PropTypes.oneOf(['normal', 'card']),
+  active: PropTypes.number,
+  auto: PropTypes.bool,
+  loop: PropTypes.bool,
+  showNav: PropTypes.bool,
+  onMount: PropTypes.func,
+  onSlideEnd: PropTypes.func,
+  onSlideClick: PropTypes.func,
+  autoSlideTime: PropTypes.number,
+  showTitle: PropTypes.bool,
+  children: PropTypes.node,
+  displayMode: PropTypes.oneOf(['normal', 'card']),
 };
 
 Slide.defaultProps = {

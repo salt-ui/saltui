@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from 'salt-icon';
 import Context from '../Context';
@@ -283,19 +283,19 @@ CheckboxField.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 CheckboxField.propTypes = {
-  className: React.PropTypes.string,
-  mode: React.PropTypes.string,
-  readOnly: React.PropTypes.bool,
-  label: React.PropTypes.string,
-  titleBreakStr: React.PropTypes.string,
-  data: React.PropTypes.array,
-  onChange: React.PropTypes.func,
-  placeholder: React.PropTypes.string,
-  maskCloseable: React.PropTypes.bool,
-  groupListFlag: React.PropTypes.bool,
-  groupListArgument: React.PropTypes.object,
-  required: React.PropTypes.bool,
-  iconPosition: React.PropTypes.string,
+  className: PropTypes.string,
+  mode: PropTypes.string,
+  readOnly: PropTypes.bool,
+  label: PropTypes.string,
+  titleBreakStr: PropTypes.string,
+  data: PropTypes.array,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  maskCloseable: PropTypes.bool,
+  groupListFlag: PropTypes.bool,
+  groupListArgument: PropTypes.object,
+  required: PropTypes.bool,
+  iconPosition: PropTypes.string,
 };
 
 CheckboxField.displayName = 'CheckboxField';

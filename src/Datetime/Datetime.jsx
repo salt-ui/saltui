@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
 import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
@@ -452,20 +452,20 @@ Datetime.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Datetime.propTypes = {
-  className: React.PropTypes.string,
-  title: React.PropTypes.string.isRequired,
-  locale: React.PropTypes.string,
-  columns: React.PropTypes.array,
-  value: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string,
-    React.PropTypes.object,
+  className: PropTypes.string,
+  title: PropTypes.string,
+  locale: PropTypes.string,
+  columns: PropTypes.array,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.object,
   ]),
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  onConfirm: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  slotRef: React.PropTypes.func,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  onConfirm: PropTypes.func,
+  onCancel: PropTypes.func,
+  slotRef: PropTypes.func,
 };
 
 Datetime.displayName = 'Datetime';

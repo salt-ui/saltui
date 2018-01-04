@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Slide from '../Slide';
 import Context from '../Context';
@@ -145,10 +146,10 @@ Gallery.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Gallery.propTypes = {
-    className: React.PropTypes.string,
-    images: React.PropTypes.array,
-    lazyLoad: React.PropTypes.bool,
-    onGalleryClick: React.PropTypes.func
+    className: PropTypes.string,
+    images: PropTypes.array,
+    lazyLoad: PropTypes.bool,
+    onGalleryClick: PropTypes.func
 }
 
 Gallery.displayName = 'Gallery';
