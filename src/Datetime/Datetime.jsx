@@ -52,30 +52,21 @@ class Datetime extends React.Component {
     if (props.columns.indexOf('T') !== -1 && props.columns.indexOf('H') !== -1) {
       throw new Error('Please refer to tingle-document.');
     }
-    const me = this;
-    this.init(props, me);
+    this.init(props);
   }
   // 外部变更选中值
   componentWillReceiveProps(nextProps) {
-    const { setValue } = this;
+    const { setValue, state } = this;
+    if (!nextProps) { return; }
     const { value } = nextProps;
-    if (value) {
-      setValue(value, nextProps);
+    if (String(state.value) !== String(value)) {
+      setValue(nextProps);
     }
   }
-  setValue = (newValue, nextProps) => {
+  setValue = (nextProps) => {
     const newProps = nextProps || this.props;
-    let { data, value } = this.getOptions({ value: newValue }, newProps);
-    const { columns } = newProps;
-    if (newProps.disabledDate) {
-      data = filterTime({ data, disabledDate: newProps.disabledDate, value, columns });
-    }
-    this.state = {
-      data,
-      value,
-    };
+    this.init(newProps);
   }
-
   // 获取默认最小值
   getDefaultMinDate = (value) => {
     const date = new Date(value);
@@ -205,42 +196,55 @@ class Datetime extends React.Component {
     let disabledArr = disabledDate();
     const newData = this.getOptions({ value: date }, props);
     const YEARDATE = data[0];
+    const MONTHDATE = data[1];
     const NEWDATA = newData.data;
-    if (columns[0] === 'Y') {
-      NEWDATA[0] = YEARDATE;
-    }
     if (columnsStyle === 'D') {
       props.onChange(date, column);
       return;
     }
     const updateObj = {
-      value,
       data: NEWDATA,
     };
-    if (isArray(disabledArr) && disabledArr.length) {
+    if (value.every(item => !!item)) {
+      updateObj.value = value;
+    }
+    if (isArray(disabledArr) && disabledArr.length && columns[0] === 'Y') {
       disabledArr = parseDisabledArr(disabledArr);
-      const AllData = NEWDATA;
-      if (columnsStyle === 'Y') { // 计算月份
-        const year = value[column].value;
+      let AllData = NEWDATA;
+      const year = value[0].value;
+      const month = value[1].value;
+      AllData[0] = YEARDATE;
+      if (columnsStyle === 'Y') { // 当前年不变 计算月份 日
         const monthArr = getMonthsByYear({ minDate, maxDate, year });
-        AllData[column + 1] = filterMonth(monthArr, year, disabledArr);
-      }
-      if (columnsStyle === 'M') { // 计算日
-        const month = value[column].value;
-        const year = value[0].value;
         const dayArr = getDayByMonth({
           minDate, maxDate, year, month,
         });
+        AllData[column + 1] = filterMonth(monthArr, year, disabledArr);
+        AllData[column + 2] = filterDay(dayArr, year, month, disabledArr);
+      }
+      if (columnsStyle === 'M') { // 当前年月不变 计算日
+        const dayArr = getDayByMonth({
+          minDate, maxDate, year, month,
+        });
+        AllData[column] = MONTHDATE; // 当前月保持不变
         AllData[column + 1] = filterDay(dayArr, year, month, disabledArr);
       }
-      updateObj.data = AllData.length ? AllData : NEWDATA;
+      if (AllData.length) {
+        AllData = AllData.map((item, index) => {
+          if (item && !item.length) {
+            return data[index];
+          }
+          return item;
+        });
+      }
+      updateObj.data = AllData.length >= 3 ? AllData : NEWDATA;
     }
     this.setState(updateObj);
     props.onChange(date, column);
   };
   // 初始化日历面板
-  init = (props, me) => {
-    this.setOptions(props, me);
+  init = (props) => {
+    this.setOptions(props);
   };
   render() {
     const { props, state } = this;

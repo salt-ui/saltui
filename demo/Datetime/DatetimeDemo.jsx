@@ -56,17 +56,21 @@ class DatetimeDemo extends React.Component {
           columns={Datetime.YMD}
           disabledDate={() => {
             return [
-              // {
-              //   start: new Date(2017, 5, 1),
-              //   end: new Date(2017, 12, 31),
-              // },
-              // {
-              //   end: new Date(2016, 1, 21),
-              // },
-              // {
-              //   start: new Date( 2016, 10, 1), // 2023- 11 - 1
-              //   end: new Date( 2016, 10, 1),
-              // },
+              {
+                start: new Date(2018, 5, 1),
+                end: new Date(2019, 12, 31),
+              },
+              {
+                start: new Date(2021, 5, 1),
+                end: new Date(2019, 12, 31),
+              },
+              {
+                end: new Date(2016, 1, 21),
+              },
+              new Date( 2016, 10, 1),
+              {
+                start: new Date(2025, 1, 21),
+              },
             ];
           }}
           onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
@@ -90,12 +94,17 @@ class DatetimeDemo extends React.Component {
               },
               {
                 start: new Date(2017, 0, 1),
-                end: new Date(2017, 12, 31),
+                end: new Date(2017, 4, 31),
               },
               {
-                end: new Date(2013, 11, 1),
-                start: new Date(2013, 11, 1),
+                start: new Date(2017, 5, 1),
+                end: new Date(2017, 6, 31),
               },
+              {
+                start: new Date(2017, 7, 2),
+                end: new Date(2017, 7, 30),
+              },
+              new Date(2013, 11, 1),
             ];
           }}
           onConfirm={(value) => { this.onConfirm(value, 'value2'); }}

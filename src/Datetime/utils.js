@@ -49,21 +49,21 @@ function getNowIfDateInvalid(dataObj) {
   return date;
 }
 
-// 解析格式化value
+/**
+ * 解析格式化value
+ * @param {*} value
+ */
 function parseValue(value) {
   let date;
   let timeType;
-
   if (isObject(value)) {
-    date = value.value ? new Date(value.value) : new Date();
+    date = value.value ? new Date(value.value) : new Date(value);
     timeType = ({ AM: 0, PM: 1 })[value.timeType || 'AM'];
   } else {
-    date = !value || new Date(value) == 'Invalid Date' ? new Date() : new Date(parseInt(value, 10));
+    date = !value || new Date(value) === 'Invalid Date' ? new Date() : new Date(value);
     timeType = date.getHours() >= 12 ? 1 : 0;
   }
-
   date = getNowIfDateInvalid(date);
-
   return [
     date.getFullYear(),
     date.getMonth(),
@@ -85,8 +85,13 @@ function numToDate(num) {
   const D = str.substring(6, 8);
   return `${Y}-${M}-${D}`;
 }
-// 根据日期获取一周中的一天
-// sure 可以控制是否添加周"几"
+
+/**
+ * sure 可以控制是否添加周"几" 根据日期获取一周中的一天
+ * @param {*} days
+ * @param {*} props
+ * @param {*} sure
+ */
 function addDayOfWeek(days, props, sure = true) {
   if (isArray(days)) {
     days.forEach((day) => {
@@ -124,15 +129,22 @@ function formatFromProps(arr, props) {
   }
 
   return displayList;
-};
-
+}
+/**
+ * 解析字符串时间 20180101
+ * @param { String } currentValue
+ */
 function getDateArr(currentValue) {
   const arr = numToDate(currentValue).split('-');
   arr[1] = parseInt(arr[1]) - 1;
   return arr;
 }
 
-
+/**
+ * 根据年 月计算 天数
+ * @param { Number } year
+ * @param { Number } month
+ */
 function getMonthDays(year, month) {
   let NUM = 30;
   if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
@@ -143,7 +155,12 @@ function getMonthDays(year, month) {
   }
   return NUM;
 }
-
+/**
+ * 计算时间范围类的年份
+ * @param { String | Number} minDate
+ * @param { String | Number } maxDate
+ * @param { Number } year
+ */
 function getMonthsByYear({ minDate, maxDate, year }) {
   const max = new Date(maxDate);
   const min = new Date(minDate);
@@ -174,8 +191,14 @@ function getMonthsByYear({ minDate, maxDate, year }) {
   }
   return arr;
 }
-// 根据年月 最大 最小日期计算当月天数
-function getDayByMonth({ minDate, maxDate, year, month }) {
+/**
+ * 根据年月 最大 最小日期计算当月天数
+ * @param minDate { Number|String } 最小日期
+ * @param maxDate { Number|String } 最大日期
+ * @param year { Number } 当前年
+ * @param month { Number } 当前月
+ * */
+function getDayByMonth({minDate, maxDate, year, month }) {
   const max = new Date(maxDate);
   const min = new Date(minDate);
   const maxYear = max.getFullYear();
@@ -207,8 +230,11 @@ function getDayByMonth({ minDate, maxDate, year, month }) {
   }
   return arr;
 }
-
-
+/**
+ * 解析当前日期
+ * @param { Array } columns  ["Y","M","D"]
+ * @param { Array } value  [{value: '2018', text: '2018年'}, {value: 0,text: '01月'}]
+ */
 function parseDate({ columns, value }) {
   const dateStr = {
     YMD: [],
@@ -229,7 +255,12 @@ function parseDate({ columns, value }) {
     }
     dateStr.YMD.push(value[index].value);
   });
-  return new Date(...dateStr.YMD, ...dateStr.Hm);
+  dateStr.YMD = dateStr.YMD.map(item => parseInt(item));
+  dateStr.YMD[1] = dateStr.YMD[1] ? dateStr.YMD[1]- 1 : dateStr.YMD[1];
+  dateStr.Hm = dateStr.Hm.map(item => parseInt(item));
+  const DateArr = [...dateStr.YMD, ...dateStr.Hm];
+  const currentValue = new Date(...DateArr);
+  return currentValue;
 }
 function getDaysByYear(item) {
   const days = [];
@@ -251,7 +282,12 @@ function makeRange(start, end, step) {
   }
   return arr;
 }
-// 求有限时间范围内的 disabledDate时间区间
+/**
+ * 求有限时间范围内的 disabledDate时间区间
+ * @param { Array } disabledArr
+ * @param { String | Number } minDateTime
+ * @param { String | Number } maxDateTime
+ */
 function getDateRangeArr({ disabledArr, minDateTime, maxDateTime }) {
   const {
     minTime,
@@ -272,6 +308,7 @@ function getDateRangeArr({ disabledArr, minDateTime, maxDateTime }) {
   for (let i = 0; i < startEnd.length; i++) { // 计算中间区间
     const { start, end } = startEnd[i];
     if (end < start) {
+      console.warn(`start: ${new Date(start)} end: ${new Date(end)} is invalid`);
       continue;
     }
     if (start >= minDateTime && end <= maxDateTime) { // start end 都在 取值范围内
@@ -310,7 +347,12 @@ function getDateRangeArr({ disabledArr, minDateTime, maxDateTime }) {
   }
   return dateRangeArr;
 }
-
+/**
+ * 过滤年份
+ * @param { Array } arr
+ * @param { Array } disabledArr
+ * @param { String } minDate
+ */
 function filterYear(arr, { disabledArr, minDate, maxDate }) {
   const minDateTime = new Date(minDate).getTime();
   const maxDateTime = new Date(maxDate).getTime();
@@ -352,7 +394,12 @@ function filterYear(arr, { disabledArr, minDate, maxDate }) {
     return yearArr.indexOf(year) === -1;
   });
 }
-
+/**
+ * 过滤月份
+ * @param { Array } arr
+ * @param { Number } year
+ * @param { Array } disabledArr
+ */
 function filterMonth(arr, year, disabledArr) {
   const minDateTime = new Date(year, 0, 1).getTime();
   const maxDateTime = new Date(year, 11, 31).getTime();
@@ -379,11 +426,11 @@ function filterMonth(arr, year, disabledArr) {
       }
     }
     if (dayEnd === 1) {
-      for (let i = monthStart + 1 ; i <= monthEnd; i++) {
+      for (let i = monthStart + 1; i <= monthEnd; i++) {
         monthArr.push(i);
       }
     } else {
-      for (let i = monthStart + 1 ; i < monthEnd; i++) {
+      for (let i = monthStart + 1; i < monthEnd; i++) {
         monthArr.push(i);
       }
     }
@@ -393,7 +440,13 @@ function filterMonth(arr, year, disabledArr) {
     return monthArr.indexOf(month) === -1;
   });
 }
-
+/**
+ * 过滤日
+ * @param { Array } arr
+ * @param { Number } year
+ * @param { Number } month
+ * @param { Array } disabledArr
+ */
 function filterDay(arr, year, month, disabledArr) {
   const minDateTime = new Date(year, month, 1).getTime();
   const maxDateTime = new Date(year, month + 1, 0).getTime();
@@ -412,7 +465,10 @@ function filterDay(arr, year, month, disabledArr) {
     return dayArr.indexOf(day) === -1;
   });
 }
-// 求 时间禁止区间并集
+/**
+ * 求 时间禁止区间并集
+ * @param { Array } arr
+ */
 function parseDisabledArr(arr) {
   let min;
   let max;
@@ -457,40 +513,20 @@ function parseDisabledArr(arr) {
   startEnd = startEnd.sort((a, b) => {
     return a.start - b.start;
   });
-  let newStartEnd = [];
-  if (startEnd.length) {
-    let newItem = startEnd[0];
-    for (let i = 1; i < startEnd.length; i++) {
-      if (newItem.end >= startEnd[i].start) {
-        newItem.end = startEnd[i].end;
-        if (i === startEnd.length - 1) {
-          newStartEnd.push(newItem);
-        }
-      } else {
-        newStartEnd.push(newItem);
-        newItem = startEnd[i];
-      }
-    }
-  }
-  newStartEnd = newStartEnd.filter((item) => {
-    const { start, end } = item;
-    if (min >= start) {
-      min = min <= end ? end : min;
-      return false;
-    }
-    if (max <= end) {
-      max = max >= start ? start : max;
-      return false;
-    }
-    return true;
-  });
   return {
     minTime: min,
     maxTime: max,
     startEnd,
   };
 }
-
+/**
+ * 初始化过滤
+ * @param { Array } data
+ * @param { Array } value
+ * @param { fun } disabledDate
+ * @param { String|NUmber } minDate
+ * @param { String|NUmber } maxDate
+ */
 function filterTime({ data, value, disabledDate, minDate, maxDate }) {
   let disabledArr = disabledDate();
   if (!disabledArr) {
