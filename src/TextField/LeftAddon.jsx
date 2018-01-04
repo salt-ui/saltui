@@ -12,10 +12,12 @@ const LeftAddon = props => (
   </div>
 );
 
-LeftAddon.defaultProps = {};
+LeftAddon.defaultProps = {
+  children: [],
+};
 LeftAddon.propTypes = {
-  focus: React.PropTypes.bool,
-  hover: React.PropTypes.bool,
+  // focus: React.PropTypes.bool,
+  // hover: React.PropTypes.bool,
   children: React.PropTypes.any,
 };
 LeftAddon.displayName = 'LeftAddon';

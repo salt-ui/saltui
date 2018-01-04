@@ -11,10 +11,9 @@ import Context from '../Context';
 import Field from '../Field';
 import calculateHeight from './calculateHeight';
 
-const prefixClass = Context.prefixClass;
+const { prefixClass } = Context;
 
 class TextareaField extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +32,6 @@ class TextareaField extends React.Component {
     }
   }
 
-
   getAddons() {
     const addons = {};
     React.Children.forEach(this.props.children, (child) => {
@@ -51,9 +49,10 @@ class TextareaField extends React.Component {
   }
 
   resize() {
-    this.setState(
-      calculateHeight(this.textarea, this.props.minRows || this.props.rows, this.props.maxRows)
-    );
+    this.setState(calculateHeight(
+      this.textarea,
+      this.props.minRows || this.props.rows, this.props.maxRows,
+    ));
   }
 
   handleChange(e) {
@@ -96,16 +95,24 @@ class TextareaField extends React.Component {
         })}
       >
         <textarea
-          ref={(c) => { this.textarea = c; }}
+          ref={(c) => {
+            this.textarea = c;
+          }}
           className={prefixClass('textarea-field-content')}
           style={style}
           placeholder={placeholder}
           value={t.props.value}
           readOnly={readOnly}
           rows={t.state.rows}
-          onChange={(e) => { t.handleChange(e); }}
-          onFocus={(e) => { t.handleFocus(e); }}
-          onBlur={(e) => { t.handleBlur(e); }}
+          onChange={(e) => {
+            t.handleChange(e);
+          }}
+          onFocus={(e) => {
+            t.handleFocus(e);
+          }}
+          onBlur={(e) => {
+            t.handleBlur(e);
+          }}
         />
         {t.renderCount()}
       </Field>
@@ -123,6 +130,7 @@ TextareaField.defaultProps = {
   maxRows: 10,
   lineHeight: '1.3',
   value: '',
+  children: [],
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

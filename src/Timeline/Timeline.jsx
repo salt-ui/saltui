@@ -6,6 +6,10 @@
  * All rights reserved.
  */
 import React from 'react';
+<<<<<<< HEAD
+
+=======
+>>>>>>> upstream/master
 import classnames from 'classnames';
 import Context from '../Context';
 import Item from './Item';
@@ -52,6 +56,7 @@ class Timeline extends React.Component {
 }
 
 Timeline.defaultProps = {
+  className: '',
 };
 
 Timeline.propTypes = {
