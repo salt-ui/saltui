@@ -443,6 +443,14 @@ function parseDisabledArr(arr) {
           max = max <= startTime ? startTime : max;
         }
       }
+    } else {
+      const dateTime = new Date(currentValue).getTime();
+      if (dateTime) {
+        startEnd.push({
+          start: dateTime,
+          end: dateTime,
+        });
+      }
     }
   }
   // 将点连成线
