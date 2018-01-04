@@ -462,49 +462,87 @@ function filterDay(arr, year, month, disabledArr) {
  */
 function parseDisabledArr(arr) {
   let min;
-  let max;
+  	let max;
+  arr = arr.map((item) => {
+		let { start, end } = item;
+		if (!start && !end) {
+			const dateTime = new Date(item).getTime();
+			if (dateTime) {
+				return {
+					start: dateTime,
+					end: dateTime
+				}
+			}
+				return false;
+
+		};
+
+		return {
+			start: new Date(start).getTime(),
+			end: new Date(end).getTime()
+		};
+	});
+  console.log(arr);
+  let newArr = arr.filter(item => !!item);
+  // 求时间并集并求出 最大值和最小值
+  newArr = newArr.filter((item) => {
+    const { start, end } = item;
+    if (start && !end) { // 求max
+      if (!max) {
+        max = start;
+      } else {
+        max = max > start ? start : max;
+      }
+      return false;
+    }
+    if (!start && end) {
+      if (!min) {
+        min = end;
+      } else {
+        min = min < end ? end : min;
+      }
+      return false;
+    }
+    if (end && start) {
+      if (start > end) {
+        console.warn(` Datetime diabeldDate ：end is greater than start；start: ${new Date(start)} end: ${new Date(end)} is invalid`);
+        return false;
+      }
+      if (min && min >= start) {
+        min = min < end ? end : min;
+        return false;
+      }
+      if (max && max <= end) {
+        max = max > start ? start : max;
+        return false;
+      }
+      return true;
+    }
+    return true;
+  });
   let startEnd = [];
-  for (let i = 0; i < arr.length; i++) {
-    const currentValue = arr[i];
-    if (currentValue.end || currentValue.start) {
-      const { start, end } = currentValue;
-      if (start && end) {
-        startEnd.push({
-          start: new Date(start).getTime(),
-          end: new Date(end).getTime(),
-        });
-      }
-      const endTime = new Date(end).getTime();
-      const startTime = new Date(start).getTime();
-      if (end && !start) { // 取小于区间
-        if (!min) {
-          min = endTime;
-        } else {
-          min = min >= endTime ? endTime : min;
+  // 时间排序
+  newArr = newArr.sort((a, b) => a.start - b.start);
+  if (newArr.length > 1) {
+    let newItem = newArr[0];
+    for (let i = 1; i < newArr.length; i++) {
+      const { start, end } = newArr[i];
+      if (newItem.end >= start) {
+        newItem.end = end;
+        if (i === newArr.length - 1) {
+          startEnd.push(newItem);
         }
-      }
-      if (!end && start) { // 取大于区间
-        if (!max) {
-          max = startTime;
-        } else {
-          max = max <= startTime ? startTime : max;
-        }
-      }
-    } else {
-      const dateTime = new Date(currentValue).getTime();
-      if (dateTime) {
-        startEnd.push({
-          start: dateTime,
-          end: dateTime,
-        });
+      } else {
+        startEnd.push(newItem);
+        newItem = newArr[i];
       }
     }
+  } else {
+    startEnd = newArr;
   }
-  // 将点连成线
-  startEnd = startEnd.sort((a, b) => a.start - b.start);
   return {
-    minTime: min,
     maxTime: max,
+    minTime: min,
     startEnd,
   };
 }
