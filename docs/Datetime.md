@@ -155,5 +155,5 @@ this.slot.show();
 必选：否  
 示例：
 ```
-<Datetime onChange={(curr, value, column) => {console.log(curr, value, column);}}} />
+<Datetime onChange={( value, column) => {console.log(value, column);}}} />
 ```

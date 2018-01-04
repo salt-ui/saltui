@@ -12,7 +12,8 @@ import React from 'react';
 import Context from '../Context';
 import Slot from '../Slot';
 import locale from './locale';
-import { makeRange,
+import {
+  makeRange,
   addZero,
   getDates,
   parseValue,
@@ -28,7 +29,13 @@ import { makeRange,
   YMDT,
   YMDHM,
   YMDWHM,
-  getDaysByYear } from './utils';
+  filterMonth,
+  filterDay,
+  getDayByMonth,
+  getDaysByYear,
+  getMonthsByYear,
+  parseDisabledArr,
+} from './utils';
 
 const columnsFlexMap = {
   YMD: [1.24, 1.1, 1.1],
@@ -53,21 +60,19 @@ class Datetime extends React.Component {
     const { setValue } = this;
     const { value } = nextProps;
     if (value) {
-      setValue(value, true, nextProps);
+      setValue(value, nextProps);
     }
   }
-  setValue = (value, confirm, nextProps) => {
-    const ret = this.getOptions({ value }, nextProps);
+  setValue = (newValue, nextProps) => {
     const newProps = nextProps || this.props;
-    let data = formatFromProps(this.formatText(ret.data), newProps);
-    const newValue = formatFromProps(this.formatText(ret.value), newProps);
+    let { data, value } = this.getOptions({ value: newValue }, newProps);
     const { columns } = newProps;
     if (newProps.disabledDate) {
-      data = filterTime({ data, disabledDate: newProps.disabledDate, newValue, columns });
+      data = filterTime({ data, disabledDate: newProps.disabledDate, value, columns });
     }
     this.state = {
       data,
-      value: newValue,
+      value,
     };
   }
 
@@ -126,7 +131,7 @@ class Datetime extends React.Component {
     };
   };
   getOptions = ({ value }, props) => {
-    let { minDate, maxDate, minuteStep} = props;
+    let { minDate, maxDate, minuteStep } = props;
     minDate = this.getDefaultMinDate(minDate);
     maxDate = this.getDefaultMaxDate(maxDate);
     const currentValue = parseValue(value);
@@ -144,16 +149,19 @@ class Datetime extends React.Component {
       datYear,
     ];
     const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
-    return ret;
+    const data = formatFromProps(this.formatText(ret.data), props);
+    const newValue = formatFromProps(this.formatText(ret.value), props);
+    return {
+      data,
+      value: newValue,
+    };
   }
   setOptions = (props) => {
-    const ret = this.getOptions({ value: props.value }, props);
-    let data = formatFromProps(this.formatText(ret.data), props);
-    const value = formatFromProps(this.formatText(ret.value), props);
-    const { columns } = props;
+    let { data, value } = this.getOptions({ value: props.value }, props);
+    const { columns, minDate, maxDate } = props;
     if (props.disabledDate) {
-      data = filterTime({ data, disabledDate: props.disabledDate, value, columns });
-    };
+      data = filterTime({ data, disabledDate: props.disabledDate, value, columns, minDate, maxDate });
+    }
     this.state = {
       data,
       value,
@@ -167,7 +175,6 @@ class Datetime extends React.Component {
   formatText = (arr, text) => {
     const formatArray = [];
     const localeCode = this.props.locale;
-
     for (let i = 0; i < arr.length; i += 1) {
       const el = arr[i];
       formatArray.push(isArray(el) ?
@@ -181,22 +188,54 @@ class Datetime extends React.Component {
     return formatArray;
   }
   handleCancel = () => {
-    this.props.onCancel && this.props.onCancel()
+    this.props.onCancel();
   };
   handleChange = (value, column) => {
     const { props } = this;
-    const { columns } = props;
-    const now = parseDate({ columns, value });
-    const options = this.getOptions({ value: now.getTime() }, props);
-    let data = formatFromProps(this.formatText(options.data), props);
-    if (props.disabledDate) {
-      data = filterTime({ data, disabledDate: props.disabledDate, value, columns });
+    const {
+      columns,
+      minDate,
+      maxDate,
+      disabledDate,
+    } = props;
+    const { data } = this.state;
+    const date = parseDate({ columns, value });
+    const columnsStyle = columns[column];
+    let disabledArr = disabledDate();
+    const newData = this.getOptions({ value: date }, props);
+    const YEARDATE = data[0];
+    const NEWDATA = newData.data;
+    if (column[0] === 'Y') {
+      NEWDATA[0] = YEARDATE;
     }
-    this.setState({
-      data,
+    const updateObj = {
       value,
-    });
-    props.onChange && props.onChange(now, value, column);
+      data: NEWDATA,
+    };
+    if (isArray(disabledArr) && disabledArr.length) {
+      disabledArr = parseDisabledArr(disabledArr);
+      let AllData;
+      if (columnsStyle === 'Y') { // 计算月份
+        AllData = data;
+        const year = value[column].value;
+        const monthArr = getMonthsByYear({ minDate, maxDate, year });
+        AllData[column + 1] = filterMonth(monthArr, year, disabledArr);
+      }
+      if (columnsStyle === 'M') { // 计算日
+        AllData = data;
+        const month = value[column].value;
+        const year = value[0].value;
+        const dayArr = getDayByMonth({
+          minDate, maxDate, year, month,
+        });
+        AllData[column + 1] = filterDay(dayArr, year, month, disabledArr);
+      }
+      if (AllData) {
+        updateObj.data = AllData;
+      }
+    }
+    this.setState(updateObj);
+    props.onChange(date, column);
   };
   // 初始化日历面板
   init = (props, me) => {
@@ -228,10 +267,12 @@ Datetime.defaultProps = {
   columns: YMD,
   onConfirm: _ => _,
   onCancel: _ => _,
+  onChange: _ => _,
   slotRef: _ => _,
   minuteStep: 1,
   minDate: 946656000000,
   maxDate: 1924876800000,
+  disabledDate: () => [],
 };
 
 Datetime.propTypes = {
@@ -248,9 +289,14 @@ Datetime.propTypes = {
   cancelText: React.PropTypes.string,
   onConfirm: React.PropTypes.func,
   onCancel: React.PropTypes.func,
+  onChange: React.PropTypes.func,
   slotRef: React.PropTypes.func,
   minuteStep: React.PropTypes.number,
   maxDate: React.PropTypes.oneOfType([
+    React.PropTypes.number,
+    React.PropTypes.string,
+  ]),
+  minDate: React.PropTypes.oneOfType([
     React.PropTypes.number,
     React.PropTypes.string,
   ]),

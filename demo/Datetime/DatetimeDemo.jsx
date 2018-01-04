@@ -54,11 +54,19 @@ class DatetimeDemo extends React.Component {
           title="日期选择"
           value={this.state.value1}
           columns={Datetime.YMD}
-          disabledDate={(curr) => {
-            return curr.getTime() > new Date().getTime();
+          disabledDate={() => {
+            return [
+              {
+                start: new Date(2017, 5, 1),
+                end: new Date(2017, 12, 31),
+              },
+              {
+                end: new Date(2016, 1, 21),
+              },
+            ];
           }}
           onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
-          onChange={(curr, value, column) => {console.log(curr, value, column);}}
+          onChange={(value, column) => {console.log(value, column);}}
           onCancel={() => { this.onCancel('value1'); }}
         />
         <Button onClick={() => {
@@ -71,6 +79,21 @@ class DatetimeDemo extends React.Component {
           title="日期/上下午选择"
           value={t.state.value2}
           columns={Datetime.YMDT}
+          disabledDate={() => {
+            return [
+              {
+                start: new Date( 2023, 10, 1), // 2023- 11 - 1
+              },
+              {
+                start: new Date(2017, 0, 1),
+                end: new Date(2017, 12, 31),
+              },
+              {
+                end: new Date(2013, 11, 1 ),
+                start: new Date(2013, 11, 31)
+              },
+            ];
+          }}
           onConfirm={(value) => { this.onConfirm(value, 'value2'); }}
           onCancel={() => { this.onCancel('value2'); }}
         />

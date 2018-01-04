@@ -132,71 +132,82 @@ function getDateArr(currentValue) {
   return arr;
 }
 
-function getMinMaxDate({value, currentValue, timeStyle}) {
-  switch(timeStyle) {
-    case 'Y':
-      return {
-        minDate: new Date(...[currentValue, 0, 1, 0, 0, 0]),
-        maxDate: new Date(...[currentValue, 11, 31, 23, 59, 59]),
-      };
-    case 'M':
-      return {
-        minDate: new Date(...[value[0].value, currentValue, 1, 0, 0, 0]),
-        maxDate: new Date(...[value[0].value, currentValue + 1, 1, 0, 0, 0]),
-      };
-    case 'D':
-      return {
-        minDate: new Date(...[value[0].value, value[1].value, currentValue, 0, 0, 0]),
-        maxDate: new Date(...[value[0].value, value[1].value, currentValue, 23, 59, 59]),
-      };
-    case 'T':
-      const min = currentValue === 0 ? [ 0, 0, 0] : [12,0,0];
-      const max = currentValue === 0 ? [12, 0, 0] : [23,59,59];
-      const commont = [value[0].value, value[1].value, value[2].value];
-      return {
-        minDate: new Date(...commont, ...min),
-        maxDate: new Date(...commont, ...max),
-      };
-    case 'YMD':
-    case 'YMDW':
-      return {
-        minDate: new Date( ...getDateArr(currentValue), ...[0, 0, 0]),
-        maxDate: new Date( ...getDateArr(currentValue), ...[23, 59, 59]),
-      };
-    case 'H':
-      return {
-        minDate: new Date(...getDateArr(value[0].value), ...[currentValue, 0, 0]),
-        maxDate: new Date(...getDateArr(value[0].value), ...[currentValue, 59, 59]),
-      };
-    case 'm':
-      return {
-        minDate: new Date(...getDateArr(value[0].value), ...[value[1].value, currentValue, 0]),
-        maxDate: new Date(...getDateArr(value[0].value), ...[value[1].value, currentValue, 59]),
-      };
-    default:
-      return {};
+
+function getMonthDays(year, month) {
+  let NUM = 30;
+  if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
+    NUM = 31;
   }
+  if (month === 2) {
+    NUM = isLeapYear(year) ? 29 : 28;
+  }
+  return NUM;
 }
 
-function filterTime({ data, value, columns, disabledDate }) {
-  if (!value || !data.length) {
-    return;
-  }
-  const arr = [];
-  columns.forEach((item, index) => {
-    arr[index] = data[index].filter((currentValue) => {
-      const nowDate = getMinMaxDate({ value, currentValue: currentValue.value, timeStyle: item });
-      if (!(!disabledDate(nowDate.minDate) && !disabledDate(nowDate.maxDate))) {
-        return true;
-      };
-      return false;
-    });
-    if (!arr[index].length) {
-      arr[index] = data[index];
-    }
+function getMonthsByYear({ minDate, maxDate, year }) {
+  const max = new Date(maxDate);
+  const min = new Date(minDate);
+  const maxYear = max.getFullYear();
+  const minYear = min.getFullYear();
+  let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item, index) => {
+    return {
+      text: `${index + 1}月`,
+      value: index,
+    };
   });
+  if (year > minYear && year < maxYear) {
+    return arr;
+  }
+  const maxTime = max.getTime();
+  const minTime = min.getTime();
+  if (year === maxYear) {
+    arr = arr.filter((item) => {
+      const date = new Date(year, item.value, 1);
+      return date.getTime() < maxTime;
+    });
+  }
+  if (year === minYear) {
+    arr = arr.filter((item) => {
+      const date = new Date(year, item.value, 1);
+      return date.getTime() > minTime;
+    });
+  }
   return arr;
-};
+}
+// 根据年月 最大 最小日期计算当月天数
+function getDayByMonth({ minDate, maxDate, year, month }) {
+  const max = new Date(maxDate);
+  const min = new Date(minDate);
+  const maxYear = max.getFullYear();
+  const minYear = min.getFullYear();
+  const NUM = getMonthDays(year, month + 1);
+  let arr = [];
+  for (let i = 1; i <= NUM; i++) {
+    arr.push({
+      text: `${i}日`,
+      value: i,
+    });
+  }
+  if (year > minYear && year < maxYear) {
+    return arr;
+  }
+  const maxTime = max.getTime();
+  const minTime = min.getTime();
+  if (year === minYear) {
+    arr = arr.filter((item) => {
+      const date = new Date(year, month, item.value);
+      return date.getTime() > minTime;
+    });
+  }
+  if (year === maxYear) {
+    arr = arr.filter((item) => {
+      const date = new Date(year, month, item.value);
+      return date.getTime() < maxTime;
+    });
+  }
+  return arr;
+}
+
 
 function parseDate({ columns, value }) {
   const dateStr = {
@@ -240,6 +251,249 @@ function makeRange(start, end, step) {
   }
   return arr;
 }
+// 求有限时间范围内的 disabledDate时间区间
+function getDateRangeArr({ disabledArr, minDateTime, maxDateTime }) {
+  const {
+    minTime,
+    maxTime,
+    startEnd,
+  } = disabledArr;
+  const dateRangeArr = [];
+  // 计算时间区间
+  if (minTime) { // 计算小于区间
+    if (minDateTime <= minTime) {
+      dateRangeArr.push({
+        start: minDateTime,
+        end: minTime,
+      });
+    }
+  }
+  /* eslint no-continue:0 */
+  for (let i = 0; i < startEnd.length; i++) { // 计算中间区间
+    const { start, end } = startEnd[i];
+    if (start >= maxDateTime || end <= minDateTime) {
+      continue;
+    }
+    if (start <= minDateTime && end >= minDateTime) {
+      dateRangeArr.push({
+        start: minDateTime,
+        end,
+      });
+      continue;
+    }
+    if (start <= maxDateTime && end >= maxDateTime) {
+      dateRangeArr.push({
+        start,
+        end: maxDateTime,
+      });
+      continue;
+    }
+    if (start >= minDateTime && end <= maxDateTime) {
+      dateRangeArr.push(startEnd[i]);
+    }
+  }
+  // 计算中间时间区间
+  if (maxTime) {
+    if (maxDateTime > maxTime) {
+      dateRangeArr.push({
+        start: maxTime,
+        end: maxDateTime,
+      });
+    }
+  }
+  return dateRangeArr;
+}
+
+function filterYear(arr, { disabledArr, minDate, maxDate }) {
+  const minDateTime = new Date(minDate).getTime();
+  const maxDateTime = new Date(maxDate).getTime();
+  const yearRangeArr = getDateRangeArr({ disabledArr, minDateTime, maxDateTime });
+  const yearArr = [];
+  yearRangeArr.forEach((item) => {
+    let { start, end } = item;
+    start = new Date(start);
+    end = new Date(end);
+    const yearStart = start.getFullYear();
+    const monthStart = start.getMonth();
+    const dayStart = start.getDate();
+    const yearEnd = end.getFullYear();
+    const monthEnd = end.getMonth();
+    const dayEnd = new Date(end.getTime() + 86400000).getDate();
+    if (monthStart === 0 && dayStart === 1) { // 判断临界时 是否去掉整年
+      if (monthEnd === 11 && dayEnd === 1) {
+        for (let i = yearStart; i <= yearEnd; i++) {
+          yearArr.push(i);
+        }
+      } else {
+        for (let i = yearStart; i < yearEnd; i++) {
+          yearArr.push(i);
+        }
+      }
+    }
+    if (monthEnd === 11 && dayEnd === 1) {
+      for (let i = yearStart + 1; i <= yearEnd; i++) {
+        yearArr.push(i);
+      }
+    } else {
+      for (let i = yearStart + 1; i < yearEnd; i++) {
+        yearArr.push(i);
+      }
+    }
+  });
+  return arr.filter((item) => {
+    const year = item.value;
+    return yearArr.indexOf(year) === -1;
+  });
+}
+
+function filterMonth(arr, year, disabledArr) {
+  const minDateTime = new Date(year, 0, 1).getTime();
+  const maxDateTime = new Date(year, 11, 31).getTime();
+  const monthRangeArr = getDateRangeArr({ disabledArr, minDateTime, maxDateTime });
+  const monthArr = [];
+  monthRangeArr.forEach((item) => {
+    let { start, end } = item;
+    start = new Date(start);
+    end = new Date(end);
+
+    const monthStart = start.getMonth();
+    const monthEnd = end.getMonth();
+    const dayStart = start.getDate();
+    const dayEnd = new Date(end.getTime() + 86400000).getDate();
+    if (dayStart === 1) {
+      if (dayEnd === 1) {
+        for (let i = monthStart; i <= monthEnd; i++) {
+          monthArr.push(i);
+        }
+      } else {
+        for (let i = monthStart; i < monthEnd; i++) {
+          monthArr.push(i);
+        }
+      }
+    }
+    if (dayEnd === 1) {
+      for (let i = monthStart + 1 ; i <= monthEnd; i++) {
+        monthArr.push(i);
+      }
+    } else {
+      for (let i = monthStart + 1 ; i < monthEnd; i++) {
+        monthArr.push(i);
+      }
+    }
+  });
+  return arr.filter((item) => {
+    const month = item.value;
+    return monthArr.indexOf(month) === -1;
+  });
+}
+
+function filterDay(arr, year, month, disabledArr) {
+  const minDateTime = new Date(year, month, 1).getTime();
+  const maxDateTime = new Date(year, month + 1, 0).getTime();
+  const dayRangeArr = getDateRangeArr({ disabledArr, minDateTime, maxDateTime });
+  const dayArr = [];
+  dayRangeArr.forEach((item) => {
+    let { start, end } = item;
+    start = new Date(start).getDate();
+    end = new Date(end).getDate();
+    for (let i = start; i <= end; i++) {
+      dayArr.push(i);
+    }
+  });
+  return arr.filter((item) => {
+    const day = item.value;
+    return dayArr.indexOf(day) === -1;
+  });
+}
+// 求 时间禁止区间并集
+function parseDisabledArr(arr) {
+  let min;
+  let max;
+  let startEnd = [];
+  for (let i = 0; i < arr.length; i++) {
+    const currentValue = arr[i];
+    if (currentValue.end || currentValue.start) {
+      const { start, end } = currentValue;
+      if (start && end) {
+        startEnd.push({
+          start: new Date(start).getTime(),
+          end: new Date(end).getTime(),
+        });
+      }
+      const endTime = new Date(end).getTime();
+      const startTime = new Date(start).getTime();
+      if (end && !start) { // 取小于区间
+        if (!min) {
+          min = endTime;
+        } else {
+          min = min >= endTime ? endTime : min;
+        }
+      }
+      if (!end && start) { // 取大于区间
+        if (!max) {
+          max = startTime;
+        } else {
+          max = max <= startTime ? startTime : max;
+        }
+      }
+    }
+  }
+  // 将点连成线
+  startEnd = startEnd.sort((a, b) => {
+    return a.start - b.start;
+  });
+  let newStartEnd = [];
+  if (startEnd.length) {
+    let newItem = startEnd[0];
+    for (let i = 1; i < startEnd.length; i++) {
+      if (newItem.end >= startEnd[i].start) {
+        newItem.end = startEnd[i].end;
+        if (i === startEnd.length - 1) {
+          newStartEnd.push(newItem);
+        }
+      } else {
+        newStartEnd.push(newItem);
+        newItem = startEnd[i];
+      }
+    }
+  }
+  newStartEnd = newStartEnd.filter((item) => {
+    const { start, end } = item;
+    if (min >= start) {
+      min = min <= end ? end : min;
+      return false;
+    }
+    if (max <= end) {
+      max = max >= start ? start : max;
+      return false;
+    }
+    return true;
+  });
+  return {
+    minTime: min,
+    maxTime: max,
+    startEnd,
+  };
+}
+
+function filterTime({ data, value, disabledDate, minDate, maxDate }) {
+  let disabledArr = disabledDate();
+  if (!disabledArr) {
+    return data;
+  }
+  if (!isArray(disabledArr)) {
+    disabledArr = [disabledArr];
+  }
+  disabledArr = parseDisabledArr(disabledArr);
+  if (disabledArr.startEnd || disabledArr.minTime || disabledArr.maxTime) {
+    data[0] = filterYear(data[0], { disabledArr, minDate, maxDate });
+    const monthArr = filterMonth(data[1], value[0].value, disabledArr);
+    data[1] = monthArr.length ? monthArr : data[1];
+    const dayArr = filterDay(data[2], value[0].value, value[1].value, disabledArr);
+    data[2] = dayArr.length ? dayArr : data[2];
+  }
+  return data;
+}
 
 export default {
   isLeapYear,
@@ -254,7 +508,6 @@ export default {
   formatFromProps,
   addDayOfWeek,
   numToDate,
-  getMinMaxDate,
   parseDate,
   filterTime,
   colFlags,
@@ -264,4 +517,10 @@ export default {
   YMDT,
   YMDHM,
   YMDWHM,
+  filterYear,
+  filterMonth,
+  filterDay,
+  getMonthsByYear,
+  getDayByMonth,
+  parseDisabledArr,
 };
