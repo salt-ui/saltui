@@ -299,7 +299,7 @@ function getDateRangeArr({ disabledArr, minDateTime, maxDateTime }) {
   for (let i = 0; i < startEnd.length; i++) { // 计算中间区间
     const { start, end } = startEnd[i];
     if (end < start) {
-      console.warn(` Datetime diabeldDate ：end is greater than start；start: ${new Date(start)} end: ${new Date(end)} is invalid`);
+      console.warn('Datetime: Please check your disabledDate props returns');
       continue;
     }
     if (start >= minDateTime && end <= maxDateTime) { // start end 都在 取值范围内
@@ -462,27 +462,24 @@ function filterDay(arr, year, month, disabledArr) {
  */
 function parseDisabledArr(arr) {
   let min;
-  	let max;
+  let max;
   arr = arr.map((item) => {
-		let { start, end } = item;
-		if (!start && !end) {
-			const dateTime = new Date(item).getTime();
-			if (dateTime) {
-				return {
-					start: dateTime,
-					end: dateTime
-				}
-			}
-				return false;
-
-		};
-
-		return {
-			start: new Date(start).getTime(),
-			end: new Date(end).getTime()
-		};
-	});
-  console.log(arr);
+    const { start, end } = item;
+    if (!start && !end) {
+      const dateTime = new Date(item).getTime();
+      if (dateTime) {
+        return {
+          start: dateTime,
+          end: dateTime,
+        };
+      }
+      return false;
+    }
+    return {
+      start: new Date(start).getTime(),
+      end: new Date(end).getTime(),
+    };
+  });
   let newArr = arr.filter(item => !!item);
   // 求时间并集并求出 最大值和最小值
   newArr = newArr.filter((item) => {
@@ -505,7 +502,7 @@ function parseDisabledArr(arr) {
     }
     if (end && start) {
       if (start > end) {
-        console.warn(` Datetime diabeldDate ：end is greater than start；start: ${new Date(start)} end: ${new Date(end)} is invalid`);
+        console.warn('Datetime: Please check your disabledDate props returns');
         return false;
       }
       if (min && min >= start) {
@@ -522,24 +519,7 @@ function parseDisabledArr(arr) {
   });
   let startEnd = [];
   // 时间排序
-  newArr = newArr.sort((a, b) => a.start - b.start);
-  if (newArr.length > 1) {
-    let newItem = newArr[0];
-    for (let i = 1; i < newArr.length; i++) {
-      const { start, end } = newArr[i];
-      if (newItem.end >= start) {
-        newItem.end = end;
-        if (i === newArr.length - 1) {
-          startEnd.push(newItem);
-        }
-      } else {
-        startEnd.push(newItem);
-        newItem = newArr[i];
-      }
-    }
-  } else {
-    startEnd = newArr;
-  }
+  startEnd = newArr.sort((a, b) => a.start - b.start);
   return {
     maxTime: max,
     minTime: min,
@@ -554,25 +534,48 @@ function parseDisabledArr(arr) {
  * @param { String|NUmber } minDate
  * @param { String|NUmber } maxDate
  */
-function filterTime({
-  data, value, disabledDate, minDate, maxDate,
+function filterDate({
+  data,
+  value,
+  disabledArr,
+  minDate,
+  maxDate,
+  oldData,
 }) {
-  let disabledArr = disabledDate();
-  if (!disabledArr) {
-    return data;
-  }
-  if (!isArray(disabledArr)) {
-    disabledArr = [disabledArr];
-  }
+  oldData = oldData || {};
   disabledArr = parseDisabledArr(disabledArr);
+  const year = value[0].value;
+  const month = value[1].value;
+  let yearData = data[0];
+  let monthData = getMonthsByYear({ year, minDate, maxDate });
+  let dayData = getDayByMonth({ year, month, minDate, maxDate });
   if (disabledArr.startEnd || disabledArr.minTime || disabledArr.maxTime) {
-    data[0] = filterYear(data[0], { disabledArr, minDate, maxDate });
-    const monthArr = filterMonth(data[1], value[0].value, disabledArr);
-    data[1] = monthArr.length ? monthArr : data[1];
-    const dayArr = filterDay(data[2], value[0].value, value[1].value, disabledArr);
-    data[2] = dayArr.length ? dayArr : data[2];
+    if (oldData.yearData) {
+      yearData = oldData.yearData;
+    } else {
+      yearData = filterYear(yearData, { disabledArr, minDate, maxDate });
+    }
+    if (oldData.monthData) {
+      monthData = oldData.monthData;
+    } else {
+      const monthArr = filterMonth(monthData, year, disabledArr);
+      monthData = monthArr.length ? monthArr : monthData;
+    }
+    const dayArr = filterDay(dayData, year, month, disabledArr);
+    dayData = dayArr.length ? dayArr : dayData;
   }
-  return data;
+  if (disabledArr.minTime >= disabledArr.maxTime) {
+    console.warn('Datetime: Please check your disabledDate props');
+    return [];
+  }
+  if (!yearData.length) {
+    return [];
+  }
+  const outArr = [yearData, monthData, dayData];
+  if (data[3]) {
+    outArr.push(data[3]);
+  }
+  return outArr;
 }
 
 export default {
@@ -589,7 +592,7 @@ export default {
   addDayOfWeek,
   numToDate,
   parseDate,
-  filterTime,
+  filterDate,
   colFlags,
   Y,
   YM,

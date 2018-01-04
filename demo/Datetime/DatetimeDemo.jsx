@@ -69,7 +69,7 @@ class DatetimeDemo extends React.Component {
               },
               new Date(2016, 10, 1),
               {
-                start: new Date(2025, 1, 21),
+                start: new Date(2023, 1, 21),
               },
             ]}
           onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
@@ -102,6 +102,10 @@ class DatetimeDemo extends React.Component {
               {
                 start: new Date(2017, 7, 2),
                 end: new Date(2017, 7, 30),
+              },
+              {
+                start: new Date(2018, 7, 3),
+                end: new Date(2018, 7, 20),
               },
               new Date(2013, 11, 1),
             ]}

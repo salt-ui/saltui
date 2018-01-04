@@ -102,13 +102,13 @@ export default DatetimeDemo;
 ### minDate
 描述：最小可选日期。
 类型： `number, string, date`
-默认值： '2000-1-1'
+默认值： 946656000000,
 示例：`<Datetime minDate={new Date(2000,0,1).getTime()} />` 
 
 ### maxDate
 描述：最大可选日期。
 类型： `number, string, date`
-默认值： '2030-12-31'
+默认值： 1924876800000
 示例：`<Datetime maxDate={new Date(2030,11,31).getTime()} />`
 
 ### minuteStep
@@ -119,7 +119,6 @@ export default DatetimeDemo;
 ### disabledDate
 描述： 仅能禁止日期（年月日）
 类型： `function`
-默认值： `() => []`
 返回值类型：`Array`
 示例：`<Datetime disabledDate={() => [ { start: new Deat(2002,0,1) },{start: new Date(2017, 0, 1), end: new Date(2017,5,1)}, new Date(2018, 11,1), { start: new Deat(2020,0,1) } ]} />`
 ### slotRef  

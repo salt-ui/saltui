@@ -21,7 +21,6 @@ import {
   formatFromProps,
   isArray,
   parseDate,
-  filterTime,
   colFlags,
   Y,
   YM,
@@ -29,12 +28,8 @@ import {
   YMDT,
   YMDHM,
   YMDWHM,
-  filterMonth,
-  filterDay,
-  getDayByMonth,
+  filterDate,
   getDaysByYear,
-  getMonthsByYear,
-  parseDisabledArr,
 } from './utils';
 
 const columnsFlexMap = {
@@ -56,16 +51,7 @@ class Datetime extends React.Component {
   }
   // 外部变更选中值
   componentWillReceiveProps(nextProps) {
-    const { setValue, state } = this;
-    if (!nextProps) { return; }
-    const { value } = nextProps;
-    if (String(state.value) !== String(value)) {
-      setValue(nextProps);
-    }
-  }
-  setValue = (nextProps) => {
-    const newProps = nextProps || this.props;
-    this.init(newProps);
+    this.setOptions(newProps);
   }
   // 获取默认最小值
   getDefaultMinDate = (value) => {
@@ -147,19 +133,22 @@ class Datetime extends React.Component {
       value: newValue,
     };
   }
-  setOptions = (props, newValue) => {
-    let { data, value } = this.getOptions({ value: newValue || props.value }, props);
+  setOptions = (props) => {
+    let { data, value } = this.getOptions({ value: props.value }, props);
     const { columns, minDate, maxDate } = props;
-    const colStyle = columns[0];
-    if (props.disabledDate && colStyle !== 'YMDW' && colStyle !== 'YMD') {
-      data = filterTime({
-        data,
-        disabledDate: props.disabledDate,
-        value,
-        columns,
-        minDate,
-        maxDate,
-      });
+    const columnsStyle = columns[0];
+    if (props.disabledDate && columnsStyle === 'Y') {
+      const disabledArr = props.disabledDate();
+      if (isArray(disabledArr) && disabledArr.length) {
+        data = filterDate({
+          data,
+          disabledArr,
+          value,
+          columns,
+          minDate,
+          maxDate,
+        });
+      }
     }
     this.state = {
       data,
@@ -200,51 +189,42 @@ class Datetime extends React.Component {
     const { data } = this.state;
     const date = parseDate({ columns, value });
     const columnsStyle = columns[column];
-    let disabledArr = disabledDate();
-    const newData = this.getOptions({ value: date }, props);
-    const YEARDATE = data[0];
-    const MONTHDATE = data[1];
-    const NEWDATA = newData.data;
     if (columnsStyle === 'D') {
       props.onChange(date, column);
       return;
     }
+    const newData = this.getOptions({ value: date }, props);
     const updateObj = {
-      data: NEWDATA,
+      data: newData.data,
+      value: newData.value,
     };
     if (value.every(item => !!item)) {
       updateObj.value = value;
     }
-    if (isArray(disabledArr) && disabledArr.length && columns[0] === 'Y') {
-      disabledArr = parseDisabledArr(disabledArr);
-      let AllData = NEWDATA;
-      const year = value[0].value;
-      const month = value[1].value;
-      AllData[0] = YEARDATE;
-      if (columnsStyle === 'Y') { // 当前年不变 计算月份 日
-        const monthArr = getMonthsByYear({ minDate, maxDate, year });
-        const dayArr = getDayByMonth({
-          minDate, maxDate, year, month,
+    if (disabledDate) {
+      const disabledArr = disabledDate();
+      if (isArray(disabledArr) && disabledArr.length && columns[0] === 'Y') {
+        const YEARDATE = data[0];
+        const MONTHDATE = data[1];
+        const oldData = {};
+        if (columnsStyle === 'Y') {
+          oldData.yearData = YEARDATE;
+        }
+        if (columnsStyle === 'M') {
+          oldData.yearData = YEARDATE;
+          oldData.monthData = MONTHDATE;
+        }
+        const AllData = filterDate({
+          data: newData.data,
+          disabledArr,
+          value,
+          columns,
+          minDate,
+          maxDate,
+          oldData,
         });
-        AllData[column + 1] = filterMonth(monthArr, year, disabledArr);
-        AllData[column + 2] = filterDay(dayArr, year, month, disabledArr);
+        updateObj.data = AllData.length >= 3 ? AllData : newData.data;
       }
-      if (columnsStyle === 'M') { // 当前年月不变 计算日
-        const dayArr = getDayByMonth({
-          minDate, maxDate, year, month,
-        });
-        AllData[column] = MONTHDATE; // 当前月保持不变
-        AllData[column + 1] = filterDay(dayArr, year, month, disabledArr);
-      }
-      if (AllData.length) {
-        AllData = AllData.map((item, index) => {
-          if (item && !item.length) {
-            return data[index];
-          }
-          return item;
-        });
-      }
-      updateObj.data = AllData.length >= 3 ? AllData : NEWDATA;
     }
     this.setState(updateObj);
     props.onChange(date, column);
