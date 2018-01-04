@@ -152,7 +152,14 @@ class Datetime extends React.Component {
     const { columns, minDate, maxDate } = props;
     const colStyle = columns[0];
     if (props.disabledDate && colStyle !== 'YMDW' && colStyle !== 'YMD') {
-      data = filterTime({ data, disabledDate: props.disabledDate, value, columns, minDate, maxDate });
+      data = filterTime({
+        data,
+        disabledDate: props.disabledDate,
+        value,
+        columns,
+        minDate,
+        maxDate,
+      });
     }
     this.state = {
       data,

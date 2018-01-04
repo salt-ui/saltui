@@ -47,50 +47,49 @@ class DatetimeDemo extends React.Component {
         <Button onClick={() => {
           t.showSlot('slot1');
         }}
-        >日期选择</Button>
+        >日期选择
+        </Button>
         <Datetime
           {...this.datetimeProps}
           slotRef={s => t.slot1 = s}
           title="日期选择"
           value={this.state.value1}
           columns={Datetime.YMD}
-          disabledDate={() => {
-            return [
+          disabledDate={() => [
               {
                 start: new Date(2018, 5, 1),
-                end: new Date(2019, 12, 31),
+                end: new Date(2019, 11, 31),
               },
               {
                 start: new Date(2021, 5, 1),
-                end: new Date(2019, 12, 31),
+                end: new Date(2019, 11, 31),
               },
               {
                 end: new Date(2016, 1, 21),
               },
-              new Date( 2016, 10, 1),
+              new Date(2016, 10, 1),
               {
                 start: new Date(2025, 1, 21),
               },
-            ];
-          }}
+            ]}
           onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
-          onChange={(value, column) => {console.log(value, column);}}
+          onChange={(value, column) => { console.log(value, column); }}
           onCancel={() => { this.onCancel('value1'); }}
         />
         <Button onClick={() => {
           t.showSlot('slot2');
         }}
-        >日期/上下午选择</Button>
+        >日期/上下午选择
+        </Button>
         <Datetime
           {...this.datetimeProps}
           slotRef={s => t.slot2 = s}
           title="日期/上下午选择"
           value={t.state.value2}
           columns={Datetime.YMDT}
-          disabledDate={() => {
-            return [
+          disabledDate={() => [
               {
-                start: new Date( 2023, 10, 1), // 2023- 11 - 1
+                start: new Date(2023, 10, 1), // 2023- 11 - 1
               },
               {
                 start: new Date(2017, 0, 1),
@@ -105,15 +104,15 @@ class DatetimeDemo extends React.Component {
                 end: new Date(2017, 7, 30),
               },
               new Date(2013, 11, 1),
-            ];
-          }}
+            ]}
           onConfirm={(value) => { this.onConfirm(value, 'value2'); }}
           onCancel={() => { this.onCancel('value2'); }}
         />
         <Button onClick={() => {
           t.showSlot('slot3');
         }}
-        >时间选择</Button>
+        >时间选择
+        </Button>
         <Datetime
           {...this.datetimeProps}
           slotRef={s => t.slot3 = s}
@@ -121,14 +120,12 @@ class DatetimeDemo extends React.Component {
           value={null}
           minuteStep={5}
           columns={Datetime.YMDWHM}
-          disabledDate={() => {
-            return [
+          disabledDate={() => [
               {
-                start: new Date( 2017, 10, 1), // 2023- 11 - 1
-                end: new Date( 2017, 10, 1)
+                start: new Date(2017, 10, 1), // 2023- 11 - 1
+                end: new Date(2017, 10, 1),
               },
-            ];
-          }}
+            ]}
           onConfirm={(value) => { this.onConfirm(value, 'value3'); }}
           onCancel={() => { this.onCancel('value3'); }}
         />
@@ -137,7 +134,8 @@ class DatetimeDemo extends React.Component {
             value1: '***',
           });
         }}
-        >设置第一个value为***</Button>
+        >设置第一个value为***
+        </Button>
       </div>
     );
   }
