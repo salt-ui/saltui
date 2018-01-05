@@ -31,7 +31,6 @@ class Demo extends React.Component {
   }
 
   handleChange(field, value) {
-    console.log(value);
     this.setState({
       [field]: value,
     });
