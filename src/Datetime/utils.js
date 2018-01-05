@@ -3,6 +3,7 @@ import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
 import dateFormat from './dateFormat';
 import locale from './locale';
+import Slot from '../Slot';
 
 const colFlags = ['Y', 'M', 'D', 'T', 'h', 'H', 'm', 's', 'YMD', 'YMDW'];
 
@@ -104,7 +105,6 @@ function addDayOfWeek(days, props, sure = true) {
     });
     return;
   }
-
   const date = new Date(numToDate(days.value));
   if (sure) {
     days.text = `${dateFormat(date, 'YYYY/MM/DD')} ${locale[props.locale].week[date.getDay()]}`;
@@ -119,6 +119,12 @@ function formatFromProps(arr, props) {
   for (let i = 0; i < columns.length; i += 1) {
     if (colFlags.indexOf(columns[i]) !== -1) {
       displayList.push(arr[colFlags.indexOf(columns[i])]);
+    }
+    if (!isArray(displayList[i]) && !isObject(displayList[i]) && (columns[i] === 'YMDW' || columns[i] === 'YMD')) {
+      displayList[i] = {
+        value: displayList[i],
+        text: displayList[i],
+      };
     }
     if (columns[i] === 'YMDW') {
       addDayOfWeek(displayList[i], props);
@@ -231,27 +237,36 @@ function parseDate({ columns, value }) {
     YMD: [],
     Hm: [],
   };
-  columns.forEach((item, index) => {
-    if (item === 'YMD' || item === 'YMDW') {
-      dateStr.YMD = `${numToDate(value[index].value)}`.split('-');
-      return;
-    }
-    if (item === 'H' || item === 'm') {
-      dateStr.Hm.push(`${addZero(value[index].value)}`);
-      return;
-    }
-    if (item === 'T') {
-      dateStr.Hm = value[index].value ? ['12', '00', '00'] : ['00', '00', '00'];
-      return;
-    }
-    dateStr.YMD.push(value[index].value);
-  });
-  dateStr.YMD = dateStr.YMD.map(item => parseInt(item));
-  dateStr.YMD[1] = dateStr.YMD[1] ? dateStr.YMD[1] - 1 : dateStr.YMD[1];
-  dateStr.Hm = dateStr.Hm.map(item => parseInt(item));
-  const DateArr = [...dateStr.YMD, ...dateStr.Hm];
-  const currentValue = new Date(...DateArr);
-  return currentValue;
+  if (!value) {
+    return new Date().getTime();
+  }
+  let DateArr = [];
+  let currentValue;
+  if (columns) {
+    columns.forEach((item, index) => {
+      if (item === 'YMD' || item === 'YMDW') {
+        dateStr.YMD = `${numToDate(value[index].value)}`.split('-');
+        return;
+      }
+      if (item === 'H' || item === 'm') {
+        dateStr.Hm.push(`${addZero(value[index].value)}`);
+        return;
+      }
+      if (item === 'T') {
+        dateStr.Hm = value[index].value ? ['12', '00', '00'] : ['00', '00', '00'];
+        return;
+      }
+      dateStr.YMD.push(value[index].value);
+    });
+    dateStr.YMD = dateStr.YMD.map(item => parseInt(item));
+    dateStr.YMD[1] = dateStr.YMD[1] ? dateStr.YMD[1] - 1 : dateStr.YMD[1];
+    dateStr.Hm = dateStr.Hm.map(item => parseInt(item));
+    DateArr = [...dateStr.YMD, ...dateStr.Hm];
+    currentValue = DateArr.length ? new Date(...DateArr) : [];
+  } else {
+    currentValue = new Date(value).getTime();
+  }
+  return currentValue || new Date().getTime();
 }
 function getDaysByYear(item) {
   const days = [];
@@ -548,7 +563,9 @@ function filterDate({
   const month = value[1].value;
   let yearData = data[0];
   let monthData = getMonthsByYear({ year, minDate, maxDate });
-  let dayData = getDayByMonth({ year, month, minDate, maxDate });
+  let dayData = getDayByMonth({
+    year, month, minDate, maxDate,
+  });
   if (disabledArr.startEnd || disabledArr.minTime || disabledArr.maxTime) {
     if (oldData.yearData) {
       yearData = oldData.yearData;
@@ -576,6 +593,71 @@ function filterDate({
     outArr.push(data[3]);
   }
   return outArr;
+}
+/**
+ * 添加年月日等文本
+ * @param { array } arr
+ * @param {string } text
+ * @param { object } props
+ */
+function formatText(arr, text, props) {
+  const formatArray = [];
+  const localeCode = props.locale;
+  for (let i = 0; i < arr.length; i += 1) {
+    const el = arr[i];
+    formatArray.push(isArray(el) ?
+      formatText(el, locale[localeCode].surfix[colFlags[i]], props) :
+      {
+        text: addZero(el.text) +
+              (isUndefined(text) ? locale[localeCode].surfix[colFlags[i]] : text),
+        value: el.value,
+      });
+  }
+  return formatArray;
+}
+
+function getOptions({ value }, props) {
+  let { minDate, maxDate } = props;
+  const { minuteStep } = props;
+  minDate = parseDate({ value: minDate });
+  maxDate = parseDate({ value: maxDate });
+  if (maxDate <= minDate) {
+    console.error(' Datetime： props maxDate must be greater than minDate ');
+    return [];
+  }
+  minDate = new Date(minDate);
+  maxDate = new Date(maxDate);
+  const currentValue = parseValue(value);
+  const datYear = getDaysByYear(currentValue[0]);
+  const options = [
+    makeRange(minDate.getFullYear(), maxDate.getFullYear()),
+    makeRange(1, 12).map(v => ({ text: `${v}`, value: v - 1 })),
+    getDates(value),
+    locale[props.locale].noon,
+    makeRange(0, 12),
+    makeRange(0, 23),
+    makeRange(0, 59, minuteStep),
+    makeRange(0, 59),
+    datYear,
+    datYear,
+  ];
+  const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
+  const data = formatFromProps(formatText(ret.data, undefined, props), props);
+  const newValue = formatFromProps(formatText(ret.value, undefined, props), props);
+  return {
+    data,
+    value: newValue,
+  };
+}
+
+function getSlotFormattedValue(currentValue, props) {
+  // 使用当前时间或传入时间作为默认值
+  currentValue = parseValue(currentValue);
+  // 形成候选项
+  const { data, value } = getOptions({ value: currentValue }, props);
+  // 数据格式化
+  const ret = Slot.formatDataValue([].concat(data), [].concat(value));
+  return ret.value || [];
 }
 
 export default {
@@ -606,4 +688,8 @@ export default {
   getMonthsByYear,
   getDayByMonth,
   parseDisabledArr,
+  getSlotFormattedValue,
+  getOptions,
+  Slot,
+  locale,
 };

@@ -8,7 +8,7 @@
 import React from 'react';
 
 import Group from 'salt-group';
-import DatetimeField from 'salt-datetime-field';
+import DatetimeField from '../../src/DatetimeField';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const DatetimeField = require('../../dist');
@@ -31,7 +31,6 @@ class Demo extends React.Component {
   }
 
   handleChange(field, value) {
-    console.log(value);
     this.setState({
       [field]: value,
     });
