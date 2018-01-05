@@ -53,7 +53,6 @@ class DatetimeField extends React.Component {
 
   formatter(value) {
     const t = this;
-    console.log(value);
     // 用户未点击过确认，即：未进行过日期选择，如果值合法，则展示格式化后的值，如果值非法，则原样输出
     // 只读状态下，可能传递一些用于加密的"***"之类的字符
     if (!t.valueChanged) {
