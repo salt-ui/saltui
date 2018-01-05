@@ -34,7 +34,7 @@ import { Button } from 'saltui';
 ReactDOM.render(<Button />, mountNode);
 ```
 
-### import js as required
+### import js as required
 
 * use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) (recommanded)
 
