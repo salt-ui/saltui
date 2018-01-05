@@ -41,9 +41,9 @@ ReactDOM.render(<Button />, mountNode);
 	```js
 	// .babelrc or babel-loader option
 	{
-		"plugins": [
-			["import", { libraryName: "saltui" }]
-		]
+	  "plugins": [
+	    ["import", { libraryName: "saltui" }]
+	  ]
 	}
 	```
 
