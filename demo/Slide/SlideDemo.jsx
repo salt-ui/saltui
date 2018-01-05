@@ -216,7 +216,7 @@ class Demo extends React.Component {
       >
         {
           t.state.slideList2.map((item, index) => (
-            <Slide.Item>
+            <Slide.Item key={ index }>
               <a href="//work.alibaba-inc.com"><img src={item.img} /></a>
             </Slide.Item>
           ))

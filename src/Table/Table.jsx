@@ -5,6 +5,7 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import deepcopy from 'lodash/cloneDeep';
 import deepEqual from 'lodash/isEqual';
@@ -285,16 +286,16 @@ Table.defaultProps = {
 };
 
 Table.propTypes = {
-  columns: React.PropTypes.array,
-  data: React.PropTypes.object,
-  pageSize: React.PropTypes.number,
-  emptyText: React.PropTypes.string,
-  className: React.PropTypes.string,
-  showHeader: React.PropTypes.bool,
-  leftFixed: React.PropTypes.number,
-  rightFixed: React.PropTypes.number,
-  hideSplitLine: React.PropTypes.bool,
-  onPagerChange: React.PropTypes.func,
+  columns: PropTypes.array,
+  data: PropTypes.object,
+  pageSize: PropTypes.number,
+  emptyText: PropTypes.string,
+  className: PropTypes.string,
+  showHeader: PropTypes.bool,
+  leftFixed: PropTypes.number,
+  rightFixed: PropTypes.number,
+  hideSplitLine: PropTypes.bool,
+  onPagerChange: PropTypes.func,
 };
 
 Table.displayName = 'Table';

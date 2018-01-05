@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Check from 'salt-icon/lib/Check';
 import classnames from 'classnames';
 import Context from '../Context';
@@ -92,11 +93,11 @@ class Step extends React.Component {
 }
 
 Step.propTypes = {
-  hasDetail: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  stepNumber: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
+  hasDetail: PropTypes.bool,
+  onChange: PropTypes.func,
+  stepNumber: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
   ]),
 };
 Step.defaultProps = {

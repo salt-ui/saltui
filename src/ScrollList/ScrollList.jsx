@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import isEmpty from 'lodash/isEmpty';
 import cloneDeep from 'lodash/cloneDeep';
@@ -18,8 +19,6 @@ import NattyFetch from 'natty-fetch';
 import BottomTip from './BottomTip';
 import EmptyContent from './EmptyContent';
 import Item from './Item';
-
-const { PropTypes } = React;
 
 
 function odd(i) {

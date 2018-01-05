@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import debounce from 'lodash/fp/debounce';
@@ -15,16 +16,15 @@ import util from './utils';
 import Box from './Box';
 
 class Totop extends React.Component {
-
   static propTypes = {
-    className: React.PropTypes.string,
-    hideToTopButton: React.PropTypes.bool,
-    size: React.PropTypes.oneOf(['large', 'medium', 'small']),
-    type: React.PropTypes.oneOf(['primary', 'secondary']),
-    debounceNum: React.PropTypes.number,
-    distance: React.PropTypes.number,
-    onScroll: React.PropTypes.func,
-    icon: React.PropTypes.element,
+    className: PropTypes.string,
+    hideToTopButton: PropTypes.bool,
+    size: PropTypes.oneOf(['large', 'medium', 'small']),
+    type: PropTypes.oneOf(['primary', 'secondary']),
+    debounceNum: PropTypes.number,
+    distance: PropTypes.number,
+    onScroll: PropTypes.func,
+    icon: PropTypes.element,
   };
 
   static defaultProps = {
@@ -51,13 +51,20 @@ class Totop extends React.Component {
 
     this.toggleShow();
 
+    t.scrollListener = debounce(debounceNum, (e) => {
+      this.toggleShow(e);
+    });
+
     window.addEventListener(
       'scroll',
-      debounce(debounceNum, (e) => {
-        this.toggleShow(e);
-      }),
-      false
+      t.scrollListener,
+      false,
     );
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+    window.removeEventListener('scroll', this.scrollListener, false);
   }
 
   toggleShow(e) {
@@ -65,8 +72,7 @@ class Totop extends React.Component {
     if (window.scrollY >= distance) {
       onScroll(e);
       this.setState({ hide: false });
-    }
-    else {
+    } else {
       this.setState({ hide: true });
     }
   }
@@ -103,8 +109,7 @@ class Totop extends React.Component {
     if (duration === 0) {
       document.body.scrollTop = to;
       t.scrolling = false;
-    }
-    else {
+    } else {
       t.scrollTo(to, duration, () => {
         t.scrolling = false;
       });
@@ -112,7 +117,9 @@ class Totop extends React.Component {
   }
 
   renderToTopButton() {
-    const { hideToTopButton, icon, type, size } = this.props;
+    const {
+ hideToTopButton, icon, type, size 
+} = this.props;
     if (hideToTopButton || this.state.hide) {
       return null;
     }
@@ -140,7 +147,6 @@ class Totop extends React.Component {
       </div>
     );
   }
-
 }
 
 Totop.Box = Box;

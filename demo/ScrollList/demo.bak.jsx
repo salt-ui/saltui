@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import ScrollList from 'salt-scroll-list';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
@@ -22,8 +22,8 @@ class Item extends React.Component {
 }
 
 Item.propTypes = {
-  index: React.PropTypes.number,
-  name: React.PropTypes.string,
+  index: PropTypes.number,
+  name: PropTypes.string,
 };
 
 class Other1 extends React.Component {

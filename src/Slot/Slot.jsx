@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Popup from '../Popup';
@@ -180,18 +181,18 @@ Slot.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Slot.propTypes = {
-  className: React.PropTypes.string,
-  title: React.PropTypes.string,
-  data: React.PropTypes.array.isRequired,
-  value: React.PropTypes.array,
-  maskCloseable: React.PropTypes.bool,
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  onConfirm: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  onChange: React.PropTypes.func,
-  scrollMod: React.PropTypes.string,
-  columns: React.PropTypes.array,
+  className: PropTypes.string,
+  title: PropTypes.string,
+  data: PropTypes.array.isRequired,
+  value: PropTypes.array,
+  maskCloseable: PropTypes.bool,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  onConfirm: PropTypes.func,
+  onCancel: PropTypes.func,
+  onChange: PropTypes.func,
+  scrollMod: PropTypes.string,
+  columns: PropTypes.array,
 };
 
 // 格式化单列数据

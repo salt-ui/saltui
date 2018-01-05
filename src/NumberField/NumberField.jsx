@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '../TextField';
 import Formatter from 'uxcore-formatter';
 import classnames from 'classnames';
@@ -13,18 +14,18 @@ import classnames from 'classnames';
 class NumberField extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    prefixCls: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    deFormat: React.PropTypes.func,
-    format: React.PropTypes.func,
-    type: React.PropTypes.oneOf(['money', 'card', 'cnmobile', 'cnidcard']),
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    className: PropTypes.string,
+    prefixCls: PropTypes.string,
+    onChange: PropTypes.func,
+    deFormat: PropTypes.func,
+    format: PropTypes.func,
+    type: PropTypes.oneOf(['money', 'card', 'cnmobile', 'cnidcard']),
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
-    delimiter: React.PropTypes.string,
-    fixedNum: React.PropTypes.number,
+    delimiter: PropTypes.string,
+    fixedNum: PropTypes.number,
   };
 
   static defaultProps = {

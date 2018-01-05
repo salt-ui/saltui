@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Field from '../Field';
@@ -13,7 +14,7 @@ import Rate from '../Rate';
 
 class RateField extends React.Component {
   static propTypes = {
-    className: React.PropTypes.string,
+    className: PropTypes.string,
     ...Rate.propTypes,
   };
 

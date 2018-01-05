@@ -72,12 +72,12 @@ class MenuDemo extends React.Component {
         onDeselect={this.onDeselect}
         multiple
       >
-        <MenuItem title="浙江" key="zhejiang">
-          <MenuItem title="杭州" key="hangzhou" />
-          <MenuItem title="温州" key="wenzhou" />
-          <MenuItem title={testSpan} disabled key="lishui" />
+        <MenuItem title="浙江" key="zhejiang" keyNew="zhejiang">
+          <MenuItem title="杭州" key="hangzhou" keyNew="hangzhou" />
+          <MenuItem title="温州" key="wenzhou" keyNew="wenzhou" />
+          <MenuItem title={testSpan} disabled key="lishui" keyNew="lishui" />
         </MenuItem>
-        <MenuItem title="江苏" key="jiangsu" />
+        <MenuItem title="江苏" key="jiangsu" keyNew="jiangsu" />
       </Menu>
     );
   }
@@ -100,9 +100,9 @@ class MenuDemo extends React.Component {
         onDeselect={this.onDeselect}
         multiple
       >
-        <MenuItem title="浙江" key="zhejiang" />
-        <MenuItem title="江苏" key="jiangsu" />
-        <MenuItem title="河北" key="hebei" />
+        <MenuItem title="浙江" key="zhejiang" keyNew="zhejiang" />
+        <MenuItem title="江苏" key="jiangsu" keyNew="jiangsu" />
+        <MenuItem title="河北" key="hebei" keyNew="hebei" />
       </Menu>
     );
 
@@ -127,10 +127,11 @@ class MenuDemo extends React.Component {
               </div>
             }
             key="zhejiang"
+            keyNew="zhejiang"
           >
-            <MenuItem title="杭州" key="hangzhou" />
-            <MenuItem title="温州" key="wenzhou" />
-            <MenuItem title={testSpan} disabled key="lishui" />
+            <MenuItem title="杭州" key="hangzhou" keyNew="hangzhou" />
+            <MenuItem title="温州" key="wenzhou" keyNew="wenzhou" />
+            <MenuItem title={testSpan} disabled key="lishui" keyNew="lishui" />
           </MenuItem>
           <MenuItem
             title={
@@ -140,6 +141,7 @@ class MenuDemo extends React.Component {
               </div>
             }
             key="jiangsu"
+            keyNew="jiangsu"
           />
         </Menu>
         <p className="menu-demo-title">使用badge</p>
@@ -165,11 +167,11 @@ class MenuDemo extends React.Component {
             )}
             key="zhejiang"
           >
-            <MenuItem title="杭州" key="hangzhou" />
-            <MenuItem title="温州" key="wenzhou" />
-            <MenuItem title={testSpan} disabled key="lishui" />
+            <MenuItem title="杭州" key="hangzhou" keyNew="hangzhou" />
+            <MenuItem title="温州" key="wenzhou" keyNew="wenzhou" />
+            <MenuItem title={testSpan} disabled key="lishui" keyNew="lishui" />
           </MenuItem>
-          <MenuItem title="江苏" key="jiangsu" />
+          <MenuItem title="江苏" key="jiangsu" keyNew="jiangsu" />
         </Menu>
         <p className="menu-demo-title">和 popup 一起使用</p>
         <Button onClick={() => { this.handlePopup(); }}>操作</Button>

@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import OpenedEyeIcon from 'salt-icon/lib/Eye';
@@ -25,15 +26,15 @@ const iconSize = '20px';
 class PasswordInput extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    placeholder: React.PropTypes.string,
-    value: React.PropTypes.string,
-    decrypted: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
-    onDecryptedChange: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
-    hideIcon: React.PropTypes.func,
+    className: PropTypes.string,
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+    decrypted: PropTypes.bool,
+    onChange: PropTypes.func,
+    onDecryptedChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    hideIcon: PropTypes.bool,
   };
 
   static defaultProps = {

@@ -10,6 +10,7 @@ const React = require('react');
 const classnames = require('classnames');
 const Context = require('../../Context');
 const Scroller = require('../../Scroller');
+const PropTypes = require('prop-types');
 
 // 滑动效果的动画函数
 const LINEAR_EASE = {
@@ -24,15 +25,15 @@ class SlotPane extends React.Component {
   static displayName = 'SlotPane'
 
   static propTypes = {
-    visible: React.PropTypes.bool,
-    // className: React.PropTypes.string,
-    data: React.PropTypes.array.isRequired,
-    value: React.PropTypes.array,
-    onChange: React.PropTypes.func,
-    onScrolling: React.PropTypes.func,
-    scrollMod: React.PropTypes.string,
-    columns: React.PropTypes.array,
-    columnsFlex: React.PropTypes.array,
+    visible: PropTypes.bool,
+    // className: PropTypes.string,
+    data: PropTypes.array.isRequired,
+    value: PropTypes.array,
+    onChange: PropTypes.func,
+    onScrolling: PropTypes.func,
+    scrollMod: PropTypes.string,
+    columns: PropTypes.array,
+    columnsFlex: PropTypes.array,
   }
 
   static defaultProps = {

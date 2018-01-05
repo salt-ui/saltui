@@ -6,16 +6,17 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
 class Progress extends React.Component {
 
   static propTypes = {
-    percent: React.PropTypes.number,
-    showInfo: React.PropTypes.bool,
-    status: React.PropTypes.oneOf(['normal', 'exception', 'success']),
-    strokeWidth: React.PropTypes.number,
+    percent: PropTypes.number,
+    showInfo: PropTypes.bool,
+    status: PropTypes.oneOf(['normal', 'exception', 'success']),
+    strokeWidth: PropTypes.number,
   };
 
   static defaultProps = {

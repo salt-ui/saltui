@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 import Icon from 'salt-icon';
 import Context from '../Context';
 
@@ -71,13 +72,13 @@ NavBar.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 NavBar.propTypes = {
-    className: React.PropTypes.string,
-    title: React.PropTypes.string,
-    rightText: React.PropTypes.string,
-    onLeftClick: React.PropTypes.func,
-    onRightClick: React.PropTypes.func,
-    closeViewClick: React.PropTypes.func,
-    isShow: React.PropTypes.bool
+    className: PropTypes.string,
+    title: PropTypes.string,
+    rightText: PropTypes.string,
+    onLeftClick: PropTypes.func,
+    onRightClick: PropTypes.func,
+    closeViewClick: PropTypes.func,
+    isShow: PropTypes.bool
 };
 
 NavBar.displayName = 'NavBar';

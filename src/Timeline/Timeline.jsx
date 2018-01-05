@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Item from './Item';
@@ -43,6 +44,7 @@ class Timeline extends React.Component {
             React.cloneElement(ele, {
               index: idx,
               last: idx === t.props.children.length - 1,
+              key: idx,
             })
           ))
         }
@@ -55,7 +57,7 @@ Timeline.defaultProps = {
 };
 
 Timeline.propTypes = {
-  className: React.PropTypes.string,
+  className: PropTypes.string,
 };
 
 Timeline.displayName = 'Timeline';

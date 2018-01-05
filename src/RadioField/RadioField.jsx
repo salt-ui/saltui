@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import OptionCheckedIcon from 'salt-icon/lib/OptionChecked';
 import FieldRequiredIcon from 'salt-icon/lib/FieldRequired';
@@ -161,14 +162,14 @@ RadioField.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 RadioField.propTypes = {
-  className: React.PropTypes.string,
-  data: React.PropTypes.array,
-  onChange: React.PropTypes.func,
-  groupListFlag: React.PropTypes.bool,
-  groupListArgument: React.PropTypes.object,
-  iconPosition: React.PropTypes.string,
-  required: React.PropTypes.bool,
-  label: React.PropTypes.node,
+  className: PropTypes.string,
+  data: PropTypes.array,
+  onChange: PropTypes.func,
+  groupListFlag: PropTypes.bool,
+  groupListArgument: PropTypes.object,
+  iconPosition: PropTypes.string,
+  required: PropTypes.bool,
+  label: PropTypes.node,
 };
 
 RadioField.displayName = 'RadioField';

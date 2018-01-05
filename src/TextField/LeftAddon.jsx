@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { prefixClass } from '../Context';
 
 const LeftAddon = props => (
@@ -14,9 +15,9 @@ const LeftAddon = props => (
 
 LeftAddon.defaultProps = {};
 LeftAddon.propTypes = {
-  focus: React.PropTypes.bool,
-  hover: React.PropTypes.bool,
-  children: React.PropTypes.any,
+  focus: PropTypes.bool,
+  hover: PropTypes.bool,
+  children: PropTypes.any,
 };
 LeftAddon.displayName = 'LeftAddon';
 

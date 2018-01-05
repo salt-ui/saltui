@@ -27,7 +27,7 @@ class SlotDemo extends Component {
 
   showSlot() {
     this.setState({ value: [{ text: 2004, value: 2004 }] });
-    this.refs.slot.show();
+    this.slot.show();
   }
 
   handleConfirm(value) {
@@ -64,7 +64,7 @@ class SlotDemo extends Component {
           <div>临时值：{this.state.value[0].text}</div>
         </div>
         <Slot
-          ref="slot"
+          ref={(c) => { this.slot = c; }}
           data={this.state.data}
           value={this.state.value}
           title="选择日期"

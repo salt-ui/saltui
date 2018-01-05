@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import assign from 'object-assign';
 import classnames from 'classnames';
 import Context from '../Context';
@@ -9,19 +10,19 @@ const isArray = obj => Object.prototype.toString.call(obj) === '[object Array]';
 class TabBarItemIcon extends React.Component {
   static displayName = 'TabBarItemIcon';
   static propTypes = {
-    active: React.PropTypes.bool,
-    icon: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.array,
-      React.PropTypes.element,
+    active: PropTypes.bool,
+    icon: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.element,
     ]),
-    activeIcon: React.PropTypes.string,
-    iconStyle: React.PropTypes.object,
-    activeIconStyle: React.PropTypes.object,
-    type: React.PropTypes.string,
-    iconHeight: React.PropTypes.number,
-    title: React.PropTypes.string,
-    className: React.PropTypes.string,
+    activeIcon: PropTypes.string,
+    iconStyle: PropTypes.object,
+    activeIconStyle: PropTypes.object,
+    type: PropTypes.string,
+    iconHeight: PropTypes.number,
+    title: PropTypes.string,
+    className: PropTypes.string,
   };
 
   getIcon() {

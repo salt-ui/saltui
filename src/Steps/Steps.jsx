@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Step from './Step';
@@ -239,17 +240,17 @@ Steps.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Steps.propTypes = {
-  className: React.PropTypes.string,
-  iconPrefix: React.PropTypes.string,
-  maxDescriptionWidth: React.PropTypes.number,
-  current: React.PropTypes.number,
-  direction: React.PropTypes.string,
-  showIcon: React.PropTypes.bool,
-  type: React.PropTypes.oneOf(['default', 'title-on-top', 'long-desc']),
-  showDetail: React.PropTypes.bool,
-  currentDetail: React.PropTypes.number,
-  onChange: React.PropTypes.func,
-  children: React.PropTypes.any,
+  className: PropTypes.string,
+  iconPrefix: PropTypes.string,
+  maxDescriptionWidth: PropTypes.number,
+  current: PropTypes.number,
+  direction: PropTypes.string,
+  showIcon: PropTypes.bool,
+  type: PropTypes.oneOf(['default', 'title-on-top', 'long-desc']),
+  showDetail: PropTypes.bool,
+  currentDetail: PropTypes.number,
+  onChange: PropTypes.func,
+  children: PropTypes.any,
 };
 
 Steps.displayName = 'Steps';

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const defaultProps = {
   strokeWidth: 1,
@@ -7,11 +8,11 @@ const defaultProps = {
 class Circle extends React.Component {
   static displayName = 'Progress-Circle'
   static propTypes = {
-    status: React.PropTypes.oneOf(['normal', 'exception', 'success']),
-    percent: React.PropTypes.number,
-    strokeWidth: React.PropTypes.number,
-    size: React.PropTypes.number,
-    showInfo: React.PropTypes.bool,
+    status: PropTypes.oneOf(['normal', 'exception', 'success']),
+    percent: PropTypes.number,
+    strokeWidth: PropTypes.number,
+    size: PropTypes.number,
+    showInfo: PropTypes.bool,
   }
   static defaultProps = {
     status: 'normal', // exception active

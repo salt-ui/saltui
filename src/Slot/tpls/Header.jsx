@@ -1,6 +1,7 @@
 const React = require('react');
 const classnames = require('classnames');
 const Context = require('../../Context');
+const PropTypes = require('prop-types');
 
 class SlotHeader extends React.Component {
 
@@ -8,12 +9,12 @@ class SlotHeader extends React.Component {
 
   // http://facebook.github.io/react/docs/reusable-components.html
   static propTypes = {
-    title: React.PropTypes.string,
-    confirmText: React.PropTypes.string,
-    cancelText: React.PropTypes.string,
-    isScrolling: React.PropTypes.bool,
-    onConfirm: React.PropTypes.func,
-    onCancel: React.PropTypes.func,
+    title: PropTypes.string,
+    confirmText: PropTypes.string,
+    cancelText: PropTypes.string,
+    isScrolling: PropTypes.bool,
+    onConfirm: PropTypes.func,
+    onCancel: PropTypes.func,
   }
 
 

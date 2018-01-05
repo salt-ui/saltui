@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Loading from 'salt-icon/lib/Loading';
@@ -47,19 +48,19 @@ class RefreshControl extends React.Component {
   };
 
   static propTypes = {
-    refreshing: React.PropTypes.bool,
-    onRefresh: React.PropTypes.func,
-    beforePullLoadText: React.PropTypes.string,
-    afterPullLoadText: React.PropTypes.string,
-    refreshingText: React.PropTypes.string,
-    threshold: React.PropTypes.number,
-    max: React.PropTypes.number,
-    className: React.PropTypes.string,
-    children: React.PropTypes.any,
-    refreshIcon: React.PropTypes.element,
-    showIcon: React.PropTypes.bool,
-    showText: React.PropTypes.bool,
-    showRefreshing: React.PropTypes.bool,
+    refreshing: PropTypes.bool,
+    onRefresh: PropTypes.func,
+    beforePullLoadText: PropTypes.string,
+    afterPullLoadText: PropTypes.string,
+    refreshingText: PropTypes.string,
+    threshold: PropTypes.number,
+    max: PropTypes.number,
+    className: PropTypes.string,
+    children: PropTypes.any,
+    refreshIcon: PropTypes.element,
+    showIcon: PropTypes.bool,
+    showText: PropTypes.bool,
+    showRefreshing: PropTypes.bool,
   };
 
   constructor(props) {
@@ -282,7 +283,7 @@ class RefreshControl extends React.Component {
   }
 
   render() {
-    const { className, children, showRefreshing, ...otherProps } = this.props;
+    const { className, children, showRefreshing, refreshing, onRefresh, threshold, beforePullLoadText, afterPullLoadText, refreshingText, refreshIcon, showIcon, showText, ...otherProps } = this.props;
 
     return (<div
       ref={(node) => {
