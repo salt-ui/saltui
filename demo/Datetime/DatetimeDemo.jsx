@@ -8,7 +8,7 @@
 
 import React from 'react';
 import Button from 'salt-button';
-import Datetime from 'salt-datetime';
+import Datetime from '../../lib/Datetime';
 
 class DatetimeDemo extends React.Component {
   constructor(props) {
