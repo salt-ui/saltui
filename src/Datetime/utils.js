@@ -30,7 +30,7 @@ function getDates(value) {
       num = 29;
     }
   }
-  if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
+  if ([1, 3, 5, 8, 10, 12].indexOf(month) !== -1) {
     num = 31;
   }
   for (let i = 1; i <= num; i++) {
@@ -138,7 +138,7 @@ function formatFromProps(arr, props) {
  */
 function getMonthDays(year, month) {
   let NUM = 30;
-  if (month === 1 || month === 3 || month === 5 || month === 7 || month === 8 || month === 10 || month === 12) {
+  if ([1, 3, 5, 8, 10, 12].indexOf(month) !== -1) {
     NUM = 31;
   }
   if (month === 2) {
