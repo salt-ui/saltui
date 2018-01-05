@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Popup from '../Popup';
@@ -16,7 +17,7 @@ import SharePanel from './SharePanel';
 class ActionSheet extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
+    className: PropTypes.string,
   };
 
   static defaultProps = {

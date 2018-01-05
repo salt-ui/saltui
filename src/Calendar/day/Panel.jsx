@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../../Context';
 import cloneDeep from 'lodash/cloneDeep';
@@ -25,18 +26,18 @@ const shadowArray = [1, 2]; // 只是用来提供一个长度的数组，本身�
 class Panel extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    locale: React.PropTypes.string,
-    height: React.PropTypes.number,
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
-      React.PropTypes.array,
-      React.PropTypes.object,
+    className: PropTypes.string,
+    locale: PropTypes.string,
+    height: PropTypes.number,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.array,
+      PropTypes.object,
     ]),
-    singleMode: React.PropTypes.bool, // 是否是单选模式
-    onChange: React.PropTypes.func,
-    showHalfDay: React.PropTypes.bool,
+    singleMode: PropTypes.bool, // 是否是单选模式
+    onChange: PropTypes.func,
+    showHalfDay: PropTypes.bool,
   };
 
   static defaultProps = {

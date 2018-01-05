@@ -2,6 +2,7 @@
  * Created by ex90rts on 12/05/2017.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from './utils';
 
@@ -31,9 +32,9 @@ ButtonGroup.defaultProps = {
 };
 
 ButtonGroup.propTypes = {
-  children: React.PropTypes.oneOfType([
-    React.PropTypes.element,
-    React.PropTypes.array,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.array,
   ]),
 };
 

@@ -31,7 +31,7 @@ class SelectField extends React.Component {
     const t = this;
     const value = nextProps.value;
     t.setState({
-      value: [value],
+      value: isNil(value) ? value : [value],
       confirmedValue: [value],
     });
   }
@@ -63,7 +63,7 @@ class SelectField extends React.Component {
   render() {
     const t = this;
     const icon = !t.props.readOnly ? (
-      <AngleRight 
+      <AngleRight
         className={Context.prefixClass('select-field-icon')}
         width={26}
         height={26}
@@ -72,7 +72,8 @@ class SelectField extends React.Component {
     ) : null;
     return (
       <Field
-        {...t.props} icon={icon}
+        {...t.props}
+        icon={icon}
         className={classnames(Context.prefixClass('select-field'), {
           [t.props.className]: !!t.props.className,
         })}
@@ -84,7 +85,8 @@ class SelectField extends React.Component {
               className={classnames(Context.prefixClass('FB1 omit'), {
                 [Context.prefixClass('select-field-readonly')]: !!t.props.readOnly,
               })}
-            >{t.props.formatter(t.state.confirmedValue[0])}</span>
+            >{t.props.formatter(t.state.confirmedValue[0])}
+            </span>
           </div>
         </div>
         <Slot

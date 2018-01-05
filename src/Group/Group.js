@@ -6,6 +6,8 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import classnames from 'classnames';
 import Context from '../Context';
 import Head from './Head';
@@ -22,7 +24,7 @@ let Group = (props) => {
 Group.displayName = 'Group';
 
 Group.propTypes = {
-    className: React.PropTypes.string
+    className: PropTypes.string
 };
 
 Group.defaultProps = {};

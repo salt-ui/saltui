@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../../Context';
 import locale from '../locale';
@@ -15,8 +16,8 @@ const prefixClass = Context.prefixClass;
 class WeekBar extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string, // 国际化语言
-    locale: React.PropTypes.string, // 国际化语言
+    className: PropTypes.string, // 国际化语言
+    locale: PropTypes.string, // 国际化语言
   };
 
   static defaultProps = {

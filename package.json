@@ -1,6 +1,6 @@
 {
   "name": "saltui",
-  "version": "3.3.5",
+  "version": "3.3.6",
   "description": "React components for mobile",
   "main": "build/salt-ui.js",
   "scripts": {
@@ -52,8 +52,8 @@
     "happypack": "^4.0.0-beta.2",
     "inquirer": "^3.3.0",
     "progress-bar-webpack-plugin": "^1.10.0",
-    "react": "^0.14.9",
-    "react-dom": "^0.14.9",
+    "react": "15.x",
+    "react-dom": "15.x",
     "react-router-dom": "^4.2.2",
     "rimraf": "^2.6.1",
     "run-sequence": "^2.2.0",
@@ -71,6 +71,7 @@
     "lie": "^3.1.1",
     "lodash": "^4.17.4",
     "natty-fetch": "^2.5.2",
+    "prop-types": "15.x",
     "rc-collapse": "^1.7.6",
     "rc-dialog": "^6.5.11",
     "rc-input-number": "^3.6.8",

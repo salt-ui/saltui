@@ -6,23 +6,24 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
 class Badge extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    count: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    className: PropTypes.string,
+    count: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
-    text: React.PropTypes.string,
-    corner: React.PropTypes.oneOf(['rt', 'lt', 'rb', 'lb']),
-    dot: React.PropTypes.bool,
-    overflowCount: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    text: PropTypes.string,
+    corner: PropTypes.oneOf(['rt', 'lt', 'rb', 'lb']),
+    dot: PropTypes.bool,
+    overflowCount: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
   };
 

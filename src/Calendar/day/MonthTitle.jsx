@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Context from '../../Context';
 import locale from '../locale';
 import formatter from '../formatter';
@@ -15,12 +16,12 @@ const prefixClass = Context.prefixClass;
 class MonthTitle extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    locale: React.PropTypes.string,
+    className: PropTypes.string,
+    locale: PropTypes.string,
     // 一个月中的任意一天都可以
-    anyDayInMonth: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    anyDayInMonth: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
   };
 
