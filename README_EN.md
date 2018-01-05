@@ -38,22 +38,21 @@ ReactDOM.render(<Button />, mountNode);
 
 * use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) (recommanded)
 
-```js
-// .babelrc or babel-loader option
-{
-  "plugins": [
-    ["import", { libraryName: "saltui" }]
-  ]
-}
-```
+  ```js
+  // .babelrc or babel-loader option
+  {
+    "plugins": [
+      ["import", { libraryName: "saltui" }]
+    ]
+  }
+  ```
 
-配置好后，引用方式不需要改变，即可实现按需加载。
 
-* 或者，手动引入
+* or, import manually
 
-```js
-import Button from 'saltui/lib/Button';
-```
+  ```js
+  import Button from 'saltui/lib/Button';
+  ```
 
 ### import style package
 ```css
