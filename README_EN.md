@@ -28,15 +28,33 @@ $ npm install saltui --save
 
 ## Usage
 
-import js
+### import js
 ```jsx
 import { Button } from 'saltui';
-// or import as required
-import Button from 'saltui/lib/Button';
 ReactDOM.render(<Button />, mountNode);
 ```
 
-import style package
+### import js as required
+
+* use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) (recommanded)
+
+  ```js
+  // .babelrc or babel-loader option
+  {
+    "plugins": [
+      ["import", { libraryName: "saltui" }]
+    ]
+  }
+  ```
+
+
+* or, import manually
+
+  ```js
+  import Button from 'saltui/lib/Button';
+  ```
+
+### import style package
 ```css
 @import '~saltui/build/salt-ui.css';
 ```
