@@ -28,19 +28,35 @@ $ npm install saltui --save
 
 ## 使用
 
-引入 js
+### 引入 js
 ```jsx
 import { Button } from 'saltui';
-// 或者按需加载
-import Button from 'saltui/lib/Button';
 ReactDOM.render(<Button />, mountNode);
 ```
 
-按需引入 js
+### 按需引入 js
 
-使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)（推荐）。
+* 使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)（推荐）。
 
-引入样式包
+```js
+// .babelrc or babel-loader option
+{
+  "plugins": [
+    ["import", { libraryName: "saltui" }]
+  ]
+}
+```
+
+配置好后，引用方式不需要改变，即可实现按需加载。
+
+* 或者，手动引入
+
+```js
+import Button from 'saltui/lib/Button';
+```
+
+
+### 引入样式包
 ```css
 @import '~saltui/build/salt-ui.css';
 ```
