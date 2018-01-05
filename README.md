@@ -36,6 +36,10 @@ import Button from 'saltui/lib/Button';
 ReactDOM.render(<Button />, mountNode);
 ```
 
+按需引入 js
+
+使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)（推荐）。
+
 引入样式包
 ```css
 @import '~saltui/build/salt-ui.css';
