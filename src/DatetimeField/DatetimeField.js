@@ -126,6 +126,7 @@ class DatetimeField extends React.Component {
           locale={t.props.locale}
           columns={t.props.columns}
           value={t.props.value}
+          disabledDate={t.props.disabledDate}
           confirmText={t.props.confirmText}
           cancelText={t.props.cancelText}
           onCancel={t.props.onCancel.bind(t)}

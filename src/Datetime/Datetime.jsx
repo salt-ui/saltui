@@ -51,7 +51,7 @@ class Datetime extends React.Component {
   }
   // 外部变更选中值
   componentWillReceiveProps(nextProps) {
-    this.setOptions(newProps);
+    this.setOptions(nextProps);
   }
   // 获取默认最小值
   getDefaultMinDate = (value) => {
@@ -108,7 +108,8 @@ class Datetime extends React.Component {
     };
   };
   getOptions = ({ value }, props) => {
-    let { minDate, maxDate, minuteStep } = props;
+    let { minDate, maxDate } = props;
+    const { minuteStep } = props;
     minDate = this.getDefaultMinDate(minDate);
     maxDate = this.getDefaultMaxDate(maxDate);
     const currentValue = parseValue(value);

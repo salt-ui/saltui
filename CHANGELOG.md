@@ -1,3 +1,7 @@
+## 3.4.0 / 2018-01-05
+
+* `feat`: Datetime support prop `disabledDate`
+
 ## 3.3.6 / 2018-01-03
 
 * `feat` React 15.x compatible for ActionSheet, Button, Avatar, Badge, Boxs, Calendar, Group
