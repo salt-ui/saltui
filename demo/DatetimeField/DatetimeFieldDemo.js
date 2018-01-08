@@ -23,10 +23,15 @@ class Demo extends React.Component {
     t.state = {
       value1: '',
       value2: {
+        value: '',
+        timeType: 'PM',
+      },
+      value3: {
         value: '***',
         timeType: 'PM',
       },
-      value3: '2017-7-20 12:42:44', // '2017-7-20 12:42:44',
+      value4: '2017-7-20 12:42:44', // '2017-7-20 12:42:44',
+      value5: '**ji',
     };
   }
 
@@ -84,6 +89,18 @@ class Demo extends React.Component {
               onSelect={t.handleChange.bind(t, 'value3')}
               value={t.state.value3}
               columns={DatetimeField.YMDWHM}
+            />
+            <DatetimeField
+              label="时间选择"
+              onSelect={t.handleChange.bind(t, 'value4')}
+              value={t.state.value4}
+              columns={DatetimeField.YMDWHM}
+            />
+            <DatetimeField
+              label="日期/上下午选择"
+              onSelect={t.handleChange.bind(t, 'value5')}
+              value={t.state.value5}
+              columns={DatetimeField.YMDT}
             />
           </Group.List>
         </Group>

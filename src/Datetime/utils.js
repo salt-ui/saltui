@@ -656,7 +656,11 @@ function getSlotFormattedValue(currentValue, props) {
   if (!currentValue) {
     return [];
   }
-  if (isObject(currentValue) && !new Date(currentValue.value).getTime()) {
+  if (isObject(currentValue)) {
+    if (!new Date(currentValue.value).getTime()) {
+      return [];
+    }
+  } else if (!new Date(currentValue).getTime()) {
     return [];
   }
   const { data, value } = getOptions({ value: currentValue }, props);
