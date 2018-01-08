@@ -1,3 +1,4 @@
+import React from 'react';
 import formatter from './formatter';
 import localeMap from './locale';
 
@@ -18,7 +19,7 @@ function isInRange(startDate, endDate, targetDate) {
 }
 
 function isNil(value) {
-  return value === null || value === undefined || (isNaN(value) && (typeof value === 'number'));
+  return value === null || value === undefined || (Number.isNaN(value) && (typeof value === 'number'));
 }
 
 // 渲染特殊的工作日或休息日，比如国家因节假日而进行的调休
@@ -27,7 +28,7 @@ function isNil(value) {
 //    '2017-01-03': 'leave',
 // }
 function generateSpecialWorkdayOrHolidayRender(dayMap, lang = 'zh-cn') {
-  return function (data, locale, current) {
+  return function demo(data, locale, current) {
     const currentDate = formatter(new Date(current), 'YYYY-MM-DD');
     const type = data[currentDate];
     if (type) {
@@ -52,22 +53,25 @@ function isIos() {
   const iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
   const os = {};
   if (iphone && !ipod) {
-    os.ios = os.iphone = true;
+    os.ios = true;
+    os.iphone = true;
     os.version = iphone[2].replace(/_/g, '.');
   }
   if (ipad) {
-    os.ios = os.ipad = true;
+    os.ios = true;
+    os.ipad = true;
     os.version = ipad[2].replace(/_/g, '.');
   }
   if (ipod) {
-    os.ios = os.ipod = true;
+    os.ios = true;
+    os.ipod = true;
     os.version = ipod[3] ? ipod[3].replace(/_/g, '.') : null;
   }
   return os.ios;
 }
 
-function addUrlParam (name, value) {
-  let currentUrl = location.href;
+function addUrlParam(name, value) {
+  let currentUrl = window.location.href;
   let reg;
   if (/\?/g.test(currentUrl)) {
     reg = new RegExp(`${name}=[-\\w]{4,25}`, 'g');

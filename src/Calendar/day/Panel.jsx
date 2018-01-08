@@ -8,23 +8,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Context from '../../Context';
 import cloneDeep from 'lodash/cloneDeep';
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
 import deepEqual from 'lodash/isEqual';
+import { getMonthDays, getRealMonthPool } from './utils';
+import { prefixClass } from '../../Context';
 import locale from '../locale';
 import MonthBody from './MonthBody';
 import MonthTitle from './MonthTitle';
 import formatter from '../formatter';
 import util from '../util';
 
-const prefixClass = Context.prefixClass;
 const shadowArray = [1, 2]; // 只是用来提供一个长度的数组，本身的值没什么用
 // const maxMonth = 5; // 最多渲染这么多个月
 
 class Panel extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     locale: PropTypes.string,
@@ -38,12 +37,20 @@ class Panel extends React.Component {
     singleMode: PropTypes.bool, // 是否是单选模式
     onChange: PropTypes.func,
     showHalfDay: PropTypes.bool,
+    onOk: PropTypes.any,
+    animationType: PropTypes.any,
   };
 
   static defaultProps = {
     singleMode: true,
     onChange: () => {},
     showHalfDay: false,
+    className: undefined,
+    locale: undefined,
+    height: undefined,
+    value: undefined,
+    onOk: undefined,
+    animationType: undefined,
   };
 
   constructor(props) {
@@ -107,7 +114,7 @@ class Panel extends React.Component {
     return !deepEqual(nextProps, this.props) || !deepEqual(nextState, this.state);
   }
 
-  onDaySelected(timestamp, e) {
+  onDaySelected(timestamp) {
     this.setState({
       value: timestamp,
     });
@@ -120,21 +127,6 @@ class Panel extends React.Component {
         value: timestamp,
       });
     }
-  }
-
-  /*
-   * 根据 timestamp 去计算它所属的月份的全部 days
-   * days数据结构为：[timestamp1, timestamp2, ...]
-   */
-  getMonthDays(timestamp = Date.now()) {
-    const cursorDay = new Date(new Date(timestamp).setDate(1));
-    const currentMonth = cursorDay.getMonth();
-    const days = [];
-    while (cursorDay.getMonth() === currentMonth) {
-      days.push(cursorDay.getTime());
-      cursorDay.setDate(cursorDay.getDate() + 1);
-    }
-    return days;
   }
 
   getRefByTimestamp(timestamp) {
@@ -158,24 +150,6 @@ class Panel extends React.Component {
     return ref ? ref.offsetHeight : 0;
   }
 
-  // t.state.monthPool中存放一些占位信息。该function负责取出真正月份的部分信息
-  getRealMonthPool(monthPool) {
-    let lastRealMonthIndex = 0;
-    let realMonthLen = 0;
-    monthPool.forEach((m, idx) => {
-      if (Array.isArray(m)) {
-        lastRealMonthIndex = idx;
-        realMonthLen += 1;
-      }
-    });
-    const firstRealMonthIndex = lastRealMonthIndex - realMonthLen + 1;
-    return {
-      firstRealMonthIndex,
-      lastRealMonthIndex,
-      realMonthLen,
-    };
-  }
-
   /*
    * 设置monthPool
    * @param pre 向队列的头部插入
@@ -187,18 +161,17 @@ class Panel extends React.Component {
     let {
       firstRealMonthIndex,
       lastRealMonthIndex,
-    } = t.getRealMonthPool(monthPool);
+    } = getRealMonthPool(monthPool);
     if (pre) {
       shadowArray.forEach(() => {
         const firstDayInFirstMonth = monthPool[firstRealMonthIndex][0];
         // 月份-1
-        const preMonth = new Date(parseInt(firstDayInFirstMonth, 10)).setMonth(
-          new Date(parseInt(firstDayInFirstMonth, 10)).getMonth() - 1
-        );
+        const preMonth = new Date(parseInt(firstDayInFirstMonth, 10))
+          .setMonth(new Date(parseInt(firstDayInFirstMonth, 10)).getMonth() - 1);
         if (firstRealMonthIndex === 0) {
-          monthPool.splice(0, 0, t.getMonthDays(preMonth));
+          monthPool.splice(0, 0, getMonthDays(preMonth));
         } else {
-          monthPool.splice(firstRealMonthIndex - 1, 1, t.getMonthDays(preMonth));
+          monthPool.splice(firstRealMonthIndex - 1, 1, getMonthDays(preMonth));
           firstRealMonthIndex -= 1;
         }
         lastRealMonthIndex += 1;
@@ -212,17 +185,17 @@ class Panel extends React.Component {
         if (!firstDayInLastMonth) {
           let firstValue = !util.isNil(t.props.value) ? t.props.value : Date.now();
           if (isObject(firstValue)) {
-            firstValue = firstValue.startDate || firstValue.endDate || firstValue.value || Date.now();
+            firstValue = firstValue.startDate || firstValue.endDate ||
+            firstValue.value || Date.now();
           } else if (isArray(firstValue)) {
             firstValue = firstValue[0] || Date.now();
           }
-          monthPool.splice(lastRealMonthIndex, 0, t.getMonthDays(firstValue));
+          monthPool.splice(lastRealMonthIndex, 0, getMonthDays(firstValue));
         } else {
           // 月份加1
-          const nextMonth = new Date(parseInt(firstDayInLastMonth, 10)).setMonth(
-            new Date(parseInt(firstDayInLastMonth, 10)).getMonth() + 1
-          );
-          monthPool.splice(lastRealMonthIndex + 1, 1, t.getMonthDays(nextMonth));
+          const nextMonth = new Date(parseInt(firstDayInLastMonth, 10))
+            .setMonth(new Date(parseInt(firstDayInLastMonth, 10)).getMonth() + 1);
+          monthPool.splice(lastRealMonthIndex + 1, 1, getMonthDays(nextMonth));
           lastRealMonthIndex += 1;
         }
       });
@@ -241,8 +214,8 @@ class Panel extends React.Component {
   loadMonth() {
     const t = this;
     const docHeight = t.root.scrollHeight;
-    const clientHeight = t.root.clientHeight;
-    const scrollTop = t.root.scrollTop;
+    const { clientHeight } = t.root;
+    const { scrollTop } = t.root;
     const scrollBottom = docHeight - scrollTop - clientHeight;
     // 正在加载，或者滑动距离小于100px，都不触发loadMonth
     if (t.monthLoading || Math.abs(t.endY - t.startY) < 100) {
@@ -269,10 +242,6 @@ class Panel extends React.Component {
     }
   }
 
-  // 只有级联才用到上下午
-  renderHalfDay() {
-    return null;
-  }
 
   renderMonth(props) {
     const t = this;
@@ -292,7 +261,7 @@ class Panel extends React.Component {
             {...props}
             value={t.state.value}
             days={monthDays}
-            onSelected={(data, e) => { t.onDaySelected(data, e); }}
+            onSelected={(data) => { t.onDaySelected(data); }}
           />
         </div>
       );
@@ -319,7 +288,8 @@ class Panel extends React.Component {
               className={`${prefixClass('month-area')}`}
               style={{ height: t.monthAreaHeight }}
               ref={(p) => { this.root = p; }}
-            >{t.renderMonth(others)}</div> :
+            >{t.renderMonth(others)}
+            </div> :
             t.renderMonth(others)
         }
         {

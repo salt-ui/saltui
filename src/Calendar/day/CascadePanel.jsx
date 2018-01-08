@@ -8,17 +8,15 @@
  * All rights reserved.
  */
 import React from 'react';
+import classnames from 'classnames';
 import cloneDeep from 'lodash/cloneDeep';
 import Toast from '../../Toast';
-import Context from '../../Context';
+import { prefixClass } from '../../Context';
 import Button from '../../Button';
-import classnames from 'classnames';
 import util from '../util';
 import Panel from './Panel';
-import formatter from '../formatter';
 import { halfDayType } from './const';
-
-const prefixClass = Context.prefixClass;
+import { adaptCascadeDate } from './utils';
 
 class CascadePanel extends Panel {
   static propTypes = {
@@ -44,20 +42,6 @@ class CascadePanel extends Panel {
     });
   }
 
-  // 级联模式，调整成正确的数据
-  adaptCascadeDate(sDate, eDate) {
-    const startDate = util.isNil(sDate) ? sDate : new Date(sDate).getTime();
-    let endDate = util.isNil(eDate) ? eDate : new Date(eDate).getTime();
-    // 如果开始时间大于结束时间，则把结束时间置为同开始时间相同的时间
-    if (startDate && endDate && startDate > endDate) {
-      endDate = startDate;
-    }
-    return {
-      startDate,
-      endDate,
-    };
-  }
-
   processValue(propValue) {
     let value = cloneDeep(propValue);
     if (util.isNil(value)) {
@@ -72,13 +56,13 @@ class CascadePanel extends Panel {
       };
     }
     if (Object.prototype.toString.call(propValue) === '[object Object]') {
-      const result = this.adaptCascadeDate(propValue.startDate, propValue.endDate);
+      const result = adaptCascadeDate(propValue.startDate, propValue.endDate);
       value = {
         startDate: result.startDate,
         endDate: result.endDate,
       };
     } else if (Object.prototype.toString.call(propValue) === '[object Array]') {
-      const result = this.adaptCascadeDate(propValue[0], propValue[1] || propValue[0]);
+      const result = adaptCascadeDate(propValue[0], propValue[1] || propValue[0]);
       value = {
         startDate: result.startDate,
         endDate: result.endDate,
@@ -117,10 +101,9 @@ class CascadePanel extends Panel {
   onDaySelected(timestamp) {
     const t = this;
     t.isASC = true;
-    let startDate = t.state.value.startDate;
-    let endDate = t.state.value.endDate;
-    let startDateType = t.state.value.startDateType;
-    let endDateType = t.state.value.endDateType;
+    let {
+      startDate, endDate, startDateType, endDateType,
+    } = t.state.value;
     let activeType = '';
     if (!startDate && !endDate) {
       startDate = timestamp;
@@ -194,7 +177,7 @@ class CascadePanel extends Panel {
     });
 
     // 在 slide 模式，且不显示 halfDay 的情况下，只要起止值都已经完整，则触发 onOk
-    if (t.props.animationType === 'slideLeft' & !t.props.showHalfDay && newValue.startDate && newValue.endDate) {
+    if (t.props.animationType === 'slideLeft' && !t.props.showHalfDay && newValue.startDate && newValue.endDate) {
       t.props.onOk(cloneDeep(newValue));
     }
   }
@@ -219,34 +202,42 @@ class CascadePanel extends Panel {
     const halfType = t.state.value[`${t.state.activeType}DateType`];
 
     const full =
-      (<li
-        className={classnames(prefixClass('tap'), 'day-type-item full', {
+      (
+        <li
+          className={classnames(prefixClass('tap'), 'day-type-item full', {
           active: halfType === halfDayType.FULL,
         })}
-        key="half-day-full"
-        onClick={(e) => { t.onHalfButtonClick(halfDayType.FULL, e); }}
-      >{t.locale.dayTipMap.FULL}
-      </li>);
+          key="half-day-full"
+          onClick={(e) => { t.onHalfButtonClick(halfDayType.FULL, e); }}
+          role="menuitem"
+        >
+          {t.locale.dayTipMap.FULL}
+        </li>);
 
     const am =
-      (<li
-        className={classnames(prefixClass('tap'), 'day-type-item am', {
-          active: halfType === halfDayType.AM,
-        })}
-        key="half-day-am"
-        onClick={(e) => { t.onHalfButtonClick(halfDayType.AM, e); }}
-      >{t.locale.dayTipMap.AM}
-      </li>);
+      (
+        <li
+          className={classnames(prefixClass('tap'), 'day-type-item am', {
+            active: halfType === halfDayType.AM,
+          })}
+          key="half-day-am"
+          onClick={(e) => { t.onHalfButtonClick(halfDayType.AM, e); }}
+          role="menuitem"
+        >
+          {t.locale.dayTipMap.AM}
+        </li>);
 
     const pm =
-      (<li
-        className={classnames(prefixClass('tap'), 'day-type-item pm', {
-          active: halfType === halfDayType.PM,
-        })}
-        key="half-day-pm"
-        onClick={(e) => { t.onHalfButtonClick(halfDayType.PM, e); }}
-      >{t.locale.dayTipMap.PM}
-      </li>);
+      (
+        <li
+          className={classnames(prefixClass('tap'), 'day-type-item pm', {
+            active: halfType === halfDayType.PM,
+          })}
+          key="half-day-pm"
+          onClick={(e) => { t.onHalfButtonClick(halfDayType.PM, e); }}
+          role="menuitem"
+        >{t.locale.dayTipMap.PM}
+        </li>);
 
     let halfButtons = [full, am, pm];
 

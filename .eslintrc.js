@@ -17,6 +17,7 @@ module.exports = {
                 "allowForLoopAfterthoughts": true
             }
         ],
+        "react/no-unused-state": "off",
         "react/jsx-no-bind": "off",
         "react/no-unused-prop-types": "off",
         "react/forbid-prop-types": "off",

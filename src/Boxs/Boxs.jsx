@@ -53,10 +53,14 @@ HBox.propTypes = {
   flex: PropTypes.number,
   hAlign: PropTypes.oneOf(ALIGN_VALUES),
   vAlign: PropTypes.oneOf(ALIGN_VALUES),
+  children: PropTypes.node,
 };
 HBox.defaultProps = {
   className: '',
   flex: 0,
+  hAlign: undefined,
+  vAlign: undefined,
+  children: undefined,
 };
 
 HBox.displayName = 'HBox';
@@ -93,10 +97,14 @@ VBox.propTypes = {
   flex: PropTypes.number,
   hAlign: PropTypes.oneOf(ALIGN_VALUES),
   vAlign: PropTypes.oneOf(ALIGN_VALUES),
+  children: PropTypes.node,
 };
 VBox.defaultProps = {
   className: '',
   flex: 0,
+  hAlign: undefined,
+  vAlign: undefined,
+  children: undefined,
 };
 VBox.displayName = 'VBox';
 
@@ -107,7 +115,9 @@ VBox.displayName = 'VBox';
  * @constructor
  */
 const Box = (props) => {
-  const { className, flex, ...other } = props;
+  const {
+    className, flex, vAlign, hAlign, ...other
+  } = props;
   const c = classnames({
     [prefixClass(`FB${flex}`)]: !!flex,
     [className]: !!className,
@@ -125,10 +135,14 @@ Box.propTypes = {
   flex: PropTypes.number,
   hAlign: PropTypes.oneOf(ALIGN_VALUES),
   vAlign: PropTypes.oneOf(ALIGN_VALUES),
+  children: PropTypes.node,
 };
 Box.defaultProps = {
   className: '',
   flex: 0,
+  hAlign: undefined,
+  vAlign: undefined,
+  children: undefined,
 };
 Box.displayName = 'Box';
 
