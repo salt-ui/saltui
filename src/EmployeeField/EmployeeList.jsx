@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Context from '../Context';
 import Avatar from '../Avatar';
 import DelIcon from 'salt-icon/lib/MinusRound';
@@ -8,10 +9,10 @@ import FoldablePane from '../FoldablePane';
 
 class EmployeeList extends React.Component {
   static propTypes = {
-    readOnly: React.PropTypes.bool,
-    col: React.PropTypes.number,
-    list: React.PropTypes.array,
-    onDel: React.PropTypes.func,
+    readOnly: PropTypes.bool,
+    col: PropTypes.number,
+    list: PropTypes.array,
+    onDel: PropTypes.func,
   };
 
   static defaultProps = {

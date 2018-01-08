@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import { Box } from '../Boxs';
@@ -11,11 +12,11 @@ import TabBarItemBadge from './TabBarItemBadge';
 class TabBarItemMore extends React.Component {
   static displayName = 'TabBarItemMore';
   static propTypes = {
-    onClick: React.PropTypes.func,
-    key: React.PropTypes.string,
-    path: React.PropTypes.string,
-    hideMoreItems: React.PropTypes.func,
-    index: React.PropTypes.number,
+    onClick: PropTypes.func,
+    keyNew: PropTypes.string,
+    path: PropTypes.string,
+    hideMoreItems: PropTypes.func,
+    index: PropTypes.number,
   };
 
   constructor(props) {

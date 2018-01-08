@@ -8,6 +8,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Dialog from 'rc-dialog';
 import classnames from 'classnames';
@@ -149,11 +150,11 @@ class Popup extends React.Component {
     }
   }
   static propTypes = {
-    children: React.PropTypes.node,
-    content: React.PropTypes.node,
-    options: React.PropTypes.object,
-    visible: React.PropTypes.bool,
-    onMaskClick: React.PropTypes.func,
+    children: PropTypes.node,
+    content: PropTypes.node,
+    options: PropTypes.object,
+    visible: PropTypes.bool,
+    onMaskClick: PropTypes.func,
   }
 
   static defaultProps = {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Badge from '../Badge';
 import TabBarItemIcon from './TabBarItemIcon';
 import TabBarItemTitle from './TabBarItemTitle';
@@ -6,16 +7,16 @@ import TabBarItemTitle from './TabBarItemTitle';
 class TabBarItemBadge extends React.Component {
   static displayName = 'TabBarItemBadge';
   static propTypes = {
-    badge: React.PropTypes.oneOfType([
-      React.PropTypes.bool,
-      React.PropTypes.number,
-      React.PropTypes.string,
-      React.PropTypes.object,
+    badge: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.object,
     ]),
-    badgeStyle: React.PropTypes.object,
-    iconHeight: React.PropTypes.number,
-    active: React.PropTypes.bool,
-    showTitle: React.PropTypes.bool,
+    badgeStyle: PropTypes.object,
+    iconHeight: PropTypes.number,
+    active: PropTypes.bool,
+    showTitle: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -44,7 +45,7 @@ class TabBarItemBadge extends React.Component {
         </Badge>);
     } else {
       contentBadge.push(
-        <div>
+        <div key={'badge_others'}>
           <TabBarItemIcon {...this.props} iconHeight={iconHeight} active={active} />
           {showTitle ? <TabBarItemTitle {...this.props} active={active} /> : null}
         </div>);

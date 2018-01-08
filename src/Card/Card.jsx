@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
@@ -38,8 +38,8 @@ Card.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Card.propTypes = {
-  className: React.PropTypes.string,
-  mode: React.PropTypes.oneOf(['normal', 'full']),
+  className: PropTypes.string,
+  mode: PropTypes.oneOf(['normal', 'full']),
 };
 
 Card.displayName = 'Card';

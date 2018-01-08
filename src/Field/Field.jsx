@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from 'salt-icon/dist/Symbol';
 import Context from '../Context';
@@ -130,23 +131,23 @@ Field.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Field.propTypes = {
-  label: React.PropTypes.string,
-  icon: React.PropTypes.object,
-  required: React.PropTypes.bool,
-  tappable: React.PropTypes.bool,
-  readOnly: React.PropTypes.bool,
-  multiLine: React.PropTypes.bool,
-  layout: React.PropTypes.oneOf(['h', 'v']),
-  tip: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
+  label: PropTypes.string,
+  icon: PropTypes.object,
+  required: PropTypes.bool,
+  tappable: PropTypes.bool,
+  readOnly: PropTypes.bool,
+  multiLine: PropTypes.bool,
+  layout: PropTypes.oneOf(['h', 'v']),
+  tip: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
   ]),
-  extra: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
+  extra: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
   ]),
-  toastComponent: React.PropTypes.func,
-  errMsg: React.PropTypes.string,
+  toastComponent: PropTypes.func,
+  errMsg: PropTypes.string,
 };
 
 Field.getFieldProps = (props = {}) => {

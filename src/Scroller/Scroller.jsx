@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import IScroll from './iscroll';
@@ -103,10 +104,10 @@ Scroller.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Scroller.propTypes = {
-  autoRefresh: React.PropTypes.bool,
-  className: React.PropTypes.string,
-  disablePointer: React.PropTypes.bool,
-  children: React.PropTypes.node,
+  autoRefresh: PropTypes.bool,
+  className: PropTypes.string,
+  disablePointer: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 export default Scroller;

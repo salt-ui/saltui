@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import { HBox } from '../Boxs';
@@ -15,17 +16,17 @@ class TabBar extends React.Component {
   static displayName = 'TabBar';
 
   static propTypes = {
-    className: React.PropTypes.string,
-    activeIndex: React.PropTypes.number,
-    height: React.PropTypes.number,
-    iconHeight: React.PropTypes.number,
-    cIconHeight: React.PropTypes.number,
-    onChange: React.PropTypes.func,
-    tabBarStyle: React.PropTypes.object,
-    menuFlat: React.PropTypes.bool,
-    children: React.PropTypes.any,
-    items: React.PropTypes.array,
-    theme: React.PropTypes.string,
+    className: PropTypes.string,
+    activeIndex: PropTypes.number,
+    height: PropTypes.number,
+    iconHeight: PropTypes.number,
+    cIconHeight: PropTypes.number,
+    onChange: PropTypes.func,
+    tabBarStyle: PropTypes.object,
+    menuFlat: PropTypes.bool,
+    children: PropTypes.any,
+    items: PropTypes.array,
+    theme: PropTypes.string,
   };
 
   static defaultProps = {

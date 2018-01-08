@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Promise from 'lie';
 import NattyFetch from 'natty-fetch/dist/natty-fetch';
@@ -365,25 +366,25 @@ SearchPanel.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 SearchPanel.propTypes = {
-  value: React.PropTypes.array,
-  searchText: React.PropTypes.string,
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  onConfirm: React.PropTypes.func,
-  fetchUrl: React.PropTypes.string.isRequired,
-  fetchDataOnOpen: React.PropTypes.bool,
-  dataType: React.PropTypes.string,
-  beforeFetch: React.PropTypes.func,
-  fitResponse: React.PropTypes.func,
-  afterFetch: React.PropTypes.func,
-  showSearch: React.PropTypes.bool,
-  searchTitle: React.PropTypes.string,
-  searchDelay: React.PropTypes.number,
-  searchPlaceholder: React.PropTypes.string,
-  searchNotFoundContent: React.PropTypes.string,
-  formatter: React.PropTypes.func,
-  multiple: React.PropTypes.bool,
-  selectText: React.PropTypes.string,
+  value: PropTypes.array,
+  searchText: PropTypes.string,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  onConfirm: PropTypes.func,
+  fetchUrl: PropTypes.string.isRequired,
+  fetchDataOnOpen: PropTypes.bool,
+  dataType: PropTypes.string,
+  beforeFetch: PropTypes.func,
+  fitResponse: PropTypes.func,
+  afterFetch: PropTypes.func,
+  showSearch: PropTypes.bool,
+  searchTitle: PropTypes.string,
+  searchDelay: PropTypes.number,
+  searchPlaceholder: PropTypes.string,
+  searchNotFoundContent: PropTypes.string,
+  formatter: PropTypes.func,
+  multiple: PropTypes.bool,
+  selectText: PropTypes.string,
 };
 
 SearchPanel.displayName = 'SearchPanel';

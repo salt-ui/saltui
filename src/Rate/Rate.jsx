@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { unitize } from '../Style';
 import Context from '../Context';
@@ -30,15 +30,15 @@ class Rate extends React.Component {
 
   // http://facebook.github.io/react/docs/reusable-components.html
   static propTypes = {
-    className: React.PropTypes.string,
-    totalScore: React.PropTypes.number,
-    total: React.PropTypes.number,
-    scoreTips: React.PropTypes.array,
-    showTip: React.PropTypes.bool,
-    score: React.PropTypes.number,
-    value: React.PropTypes.number,
-    readOnly: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
+    className: PropTypes.string,
+    totalScore: PropTypes.number,
+    total: PropTypes.number,
+    scoreTips: PropTypes.array,
+    showTip: PropTypes.bool,
+    score: PropTypes.number,
+    value: PropTypes.number,
+    readOnly: PropTypes.bool,
+    onChange: PropTypes.func,
   };
 
 

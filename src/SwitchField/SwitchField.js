@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Switch from '../Switch';
 import Field from '../Field';
@@ -46,10 +47,10 @@ SwitchField.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 SwitchField.propTypes = {
-  label: React.PropTypes.string.isRequired,
-  className: React.PropTypes.string,
-  on: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
+  label: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  on: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 
 SwitchField.displayName = 'SwitchField';

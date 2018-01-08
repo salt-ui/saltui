@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Animate from 'rc-animate';
 import Hammer from 'hammerjs';
 import classnames from 'classnames';
@@ -157,11 +158,11 @@ class PopupView extends React.Component {
 }
 
 PopupView.propTypes = {
-  prefixCls: React.PropTypes.string,
-  photos: React.PropTypes.array,
-  current: React.PropTypes.number,
-  onClick: React.PropTypes.func,
-  visible: React.PropTypes.bool,
+  prefixCls: PropTypes.string,
+  photos: PropTypes.array,
+  current: PropTypes.number,
+  onClick: PropTypes.func,
+  visible: PropTypes.bool,
 };
 
 PopupView.defaultProps = {

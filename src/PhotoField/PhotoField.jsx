@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ImageViewer from '../ImageViewer';
 import { Events, Status } from 'uploadcore';
 import UploadCore from 'uploadcore/dist/uploadcore';
@@ -220,26 +221,26 @@ PhotoField.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 PhotoField.propTypes = {
-  icon: React.PropTypes.object,
-  columns: React.PropTypes.number,
-  multiple: React.PropTypes.bool,
-  corpId: React.PropTypes.string,
-  layout: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
-  locale: React.PropTypes.string,
-  label: React.PropTypes.string,
-  max: React.PropTypes.number,
-  maxUpload: React.PropTypes.number,
-  photoList: React.PropTypes.array,
-  readOnly: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  onDelete: React.PropTypes.func,
-  required: React.PropTypes.bool,
-  name: React.PropTypes.string,
-  url: React.PropTypes.string,
-  autoPending: React.PropTypes.bool,
-  className: React.PropTypes.string,
-  tip: React.PropTypes.string,
+  icon: PropTypes.object,
+  columns: PropTypes.number,
+  multiple: PropTypes.bool,
+  corpId: PropTypes.string,
+  layout: PropTypes.string,
+  placeholder: PropTypes.string,
+  locale: PropTypes.string,
+  label: PropTypes.string,
+  max: PropTypes.number,
+  maxUpload: PropTypes.number,
+  photoList: PropTypes.array,
+  readOnly: PropTypes.bool,
+  onChange: PropTypes.func,
+  onDelete: PropTypes.func,
+  required: PropTypes.bool,
+  name: PropTypes.string,
+  url: PropTypes.string,
+  autoPending: PropTypes.bool,
+  className: PropTypes.string,
+  tip: PropTypes.string,
 };
 
 PhotoField.displayName = 'PhotoField';

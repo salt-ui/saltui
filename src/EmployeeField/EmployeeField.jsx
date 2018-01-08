@@ -8,6 +8,7 @@
 
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Field from '../Field';
@@ -21,18 +22,18 @@ import locale from './locale';
 class EmployeeField extends React.Component {
 
   static propTypes = {
-    className: React.PropTypes.string,
-    corpId: React.PropTypes.string,
-    placeholder: React.PropTypes.string,
-    multiple: React.PropTypes.bool,
-    max: React.PropTypes.number,
-    isNeedSearch: React.PropTypes.bool,
-    locale: React.PropTypes.string,
-    startWithDepartmentId: React.PropTypes.number,
-    readOnly: React.PropTypes.bool,
-    value: React.PropTypes.array,
-    disabledUsers: React.PropTypes.array,
-    onChange: React.PropTypes.func,
+    className: PropTypes.string,
+    corpId: PropTypes.string,
+    placeholder: PropTypes.string,
+    multiple: PropTypes.bool,
+    max: PropTypes.number,
+    isNeedSearch: PropTypes.bool,
+    locale: PropTypes.string,
+    startWithDepartmentId: PropTypes.number,
+    readOnly: PropTypes.bool,
+    value: PropTypes.array,
+    disabledUsers: PropTypes.array,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {

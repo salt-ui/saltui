@@ -5,7 +5,8 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Animate from 'rc-animate';
 import DirectionBottomIcon from 'salt-icon/lib/DirectionBottom';

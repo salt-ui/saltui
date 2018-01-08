@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import InfoRoundIcon from 'salt-icon/lib/InfoRound';
@@ -18,11 +19,11 @@ import Animate from 'rc-animate';
 
 class NoticeBar extends React.Component {
   static propTypes = {
-    className: React.PropTypes.string,
-    visible: React.PropTypes.bool,
-    optionsType: React.PropTypes.string,
-    onClose: React.PropTypes.func,
-    onClick: React.PropTypes.func,
+    className: PropTypes.string,
+    visible: PropTypes.bool,
+    optionsType: PropTypes.string,
+    onClose: PropTypes.func,
+    onClick: PropTypes.func,
   };
 
   static defaultProps = {

@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from 'salt-icon';
 import Context from '../Context';
@@ -200,16 +201,16 @@ SelectLayer.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 SelectLayer.propTypes = {
-    className: React.PropTypes.string,
-    title: React.PropTypes.string,
-    data: React.PropTypes.array.isRequired,
-    value: React.PropTypes.array,
-    maskCloseable: React.PropTypes.bool,
-    confirmText: React.PropTypes.string,
-    cancelText: React.PropTypes.string,
-    iconPosition: React.PropTypes.string,
-    onConfirm: React.PropTypes.func,
-    onCancel: React.PropTypes.func
+    className: PropTypes.string,
+    title: PropTypes.string,
+    data: PropTypes.array.isRequired,
+    value: PropTypes.array,
+    maskCloseable: PropTypes.bool,
+    confirmText: PropTypes.string,
+    cancelText: PropTypes.string,
+    iconPosition: PropTypes.string,
+    onConfirm: PropTypes.func,
+    onCancel: PropTypes.func
 };
 
 SelectLayer.displayName = 'SelectLayer';

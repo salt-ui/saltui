@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import { Box } from '../Boxs';
@@ -15,8 +16,8 @@ import TabBarItemBadge from './TabBarItemBadge';
 class TabBarItem extends React.Component {
   static displayName = 'TabBarItem';
   static propTypes = {
-    className: React.PropTypes.string,
-    item: React.PropTypes.element,
+    className: PropTypes.string,
+    item: PropTypes.element,
   };
 
   render() {

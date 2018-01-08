@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import ScrollView from '../ScrollView';
@@ -151,11 +152,11 @@ SearchResult.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 SearchResult.propTypes = {
-  value: React.PropTypes.array,
-  confirmText: React.PropTypes.string,
-  onConfirm: React.PropTypes.func,
-  formatter: React.PropTypes.func,
-  selectText: React.PropTypes.string,
+  value: PropTypes.array,
+  confirmText: PropTypes.string,
+  onConfirm: PropTypes.func,
+  formatter: PropTypes.func,
+  selectText: PropTypes.string,
 };
 
 SearchResult.displayName = 'SearchResult';

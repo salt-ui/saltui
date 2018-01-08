@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Context from '../Context';
 
 
@@ -205,31 +205,31 @@ Datetime.defaultProps = {
 };
 
 Datetime.propTypes = {
-  className: React.PropTypes.string,
-  title: React.PropTypes.string.isRequired,
-  locale: React.PropTypes.string,
-  columns: React.PropTypes.array,
-  value: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string,
-    React.PropTypes.object,
+  className: PropTypes.string,
+  title: PropTypes.string,
+  locale: PropTypes.string,
+  columns: PropTypes.array,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.object,
   ]),
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  onConfirm: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  onChange: React.PropTypes.func,
-  slotRef: React.PropTypes.func,
-  minuteStep: React.PropTypes.number,
-  maxDate: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  onConfirm: PropTypes.func,
+  onCancel: PropTypes.func,
+  onChange: PropTypes.func,
+  slotRef: PropTypes.func,
+  minuteStep: PropTypes.number,
+  maxDate: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
   ]),
-  minDate: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string,
+  minDate: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
   ]),
-  disabledDate: React.PropTypes.func,
+  disabledDate: PropTypes.func,
 };
 Datetime.Y = Y;
 Datetime.YM = YM;

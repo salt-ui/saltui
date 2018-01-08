@@ -60,6 +60,7 @@ class RateFieldDemo extends React.Component {
               onChange={(value) => {
                 t.handleChange(index, value);
               }}
+              key={ index }
             />
           )
         }

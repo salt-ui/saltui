@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Context from '../Context';
 import DelIcon from 'salt-icon/lib/MinusRound';
 
@@ -38,7 +39,6 @@ class PhotoFieldItem extends React.Component {
       <div className={prefixClass('PR FL photo-item')} style={style} ref={(c) => { this.root = c; }}>
         <img
           src="//gw.alicdn.com/tps/TB18GJsIpXXXXatXFXXXXXXXXXX.png"
-          preview={t.props.pic}
           onLoad={() => {
             this.setState({
               loaded: true,
@@ -63,10 +63,10 @@ PhotoFieldItem.defaultProps = {
 };
 
 PhotoFieldItem.propTypes = {
-  index: React.PropTypes.number,
-  readOnly: React.PropTypes.bool,
-  onPreviewImage: React.PropTypes.func,
-  onDeleteImage: React.PropTypes.func,
+  index: PropTypes.number,
+  readOnly: PropTypes.bool,
+  onPreviewImage: PropTypes.func,
+  onDeleteImage: PropTypes.func,
 };
 
 export default PhotoFieldItem;

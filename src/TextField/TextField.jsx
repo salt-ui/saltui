@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import CrossRound from 'salt-icon/lib/CrossRound';
 import Context from '../Context';
@@ -134,18 +135,18 @@ TextField.defaultProps = {
 };
 
 TextField.propTypes = {
-  className: React.PropTypes.string,
-  filter: React.PropTypes.func,
-  label: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  onFocus: React.PropTypes.func,
-  onBlur: React.PropTypes.func,
-  placeholder: React.PropTypes.string,
-  readOnly: React.PropTypes.bool,
-  type: React.PropTypes.string,
-  value: React.PropTypes.string,
-  children: React.PropTypes.any,
-  allowClear: React.PropTypes.bool,
+  className: PropTypes.string,
+  filter: PropTypes.func,
+  label: PropTypes.string,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
+  type: PropTypes.string,
+  value: PropTypes.string,
+  children: PropTypes.any,
+  allowClear: PropTypes.bool,
 };
 
 TextField.displayName = 'TextField';
