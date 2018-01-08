@@ -652,7 +652,6 @@ function getOptions({ value }, props) {
 
 function getSlotFormattedValue(currentValue, props) {
   // 使用当前时间或传入时间作为默认值
-  currentValue = parseValue(currentValue);
   // 形成候选项
   const { data, value } = getOptions({ value: currentValue }, props);
   // 数据格式化

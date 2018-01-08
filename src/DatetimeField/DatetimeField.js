@@ -80,7 +80,6 @@ class DatetimeField extends React.Component {
     if (columns.indexOf('YMD') !== -1 || columns.indexOf('YMDW') !== -1) {
       return `${arr[0] || ''} ${arr.slice(1).join(':')}`.replace(new RegExp('/', 'gi'), '-');
     }
-    console.log(value, arr);
     return `${arr.slice(0, 3).join('-')} ${arr.slice(3).join(':')}`;
   }
 
