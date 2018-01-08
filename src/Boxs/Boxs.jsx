@@ -53,7 +53,7 @@ HBox.propTypes = {
   flex: PropTypes.number,
   hAlign: PropTypes.oneOf(ALIGN_VALUES),
   vAlign: PropTypes.oneOf(ALIGN_VALUES),
-  children: PropTypes.node,
+  children: PropTypes.any,
 };
 HBox.defaultProps = {
   className: '',
@@ -97,7 +97,7 @@ VBox.propTypes = {
   flex: PropTypes.number,
   hAlign: PropTypes.oneOf(ALIGN_VALUES),
   vAlign: PropTypes.oneOf(ALIGN_VALUES),
-  children: PropTypes.node,
+  children: PropTypes.any,
 };
 VBox.defaultProps = {
   className: '',
@@ -135,7 +135,7 @@ Box.propTypes = {
   flex: PropTypes.number,
   hAlign: PropTypes.oneOf(ALIGN_VALUES),
   vAlign: PropTypes.oneOf(ALIGN_VALUES),
-  children: PropTypes.node,
+  children: PropTypes.any,
 };
 Box.defaultProps = {
   className: '',
