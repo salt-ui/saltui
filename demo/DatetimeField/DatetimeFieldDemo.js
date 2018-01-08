@@ -26,7 +26,7 @@ class Demo extends React.Component {
         value: '***',
         timeType: 'PM',
       },
-      value3: '***', // '2017-7-20 12:42:44',
+      value3: '2017-7-20 12:42:44', // '2017-7-20 12:42:44',
     };
   }
 

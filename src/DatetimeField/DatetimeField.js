@@ -19,35 +19,18 @@ function addZero(num) {
   return `${num < 10 ? '0' : ''}${num}`;
 }
 
-const getValue = (props) => {
-  const slotValue = props.value;
-  if (!slotValue) {
-    return slotValue;
-  }
-  if (isObject(slotValue)) {
-    if (new Date(slotValue.value).getTime()) {
-      return Datetime.getSlotFormattedValue(slotValue, props);
-    }
-    return slotValue.value;
-  }
-  if (new Date(slotValue).getTime()) {
-    return Datetime.getSlotFormattedValue(slotValue, props);
-  }
-  return String(slotValue);
-};
-
 class DatetimeField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      slotValue: getValue(props),
+      slotValue: Datetime.getSlotFormattedValue(props.value, props),
     };
     this.valueChanged = false;
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      slotValue: getValue(nextProps),
+      slotValue: Datetime.getSlotFormattedValue(nextProps.value, nextProps),
     });
   }
 
