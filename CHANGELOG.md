@@ -1,3 +1,7 @@
+
+## 3.4.3 / 2018-01-08
+* `fix`: PhotoFieldItem filename
+
 ## 3.4.2 / 2018-01-08
 
 * `fix`: DateTime duplicate value calculation
