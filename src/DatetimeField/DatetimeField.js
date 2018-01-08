@@ -72,9 +72,6 @@ class DatetimeField extends React.Component {
     }
 
     const { columns } = t.props;
-    if (!Array.isArray(value)) {
-      return value.value || value;
-    }
     const arr = value.map(v => (
       addZero(v.text)
     ));
@@ -96,7 +93,6 @@ class DatetimeField extends React.Component {
       maxDate,
       disabledDate,
     };
-    /* eslint  react/jsx-filename-extension:0 */
     return (
       <Field
         {...t.props}
