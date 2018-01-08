@@ -39,7 +39,7 @@ class Item extends React.Component {
       background: t.props.color,
     };
     if (t.props.active) {
-      dotStyle['borderColor'] = t.props.color;
+      dotStyle.borderColor = t.props.color;
     }
     return (
       <div
