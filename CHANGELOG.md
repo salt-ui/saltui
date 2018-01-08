@@ -1,4 +1,7 @@
 
+## 3.4.4 / 2018-01-08
+* `fix`: DateTimeField display value bug
+
 ## 3.4.3 / 2018-01-08
 * `fix`: PhotoFieldItem filename
 
