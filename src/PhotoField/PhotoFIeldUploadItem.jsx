@@ -60,6 +60,7 @@ class PhotoFieldUploadItem extends React.Component {
   }
 }
 
+
 PhotoFieldUploadItem.propTypes = {
   file: PropTypes.object,
   locale: PropTypes.string,
