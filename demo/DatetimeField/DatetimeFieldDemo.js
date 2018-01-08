@@ -43,7 +43,6 @@ class Demo extends React.Component {
 
   render() {
     const t = this;
-    /* eslint  react/jsx-filename-extension:0 */
     return (
       <div>
         <Group>
