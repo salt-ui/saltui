@@ -21,12 +21,12 @@ class Demo extends React.Component {
     const now = new Date().getTime();// 1500353913176
 
     t.state = {
-      value1: '***',
+      value1: '',
       value2: {
-        value: '2017-7-20 12:42:44',
+        value: '***',
         timeType: 'PM',
       },
-      value3: now, // '2017-7-20 12:42:44',
+      value3: '***', // '2017-7-20 12:42:44',
     };
   }
 
@@ -38,6 +38,7 @@ class Demo extends React.Component {
 
   render() {
     const t = this;
+    /* eslint  react/jsx-filename-extension:0 */
     return (
       <div>
         <Group>

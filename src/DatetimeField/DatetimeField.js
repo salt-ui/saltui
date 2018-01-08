@@ -19,19 +19,35 @@ function addZero(num) {
   return `${num < 10 ? '0' : ''}${num}`;
 }
 
+const getValue = (props) => {
+  const slotValue = props.value;
+  if (!slotValue) {
+    return slotValue;
+  }
+  if (isObject(slotValue)) {
+    if (new Date(slotValue.value).getTime()) {
+      return Datetime.getSlotFormattedValue(slotValue, props);
+    }
+    return slotValue.value;
+  }
+  if (new Date(slotValue).getTime()) {
+    return Datetime.getSlotFormattedValue(slotValue, props);
+  }
+  return String(slotValue);
+};
+
 class DatetimeField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      slotValue: Datetime.getSlotFormattedValue(props.value, props),
+      slotValue: getValue(props),
     };
     this.valueChanged = false;
   }
 
   componentWillReceiveProps(nextProps) {
-    const slotValue = Datetime.getSlotFormattedValue(nextProps.value, nextProps);
     this.setState({
-      slotValue,
+      slotValue: getValue(nextProps),
     });
   }
 
@@ -73,6 +89,9 @@ class DatetimeField extends React.Component {
     }
 
     const { columns } = t.props;
+    if (!Array.isArray(value)) {
+      return value.value || value;
+    }
     const arr = value.map(v => (
       addZero(v.text)
     ));
@@ -94,6 +113,7 @@ class DatetimeField extends React.Component {
       maxDate,
       disabledDate,
     };
+    /* eslint  react/jsx-filename-extension:0 */
     return (
       <Field
         {...t.props}
