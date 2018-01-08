@@ -6,7 +6,7 @@
 * All rights reserved.
 */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
@@ -53,9 +53,9 @@ SlideNav.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 SlideNav.propTypes = {
-  num: React.PropTypes.number,
-  active: React.PropTypes.number,
-  position: React.PropTypes.oneOf(['CENTER', 'RIGHT']),
+  num: PropTypes.number,
+  active: PropTypes.number,
+  position: PropTypes.oneOf(['CENTER', 'RIGHT']),
 };
 
 SlideNav.displayName = 'SlideNav';

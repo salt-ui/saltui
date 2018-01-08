@@ -1,6 +1,7 @@
 
 
 import Context from '../Context';
+import PropTypes from 'prop-types';
 import FieldRequired from 'salt-icon/lib/FieldRequired';
 import React from 'react';
 import classnames from 'classnames';
@@ -28,10 +29,10 @@ const Label = props => (
 );
 
 Label.propTypes = {
-  label: React.PropTypes.string,
-  className: React.PropTypes.string,
-  layout: React.PropTypes.oneOf(['h', 'v']),
-  required: React.PropTypes.bool,
+  label: PropTypes.string,
+  className: PropTypes.string,
+  layout: PropTypes.oneOf(['h', 'v']),
+  required: PropTypes.bool,
 };
 
 export default Label;

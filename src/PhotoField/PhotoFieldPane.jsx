@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import Field from '../Field';
@@ -200,16 +201,16 @@ PhotoFieldPane.defaultProps = {
 };
 // http://facebook.github.io/react/docs/reusable-components.html
 PhotoFieldPane.propTypes = {
-  columns: React.PropTypes.number,
-  placeholder: React.PropTypes.string,
-  label: React.PropTypes.string,
-  photoList: React.PropTypes.array,
-  files: React.PropTypes.array,
-  readOnly: React.PropTypes.bool,
-  required: React.PropTypes.bool,
-  onPickerClick: React.PropTypes.func,
-  onImageDelete: React.PropTypes.func,
-  onImagePreview: React.PropTypes.func,
+  columns: PropTypes.number,
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
+  photoList: PropTypes.array,
+  files: PropTypes.array,
+  readOnly: PropTypes.bool,
+  required: PropTypes.bool,
+  onPickerClick: PropTypes.func,
+  onImageDelete: PropTypes.func,
+  onImagePreview: PropTypes.func,
 };
 
 export default PhotoFieldPane;

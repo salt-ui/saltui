@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import Dialog from 'rc-dialog';
@@ -172,20 +173,20 @@ Toast.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Toast.propTypes = {
-  prefixCls: React.PropTypes.string,
-  visible: React.PropTypes.bool,
-  hasMask: React.PropTypes.bool,
-  autoHide: React.PropTypes.bool,
-  onDidHide: React.PropTypes.func,
-  width: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
+  prefixCls: PropTypes.string,
+  visible: PropTypes.bool,
+  hasMask: PropTypes.bool,
+  autoHide: PropTypes.bool,
+  onDidHide: PropTypes.func,
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
   ]),
-  content: React.PropTypes.string,
-  icon: React.PropTypes.string,
-  duration: React.PropTypes.number,
-  transitionName: React.PropTypes.string,
-  type: React.PropTypes.string,
+  content: PropTypes.string,
+  icon: PropTypes.string,
+  duration: PropTypes.number,
+  transitionName: PropTypes.string,
+  type: PropTypes.string,
 };
 
 const WRAPPER_ID = '__TingleGlobalToast__';

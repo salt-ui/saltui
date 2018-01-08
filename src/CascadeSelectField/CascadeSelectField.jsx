@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import cloneDeep from 'lodash/fp/cloneDeep';
 import Context from '../Context';
@@ -213,19 +213,19 @@ CascadeSelectField.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 CascadeSelectField.propTypes = {
-  className: React.PropTypes.string,
-  label: React.PropTypes.string.isRequired,
-  options: React.PropTypes.array,
-  value: React.PropTypes.array,
-  formatter: React.PropTypes.func,
-  onChange: React.PropTypes.func,
-  onSelect: React.PropTypes.func,
-  readOnly: React.PropTypes.bool,
-  placeholder: React.PropTypes.string,
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  columns: React.PropTypes.array,
-  mode: React.PropTypes.oneOf(['normal', 'complex']),
+  className: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  options: PropTypes.array,
+  value: PropTypes.array,
+  formatter: PropTypes.func,
+  onChange: PropTypes.func,
+  onSelect: PropTypes.func,
+  readOnly: PropTypes.bool,
+  placeholder: PropTypes.string,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  columns: PropTypes.array,
+  mode: PropTypes.oneOf(['normal', 'complex']),
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';

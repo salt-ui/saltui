@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import SearchBar from './SearchBar';
 import SearchHistory from './SearchHistory';
@@ -31,11 +32,11 @@ class WithContainer extends React.Component {
   }
 
   static propTypes = {
-    prefixCls: React.PropTypes.string,
-    onEnter: React.PropTypes.func,
-    onExit: React.PropTypes.func,
-    onSearch: React.PropTypes.func,
-    hasHistory: React.PropTypes.bool,
+    prefixCls: PropTypes.string,
+    onEnter: PropTypes.func,
+    onExit: PropTypes.func,
+    onSearch: PropTypes.func,
+    hasHistory: PropTypes.bool,
   };
 
   constructor(props) {

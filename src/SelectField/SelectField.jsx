@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import AngleRight from 'salt-icon/lib/AngleRight';
 import Context from '../Context';
@@ -115,14 +115,14 @@ SelectField.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 SelectField.propTypes = {
-  className: React.PropTypes.string,
-  label: React.PropTypes.string.isRequired,
-  options: React.PropTypes.array.isRequired,
-  value: React.PropTypes.object,
-  formatter: React.PropTypes.func,
-  onSelect: React.PropTypes.func,
-  readOnly: React.PropTypes.bool,
-  placeholder: React.PropTypes.string,
+  className: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  value: PropTypes.object,
+  formatter: PropTypes.func,
+  onSelect: PropTypes.func,
+  readOnly: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 SelectField.displayName = 'SelectField';

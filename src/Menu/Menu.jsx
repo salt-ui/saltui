@@ -6,7 +6,8 @@
  * All rights reserved.
  */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import assign from 'object-assign';
 import Context from '../Context';
 import classnames from 'classnames';

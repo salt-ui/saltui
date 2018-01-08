@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Mask extends React.Component {
   render() {
@@ -13,8 +14,8 @@ class Mask extends React.Component {
 }
 
 Mask.propTypes = {
-  visible: React.PropTypes.bool,
-  className: React.PropTypes.string,
+  visible: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default Mask;

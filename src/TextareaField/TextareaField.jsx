@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Field from '../Field';
@@ -127,18 +128,18 @@ TextareaField.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 TextareaField.propTypes = {
-  value: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  onFocus: React.PropTypes.func,
-  onBlur: React.PropTypes.func,
-  readOnly: React.PropTypes.bool,
-  minRows: React.PropTypes.number,
-  maxRows: React.PropTypes.number,
-  rows: React.PropTypes.number,
-  lineHeight: React.PropTypes.string,
-  className: React.PropTypes.string,
-  children: React.PropTypes.any,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  readOnly: PropTypes.bool,
+  minRows: PropTypes.number,
+  maxRows: PropTypes.number,
+  rows: PropTypes.number,
+  lineHeight: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.any,
 };
 
 TextareaField.displayName = 'TextareaField';

@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import classnames from 'classnames';
-
+import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import React from 'react';
 import Context from '../Context';
@@ -212,26 +212,26 @@ SearchBar.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 SearchBar.propTypes = {
-  iconWidth: React.PropTypes.number,
-  iconHeight: React.PropTypes.number,
-  iconColor: React.PropTypes.string,
-  locale: React.PropTypes.string,
-  value: React.PropTypes.string,
-  placeholder: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.object,
+  iconWidth: PropTypes.number,
+  iconHeight: PropTypes.number,
+  iconColor: PropTypes.string,
+  locale: PropTypes.string,
+  value: PropTypes.string,
+  placeholder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
   ]),
-  hasHistory: React.PropTypes.bool,
-  historyName: React.PropTypes.string,
-  instantSearch: React.PropTypes.bool,
-  searchDelay: React.PropTypes.number,
-  onChange: React.PropTypes.func,
-  onSearch: React.PropTypes.func,
-  onEnter: React.PropTypes.func,
-  onExit: React.PropTypes.func,
-  disabled: React.PropTypes.bool,
-  isActive: React.PropTypes.bool,
-  exitAfterEnter: React.PropTypes.bool,
+  hasHistory: PropTypes.bool,
+  historyName: PropTypes.string,
+  instantSearch: PropTypes.bool,
+  searchDelay: PropTypes.number,
+  onChange: PropTypes.func,
+  onSearch: PropTypes.func,
+  onEnter: PropTypes.func,
+  onExit: PropTypes.func,
+  disabled: PropTypes.bool,
+  isActive: PropTypes.bool,
+  exitAfterEnter: PropTypes.bool,
 };
 
 SearchBar.displayName = 'SearchBar';

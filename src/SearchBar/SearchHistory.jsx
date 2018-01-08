@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 import Context from '../Context';
 import locale from './locale';
@@ -118,11 +119,11 @@ SearchHistory.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 SearchHistory.propTypes = {
-  prefixCls: React.PropTypes.string,
-  name: React.PropTypes.string,
-  keyword: React.PropTypes.string,
-  onSelect: React.PropTypes.func,
-  displayCount: React.PropTypes.number,
+  prefixCls: PropTypes.string,
+  name: PropTypes.string,
+  keyword: PropTypes.string,
+  onSelect: PropTypes.func,
+  displayCount: PropTypes.number,
 };
 
 SearchHistory.displayName = 'SearchHistory';

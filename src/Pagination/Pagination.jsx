@@ -5,7 +5,8 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Button from '../Button';

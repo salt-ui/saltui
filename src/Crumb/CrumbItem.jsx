@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
@@ -32,8 +33,8 @@ CrumbItem.defaultProps = {
 };
 
 CrumbItem.propTypes = {
-  disabled: React.PropTypes.bool,
-  onClick: React.PropTypes.func,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 CrumbItem.displayName = 'CrumbItem';

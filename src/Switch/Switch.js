@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
@@ -48,9 +49,9 @@ Switch.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Switch.propTypes = {
-  on: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  readOnly: React.PropTypes.bool,
+  on: PropTypes.bool,
+  onChange: PropTypes.func,
+  readOnly: PropTypes.bool,
 };
 
 Switch.displayName = 'Switch';

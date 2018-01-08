@@ -8,20 +8,14 @@
  */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Context from '../Context';
-import Slot from '../Slot';
-import locale from './locale';
+
+
 import {
-  makeRange,
-  addZero,
-  getDates,
-  parseValue,
-  isUndefined,
-  formatFromProps,
   isArray,
   parseDate,
-  colFlags,
+  Slot,
   Y,
   YM,
   YMD,
@@ -29,7 +23,9 @@ import {
   YMDHM,
   YMDWHM,
   filterDate,
-  getDaysByYear,
+  getSlotFormattedValue,
+  getOptions,
+  locale,
 } from './utils';
 
 const columnsFlexMap = {
@@ -53,22 +49,6 @@ class Datetime extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setOptions(nextProps);
   }
-  // 获取默认最小值
-  getDefaultMinDate = (value) => {
-    const date = new Date(value);
-    if (date.toString() === 'Invalid Date') {
-      throw Error('Invalid Date');
-    }
-    return date;
-  };
-  // 获取默认最大值
-  getDefaultMaxDate = (value) => {
-    const date = new Date(value);
-    if (date.toString() === 'Invalid Date') {
-      throw Error('Invalid Date');
-    }
-    return date;
-  };
   getPlainDate = (value) => {
     const date = new Date();
     const { columns } = this.props;
@@ -107,35 +87,8 @@ class Datetime extends React.Component {
       timeType: timeType ? 'PM' : 'AM',
     };
   };
-  getOptions = ({ value }, props) => {
-    let { minDate, maxDate } = props;
-    const { minuteStep } = props;
-    minDate = this.getDefaultMinDate(minDate);
-    maxDate = this.getDefaultMaxDate(maxDate);
-    const currentValue = parseValue(value);
-    const datYear = getDaysByYear(currentValue[0]);
-    const options = [
-      makeRange(minDate.getFullYear(), maxDate.getFullYear()),
-      makeRange(1, 12).map(v => ({ text: `${v}`, value: v - 1 })),
-      getDates(value),
-      locale[props.locale].noon,
-      makeRange(0, 12),
-      makeRange(0, 23),
-      makeRange(0, 59, minuteStep),
-      makeRange(0, 59),
-      datYear,
-      datYear,
-    ];
-    const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
-    const data = formatFromProps(this.formatText(ret.data), props);
-    const newValue = formatFromProps(this.formatText(ret.value), props);
-    return {
-      data,
-      value: newValue,
-    };
-  }
   setOptions = (props) => {
-    let { data, value } = this.getOptions({ value: props.value }, props);
+    let { data, value } = getOptions({ value: props.value }, props);
     const { columns, minDate, maxDate } = props;
     const columnsStyle = columns[0];
     if (props.disabledDate && columnsStyle === 'Y') {
@@ -160,22 +113,6 @@ class Datetime extends React.Component {
     const output = this.getPlainDate(value);
     this.props.onConfirm(output);
   };
-  // 添加年月日等文本
-  formatText = (arr, text) => {
-    const formatArray = [];
-    const localeCode = this.props.locale;
-    for (let i = 0; i < arr.length; i += 1) {
-      const el = arr[i];
-      formatArray.push(isArray(el) ?
-        this.formatText(el, locale[localeCode].surfix[colFlags[i]]) :
-        {
-          text: addZero(el.text) +
-              (isUndefined(text) ? locale[localeCode].surfix[colFlags[i]] : text),
-          value: el.value,
-        });
-    }
-    return formatArray;
-  }
   handleCancel = () => {
     this.props.onCancel();
   };
@@ -194,7 +131,7 @@ class Datetime extends React.Component {
       props.onChange(date, column);
       return;
     }
-    const newData = this.getOptions({ value: date }, props);
+    const newData = getOptions({ value: date }, props);
     const updateObj = {
       data: newData.data,
       value: newData.value,
@@ -253,7 +190,6 @@ class Datetime extends React.Component {
     );
   }
 }
-
 Datetime.defaultProps = {
   className: '',
   locale: 'zh-cn',
@@ -269,31 +205,31 @@ Datetime.defaultProps = {
 };
 
 Datetime.propTypes = {
-  className: React.PropTypes.string,
-  title: React.PropTypes.string.isRequired,
-  locale: React.PropTypes.string,
-  columns: React.PropTypes.array,
-  value: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string,
-    React.PropTypes.object,
+  className: PropTypes.string,
+  title: PropTypes.string,
+  locale: PropTypes.string,
+  columns: PropTypes.array,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.object,
   ]),
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  onConfirm: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  onChange: React.PropTypes.func,
-  slotRef: React.PropTypes.func,
-  minuteStep: React.PropTypes.number,
-  maxDate: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  onConfirm: PropTypes.func,
+  onCancel: PropTypes.func,
+  onChange: PropTypes.func,
+  slotRef: PropTypes.func,
+  minuteStep: PropTypes.number,
+  maxDate: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
   ]),
-  minDate: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string,
+  minDate: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
   ]),
-  disabledDate: React.PropTypes.func,
+  disabledDate: PropTypes.func,
 };
 Datetime.Y = Y;
 Datetime.YM = YM;
@@ -301,6 +237,7 @@ Datetime.YMD = YMD;
 Datetime.YMDT = YMDT;
 Datetime.YMDHM = YMDHM;
 Datetime.YMDWHM = YMDWHM;
+Datetime.getSlotFormattedValue = getSlotFormattedValue;
 Datetime.displayName = 'Datetime';
 
 export default Datetime;

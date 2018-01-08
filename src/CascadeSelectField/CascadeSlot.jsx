@@ -3,6 +3,7 @@
  * @author: changming <mailto:changming.zy@alibaba-inc.com>
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import IconCheck from 'salt-icon/lib/Check';
 
@@ -165,14 +166,14 @@ CascadeSlot.defaultProps = {
 };
 
 CascadeSlot.propTypes = {
-  visible: React.PropTypes.bool,
-  title: React.PropTypes.string,
-  options: React.PropTypes.array.isRequired,
-  value: React.PropTypes.array,
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  onConfirm: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  onChange: React.PropTypes.func,
-  locale: React.PropTypes.string,
+  visible: PropTypes.bool,
+  title: PropTypes.string,
+  options: PropTypes.array.isRequired,
+  value: PropTypes.array,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  onConfirm: PropTypes.func,
+  onCancel: PropTypes.func,
+  onChange: PropTypes.func,
+  locale: PropTypes.string,
 };

@@ -31,7 +31,6 @@ class Demo extends React.Component {
   }
 
   handleChange(field, value) {
-    console.log(value);
     this.setState({
       [field]: value,
     });
@@ -46,6 +45,28 @@ class Demo extends React.Component {
           <Group.List>
             <DatetimeField
               label="日期选择"
+              disabledDate={() => [
+                {
+                  start: new Date(2023, 10, 1), // 2023- 11 - 1
+                },
+                {
+                  start: new Date(2017, 0, 1),
+                  end: new Date(2017, 4, 31),
+                },
+                {
+                  start: new Date(2017, 5, 1),
+                  end: new Date(2017, 6, 31),
+                },
+                {
+                  start: new Date(2017, 7, 2),
+                  end: new Date(2017, 7, 30),
+                },
+                {
+                  start: new Date(2018, 7, 3),
+                  end: new Date(2018, 7, 20),
+                },
+                new Date(2013, 11, 1),
+              ]}
               onSelect={t.handleChange.bind(t, 'value1')}
               value={t.state.value1}
               columns={DatetimeField.YMD}

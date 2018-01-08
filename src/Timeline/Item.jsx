@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
@@ -38,7 +39,7 @@ class Item extends React.Component {
       background: t.props.color,
     };
     if (t.props.active) {
-      dotStyle['border-color'] = t.props.color;
+      dotStyle.borderColor = t.props.color;
     }
     return (
       <div
@@ -94,19 +95,19 @@ class Item extends React.Component {
 
 Item.displayName = 'Timeline.Item';
 
-const indentType = React.PropTypes.oneOfType([
-  React.PropTypes.number,
-  React.PropTypes.string,
-  React.PropTypes.array,
-  React.PropTypes.object,
+const indentType = PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.string,
+  PropTypes.array,
+  PropTypes.object,
 ]);
 
 Item.propTypes = {
-  className: React.PropTypes.string,
+  className: PropTypes.string,
   icon: indentType,
   index: indentType,
-  last: React.PropTypes.bool,
-  active: React.PropTypes.bool,
+  last: PropTypes.bool,
+  active: PropTypes.bool,
   title: indentType,
   description: indentType,
 };

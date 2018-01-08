@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { prefixClass } from '../Context';
 
 const Count = props => <div
@@ -23,8 +24,8 @@ Count.defaultProps = {
 };
 
 Count.propTypes = {
-  length: React.PropTypes.number,
-  total: React.PropTypes.number,
+  length: PropTypes.number,
+  total: PropTypes.number,
 };
 
 Count.displayName = 'Count';

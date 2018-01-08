@@ -1,3 +1,7 @@
+## 3.4.1. / 2018-01-05
+
+* `fix`: missing Datetime method
+
 ## 3.4.0 / 2018-01-05
 
 * `feat`: Datetime support prop `disabledDate`

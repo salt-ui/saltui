@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import AngleRight from 'salt-icon/lib/AngleRight';
@@ -371,15 +372,15 @@ List.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 List.propTypes = {
-  className: React.PropTypes.string,
-  layout: React.PropTypes.string,
-  icon: React.PropTypes.element,
-  iconWidth: React.PropTypes.number,
-  data: React.PropTypes.array,
-  hasRightIcon: React.PropTypes.bool,
-  onClick: React.PropTypes.func,
-  clickPhoto: React.PropTypes.func,
-  onDelete: React.PropTypes.func,
+  className: PropTypes.string,
+  layout: PropTypes.string,
+  icon: PropTypes.element,
+  iconWidth: PropTypes.number,
+  data: PropTypes.array,
+  hasRightIcon: PropTypes.bool,
+  onClick: PropTypes.func,
+  clickPhoto: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
 List.displayName = 'List';
