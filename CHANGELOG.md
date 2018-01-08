@@ -1,3 +1,12 @@
+
+## 3.4.3 / 2018-01-08
+* `fix`: PhotoFieldItem filename
+
+## 3.4.2 / 2018-01-08
+
+* `fix`: DateTime duplicate value calculation
+* `feat`: React 15.x compatible
+
 ## 3.4.1. / 2018-01-05
 
 * `fix`: missing Datetime method
