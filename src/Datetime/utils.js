@@ -656,7 +656,7 @@ function getSlotFormattedValue(currentValue, props) {
   const { data, value } = getOptions({ value: currentValue }, props);
   // 数据格式化
   const ret = Slot.formatDataValue([].concat(data), [].concat(value));
-  return ret.value || [];
+  return currentValue ? ret.value : [];
 }
 
 export default {
