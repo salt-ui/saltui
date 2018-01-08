@@ -653,10 +653,20 @@ function getOptions({ value }, props) {
 function getSlotFormattedValue(currentValue, props) {
   // 使用当前时间或传入时间作为默认值
   // 形成候选项
+  if (!currentValue) {
+    return [];
+  }
+  if (isObject(currentValue)) {
+    if (!new Date(currentValue.value).getTime()) {
+      return [];
+    }
+  } else if (!new Date(currentValue).getTime()) {
+    return [];
+  }
   const { data, value } = getOptions({ value: currentValue }, props);
   // 数据格式化
   const ret = Slot.formatDataValue([].concat(data), [].concat(value));
-  return ret.value || [];
+  return ret.value;
 }
 
 export default {
