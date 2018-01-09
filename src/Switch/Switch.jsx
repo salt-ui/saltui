@@ -31,7 +31,7 @@ class Switch extends React.Component {
       <div
         className={classnames(Context.prefixClass('switch'), classSet)}
         readOnly={t.props.readOnly}
-        onClick={t.handleChange.bind(this)}
+        onClick={(event) => { t.handleChange(event); }}
       >
         <div className={Context.prefixClass('switch-back')}>
           <div className={Context.prefixClass('switch-radius')} />
@@ -43,7 +43,7 @@ class Switch extends React.Component {
 
 Switch.defaultProps = {
   on: true,
-  onChange() {},
+  onChange() { },
   readOnly: false,
 };
 

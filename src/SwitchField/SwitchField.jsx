@@ -32,7 +32,7 @@ class SwitchField extends React.Component {
           <Switch
             on={this.props.on}
             readOnly={t.props.readOnly}
-            onChange={this.handleChange.bind(this)}
+            onChange={(on) => { this.handleChange(on); }}
           />
         </div>
       </Field>
@@ -41,8 +41,9 @@ class SwitchField extends React.Component {
 }
 
 SwitchField.defaultProps = {
-  label: '',
   className: '',
+  onChange() { },
+  on: 'true',
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

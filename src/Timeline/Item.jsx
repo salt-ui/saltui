@@ -10,25 +10,17 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
+const genIcon = (icon) => {
+  if (React.isValidElement(icon) && icon.type && icon.type.displayName === 'Icon') {
+    return React.cloneElement(icon, {
+      width: 14,
+      height: 14,
+      fill: '#fff',
+    });
+  }
+  return icon;
+};
 class Item extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
-  genIcon(icon) {
-    if (React.isValidElement(icon) && icon.type && icon.type.displayName === 'Icon') {
-      return React.cloneElement(icon, {
-        width: 14,
-        height: 14,
-        fill: '#fff',
-      });
-    }
-    return icon;
-  }
 
   render() {
     const t = this;
@@ -57,7 +49,11 @@ class Item extends React.Component {
                     <img
                       src={t.props.icon}
                       alt=""
+<<<<<<< HEAD
                     /> : t.genIcon(t.props.icon)
+=======
+                    /> : genIcon(t.props.icon)
+>>>>>>> f812629... eslint
                 }
               </div> :
               <div

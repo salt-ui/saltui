@@ -15,8 +15,6 @@ const RightAddon = props => (
 
 RightAddon.defaultProps = {};
 RightAddon.propTypes = {
-  focus: PropTypes.bool,
-  hover: PropTypes.bool,
   children: PropTypes.any,
 };
 RightAddon.displayName = 'RightAddon';
