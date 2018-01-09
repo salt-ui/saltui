@@ -61,24 +61,25 @@ function parseProps(p) {
 
 function parseState(value, options) {
   let cursor = options;
-  options = [];
+  const optionsNew = [];
+  const valueNew = Object.assign({}, value);
   for (let deep = 0; cursor; deep += 1) {
     let index = 0;
-    options[deep] = cursor.map((o, i) => {
+    optionsNew[deep] = cursor.map((o, i) => {
       const option = {
         value: o.value,
         text: o.label,
       };
       if ((deep in value) && o.value === value[deep].value) {
         index = i;
-        value[deep] = option;
+        valueNew[deep] = option;
       }
       return option;
     });
     cursor = cursor[index] ? cursor[index].children : null;
   }
   return {
-    options,
+    optionsNew,
     value,
   };
 }
@@ -209,6 +210,8 @@ CascadeSelectField.defaultProps = {
   columns: [],
   mode: 'normal',
   className: '',
+  confirmText: undefined,
+  cancelText: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

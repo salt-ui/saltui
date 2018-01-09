@@ -12,7 +12,6 @@ import classnames from 'classnames';
 import Context from '../Context';
 
 class Card extends React.Component {
-
   render() {
     const t = this;
     const className = classnames(
