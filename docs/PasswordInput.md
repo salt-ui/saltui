@@ -16,7 +16,6 @@ class Demo extends React.Component {
       
         this.state = {
           value: '',
-          mask: true,
         };
     }
 
@@ -26,23 +25,14 @@ class Demo extends React.Component {
         });
     }
 
-    handleMaskToggle(next) {
-        this.setState({
-            mask: next,
-        });
-    }
-
     render() {
         return (
-            <div>
-                <PasswordInput
-                    placeholder="请输入密码"
-                    value={this.state.value}
-                    mask={this.state.mask}
-                    onChange={this.handleChange.bind(this)}
-                    onMaskToggle={this.handleMaskToggle.bind(this)} />
-          </div>
-      );
+            <PasswordInput
+                placeholder="请输入密码"
+                value={this.state.value}
+                onChange={this.handleChange.bind(this)}
+            />
+        );
     }
 }
 
