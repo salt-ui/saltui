@@ -33,7 +33,7 @@ class PasswordInput extends React.Component {
     onDecryptedChange: React.PropTypes.func,
     onFocus: React.PropTypes.func,
     onBlur: React.PropTypes.func,
-    hideIcon: React.PropTypes.func,
+    hideIcon: React.PropTypes.bool,
   };
 
   static defaultProps = {
