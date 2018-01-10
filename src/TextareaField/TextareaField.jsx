@@ -52,9 +52,11 @@ class TextareaField extends React.Component {
   }
 
   resize() {
-    this.setState(
-      calculateHeight(this.textarea, this.props.minRows || this.props.rows, this.props.maxRows)
-    );
+    this.setState(calculateHeight(
+      this.textarea,
+      this.props.minRows || this.props.rows,
+      this.props.maxRows,
+    ));
   }
 
   handleChange(e) {

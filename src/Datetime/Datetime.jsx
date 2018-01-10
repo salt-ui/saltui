@@ -15,6 +15,9 @@ import Context from '../Context';
 import {
   isArray,
   parseDate,
+  parseValue,
+  formatFromProps,
+  formatText,
   Slot,
   Y,
   YM,
@@ -88,8 +91,11 @@ class Datetime extends React.Component {
     };
   };
   setOptions = (props) => {
-    let { data } = getOptions({ value: props.value }, props);
-    const { value } = getOptions({ value: props.value }, props);
+    const currentValue = parseValue(props.value);
+    const options = getOptions({ value: props.value }, props);
+    const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
+    let data = formatFromProps(formatText(ret.data, undefined, props), props);
+    const value = formatFromProps(formatText(ret.value, undefined, props), props);
     const { columns, minDate, maxDate } = props;
     const columnsStyle = columns[0];
     if (props.disabledDate && columnsStyle === 'Y') {
@@ -132,10 +138,12 @@ class Datetime extends React.Component {
       props.onChange(date, column);
       return;
     }
-    const newData = getOptions({ value: date }, props);
+    const currentValue = parseValue(date);
+    const options = getOptions({ value: date }, props);
+    const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
     const updateObj = {
-      data: newData.data,
-      value: newData.value,
+      data: formatFromProps(formatText(ret.data, undefined, props), props),
+      value: formatFromProps(formatText(ret.value, undefined, props), props),
     };
     if (value.every(item => !!item)) {
       updateObj.value = value;
@@ -154,7 +162,7 @@ class Datetime extends React.Component {
           oldData.monthData = MONTHDATE;
         }
         const AllData = filterDate({
-          data: newData.data,
+          data: updateObj.data,
           disabledArr,
           value,
           columns,
@@ -162,7 +170,7 @@ class Datetime extends React.Component {
           maxDate,
           oldData,
         });
-        updateObj.data = AllData.length >= 3 ? AllData : newData.data;
+        updateObj.data = AllData.length >= 3 ? AllData : updateObj.data;
       }
     }
     this.setState(updateObj);

@@ -24,35 +24,48 @@ class TabBarItemBadge extends React.Component {
   };
 
   render() {
-    const { badge, badgeStyle, iconHeight, active, showTitle } = this.props;
+    const {
+      badge, badgeStyle, iconHeight, active, showTitle,
+    } = this.props;
     const contentBadge = [];
     if (badge && (typeof badge === 'number')) {
-      contentBadge.push(<Badge key={'badge_number'} count={badge} style={badgeStyle} >
-        <TabBarItemIcon {...this.props} iconHeight={iconHeight} active={active} />
-        {showTitle ? <TabBarItemTitle {...this.props} active={active} /> : null}
-      </Badge>);
+      const badgeItem = (
+        <Badge key="badge_number" count={badge} style={badgeStyle} >
+          <TabBarItemIcon {...this.props} iconHeight={iconHeight} active={active} />
+          {showTitle ? <TabBarItemTitle {...this.props} active={active} /> : null}
+        </Badge>
+      );
+      contentBadge.push(badgeItem);
     } else if (badge && (typeof badge === 'string')) {
-      contentBadge.push(
-        <Badge key={'badge_string'} text={badge} style={badgeStyle} >
+      const badgeItem = (
+        <Badge key="badge_string" text={badge} style={badgeStyle} >
           <TabBarItemIcon {...this.props} iconHeight={iconHeight} active={active} />
           {showTitle ? <TabBarItemTitle {...this.props} active={active} /> : null}
-        </Badge>);
+        </Badge>
+      );
+      contentBadge.push(badgeItem);
     } else if (badge && badge.constructor === Object) {
-      contentBadge.push(
-        <Badge {...badge} key={'badge_object'} style={badgeStyle} >
+      const badgeItem = (
+        <Badge {...badge} key="badge_object" style={badgeStyle} >
           <TabBarItemIcon {...this.props} iconHeight={iconHeight} active={active} />
           {showTitle ? <TabBarItemTitle {...this.props} active={active} /> : null}
-        </Badge>);
+        </Badge>
+      );
+      contentBadge.push(badgeItem);
     } else {
-      contentBadge.push(
-        <div key={'badge_others'}>
+      const badgeItem = (
+        <div key="badge_others">
           <TabBarItemIcon {...this.props} iconHeight={iconHeight} active={active} />
           {showTitle ? <TabBarItemTitle {...this.props} active={active} /> : null}
-        </div>);
+        </div>
+      );
+      contentBadge.push(badgeItem);
     }
-    return (<div>
-      {contentBadge}
-    </div>);
+    return (
+      <div>
+        {contentBadge}
+      </div>
+    );
   }
 }
 
