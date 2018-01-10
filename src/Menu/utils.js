@@ -30,7 +30,7 @@ export const getParentPos = (pos, callback) => {
 
 export const loopChildren = (children, level = 0, callback) =>
   children.map((node, index) => {
-    const props = node.props;
+    const { props } = node;
     const bak = assign({}, props);
     bak.key = node.key;
     const pos = `${level}-${index}`;

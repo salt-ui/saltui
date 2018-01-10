@@ -7,15 +7,16 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import Context from '../Context';
 import AngleRight from 'salt-icon/lib/AngleRight';
+import classnames from 'classnames';
+import preventDefault from './utils';
+import Context from '../Context';
 import Group from '../Group';
 import Boxs from '../Boxs';
 
-const HBox = Boxs.HBox;
-const VBox = Boxs.VBox;
-const Box = Boxs.Box;
+const { HBox } = Boxs;
+const { VBox } = Boxs;
+const { Box } = Boxs;
 
 const {
   supportTouch,
@@ -35,8 +36,9 @@ class List extends React.Component {
 
     if (datas.length) {
       datas.map((d, i) => {
-        d.keyIndex = `index${i}`;
-        d.listLeft = 0;
+        const dNew = d;
+        dNew.keyIndex = `index${i}`;
+        dNew.listLeft = 0;
         return false;
       });
     }
@@ -56,8 +58,9 @@ class List extends React.Component {
   componentWillReceiveProps(nextProp) {
     if (nextProp.data && nextProp.data.length) {
       nextProp.data.map((d, i) => {
-        d.keyIndex = `index${i}`;
-        d.listLeft = 0;
+        const dNew = d;
+        dNew.keyIndex = `index${i}`;
+        dNew.listLeft = 0;
         return false;
       });
 
@@ -69,15 +72,16 @@ class List extends React.Component {
 
   touchstartHandle(e) {
     const t = this;
-    const data = t.state.data;
-    const id = e.currentTarget.id;
-    let isCanMove = t.state.isCanMove;
+    const { data } = t.state;
+    const { id } = e.currentTarget;
+    let { isCanMove } = t.state;
 
     data.map((d) => {
-      if (d.keyIndex !== id && Math.abs(d.listLeft) > 0) {
+      const dNew = d;
+      if (dNew.keyIndex !== id && Math.abs(dNew.listLeft) > 0) {
         isCanMove = false;
       }
-      d.listLeft = 0;
+      dNew.listLeft = 0;
       return false;
     });
 
@@ -103,9 +107,9 @@ class List extends React.Component {
 
   touchmoveHandle(e) {
     const t = this;
-    const data = t.state.data;
-    const id = e.currentTarget.id;
-    const isCanMove = t.state.isCanMove;
+    const { data } = t.state;
+    const { id } = e.currentTarget;
+    const { isCanMove } = t.state;
 
     // 只响应单指操作
     if (supportTouch && e.touches.length > 1) {
@@ -126,11 +130,12 @@ class List extends React.Component {
     // 如果Y轴的移动距离先达到5px，则执行浏览器默认的页面滚动
     if (Math.abs(deltaX) > 5 && Math.abs(deltaY) < 5) {
       data.map((d) => {
-        if (d.keyIndex === id) {
+        const dNew = d;
+        if (dNew.keyIndex === id) {
           if (isCanMove) {
-            d.listLeft = change;
+            dNew.listLeft = change;
           } else {
-            d.listLeft = 0;
+            dNew.listLeft = 0;
             e.currentTarget.addEventListener('touchmove', (event) => {
               event.preventDefault();
             }, false);
@@ -155,9 +160,9 @@ class List extends React.Component {
   touchendHandle(e) {
     const t = this;
     let left;
-    const data = t.state.data;
-    let isCanMove = t.state.isCanMove;
-    const id = e.currentTarget.id;
+    const { data } = t.state;
+    let { isCanMove } = t.state;
+    const { id } = e.currentTarget;
     let newLeft = 0;
 
     // 只响应单指操作
@@ -184,11 +189,12 @@ class List extends React.Component {
 
 
     data.map((d) => {
-      if (d.keyIndex !== id) {
-        d.listLeft = 0;
+      const dNew = d;
+      if (dNew.keyIndex !== id) {
+        dNew.listLeft = 0;
         isCanMove = true;
       } else {
-        d.listLeft = newLeft;
+        dNew.listLeft = newLeft;
       }
       return false;
     });
@@ -228,10 +234,6 @@ class List extends React.Component {
     // })
   }
 
-  preventDefault(e) {
-    e.preventDefault();
-  }
-
   clickHandle(dataItem, e) {
     const t = this;
 
@@ -254,8 +256,10 @@ class List extends React.Component {
 
   render() {
     const t = this;
-    const { className, layout, isDelete, hasRightIcon, iconWidth, demoTitle } = t.props;
-    const data = t.state.data;
+    const {
+      className, layout, isDelete, hasRightIcon, iconWidth, demoTitle,
+    } = t.props;
+    const { data } = t.state;
     let list = null;
     let Events = {};
 
@@ -277,7 +281,8 @@ class List extends React.Component {
           /* eslint-disable react/no-array-index-key */
           <div key={index}>
             {/* eslint-enable react/no-array-index-key */}
-            <div className={Context.prefixClass('list-wrap')}
+            <div
+              className={Context.prefixClass('list-wrap')}
               {...Events}
               style={{ left: `${dataItem.listLeft}px` }}
               id={dataItem.keyIndex}
@@ -294,7 +299,8 @@ class List extends React.Component {
                   }
                 > {
                     dataItem.imgUrl &&
-                    <VBox vAlign="center"
+                    <VBox
+                      vAlign="center"
                       onClick={t.clickPhotoHandle.bind(t, dataItem.imgUrl)}
                     >
                       <img
@@ -304,13 +310,15 @@ class List extends React.Component {
                       />
                     </VBox >
                   }
-                  <Box className={Context.prefixClass('list-text-content')}
+                  <Box
+                    className={Context.prefixClass('list-text-content')}
                     flex={1}
                   >
                     <p className={Context.prefixClass('list-title omit')}> {dataItem.title} {
                       dataItem.date &&
                       <span className={Context.prefixClass('list-title-date')}> {dataItem.date} </span>
-                    } </p> {
+                    }
+                    </p> {
                       dataItem.text &&
                       <p className={Context.prefixClass('list-text omit')}> {dataItem.text} </p>
                     }
@@ -324,14 +332,14 @@ class List extends React.Component {
               </HBox>
             </div >
             <div className={Context.prefixClass('list-behind')}>
-              <a
+              <button
                 href="#"
                 className={Context.prefixClass('list-delete-btn')}
                 id={dataItem.keyIndex}
                 onClick={t.delete.bind(t, dataItem)}
               >
                 <span className={Context.prefixClass('list-delete-btn-text')}> 删除 </span>
-              </a>
+              </button>
             </div>
           </div >
         );
@@ -349,7 +357,8 @@ class List extends React.Component {
           </Group.Head>
           <Group.List lineIndent={10} >
             {list}
-          </Group.List></Group >
+          </Group.List>
+        </Group >
       );
     }
     return null;
@@ -381,6 +390,8 @@ List.propTypes = {
   onClick: PropTypes.func,
   clickPhoto: PropTypes.func,
   onDelete: PropTypes.func,
+  isDelete: PropTypes.bool,
+  demoTitle: PropTypes.string,
 };
 
 List.displayName = 'List';

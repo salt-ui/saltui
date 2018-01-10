@@ -211,6 +211,10 @@ Datetime.defaultProps = {
   minDate: 946656000000,
   maxDate: 1924876800000,
   disabledDate: () => [],
+  title: undefined,
+  value: undefined,
+  confirmText: undefined,
+  cancelText: undefined,
 };
 
 Datetime.propTypes = {

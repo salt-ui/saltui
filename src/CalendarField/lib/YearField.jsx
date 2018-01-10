@@ -1,28 +1,22 @@
+import React from 'react';
 import classnames from 'classnames';
 import Datetime from '../../Datetime';
 import { prefixClass } from '../../Context';
-import { isNumber, isObject, isStringOrNumber } from './util';
+import { isObject, isStringOrNumber, getTimestamp, getExtraProps } from './util';
 import DayField from './DayField';
 
 class YearField extends DayField {
   static displayName = 'YearField';
 
-  getTimestamp(date) {
-    let dateObj = new Date(date);
-    if (isNumber(date)) {
-      dateObj = new Date(parseInt(date));
-    }
-    return isNaN(dateObj.getTime()) ? undefined : dateObj.getTime();
-  }
-
   processValue(value, key) {
     const t = this;
+    const valueNew = Object.assign({}, value);
     // 非级联模式
     if (t.props.singleMode) {
-      if (isObject(value) && !value.hasOwnProperty('value')) {
-        value.value = value.startDate;
+      if (isObject(valueNew) && !Object.prototype.hasOwnProperty.call(valueNew, 'value')) {
+        valueNew.value = valueNew.startDate;
       }
-      return value;
+      return valueNew;
     }
     // 级联模式，要拼装成具有 startDate 和 endDate 的对象
     if (isStringOrNumber(value) || !value) {
@@ -38,15 +32,15 @@ class YearField extends DayField {
       };
     }
     if (isObject(value)) {
-      let startDate = value.startDate;
-      let endDate = value.endDate;
+      let { startDate } = value;
+      const { endDate } = value;
       // 如果是初始化，且 startDate 为空，则把 value 置为 startDate
       // key 也可以用来判断是初始化还是点击之后触发的该方法
       if (!key && !startDate) {
         startDate = value.value;
       }
-      let start = t.getTimestamp(startDate);
-      let end = t.getTimestamp(endDate);
+      let start = getTimestamp(startDate);
+      let end = getTimestamp(endDate);
       if (start > end) {
         // 如果初始化时，传入的endDate比startDate还早，则设置为相等的值
         if (!key) {
@@ -66,7 +60,7 @@ class YearField extends DayField {
         startDateType: value.startDateType,
         endDate: end,
         endDateType: value.endDateType,
-      }
+      };
     }
     return value;
   }
@@ -140,8 +134,10 @@ class YearField extends DayField {
               t.handleFieldClick.bind(t, key)}
         >
           <span className={classnames('date-text', {
-            [prefixClass('calendar-field-readonly')]: !!t.props.readOnly
-          })}>{value[`${key}Date`]}</span>
+            [prefixClass('calendar-field-readonly')]: !!t.props.readOnly,
+          })}
+          >{value[`${key}Date`]}
+          </span>
           {
             t.renderWeekText(value, key)
           }
@@ -155,7 +151,7 @@ class YearField extends DayField {
   }
 
   // 渲染展示区域
-  renderView(calendarProps) {
+  renderView() {
     const t = this;
     if (t.props.singleMode) {
       return (
@@ -174,9 +170,8 @@ class YearField extends DayField {
     let component;
     // 级联模式
     if (!t.props.singleMode) {
-
       // 处理title
-      let title = props.title;
+      let { title } = props;
       if (typeof props.title === 'string') {
         title = [props.title, props.title];
       }
@@ -188,52 +183,43 @@ class YearField extends DayField {
             title={title[0]}
             value={{
               value: props.value.startDate,
-              timeType: props.value.startDateType
+              timeType: props.value.startDateType,
             }}
-            slotRef={(r) => { t.yearStart = r }}
-            onConfirm={(val) => { t.onOk(val, 'start') }}
-            onCancel={() => { t.onCancel() }}
+            slotRef={(r) => { t.yearStart = r; }}
+            onConfirm={(val) => { t.onOk(val, 'start'); }}
+            onCancel={() => { t.onCancel(); }}
           />
           <Datetime
             {...props}
             title={title[1]}
             value={{
               value: props.value.endDate,
-              timeType: props.value.endDateType
+              timeType: props.value.endDateType,
             }}
-            slotRef={(r) => { t.yearEnd = r }}
-            onConfirm={(val) => { t.onOk(val, 'end') }}
-            onCancel={() => { t.onCancel() }}
+            slotRef={(r) => { t.yearEnd = r; }}
+            onConfirm={(val) => { t.onOk(val, 'end'); }}
+            onCancel={() => { t.onCancel(); }}
           />
         </div>
       );
-    }
-    // 单点模式
-    else {
-      let title = props.title;
+    } else {
+      let { title } = props;
       if (typeof props.title !== 'string') {
-        title = props.title[0];
+        [title] = [props.title[0]];
       }
       component = (
         <Datetime
           {...props}
           title={title}
-          slotRef={(r) => { this.year = r }}
-          onConfirm={(val) => { t.onOk(val) }}
-          onCancel={() => { t.onCancel() }}
+          slotRef={(r) => { this.year = r; }}
+          onConfirm={(val) => { t.onOk(val); }}
+          onCancel={() => { t.onCancel(); }}
         />
       );
     }
     return component;
   }
 
-  getExtraClassNames() {
-    return prefixClass('year-calendar-field');
-  }
-
-  getExtraProps() {
-    return {};
-  }
 
   getCalendarProps() {
     const t = this;
@@ -244,10 +230,9 @@ class YearField extends DayField {
       columns: Datetime.Y,
       confirmText: t.props.confirmText,
       cancelText: t.props.cancelText,
-      ...t.getExtraProps(),
+      ...getExtraProps(),
     };
   }
-
 }
 
 export default YearField;

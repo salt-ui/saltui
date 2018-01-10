@@ -1,10 +1,9 @@
 
-
-import Context from '../Context';
 import PropTypes from 'prop-types';
 import FieldRequired from 'salt-icon/lib/FieldRequired';
 import React from 'react';
 import classnames from 'classnames';
+import Context from '../Context';
 
 const { prefixClass } = Context;
 
@@ -27,6 +26,12 @@ const Label = props => (
     {props.required && requiredTag}
   </div>
 );
+Label.defaultProps = {
+  label: undefined,
+  className: undefined,
+  layout: undefined,
+  required: undefined,
+};
 
 Label.propTypes = {
   label: PropTypes.string,

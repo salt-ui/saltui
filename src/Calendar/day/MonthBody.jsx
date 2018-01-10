@@ -8,17 +8,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Context from '../../Context';
-import cloneDeep from 'lodash/cloneDeep';
+import util, { makeWeeks, renderEmptyDay } from '../util';
+import { prefixClass } from '../../Context';
 import locale from '../locale';
 import formatter from '../formatter';
-import util from '../util';
 import { halfDayType } from './const';
 
-const prefixClass = Context.prefixClass;
 
 class MonthBody extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     // days：[timestamp1, timestamp1, ...]
@@ -36,31 +33,19 @@ class MonthBody extends React.Component {
     renderCustomDayLabel: PropTypes.func,
   };
 
+  static defaultProps = {
+    className: undefined,
+    days: undefined,
+    singleMode: undefined,
+    locale: undefined,
+    value: undefined,
+    disabledDate: undefined,
+    renderDayBadge: undefined,
+    renderCustomDayLabel: undefined,
+  };
+
   componentWillMount() {
     this.locale = locale[this.props.locale];
-  }
-
-  makeWeeks(monthDays) {
-    const result = [];
-    const days = cloneDeep(monthDays);
-    // 根据 days 计算这个月有多少周
-    const firstDay = days[0]; // 取出第一天
-    const firstDayInWeek = new Date(parseInt(firstDay, 10)).getDay(); // 计算该月的第一天是周几
-    // 把第一天前面不足一周的日期用 null 补满
-    for (let i = 0; i < firstDayInWeek; i++) {
-      days.unshift(null);
-    }
-    const lastDay = days[days.length - 1]; // 取出最后一天
-    const lastDayInWeek = new Date(parseInt(lastDay, 10)).getDay(); // 计算该月的最后一天是周几
-    // 把最后一天后面不足一周的日期用 null 补满
-    for (let j = 0; j < 6 - lastDayInWeek; j++) {
-      days.push(null);
-    }
-    const weeksNum = Math.ceil(days.length / 7);
-    for (let i = 0; i < weeksNum; i++) {
-      result.push(days.splice(0, 7));
-    }
-    return result;
   }
 
   isDisabledDate(day) {
@@ -71,15 +56,6 @@ class MonthBody extends React.Component {
     return false;
   }
 
-  renderEmptyDay(idx) {
-    return (
-      <div
-        className={classnames(prefixClass('FB1 FBH FBAC FBJC tap'), 'day-cell')}
-        key={idx}
-      >
-        <span className="day-cell-inner" /></div>
-    );
-  }
 
   renderTodayLabel() {
     return (
@@ -126,11 +102,11 @@ class MonthBody extends React.Component {
   renderSingModeDay(day, idx) {
     const t = this;
     const today = util.isSameDay(day, Date.now());
-    let value = t.props.value;
+    let { value } = t.props;
     if (!util.isNil(t.props.value) && typeof t.props.value === 'object') {
       value = t.props.value.startDate || t.props.value.endDate;
       if (t.props.value.value) {
-        value = t.props.value.value;
+        ({ value } = t.props.value);
       }
     }
     const selected = util.isSameDay(day, value);
@@ -167,7 +143,7 @@ class MonthBody extends React.Component {
     const t = this;
     const today = util.isSameDay(day, Date.now());
     let selected = false;
-    const value = t.props.value;
+    const { value } = t.props;
     selected =
       util.isInRange(value.startDate, value.endDate, day);
     const disabled = t.isDisabledDate(day);
@@ -316,7 +292,8 @@ class MonthBody extends React.Component {
 
   render() {
     const t = this;
-    const weeks = t.makeWeeks(t.props.days);
+    const weeks = makeWeeks(t.props.days);
+    /* eslint-disable react/no-array-index-key */
     return (
       <div className={prefixClass('day-calendar-month-body FBV')}>
         {
@@ -325,7 +302,7 @@ class MonthBody extends React.Component {
               {
                 week.map((day, idx) => {
                   if (!day) {
-                    return t.renderEmptyDay(idx);
+                    return renderEmptyDay(idx);
                   }
                   if (t.props.singleMode) {
                     return t.renderSingModeDay(day, idx);
@@ -334,8 +311,7 @@ class MonthBody extends React.Component {
                 })
               }
             </div>
-            )
-          )
+            ))
         }
       </div>
     );

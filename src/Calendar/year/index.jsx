@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Context from '../../Context';
+import { prefixClass } from '../../Context';
 
-const prefixClass = Context.prefixClass;
 
 class YearCalendar extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     locale: PropTypes.string, // 国际化语言
@@ -19,6 +17,7 @@ class YearCalendar extends React.Component {
     animationType: 'slideLeft', //  slideUp | slideLeft
     singleMode: true,
     onChange: () => {},
+    className: undefined,
   };
 
   static displayName = 'YearCalendar';

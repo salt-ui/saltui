@@ -5,5 +5,6 @@
  * Copyright 2014-2016, Tingle Team, Alinw.
  * All rights reserved.
  */
+import Dialog from './Dialog';
 
-export default from './Dialog';
+export default Dialog;

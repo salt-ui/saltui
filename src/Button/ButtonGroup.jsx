@@ -7,14 +7,6 @@ import classnames from 'classnames';
 import { prefixClass } from './utils';
 
 class ButtonGroup extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      morePopup: false, // 备用，底部更多按钮浮层状态
-    };
-  }
-
   render() {
     const classes = {
       [`${prefixClass('button-group')}`]: true,

@@ -1,16 +1,15 @@
 import React from 'react';
+import Formatter from 'uxcore-formatter';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from '../../Context';
 import Field from '../../Field';
 import Calendar from '../../Calendar';
 import Datetime from '../../Datetime';
-import Formatter from 'uxcore-formatter';
-import { defaultFormatter, Locale, isObject, isStringOrNumber } from './util';
+import { defaultFormatter, Locale, isObject, isStringOrNumber, renderCalendar, getExtraClassNames } from './util';
 
 
 class DayField extends React.Component {
-
   static displayName = 'DayField';
 
   constructor(props) {
@@ -22,16 +21,6 @@ class DayField extends React.Component {
 
   componentWillMount() {
     this.locale = Calendar.I18n[this.props.locale];
-  }
-
-  handleFieldClick() {
-    const t = this;
-    if (t.props.readOnly) {
-      return;
-    }
-    t.setState({
-      visible: true,
-    });
   }
 
   onOk(value) {
@@ -50,13 +39,62 @@ class DayField extends React.Component {
     t.props.onCancel();
   }
 
+
+  getFieldProps() {
+    const t = this;
+    return {
+      label: t.props.label,
+      tappable: t.props.tappable,
+      required: t.props.required,
+      multiLine: t.props.multiLine,
+      icon: t.props.icon,
+      layout: t.props.layout,
+      tip: t.props.tip,
+      readOnly: t.props.readOnly,
+    };
+  }
+
+
+  getCalendarProps() {
+    const t = this;
+    return {
+      visible: t.state.visible,
+      locale: t.props.locale,
+      animationType: t.props.animationType,
+      singleMode: t.props.singleMode,
+      showHalfDay: t.props.showHalfDay,
+      topPanelTitle: t.props.topPanelTitle,
+      value: t.props.value,
+      disabledDate: t.props.disabledDate,
+      renderDayBadge: t.props.renderDayBadge,
+      renderCustomDayLabel: t.props.renderCustomDayLabel,
+      maskClosable: t.props.maskClosable,
+      onOk: t.onOk.bind(t),
+      onCancel: t.onCancel.bind(t),
+      onChange: t.props.onChange,
+      onMaskClose: t.props.onMaskClose,
+    };
+  }
+
+  handleFieldClick() {
+    const t = this;
+    if (t.props.readOnly) {
+      return;
+    }
+    t.setState({
+      visible: true,
+    });
+  }
+
   // 制造"周X"的文案
   makeWeekText(data, type) {
     const t = this;
-    data[`${type}Week`] = t.locale.weekTitle[new Date(data[type]).getDay()];
+    const dataNew = Object.assign({}, data);
+    dataNew[`${type}Week`] = t.locale.weekTitle[new Date(dataNew[type]).getDay()];
     if (t.props.locale === Locale.cn) {
-      data[`${type}Week`] = `周${  data[`${type}Week`]}`;
+      dataNew[`${type}Week`] = `周${dataNew[`${type}Week`]}`;
     }
+    return dataNew;
   }
 
   // 根据情景，制造value，用于显示
@@ -65,12 +103,14 @@ class DayField extends React.Component {
     const t = this;
     const result = {};
     if (isStringOrNumber(t.props.value)) {
-      result.start = result.end = t.props.value ? t.props.value : '';
+      result.start = t.props.value ? t.props.value : '';
+      result.end = t.props.value ? t.props.value : '';
     } else if (t.props.singleMode && isObject(t.props.value)) {
-      result.start = result.end = t.props.value.value;
+      result.start = t.props.value.value;
+      result.end = t.props.value.value;
     } else if (Array.isArray(t.props.value)) {
-      result.start = t.props.value[0];
-      result.end = t.props.value[1];
+      [result.start] = [t.props.value[0]];
+      [result.end] = [t.props.value[1]];
     } else if (isObject(t.props.value)) {
       result.start = t.props.value.startDate ? t.props.value.startDate : '';
       result.end = t.props.value.endDate ? t.props.value.endDate : '';
@@ -80,10 +120,10 @@ class DayField extends React.Component {
       }
     }
     // 如果value非Date类型，则临时存放起来，最后再返回
-    if (isNaN(new Date(result.start))) {
+    if (Number.isNaN(new Date(result.start))) {
       result.tempStart = result.start;
     }
-    if (isNaN(new Date(result.end))) {
+    if (Number.isNaN(new Date(result.end))) {
       result.tempEnd = result.end;
     }
     switch (t.props.type) {
@@ -103,16 +143,18 @@ class DayField extends React.Component {
         // 格式化日期
         result.start = Formatter.date(result.start, t.props.formatter || defaultFormatter.d);
         result.end = Formatter.date(result.end, t.props.formatter || defaultFormatter.d);
-        if (!isNaN(new Date(result.start))) {
+        if (!Number.isNaN(new Date(result.start))) {
           t.makeWeekText(result, 'start');
         }
-        if (!isNaN(new Date(result.end))) {
+        if (!Number.isNaN(new Date(result.end))) {
           t.makeWeekText(result, 'end');
         }
         // result
         if (t.props.singleMode) {
-          result.startDateType = result.endDateType =
-            t.locale.dayTipMap[t.props.value.startDateType || t.props.value.timeType];
+          result.startDateType =
+          t.locale.dayTipMap[t.props.value.startDateType || t.props.value.timeType];
+          result.endDateType =
+          t.locale.dayTipMap[t.props.value.startDateType || t.props.value.timeType];
         } else if (isObject(t.props.value)) {
           result.startDateType = t.locale.dayTipMap[t.props.value.startDateType];
           result.endDateType = t.locale.dayTipMap[t.props.value.endDateType];
@@ -147,16 +189,16 @@ class DayField extends React.Component {
 
   renderWeekText(value, key) {
     const t = this;
-    if (t.props.showWeek && value[`${key  }Week`]) {
-      return <span className="week">{value[`${key  }Week`]}</span>;
+    if (t.props.showWeek && value[`${key}Week`]) {
+      return <span className="week">{value[`${key}Week`]}</span>;
     }
     return null;
   }
 
   renderDateTypeText(value, key) {
     const t = this;
-    if (t.props.showDateType && value[`${key  }DateType`]) {
-      return <span className="date-type">{value[`${key  }DateType`]}</span>;
+    if (t.props.showDateType && value[`${key}DateType`]) {
+      return <span className="date-type">{value[`${key}DateType`]}</span>;
     }
     return null;
   }
@@ -170,7 +212,8 @@ class DayField extends React.Component {
           <span className={classnames('date-text', {
             [prefixClass('calendar-field-readonly')]: !!t.props.readOnly,
           })}
-          >{value[`${key}Date`]}</span>
+          >{value[`${key}Date`]}
+          </span>
           {
             t.renderWeekText(value, key)
           }
@@ -211,7 +254,7 @@ class DayField extends React.Component {
   // 单选模式
   renderSingleModeView() {
     const t = this;
-    const { placeholder, readOnly } = t.props;
+    const { placeholder } = t.props;
     const value = t.makeViewValue();
     return (
       <div>
@@ -242,49 +285,6 @@ class DayField extends React.Component {
     );
   }
 
-  renderCalendar(props) {
-    return <Calendar {...props} />;
-  }
-
-  getFieldProps() {
-    const t = this;
-    return {
-      label: t.props.label,
-      tappable: t.props.tappable,
-      required: t.props.required,
-      multiLine: t.props.multiLine,
-      icon: t.props.icon,
-      layout: t.props.layout,
-      tip: t.props.tip,
-      readOnly: t.props.readOnly,
-    };
-  }
-
-  getCalendarProps() {
-    const t = this;
-    return {
-      visible: t.state.visible,
-      locale: t.props.locale,
-      animationType: t.props.animationType,
-      singleMode: t.props.singleMode,
-      showHalfDay: t.props.showHalfDay,
-      topPanelTitle: t.props.topPanelTitle,
-      value: t.props.value,
-      disabledDate: t.props.disabledDate,
-      renderDayBadge: t.props.renderDayBadge,
-      renderCustomDayLabel: t.props.renderCustomDayLabel,
-      maskClosable: t.props.maskClosable,
-      onOk: t.onOk.bind(t),
-      onCancel: t.onCancel.bind(t),
-      onChange: t.props.onChange,
-      onMaskClose: t.props.onMaskClose,
-    };
-  }
-
-  // 获取表单域额外的classnames，主要用于年、月
-  getExtraClassNames() {
-    return '';
-  }
 
   render() {
     const t = this;
@@ -294,7 +294,7 @@ class DayField extends React.Component {
       <div>
         <Field
           {...fieldProps}
-          className={classnames(prefixClass('calendar-field'), t.getExtraClassNames(), t.props.className, {
+          className={classnames(prefixClass('calendar-field'), getExtraClassNames(), t.props.className, {
             readonly: t.props.readOnly,
           })}
         >
@@ -303,7 +303,7 @@ class DayField extends React.Component {
           }
         </Field>
         {
-          t.renderCalendar(calendarProps)
+          renderCalendar(calendarProps)
         }
       </div>
     );

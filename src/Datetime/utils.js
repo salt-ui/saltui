@@ -42,7 +42,7 @@ function getDates(value) {
 // 如果非正确的日期，则返回当前时间对象
 function getNowIfDateInvalid(dataObj) {
   let date = dataObj;
-  if (isNaN(date.getTime())) {
+  if (Number.isNaN(date.getTime())) {
     // invalid
     console.warn('invalid date');
     date = new Date();
@@ -81,10 +81,10 @@ function parseValue(value) {
 }
 function numToDate(num) {
   const str = `${num}`;
-  const Y = str.substring(0, 4);
+  const YN = str.substring(0, 4);
   const M = str.substring(4, 6);
   const D = str.substring(6, 8);
-  return `${Y}-${M}-${D}`;
+  return `${YN}-${M}-${D}`;
 }
 
 /**
@@ -94,22 +94,24 @@ function numToDate(num) {
  * @param {*} sure
  */
 function addDayOfWeek(days, props, sure = true) {
+  const daysNew = days;
   if (isArray(days)) {
     days.forEach((day) => {
+      const dayNew = day;
       const date = new Date(numToDate(day.value));
       if (sure) {
-        day.text = `${dateFormat(date, 'YYYY/MM/DD')} ${locale[props.locale].week[date.getDay()]}`;
+        dayNew.text = `${dateFormat(date, 'YYYY/MM/DD')} ${locale[props.locale].week[date.getDay()]}`;
       } else {
-        day.text = dateFormat(date, 'YYYY/MM/DD');
+        dayNew.text = dateFormat(date, 'YYYY/MM/DD');
       }
     });
     return;
   }
   const date = new Date(numToDate(days.value));
   if (sure) {
-    days.text = `${dateFormat(date, 'YYYY/MM/DD')} ${locale[props.locale].week[date.getDay()]}`;
+    daysNew.text = `${dateFormat(date, 'YYYY/MM/DD')} ${locale[props.locale].week[date.getDay()]}`;
   } else {
-    days.text = dateFormat(date, 'YYYY/MM/DD');
+    daysNew.text = dateFormat(date, 'YYYY/MM/DD');
   }
 }
 
@@ -254,9 +256,9 @@ function parseDate({ columns, value }) {
       }
       dateStr.YMD.push(value[index].value);
     });
-    dateStr.YMD = dateStr.YMD.map(item => parseInt(item));
+    dateStr.YMD = dateStr.YMD.map(item => parseInt(item, 10));
     dateStr.YMD[1] = dateStr.YMD[1] ? dateStr.YMD[1] - 1 : dateStr.YMD[1];
-    dateStr.Hm = dateStr.Hm.map(item => parseInt(item));
+    dateStr.Hm = dateStr.Hm.map(item => parseInt(item, 10));
     DateArr = [...dateStr.YMD, ...dateStr.Hm];
     currentValue = DateArr.length ? new Date(...DateArr) : [];
   } else {
@@ -277,9 +279,9 @@ function getDaysByYear(item) {
   return days;
 }
 function makeRange(start, end, step) {
-  step = step || 1;
+  const stepNew = step || 1;
   const arr = [];
-  for (let i = start; i <= end; i += step) {
+  for (let i = start; i <= end; i += stepNew) {
     arr.push(i);
   }
   return arr;
@@ -474,7 +476,7 @@ function filterDay(arr, year, month, disabledArr) {
 function parseDisabledArr(arr) {
   let min;
   let max;
-  arr = arr.map((item) => {
+  const arrNew = arr.map((item) => {
     const { start, end } = item;
     if (!start && !end) {
       const dateTime = new Date(item).getTime();
@@ -553,8 +555,8 @@ function filterDate({
   maxDate,
   oldData,
 }) {
-  oldData = oldData || {};
-  disabledArr = parseDisabledArr(disabledArr);
+  const oldDataN = oldData || {};
+  const disabledArrN = parseDisabledArr(disabledArr);
   const year = value[0].value;
   const month = value[1].value;
   let yearData = data[0];
@@ -563,13 +565,13 @@ function filterDate({
     year, month, minDate, maxDate,
   });
   if (disabledArr.startEnd || disabledArr.minTime || disabledArr.maxTime) {
-    if (oldData.yearData) {
-      yearData = oldData.yearData;
+    if (oldDataN.yearData) {
+      ({ yearData } = oldDataN);
     } else {
       yearData = filterYear(yearData, { disabledArr, minDate, maxDate });
     }
-    if (oldData.monthData) {
-      monthData = oldData.monthData;
+    if (oldDataN.monthData) {
+      ({ monthData } = oldDataN);
     } else {
       const monthArr = filterMonth(monthData, year, disabledArr);
       monthData = monthArr.length ? monthArr : monthData;
@@ -653,10 +655,10 @@ function getSlotFormattedValue(currentValue, props) {
   } else if (!new Date(currentValue).getTime()) {
     return [];
   }
-  currentValue = parseValue(currentValue);
-  const options = getOptions({ value: currentValue }, props);
+  const currentValueNew = parseValue(currentValue);
+  const options = getOptions({ value: currentValueNew }, props);
   // 数据格式化
-  const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
+  const ret = Slot.formatDataValue([].concat(options), [].concat(currentValueNew));
   return formatFromProps(ret.value, props);
 }
 

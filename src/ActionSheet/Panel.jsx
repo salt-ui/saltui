@@ -56,6 +56,7 @@ Panel.defaultProps = {
   options: [],
   onItemClick: () => {},
   onCancel: () => {},
+  destructiveButtonIndex: undefined,
 };
 Panel.propTypes = {
   title: PropTypes.oneOfType([

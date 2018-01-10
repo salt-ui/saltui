@@ -5,5 +5,6 @@
  * Copyright 2014-2016, Tingle Team, Alinw.
  * All rights reserved.
  */
+import List from './List';
 
-export default from './List';
+export default List;

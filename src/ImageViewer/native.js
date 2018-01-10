@@ -18,14 +18,14 @@ function wrapFailCB(cb, result) {
     if (result.errorCode === -1) {
       errorCode = 6; // 把钉钉错误码和集团标准同步，6 为用户取消
     } else {
-      errorCode = result.errorCode;
+      ({ errorCode } = result);
     }
   }
   const newResult = assign({
     errorMessage: '',
   }, (result || {}), {
-    errorCode,
-  });
+      errorCode,
+    });
   if (cb) {
     cb(newResult);
   }

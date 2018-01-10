@@ -5,11 +5,11 @@ import YearField from './YearField';
 class DayFieldWithSlot extends YearField {
   static displayName = 'DayFieldWithSlot';
 
-  getExtraClassNames() {
+  static getExtraClassNames() {
     return prefixClass('day-with-slot-calendar-field');
   }
 
-  getExtraProps() {
+  static getExtraProps() {
     return {
       columns: Datetime.YMD,
     };

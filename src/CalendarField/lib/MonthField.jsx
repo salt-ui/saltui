@@ -5,11 +5,11 @@ import YearField from './YearField';
 class MonthField extends YearField {
   static displayName = 'MonthField';
 
-  getExtraClassNames() {
+  static getExtraClassNames() {
     return prefixClass('month-calendar-field');
   }
 
-  getExtraProps() {
+  static getExtraProps() {
     return {
       columns: Datetime.YM,
     };

@@ -11,12 +11,14 @@ module.exports = {
     "rules": {
         "import/no-extraneous-dependencies": "off",
         "no-underscore-dangle": "off",
+        "no-unused-vars":'off',
         "no-plusplus": [
             "error",
             {
                 "allowForLoopAfterthoughts": true
             }
         ],
+        "react/no-unused-state": "off",
         "react/jsx-no-bind": "off",
         "react/no-unused-prop-types": "off",
         "react/forbid-prop-types": "off",

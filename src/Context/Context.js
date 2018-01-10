@@ -26,8 +26,7 @@ touchEffect.attach(doc.body);
  *      add = redo(add);
  *      add(1,2,3) => 6
  */
-const redo = fn => function () {
-  const args = arguments;
+const redo = fn => function (...args) {
   let ret = fn(args[0], args[1]);
   for (let i = 2, l = args.length; i < l; i++) {
     ret = fn(ret, args[i]);
@@ -42,18 +41,22 @@ const redo = fn => function () {
  * @return {Object} 扩展后的receiver对象
  */
 const mixin = redo((receiver, supplier) => {
+  const supplierNew = supplier;
   if (Object.keys) {
     Object.keys(supplier).forEach((property) => {
-      Object.defineProperty(receiver, property, Object.getOwnPropertyDescriptor(supplier, property));
+      Object.defineProperty(
+        receiver,
+        property, Object.getOwnPropertyDescriptor(supplier, property),
+      );
     });
   } else {
-    for (const property in supplier) {
-      if (supplier.hasOwnProperty(property)) {
-        receiver[property] = supplier[property];
+    Object.keys(supplier).forEach((property) => {
+      if (Object.prototype.hasOwnProperty.call(supplier, 'property')) {
+        supplierNew[property] = supplier[property];
       }
-    }
+    });
   }
-  return receiver;
+  return supplierNew;
 });
 
 /**
@@ -61,7 +64,10 @@ const mixin = redo((receiver, supplier) => {
  * @return {Number}
  */
 let tid = 0;
-const getTID = () => tid++;
+const getTID = () => {
+  tid += 1;
+  return tid;
+};
 
 
 /**
@@ -101,8 +107,8 @@ const getTID = () => tid++;
     if (/ZTE U930_TD/.test(navigator.userAgent)) {
       win.rem *= 1.13;
     }
-
-    fontEl.innerHTML = `html{font-size:${win.rem}px!important}`;
+    const fontElNew = fontEl;
+    fontElNew.innerHTML = `html{font-size:${win.rem}px!important}`;
   };
 
   win.addEventListener('resize', () => {
@@ -120,7 +126,7 @@ const getTID = () => tid++;
 
 const defaultArtBoardWidth = 750;
 
-const rem = (px, artBoardWidth) => `${px * 10 / (artBoardWidth || defaultArtBoardWidth)}rem`;
+const rem = (px, artBoardWidth) => `${(px * 10) / (artBoardWidth || defaultArtBoardWidth)}rem`;
 
 const makePrivateRem = artBoardWidth => px => rem(px, artBoardWidth);
 
