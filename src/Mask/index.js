@@ -5,5 +5,6 @@
  * Copyright 2014-2016, Tingle Team, Alinw.
  * All rights reserved.
  */
+import Mask from './Mask';
 
-export default from './Mask';
+export default Mask;
