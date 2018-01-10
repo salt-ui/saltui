@@ -44,8 +44,8 @@ class TabBarItemBadge extends React.Component {
           {showTitle ? <TabBarItemTitle {...this.props} active={active} /> : null}
         </Badge>);
     } else {
-      contentBadge.push(
-        <div key={'badge_others'}>
+      contentBadge.push((
+        <div key="badge_others">
           <TabBarItemIcon {...this.props} iconHeight={iconHeight} active={active} />
           {showTitle ? <TabBarItemTitle {...this.props} active={active} /> : null}
         </div>);

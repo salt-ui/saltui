@@ -38,6 +38,7 @@ class TabBar extends React.Component {
     onChange: () => {
     },
     tabBarStyle: {},
+    children: [],
   };
 
   constructor(props) {
