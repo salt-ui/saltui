@@ -49,11 +49,7 @@ class Item extends React.Component {
                     <img
                       src={t.props.icon}
                       alt=""
-<<<<<<< HEAD
-                    /> : t.genIcon(t.props.icon)
-=======
                     /> : genIcon(t.props.icon)
->>>>>>> f812629... eslint
                 }
               </div> :
               <div
