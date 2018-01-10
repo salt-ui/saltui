@@ -13,10 +13,9 @@ import cloneDeep from 'lodash/cloneDeep';
 import Toast from '../../Toast';
 import { prefixClass } from '../../Context';
 import Button from '../../Button';
-import util from '../util';
 import Panel from './Panel';
 import { halfDayType } from './const';
-import { adaptCascadeDate } from './utils';
+import util, { adaptCascadeDate } from '../util';
 
 class CascadePanel extends Panel {
   static propTypes = {

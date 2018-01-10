@@ -12,13 +12,12 @@ import cloneDeep from 'lodash/cloneDeep';
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
 import deepEqual from 'lodash/isEqual';
-import { getMonthDays, getRealMonthPool } from './utils';
+import util, { getMonthDays, getRealMonthPool } from '../util';
 import { prefixClass } from '../../Context';
 import locale from '../locale';
 import MonthBody from './MonthBody';
 import MonthTitle from './MonthTitle';
 import formatter from '../formatter';
-import util from '../util';
 
 const shadowArray = [1, 2]; // 只是用来提供一个长度的数组，本身的值没什么用
 // const maxMonth = 5; // 最多渲染这么多个月
@@ -37,7 +36,7 @@ class Panel extends React.Component {
     singleMode: PropTypes.bool, // 是否是单选模式
     onChange: PropTypes.func,
     showHalfDay: PropTypes.bool,
-    onOk: PropTypes.any,
+    onOk: PropTypes.func,
     animationType: PropTypes.any,
   };
 
@@ -49,7 +48,7 @@ class Panel extends React.Component {
     locale: undefined,
     height: undefined,
     value: undefined,
-    onOk: undefined,
+    onOk: () => { },
     animationType: undefined,
   };
 
@@ -267,10 +266,16 @@ class Panel extends React.Component {
       );
     });
   }
+  /* eslint-disable class-methods-use-this */
+  // 只有级联才用到上下午
+  renderHalfDay() {
+    return null;
+  }
+  /* eslint-enable class-methods-use-this */
+
 
   render() {
     const t = this;
-
     const { className, height, ...others } = t.props;
     const showHalfDay = !t.props.singleMode && t.props.showHalfDay;
     return (

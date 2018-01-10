@@ -135,7 +135,7 @@ Box.propTypes = {
   flex: PropTypes.number,
   hAlign: PropTypes.oneOf(ALIGN_VALUES),
   vAlign: PropTypes.oneOf(ALIGN_VALUES),
-  children: PropTypes.any,
+  children: PropTypes.node,
 };
 Box.defaultProps = {
   className: '',

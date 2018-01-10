@@ -655,10 +655,10 @@ function getSlotFormattedValue(currentValue, props) {
   } else if (!new Date(currentValue).getTime()) {
     return [];
   }
-  currentValue = parseValue(currentValue);
-  const options = getOptions({ value: currentValue }, props);
+  const currentValueNew = parseValue(currentValue);
+  const options = getOptions({ value: currentValueNew }, props);
   // 数据格式化
-  const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
+  const ret = Slot.formatDataValue([].concat(options), [].concat(currentValueNew));
   return formatFromProps(ret.value, props);
 }
 

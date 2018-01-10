@@ -8,11 +8,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { makeWeeks, renderEmptyDay } from './utils';
+import util, { makeWeeks, renderEmptyDay } from '../util';
 import { prefixClass } from '../../Context';
 import locale from '../locale';
 import formatter from '../formatter';
-import util from '../util';
 import { halfDayType } from './const';
 
 
