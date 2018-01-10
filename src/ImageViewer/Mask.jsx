@@ -18,4 +18,9 @@ Mask.propTypes = {
   className: PropTypes.string,
 };
 
+Mask.defaultProps = {
+  visible: undefined,
+  className: undefined,
+};
+
 export default Mask;

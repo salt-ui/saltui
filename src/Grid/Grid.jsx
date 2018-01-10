@@ -8,11 +8,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Context from '../Context';
+import { prefixClass } from '../Context';
 import { VBox } from '../Boxs';
 import Row from './Row';
 
-const prefixClass = Context.prefixClass;
 
 class Grid extends React.Component {
   /**
@@ -45,7 +44,7 @@ class Grid extends React.Component {
 
     const rows = t.cutIndexesIntoRows();
     const { className, noLine, ...rowProps } = t.props;
-
+    /* eslint-disable react/no-array-index-key */
     return (
       <div
         className={classnames(prefixClass('grid'), {
@@ -64,6 +63,7 @@ class Grid extends React.Component {
         }
       </div>
     );
+    /* eslint-enable react/no-array-index-key */
   }
 }
 
@@ -76,7 +76,10 @@ Grid.defaultProps = {
   itemVAlign: 'center',
   touchable: false,
 };
-
+const START = 'start';
+const CENTER = 'center';
+const END = 'end';
+const ALIGN_VALUES = [START, CENTER, END];
 // http://facebook.github.io/react/docs/reusable-components.html
 Grid.propTypes = {
   className: PropTypes.string,
@@ -87,9 +90,9 @@ Grid.propTypes = {
   // 是否隐藏分割线
   noLine: PropTypes.bool,
   // 单个格子的水平对其方式
-  itemHAlign: VBox.propTypes.hAlign,
+  itemHAlign: PropTypes.oneOf(ALIGN_VALUES),
   // 单个格子的垂直对其方式
-  itemVAlign: VBox.propTypes.vAlign,
+  itemVAlign: PropTypes.oneOf(ALIGN_VALUES),
   // 单元格是否可点击
   touchable: PropTypes.bool,
 };

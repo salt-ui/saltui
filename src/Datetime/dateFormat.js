@@ -1,7 +1,7 @@
 export default function (str, pattern) {
   const date = new Date(str);
   if (Object.prototype.toString.call(date) === '[object Date]') {
-    if (isNaN(date.getTime())) {
+    if (Number.isNaN(date.getTime())) {
       // invalid
       console.warn('Formatter: invalid date');
       return '';

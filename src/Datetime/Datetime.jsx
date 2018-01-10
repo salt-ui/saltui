@@ -88,7 +88,8 @@ class Datetime extends React.Component {
     };
   };
   setOptions = (props) => {
-    let { data, value } = getOptions({ value: props.value }, props);
+    let { data } = getOptions({ value: props.value }, props);
+    const { value } = getOptions({ value: props.value }, props);
     const { columns, minDate, maxDate } = props;
     const columnsStyle = columns[0];
     if (props.disabledDate && columnsStyle === 'Y') {
@@ -202,6 +203,10 @@ Datetime.defaultProps = {
   minDate: 946656000000,
   maxDate: 1924876800000,
   disabledDate: () => [],
+  title: undefined,
+  value: undefined,
+  confirmText: undefined,
+  cancelText: undefined,
 };
 
 Datetime.propTypes = {

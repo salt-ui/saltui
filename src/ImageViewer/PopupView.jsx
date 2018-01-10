@@ -11,7 +11,6 @@ const pinch = new Hammer.Pinch();
 
 
 class PopupView extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -94,6 +93,7 @@ class PopupView extends React.Component {
     if (!this.props.visible) return null;
     const { photos, prefixCls } = this.props;
     const { current } = this.state;
+    /* eslint-disable react/no-array-index-key */
     return (
       <ul className={`${prefixCls}-nav`}>
         {photos.map((photo, index) => (
@@ -119,41 +119,44 @@ class PopupView extends React.Component {
           <Mask className={`${prefixCls}-mask`} visible={visible} />
         </Animate>
         <Animate transitionAppear transitionName={`${prefixCls}-view`} component="">
-          {visible ? <div
-            className={`${prefixCls}-view`}
-            ref={(c) => {
+          {visible ?
+            <div
+              className={`${prefixCls}-view`}
+              ref={(c) => {
               this.imageBox = c;
             }}
-            onClick={() => {
+              onClick={() => {
               this.handleClick();
             }}
-          >
-            <Slide
-              height={`${windowHeight - 40}px`}
-              active={this.state.current}
-              auto={false}
-              showNav={false}
-              loop={false}
-              onSlideEnd={this.updateActive.bind(this)}
-              ref={(c) => {
+            >
+              <Slide
+                height={`${windowHeight - 40}px`}
+                active={this.state.current}
+                auto={false}
+                showNav={false}
+                loop={false}
+                onSlideEnd={this.updateActive.bind(this)}
+                ref={(c) => {
                 this.slider = c;
               }}
-            >
-              {photos.map((item, index) => (
-                <img
-                  role="presentation"
-                  key={index}
-                  src={item.src}
-                />
+              >
+                {photos.map((item, index) => (
+                  <img
+                    role="presentation"
+                    key={index}
+                    src={item.src}
+                    alt=" "
+                  />
             ))}
-            </Slide>
-          </div> : null}
+              </Slide>
+            </div> : null}
         </Animate>
         <Animate transitionAppear transitionName={`${prefixCls}-nav`} component="">
           {this.renderNavBar()}
         </Animate>
       </div>
     );
+    /* eslint-enable react/no-array-index-key */
   }
 }
 
@@ -170,6 +173,7 @@ PopupView.defaultProps = {
   onClick: () => {},
   current: 0,
   visible: true,
+  prefixCls: undefined,
 };
 
 export default PopupView;

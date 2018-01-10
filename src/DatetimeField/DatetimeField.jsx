@@ -67,7 +67,7 @@ class DatetimeField extends React.Component {
         date = propValue ? new Date(parseInt(propValue, 10)) : new Date();
         result = propValue;
       }
-      if (isNaN(date.getTime())) {
+      if (Number.isNaN(date.getTime())) {
         return result;
       }
     }
