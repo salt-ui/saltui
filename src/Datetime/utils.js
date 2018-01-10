@@ -115,18 +115,13 @@ function addDayOfWeek(days, props, sure = true) {
   }
 }
 
+
 function formatFromProps(arr, props) {
   const { columns } = props;
   const displayList = [];
   for (let i = 0; i < columns.length; i += 1) {
     if (colFlags.indexOf(columns[i]) !== -1) {
       displayList.push(arr[colFlags.indexOf(columns[i])]);
-    }
-    if (!isArray(displayList[i]) && !isObject(displayList[i]) && (columns[i] === 'YMDW' || columns[i] === 'YMD')) {
-      displayList[i] = {
-        value: displayList[i],
-        text: displayList[i],
-      };
     }
     if (columns[i] === 'YMDW') {
       addDayOfWeek(displayList[i], props);
@@ -138,6 +133,7 @@ function formatFromProps(arr, props) {
 
   return displayList;
 }
+
 
 /**
  * 根据年 月计算 天数
@@ -643,23 +639,27 @@ function getOptions({ value }, props) {
     datYear,
     datYear,
   ];
-  const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
-  const data = formatFromProps(formatText(ret.data, undefined, props), props);
-  const newValue = formatFromProps(formatText(ret.value, undefined, props), props);
-  return {
-    data,
-    value: newValue,
-  };
+  return options;
 }
 
 function getSlotFormattedValue(currentValue, props) {
   // 使用当前时间或传入时间作为默认值
-  const currentValueN = parseValue(currentValue);
   // 形成候选项
-  const { data, value } = getOptions({ value: currentValueN }, props);
+  if (!currentValue) {
+    return [];
+  }
+  if (isObject(currentValue)) {
+    if (!new Date(currentValue.value).getTime()) {
+      return [];
+    }
+  } else if (!new Date(currentValue).getTime()) {
+    return [];
+  }
+  currentValue = parseValue(currentValue);
+  const options = getOptions({ value: currentValue }, props);
   // 数据格式化
-  const ret = Slot.formatDataValue([].concat(data), [].concat(value));
-  return ret.value || [];
+  const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
+  return formatFromProps(ret.value, props);
 }
 
 export default {
@@ -678,6 +678,7 @@ export default {
   parseDate,
   filterDate,
   colFlags,
+  formatText,
   Y,
   YM,
   YMD,

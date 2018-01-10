@@ -25,5 +25,6 @@ spm_modules
 .cache
 dist
 build
+lib
 dev/index.jsx
 package-lock.json 
