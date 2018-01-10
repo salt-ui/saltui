@@ -6,7 +6,7 @@ import { prefixClass } from '../../Context';
 import Field from '../../Field';
 import Calendar from '../../Calendar';
 import Datetime from '../../Datetime';
-import { defaultFormatter, Locale, isObject, isStringOrNumber, renderCalendar, getExtraClassNames } from './util';
+import { defaultFormatter, Locale, isObject, isStringOrNumber } from './util';
 
 
 class DayField extends React.Component {
@@ -75,6 +75,25 @@ class DayField extends React.Component {
       onMaskClose: t.props.onMaskClose,
     };
   }
+  /* eslint-disable class-methods-use-this */
+  // 获取表单域额外的classnames，主要用于年、月
+  getExtraClassNames() {
+    return '';
+  }
+  /* eslint-enable class-methods-use-this */
+
+
+  // 制造"周X"的文案
+  makeWeekText(data, type) {
+    const t = this;
+    const dataNew = data;
+    dataNew[`${type}Week`] = t.locale.weekTitle[new Date(dataNew[type]).getDay()];
+    if (t.props.locale === Locale.cn) {
+      dataNew[`${type}Week`] = `周${dataNew[`${type}Week`]}`;
+    }
+    return dataNew;
+  }
+
 
   handleFieldClick() {
     const t = this;
@@ -86,16 +105,6 @@ class DayField extends React.Component {
     });
   }
 
-  // 制造"周X"的文案
-  makeWeekText(data, type) {
-    const t = this;
-    const dataNew = Object.assign({}, data);
-    dataNew[`${type}Week`] = t.locale.weekTitle[new Date(dataNew[type]).getDay()];
-    if (t.props.locale === Locale.cn) {
-      dataNew[`${type}Week`] = `周${dataNew[`${type}Week`]}`;
-    }
-    return dataNew;
-  }
 
   // 根据情景，制造value，用于显示
   // 此方法会被子类使用，本应拆分，由子类复写，但因处理较复杂，所以未拆分
@@ -174,7 +183,11 @@ class DayField extends React.Component {
     delete result.end;
     return result;
   }
-
+  /* eslint-disable class-methods-use-this */
+  renderCalendar(props) {
+    return <Calendar {...props} />;
+  }
+  /* eslint-enable class-methods-use-this */
   renderPlaceholder(value, key) {
     const t = this;
     const { placeholder } = t.props;
@@ -285,7 +298,6 @@ class DayField extends React.Component {
     );
   }
 
-
   render() {
     const t = this;
     const fieldProps = t.getFieldProps();
@@ -294,7 +306,7 @@ class DayField extends React.Component {
       <div>
         <Field
           {...fieldProps}
-          className={classnames(prefixClass('calendar-field'), getExtraClassNames(), t.props.className, {
+          className={classnames(prefixClass('calendar-field'), t.getExtraClassNames(), t.props.className, {
             readonly: t.props.readOnly,
           })}
         >
@@ -303,7 +315,7 @@ class DayField extends React.Component {
           }
         </Field>
         {
-          renderCalendar(calendarProps)
+          t.renderCalendar(calendarProps)
         }
       </div>
     );

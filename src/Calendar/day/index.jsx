@@ -24,7 +24,7 @@ class DayCalendar extends React.Component {
     singleMode: PropTypes.bool, // 是否是单选模式
     onChange: PropTypes.func,
     value: PropTypes.any,
-    onOk: PropTypes.any,
+    onOk: PropTypes.func,
   };
 
   static defaultProps = {
@@ -34,7 +34,7 @@ class DayCalendar extends React.Component {
     onChange: () => {},
     className: undefined,
     value: undefined,
-    onOk: undefined,
+    onOk: () => { },
   };
 
   static displayName = 'DayCalendar';

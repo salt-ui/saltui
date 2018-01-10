@@ -1,9 +1,7 @@
 import React from 'react';
 import cloneDeep from 'lodash/cloneDeep';
-import classnames from 'classnames';
 import formatter from './formatter';
 import localeMap from './locale';
-import { prefixClass } from '../Context';
 import util from './util';
 
 function isSameDay(day1, day2) {
@@ -128,17 +126,6 @@ function adaptCascadeDate(sDate, eDate) {
   };
 }
 
-function renderEmptyDay(idx) {
-  return (
-    <div
-      className={classnames(prefixClass('FB1 FBH FBAC FBJC tap'), 'day-cell')}
-      key={idx}
-    >
-      <span className="day-cell-inner" />
-    </div>
-  );
-}
-
 /*
    * 根据 timestamp 去计算它所属的月份的全部 days
    * days数据结构为：[timestamp1, timestamp2, ...]
@@ -182,7 +169,6 @@ export default {
   addUrlParam,
   makeWeeks,
   adaptCascadeDate,
-  renderEmptyDay,
   getMonthDays,
   getRealMonthPool,
 };

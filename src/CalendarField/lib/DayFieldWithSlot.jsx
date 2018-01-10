@@ -4,16 +4,17 @@ import YearField from './YearField';
 
 class DayFieldWithSlot extends YearField {
   static displayName = 'DayFieldWithSlot';
-
-  static getExtraClassNames() {
+  /* eslint-disable class-methods-use-this */
+  getExtraClassNames() {
     return prefixClass('day-with-slot-calendar-field');
   }
 
-  static getExtraProps() {
+  getExtraProps() {
     return {
       columns: Datetime.YMD,
     };
   }
+  /* eslint-enable class-methods-use-this */
 }
 
 export default DayFieldWithSlot;

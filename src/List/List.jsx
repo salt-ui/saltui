@@ -9,7 +9,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AngleRight from 'salt-icon/lib/AngleRight';
 import classnames from 'classnames';
-import preventDefault from './utils';
 import Context from '../Context';
 import Group from '../Group';
 import Boxs from '../Boxs';
@@ -252,7 +251,12 @@ class List extends React.Component {
     e.stopPropagation();
     t.props.clickPhoto(e, imgUrl);
   }
+  /* eslint-disable class-methods-use-this */
 
+  preventDefault(e) {
+    e.preventDefault();
+  }
+  /* eslint-enable class-methods-use-this */
 
   render() {
     const t = this;

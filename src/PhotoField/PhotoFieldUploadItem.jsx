@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { prefixClass } from '../Context';
 import { Status } from 'uploadcore';
 import UploadIcon from 'salt-icon/lib/Upload';
 import DelIcon from 'salt-icon/lib/MinusRound';
+import { prefixClass } from '../Context';
 import Circle from './Circle';
 import i18n from './i18n';
 
@@ -59,7 +59,10 @@ class PhotoFieldUploadItem extends React.Component {
     );
   }
 }
-
+PhotoFieldUploadItem.defaultProps = {
+  file: undefined,
+  locale: undefined,
+};
 
 PhotoFieldUploadItem.propTypes = {
   file: PropTypes.object,

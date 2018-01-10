@@ -14,6 +14,11 @@ class Item extends React.Component {
   static defaultProps = {
     prefixCls: 't-scroll-list-item',
     desMaxLine: 2,
+    className: undefined,
+    img: undefined,
+    title: undefined,
+    description: undefined,
+    extra: undefined,
   };
 
   renderImg() {

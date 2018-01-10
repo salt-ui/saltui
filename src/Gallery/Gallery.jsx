@@ -88,8 +88,6 @@ class Gallery extends React.Component {
     if (!this.state.images.length) {
       return <div />;
     }
-
-    const t = this;
     const {
       images, onSlideEnd, ...otherProps
     } = this.props;

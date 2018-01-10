@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Datetime from '../../Datetime';
 import { prefixClass } from '../../Context';
-import { isObject, isStringOrNumber, getTimestamp, getExtraProps } from './util';
+import { getTimestamp, isObject, isStringOrNumber } from './util';
 import DayField from './DayField';
 
 class YearField extends DayField {
@@ -219,7 +219,11 @@ class YearField extends DayField {
     }
     return component;
   }
-
+  /* eslint-disable class-methods-use-this */
+  getExtraProps() {
+    return {};
+  }
+  /* eslint-enable class-methods-use-this */
 
   getCalendarProps() {
     const t = this;
@@ -230,7 +234,7 @@ class YearField extends DayField {
       columns: Datetime.Y,
       confirmText: t.props.confirmText,
       cancelText: t.props.cancelText,
-      ...getExtraProps(),
+      ...t.getExtraProps(),
     };
   }
 }

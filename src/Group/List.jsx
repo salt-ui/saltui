@@ -41,7 +41,7 @@ class List extends React.Component {
 
     t[`_${type}IndentClassName`] = className.join(' ');
   }
-
+  /* eslint-disable class-methods-use-this */
   /**
      * 生成间隔线缩进对应的`classClass`值和`CSS`样式
      * @param side {String} Left|Right
@@ -52,7 +52,6 @@ class List extends React.Component {
     if (!value) {
       return null;
     }
-    const t = this;
     const lowerSide = side.toLowerCase();
     const indent = `${side}-${value}`;
     style.add(`line-indent-${indent}`, `
@@ -73,7 +72,6 @@ class List extends React.Component {
     if (!value) {
       return null;
     }
-    const t = this;
     const lowerSide = side.toLowerCase();
     const indent = `${side}-${value}`;
     style.add(`item-indent-${indent}`, `
@@ -83,6 +81,7 @@ class List extends React.Component {
         `);
     return `item-indent-${indent}`;
   }
+  /* eslint-enable class-methods-use-this */
 
   render() {
     const t = this;

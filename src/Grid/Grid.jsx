@@ -9,7 +9,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from '../Context';
-import { VBox } from '../Boxs';
 import Row from './Row';
 
 

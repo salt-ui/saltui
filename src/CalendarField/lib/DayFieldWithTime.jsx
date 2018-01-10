@@ -4,16 +4,16 @@ import YearField from './YearField';
 
 class DayFieldWithTime extends YearField {
   static displayName = 'DayFieldWithTime';
-
-  static getExtraClassNames() {
+  /* eslint-disable class-methods-use-this */
+  getExtraClassNames() {
     return prefixClass('day-width-time-calendar-field');
   }
 
-  static getExtraProps() {
+  getExtraProps() {
     return {
       columns: Datetime.YMDWHM,
     };
   }
+  /* eslint-enable class-methods-use-this */
 }
-
 export default DayFieldWithTime;

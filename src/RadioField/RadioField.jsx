@@ -8,12 +8,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import OptionCheckedIcon from 'salt-icon/lib/OptionChecked';
 import FieldRequiredIcon from 'salt-icon/lib/FieldRequired';
-import Context from '../Context';
+import { prefixClass } from '../Context';
+import renderIcon from './utils';
 import Group from '../Group';
-
-const { prefixClass } = Context;
 
 
 class RadioField extends React.Component {
@@ -23,6 +21,7 @@ class RadioField extends React.Component {
   }
   clickAction(value, item, index, data) {
     const t = this;
+    const itemNew = item;
     const { data: radioArray, onChange } = t.props;
 
     const { disable } = item;
@@ -30,32 +29,17 @@ class RadioField extends React.Component {
       return;
     }
     radioArray.map((radioItem) => {
-      radioItem.checked = false;
-      return radioItem;
+      const radioItemNew = radioItem;
+      radioItemNew.checked = false;
+      return radioItemNew;
     });
-    item.checked = !item.checked;
+    itemNew.checked = !itemNew.checked;
     if (onChange) {
       onChange(value, index, data);
     }
     t.forceUpdate();
   }
 
-  renderIcon(checked, position) {
-    return (
-      <div className={classnames(prefixClass('radio-field-icon-wrapper FBAC FBH'), {
-        [position]: !!position,
-      })}
-      >
-        <OptionCheckedIcon
-          width={16}
-          height={16}
-          className={classnames(prefixClass('radio-field-icon'), {
-            'un-checked': !checked,
-          })}
-        />
-      </div>
-    );
-  }
 
   render() {
     const t = this;
@@ -70,6 +54,7 @@ class RadioField extends React.Component {
 
     const radioArrayComponent = radioArray.map((item, index, data) => {
       const { checked, disable, value } = item;
+      /* eslint-disable react/no-array-index-key */
       return (
         <div
           key={index}
@@ -79,7 +64,7 @@ class RadioField extends React.Component {
           onClick={t.clickAction.bind(t, value, item, index, data)}
         >
           {
-            t.props.iconPosition === 'left' && t.renderIcon(checked)
+            t.props.iconPosition === 'left' && renderIcon(checked)
           }
           <div
             ref={`content${index}`}
@@ -88,7 +73,7 @@ class RadioField extends React.Component {
             {item.content || item.text}
           </div>
           {
-            t.props.iconPosition === 'right' && t.renderIcon(checked, 'right')
+            t.props.iconPosition === 'right' && renderIcon(checked, 'right')
           }
           {
             disable && <div className={prefixClass('radio-field-disable-mask')} />
@@ -158,6 +143,7 @@ RadioField.defaultProps = {
   label: '',
   iconPosition: 'right',
   required: false,
+  className: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

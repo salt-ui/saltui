@@ -118,6 +118,7 @@ const Box = (props) => {
   const {
     className, flex, vAlign, hAlign, ...other
   } = props;
+
   const c = classnames({
     [prefixClass(`FB${flex}`)]: !!flex,
     [className]: !!className,

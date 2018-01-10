@@ -7,15 +7,15 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Context from '../Context';
 import Tooltip from 'rc-tooltip';
-import placements from './placements';
+import Context from '../Context';
+import placementsN from './placements';
 
 class Popover extends React.Component {
-
   static propTypes = {
     overlayClassName: PropTypes.string,
     placement: PropTypes.string,
+    trigger: PropTypes.array,
   };
 
   static defaultProps = {
@@ -29,7 +29,7 @@ class Popover extends React.Component {
   render() {
     const t = this;
     const prefixCls = Context.prefixClass('popover');
-    const defaultAlign = placements[t.props.placement];
+    const defaultAlign = placementsN[t.props.placement];
     return (
       <Tooltip
         prefixCls={prefixCls}

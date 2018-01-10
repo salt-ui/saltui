@@ -8,12 +8,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import util, { makeWeeks, renderEmptyDay } from '../util';
+import util, { makeWeeks } from '../util';
 import { prefixClass } from '../../Context';
 import locale from '../locale';
 import formatter from '../formatter';
 import { halfDayType } from './const';
 
+function renderEmptyDay(idx) {
+  return (
+    <div
+      className={classnames(prefixClass('FB1 FBH FBAC FBJC tap'), 'day-cell')}
+      key={idx}
+    >
+      <span className="day-cell-inner" />
+    </div>
+  );
+}
 
 class MonthBody extends React.Component {
   static propTypes = {

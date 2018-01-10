@@ -4,16 +4,17 @@ import YearField from './YearField';
 
 class MonthField extends YearField {
   static displayName = 'MonthField';
-
-  static getExtraClassNames() {
+  /* eslint-disable class-methods-use-this */
+  getExtraClassNames() {
     return prefixClass('month-calendar-field');
   }
 
-  static getExtraProps() {
+  getExtraProps() {
     return {
       columns: Datetime.YM,
     };
   }
+  /* eslint-enable class-methods-use-this */
 }
 
 export default MonthField;

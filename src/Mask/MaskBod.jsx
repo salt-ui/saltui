@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Animate from 'rc-animate';
 import cssAnim from 'css-animation';

@@ -48,14 +48,13 @@ class Dialog extends React.Component {
 
   // 属性变化时把响应状态设置到 state
   componentWillReceiveProps(nextProps) {
-    const { props } = this;
     const changeState = {};
     changeState.show = nextProps.show;
     this.setState(changeState);
   }
 
   getButtons() {
-    const { props, state } = this;
+    const { props } = this;
     // 构造的时候根据 type 生成对应的 btn
     // 默认 alert
     let buttons = [{
@@ -114,7 +113,7 @@ class Dialog extends React.Component {
    * 渲染 btn 方法
    */
   renderBtns() {
-    const { props, state } = this;
+    const { props } = this;
     const { btnDir, transparentMode } = props;
     const buttons = this.getButtons();
     // 1. 透明模式
@@ -189,7 +188,6 @@ class Dialog extends React.Component {
       title,
       content,
       children,
-      className = '',
       wrapClassName = '',
       transparentMode,
     } = t.props;

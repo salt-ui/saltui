@@ -2,12 +2,12 @@ const getData = (response) => {
   let data = {};
   if (response.content) {
     if (response.content.data) {
-      data = response.content.data;
+      ({ data } = response.content);
     } else {
       data = response.content;
     }
   } else if (response.data) {
-    data = response.data;
+    ({ data } = response);
   } else {
     data = typeof response === 'object' ? response : {};
   }
