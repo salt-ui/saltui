@@ -29,9 +29,8 @@ class DatetimeField extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const slotValue = Datetime.getSlotFormattedValue(nextProps.value, nextProps);
     this.setState({
-      slotValue,
+      slotValue: Datetime.getSlotFormattedValue(nextProps.value, nextProps),
     });
   }
 
