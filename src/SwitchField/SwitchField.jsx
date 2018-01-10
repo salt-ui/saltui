@@ -43,7 +43,7 @@ class SwitchField extends React.Component {
 SwitchField.defaultProps = {
   className: '',
   onChange() { },
-  on: 'true',
+  on: true,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
