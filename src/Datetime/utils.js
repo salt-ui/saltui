@@ -113,29 +113,7 @@ function addDayOfWeek(days, props, sure = true) {
   }
 }
 
-function formatFromProps1(arr, props) {
-  const { columns } = props;
-  const displayList = [];
-  for (let i = 0; i < columns.length; i += 1) {
-    if (colFlags.indexOf(columns[i]) !== -1) {
-      displayList.push(arr[colFlags.indexOf(columns[i])]);
-    }
-    if (!isArray(displayList[i]) && !isObject(displayList[i]) && (columns[i] === 'YMDW' || columns[i] === 'YMD')) {
-      displayList[i] = {
-        value: displayList[i],
-        text: displayList[i],
-      };
-    }
-    if (columns[i] === 'YMDW') {
-      addDayOfWeek(displayList[i], props);
-    }
-    if (columns[i] === 'YMD') {
-      addDayOfWeek(displayList[i], props, false);
-    }
-  }
 
-  return displayList;
-}
 function formatFromProps(arr, props) {
   const { columns } = props;
   const displayList = [];
@@ -660,14 +638,6 @@ function getOptions({ value }, props) {
     datYear,
   ];
   return options;
-
-  /* const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
-  const data = formatFromProps(formatText(ret.data, undefined, props), props);
-  const newValue = formatFromProps(formatText(ret.value, undefined, props), props);
-  return {
-    data,
-    value: newValue,
-  }; */
 }
 
 function getSlotFormattedValue(currentValue, props) {
