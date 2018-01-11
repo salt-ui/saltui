@@ -118,8 +118,7 @@ class DayField extends React.Component {
       result.start = t.props.value.value;
       result.end = t.props.value.value;
     } else if (Array.isArray(t.props.value)) {
-      [result.start] = [t.props.value[0]];
-      [result.end] = [t.props.value[1]];
+      [result.start, result.end] = t.props.value;
     } else if (isObject(t.props.value)) {
       result.start = t.props.value.startDate ? t.props.value.startDate : '';
       result.end = t.props.value.endDate ? t.props.value.endDate : '';

@@ -9,7 +9,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { prefixClass } from '../Context';
-import { VBox } from '../Boxs';
+import { VBox, ALIGN_VALUES } from '../Boxs';
 
 
 class Row extends React.Component {
@@ -67,17 +67,14 @@ Row.defaultProps = {
   itemHAlign: undefined,
   itemVAlign: undefined,
 };
-const START = 'start';
-const CENTER = 'center';
-const END = 'end';
-const ALIGN_VALUES = [START, CENTER, END];
+
 Row.propTypes = {
   col: PropTypes.number,
   square: PropTypes.bool,
   // 单个格子的水平对其方式
-  itemHAlign: PropTypes.oneOf(ALIGN_VALUES),
+  itemHAlign: PropTypes.oneOf(ALIGN_VALUES()),
   // 单个格子的垂直对其方式
-  itemVAlign: PropTypes.oneOf(ALIGN_VALUES),
+  itemVAlign: PropTypes.oneOf(ALIGN_VALUES()),
 };
 
 export default Row;
