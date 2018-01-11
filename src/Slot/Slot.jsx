@@ -167,6 +167,7 @@ class Slot extends React.Component {
 Slot.defaultProps = {
   title: '',
   value: [],
+  data: [],
   maskCloseable: true,
   className: '',
   confirmText: '完成',
@@ -182,7 +183,7 @@ Slot.defaultProps = {
 Slot.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
   value: PropTypes.array,
   maskCloseable: PropTypes.bool,
   confirmText: PropTypes.string,

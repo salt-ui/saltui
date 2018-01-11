@@ -38,6 +38,10 @@ class TabBar extends React.Component {
     onChange: () => {
     },
     tabBarStyle: {},
+    menuFlat: undefined,
+    children: undefined,
+    items: undefined,
+    theme: undefined,
   };
 
   constructor(props) {

@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from '../Context';
 import Row from './Row';
-
+import { ALIGN_VALUES } from '../Boxs';
 
 class Grid extends React.Component {
   /**
@@ -75,10 +75,6 @@ Grid.defaultProps = {
   itemVAlign: 'center',
   touchable: false,
 };
-const START = 'start';
-const CENTER = 'center';
-const END = 'end';
-const ALIGN_VALUES = [START, CENTER, END];
 // http://facebook.github.io/react/docs/reusable-components.html
 Grid.propTypes = {
   className: PropTypes.string,
@@ -89,9 +85,9 @@ Grid.propTypes = {
   // 是否隐藏分割线
   noLine: PropTypes.bool,
   // 单个格子的水平对其方式
-  itemHAlign: PropTypes.oneOf(ALIGN_VALUES),
+  itemHAlign: PropTypes.oneOf(ALIGN_VALUES()),
   // 单个格子的垂直对其方式
-  itemVAlign: PropTypes.oneOf(ALIGN_VALUES),
+  itemVAlign: PropTypes.oneOf(ALIGN_VALUES()),
   // 单元格是否可点击
   touchable: PropTypes.bool,
 };

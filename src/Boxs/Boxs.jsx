@@ -14,7 +14,7 @@ import { prefixClass } from '../Context';
 const START = 'start';
 const CENTER = 'center';
 const END = 'end';
-const ALIGN_VALUES = [START, CENTER, END];
+const ALIGN_VALUES = () => [START, CENTER, END];
 
 /**
  * 水平方向弹性容器
@@ -51,8 +51,8 @@ const HBox = (props) => {
 HBox.propTypes = {
   className: PropTypes.string,
   flex: PropTypes.number,
-  hAlign: PropTypes.oneOf(ALIGN_VALUES),
-  vAlign: PropTypes.oneOf(ALIGN_VALUES),
+  hAlign: PropTypes.oneOf(ALIGN_VALUES()),
+  vAlign: PropTypes.oneOf(ALIGN_VALUES()),
   children: PropTypes.any,
 };
 HBox.defaultProps = {
@@ -95,8 +95,8 @@ const VBox = (props) => {
 VBox.propTypes = {
   className: PropTypes.string,
   flex: PropTypes.number,
-  hAlign: PropTypes.oneOf(ALIGN_VALUES),
-  vAlign: PropTypes.oneOf(ALIGN_VALUES),
+  hAlign: PropTypes.oneOf(ALIGN_VALUES()),
+  vAlign: PropTypes.oneOf(ALIGN_VALUES()),
   children: PropTypes.any,
 };
 VBox.defaultProps = {
@@ -134,8 +134,8 @@ const Box = (props) => {
 Box.propTypes = {
   className: PropTypes.string,
   flex: PropTypes.number,
-  hAlign: PropTypes.oneOf(ALIGN_VALUES),
-  vAlign: PropTypes.oneOf(ALIGN_VALUES),
+  hAlign: PropTypes.oneOf(ALIGN_VALUES()),
+  vAlign: PropTypes.oneOf(ALIGN_VALUES()),
   children: PropTypes.node,
 };
 Box.defaultProps = {
@@ -147,4 +147,6 @@ Box.defaultProps = {
 };
 Box.displayName = 'Box';
 
-export default { HBox, VBox, Box };
+export default {
+  HBox, VBox, Box, ALIGN_VALUES,
+};

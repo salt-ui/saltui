@@ -26,6 +26,7 @@ const Count = props => (
 
 Count.defaultProps = {
   length: 0,
+  total: undefined,
 };
 
 Count.propTypes = {

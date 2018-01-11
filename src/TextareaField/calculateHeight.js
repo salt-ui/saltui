@@ -73,7 +73,7 @@ const getSingleRowHeight = (textarea) => {
 const calculateHeight = (textarea, minRows, maxRows) => {
   if (!shadowTextarea) document.body.appendChild(shadowTextarea = document.createElement('textarea'));
   const styleInfo = getStyleInfo(textarea);
-  const styles = styleInfo.styles;
+  const { styles } = styleInfo;
   const {
     heightAdjust,
     padding,

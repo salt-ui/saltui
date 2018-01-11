@@ -251,12 +251,6 @@ class List extends React.Component {
     e.stopPropagation();
     t.props.clickPhoto(e, imgUrl);
   }
-  /* eslint-disable class-methods-use-this */
-
-  preventDefault(e) {
-    e.preventDefault();
-  }
-  /* eslint-enable class-methods-use-this */
 
   render() {
     const t = this;
@@ -337,7 +331,6 @@ class List extends React.Component {
             </div >
             <div className={Context.prefixClass('list-behind')}>
               <button
-                href="#"
                 className={Context.prefixClass('list-delete-btn')}
                 id={dataItem.keyIndex}
                 onClick={t.delete.bind(t, dataItem)}
