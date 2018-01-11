@@ -7,6 +7,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import cloneDeep from 'lodash/cloneDeep';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import RcDialog from 'rc-dialog';
@@ -278,7 +279,7 @@ Dialog.global = null;
  * @param {object} options 弹窗相关参数
  */
 const show = function show(options = {}) {
-  const optionsN = options;
+  const optionsN = cloneDeep(options);
   optionsN.show = true;
   if (!wrapper) {
     wrapper = doc.getElementById(WRAPPER_ID);

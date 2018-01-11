@@ -6,11 +6,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import renderIcon from './util';
+import Icon from 'salt-icon';
 import { prefixClass } from '../Context';
 import Layer from '../Layer';
 import Scroller from '../Scroller';
 
+const renderIcon = (checked, disable) => {
+  const iconClassName = classnames(prefixClass('checkbox-field-icon'), {
+    checked,
+    'un-checked': !checked,
+    disable,
+  });
+  return (
+    checked ?
+      <Icon
+        key="check-round"
+        width={26}
+        height={26}
+        name="check-round"
+        className={iconClassName}
+      /> : <div className={iconClassName} />
+  );
+};
 
 class SelectLayer extends React.Component {
   constructor(props) {

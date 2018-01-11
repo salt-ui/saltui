@@ -320,7 +320,6 @@ class Slide extends React.Component {
   *  是出于性能考虑，因为调用该函数的时候，都是明确知道目标item的。
   */
   _getItemUnready(item) {
-    const t = this;
     item.classList.remove('ready');
     item.removeAttribute(OFFSET);
     item.style.webkitTransitionDuration = '0';
@@ -592,6 +591,7 @@ class Slide extends React.Component {
   */
   _renderItems(dummyMode) {
     const t = this;
+    /* eslint-disable react/no-array-index-key */
     return t.props.children.map((child, index) => (
       <div
         key={index + (dummyMode ? 2 : 0)}
@@ -605,6 +605,7 @@ class Slide extends React.Component {
         {child}
       </div>
     ));
+    /* eslint-enable react/no-array-index-key */
   }
 
   render() {

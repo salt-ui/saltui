@@ -9,4 +9,4 @@ function transToValue(list) {
   ));
 }
 
-export default transToValue;
+export default { transToValue };

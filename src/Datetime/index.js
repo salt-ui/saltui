@@ -6,6 +6,4 @@
  * All rights reserved.
  */
 
-import Datetime from './Datetime';
-
-export default Datetime;
+export default from './Datetime';

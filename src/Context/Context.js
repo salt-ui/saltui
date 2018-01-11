@@ -7,6 +7,7 @@
  * All rights reserved.
  */
 // 引入环境检测模块
+import cloneDeep from 'lodash/cloneDeep';
 import classnames from 'classnames';
 import env from './env';
 import touchEffect from './touchEffect';
@@ -41,22 +42,23 @@ const redo = fn => function (...args) {
  * @return {Object} 扩展后的receiver对象
  */
 const mixin = redo((receiver, supplier) => {
-  const supplierNew = supplier;
+  const receiverNew = cloneDeep(receiver);
+  const supplierNew = cloneDeep(supplier);
   if (Object.keys) {
-    Object.keys(supplier).forEach((property) => {
+    Object.keys(supplierNew).forEach((property) => {
       Object.defineProperty(
-        receiver,
-        property, Object.getOwnPropertyDescriptor(supplier, property),
+        receiverNew,
+        property, Object.getOwnPropertyDescriptor(supplierNew, property),
       );
     });
   } else {
-    Object.keys(supplier).forEach((property) => {
-      if (Object.prototype.hasOwnProperty.call(supplier, 'property')) {
-        supplierNew[property] = supplier[property];
+    Object.keys(supplierNew).forEach((property) => {
+      if (Object.prototype.hasOwnProperty.call(supplierNew, 'property')) {
+        receiverNew[property] = supplierNew[property];
       }
     });
   }
-  return supplierNew;
+  return receiverNew;
 });
 
 /**
@@ -107,8 +109,10 @@ const getTID = () => {
     if (/ZTE U930_TD/.test(navigator.userAgent)) {
       win.rem *= 1.13;
     }
-    const fontElNew = fontEl;
-    fontElNew.innerHTML = `html{font-size:${win.rem}px!important}`;
+    /* eslint-disable no-param-reassign */
+    // 修改DOM
+    fontEl.innerHTML = `html{font-size:${win.rem}px!important}`;
+    /* eslint-enable no-param-reassign */
   };
 
   win.addEventListener('resize', () => {

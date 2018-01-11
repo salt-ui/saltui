@@ -107,7 +107,7 @@ Scroller.propTypes = {
   className: PropTypes.string,
   disablePointer: PropTypes.bool,
   children: PropTypes.node,
-  click: PropTypes.func,
+  click: PropTypes.bool,
   minWidth: PropTypes.string,
 };
 

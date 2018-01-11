@@ -17,7 +17,7 @@ import Context from '../Context';
 import Field from '../Field';
 import EmployeeList from './EmployeeList';
 import locale from './locale';
-import transToValue from './utils';
+import { transToValue } from './utils';
 
 
 class EmployeeField extends React.Component {

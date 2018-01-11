@@ -5,7 +5,4 @@
  * Copyright 2014-2017, Tingle Team, Alinw.
  * All rights reserved.
  */
-
-import FoldablePane from './FoldablePane';
-
-export default FoldablePane;
+export default from './FoldablePane';

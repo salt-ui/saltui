@@ -95,7 +95,7 @@ class CheckboxField extends React.Component {
 
     return data;
   }
-
+  /* eslint-disable no-param-reassign */
   clickAction(value, item) {
     const t = this;
     const { onChange } = t.props;
@@ -103,13 +103,14 @@ class CheckboxField extends React.Component {
     if (t.props.readOnly || disable) {
       return;
     }
-    const itemNew = item;
-    itemNew.checked = !itemNew.checked;
+    item.checked = !item.checked;
     if (onChange) {
       onChange(t.getData());
     }
     t.forceUpdate();
   }
+  /* eslint-enable no-param-reassign */
+
   handleClick() {
     if (!this.props.readOnly) {
       this.slot.show();

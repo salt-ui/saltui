@@ -35,7 +35,7 @@ class NoticeBar extends React.Component {
     optionsType: '',
     visible: true,
     onClose: () => { },
-    onClick: undefined,
+    onClick: () => { },
   };
 
   static displayName = 'NoticeBar';

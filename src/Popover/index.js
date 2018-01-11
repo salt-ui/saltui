@@ -5,7 +5,4 @@
  * Copyright 2014-2017, Tingle Team, Alinw.
  * All rights reserved.
  */
-
-import Popover from './Popover';
-
-export default Popover;
+export default from './Popover';

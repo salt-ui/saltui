@@ -68,7 +68,7 @@ export function findCityList(dataset = [], value = [], depth = 0) {
 function removeChildren(data = []) {
   const ds = cloneDeep(data);
   ds.forEach((item) => {
-    const itemNew = item;
+    const itemNew = cloneDeep(item);
     if (itemNew.children) delete itemNew.children;
   });
   return ds;
@@ -85,7 +85,7 @@ function removeChildrenL2(data = []) {
   ds.forEach((item) => {
     if (item.children) {
       item.children.forEach((subItem) => {
-        const subItemNew = subItem;
+        const subItemNew = cloneDeep(subItem);
         if (subItemNew.children) {
           delete subItemNew.children;
         }

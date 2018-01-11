@@ -26,7 +26,7 @@ class SlotPane extends React.Component {
   static propTypes = {
     visible: PropTypes.bool,
     // className: PropTypes.string,
-    data: PropTypes.array.isRequired,
+    data: PropTypes.array,
     value: PropTypes.array,
     onChange: PropTypes.func,
     onScrolling: PropTypes.func,
@@ -39,6 +39,7 @@ class SlotPane extends React.Component {
     visible: true,
     // className:'',
     value: [],
+    data: [],
     onChange() { },
     onScrolling() { },
     scrollMod: 'reset',

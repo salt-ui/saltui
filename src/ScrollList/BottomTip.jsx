@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 class BottomTip extends React.Component {
   static displayName = 'BottomTip';
   static defaultProps = {
+    text: '',
     icon: null,
   };
   static propTypes = {
     icon: PropTypes.element,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
   };
 
   render() {

@@ -2,7 +2,6 @@ import React from 'react';
 import cloneDeep from 'lodash/cloneDeep';
 import formatter from './formatter';
 import localeMap from './locale';
-import util from './util';
 
 function isSameDay(day1, day2) {
   return (this.isNil(day1) && this.isNil(day2)) ||
@@ -30,7 +29,7 @@ function isNil(value) {
 //    '2017-01-03': 'leave',
 // }
 function generateSpecialWorkdayOrHolidayRender(dayMap, lang = 'zh-cn') {
-  return function demo(data, locale, current) {
+  return function render(data, locale, current) {
     const currentDate = formatter(new Date(current), 'YYYY-MM-DD');
     const type = data[currentDate];
     if (type) {
@@ -114,8 +113,8 @@ function makeWeeks(monthDays) {
 
 // 级联模式，调整成正确的数据
 function adaptCascadeDate(sDate, eDate) {
-  const startDate = util.isNil(sDate) ? sDate : new Date(sDate).getTime();
-  let endDate = util.isNil(eDate) ? eDate : new Date(eDate).getTime();
+  const startDate = isNil(sDate) ? sDate : new Date(sDate).getTime();
+  let endDate = isNil(eDate) ? eDate : new Date(eDate).getTime();
   // 如果开始时间大于结束时间，则把结束时间置为同开始时间相同的时间
   if (startDate && endDate && startDate > endDate) {
     endDate = startDate;

@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tooltip from 'rc-tooltip';
 import Context from '../Context';
-import placementsN from './placements';
+import placements from './placements';
 
 class Popover extends React.Component {
   static propTypes = {
@@ -29,7 +29,7 @@ class Popover extends React.Component {
   render() {
     const t = this;
     const prefixCls = Context.prefixClass('popover');
-    const defaultAlign = placementsN[t.props.placement];
+    const defaultAlign = placements[t.props.placement];
     return (
       <Tooltip
         prefixCls={prefixCls}

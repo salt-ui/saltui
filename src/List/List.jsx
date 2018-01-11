@@ -35,7 +35,7 @@ class List extends React.Component {
 
     if (datas.length) {
       datas.map((d, i) => {
-        const dNew = d;
+        const dNew = { ...d };
         dNew.keyIndex = `index${i}`;
         dNew.listLeft = 0;
         return false;
@@ -57,7 +57,7 @@ class List extends React.Component {
   componentWillReceiveProps(nextProp) {
     if (nextProp.data && nextProp.data.length) {
       nextProp.data.map((d, i) => {
-        const dNew = d;
+        const dNew = { ...d };
         dNew.keyIndex = `index${i}`;
         dNew.listLeft = 0;
         return false;
@@ -76,7 +76,7 @@ class List extends React.Component {
     let { isCanMove } = t.state;
 
     data.map((d) => {
-      const dNew = d;
+      const dNew = { ...d };
       if (dNew.keyIndex !== id && Math.abs(dNew.listLeft) > 0) {
         isCanMove = false;
       }
@@ -129,7 +129,7 @@ class List extends React.Component {
     // 如果Y轴的移动距离先达到5px，则执行浏览器默认的页面滚动
     if (Math.abs(deltaX) > 5 && Math.abs(deltaY) < 5) {
       data.map((d) => {
-        const dNew = d;
+        const dNew = { ...d };
         if (dNew.keyIndex === id) {
           if (isCanMove) {
             dNew.listLeft = change;
@@ -188,7 +188,7 @@ class List extends React.Component {
 
 
     data.map((d) => {
-      const dNew = d;
+      const dNew = { ...d };
       if (dNew.keyIndex !== id) {
         dNew.listLeft = 0;
         isCanMove = true;

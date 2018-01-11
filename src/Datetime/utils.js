@@ -1,4 +1,5 @@
 import isUndefined from 'lodash/isUndefined';
+import cloneDeep from 'lodash/cloneDeep';
 import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
 import dateFormat from './dateFormat';
@@ -94,7 +95,7 @@ function numToDate(num) {
  * @param {*} sure
  */
 function addDayOfWeek(days, props, sure = true) {
-  const daysNew = days;
+  const daysNew = cloneDeep(days);
   if (isArray(days)) {
     days.forEach((day) => {
       const dayNew = day;
@@ -278,10 +279,9 @@ function getDaysByYear(item) {
   });
   return days;
 }
-function makeRange(start, end, step) {
-  const stepNew = step || 1;
+function makeRange(start, end, step = 1) {
   const arr = [];
-  for (let i = start; i <= end; i += stepNew) {
+  for (let i = start; i <= end; i += step) {
     arr.push(i);
   }
   return arr;
@@ -476,7 +476,8 @@ function filterDay(arr, year, month, disabledArr) {
 function parseDisabledArr(arr) {
   let min;
   let max;
-  const arrNew = arr.map((item) => {
+  let arrNew = cloneDeep(arr);
+  arrNew = arrNew.map((item) => {
     const { start, end } = item;
     if (!start && !end) {
       const dateTime = new Date(item).getTime();
@@ -493,7 +494,7 @@ function parseDisabledArr(arr) {
       end: new Date(end).getTime(),
     };
   });
-  let newArr = arr.filter(item => !!item);
+  let newArr = arrNew.filter(item => !!item);
   // 求时间并集并求出 最大值和最小值
   newArr = newArr.filter((item) => {
     const { start, end } = item;
@@ -553,10 +554,9 @@ function filterDate({
   disabledArr,
   minDate,
   maxDate,
-  oldData,
+  oldData = {},
 }) {
-  const oldDataN = oldData || {};
-  const disabledArrN = parseDisabledArr(disabledArr);
+  const disabledArrNew = parseDisabledArr(disabledArr);
   const year = value[0].value;
   const month = value[1].value;
   let yearData = data[0];
@@ -564,22 +564,22 @@ function filterDate({
   let dayData = getDayByMonth({
     year, month, minDate, maxDate,
   });
-  if (disabledArr.startEnd || disabledArr.minTime || disabledArr.maxTime) {
-    if (oldDataN.yearData) {
-      ({ yearData } = oldDataN);
+  if (disabledArrNew.startEnd || disabledArrNew.minTime || disabledArrNew.maxTime) {
+    if (oldData.yearData) {
+      ({ yearData } = oldData);
     } else {
-      yearData = filterYear(yearData, { disabledArr, minDate, maxDate });
+      yearData = filterYear(yearData, { disabledArr: disabledArrNew, minDate, maxDate });
     }
-    if (oldDataN.monthData) {
-      ({ monthData } = oldDataN);
+    if (oldData.monthData) {
+      ({ monthData } = oldData);
     } else {
-      const monthArr = filterMonth(monthData, year, disabledArr);
+      const monthArr = filterMonth(monthData, year, disabledArrNew);
       monthData = monthArr.length ? monthArr : monthData;
     }
-    const dayArr = filterDay(dayData, year, month, disabledArr);
+    const dayArr = filterDay(dayData, year, month, disabledArrNew);
     dayData = dayArr.length ? dayArr : dayData;
   }
-  if (disabledArr.minTime >= disabledArr.maxTime) {
+  if (disabledArrNew.minTime >= disabledArrNew.maxTime) {
     console.warn('Datetime: Please check your disabledDate props');
     return [];
   }

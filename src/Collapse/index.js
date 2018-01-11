@@ -6,6 +6,4 @@
  * All rights reserved.
  */
 
-import Collapse from './Collapse';
-
-export default Collapse;
+export default from './Collapse';

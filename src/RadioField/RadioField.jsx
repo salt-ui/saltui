@@ -8,20 +8,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import OptionCheckedIcon from 'salt-icon/lib/OptionChecked';
 import FieldRequiredIcon from 'salt-icon/lib/FieldRequired';
 import { prefixClass } from '../Context';
-import renderIcon from './utils';
 import Group from '../Group';
 
-
+const renderIcon = (checked, position) => (
+  <div className={classnames(prefixClass('radio-field-icon-wrapper FBAC FBH'), {
+            [position]: !!position,
+        })}
+  >
+    <OptionCheckedIcon
+      width={16}
+      height={16}
+      className={classnames(prefixClass('radio-field-icon'), {
+                    'un-checked': !checked,
+                })}
+    />
+  </div>
+);
 class RadioField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+  /* eslint-disable no-param-reassign */
   clickAction(value, item, index, data) {
     const t = this;
-    const itemNew = item;
     const { data: radioArray, onChange } = t.props;
 
     const { disable } = item;
@@ -29,16 +42,16 @@ class RadioField extends React.Component {
       return;
     }
     radioArray.map((radioItem) => {
-      const radioItemNew = radioItem;
-      radioItemNew.checked = false;
-      return radioItemNew;
+      radioItem.checked = false;
+      return radioItem;
     });
-    itemNew.checked = !itemNew.checked;
+    item.checked = !item.checked;
     if (onChange) {
       onChange(value, index, data);
     }
     t.forceUpdate();
   }
+  /* eslint-enable no-param-reassign */
 
 
   render() {
