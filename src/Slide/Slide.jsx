@@ -36,7 +36,7 @@ const POS_MAP = {
 
 // 创建translate字符串
 // TODO: translate(0,0) translateZ(0);
-const makeTranslate = (function() {
+const makeTranslate = (function () {
   const prefix = support3D ? 'translate3d(' : 'translate(';
   const suffix = support3D ? ', 0)' : ')';
   const join = ',';
@@ -47,15 +47,15 @@ const makeTranslate = (function() {
     return back;
   }
 
-  return function(x, y) {
+  return function (x, y) {
     return prefix + v(x) + join + v(y) + suffix;
   };
 }());
 
 // 获取兼容PC和Device的event对象的page属性
-const getCursorPage = supportTouch ? function(event, page) {
+const getCursorPage = supportTouch ? function (event, page) {
   return event.changedTouches[0][page];
-} : function(event, page) {
+} : function (event, page) {
   return event[page];
 };
 
@@ -211,9 +211,10 @@ class Slide extends React.Component {
   */
   _goto(posIndex, callFromDidMount, noAnimation) {
     const t = this;
-    callFromDidMount = !!callFromDidMount;
+    let callFromDidMountNew = callFromDidMount;
+    callFromDidMountNew = !!callFromDidMountNew;
 
-    if (t.length === 1 || callFromDidMount) {
+    if (t.length === 1 || callFromDidMountNew) {
       // `_getItemReady` 方法被调用之前，需要先更新 `currentPosIndex` 的值
       t.currentPosIndex = posIndex;
       t._getItemReady(0, noAnimation);
@@ -224,7 +225,7 @@ class Slide extends React.Component {
       }
 
       t._slideEnd();
-    } else if (!callFromDidMount) {
+    } else if (!callFromDidMountNew) {
       // 通过goNext/goPrev调用的_goto，一直有方向(_dir)值 向左:-1 / 向右:1
       if (t._dir) {
         t._getItemUnready(t._dir === 1 ? t._nextEl : t._prevEl);
@@ -464,7 +465,7 @@ class Slide extends React.Component {
           (distX < 0 && t._dummy && t.currentPosIndex === 1)
         )
       ) {
-        distX = distX - (distX / 1.3);
+        distX -= (distX / 1.3);
       }
 
       // 位移后的X坐标
@@ -608,8 +609,8 @@ class Slide extends React.Component {
 
   render() {
     const t = this;
-    let showTitle = this.props.showTitle;
-    const displayMode = this.props.displayMode;
+    let { showTitle } = this.props;
+    const { displayMode } = this.props;
     if (displayMode === 'card') {
       showTitle = false;
     }
@@ -672,6 +673,8 @@ Slide.defaultProps = {
   autoSlideTime: 4000,
   showTitle: false,
   displayMode: 'normal',
+  className: undefined,
+  children: undefined,
 };
 
 Slide.displayName = 'Slide';

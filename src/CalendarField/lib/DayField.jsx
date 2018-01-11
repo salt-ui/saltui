@@ -110,7 +110,7 @@ class DayField extends React.Component {
   // 此方法会被子类使用，本应拆分，由子类复写，但因处理较复杂，所以未拆分
   makeViewValue() {
     const t = this;
-    const result = {};
+    let result = {};
     if (isStringOrNumber(t.props.value)) {
       result.start = t.props.value ? t.props.value : '';
       result.end = t.props.value ? t.props.value : '';
@@ -153,10 +153,10 @@ class DayField extends React.Component {
         result.start = Formatter.date(result.start, t.props.formatter || defaultFormatter.d);
         result.end = Formatter.date(result.end, t.props.formatter || defaultFormatter.d);
         if (!Number.isNaN(new Date(result.start))) {
-          t.makeWeekText(result, 'start');
+          result = t.makeWeekText(result, 'start');
         }
         if (!Number.isNaN(new Date(result.end))) {
-          t.makeWeekText(result, 'end');
+          result = t.makeWeekText(result, 'end');
         }
         // result
         if (t.props.singleMode) {

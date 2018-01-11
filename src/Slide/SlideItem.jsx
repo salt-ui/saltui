@@ -9,7 +9,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { prefixClass } from './utils';
 
-const SlideItem = ({ title, children, className, style }) => {
+const SlideItem = ({
+  title, children, className, style,
+}) => {
   const defaultStyle = { height: '100%' };
   return (
     <div
@@ -29,6 +31,9 @@ SlideItem.displayName = 'SlideItem';
 SlideItem.defaultProps = {
   className: '',
   style: {},
+  title: undefined,
+  children: undefined,
+  showTitle: undefined,
 };
 
 SlideItem.propTypes = {
