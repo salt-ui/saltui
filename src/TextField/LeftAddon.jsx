@@ -15,8 +15,6 @@ const LeftAddon = props => (
 
 LeftAddon.defaultProps = {};
 LeftAddon.propTypes = {
-  focus: PropTypes.bool,
-  hover: PropTypes.bool,
   children: PropTypes.any,
 };
 LeftAddon.displayName = 'LeftAddon';

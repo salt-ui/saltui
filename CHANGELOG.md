@@ -1,4 +1,7 @@
 
+## 3.4.5 / 2018-01-10
+* `fix`: incorrect DateTime getOptions output
+
 ## 3.4.4 / 2018-01-08
 * `fix`: DateTimeField display value bug
 

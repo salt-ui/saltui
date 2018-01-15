@@ -49,8 +49,12 @@ class Demo extends React.Component {
         }],
         path: '/center',
       },
-      { title: '地图', icon: <Time />, badge: 8, path: '/b/star' },
-      { title: '我的', icon: <Time />, badge: 8, path: '/c/star' },
+      {
+        title: '地图', icon: <Time />, badge: 8, path: '/b/star',
+      },
+      {
+        title: '我的', icon: <Time />, badge: 8, path: '/c/star',
+      },
     ];
   }
 
@@ -62,16 +66,18 @@ class Demo extends React.Component {
 
     const tabBarStyle = {};
 
-    return (<div>
-      <TabBar
-        tabBarStyle={tabBarStyle}
-        activeIndex={this.state.activeIndex}
-        onChange={onChange}
-        iconHeight={24}
-        cIconHeight={50}
-        items={this.tabBarItems}
-      />
-    </div>);
+    return (
+      <div>
+        <TabBar
+          tabBarStyle={tabBarStyle}
+          activeIndex={this.state.activeIndex}
+          onChange={onChange}
+          iconHeight={24}
+          cIconHeight={50}
+          items={this.tabBarItems}
+        />
+      </div>
+    );
   }
 }
 
