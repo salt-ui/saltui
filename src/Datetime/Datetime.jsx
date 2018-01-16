@@ -53,40 +53,39 @@ class Datetime extends React.Component {
     this.setOptions(nextProps);
   }
   getPlainDate = (value) => {
-    const date = new Date();
+    const date = [];
     const { columns } = this.props;
     let timeType = 0;
 
     for (let i = 0; i < columns.length; i += 1) {
       if (columns[i] === 'Y') {
-        date.setFullYear(value[i].value);
+        date[0] = value[i].value;
       } else if (columns[i] === 'M') {
-        date.setMonth(value[i].value);
+        date[1] = value[i].value;
       } else if (columns[i] === 'D') {
-        date.setDate(value[i].value);
+        date[2] = value[i].value;
       } else if (columns[i] === 'H') {
-        date.setHours(value[i].value);
+        date[3] = value[i].value;
       } else if (columns[i] === 'm') {
-        date.setMinutes(value[i].value);
+        date[4] = value[i].value;
       } else if (columns[i] === 's') {
-        date.setSeconds(value[i].value);
+        date[5] = value[i].value;
       } else if (columns[i] === 'T') {
         timeType = value[i].value;
       } else if (columns[i] === 'YMD' || columns[i] === 'YMDW') {
-        date.setFullYear((`${value[i].value}`).substring(0, 4));
-        date.setMonth((`${value[i].value}`).substring(4, 6) - 1);
-        date.setDate((`${value[i].value}`).substring(6, 8));
+        date[0] = (`${value[i].value}`).substring(0, 4);
+        date[1] = (`${value[i].value}`).substring(4, 6) - 1;
+        date[2] = (`${value[i].value}`).substring(6, 8);
       }
     }
-
     // 如果需要显示上下午
     if (columns.indexOf('T') !== -1) {
-      date.setHours(timeType ? 18 : 9);
-      date.setMinutes(0);
+      date[3] = timeType ? 18 : 9;
+      date[4] = 0;
+      date[5] = 0;
     }
-
     return {
-      value: date.getTime(),
+      value: new Date(...date).getTime(),
       timeType: timeType ? 'PM' : 'AM',
     };
   };
