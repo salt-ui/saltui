@@ -16,7 +16,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: '1',
+      activeKey: '1',
     };
   }
 
@@ -26,7 +26,7 @@ class Demo extends React.Component {
 
   handleClick() {
     this.setState({
-      active: '3',
+      activeKey: '3',
     });
   }
 
@@ -35,7 +35,7 @@ class Demo extends React.Component {
     return (
       <div>
         <Tab
-          activeKey={this.state.active}
+          activeKey={this.state.activeKey}
           onChange={(obj) => { t.handleChange(obj); }}
         >
           <Tab.Item title="全部" data={{ customKey1: '自定义值1', customKey2: '自定义值2' }}>
