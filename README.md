@@ -42,7 +42,7 @@ ReactDOM.render(<Button />, mountNode);
 	// .babelrc or babel-loader option
 	{
 	  "plugins": [
-	    ["import", { libraryName: "saltui" }]
+	    ["import", { libraryName: "saltui", camel2DashComponentName: false }]
 	  ]
 	}
 	```
