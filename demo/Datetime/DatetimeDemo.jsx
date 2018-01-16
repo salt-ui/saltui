@@ -19,6 +19,7 @@ class DatetimeDemo extends React.Component {
         value: '2017-7-20 12:42:44',
         timeType: 'PM',
       },
+      value3: null,
     };
     this.datetimeProps = {
       locale: 'zh-cn',
@@ -51,7 +52,7 @@ class DatetimeDemo extends React.Component {
         </Button>
         <Datetime
           {...this.datetimeProps}
-          slotRef={s => t.slot1 = s}
+          slotRef={(s) => { t.slot1 = s; }}
           title="日期选择"
           value={this.state.value1}
           columns={Datetime.YMD}
@@ -60,10 +61,10 @@ class DatetimeDemo extends React.Component {
                 start: new Date(2018, 5, 1),
                 end: new Date(2019, 11, 31),
               },
-              {
-                start: new Date(2021, 5, 1),
-                end: new Date(2019, 11, 31),
-              },
+              // {
+              //   start: new Date(2021, 5, 1),
+              //   end: new Date(2019, 11, 31),
+              // },
               {
                 end: new Date(2016, 1, 21),
               },
@@ -119,9 +120,9 @@ class DatetimeDemo extends React.Component {
         </Button>
         <Datetime
           {...this.datetimeProps}
-          slotRef={s => t.slot3 = s}
+          slotRef={(s) => { t.slot3 = s; }}
           title="时间选择"
-          value={null}
+          value={t.state.value3}
           minuteStep={5}
           columns={Datetime.YMDWHM}
           disabledDate={() => [
