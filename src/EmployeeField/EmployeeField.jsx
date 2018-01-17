@@ -20,7 +20,6 @@ import locale from './locale';
 
 
 class EmployeeField extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     corpId: PropTypes.string,
@@ -60,7 +59,7 @@ class EmployeeField extends React.Component {
       multiple: this.props.multiple,
       max: this.props.max,
       isNeedSearch: this.props.isNeedSearch,
-      startWithDepartmentId: this.props.startWithDepartmentId,  //  SELF TOP
+      startWithDepartmentId: this.props.startWithDepartmentId, //  SELF TOP
       users: this.props.value.map(v => v.key),
       disabledUsers: this.props.disabledUsers,
     };
@@ -85,6 +84,28 @@ class EmployeeField extends React.Component {
             okButton: i18n.ok,
           });
         }
+      });
+    } else if (window.dd) {
+      // fall back to dd api
+      window.dd.biz.contact.choose({
+        ...option,
+        onSuccess(results) {
+          /* eslint-disable no-param-reassign */
+          for (let i = 0; i < results.length; i++) {
+            results[i].phoneNumber = results[i].mobilePhone;
+            const result = {
+              results,
+            };
+            this.props.onChange(this.transToValue(result.results));
+          }
+          /* eslint-enable no-param-reassign */
+        },
+        onFail(err) {
+          window.dd.device.notification.alert({
+            message: err.message,
+            buttonName: i18n.ok,
+          });
+        },
       });
     }
   }
@@ -149,7 +170,7 @@ class EmployeeField extends React.Component {
               !t.props.value.length ?
                 <div className={Context.prefixClass('omit employee-field-placeholder')}>{t.props.placeholder}</div>
                 :
-                  <div className={Context.prefixClass('omit employee-field-num')}>{t.getTotalText()}</div>
+                <div className={Context.prefixClass('omit employee-field-num')}>{t.getTotalText()}</div>
             }
           </div>
         </Field>
