@@ -8,7 +8,7 @@ class Pagination extends React.Component {
     this.state = {};
   }
 
-    /**
+  /**
      * 计算总页数
      */
   calcPage() {
@@ -40,8 +40,10 @@ class Pagination extends React.Component {
           className={classnames({
             goPrev: true,
             disable: current === 1,
-          })} onClick={t.handlePageChange.bind(t, -1)}
-        >上一页</div>
+          })}
+          onClick={t.handlePageChange.bind(t, -1)}
+        >上一页
+        </div>
         <div className="options">
           {`${current}/${totalPages}`}
         </div>
@@ -49,8 +51,10 @@ class Pagination extends React.Component {
           className={classnames({
             goNext: true,
             disable: current === totalPages,
-          })} onClick={t.handlePageChange.bind(t, 1)}
-        >下一页</div>
+          })}
+          onClick={t.handlePageChange.bind(t, 1)}
+        >下一页
+        </div>
       </div>);
   }
 }

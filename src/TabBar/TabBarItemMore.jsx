@@ -18,33 +18,41 @@ class TabBarItemMore extends React.Component {
     hideMoreItems: PropTypes.func,
     index: PropTypes.number,
   };
+static defaultProps ={
+  onClick: () => { },
+  path: undefined,
+  hideMoreItems: undefined,
+  index: undefined,
+  keyNew: undefined,
+}
+constructor(props) {
+  super(props);
+  this.doClick = this.doClick.bind(this);
+}
+doClick(e) {
+  e.stopPropagation();
+  this.props.onClick(this.props.index, this.props.path);
+  this.props.hideMoreItems(e);
+}
 
-  constructor(props) {
-    super(props);
-    this.doClick = this.doClick.bind(this);
-  }
-  doClick(e) {
-    e.stopPropagation();
-    this.props.onClick(this.props.index, this.props.path);
-    this.props.hideMoreItems(e);
-  }
-
-  render() {
-    const t = this;
-    const { active, iconHeight } = t.props;
-    return (
-      <Box
-        className={classnames(Context.prefixClass('tabs-bar-item'),
+render() {
+  const t = this;
+  const { active, iconHeight } = t.props;
+  return (
+    <Box
+      className={classnames(
+Context.prefixClass('tabs-bar-item'),
           Context.prefixClass('tabs-bar-item-more'), {
             active,
-          })}
-        onClick={this.doClick}
-        flex={1}
-      >
-        <TabBarItemBadge {...t.props} iconHeight={iconHeight} active={active} showTitle={false} />
-      </Box>
-    );
-  }
+          },
+)}
+      onClick={this.doClick}
+      flex={1}
+    >
+      <TabBarItemBadge {...t.props} iconHeight={iconHeight} active={active} showTitle={false} />
+    </Box>
+  );
+}
 }
 
 export default TabBarItemMore;

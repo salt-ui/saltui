@@ -26,7 +26,8 @@ class SlideNav extends React.Component {
     for (let i = 0; i < t.props.num; i++) {
       arr.push((
         <div
-          key={i} className={classnames({
+          key={i}
+          className={classnames({
             [`${prefixClass('M2 slide-nav-item')}`]: true,
             active: i === t.props.active,
           })}

@@ -1,10 +1,10 @@
 import React from 'react';
+import Animate from 'rc-animate';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import { Box, HBox } from '../Boxs';
 import Layer from '../Layer';
-import Animate from 'rc-animate';
 import TabBarItemIcon from './TabBarItemIcon';
 import TabBarItemMore from './TabBarItemMore';
 
@@ -24,6 +24,10 @@ class TabBarItemCenter extends React.Component {
 
   static defaultProps = {
     onMoreVisibleChange: () => { },
+    onClick: () => { },
+    path: undefined,
+    index: undefined,
+    moreVisible: undefined,
   }
 
   hideMoreItems(e) {
@@ -42,7 +46,7 @@ class TabBarItemCenter extends React.Component {
 
   render() {
     const t = this;
-    const active = t.props.active;
+    const { active } = t.props;
     const item = t.props.item ? t.props.item : t;
     let clickCB;
     if (item.props.items.length > 0) {
@@ -86,9 +90,8 @@ class TabBarItemCenter extends React.Component {
                     iconHeight={t.props.childIconHeight}
                     onClick={t.props.onClick}
                     hideMoreItems={(e) => { t.hideMoreItems(e); }}
-                    type={'more'}
-                  />),
-                )
+                    type="more"
+                  />))
               }
             </HBox>
           </Layer>

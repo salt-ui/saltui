@@ -8,13 +8,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import IconLoading from 'salt-icon/lib/Loading';
 import _throttle from 'lodash/throttle';
 import Context from '../Context';
-import IconLoading from 'salt-icon/lib/Loading';
+
 
 class InfiniteScroll extends React.Component {
-
   static defaultProps = {
+    children: undefined,
     loading: false,
     throttle: 250,
     loadingIcon: null,
@@ -81,13 +82,14 @@ class InfiniteScroll extends React.Component {
       textElement = <div className="loading-text" key="text">{props.loadingText}</div>;
     }
 
-    return (<div
-      key="scrollArea"
-      className={classnames(Context.prefixClass('infinity-scroll'), { loading: props.loading })}
-    >
-      {iconElement}
-      {textElement}
-    </div>);
+    return (
+      <div
+        key="scrollArea"
+        className={classnames(Context.prefixClass('infinity-scroll'), { loading: props.loading })}
+      >
+        {iconElement}
+        {textElement}
+      </div>);
   }
 
   tryEmitScrollEvent() {

@@ -13,7 +13,6 @@ import NumberPicker from '../NumberPicker';
 import Field from '../Field';
 
 class NumberPickerField extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     value: PropTypes.oneOfType([
@@ -38,6 +37,7 @@ class NumberPickerField extends React.Component {
     onChange: Context.noop,
     readOnly: false,
     disabled: false,
+    className: undefined,
   };
 
   static displayName = 'NumberPickerField';
@@ -48,7 +48,9 @@ class NumberPickerField extends React.Component {
   render() {
     const t = this;
     return (
-      <Field {...t.props} className={classnames(Context.prefixClass('number-picker-field'), {
+      <Field
+        {...t.props}
+        className={classnames(Context.prefixClass('number-picker-field'), {
         [t.props.className]: !!t.props.className,
       })}
       >

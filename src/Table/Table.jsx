@@ -14,9 +14,66 @@ import Scroller from '../Scroller';
 import Context from '../Context';
 import Pagination from '../Pagination';
 
+/* eslint-disable react/no-array-index-key */
+const renderRow = (options) => {
+  const { item, index, columns } = options;
+  return (
+    <div
+      className={classnames(Context.prefixClass('table-row'))}
+      key={index}
+    >
+      {columns.map((column, i) => {
+        const rowItemStyle = {
+          width: column.width,
+          textAlign: column.align,
+        };
+
+        return (
+          <div
+            className={classnames(Context.prefixClass('table-row-item PL12 PR12 DIB omit'), {
+              firstRow: index === 0,
+            })}
+            style={rowItemStyle}
+            key={i}
+          >
+            {column.render ? column.render(item[column.dataKey], item) : item[column.dataKey]}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+
+const renderHeader = (columns) => {
+  const cl = columns.length;
+  return (
+    <div
+      className={classnames(Context.prefixClass('table-header'))}
+    >
+      {columns.map((column, index) => {
+        const headerItemStyle = {
+          width: column.width,
+          textAlign: column.align,
+        };
+        return (
+          <div
+            className={classnames(Context.prefixClass('table-header-item omit DIB PL12 PR12'), {
+            firstRow: index === 0,
+            lastRow: index === cl - 1,
+          })}
+            style={headerItemStyle}
+            key={index}
+          >
+            {column.title}
+          </div>);
+      })}
+    </div>
+  );
+};
+/* eslint-enable react/no-array-index-key */
 
 class Table extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +92,7 @@ class Table extends React.Component {
     const t = this;
     const newState = {};
     if (!deepEqual(t.columns, nextProps.columns)) {
-        // 不在这里更新 t.columns 是因为后面 didUpdate 时还用的到。
+      // 不在这里更新 t.columns 是因为后面 didUpdate 时还用的到。
       newState.columns = t.processColumns(nextProps);
     }
     if (Object.keys(newState).length) {
@@ -51,6 +108,11 @@ class Table extends React.Component {
     }
     this.checkScroll(this.getIscroll());
   }
+
+  getIscroll() {
+    return this.scroller.scroller;
+  }
+
   /**
    * 为 column 添加默认值
    */
@@ -96,36 +158,6 @@ class Table extends React.Component {
     }
   }
 
-  getIscroll() {
-    return this.scroller.scroller;
-  }
-
-  renderHeader(columns) {
-    const cl = columns.length;
-    return (
-      <div
-        className={classnames(Context.prefixClass('table-header'))}
-      >
-        {columns.map((column, index) => {
-          const headerItemStyle = {
-            width: column.width,
-            textAlign: column.align,
-          };
-          return (<div
-            className={classnames(Context.prefixClass('table-header-item omit DIB PL12 PR12'), {
-              firstRow: index === 0,
-              lastRow: index === cl - 1,
-            })}
-            style={headerItemStyle}
-            key={index}
-          >
-            {column.title}
-          </div>);
-        })}
-      </div>
-    );
-  }
-
   renderBody(columns, fixed) {
     const t = this;
     const { data } = t.props;
@@ -136,7 +168,7 @@ class Table extends React.Component {
         if (index === data.data.length - 1) {
           last = true;
         }
-        return t.renderRow({
+        return renderRow({
           item,
           index,
           last,
@@ -160,41 +192,17 @@ class Table extends React.Component {
     const t = this;
     const { emptyText } = t.props;
     const screenWidth = window.innerWidth || document.body.clientWidth;
-    return (<div
-      className={classnames(Context.prefixClass('table-empty-content H40 FC9 FAC'))} style={{
-        width: screenWidth,
-      }}
-    >
-      {emptyText}
-    </div>);
-  }
-
-  renderRow(options) {
-    const { item, index, columns } = options;
     return (
       <div
-        className={classnames(Context.prefixClass('table-row'))} key={index}
+        className={classnames(Context.prefixClass('table-empty-content H40 FC9 FAC'))}
+        style={{
+        width: screenWidth,
+      }}
       >
-        {columns.map((column, i) => {
-          const rowItemStyle = {
-            width: column.width,
-            textAlign: column.align,
-          };
-
-          return (
-            <div
-              className={classnames(Context.prefixClass('table-row-item PL12 PR12 DIB omit'), {
-                firstRow: index === 0,
-              })}
-              style={rowItemStyle} key={i}
-            >
-              {column.render ? column.render(item[column.dataKey], item) : item[column.dataKey]}
-            </div>
-          );
-        })}
-      </div>
-    );
+        {emptyText}
+      </div>);
   }
+
 
   renderPager() {
     const t = this;
@@ -204,7 +212,8 @@ class Table extends React.Component {
         className={Context.prefixClass('table-pager')}
         total={data.totalCount}
         current={data.currentPage}
-        onChange={(current) => { t.handlePagerChange(current); }} pageSize={pageSize}
+        onChange={(current) => { t.handlePagerChange(current); }}
+        pageSize={pageSize}
       />);
     }
     return null;
@@ -225,7 +234,7 @@ class Table extends React.Component {
           className={classnames(Context.prefixClass(`table-${direction}-fixed PA`))}
           ref={(c) => { this[`${direction}Fixed`] = c; }}
         >
-          {t.props.showHeader ? t.renderHeader(columnsValue) : null}
+          {t.props.showHeader ? renderHeader(columnsValue) : null}
           {t.renderBody(columnsValue, true)}
         </div>
       );
@@ -262,7 +271,7 @@ class Table extends React.Component {
       >
         <Scroller {...scrollerProps} className={Context.prefixClass('table-content-container')}>
           <div ref={(c) => { t.mainTable = c; }} className={Context.prefixClass('table-content')}>
-            {t.props.showHeader ? t.renderHeader(columns) : null}
+            {t.props.showHeader ? renderHeader(columns) : null}
             {t.renderBody(columns)}
           </div>
         </Scroller>
@@ -283,6 +292,8 @@ Table.defaultProps = {
   rightFixed: 0,
   showHeader: true,
   onPagerChange: () => {},
+  columns: undefined,
+  className: undefined,
 };
 
 Table.propTypes = {

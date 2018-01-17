@@ -25,10 +25,10 @@ class Step extends React.Component {
   }
 
   render() {
-    const props = this.props;
+    const { props } = this;
     const status = props.status || 'wait';
     const maxWidth = props.maxDescriptionWidth;
-    let fixStyle = props.fixStyle;
+    let { fixStyle } = props;
     let icon;
     const stepCls = classnames(prefixClass(`steps-item steps-status-${status}`), {
       [prefixClass('steps-item-last')]: props.stepLast,
@@ -40,18 +40,20 @@ class Step extends React.Component {
     if ((!props.icon && status !== 'process') || !props.stepLast) {
       icon = <span className={prefixClass('steps-icon')}>{props.stepNumber}</span>;
     } else {
-      icon = (<span className={prefixClass('steps-icon')}>
-        <Check width={20} height={20} fill="#FFF" />
-      </span>);
+      icon = (
+        <span className={prefixClass('steps-icon')}>
+          <Check width={20} height={20} fill="#FFF" />
+        </span>);
     }
 
     if (!props.stepLast) {
       tail = <div className={prefixClass('steps-tail')}><i /></div>;
     }
     if (props.description) {
-      description = (<div className={prefixClass('steps-description')}>
-        {props.description}
-      </div>);
+      description = (
+        <div className={prefixClass('steps-description')}>
+          {props.description}
+        </div>);
     }
 
     if (fixStyle) {

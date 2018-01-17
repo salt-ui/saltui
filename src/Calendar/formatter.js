@@ -17,7 +17,7 @@ function DateFormatter(originalDate, pattern) {
     date = new Date(originalDate);
   }
   if (isDataObject(date)) {
-    if (isNaN(date.getTime())) {
+    if (Number.isNaN(date.getTime())) {
       // invalid
       console.warn('Formatter: invalid date');
       return '';
@@ -38,11 +38,11 @@ function DateFormatter(originalDate, pattern) {
     if (/(y+)/i.test(actualPattern)) {
       actualPattern = actualPattern.replace(RegExp.$1, (`${date.getFullYear()}`).substr(4 - RegExp.$1.length));
     }
-    for (const k in o) {
+    Object.keys(o).forEach((k) => {
       if (new RegExp(`(${k})`).test(actualPattern)) {
         actualPattern = actualPattern.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : ((`00${o[k]}`).substr((`${o[k]}`).length)));
       }
-    }
+    });
     return actualPattern;
   }
   return '';

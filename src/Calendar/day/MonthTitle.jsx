@@ -7,14 +7,12 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Context from '../../Context';
+import { prefixClass } from '../../Context';
 import locale from '../locale';
 import formatter from '../formatter';
 
-const prefixClass = Context.prefixClass;
 
 class MonthTitle extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     locale: PropTypes.string,
@@ -27,6 +25,8 @@ class MonthTitle extends React.Component {
 
   static defaultProps = {
     anyDayInMonth: '',
+    className: undefined,
+    locale: undefined,
   };
 
   componentWillMount() {

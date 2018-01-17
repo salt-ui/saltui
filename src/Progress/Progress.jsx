@@ -11,7 +11,6 @@ import classnames from 'classnames';
 import Context from '../Context';
 
 class Progress extends React.Component {
-
   static propTypes = {
     percent: PropTypes.number,
     showInfo: PropTypes.bool,

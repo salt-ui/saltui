@@ -13,7 +13,6 @@ import ReactDOM from 'react-dom';
 import LayerBody from './LayerBody';
 
 class Layer extends React.Component {
-
   static propTypes = {
     renderToBody: PropTypes.bool,
   };

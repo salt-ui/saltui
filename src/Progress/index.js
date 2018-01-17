@@ -5,7 +5,4 @@
  * Copyright 2014-2017, Tingle Team, Alinw.
  * All rights reserved.
  */
-
-import Progress from './Progress';
-
-export default Progress;
+export default from './Progress';

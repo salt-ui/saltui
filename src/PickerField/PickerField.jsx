@@ -15,7 +15,6 @@ import SearchPanel from './SearchPanel';
 import utils from './utils';
 
 class PickerField extends React.Component {
-
   static normalizeValue(input) {
     if (input) {
       if (utils.isArray(input)) {
@@ -68,7 +67,7 @@ class PickerField extends React.Component {
       t.setState({
         popupVisible: true,
       }, () => {
-        history.pushState({
+        window.history.pushState({
           PickerField: 'SearchPanel.index',
         }, '', utils.addUrlParam('PICKER', Date.now()));
 
@@ -118,7 +117,7 @@ class PickerField extends React.Component {
       cancelText: t.props.cancelText,
       onConfirm: (value) => {
         t.handleConfirm(value);
-        history.go(-1);
+        window.history.go(-1);
       },
       fetchUrl: t.props.fetchUrl,
       fetchDataOnOpen: t.props.fetchDataOnOpen,
@@ -157,7 +156,8 @@ class PickerField extends React.Component {
               className={classnames(Context.prefixClass('FB1 omit'), {
                 [Context.prefixClass('picker-field-readonly')]: t.props.readOnly,
               })}
-            >{t.renderResult()}</span>
+            >{t.renderResult()}
+            </span>
           </div>
         </div>
         <Popup visible={this.state.popupVisible} animationType="slide-left" content={<SearchPanel {...panelProps} />} />
@@ -190,6 +190,8 @@ PickerField.defaultProps = {
   onSelect() {},
   multiple: false,
   selectText: '已选择：',
+  className: undefined,
+  value: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -205,7 +207,7 @@ PickerField.propTypes = {
   searchText: PropTypes.string,
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
-  fetchUrl: PropTypes.string.isRequired,
+  fetchUrl: PropTypes.string,
   fetchDataOnOpen: PropTypes.bool,
   dataType: PropTypes.string,
   beforeFetch: PropTypes.func,

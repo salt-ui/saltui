@@ -13,7 +13,9 @@ const RightAddon = props => (
   </div>
 );
 
-RightAddon.defaultProps = {};
+RightAddon.defaultProps = {
+  children: undefined,
+};
 RightAddon.propTypes = {
   children: PropTypes.any,
 };

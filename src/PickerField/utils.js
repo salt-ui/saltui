@@ -20,8 +20,7 @@ const processData = (data) => {
       ({
         value: key,
         text: data[key],
-      }),
-    );
+      }));
   } else {
     values = data;
   }
@@ -43,12 +42,12 @@ const debounce = (func, wait, immediate) => {
   };
 };
 
-const toString = Object.prototype.toString;
+const { toString } = Object.prototype;
 
 const isArray = arg => (toString.call(arg) === '[object Array]');
 
 const addUrlParam = (name, value) => {
-  let currentUrl = location.href;
+  let currentUrl = window.location.href;
   let reg;
   if (/\?/g.test(currentUrl)) {
     reg = new RegExp(`${name}=[-\\w]{4,25}`, 'g');

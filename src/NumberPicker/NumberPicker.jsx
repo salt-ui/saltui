@@ -8,10 +8,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import RcInputNumber from 'rc-input-number';
-import Context from '../Context';
 import PlusThin from 'salt-icon/lib/PlusThin';
 import MinusThin from 'salt-icon/lib/MinusThin';
+import RcInputNumber from 'rc-input-number';
+import Context from '../Context';
 
 
 class NumberPicker extends React.Component {
@@ -34,10 +34,13 @@ class NumberPicker extends React.Component {
     value: 2,
     readOnly: false,
     showNumber: true,
+    className: undefined,
     disabled: false,
     focusOnUpDown: false,
     useTouch: true,
     onChange: () => { },
+    max: undefined,
+    min: undefined,
   };
   static displayName = 'NumberPicker';
   constructor(props) {

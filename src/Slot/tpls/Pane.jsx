@@ -21,13 +21,12 @@ const LINEAR_EASE = {
 const equals = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2);
 
 class SlotPane extends React.Component {
-
   static displayName = 'SlotPane'
 
   static propTypes = {
     visible: PropTypes.bool,
     // className: PropTypes.string,
-    data: PropTypes.array.isRequired,
+    data: PropTypes.array,
     value: PropTypes.array,
     onChange: PropTypes.func,
     onScrolling: PropTypes.func,
@@ -39,12 +38,13 @@ class SlotPane extends React.Component {
   static defaultProps = {
     visible: true,
     // className:'',
-    data: [],
     value: [],
+    data: [],
     onChange() { },
     onScrolling() { },
     scrollMod: 'reset',
     columns: [],
+    columnsFlex: undefined,
   }
 
   constructor(props) {
@@ -71,7 +71,7 @@ class SlotPane extends React.Component {
 
     // tap 事件触发选中状态变更
     slotBody.addEventListener('iscroll:tap', (e) => {
-      const className = e.target.className;
+      const { className } = e.target;
       const reg = new RegExp(Context.prefixClass('slot-item(\\d+)_(\\d+)'));
       const match = reg.exec(className);
       if (match && className.indexOf(Context.prefixClass('slot-item-active')) === -1) {
@@ -91,7 +91,7 @@ class SlotPane extends React.Component {
   componentWillReceiveProps(nextProps) {
     const t = this;
 
-    const data = nextProps.data;
+    const { data } = nextProps;
     const selectedIndex = t.findSelectedIndex(nextProps);
 
     // 数据变化需要重新初始化 scroller
@@ -167,7 +167,7 @@ class SlotPane extends React.Component {
     }, () => {
       t.props.onScrolling(t.state.scrolling);
     });
-    const scroller = t.refs[`scroller${column}`].scroller;
+    const { scroller } = t.refs[`scroller${column}`];
     const height = t.itemHeight;
     const remainder = Math.abs(scroller.y % height);
     let index = scroller.y / height;
@@ -233,7 +233,7 @@ class SlotPane extends React.Component {
     const t = this;
     if (t.props.scrollMod === 'keep' && t.selectedIndex) {
       t.selectedIndex.forEach((index, column) => {
-        const scroller = t.refs[`scroller${column}`].scroller;
+        const { scroller } = t.refs[`scroller${column}`];
         if (t.columnChanged[column]) {
           scroller.scrollTo(0, -index * t.itemHeight, 0, LINEAR_EASE);
         }
@@ -241,13 +241,13 @@ class SlotPane extends React.Component {
       delete t.selectedIndex;
       setTimeout(() => {
         t.state.selectedIndex.forEach((index, column) => {
-          const scroller = t.refs[`scroller${column}`].scroller;
+          const { scroller } = t.refs[`scroller${column}`];
           scroller.scrollTo(0, -index * t.itemHeight, time, LINEAR_EASE);
         });
       }, 5);
     } else {
       t.state.selectedIndex.forEach((index, column) => {
-        const scroller = t.refs[`scroller${column}`].scroller;
+        const { scroller } = t.refs[`scroller${column}`];
         scroller.scrollTo(0, -index * t.itemHeight, time, LINEAR_EASE);
       });
     }
@@ -265,6 +265,7 @@ class SlotPane extends React.Component {
   render() {
     const t = this;
     const { visible, columnsFlex } = t.props;
+    /* eslint-disable react/no-array-index-key */
     return (
       <div ref={(c) => { this.pane = c; }} className={Context.prefixClass('slot-pane')}>
         {t.props.columns && t.props.columns.length ? (
@@ -302,10 +303,12 @@ class SlotPane extends React.Component {
                   <li />
                   {m.map((n, j) => (
                     <li
-                      key={`item${i}_${j}`} className={classnames(Context.prefixClass(`slot-item${i}_${j}`), {
+                      key={`item${i}_${j}`}
+                      className={classnames(Context.prefixClass(`slot-item${i}_${j}`), {
                         [Context.prefixClass('slot-item-active')]: j === t.state.selectedIndex[i],
                       })}
-                    >{n.text}</li>
+                    >{n.text}
+                    </li>
                   ))}
                   <li />
                   <li />
@@ -316,6 +319,7 @@ class SlotPane extends React.Component {
         </div>
       </div>
     );
+    /* eslint-enable react/no-array-index-key */
   }
 }
 

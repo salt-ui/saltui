@@ -14,7 +14,7 @@ import { prefixClass } from '../Context';
 const START = 'start';
 const CENTER = 'center';
 const END = 'end';
-const ALIGN_VALUES = [START, CENTER, END];
+const ALIGN_VALUES = () => [START, CENTER, END];
 
 /**
  * 水平方向弹性容器
@@ -51,12 +51,16 @@ const HBox = (props) => {
 HBox.propTypes = {
   className: PropTypes.string,
   flex: PropTypes.number,
-  hAlign: PropTypes.oneOf(ALIGN_VALUES),
-  vAlign: PropTypes.oneOf(ALIGN_VALUES),
+  hAlign: PropTypes.oneOf(ALIGN_VALUES()),
+  vAlign: PropTypes.oneOf(ALIGN_VALUES()),
+  children: PropTypes.any,
 };
 HBox.defaultProps = {
   className: '',
   flex: 0,
+  hAlign: undefined,
+  vAlign: undefined,
+  children: undefined,
 };
 
 HBox.displayName = 'HBox';
@@ -91,12 +95,16 @@ const VBox = (props) => {
 VBox.propTypes = {
   className: PropTypes.string,
   flex: PropTypes.number,
-  hAlign: PropTypes.oneOf(ALIGN_VALUES),
-  vAlign: PropTypes.oneOf(ALIGN_VALUES),
+  hAlign: PropTypes.oneOf(ALIGN_VALUES()),
+  vAlign: PropTypes.oneOf(ALIGN_VALUES()),
+  children: PropTypes.any,
 };
 VBox.defaultProps = {
   className: '',
   flex: 0,
+  hAlign: undefined,
+  vAlign: undefined,
+  children: undefined,
 };
 VBox.displayName = 'VBox';
 
@@ -107,7 +115,10 @@ VBox.displayName = 'VBox';
  * @constructor
  */
 const Box = (props) => {
-  const { className, flex, ...other } = props;
+  const {
+    className, flex, vAlign, hAlign, ...other
+  } = props;
+
   const c = classnames({
     [prefixClass(`FB${flex}`)]: !!flex,
     [className]: !!className,
@@ -123,13 +134,19 @@ const Box = (props) => {
 Box.propTypes = {
   className: PropTypes.string,
   flex: PropTypes.number,
-  hAlign: PropTypes.oneOf(ALIGN_VALUES),
-  vAlign: PropTypes.oneOf(ALIGN_VALUES),
+  hAlign: PropTypes.oneOf(ALIGN_VALUES()),
+  vAlign: PropTypes.oneOf(ALIGN_VALUES()),
+  children: PropTypes.node,
 };
 Box.defaultProps = {
   className: '',
   flex: 0,
+  hAlign: undefined,
+  vAlign: undefined,
+  children: undefined,
 };
 Box.displayName = 'Box';
 
-export default { HBox, VBox, Box };
+export default {
+  HBox, VBox, Box, ALIGN_VALUES,
+};

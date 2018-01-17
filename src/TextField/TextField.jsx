@@ -9,13 +9,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import CrossRound from 'salt-icon/lib/CrossRound';
-import Context from '../Context';
+import Context, { prefixClass } from '../Context';
+import { renderRight, renderLeft } from './utils';
 import Field from '../Field';
 
-const prefixClass = Context.prefixClass;
 
 class TextField extends React.Component {
-
   getAddons() {
     const addons = {};
     React.Children.forEach(this.props.children, (child) => {
@@ -55,10 +54,13 @@ class TextField extends React.Component {
           className={classnames(prefixClass('omit text-field-placeholder'), {
             [prefixClass('DN')]: t.props.value !== '',
           })}
-        >{t.props.placeholder}</div>
+        >{t.props.placeholder}
+        </div>
         <input
           className={prefixClass('text-field-input')}
-          type={t.props.type} value={t.props.value} readOnly={t.props.readOnly}
+          type={t.props.type}
+          value={t.props.value}
+          readOnly={t.props.readOnly}
           onChange={(e) => { t.handleChange(e); }}
           onFocus={(e) => { t.handleFocus(e); }}
           onBlur={(e) => { t.handleBlur(e); }}
@@ -67,12 +69,6 @@ class TextField extends React.Component {
     );
   }
 
-  renderLeft(addons) {
-    if (addons.left) {
-      return addons.left;
-    }
-    return null;
-  }
 
   renderClear(addons) {
     const { value, allowClear, readOnly } = this.props;
@@ -89,15 +85,6 @@ class TextField extends React.Component {
     return null;
   }
 
-  renderRight(addons) {
-    if (addons.right) {
-      return addons.right;
-    }
-    if (addons.count) {
-      return addons.count;
-    }
-    return null;
-  }
 
   render() {
     const t = this;
@@ -110,10 +97,10 @@ class TextField extends React.Component {
         })}
       >
         <div className={prefixClass('text-field-content')}>
-          {t.renderLeft(addons)}
+          {renderLeft(addons)}
           {t.renderInput()}
           {t.renderClear(addons)}
-          {t.renderRight(addons)}
+          {renderRight(addons)}
         </div>
       </Field>
     );
@@ -132,6 +119,7 @@ TextField.defaultProps = {
   type: 'text',
   value: '',
   allowClear: true,
+  children: undefined,
 };
 
 TextField.propTypes = {

@@ -137,9 +137,11 @@ class Steps extends React.Component {
 
   update(props = this.props) {
     const len = props.children.length - 1;
-    const tw = this.itemsWidth.reduce((prev, w) =>
-      prev + w
-      , 0);
+    const tw = this.itemsWidth.reduce(
+      (prev, w) =>
+        prev + w
+      , 0,
+    );
     const dw = Math.floor((this.previousStepsWidth - tw) / len) - 1;
     if (dw <= 0) {
       return;
@@ -199,7 +201,7 @@ class Steps extends React.Component {
             fixStyle,
             showDetail: showDetail && currentDetail === idx && direction !== 'vertical' && type !== 'long-desc',
             detailContentFixStyle: {
-              marginLeft: !isNaN(-(iws[idx] + this.state.tailWidth) * idx)
+              marginLeft: !Number.isNaN(-(iws[idx] + this.state.tailWidth) * idx)
                 ? -(iws[idx] + this.state.tailWidth) * idx
                 : 0,
               width: this.previousStepsWidth,

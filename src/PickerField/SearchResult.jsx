@@ -7,19 +7,18 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import CheckRound from 'salt-icon/lib/CheckRound';
 import classnames from 'classnames';
 import Context from '../Context';
 import ScrollView from '../ScrollView';
 import Button from '../Button';
-import CheckRound from 'salt-icon/lib/CheckRound';
 import utils from './utils';
 
 class SearchResult extends React.Component {
-
   constructor(props) {
     super(props);
     const t = this;
-    const value = props.value;
+    const { value } = props;
     t.state = {
       value: [...value],
     };
@@ -27,7 +26,7 @@ class SearchResult extends React.Component {
 
   handleItemClick(item) {
     const t = this;
-    const value = this.state.value;
+    const { value } = this.state;
 
     let found = -1;
     value.some((v, i) => {
@@ -107,7 +106,7 @@ class SearchResult extends React.Component {
   render() {
     const t = this;
     const pageSize = utils.getPageSize();
-    const length = this.state.value.length;
+    const { length } = this.state.value;
     return (
       <div
         className={classnames(Context.prefixClass('picker-field-searchpanel'), 'multiple')}
@@ -130,7 +129,8 @@ class SearchResult extends React.Component {
               onClick={(e) => {
                 t.handleConfirm(e);
               }}
-            >{t.props.confirmText}</Button>
+            >{t.props.confirmText}
+            </Button>
             <div
               className={Context.prefixClass('picker-field-searchpanel-result-summary')}
               onClick={(e) => {
@@ -148,6 +148,10 @@ class SearchResult extends React.Component {
 
 SearchResult.defaultProps = {
   onConfirm() {},
+  value: undefined,
+  confirmText: undefined,
+  formatter: undefined,
+  selectText: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

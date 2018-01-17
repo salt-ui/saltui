@@ -19,6 +19,7 @@ const Panel = (props) => {
   const lang = i18n[locale];
   const multiLine = isTwoDimArray(options);
   const twoDimOptions = multiLine ? options : [options];
+  /* eslint-disable react/no-array-index-key */
   return (
     <div className={`${prefixCls}`}>
       {title ? <h3 className={`${prefixCls}-title`}>{title}</h3> : null}
@@ -55,6 +56,7 @@ const Panel = (props) => {
       </div>
     </div>
   );
+  /* eslint-enable react/no-array-index-key */
 };
 
 Panel.defaultProps = {

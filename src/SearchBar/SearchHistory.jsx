@@ -8,7 +8,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Context from '../Context';
 import locale from './locale';
 
 const Storage = {
@@ -41,7 +40,6 @@ const Storage = {
 };
 
 class SearchHistory extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -92,6 +90,7 @@ class SearchHistory extends React.Component {
       return null;
     }
     const i18n = locale[t.props.locale];
+    /* eslint-disable react/no-array-index-key */
     return (
       <div ref={(c) => { this.root = c; }} className={classnames(`${this.props.prefixCls}-history`, t.props.className)}>
         <div className={`${this.props.prefixCls}-history-header`}>
@@ -99,7 +98,8 @@ class SearchHistory extends React.Component {
           <span
             className={`${this.props.prefixCls}-history-action`}
             onClick={() => { t.clearHistory(); }}
-          >{i18n.clear}</span>
+          >{i18n.clear}
+          </span>
         </div>
         <ul className={`${this.props.prefixCls}-history-list`}>
           {list.map((item, idx) =>
@@ -107,6 +107,7 @@ class SearchHistory extends React.Component {
           }
         </ul>
       </div>);
+    /* eslint-enable react/no-array-index-key */
   }
 }
 
@@ -115,6 +116,7 @@ SearchHistory.defaultProps = {
   keyword: '',
   displayCount: 8,
   onSelect: () => {},
+  prefixCls: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

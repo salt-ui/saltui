@@ -13,7 +13,9 @@ const LeftAddon = props => (
   </div>
 );
 
-LeftAddon.defaultProps = {};
+LeftAddon.defaultProps = {
+  children: undefined,
+};
 LeftAddon.propTypes = {
   children: PropTypes.any,
 };

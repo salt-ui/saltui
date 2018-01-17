@@ -11,7 +11,7 @@ import classnames from 'classnames';
 import Context from '../Context';
 import SlideNav from './SlideNav';
 import SlideItem from './SlideItem';
-import { prefixClass } from './utils';
+import { prefixClass, _getItemUnready } from './utils';
 
 const {
   TOUCH_START,
@@ -36,7 +36,7 @@ const POS_MAP = {
 
 // 创建translate字符串
 // TODO: translate(0,0) translateZ(0);
-const makeTranslate = (function() {
+const makeTranslate = (function () {
   const prefix = support3D ? 'translate3d(' : 'translate(';
   const suffix = support3D ? ', 0)' : ')';
   const join = ',';
@@ -47,15 +47,15 @@ const makeTranslate = (function() {
     return back;
   }
 
-  return function(x, y) {
+  return function (x, y) {
     return prefix + v(x) + join + v(y) + suffix;
   };
 }());
 
 // 获取兼容PC和Device的event对象的page属性
-const getCursorPage = supportTouch ? function(event, page) {
+const getCursorPage = supportTouch ? function (event, page) {
   return event.changedTouches[0][page];
-} : function(event, page) {
+} : function (event, page) {
   return event[page];
 };
 
@@ -211,9 +211,10 @@ class Slide extends React.Component {
   */
   _goto(posIndex, callFromDidMount, noAnimation) {
     const t = this;
-    callFromDidMount = !!callFromDidMount;
+    let callFromDidMountNew = callFromDidMount;
+    callFromDidMountNew = !!callFromDidMountNew;
 
-    if (t.length === 1 || callFromDidMount) {
+    if (t.length === 1 || callFromDidMountNew) {
       // `_getItemReady` 方法被调用之前，需要先更新 `currentPosIndex` 的值
       t.currentPosIndex = posIndex;
       t._getItemReady(0, noAnimation);
@@ -224,10 +225,10 @@ class Slide extends React.Component {
       }
 
       t._slideEnd();
-    } else if (!callFromDidMount) {
+    } else if (!callFromDidMountNew) {
       // 通过goNext/goPrev调用的_goto，一直有方向(_dir)值 向左:-1 / 向右:1
       if (t._dir) {
-        t._getItemUnready(t._dir === 1 ? t._nextEl : t._prevEl);
+        _getItemUnready(t._dir === 1 ? t._nextEl : t._prevEl);
         t._moveItem(t._currentEl, t._dir);
         t._moveItem(t._dir === 1 ? t._prevEl : t._nextEl, t._dir);
 
@@ -275,6 +276,8 @@ class Slide extends React.Component {
   * @param {element} item
   * @param {number} dir 移动的方向 -1:向左移动 / 1:向右移动 / 0:移动到原位
   */
+  /* eslint-disable no-param-reassign */
+  // DOM节点
   _moveItem(item, dir) {
     const t = this;
     item.style.webkitTransitionDuration = `${t.duration}ms`;
@@ -289,6 +292,8 @@ class Slide extends React.Component {
       t[POS_MAP[newOffset]] = item;
     }
   }
+  /* eslint-enable no-param-reassign */
+
 
   /**
   * 根据指定的偏移量，找到对应的item，将其切换到可移动状态
@@ -312,19 +317,6 @@ class Slide extends React.Component {
     t[POS_MAP[offset]] = item;
   }
 
-  /**
-  * 将指定的item切换到不可移动状态，即不参与切换行为。
-  * @param {element} item 要改变状态的item
-  * @note 这个函数虽然含义上和_setItemReady对应，但参数直接只用item，
-  *  是出于性能考虑，因为调用该函数的时候，都是明确知道目标item的。
-  */
-  _getItemUnready(item) {
-    const t = this;
-    item.classList.remove('ready');
-    item.removeAttribute(OFFSET);
-    item.style.webkitTransitionDuration = '0';
-    item.style.webkitTransform = 'none';
-  }
 
   /**
   * 获取指定的offset所对应的X坐标值(0点在当前item的左边缘)
@@ -343,10 +335,13 @@ class Slide extends React.Component {
   /**
   *
   */
+  /* eslint-disable no-param-reassign */
+  // DOM元素
   _setItemX(item, x) {
     this[`${POS_MAP[item.getAttribute(OFFSET)]}X`] = x;
     item.style.webkitTransform = makeTranslate(x);
   }
+  /* eslint-enable no-param-reassign */
 
   /**
   * 获取前一个或后一个位置的索引值，相对值是currentPosIndex
@@ -464,7 +459,7 @@ class Slide extends React.Component {
           (distX < 0 && t._dummy && t.currentPosIndex === 1)
         )
       ) {
-        distX = distX - (distX / 1.3);
+        distX -= (distX / 1.3);
       }
 
       // 位移后的X坐标
@@ -591,6 +586,7 @@ class Slide extends React.Component {
   */
   _renderItems(dummyMode) {
     const t = this;
+    /* eslint-disable react/no-array-index-key */
     return t.props.children.map((child, index) => (
       <div
         key={index + (dummyMode ? 2 : 0)}
@@ -604,12 +600,13 @@ class Slide extends React.Component {
         {child}
       </div>
     ));
+    /* eslint-enable react/no-array-index-key */
   }
 
   render() {
     const t = this;
-    let showTitle = this.props.showTitle;
-    const displayMode = this.props.displayMode;
+    let { showTitle } = this.props;
+    const { displayMode } = this.props;
     if (displayMode === 'card') {
       showTitle = false;
     }
@@ -672,6 +669,8 @@ Slide.defaultProps = {
   autoSlideTime: 4000,
   showTitle: false,
   displayMode: 'normal',
+  className: undefined,
+  children: undefined,
 };
 
 Slide.displayName = 'Slide';

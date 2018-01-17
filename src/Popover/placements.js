@@ -1,5 +1,5 @@
 
-export const placements = {
+const placements = {
   left: {
     offset: [-4, 0],
   },

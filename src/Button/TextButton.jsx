@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import { prefixClass } from './utils';
 
 class TextButton extends React.Component {
-
   constructor(props) {
     super(props);
     this.onClick = this.handleClick.bind(this);

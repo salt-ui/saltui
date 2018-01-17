@@ -7,11 +7,11 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import Context from '../Context';
 import debounce from 'lodash/fp/debounce';
 import IconToTop from 'salt-icon/lib/Totop';
 import Animate from 'rc-animate';
+import classnames from 'classnames';
+import Context from '../Context';
 import util from './utils';
 import Box from './Box';
 
@@ -25,6 +25,7 @@ class Totop extends React.Component {
     distance: PropTypes.number,
     onScroll: PropTypes.func,
     icon: PropTypes.element,
+    duration: PropTypes.number,
   };
 
   static defaultProps = {
@@ -34,6 +35,9 @@ class Totop extends React.Component {
     distance: 30,
     duration: 600,
     onScroll: () => { },
+    className: undefined,
+    size: undefined,
+    icon: undefined,
   };
   static displayName = 'Totop';
 
@@ -98,8 +102,8 @@ class Totop extends React.Component {
   toTop() {
     const t = this;
     const to = t.props.to || 10;
-    const duration = t.props.duration;
-    const scrolling = t.scrolling;
+    const { duration } = t.props;
+    const { scrolling } = t;
     if (scrolling) {
       return;
     }
@@ -118,8 +122,8 @@ class Totop extends React.Component {
 
   renderToTopButton() {
     const {
- hideToTopButton, icon, type, size 
-} = this.props;
+      hideToTopButton, icon, type, size,
+    } = this.props;
     if (hideToTopButton || this.state.hide) {
       return null;
     }

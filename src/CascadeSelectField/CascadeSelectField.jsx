@@ -58,7 +58,7 @@ function parseProps(p) {
     originOptions: p.options,
   };
 }
-
+/* eslint-disable no-param-reassign */
 function parseState(value, options) {
   let cursor = options;
   options = [];
@@ -82,6 +82,7 @@ function parseState(value, options) {
     value,
   };
 }
+/* eslint-enable no-param-reassign */
 
 class CascadeSelectField extends React.Component {
   constructor(props) {
@@ -209,6 +210,8 @@ CascadeSelectField.defaultProps = {
   columns: [],
   mode: 'normal',
   className: '',
+  confirmText: undefined,
+  cancelText: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

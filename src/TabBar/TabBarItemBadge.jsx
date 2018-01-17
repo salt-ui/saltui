@@ -21,6 +21,10 @@ class TabBarItemBadge extends React.Component {
 
   static defaultProps = {
     showTitle: true,
+    badge: undefined,
+    badgeStyle: undefined,
+    iconHeight: undefined,
+    active: undefined,
   };
 
   render() {
