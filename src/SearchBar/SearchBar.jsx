@@ -7,11 +7,11 @@
  */
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import IconSearch from 'salt-icon/lib/Search';
+import IconCrossRound from 'salt-icon/lib/CrossRound';
 import debounce from 'lodash/debounce';
 import React from 'react';
 import Context from '../Context';
-import IconSearch from 'salt-icon/lib/Search';
-import IconCrossRound from 'salt-icon/lib/CrossRound';
 import locale from './locale';
 
 
@@ -208,6 +208,7 @@ SearchBar.defaultProps = {
   onExit: noop,
   isActive: false,
   exitAfterEnter: false,
+  historyName: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

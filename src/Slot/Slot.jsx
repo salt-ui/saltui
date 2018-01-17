@@ -8,11 +8,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import cloneDeep from 'lodash/cloneDeep';
+import isEqual from 'lodash/isEqual';
 import classnames from 'classnames';
 import Context from '../Context';
 import Popup from '../Popup';
-import cloneDeep from 'lodash/cloneDeep';
-import isEqual from 'lodash/isEqual';
 import SlotHeader from './tpls/Header';
 import SlotPane from './tpls/Pane';
 
@@ -167,8 +167,8 @@ class Slot extends React.Component {
 Slot.defaultProps = {
   title: '',
   value: [],
-  maskCloseable: true,
   data: [],
+  maskCloseable: true,
   className: '',
   confirmText: '完成',
   cancelText: '取消',
@@ -183,7 +183,7 @@ Slot.defaultProps = {
 Slot.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
   value: PropTypes.array,
   maskCloseable: PropTypes.bool,
   confirmText: PropTypes.string,

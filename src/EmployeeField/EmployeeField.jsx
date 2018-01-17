@@ -9,18 +9,18 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import Context from '../Context';
-import Field from '../Field';
 import deepCopy from 'lodash/cloneDeep';
 import remove from 'lodash/remove';
 import PlusCircle from 'salt-icon/lib/PlusCircle';
+import classnames from 'classnames';
+import Context from '../Context';
+import Field from '../Field';
 import EmployeeList from './EmployeeList';
 import locale from './locale';
+import { transToValue } from './utils';
 
 
 class EmployeeField extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     corpId: PropTypes.string,
@@ -47,6 +47,8 @@ class EmployeeField extends React.Component {
     value: [],
     disabledUsers: [],
     onChange: () => {},
+    className: undefined,
+    corpId: undefined,
   };
 
   static displayName = 'EmployeeField';
@@ -60,7 +62,7 @@ class EmployeeField extends React.Component {
       multiple: this.props.multiple,
       max: this.props.max,
       isNeedSearch: this.props.isNeedSearch,
-      startWithDepartmentId: this.props.startWithDepartmentId,  //  SELF TOP
+      startWithDepartmentId: this.props.startWithDepartmentId, //  SELF TOP
       users: this.props.value.map(v => v.key),
       disabledUsers: this.props.disabledUsers,
     };
@@ -78,7 +80,7 @@ class EmployeeField extends React.Component {
       }
       Ali.contacts.get(option, (result) => {
         if (result && !result.errorCode) {
-          this.props.onChange(this.transToValue(result.results));
+          this.props.onChange(transToValue(result.results));
         } else {
           Ali.alert({
             message: result.errorMessage,
@@ -100,16 +102,6 @@ class EmployeeField extends React.Component {
     return i18n.getTotalText(this.props.value.length);
   }
 
-  // 把 钉钉api 返回的值转换成 key/label 格式
-  transToValue(list) {
-    return (list || []).map(item => (
-      {
-        key: item.emplId,
-        label: item.nickNameCn || item.name,
-        avatar: item.avatar,
-      }
-    ));
-  }
 
   renderEmployeeList() {
     return (
@@ -149,7 +141,7 @@ class EmployeeField extends React.Component {
               !t.props.value.length ?
                 <div className={Context.prefixClass('omit employee-field-placeholder')}>{t.props.placeholder}</div>
                 :
-                  <div className={Context.prefixClass('omit employee-field-num')}>{t.getTotalText()}</div>
+                <div className={Context.prefixClass('omit employee-field-num')}>{t.getTotalText()}</div>
             }
           </div>
         </Field>

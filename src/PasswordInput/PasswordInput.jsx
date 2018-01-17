@@ -8,13 +8,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import Context from '../Context';
 import OpenedEyeIcon from 'salt-icon/lib/Eye';
 import ClosedEyeIcon from 'salt-icon/lib/EyeClose';
 import LockIcon from 'salt-icon/lib/Lock';
+import classnames from 'classnames';
+import Context, { prefixClass } from '../Context';
 
-const prefixClass = Context.prefixClass;
+
 const iconSize = '20px';
 
 /**
@@ -24,7 +24,6 @@ const iconSize = '20px';
  * @extends {React.Component}
  */
 class PasswordInput extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     placeholder: PropTypes.string,
@@ -65,7 +64,7 @@ class PasswordInput extends React.Component {
   }
 
   handleChange(e) {
-    const value = e.target.value;
+    const { value } = e.target;
     this.props.onChange(value, e);
   }
 

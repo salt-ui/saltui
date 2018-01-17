@@ -5,7 +5,4 @@
  * Copyright 2014-2017, Tingle Team, Alinw.
  * All rights reserved.
  */
-
-import Pagination from './Pagination';
-
-export default Pagination;
+export default from './Pagination';

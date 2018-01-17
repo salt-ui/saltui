@@ -6,6 +6,4 @@
  * All rights reserved.
  */
 
-import Field from './Field';
-
-export default Field;
+export default from './Field';

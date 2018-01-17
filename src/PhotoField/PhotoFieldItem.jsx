@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Context from '../Context';
 import DelIcon from 'salt-icon/lib/MinusRound';
+import { prefixClass } from '../Context';
 
-
-const prefixClass = Context.prefixClass;
 
 class PhotoFieldItem extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -45,8 +42,10 @@ class PhotoFieldItem extends React.Component {
             });
           }}
           className={prefixClass('photo-item-img')}
-          style={{ backgroundImage: `url(${t.props.url})` }} alt={t.props.name}
+          style={{ backgroundImage: `url(${t.props.url})` }}
+          alt={t.props.name}
           onClick={t.handlePreview.bind(t)}
+          role="presentation"
         />
         {
           !t.props.readOnly &&
@@ -60,6 +59,9 @@ class PhotoFieldItem extends React.Component {
 
 PhotoFieldItem.defaultProps = {
   readOnly: false,
+  index: undefined,
+  onPreviewImage: undefined,
+  onDeleteImage: undefined,
 };
 
 PhotoFieldItem.propTypes = {

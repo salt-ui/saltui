@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Context from '../Context';
-import Avatar from '../Avatar';
 import DelIcon from 'salt-icon/lib/MinusRound';
 import deepCopy from 'lodash/cloneDeep';
 import deepEqual from 'lodash/isEqual';
+import Context from '../Context';
+import Avatar from '../Avatar';
 import FoldablePane from '../FoldablePane';
 
 class EmployeeList extends React.Component {
@@ -99,15 +99,15 @@ class EmployeeList extends React.Component {
         </p>
         {
           this.props.readOnly ? '' :
-            <div
-              className={Context.prefixClass('PA employee-field-list-item-del')}
-              onClick={(e) => { this.props.onDel(item.key, e); }}
-            >
-              <DelIcon
-                width={18}
-                height={18}
-              />
-            </div>
+          <div
+            className={Context.prefixClass('PA employee-field-list-item-del')}
+            onClick={(e) => { this.props.onDel(item.key, e); }}
+          >
+            <DelIcon
+              width={18}
+              height={18}
+            />
+          </div>
         }
       </div>
     );
@@ -118,6 +118,7 @@ class EmployeeList extends React.Component {
     if (!lists.length) {
       return null;
     }
+    /* eslint-disable react/no-array-index-key */
     return (
       <FoldablePane
         className={Context.prefixClass('employee-field-foldable-pane')}
@@ -144,8 +145,8 @@ class EmployeeList extends React.Component {
         </div>
       </FoldablePane>
     );
+    /* eslint-enable react/no-array-index-key */
   }
-
 }
 
 export default EmployeeList;

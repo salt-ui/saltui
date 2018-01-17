@@ -77,7 +77,7 @@ class Toast extends React.Component {
 
   renderIcon() {
     const Icon = this.getIconComp();
-    const icon = this.props.icon;
+    const { icon } = this.props;
     if (!icon && !Icon) {
       return null;
     }
@@ -169,6 +169,10 @@ Toast.defaultProps = {
   autoHide: true,
   content: '',
   duration: 1500,
+  width: undefined,
+  icon: undefined,
+  transitionName: undefined,
+  type: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

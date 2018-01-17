@@ -6,25 +6,25 @@
  * All rights reserved.
  */
 import React from 'react';
+import cloneDeep from 'lodash/cloneDeep';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Context from '../../Context';
-import cloneDeep from 'lodash/cloneDeep';
+import { prefixClass } from '../../Context';
 import WeekBar from './WeekBar';
 import Panel from './Panel';
 import CascadePanel from './CascadePanel';
 import TopBar from '../TopBar';
 
-const prefixClass = Context.prefixClass;
 
 class DayCalendar extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     locale: PropTypes.string, // 国际化语言
     animationType: PropTypes.string,
     singleMode: PropTypes.bool, // 是否是单选模式
     onChange: PropTypes.func,
+    value: PropTypes.any,
+    onOk: PropTypes.func,
   };
 
   static defaultProps = {
@@ -32,6 +32,9 @@ class DayCalendar extends React.Component {
     animationType: 'slideLeft', //  slideUp | slideLeft
     singleMode: true,
     onChange: () => {},
+    className: undefined,
+    value: undefined,
+    onOk: () => { },
   };
 
   static displayName = 'DayCalendar';

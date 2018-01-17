@@ -9,7 +9,6 @@ import IconCheck from 'salt-icon/lib/Check';
 
 import TingleCtx from '../Context';
 import Tab from '../Tab';
-import Scroller from '../Scroller';
 import i18n from './i18n';
 
 const getOptionsByValue = (options, valueItem = {}) => {
@@ -89,7 +88,7 @@ export default class CascadeSlot extends React.Component {
       ({ cancelText } = i18n[locale]);
     }
     const confirmEnabled = value && value.length && value[value.length - 1].value !== undefined;
-    
+
     return (
       <div className={TingleCtx.prefixClass('cascade-slot-header-wrap FBH')}>
         <button onClick={this.handleEvent.bind(this, 'cancel')}>{cancelText}</button>
@@ -106,7 +105,12 @@ export default class CascadeSlot extends React.Component {
     let loopOptions;
     return (
       <div className={TingleCtx.prefixClass('cascade-slot-body-wrap')}>
-        <Tab activeKey={this.state.activeTab} swipeable={false} speed={1} onChange={(tabData) => { this.handleTabChange(tabData); }}>
+        <Tab
+          activeKey={this.state.activeTab}
+          swipeable={false}
+          speed={1}
+          onChange={(tabData) => { this.handleTabChange(tabData); }}
+        >
           {
             value.map((val, index) => {
               if (index === 0) {
@@ -168,7 +172,7 @@ CascadeSlot.defaultProps = {
 CascadeSlot.propTypes = {
   visible: PropTypes.bool,
   title: PropTypes.string,
-  options: PropTypes.array.isRequired,
+  options: PropTypes.array,
   value: PropTypes.array,
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,

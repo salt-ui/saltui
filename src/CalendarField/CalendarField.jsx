@@ -15,7 +15,6 @@ import MonthField from './lib/MonthField';
 import YearField from './lib/YearField';
 
 class CalendarField extends React.Component {
-
   static displayName = 'CalendarField';
 
   render() {
@@ -30,9 +29,8 @@ class CalendarField extends React.Component {
       return <DayFieldWithHalf {...t.props} />;
     } else if (t.props.type === 'dayWithTime') {
       return <DayFieldWithTime {...t.props} />;
-    } else {
-      return <DayField {...t.props} />;
     }
+    return <DayField {...t.props} />;
   }
 }
 

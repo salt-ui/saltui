@@ -8,8 +8,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Context from '../Context';
 import Loading from 'salt-icon/lib/Loading';
+import Context from '../Context';
 import transitionEnd from './transitionEnd';
 import Drag from './Drag';
 import getOffset from './getOffset';
@@ -25,9 +25,10 @@ const Status = {
 };
 
 function op(percent) {
-  percent = Number(percent.toFixed(2)) - 0.2;
+  let percentNew = percent;
+  percentNew = Number(percentNew.toFixed(2)) - 0.2;
 
-  return percent > 0 ? percent : 0;
+  return percentNew > 0 ? percentNew : 0;
 }
 
 class RefreshControl extends React.Component {
@@ -105,7 +106,7 @@ class RefreshControl extends React.Component {
 
     this.status = Status.dragStart;
 
-    const top = getOffset(this.trigger).top;
+    const { top } = getOffset(this.trigger);
     if (top === this.initTop) {
       this.draging = true;
     }
@@ -170,22 +171,21 @@ class RefreshControl extends React.Component {
     return this._draging;
   }
 
-  set draging(draging) {
-    this._draging = draging;
-  }
-
   get status() {
     return this.state.status;
-  }
-
-  set status(status) {
-    this.setState({ status });
   }
 
   get y() {
     return Math.min(Math.max(this.state.y, 0), this.max);
   }
 
+  set status(status) {
+    this.setState({ status });
+  }
+
+  set draging(draging) {
+    this._draging = draging;
+  }
   set y(y) {
     this.setState({ y });
   }
@@ -226,7 +226,9 @@ class RefreshControl extends React.Component {
   }
 
   refreshText() {
-    const { threshold, refreshingText, afterPullLoadText, beforePullLoadText } = this.props;
+    const {
+      threshold, refreshingText, afterPullLoadText, beforePullLoadText,
+    } = this.props;
     if (this.refreshing) {
       return refreshingText;
     }
@@ -247,7 +249,7 @@ class RefreshControl extends React.Component {
     }
 
     if (this.draging) {
-      y = this.y;
+      ({ y } = this);
     }
 
     if (showRefreshing === false) {
@@ -283,37 +285,42 @@ class RefreshControl extends React.Component {
   }
 
   render() {
-    const { className, children, showRefreshing, refreshing, onRefresh, threshold, beforePullLoadText, afterPullLoadText, refreshingText, refreshIcon, showIcon, showText, ...otherProps } = this.props;
+    const {
+      className, children, showRefreshing,
+      refreshing, onRefresh, threshold, beforePullLoadText,
+      afterPullLoadText, refreshingText, refreshIcon, showIcon, showText, ...otherProps
+    } = this.props;
 
-    return (<div
-      ref={(node) => {
+    return (
+      <div
+        ref={(node) => {
         this.$container = node;
       }}
-      className={classnames(Context.prefixClass('refresh-control'), this.status, className, {
+        className={classnames(Context.prefixClass('refresh-control'), this.status, className, {
         refreshing: this.refreshing,
         draging: this.draging,
       })}
-      {...otherProps}
-    >
-      <div
-        key="refreshControl"
-        className={classnames(Context.prefixClass('refresh-control-inner'))}
-        style={this.circularStyle()}
+        {...otherProps}
       >
-        {this.renderIcon()}
-        {this.renderRefreshText()}
-      </div>
+        <div
+          key="refreshControl"
+          className={classnames(Context.prefixClass('refresh-control-inner'))}
+          style={this.circularStyle()}
+        >
+          {this.renderIcon()}
+          {this.renderRefreshText()}
+        </div>
 
-      <div
-        ref={(node) => {
+        <div
+          ref={(node) => {
           this.trigger = node;
         }}
-        className={classnames(Context.prefixClass('refresh-control-area'))}
-        style={this.triggerStyle(showRefreshing)}
-      >
-        {children}
-      </div>
-    </div>);
+          className={classnames(Context.prefixClass('refresh-control-area'))}
+          style={this.triggerStyle(showRefreshing)}
+        >
+          {children}
+        </div>
+      </div>);
   }
 }
 

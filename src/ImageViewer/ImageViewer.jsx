@@ -62,7 +62,8 @@ ImageViewer.show = (config = {}) => {
           renderComponent(false);
         }}
       />,
-    div);
+      div,
+    );
   };
 
   renderComponent();
@@ -73,6 +74,8 @@ ImageViewer.show = (config = {}) => {
 };
 
 ImageViewer.defaultProps = {
+  className: undefined,
+  prefixcls: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

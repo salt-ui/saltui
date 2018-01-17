@@ -8,20 +8,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import IconCheck from 'salt-icon/lib/Check';
+import IconCheckRound from 'salt-icon/lib/CheckRound';
 import Promise from 'lie';
 import NattyFetch from 'natty-fetch/dist/natty-fetch';
 import Context from '../Context';
 import ScrollView from '../ScrollView';
 import Button from '../Button';
-import IconCheck from 'salt-icon/lib/Check';
-import IconCheckRound from 'salt-icon/lib/CheckRound';
 import Popup from '../Popup';
 import SearchBar from '../SearchBar';
 import SearchResult from './SearchResult';
 import utils from './utils';
 
 class SearchPanel extends React.Component {
-
   static renderSearchTips() {
     return <div />;
   }
@@ -29,7 +28,7 @@ class SearchPanel extends React.Component {
   constructor(props) {
     super(props);
     const t = this;
-    const value = props.value;
+    const { value } = props;
     t.state = {
       value: value || [],
       results: [],
@@ -95,7 +94,7 @@ class SearchPanel extends React.Component {
     const t = this;
 
     if (t.props.multiple) {
-      const value = this.state.value;
+      const { value } = this.state;
 
       let found = -1;
       value.some((v, i) => {
@@ -168,7 +167,7 @@ class SearchPanel extends React.Component {
     this.setState({
       popupVisible: true,
     }, () => {
-      history.pushState({
+      window.history.pushState({
         PickerField: 'SearchPanel.result',
       }, '', utils.addUrlParam('PICKER', Date.now()));
 
@@ -279,7 +278,7 @@ class SearchPanel extends React.Component {
       multiple,
     } = t.props;
     const pageSize = utils.getPageSize();
-    const length = this.state.value.length;
+    const { length } = this.state.value;
     const resultProps = {
       value: [...this.state.value],
       confirmText: this.props.confirmText,
@@ -287,7 +286,7 @@ class SearchPanel extends React.Component {
         this.setState({
           value,
         }, () => {
-          history.go(-1);
+          window.history.go(-1);
         });
       },
       formatter: this.props.formatter,
@@ -340,14 +339,15 @@ class SearchPanel extends React.Component {
                 onClick={(e) => {
                   t.handleConfirm(e);
                 }}
-              >{t.props.confirmText}</Button>
+              >{t.props.confirmText}
+              </Button>
               <div
                 className={Context.prefixClass('picker-field-searchpanel-result-summary')}
                 onClick={(e) => {
                   t.handleEnterResultView(e);
                 }}
               >
-                <a>{t.props.selectText}{length}</a>
+                <a href="javacript:;">{t.props.selectText}{length}</a>
               </div>
             </div>
           ) : null}
@@ -362,6 +362,21 @@ SearchPanel.defaultProps = {
   onConfirm() {},
   showSearch: true,
   multiple: false,
+  value: undefined,
+  searchText: undefined,
+  confirmText: undefined,
+  cancelText: undefined,
+  fetchDataOnOpen: undefined,
+  dataType: undefined,
+  beforeFetch: undefined,
+  fitResponse: undefined,
+  afterFetch: undefined,
+  searchTitle: undefined,
+  searchDelay: undefined,
+  searchPlaceholder: undefined,
+  searchNotFoundContent: undefined,
+  formatter: undefined,
+  selectText: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

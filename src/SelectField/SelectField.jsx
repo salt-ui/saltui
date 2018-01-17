@@ -19,7 +19,7 @@ class SelectField extends React.Component {
   constructor(props) {
     super(props);
     const t = this;
-    const value = props.value;
+    const { value } = props;
     t.state = {
       value: isNil(value) ? value : [value],
       confirmedValue: [value],
@@ -29,7 +29,7 @@ class SelectField extends React.Component {
   // 外部变更选中值
   componentWillReceiveProps(nextProps) {
     const t = this;
-    const value = nextProps.value;
+    const { value } = nextProps;
     t.setState({
       value: isNil(value) ? value : [value],
       confirmedValue: [value],
@@ -106,11 +106,12 @@ class SelectField extends React.Component {
 }
 
 SelectField.defaultProps = {
-  options: [],
   formatter: value => (value ? value.text : ''),
   onSelect() {},
   readOnly: false,
   placeholder: '',
+  className: undefined,
+  value: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
