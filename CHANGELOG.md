@@ -1,7 +1,10 @@
 
 
+## 3.5.0
+* `fix`: Field Style improvement
+
 ## 3.4.6 / 2018-01-16
-* `fix`: Datetime output timestamp should be set `0h0m0s`
+* `fix`: Datetime output timestamp should be set `0h:0m:0s`
 
 ## 3.4.5 / 2018-01-10
 * `fix`: incorrect DateTime getOptions output

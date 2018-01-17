@@ -62,7 +62,9 @@ class Demo extends React.Component {
         </Group.List>
         <Group.List>
           <Field
-            layout="h" label="左右结构" multiLine
+            layout="h"
+            label="左右结构"
+            multiLine
           >
             <div>自定义输入元素的区域多行很多很多很多很多很多很多很多很多很多很多很多很多很多很多很多很多很多很多</div>
           </Field>
