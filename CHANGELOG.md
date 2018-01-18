@@ -1,5 +1,10 @@
 
 
+
+
+## 3.5.1
+* `fix`: TabBar border top style
+
 ## 3.5.0
 * `fix`: Field Style improvement
 
