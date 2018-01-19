@@ -1,3 +1,6 @@
+## 3.5.2
+* `fix`: Context Mixin error
+
 ## 3.5.1
 * `fix`: TabBar border top style
 

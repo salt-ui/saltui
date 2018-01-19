@@ -42,23 +42,18 @@ const redo = fn => function (...args) {
  * @return {Object} 扩展后的receiver对象
  */
 const mixin = redo((receiver, supplier) => {
-  const receiverNew = cloneDeep(receiver);
-  const supplierNew = cloneDeep(supplier);
   if (Object.keys) {
-    Object.keys(supplierNew).forEach((property) => {
-      Object.defineProperty(
-        receiverNew,
-        property, Object.getOwnPropertyDescriptor(supplierNew, property),
-      );
+    Object.keys(supplier).forEach((property) => {
+      Object.defineProperty(receiver, property, Object.getOwnPropertyDescriptor(supplier, property));
     });
   } else {
-    Object.keys(supplierNew).forEach((property) => {
-      if (Object.prototype.hasOwnProperty.call(supplierNew, 'property')) {
-        receiverNew[property] = supplierNew[property];
+    for (const property in supplier) {
+      if (supplier.hasOwnProperty(property)) {
+        receiver[property] = supplier[property];
       }
-    });
+    }
   }
-  return receiverNew;
+  return receiver;
 });
 
 /**
