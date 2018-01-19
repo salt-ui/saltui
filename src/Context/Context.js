@@ -7,7 +7,6 @@
  * All rights reserved.
  */
 // 引入环境检测模块
-import cloneDeep from 'lodash/cloneDeep';
 import classnames from 'classnames';
 import env from './env';
 import touchEffect from './touchEffect';
@@ -41,20 +40,28 @@ const redo = fn => function (...args) {
  * @param  {Object} supplier
  * @return {Object} 扩展后的receiver对象
  */
+
+/* eslint-disable no-param-reassign */
 const mixin = redo((receiver, supplier) => {
   if (Object.keys) {
     Object.keys(supplier).forEach((property) => {
-      Object.defineProperty(receiver, property, Object.getOwnPropertyDescriptor(supplier, property));
+      Object.defineProperty(
+        receiver,
+        property,
+        Object.getOwnPropertyDescriptor(supplier, property),
+      );
     });
   } else {
+    /* eslint-disable no-restricted-syntax */
     for (const property in supplier) {
-      if (supplier.hasOwnProperty(property)) {
+      if (Object.prototype.hasOwnProperty.call(supplier, property)) {
         receiver[property] = supplier[property];
       }
     }
   }
   return receiver;
 });
+/* eslint-enable no-param-reassign */
 
 /**
  * 获取自增长id

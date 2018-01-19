@@ -1,3 +1,6 @@
+## 3.5.3
+* `fix`: employee field placeholder style
+
 ## 3.5.2
 * `fix`: Context Mixin error
 
