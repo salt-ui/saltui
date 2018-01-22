@@ -16,6 +16,9 @@
     background-color: transparent;
     z-index: 2;
     position: relative;
+    &[readonly] {
+        color: $normal-alpha-5;
+    }
 }
 
 /* 重要，解决UC、猎豹等浏览器z-index失效的问题 */

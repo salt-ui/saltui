@@ -43,6 +43,7 @@ class Demo extends React.Component {
             minRows={2}
             maxRows={5}
             placeholder="设置2个行高"
+            readOnly
             value={t.state.t2}
             tip={<p>这里有个tip<a href="http://www.taobao.com" target="_blank" rel="noopener noreferrer">这是个链接</a></p>}
             onChange={(value) => { t.handleChange('t2', value); }}

@@ -1,3 +1,7 @@
+## 3.5.4
+* `fix`: none-uniform readonly color
+* `fix`: none-uniform placeholder color
+
 ## 3.5.3
 * `fix`: employee field placeholder style
 
