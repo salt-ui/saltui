@@ -1,3 +1,7 @@
+## 3.5.5
+* `fix` group wrong style
+* `feat` generate atom css class like `t-color-brand-primary` 
+
 ## 3.5.4
 * `fix`: none-uniform readonly color
 * `fix`: none-uniform placeholder color
