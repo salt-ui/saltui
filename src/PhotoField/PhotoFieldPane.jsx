@@ -146,7 +146,8 @@ class PhotoFieldPane extends React.Component {
               [prefixClass('hide')]: t.props.readOnly,
             })}
         >
-          {`${t.props.photoList.length}/${t.props.maxUpload}`}
+          {t.props.placeholder}
+          {` ${t.props.photoList.length}/${t.props.maxUpload}`}
         </div>
       );
     }

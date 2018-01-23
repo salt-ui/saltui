@@ -35,7 +35,9 @@ class EmployeeFieldDemo extends React.Component {
           <EmployeeField
             tip="这是一个 tip"
             label="选择人员"
+            layout="v"
             placeholder="请选择"
+            readOnly
             value={this.state.value}
             onChange={(value) => { this.onChange(value); }}
           />

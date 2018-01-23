@@ -179,7 +179,7 @@ class PhotoField extends React.Component {
   render() {
     const {
       columns, placeholder, label,
-      photoList, required, layout, locale,
+      photoList, required, locale,
       maxUpload, readOnly, className, tip,
     } = this.props;
     const paneProps = {
@@ -194,7 +194,6 @@ class PhotoField extends React.Component {
       tip,
       required,
       files: this.getFiles(),
-      layout,
       ref: (c) => { this.pane = c; },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
       onImagePreview: (index) => { this.handlePreview(index); },

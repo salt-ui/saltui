@@ -1,3 +1,9 @@
+
+## 3.5.8
+* `feat` PhotoField support placeholder
+* `feat` EmployeeField hide icon in readOnly mode
+* `feat` EmployeeField & PhotoField only support horizontal layout
+
 ## 3.5.5
 * `fix` group wrong style
 * `feat` generate atom css class like `t-color-brand-primary` 

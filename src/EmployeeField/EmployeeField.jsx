@@ -149,8 +149,9 @@ class EmployeeField extends React.Component {
       },
     };
 
-    const icon = <PlusCircle {...iconProps} />;
+    const icon = !t.props.readOnly ? <PlusCircle {...iconProps} /> : null;
     const { className, ...otherProps } = t.props;
+    delete otherProps.layout;
     return (
       <div
         className={classnames(Context.prefixClass('employee-field'), {
