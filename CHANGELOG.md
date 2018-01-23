@@ -1,5 +1,9 @@
 
-## 3.5.8
+## 3.5.9 / 2018-01-23
+
+* `feat` TextareaField hide scrollBar
+
+## 3.5.8 / 2018-01-23
 * `feat` PhotoField support placeholder
 * `feat` EmployeeField hide icon in readOnly mode
 * `feat` EmployeeField & PhotoField only support horizontal layout
