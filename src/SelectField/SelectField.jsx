@@ -73,6 +73,7 @@ class SelectField extends React.Component {
     return (
       <Field
         {...t.props}
+        layout="h"
         icon={icon}
         className={classnames(Context.prefixClass('select-field'), {
           [t.props.className]: !!t.props.className,

@@ -50,6 +50,7 @@ class NumberPickerField extends React.Component {
     return (
       <Field
         {...t.props}
+        layout="h"
         className={classnames(Context.prefixClass('number-picker-field'), {
         [t.props.className]: !!t.props.className,
       })}

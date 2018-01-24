@@ -94,11 +94,11 @@ export default class CitySelectField extends Component {
 
   render() {
     const {
-      className, label, layout, required,
+      className, label, required,
       placeholder, readOnly, districtData, tip,
     } = this.props;
     const fieldProps = {
-      label, layout, required, tip, readOnly,
+      label, required, tip, readOnly,
     };
     const isSelectedValue = !!this.state.value.length;
     const fieldClassName = classnames(

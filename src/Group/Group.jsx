@@ -15,8 +15,8 @@ import List from './List';
 
 const Group = props => (
   <div className={classnames(Context.prefixClass('group'), {
-            [props.className]: !!props.className,
-        })}
+    [props.className]: !!props.className,
+  })}
   >{props.children}
   </div>
 );

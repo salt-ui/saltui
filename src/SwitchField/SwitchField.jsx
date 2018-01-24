@@ -22,6 +22,7 @@ class SwitchField extends React.Component {
     return (
       <Field
         {...t.props}
+        layout="h"
         className={classnames(Context.prefixClass('switch-field'), t.props.className, {
           readOnly: t.props.readOnly,
         })}

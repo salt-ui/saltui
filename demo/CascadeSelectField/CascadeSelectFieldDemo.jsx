@@ -101,7 +101,7 @@ class Demo extends React.Component {
         <Group>
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">级联选择器演示</Group.Head>
           <Group.List>
-            <CascadeSelectField label="普通模式" onSelect={t.handleChange.bind(t, 'value')} options={options} value={t.state.value} placeholder="请输入" columns={columns} tip="这里是提示信息" />
+            <CascadeSelectField layout="v" label="普通模式" onSelect={t.handleChange.bind(t, 'value')} options={options} value={t.state.value} placeholder="请输入" columns={columns} tip="这里是提示信息" />
             <CascadeSelectField label="级联模式" mode="complex" onSelect={t.handleChange.bind(t, 'value1')} options={options} value={t.state.value1} placeholder="请输入" columns={columns} />
             <CascadeSelectField label="只读模式" onSelect={t.handleChange.bind(t, 'value')} options={[]} value={['***']} placeholder="请输入" columns={columns} tip="这里是提示信息" readOnly />
           </Group.List>

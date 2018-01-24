@@ -1,4 +1,11 @@
 
+
+## 3.5.12 / 2018-01-24
+
+* `feat`: Some Field (Select, NumberPicker, Rate, CitySelect, Switch) which do not fit vertical layout only support horizontal layout
+
+* `style` adjust field vertical layout
+
 ## 3.5.10 / 2018-01-24
 
 * `feat` change readOnly text color to `dark-2`
