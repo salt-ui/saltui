@@ -1,4 +1,8 @@
 
+## 3.5.10 / 2018-01-24
+
+* `feat` change readOnly text color to `dark-2`
+
 ## 3.5.9 / 2018-01-23
 
 * `feat` TextareaField hide scrollBar
