@@ -50,6 +50,7 @@ class Demo extends React.Component {
           <Group.List>
             <DatetimeField
               label="日期选择"
+              layout="v"
               placeholder="请选择日期"
               disabledDate={() => [
                 {

@@ -53,7 +53,7 @@ class Demo extends React.Component {
       // readOnly: true,
       layout: 'h',
       type: 'day',
-      singleMode: true,
+      singleMode: false,
       formatter: 'yyyy-MM-dd',
       showWeek: true,
       showDateType: true,

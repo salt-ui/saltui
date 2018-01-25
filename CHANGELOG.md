@@ -1,4 +1,7 @@
+## 3.5.13 / 2018-01-25
 
+* `feat`: DateTimeField only support horizontal layout
+* `fix`: DateTimeField Icon
 
 ## 3.5.12 / 2018-01-24
 

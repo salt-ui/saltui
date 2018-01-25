@@ -10,6 +10,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import isObject from 'lodash/isObject';
+import AngleRight from 'salt-icon/lib/AngleRight';
 import Context from '../Context';
 import Field from '../Field';
 import Datetime from '../Datetime';
@@ -92,16 +93,20 @@ class DatetimeField extends React.Component {
       maxDate,
       disabledDate,
     };
+    const iconProps = {
+      className: Context.prefixClass('datetime-field-icon'),
+      name: 'angle-right',
+      width: 26,
+      height: 26,
+      onClick: t.handleClick.bind(t),
+    };
     return (
       <Field
         {...t.props}
-        icon={t.props.readOnly ? null : {
-          className: Context.prefixClass('datetime-field-icon'),
-          name: 'angle-right',
-          width: 26,
-          height: 26,
-          onClick: t.handleClick.bind(t),
-        }}
+        icon={t.props.readOnly ? null : (
+          <AngleRight {...iconProps} />
+        )}
+        layout="h"
         className={classnames(Context.prefixClass('datetime-field'), {
           [className]: !!className,
         })}
