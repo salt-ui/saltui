@@ -1,3 +1,8 @@
+## 3.5.14 / 2018-01-26
+
+* `fix`: Field label cannot show 6 chinese words in a line in iPhone
+* `style`: change vertical field-box layout
+
 ## 3.5.13 / 2018-01-25
 
 * `feat`: DateTimeField only support horizontal layout

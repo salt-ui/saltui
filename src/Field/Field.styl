@@ -5,8 +5,9 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-$field-min-height = 44px;
+$field-min-height = 46px;
 $field-padding-left = 16px;
+$filed-line-height = 24px;
 $field-label-color = $dark-alpha-2;
 $field-text-color = $dark-alpha-2;
 
@@ -29,19 +30,17 @@ $field-text-color = $dark-alpha-2;
 }
 
 .{$prefix}-field-box {
-    min-height: 44px;
-    line-height: $font-size-field-text-lh;
+    min-height: $field-min-height;
+    line-height: 1.5;
     padding-left: $field-padding-left;
     padding-right: $field-padding-left;
 }
 
-
-
 .{$prefix}-field-layout-h-label {
-    padding: (($field-min-height - $font-size-field-label-lh) / 2) 0;
+    padding: (($field-min-height - $filed-line-height) / 2) 0;
     padding-right: 20px;
-    width: 116px;
-    line-height: $font-size-field-label-lh;
+    width: 118px; // 苹果苹方字体需要增加 2 个像素，才能保证可以有 6 个字。
+    line-height: $filed-line-height;
 
     .{$prefix}-field-box.loose & {
         width: auto;
@@ -56,10 +55,15 @@ $field-text-color = $dark-alpha-2;
 
 .{$prefix}-field-layout-v-label {
     // hairline: border-bottom $normal-alpha-7;
-    line-height: $font-size-field-label-lh;
-    padding: 10px $field-padding-left 0 0;
+    line-height: $filed-line-height;
+    padding: (($field-min-height - $filed-line-height) / 2) $field-padding-left 0 0;
     margin-left: $field-padding-left;
     background-color: white;
+    + .{$prefix}-field-box {
+        padding-top: 12px;
+        padding-bottom: 11px;
+        min-height: auto;
+    }
 }
 
 .{$prefix}-field-layout-h-label,
@@ -68,7 +72,7 @@ $field-text-color = $dark-alpha-2;
 }
 
 .{$prefix}-field-multi {
-    padding: (($field-min-height - $font-size-field-label-lh) / 2) 0;
+    padding: (($field-min-height - $filed-line-height) / 2) 0;
 }
 
 .{$prefix}-field-layout-label-required {
