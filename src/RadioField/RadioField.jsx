@@ -1,7 +1,7 @@
 /**
  * RadioField Component for tingle
  * @author shanchao
- *
+ * @update ruiyang.dry
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
