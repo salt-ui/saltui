@@ -11,7 +11,7 @@
 - 尽量使用 react-component/xx 的组件, 有问题 pr 到 react-component/xx
 - 尽量使用知名开源组件
 
-### web 组件规范
+### 组件规范
 
 新组件请参考 `src/Button`, `demo/Button` 和 `docs/Button` 中对于源码，demo 和文档的要求。
 
@@ -21,7 +21,7 @@
 $ npm install
 ```
 
-### web 流程
+### 开发调试
 
 调试单个组件使用参数 `-m component-name`
 
