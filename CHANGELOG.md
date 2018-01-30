@@ -1,3 +1,8 @@
+## 3.5.15 / 2018-01-31
+
+* `fix`: Gallery will slide to the item whose index is `props.active` if re-render
+
+
 ## 3.5.15 / 2018-01-30
 
 * `feat` TextField use multiline in readOnly mode
