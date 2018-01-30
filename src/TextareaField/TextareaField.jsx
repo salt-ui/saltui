@@ -8,14 +8,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Context from '../Context';
+import Context, { prefixClass } from '../Context';
 import Field from '../Field';
 import calculateHeight from './calculateHeight';
 
-const prefixClass = Context.prefixClass;
-
 class TextareaField extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -126,6 +123,9 @@ TextareaField.defaultProps = {
   maxRows: 10,
   lineHeight: '1.3',
   value: '',
+  rows: undefined,
+  className: undefined,
+  children: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

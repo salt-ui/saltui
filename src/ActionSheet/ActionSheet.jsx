@@ -15,7 +15,6 @@ import Panel from './Panel';
 import SharePanel from './SharePanel';
 
 class ActionSheet extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
   };

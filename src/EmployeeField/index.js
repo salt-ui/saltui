@@ -6,6 +6,4 @@
  * All rights reserved.
  */
 
-import EmployeeField from './EmployeeField';
-
-export default EmployeeField;
+export default from './EmployeeField';

@@ -39,7 +39,7 @@ export default class CitySelectField extends Component {
     className: '',
     label: '省市区',
     placeholder: '请选择',
-    layout: 'h',    // v | h
+    layout: 'h', // v | h
     tip: '',
     selectorType: 'default', // default | city | province
     value: [],
@@ -93,9 +93,13 @@ export default class CitySelectField extends Component {
   }
 
   render() {
-    const { className, label, layout, required,
-      placeholder, readOnly, districtData, tip } = this.props;
-    const fieldProps = { label, layout, required, tip, readOnly };
+    const {
+      className, label, required,
+      placeholder, readOnly, districtData, tip,
+    } = this.props;
+    const fieldProps = {
+      label, required, tip, readOnly,
+    };
     const isSelectedValue = !!this.state.value.length;
     const fieldClassName = classnames(
       prefixClass('city-select-field'),

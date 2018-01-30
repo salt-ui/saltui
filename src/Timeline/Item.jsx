@@ -21,7 +21,6 @@ const genIcon = (icon) => {
   return icon;
 };
 class Item extends React.Component {
-
   render() {
     const t = this;
     const tailBackground = {
@@ -38,7 +37,8 @@ class Item extends React.Component {
         className={classnames(Context.prefixClass('timeline-item'), {
           [t.props.className]: !!t.props.className,
           active: t.props.active,
-        })} key={t.props.index}
+        })}
+        key={t.props.index}
       >
         <div className={classnames(Context.prefixClass('timeline-header'))}>
           {
@@ -104,7 +104,15 @@ Item.propTypes = {
   description: indentType,
 };
 
-Item.defaultProps = {};
+Item.defaultProps = {
+  className: undefined,
+  icon: undefined,
+  index: undefined,
+  last: undefined,
+  active: undefined,
+  title: undefined,
+  description: undefined,
+};
 
 export default Item;
 

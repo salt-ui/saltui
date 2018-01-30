@@ -36,7 +36,7 @@ class Demo extends React.Component {
           </Field>
         </Group.List>
         <Group.List >
-          <Field label="左右结构" tip={<div>这里是tip这里是tip这里是tip这里是tip这里是tip这里是tip这里是tip这里是tip<a href="https://salt-ui.github.io/" target="_blank">salt-ui</a>这里是tip</div>}>
+          <Field label="左右结构左右结构" tip={<div>这里是tip这里是tip这里是tip这里是tip这里是tip这里是tip这里是tip这里是tip<a href="https://salt-ui.github.io/" target="_blank">salt-ui</a>这里是tip</div>}>
             <div>自定义输入元素的区域, 带tip</div>
           </Field>
         </Group.List>
@@ -62,7 +62,9 @@ class Demo extends React.Component {
         </Group.List>
         <Group.List>
           <Field
-            layout="h" label="左右结构" multiLine
+            layout="h"
+            label="左右结构"
+            multiLine
           >
             <div>自定义输入元素的区域多行很多很多很多很多很多很多很多很多很多很多很多很多很多很多很多很多很多很多</div>
           </Field>

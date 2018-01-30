@@ -7,15 +7,15 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Context from '../Context';
 import Tooltip from 'rc-tooltip';
+import Context from '../Context';
 import placements from './placements';
 
 class Popover extends React.Component {
-
   static propTypes = {
     overlayClassName: PropTypes.string,
     placement: PropTypes.string,
+    trigger: PropTypes.array,
   };
 
   static defaultProps = {

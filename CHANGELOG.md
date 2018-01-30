@@ -1,3 +1,54 @@
+## 3.5.14 / 2018-01-26
+
+* `fix`: Field label cannot show 6 chinese words in a line in iPhone
+* `style`: change vertical field-box layout
+
+## 3.5.13 / 2018-01-25
+
+* `feat`: DateTimeField only support horizontal layout
+* `fix`: DateTimeField Icon
+
+## 3.5.12 / 2018-01-24
+
+* `feat`: Some Field (Select, NumberPicker, Rate, CitySelect, Switch) which do not fit vertical layout only support horizontal layout
+
+* `style` adjust field vertical layout
+
+## 3.5.10 / 2018-01-24
+
+* `feat` change readOnly text color to `dark-2`
+
+## 3.5.9 / 2018-01-23
+
+* `feat` TextareaField hide scrollBar
+
+## 3.5.8 / 2018-01-23
+* `feat` PhotoField support placeholder
+* `feat` EmployeeField hide icon in readOnly mode
+* `feat` EmployeeField & PhotoField only support horizontal layout
+
+## 3.5.5
+* `fix` group wrong style
+* `feat` generate atom css class like `t-color-brand-primary` 
+
+## 3.5.4
+* `fix`: none-uniform readonly color
+* `fix`: none-uniform placeholder color
+
+## 3.5.3
+* `fix`: employee field placeholder style
+
+## 3.5.2
+* `fix`: Context Mixin error
+
+## 3.5.1
+* `fix`: TabBar border top style
+
+## 3.5.0
+* `fix`: Field Style improvement
+
+## 3.4.6 / 2018-01-16
+* `fix`: Datetime output timestamp should be set `0h:0m:0s`
 
 ## 3.4.5 / 2018-01-10
 * `fix`: incorrect DateTime getOptions output

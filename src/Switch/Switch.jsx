@@ -11,7 +11,6 @@ import classnames from 'classnames';
 import Context from '../Context';
 
 class Switch extends React.Component {
-
   handleChange(event) {
     const t = this;
     if (t.props.readOnly) {

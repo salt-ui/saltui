@@ -11,7 +11,6 @@ import classnames from 'classnames';
 import Context from '../Context';
 
 class Badge extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     count: PropTypes.oneOfType([
@@ -33,6 +32,7 @@ class Badge extends React.Component {
     text: '',
     dot: false,
     overflowCount: 99,
+    corner: undefined,
   };
 
   static displayName = 'Badge';

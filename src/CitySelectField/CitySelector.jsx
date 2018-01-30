@@ -34,6 +34,7 @@ export default class CitySelector extends Component {
   static displayName = 'CitySelector';
 
   static propTypes = {
+    enableAnimation: PropTypes.bool,
     value: PropTypes.array,
     districtData: PropTypes.array,
     label: PropTypes.string,
@@ -55,6 +56,11 @@ export default class CitySelector extends Component {
     provinceText: '省/自治区/直辖市',
     cityText: '市',
     districtText: '县区',
+    districtData: undefined,
+    label: undefined,
+    selectorType: undefined,
+    onSelect: undefined,
+    onCancel: undefined,
   };
 
   constructor(props) {
@@ -110,7 +116,9 @@ export default class CitySelector extends Component {
   }
 
   renderDistrictTab() {
-    const { provinceText, cityText, districtText, districtData } = this.props;
+    const {
+      provinceText, cityText, districtText, districtData,
+    } = this.props;
     const { value, currentSelectedItem, currentPanePosition } = this.state;
     const gapStyle = { marginLeft: '30px', padding: '0 10px' };
     const districts = findDistrictObjs(districtData, value);
@@ -130,8 +138,8 @@ export default class CitySelector extends Component {
     } else {
       panes = districtPanes.slice(0, value.length > 0 ? value.length : 1);
     }
-
-    return panes.map((pane, key) =>
+    /* eslint-disable react/no-array-index-key */
+    return panes.map((pane, key) => (
       <div
         key={key}
         className={pane.active ? tabActiveClassName : tabNormalClassName}
@@ -139,8 +147,9 @@ export default class CitySelector extends Component {
         onClick={this.selectTab.bind(this, key)}
       >
         {pane.name}
-      </div>,
-    );
+      </div>
+    ));
+    /* eslint-enable react/no-array-index-key */
   }
 
   renderSelectionPane() {
@@ -152,6 +161,7 @@ export default class CitySelector extends Component {
       const classNames = classnames(selectItemClassName, {
         [selectedItemClassName]: listItem.value === value[currentPanePosition],
       });
+      /* eslint-disable react/no-array-index-key */
       return (
         <div
           key={key}
@@ -161,6 +171,7 @@ export default class CitySelector extends Component {
           {listItem.label}
         </div>
       );
+      /* eslint-enable react/no-array-index-key */
     });
 
     // 动画需要，预置三个空白面板

@@ -7,17 +7,14 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import NoteRound from 'salt-icon/lib/NoteRound';
 import classnames from 'classnames';
 import Icon from 'salt-icon/dist/Symbol';
-import Context from '../Context';
-import NoteRound from 'salt-icon/lib/NoteRound';
+import { prefixClass } from '../Context';
 import Label from './Label';
 
-const prefixClass = Context.prefixClass;
 
 class Field extends React.Component {
-
-
   renderErrMsg() {
     if (!this.props.errMsg) return null;
     const Toast = this.props.toastComponent;
@@ -41,7 +38,7 @@ class Field extends React.Component {
     if (t.props.icon) {
       let icon = null;
       if (typeof t.props.icon.type === 'function') {
-        icon = t.props.icon;
+        ({ icon } = t.props);
       } else if (t.props.icon.name) {
         icon = <Icon {...t.props.icon} />;
       }
@@ -108,10 +105,11 @@ class Field extends React.Component {
             {t.props.children}
           </div>
           {t.props.extra}
-          {(t.props.icon || t.props.errMsg) ? <div className={prefixClass('FBH FBAC field-icon')}>
-            {this.renderErrMsg()}
-            {this.renderIcon()}
-          </div> : null}
+          {(t.props.icon || t.props.errMsg) ?
+            <div className={prefixClass('FBH FBAC field-icon')}>
+              {this.renderErrMsg()}
+              {this.renderIcon()}
+            </div> : null}
         </div>
         {this.renderTip()}
       </div>
@@ -127,6 +125,10 @@ Field.defaultProps = {
   multiLine: false,
   layout: 'h',
   tip: '',
+  icon: undefined,
+  extra: undefined,
+  toastComponent: undefined,
+  errMsg: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

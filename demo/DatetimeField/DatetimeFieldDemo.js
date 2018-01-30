@@ -50,6 +50,8 @@ class Demo extends React.Component {
           <Group.List>
             <DatetimeField
               label="日期选择"
+              layout="v"
+              placeholder="请选择日期"
               disabledDate={() => [
                 {
                   start: new Date(2023, 10, 1), // 2023- 11 - 1
@@ -91,6 +93,7 @@ class Demo extends React.Component {
             />
             <DatetimeField
               label="时间选择"
+              readOnly
               onSelect={t.handleChange.bind(t, 'value4')}
               value={t.state.value4}
               columns={DatetimeField.YMDWHM}

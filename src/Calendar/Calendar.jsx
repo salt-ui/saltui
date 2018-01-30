@@ -8,17 +8,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Popup from '../Popup';
-import Context from '../Context';
+import { prefixClass } from '../Context';
 import DayCalendar from './day';
 import util from './util';
 import locale from './locale';
 import MonthCalendar from './month';
 import YearCalendar from './year';
 
-const prefixClass = Context.prefixClass;
-
 class Calendar extends React.Component {
-
   static displayName = 'Calendar';
 
   static propTypes = {
@@ -57,13 +54,13 @@ class Calendar extends React.Component {
 
   componentWillUnmount() {
     if (this.props.animationType === 'slideLeft' && this.props.visible) {
-      history.go(-1);
+      window.history.go(-1);
     }
   }
 
   onOk(value) {
     if (this.props.animationType === 'slideLeft') {
-      history.go(-1);
+      window.history.go(-1);
     }
     this.props.onOk(value);
   }
@@ -106,7 +103,7 @@ class Calendar extends React.Component {
         animationType: 'slide-left',
         className: prefixClass('calendar-popup'),
       });
-      history.pushState({
+      window.history.pushState({
         calendarType: 'Calendar.slide',
       }, '', util.addUrlParam('CALENDARSLIDE', Date.now()));
       window.addEventListener('popstate', t.slideBackListener, false);

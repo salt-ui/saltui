@@ -23,7 +23,7 @@ class Circle extends React.Component {
   }
   render() {
     const props = { ...this.props };
-    const strokeWidth = props.strokeWidth;
+    const { strokeWidth } = props;
     const radius = (50 - (strokeWidth / 2));
     const pathString = `M 50,50 m 0,-${radius}
         a ${radius},${radius} 0 1 1 0,${2 * radius}

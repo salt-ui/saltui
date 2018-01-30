@@ -1,3 +1,5 @@
+
+
 const defaultFormatter = {
   y: 'YYYY',
   m: 'YYYY-MM',
@@ -27,6 +29,15 @@ function isStringOrNumber(str) {
   return isString(str) || isNumber(str);
 }
 
+
+function getTimestamp(date) {
+  let dateObj = new Date(date);
+  if (isNumber(date)) {
+    dateObj = new Date(parseInt(date, 10));
+  }
+  return Number.isNaN(dateObj.getTime()) ? undefined : dateObj.getTime();
+}
+
 export {
   defaultFormatter,
   Locale,
@@ -34,4 +45,5 @@ export {
   isString,
   isNumber,
   isStringOrNumber,
+  getTimestamp,
 };

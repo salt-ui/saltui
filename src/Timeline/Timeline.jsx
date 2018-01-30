@@ -31,6 +31,7 @@ class Timeline extends React.Component {
         hasIcon = true;
       }
     });
+    /* eslint-disable react/no-array-index-key */
     return (
       <div
         className={classnames(Context.prefixClass('timeline'), {
@@ -50,10 +51,12 @@ class Timeline extends React.Component {
         }
       </div>
     );
+    /* eslint-enable react/no-array-index-key */
   }
 }
 
 Timeline.defaultProps = {
+  className: undefined,
 };
 
 Timeline.propTypes = {

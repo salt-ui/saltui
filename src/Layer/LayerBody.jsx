@@ -5,7 +5,6 @@ import { prefixClass, noop } from '../Context';
 import Mask from '../Mask';
 
 class LayerBody extends React.Component {
-
   static propTypes = {
     onDidShow: PropTypes.func,
     onWillHide: PropTypes.func,
@@ -31,6 +30,7 @@ class LayerBody extends React.Component {
     visible: false,
     zIndex: 1000,
     fullScreen: false,
+    onMaskClick: undefined,
   };
 
   constructor(props) {
@@ -42,7 +42,7 @@ class LayerBody extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const t = this;
-    const visible = nextProps.visible;
+    const { visible } = nextProps;
     if (visible === false && t.props.onWillHide() === false) {
       return;
     }
@@ -53,7 +53,7 @@ class LayerBody extends React.Component {
 
   getStyle() {
     const t = this;
-    const visible = t.state.visible;
+    const { visible } = t.state;
     const { fullScreen } = t.props;
 
     const hasWidth = 'width' in t.props;
@@ -102,7 +102,6 @@ class LayerBody extends React.Component {
 
   handleMaskClick() {
     const t = this;
-
     // 如果禁止了点击Mask关闭Layer, 则Mask的onWillHide必须返回false
     if (t.props.maskCloseable === false || t.props.onWillHide() === false) {
       return false;
@@ -112,11 +111,16 @@ class LayerBody extends React.Component {
     }, () => {
       t.props.onDidHide();
     });
+    return null;
   }
 
   render() {
     const t = this;
-    const { className, top, left, right, bottom, visible, zIndex, maskCloseable, renderToBody, onDidShow, onWillHide, onDidHide, maskOpacity, hasMask, fullScreen, style, onMaskClick, ...other } = t.props;
+    const {
+      className, top, left, right, bottom, visible, zIndex,
+      maskCloseable, renderToBody, onDidShow, onWillHide, onDidHide,
+      maskOpacity, hasMask, fullScreen, style, onMaskClick, ...other
+    } = t.props;
     return (
       <div>
         <div

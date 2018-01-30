@@ -13,7 +13,6 @@ import Field from '../Field';
 import Context from '../Context';
 
 class SwitchField extends React.Component {
-
   handleChange(on) {
     this.props.onChange(on);
   }
@@ -23,6 +22,7 @@ class SwitchField extends React.Component {
     return (
       <Field
         {...t.props}
+        layout="h"
         className={classnames(Context.prefixClass('switch-field'), t.props.className, {
           readOnly: t.props.readOnly,
         })}

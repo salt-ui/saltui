@@ -19,23 +19,26 @@ class TabBarItem extends React.Component {
     className: PropTypes.string,
     item: PropTypes.element,
   };
-
-  render() {
-    const t = this;
-    const active = t.props.active;
-    const item = t.props.item ? t.props.item : t;
-    return (
-      <Box
-        className={classnames(Context.prefixClass('tabs-bar-item'), {
+ static defaultProps = {
+   className: undefined,
+   item: undefined,
+ }
+ render() {
+   const t = this;
+   const { active } = t.props;
+   const item = t.props.item ? t.props.item : t;
+   return (
+     <Box
+       className={classnames(Context.prefixClass('tabs-bar-item'), {
           active,
         })}
-        onClick={t.props.onClick}
-        flex={1}
-      >
-        <TabBarItemBadge {...item.props} iconHeight={t.props.iconHeight} active={active} />
-      </Box>
-    );
-  }
+       onClick={t.props.onClick}
+       flex={1}
+     >
+       <TabBarItemBadge {...item.props} iconHeight={t.props.iconHeight} active={active} />
+     </Box>
+   );
+ }
 }
 
 export default { TabBarItem, TabBarItemCenter };

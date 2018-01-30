@@ -13,21 +13,25 @@ import Context from '../Context';
 import Head from './Head';
 import List from './List';
 
-let Group = (props) => {
-    return (
-        <div className={classnames(Context.prefixClass('group'), {
-            [props.className]: !!props.className
-        })}>{props.children}</div>
-    );
-};
+const Group = props => (
+  <div className={classnames(Context.prefixClass('group'), {
+    [props.className]: !!props.className,
+  })}
+  >{props.children}
+  </div>
+);
 
 Group.displayName = 'Group';
 
 Group.propTypes = {
-    className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.any,
 };
 
-Group.defaultProps = {};
+Group.defaultProps = {
+  className: undefined,
+  children: undefined,
+};
 
 Group.Head = Head;
 Group.List = List;

@@ -91,6 +91,11 @@ export default class Tabs extends React.Component {
     inkBarWidth: 20,
     onChange() {},
     onTabClick() {},
+    active: undefined,
+    defaultActive: undefined,
+    children: undefined,
+    className: undefined,
+    destroyInactiveTabPane: undefined,
   };
 
   constructor(props) {
@@ -159,7 +164,7 @@ export default class Tabs extends React.Component {
   toggleAll(prompt) {
     const tabHeight = 42;
     const allTabsHeight = this.allTabs.offsetHeight;
-    const classList = this.root.classList;
+    const { classList } = this.root;
 
     const arrow = this.arrowBtnWrap.querySelector('.arrow-icon');
     this.arrowRotate = this.arrowRotate || 0;
@@ -229,7 +234,7 @@ export default class Tabs extends React.Component {
   renderAllBtn(fix) {
     const bottom = fix === 'fix-bottom';
     const BottomIcon = bottom ? Top : Bottom;
-
+    /* eslint-disable react/no-array-index-key */
     return (
       <div className={prefixClass('tab-all-wrap')}>
         <div
@@ -265,8 +270,9 @@ export default class Tabs extends React.Component {
                 onClick={(e) => { this.handleItemClick(item.key, item.datas, e); }}
                 className={classnames(prefixClass('tab-all-item'), {
                   [prefixClass('tab-all-item__disabled')]: `${item.key}` === `${this.state.activeKey}`,
-                  [prefixClass('tab-all-item-row-last')]: i % 3 == 2,
+                  [prefixClass('tab-all-item-row-last')]: i % 3 === 2,
                 })}
+                role="menuitem"
               >
                 {item.title}
               </li>
@@ -275,6 +281,7 @@ export default class Tabs extends React.Component {
         </div>
       </div>
     );
+    /* eslint-enable react/no-array-index-key */
   }
 
   render() {

@@ -18,7 +18,9 @@ class RateField extends React.Component {
     ...Rate.propTypes,
   };
 
-  static defaultProps = {};
+  static defaultProps = {
+    className: undefined,
+  };
 
   static displayName = 'RateField';
 
@@ -27,6 +29,7 @@ class RateField extends React.Component {
     return (
       <Field
         {...Field.getFieldProps(t.props)}
+        layout="h"
         className={classnames(Context.prefixClass('rate-field'), {
           [t.props.className]: !!t.props.className,
           readOnly: t.props.readOnly,

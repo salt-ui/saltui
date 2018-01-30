@@ -5,7 +5,4 @@
  * Copyright 2014-2017, Tingle Team, Alinw.
  * All rights reserved.
  */
-
-import Refreshcontrol from './Refreshcontrol';
-
-export default Refreshcontrol;
+export default from './Refreshcontrol';

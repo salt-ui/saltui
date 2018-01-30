@@ -20,6 +20,8 @@ class ScrollView extends React.Component {
     refreshControlOptions: {},
     infiniteScroll: false,
     infiniteScrollOptions: {},
+    className: undefined,
+    children: undefined,
   };
 
   static propTypes = {

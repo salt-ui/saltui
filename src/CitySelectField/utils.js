@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash/cloneDeep'
+import cloneDeep from 'lodash/cloneDeep';
 
 export function find(ds, value) {
   let item = null;
@@ -68,7 +68,8 @@ export function findCityList(dataset = [], value = [], depth = 0) {
 function removeChildren(data = []) {
   const ds = cloneDeep(data);
   ds.forEach((item) => {
-    if (item.children) delete item.children;
+    const itemNew = cloneDeep(item);
+    if (itemNew.children) delete itemNew.children;
   });
   return ds;
 }
@@ -84,8 +85,9 @@ function removeChildrenL2(data = []) {
   ds.forEach((item) => {
     if (item.children) {
       item.children.forEach((subItem) => {
-        if (subItem.children) {
-          delete subItem.children;
+        const subItemNew = cloneDeep(subItem);
+        if (subItemNew.children) {
+          delete subItemNew.children;
         }
       });
     }

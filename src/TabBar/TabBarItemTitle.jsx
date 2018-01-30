@@ -10,8 +10,16 @@ class TabBarItemTitle extends React.Component {
     titleStyle: PropTypes.object,
     activeTitleStyle: PropTypes.object,
   };
+  static defaultProps = {
+    active: undefined,
+    title: undefined,
+    titleStyle: undefined,
+    activeTitleStyle: undefined,
+  };
   render() {
-    const { active, title, titleStyle, activeTitleStyle } = this.props;
+    const {
+      active, title, titleStyle, activeTitleStyle,
+    } = this.props;
     const currentTitleStyle = active ? activeTitleStyle : titleStyle;
     return (<span
       className={Context.prefixClass('tabs-bar-item-label')}

@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
+import CitySelectField from 'salt-city-select-field';
 
 import districtData from './staticData';
-import CitySelectField from 'salt-city-select-field';
 
 class Demo extends React.Component {
   constructor(props) {

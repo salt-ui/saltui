@@ -92,7 +92,7 @@ function create(instanceId, config, content, afterClose = () => { }) {
       >
         {newContent || content}
       </Dialog>,
-      div
+      div,
     );
   };
 
@@ -159,6 +159,10 @@ class Popup extends React.Component {
 
   static defaultProps = {
     onMaskClick: () => {},
+    children: undefined,
+    content: undefined,
+    options: undefined,
+    visible: undefined,
   }
 
   componentDidMount() {
@@ -189,7 +193,7 @@ class Popup extends React.Component {
       };
       options.onClose = () => {
         this.props.onMaskClick();
-      }
+      };
     }
     return options;
   }
@@ -223,7 +227,7 @@ class Popup extends React.Component {
   }
 
   render() {
-    const children = this.props.children;
+    const { children } = this.props;
     if (children === undefined || children === null) {
       return null;
     }

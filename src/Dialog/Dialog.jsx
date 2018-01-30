@@ -7,6 +7,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import cloneDeep from 'lodash/cloneDeep';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import RcDialog from 'rc-dialog';
@@ -34,7 +35,7 @@ const getI18nVal = function (lang = 'zh_CN', key) {
     default:
       return key;
   }
-}
+};
 
 class Dialog extends React.Component {
   constructor(props) {
@@ -48,10 +49,37 @@ class Dialog extends React.Component {
 
   // 属性变化时把响应状态设置到 state
   componentWillReceiveProps(nextProps) {
-    const { props } = this;
     const changeState = {};
     changeState.show = nextProps.show;
     this.setState(changeState);
+  }
+
+  getButtons() {
+    const { props } = this;
+    // 构造的时候根据 type 生成对应的 btn
+    // 默认 alert
+    let buttons = [{
+      content: props.confirmText || 'ok',
+      callback: props.onConfirm || EMPTY_FUNC,
+      primary: true,
+    }];
+
+    // confirm
+    if (this.props.type === TYPES[1]) {
+      buttons = [{
+        content: this.props.cancelText || 'cancel',
+        callback: this.props.onCancel || EMPTY_FUNC,
+      }, {
+        content: this.props.confirmText || 'ok',
+        callback: this.props.onConfirm || EMPTY_FUNC,
+        primary: true,
+      }];
+    }
+    // 如果用户传递了 butons 属性，以用户的 buttons 为准
+    if (props.buttons) {
+      ({ buttons } = props);
+    }
+    return buttons;
   }
 
   // deprecated
@@ -81,39 +109,12 @@ class Dialog extends React.Component {
     }
   }
 
-  getButtons() {
-    const { props, state } = this;
-    // 构造的时候根据 type 生成对应的 btn
-    // 默认 alert
-    let buttons = [{
-      content: props.confirmText || 'ok',
-      callback: props.onConfirm || EMPTY_FUNC,
-      primary: true,
-    }];
-
-    // confirm
-    if (this.props.type === TYPES[1]) {
-      buttons = [{
-        content: this.props.cancelText || 'cancel',
-        callback: this.props.onCancel || EMPTY_FUNC,
-      }, {
-        content: this.props.confirmText || 'ok',
-        callback: this.props.onConfirm || EMPTY_FUNC,
-        primary: true,
-      }];
-    }
-    // 如果用户传递了 butons 属性，以用户的 buttons 为准
-    if (props.buttons) {
-      buttons = props.buttons;
-    }
-    return buttons;
-  }
 
   /**
    * 渲染 btn 方法
    */
   renderBtns() {
-    const { props, state } = this;
+    const { props } = this;
     const { btnDir, transparentMode } = props;
     const buttons = this.getButtons();
     // 1. 透明模式
@@ -124,7 +125,7 @@ class Dialog extends React.Component {
           <IconToastError
             width={31.5}
             height={31.5}
-            fill={'#ffffff'}
+            fill="#ffffff"
             onClick={this.handleClick.bind(this, callback)}
           />
         </div>
@@ -188,7 +189,6 @@ class Dialog extends React.Component {
       title,
       content,
       children,
-      className = '',
       wrapClassName = '',
       transparentMode,
     } = t.props;
@@ -244,28 +244,28 @@ Dialog.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Dialog.propTypes = {
-  transparentMode: PropTypes.bool,        // 是否为透明背景
+  transparentMode: PropTypes.bool, // 是否为透明背景
   // 弹窗头信息
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   // 弹窗内容 String || React.Element
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  onConfirm: PropTypes.func,            // 点击确认的回调事件
-  onCancel: PropTypes.func,             // 点击取消的回调事件
-  type: PropTypes.string,               // alert | confirm 添加默认 buttons
+  onConfirm: PropTypes.func, // 点击确认的回调事件
+  onCancel: PropTypes.func, // 点击取消的回调事件
+  type: PropTypes.string, // alert | confirm 添加默认 buttons
   buttons: PropTypes.arrayOf(PropTypes.shape({
     content: PropTypes.string,
     callback: PropTypes.func,
     primary: PropTypes.bool,
-  })),                                        // 自定义按钮
-  btnDir: PropTypes.oneOf(['horizontal', 'vertical', '']),  // 按钮排布方式
-  show: PropTypes.bool,                 // 当前弹窗是否可见
-  locale: PropTypes.string,             // 语言信息
-  confirmText: PropTypes.string,        // 确认文字
-  cancelText: PropTypes.string,         // 取消文字
-  transitionName: PropTypes.string,     // 弹窗动画内容名称
+  })), // 自定义按钮
+  btnDir: PropTypes.oneOf(['horizontal', 'vertical', '']), // 按钮排布方式
+  show: PropTypes.bool, // 当前弹窗是否可见
+  locale: PropTypes.string, // 语言信息
+  confirmText: PropTypes.string, // 确认文字
+  cancelText: PropTypes.string, // 取消文字
+  transitionName: PropTypes.string, // 弹窗动画内容名称
   maskTransitionName: PropTypes.string, // 遮罩背景动画内容名称
-  wrapClassName: PropTypes.string,      // 弹窗容器 CSS 类名
-  className: PropTypes.string,          // 弹窗内容 CSS 类名
+  wrapClassName: PropTypes.string, // 弹窗容器 CSS 类名
+  className: PropTypes.string, // 弹窗内容 CSS 类名
 };
 
 // 全局 Dialog 组件 render 的 DOM ID
@@ -279,7 +279,8 @@ Dialog.global = null;
  * @param {object} options 弹窗相关参数
  */
 const show = function show(options = {}) {
-  options.show = true;
+  const optionsN = cloneDeep(options);
+  optionsN.show = true;
   if (!wrapper) {
     wrapper = doc.getElementById(WRAPPER_ID);
     const { ...other } = options;

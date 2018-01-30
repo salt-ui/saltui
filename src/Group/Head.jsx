@@ -23,8 +23,12 @@ Head.displayName = 'Group.Head';
 
 Head.propTypes = {
   className: PropTypes.string,
+  children: PropTypes.any,
 };
 
-Head.defaultProps = {};
+Head.defaultProps = {
+  className: undefined,
+  children: undefined,
+};
 
 export default Head;

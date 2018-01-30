@@ -8,9 +8,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImageViewer from '../ImageViewer';
 import { Events, Status } from 'uploadcore';
 import UploadCore from 'uploadcore/dist/uploadcore';
+import ImageViewer from '../ImageViewer';
 import PhotoFieldPane from './PhotoFieldPane';
 import { getData } from './util';
 
@@ -21,7 +21,7 @@ const autoFixUrl = (url) => {
   if (newUrl) {
     // auto fix cdn url
     if (newUrl.indexOf('//') === 0) {
-      newUrl = `${location.protocol}${newUrl}`;
+      newUrl = `${window.location.protocol}${newUrl}`;
     }
   }
   return newUrl;
@@ -29,7 +29,6 @@ const autoFixUrl = (url) => {
 
 
 class PhotoField extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -126,8 +125,7 @@ class PhotoField extends React.Component {
   getFiles() {
     if (this.core) {
       return this.core.getFiles().filter(file =>
-        [Status.CANCELLED, Status.SUCCESS, Status.QUEUED].indexOf(file.status) === -1
-      );
+        [Status.CANCELLED, Status.SUCCESS, Status.QUEUED].indexOf(file.status) === -1);
     }
     return [];
   }
@@ -179,9 +177,11 @@ class PhotoField extends React.Component {
   }
 
   render() {
-    const { columns, placeholder, label,
-      photoList, required, layout, locale,
-      maxUpload, readOnly, className, tip } = this.props;
+    const {
+      columns, placeholder, label,
+      photoList, required, locale,
+      maxUpload, readOnly, className, tip,
+    } = this.props;
     const paneProps = {
       columns,
       placeholder,
@@ -194,7 +194,6 @@ class PhotoField extends React.Component {
       tip,
       required,
       files: this.getFiles(),
-      layout,
       ref: (c) => { this.pane = c; },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
       onImagePreview: (index) => { this.handlePreview(index); },
@@ -217,6 +216,15 @@ PhotoField.defaultProps = {
   photoList: [],
   locale: 'zh-cn',
   autoPending: true,
+  icon: undefined,
+  corpId: undefined,
+  placeholder: undefined,
+  onDelete: undefined,
+  required: undefined,
+  name: undefined,
+  url: undefined,
+  className: undefined,
+  tip: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

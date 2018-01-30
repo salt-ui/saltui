@@ -7,7 +7,10 @@ const EmptyContent = props => (
     <div className="text">{props.text}</div>
   </div>
 );
-
+EmptyContent.defaultProps = {
+  image: undefined,
+  text: undefined,
+};
 EmptyContent.propTypes = {
   image: PropTypes.string,
   text: PropTypes.string,

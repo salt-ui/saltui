@@ -18,7 +18,7 @@ const autoFixUrl = (url) => {
   if (newUrl) {
     // auto fix cdn url
     if (newUrl.indexOf('//') === 0) {
-      newUrl = `${location.protocol}${newUrl}`;
+      newUrl = `${window.location.protocol}${newUrl}`;
     }
   }
   return newUrl;
@@ -27,7 +27,6 @@ const autoFixUrl = (url) => {
 const Ali = window.Ali || {};
 
 class PhotoField extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -102,9 +101,11 @@ class PhotoField extends React.Component {
   }
 
   render() {
-    const { columns, placeholder, label,
-      photoList, required, layout,
-      maxUpload, readOnly, className, tip } = this.props;
+    const {
+      columns, placeholder, label,
+      photoList, required,
+      maxUpload, readOnly, className, tip,
+    } = this.props;
     const paneProps = {
       columns,
       className,
@@ -115,7 +116,6 @@ class PhotoField extends React.Component {
       readOnly,
       required,
       tip,
-      layout,
       onPickerClick: () => { this.onPickHandler(); },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
       onImagePreview: (index) => { this.handlePreview(index); },
@@ -137,6 +137,13 @@ PhotoField.defaultProps = {
   onChange: noop,
   photoList: [],
   locale: 'zh-cn',
+  icon: undefined,
+  corpId: undefined,
+  className: undefined,
+  placeholder: undefined,
+  onDelete: undefined,
+  required: undefined,
+  tip: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

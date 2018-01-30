@@ -50,6 +50,7 @@ class Demo extends React.Component {
       placeholder: ['请选择开始日期', '请选择结束日期'],
       required: false,
       // multiLine: true,
+      // readOnly: true,
       layout: 'h',
       type: 'day',
       singleMode: false,
@@ -60,7 +61,6 @@ class Demo extends React.Component {
       topPanelTitle: 'title',
       value: this.state.value,
       tip: '这里是提示信息',
-      readOnly: false,
       animationType: 'slideLeft',
       onOk: this.onOk.bind(this),
     };

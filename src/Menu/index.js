@@ -5,7 +5,4 @@
  * Copyright 2014-2017, Tingle Team, Alinw.
  * All rights reserved.
  */
-
-import Menu from './Menu';
-
-export default Menu;
+export default from './Menu';

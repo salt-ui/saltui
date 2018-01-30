@@ -7,12 +7,12 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextField from '../TextField';
 import Formatter from 'uxcore-formatter';
 import classnames from 'classnames';
+import TextField from '../TextField';
+
 
 class NumberField extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
     prefixCls: PropTypes.string,
@@ -33,13 +33,20 @@ class NumberField extends React.Component {
     onChange: () => {},
     delimiter: ' ',
     deFormat: (str, delimiter) => str.split(delimiter).join(''),
+    className: undefined,
+    format: undefined,
+    type: undefined,
+    value: undefined,
+    fixedNum: undefined,
   };
 
   static displayName = 'NumberField';
 
 
   getValue() {
-    const { value, type, delimiter, format, fixedNum } = this.props;
+    const {
+      value, type, delimiter, format, fixedNum,
+    } = this.props;
     if (value === undefined || value === null) return '';
     const newValue = `${value}`;
     if (format) {

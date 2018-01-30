@@ -13,7 +13,6 @@ import { prefixClass } from './utils';
 import TextButton from './TextButton';
 
 class Button extends React.Component {
-
   constructor(props) {
     super(props);
     this.onClick = this.handleClick.bind(this);
