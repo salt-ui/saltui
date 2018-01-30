@@ -91,7 +91,7 @@ const getQuestions = () => (
 
 gulp.task('build_style', () => {
   const dirs = fs.readdirSync('./src');
-  const ComponentNames = dirs.filter(dirName => dirName !== 'Style');
+  const ComponentNames = dirs.filter(dirName => dirName !== 'Style' && !/^\./.test(dirName));
   gulp.src('./template/component.styl')
     .pipe(ejs({ ComponentNames }))
     .pipe(gulp.dest('./style'))
@@ -135,7 +135,7 @@ gulp.task('build_lib', (cb) => {
 
 gulp.task('make_index', (done) => {
   const dirs = fs.readdirSync('./src');
-  const ComponentNames = dirs.filter(dirName => dirName !== 'Style');
+  const ComponentNames = dirs.filter(dirName => dirName !== 'Style' && !/^\./.test(dirName));
   gulp
     .src('./template/buildIndex.js')
     .pipe(ejs({ ComponentNames }))
