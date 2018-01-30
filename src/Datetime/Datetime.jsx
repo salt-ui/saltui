@@ -133,7 +133,10 @@ class Datetime extends React.Component {
     const { data } = this.state;
     const date = parseDate({ columns, value });
     const columnsStyle = columns[column];
+    const newValue = [...this.state.value];
+    newValue[column] = value[column];
     if (columnsStyle === 'D') {
+      this.setState({ value: newValue });
       props.onChange(date, column);
       return;
     }
@@ -142,35 +145,31 @@ class Datetime extends React.Component {
     const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
     const updateObj = {
       data: formatFromProps(formatText(ret.data, undefined, props), props),
-      value: formatFromProps(formatText(ret.value, undefined, props), props),
+      value: newValue,
     };
-    if (value.every(item => !!item)) {
-      updateObj.value = value;
-    }
-    if (disabledDate) {
-      const disabledArr = disabledDate();
-      if (isArray(disabledArr) && disabledArr.length && columns[0] === 'Y') {
-        const YEARDATE = data[0];
-        const MONTHDATE = data[1];
-        const oldData = {};
-        if (columnsStyle === 'Y') {
-          oldData.yearData = YEARDATE;
-        }
-        if (columnsStyle === 'M') {
-          oldData.yearData = YEARDATE;
-          oldData.monthData = MONTHDATE;
-        }
-        const AllData = filterDate({
-          data: updateObj.data,
-          disabledArr,
-          value,
-          columns,
-          minDate,
-          maxDate,
-          oldData,
-        });
-        updateObj.data = AllData.length >= 3 ? AllData : updateObj.data;
+
+    const disabledArr = disabledDate ? disabledDate() : [];
+    if (isArray(disabledArr) && columns[0] === 'Y') {
+      const YEARDATE = data[0];
+      const MONTHDATE = data[1];
+      const oldData = {};
+      if (columnsStyle === 'Y') {
+        oldData.yearData = YEARDATE;
       }
+      if (columnsStyle === 'M') {
+        oldData.yearData = YEARDATE;
+        oldData.monthData = MONTHDATE;
+      }
+      const AllData = filterDate({
+        data: updateObj.data,
+        disabledArr,
+        value,
+        columns,
+        minDate,
+        maxDate,
+        oldData,
+      });
+      updateObj.data = AllData.length >= 3 ? AllData : updateObj.data;
     }
     this.setState(updateObj);
     props.onChange(date, column);

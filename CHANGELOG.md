@@ -1,6 +1,9 @@
 ## 3.5.15 / 2018-01-30
 
 * `feat`: unmount Toast when hiden
+* `feat`: SearchBar will cancel another `doSeacrh` if keycode is enter
+* `fix`: Datetime slot will go to the first value if disabledDate is set
+* `fix`: Datetime Feb should only have 29 days at most.
 
 ## 3.5.14 / 2018-01-26
 
