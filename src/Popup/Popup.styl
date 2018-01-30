@@ -13,6 +13,9 @@ popupPrefixCls = t-popup
     display inline-block
     background-color white
     z-index 1010
+.{popupPrefixCls}-wrap
+    position fixed
+    z-index 1001
 .{popupPrefixCls}-slide-down
     top 0
     left 0
@@ -35,7 +38,7 @@ popupPrefixCls = t-popup
     right 0
     left 0
     bottom 0
-    background-color rgba(0, 0, 0, 0.6)
+    background-color rgba(0, 0, 0, 0.4)
     height 100%
     z-index 1000
 .{popupPrefixCls}-hidden,
