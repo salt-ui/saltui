@@ -133,7 +133,7 @@ class Datetime extends React.Component {
     const { data } = this.state;
     const date = parseDate({ columns, value });
     const columnsStyle = columns[column];
-    const newValue = Object.assign({}, this.state).value;
+    const newValue = [...this.state.value];
     newValue[column] = value[column];
     if (columnsStyle === 'D') {
       this.setState({ value: newValue });
