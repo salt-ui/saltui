@@ -60,7 +60,8 @@ class Gallery extends React.Component {
       changed = true;
     }
     if (changed) {
-      this.setState(displayImages);
+      // slide 无法 re-render，会造成之前的移位被重置
+      this.setState({ displayImages });
     }
   }
 

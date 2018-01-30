@@ -100,7 +100,7 @@ class Slide extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (typeof nextProps.active !== 'undefined' && nextProps.active !== this.currentPosIndex) {
+    if (typeof nextProps.active !== 'undefined' && nextProps.active !== this.props.active) {
       this._goto(nextProps.active, true, true);
     }
   }
@@ -211,10 +211,9 @@ class Slide extends React.Component {
   */
   _goto(posIndex, callFromDidMount, noAnimation) {
     const t = this;
-    let callFromDidMountNew = callFromDidMount;
-    callFromDidMountNew = !!callFromDidMountNew;
+    const callFromDidMountBool = !!callFromDidMount;
 
-    if (t.length === 1 || callFromDidMountNew) {
+    if (t.length === 1 || callFromDidMountBool) {
       // `_getItemReady` 方法被调用之前，需要先更新 `currentPosIndex` 的值
       t.currentPosIndex = posIndex;
       t._getItemReady(0, noAnimation);
@@ -224,8 +223,8 @@ class Slide extends React.Component {
         t._getItemReady(-1, noAnimation);
       }
 
-      t._slideEnd();
-    } else if (!callFromDidMountNew) {
+      // t._slideEnd();
+    } else if (!callFromDidMountBool) {
       // 通过goNext/goPrev调用的_goto，一直有方向(_dir)值 向左:-1 / 向右:1
       if (t._dir) {
         _getItemUnready(t._dir === 1 ? t._nextEl : t._prevEl);
