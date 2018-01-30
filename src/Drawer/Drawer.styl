@@ -38,7 +38,7 @@ drawerPrefixCls = $prefix + "-drawer";
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-out;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.4);
   }
   &-content {
     position: absolute;
@@ -79,7 +79,7 @@ drawerPrefixCls = $prefix + "-drawer";
       left: 0;
       transform: translateX(-100%);
       .{drawerPrefixCls}-open& {
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+        box-shadow: 1px 0 4px rgba(0, 0, 0, 0.1);
       }
     }
     .{drawerPrefixCls}-draghandle {
@@ -92,7 +92,7 @@ drawerPrefixCls = $prefix + "-drawer";
       right: 0;
       transform: translateX(100%);
       .{drawerPrefixCls}-open& {
-        box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.15);
+        box-shadow: -1px 0 4px rgba(0, 0, 0, 0.1);
       }
     }
     .{drawerPrefixCls}-draghandle {
@@ -105,7 +105,7 @@ drawerPrefixCls = $prefix + "-drawer";
       top: 0;
       transform: translateY(-100%);
       .{drawerPrefixCls}-open& {
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
       }
     }
     .{drawerPrefixCls}-draghandle {
@@ -118,7 +118,7 @@ drawerPrefixCls = $prefix + "-drawer";
       bottom: 0;
       transform: translateY(100%);
       .{drawerPrefixCls}-open& {
-        box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
       }
     }
     .{drawerPrefixCls}-draghandle {
