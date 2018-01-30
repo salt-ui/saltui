@@ -1,5 +1,9 @@
 ## 3.5.15 / 2018-01-30
 
+* `feat` TextField use multiline in readOnly mode
+
+## 3.5.15 / 2018-01-30
+
 * `feat`: unmount Toast when hiden
 * `feat`: SearchBar will cancel another `doSeacrh` if keycode is enter
 * `fix`: Datetime slot will go to the first value if disabledDate is set

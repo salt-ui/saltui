@@ -48,6 +48,7 @@ class TextField extends React.Component {
 
   renderInput() {
     const t = this;
+    const { readOnly } = t.props;
     return (
       <div className={prefixClass('text-field-content-main')}>
         <div
@@ -56,15 +57,17 @@ class TextField extends React.Component {
           })}
         >{t.props.placeholder}
         </div>
-        <input
-          className={prefixClass('text-field-input')}
-          type={t.props.type}
-          value={t.props.value}
-          readOnly={t.props.readOnly}
-          onChange={(e) => { t.handleChange(e); }}
-          onFocus={(e) => { t.handleFocus(e); }}
-          onBlur={(e) => { t.handleBlur(e); }}
-        />
+        {!readOnly ? (
+          <input
+            className={prefixClass('text-field-input')}
+            type={t.props.type}
+            value={t.props.value}
+            readOnly={t.props.readOnly}
+            onChange={(e) => { t.handleChange(e); }}
+            onFocus={(e) => { t.handleFocus(e); }}
+            onBlur={(e) => { t.handleBlur(e); }}
+          />
+        ) : <span>{t.props.value}</span>}
       </div>
     );
   }
@@ -92,6 +95,7 @@ class TextField extends React.Component {
     return (
       <Field
         {...t.props}
+        multiLine={t.props.readOnly}
         className={classnames(prefixClass('text-field'), t.props.className, {
           readonly: t.props.readOnly,
         })}
