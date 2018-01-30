@@ -133,7 +133,7 @@ class Datetime extends React.Component {
     const { data } = this.state;
     const date = parseDate({ columns, value });
     const columnsStyle = columns[column];
-    const newValue = this.state.value;
+    const newValue = Object.assign({}, this.state).value;
     newValue[column] = value[column];
     if (columnsStyle === 'D') {
       this.setState({ value: newValue });
@@ -145,11 +145,9 @@ class Datetime extends React.Component {
     const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
     const updateObj = {
       data: formatFromProps(formatText(ret.data, undefined, props), props),
-      value: formatFromProps(formatText(ret.value, undefined, props), props),
+      value: newValue,
     };
-    if (value.every(item => !!item)) {
-      updateObj.value = value;
-    }
+
     const disabledArr = disabledDate ? disabledDate() : [];
     if (isArray(disabledArr) && columns[0] === 'Y') {
       const YEARDATE = data[0];
@@ -173,10 +171,7 @@ class Datetime extends React.Component {
       });
       updateObj.data = AllData.length >= 3 ? AllData : updateObj.data;
     }
-    this.setState({
-      data: updateObj.data,
-      value: newValue,
-    });
+    this.setState(updateObj);
     props.onChange(date, column);
   };
   // 初始化日历面板
