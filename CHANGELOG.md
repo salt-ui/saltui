@@ -1,3 +1,7 @@
+## 3.5.15 / 2018-01-30
+
+* `feat`: unmount Toast when hiden
+
 ## 3.5.14 / 2018-01-26
 
 * `fix`: Field label cannot show 6 chinese words in a line in iPhone
