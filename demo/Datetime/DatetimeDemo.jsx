@@ -54,12 +54,12 @@ class DatetimeDemo extends React.Component {
         </Button>
         <Datetime
           {...this.datetimeProps}
-          slotRef={(s) => { t.slot0 = s; }}
+          slotRef={(s) => { t.slot0 = s; window.slot = s; }}
           title="日期选择"
           value={this.state.value1}
           columns={Datetime.YMD}
           onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
-          onChange={(value, column) => { /* console.log(value, column);*/ }}
+          onChange={(value, column) => { /* console.log(value, column); */ }}
           onCancel={() => { this.onCancel('value1'); }}
         />
         <Button onClick={() => {

@@ -15,15 +15,15 @@ import Group from '../Group';
 
 const renderIcon = (checked, position) => (
   <div className={classnames(prefixClass('radio-field-icon-wrapper FBAC FBH'), {
-            [position]: !!position,
-        })}
+    [position]: !!position,
+  })}
   >
     <OptionCheckedIcon
       width={16}
       height={16}
       className={classnames(prefixClass('radio-field-icon'), {
-                    'un-checked': !checked,
-                })}
+        'un-checked': !checked,
+      })}
     />
   </div>
 );
@@ -108,11 +108,11 @@ class RadioField extends React.Component {
       <Group className={classnames(prefixClass('radio-field'), {
         [rootClassName]: !!rootClassName,
       }, {
-        [className]: !!className,
-      })}
+          [className]: !!className,
+        })}
       >
         {
-            label === ''
+          label === ''
             ? null
             : (
               <Group.Head className={classnames(prefixClass('radio-field-label'))}>
@@ -120,7 +120,7 @@ class RadioField extends React.Component {
                 {this.props.required && requiredTag}
               </Group.Head>
             )
-          }
+        }
         <Group.List {...groupListArgument}>
           {radioArrayComponent}
         </Group.List>
@@ -134,7 +134,7 @@ class RadioField extends React.Component {
             [rootClassName]: !!rootClassName,
             [className]: !!className,
           })
-        }
+          }
         >
           {radioArrayComponent}
         </div>
