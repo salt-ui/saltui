@@ -1,6 +1,6 @@
 ## 3.5.18 / 2018-01-31
 
-* `changed`: Dialog's z-index is changed to be equal to Toast/Popup
+* `changed`: Dialog's z-index is changed to be equal to Toast/Popup's
 
 ## 3.5.17 / 2018-01-31
 
