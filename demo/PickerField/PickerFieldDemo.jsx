@@ -29,10 +29,13 @@ class Demo extends React.Component {
 
     const t = this;
     t.state = {
-      value: null,
-      value1: monthArray[6],
-      value2: monthArray[10],
+      value: monthArray[6],
+      value1: monthArray[5],
+      value2: null,
       value3: monthArray[11],
+      value4: monthArray[3],
+      value5: monthArray[8],
+      value6: monthArray[2],
     };
   }
 
@@ -60,6 +63,18 @@ class Demo extends React.Component {
     });
   }
 
+  handleChange4(value) {
+    this.setState({
+      value4: value,
+    });
+  }
+
+  handleChange5(value) {
+    this.setState({
+      value5: value,
+    });
+  }
+
   render() {
     const t = this;
     return (
@@ -68,31 +83,38 @@ class Demo extends React.Component {
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">选择器演示</Group.Head>
           <Group.List>
             <PickerField
-              fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
-              fetchDataOnOpen
-              label="没有默认值"
+              label="从本地获取"
+              options={monthArray}
               onSelect={(e) => {
                 t.handleChange(e);
               }}
               value={t.state.value}
-              placeholder="请输入"
             />
             <PickerField
+              label="从接口中获取"
               fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
-              label="有默认值"
               onSelect={(e) => {
                 t.handleChange1(e);
               }}
               value={t.state.value1}
-              tip="这里是tip"
+            />
+            <PickerField
+              fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
+              fetchDataOnOpen
+              label="没有默认值"
+              onSelect={(e) => {
+                t.handleChange2(e);
+              }}
+              value={t.state.value2}
+              placeholder="请输入"
             />
             <PickerField
               fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               label="无搜索框"
               onSelect={(e) => {
-                t.handleChange2(e);
+                t.handleChange3(e);
               }}
-              value={t.state.value2}
+              value={t.state.value3}
               tip="这里是tip"
               showSearch={false}
             />
@@ -100,16 +122,26 @@ class Demo extends React.Component {
               fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               label="多选"
               onSelect={(e) => {
-                t.handleChange3(e);
+                t.handleChange4(e);
               }}
-              value={t.state.value3}
+              value={t.state.value4}
               tip="这里是tip"
               multiple
             />
             <PickerField
+              label="按字母分组"
+              options={monthArray}
+              onSelect={(e) => {
+                t.handleChange5(e);
+              }}
+              value={t.state.value5}
+              grouping
+              noIcon
+            />
+            <PickerField
               fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               label="不可选"
-              value={t.state.value1}
+              value={t.state.value6}
               readOnly
             />
           </Group.List>

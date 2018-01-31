@@ -119,6 +119,7 @@ class PickerField extends React.Component {
         t.handleConfirm(value);
         window.history.go(-1);
       },
+      options: t.props.options,
       fetchUrl: t.props.fetchUrl,
       fetchDataOnOpen: t.props.fetchDataOnOpen,
       dataType: t.props.dataType,
@@ -132,6 +133,8 @@ class PickerField extends React.Component {
       searchNotFoundContent: t.props.searchNotFoundContent,
       formatter: t.props.formatter,
       multiple: t.props.multiple,
+      grouping: t.props.grouping,      
+      noIcon: t.props.noIcon,      
       selectText: t.props.selectText,
       searchText: t.props.searchText,
     };
@@ -189,6 +192,8 @@ PickerField.defaultProps = {
   formatter: value => (value ? value.text : ''),
   onSelect() {},
   multiple: false,
+  grouping: false,
+  noIcon: false,
   selectText: '已选择：',
   className: undefined,
   value: undefined,
@@ -207,6 +212,7 @@ PickerField.propTypes = {
   searchText: PropTypes.string,
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
+  options: PropTypes.array,
   fetchUrl: PropTypes.string,
   fetchDataOnOpen: PropTypes.bool,
   dataType: PropTypes.string,
@@ -221,6 +227,8 @@ PickerField.propTypes = {
   formatter: PropTypes.func,
   onSelect: PropTypes.func,
   multiple: PropTypes.bool,
+  grouping: PropTypes.bool,  
+  noIcon: PropTypes.bool,  
   selectText: PropTypes.string,
 };
 

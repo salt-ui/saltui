@@ -99,10 +99,28 @@ $picker-field-searchbar-height = 45px
 .{$prefix}-picker-field-search-results
   padding-bottom 18px
 
+.{$prefix}-picker-field-grouping-title
+  position -webkit-sticky
+  position sticky
+  top 0
+  background-color #fff
+  z-index 1
+
+  .{$prefix}-picker-field-grouping-title-inner
+    background-color $normal-alpha-8
+    color $normal-alpha-2
+    line-height 24px
+    font-size 14px
+    padding 0 16px
+
 .{$prefix}-picker-field-search-result-item
   position relative
   hairline('border-bottom', $normal-alpha-7)
   padding 18px
+
+  &.{$prefix}-picker-field-no-icon
+    padding-top 13px
+    padding-bottom 13px
 
   .{$prefix}-icon
     display block
@@ -136,3 +154,23 @@ $picker-field-searchbar-height = 45px
   display block
   margin-left 34px
   line-height $font-size-t4-lh
+
+  &.{$prefix}-picker-field-no-icon
+    margin-left 0
+
+.{$prefix}-picker-field-grouping-bar
+  position absolute
+  top 30px
+  right -10px
+  width 40px
+  text-align center
+  font-size 12px
+  line-height 17px
+  color $normal-alpha-6
+  z-index 2
+
+  .{$prefix}-picker-field-avilible-group
+    color $normal-alpha-2
+
+    &.{$prefix}-picker-field-active-group
+      color $brand-primary

@@ -18,7 +18,9 @@ import Button from '../Button';
 import Popup from '../Popup';
 import SearchBar from '../SearchBar';
 import SearchResult from './SearchResult';
+import GroupingBar from './GroupingBar';
 import utils from './utils';
+import pinyin from 'simple-pinyin';
 
 class SearchPanel extends React.Component {
   static renderSearchTips() {
@@ -41,11 +43,12 @@ class SearchPanel extends React.Component {
     };
     t.delaySearch = utils.debounce(t.search.bind(t), t.props.searchDelay);
     t.handleLeaveResultView = t.handleLeaveResultView.bind(t);
+    t.groupEl = {};
   }
 
   componentDidMount() {
     const t = this;
-    if (t.props.fetchUrl && t.props.fetchDataOnOpen) {
+    if (t.props.fetchDataOnOpen) {
       t.delaySearch('');
       t.setState({
         isOpenSearch: true,
@@ -63,31 +66,79 @@ class SearchPanel extends React.Component {
         });
       }
     }
-    t.fetch = NattyFetch.create({
-      url: t.props.fetchUrl,
-      jsonp: t.props.dataType ? t.props.dataType === 'jsonp' : (/\.jsonp/.test(t.props.fetchUrl)),
-      data: t.props.beforeFetch({ q: term }),
-      fit: t.props.fitResponse,
-      Promise,
-    });
-    t.fetch().then((data) => {
-      const fetchData = t.props.afterFetch(data);
-      const state = {};
-      if (fetchData && fetchData.length) {
-        state.searchEmpty = false;
-      } else {
-        state.searchEmpty = true;
-      }
-      if (t.state.isOpenSearch) {
-        state.openResults = fetchData;
-        state.isOpenSearch = false;
-      } else {
-        state.results = state.searchEmpty ? [] : fetchData;
-      }
-      t.setState(state);
-    }).catch((e) => {
-      console.error(e); // eslint-disable-line no-console
-    });
+    if (t.props.fetchUrl) {
+      t.fetch = NattyFetch.create({
+        url: t.props.fetchUrl,
+        jsonp: t.props.dataType ? t.props.dataType === 'jsonp' : (/\.jsonp/.test(t.props.fetchUrl)),
+        data: t.props.beforeFetch({ q: term }),
+        fit: t.props.fitResponse,
+        Promise,
+      });
+      t.fetch().then((data) => {
+        const fetchData = t.props.afterFetch(data);
+        t.setData(fetchData);
+      }).catch((e) => {
+        console.error(e); // eslint-disable-line no-console
+      });
+    } else {
+      const filteredData = (t.props.options || []).filter(item => {
+        if (!item.text) {
+          return false;
+        }
+        // TODO: 支持拼音
+        return item.text.indexOf(term) > -1;
+      });
+      t.setData(filteredData);
+    }
+  }
+
+  setData(fetchData) {
+    const t = this;
+    const state = {};
+    if (fetchData && fetchData.length) {
+      state.searchEmpty = false;
+    } else {
+      state.searchEmpty = true;
+    }
+    if (t.props.grouping) {
+      const groups = {};
+      fetchData.sort((a, b) => {
+        const phoneticA = pinyin(a.text, { pinyinOnly: false });
+        const phoneticB = pinyin(b.text, { pinyinOnly: false });
+        let compare = 0;
+        phoneticA.find((string, i) => {
+          if (!phoneticB[i] || string > phoneticB[i]) {
+            compare = 1;
+            return true;
+          } else if (string < phoneticB[i]) {
+            compare = -1;
+            return true;
+          }
+        });
+        return compare;
+      });
+      fetchData.forEach(item => {
+        let group = (pinyin(item.text[0] || '#')[0] || '#')[0].toUpperCase();
+        if (group < 'A' || group > 'Z') {
+          group = '#';
+        }
+        groups[group] = groups[group] || [];
+        groups[group].push(item);
+      });
+      fetchData = Object.keys(groups).sort((a, b) => {
+        return utils.alphabet.indexOf(a) - utils.alphabet.indexOf(b)
+      }).map(key => ({
+        title: key,
+        items: groups[key]
+      }));
+    }
+    if (t.state.isOpenSearch) {
+      state.openResults = fetchData;
+      state.isOpenSearch = false;
+    } else {
+      state.results = state.searchEmpty ? [] : fetchData;
+    }
+    t.setState(state);
   }
 
   handleItemClick(item) {
@@ -196,6 +247,14 @@ class SearchPanel extends React.Component {
     return found > -1;
   }
 
+  selectGrouping(key) {
+    const t = this;
+    let element = t.groupEl[key];
+    if (element) {
+      element.scrollIntoView();
+    }
+  }
+
   isEmpty() {
     return this.state.value.length === 0;
   }
@@ -213,9 +272,32 @@ class SearchPanel extends React.Component {
     const t = this;
     return (
       <div className={Context.prefixClass('picker-field-search-results')}>
-        {results.map((item, index) => t.renderResultItem(item, index))}
+        {t.props.grouping ?
+          t.renderGroups(results) :
+          results.map((item, index) => t.renderResultItem(item, index))
+        }
       </div>
     );
+  }
+
+  renderGroups(groups) {
+    const t = this;
+    return (
+      groups.map((group, index) => {
+        return (
+          <div
+            className={Context.prefixClass('picker-field-grouping')}
+            key={group.title}
+            ref={ref => { t.groupEl[group.title] = ref }}
+          >
+            <div className={Context.prefixClass('picker-field-grouping-title')}>
+              <p className={Context.prefixClass('picker-field-grouping-title-inner')}>{group.title}</p>
+            </div>
+            {group.items.map((item, index) => t.renderResultItem(item, index))}
+          </div>
+        )
+      })
+    )
   }
 
   renderResultItem(item, index) {
@@ -245,15 +327,17 @@ class SearchPanel extends React.Component {
     return (
       <div
         key={index}
-        className={classnames(Context.prefixClass('picker-field-search-result-item'), Context.prefixClass('clear'))}
+        className={classnames(Context.prefixClass('picker-field-search-result-item'), t.props.noIcon ? Context.prefixClass('picker-field-no-icon') : null, Context.prefixClass('clear'))}
         onClick={() => {
           t.handleItemClick(item);
         }}
       >
-        <span className={Context.prefixClass('picker-field-search-result-item-icon')}>
-          {iconHTML}
-        </span>
-        <span className={Context.prefixClass('picker-field-search-result-item-entry')}>{t.props.formatter(item)}</span>
+        {t.props.noIcon ? null :
+          <span className={Context.prefixClass('picker-field-search-result-item-icon')}>
+            {iconHTML}
+          </span>
+        }
+        <span className={classnames(Context.prefixClass('picker-field-search-result-item-entry'), t.props.noIcon ? Context.prefixClass('picker-field-no-icon') : null)}>{t.props.formatter(item)}</span>
       </div>
     );
   }
@@ -269,6 +353,23 @@ class SearchPanel extends React.Component {
       return t.renderResults(t.state.openResults);
     }
     return SearchPanel.renderSearchTips();
+  }
+
+  renderGroupingBar() {
+    const t = this;
+    let groups = [];
+    if (t.state.hasKeyword) {
+      groups = t.state.results;
+    } else if (t.props.fetchDataOnOpen && t.state.openResults.length) {
+      groups = t.state.openResults;
+    }
+    const keys = groups.map(group => group.title);
+    return (
+      <GroupingBar
+        keys={keys}
+        onSelect={t.selectGrouping.bind(t)}
+      />
+    )
   }
 
   render() {
@@ -325,9 +426,10 @@ class SearchPanel extends React.Component {
             </div>
           ) : null}
           <div className={Context.prefixClass('picker-field-searchpanel-content')}>
-            <ScrollView>
+            <ScrollView bounce={false} disablePointer>
               {t.renderResultCondition()}
             </ScrollView>
+            {t.props.grouping ? t.renderGroupingBar() : null}
           </div>
           {multiple ? (
             <div className={Context.prefixClass('picker-field-searchpanel-footer')}>
@@ -386,7 +488,8 @@ SearchPanel.propTypes = {
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
   onConfirm: PropTypes.func,
-  fetchUrl: PropTypes.string.isRequired,
+  options: PropTypes.array,
+  fetchUrl: PropTypes.string,
   fetchDataOnOpen: PropTypes.bool,
   dataType: PropTypes.string,
   beforeFetch: PropTypes.func,
@@ -399,6 +502,8 @@ SearchPanel.propTypes = {
   searchNotFoundContent: PropTypes.string,
   formatter: PropTypes.func,
   multiple: PropTypes.bool,
+  grouping: PropTypes.bool,  
+  noIcon: PropTypes.bool,  
   selectText: PropTypes.string,
 };
 
