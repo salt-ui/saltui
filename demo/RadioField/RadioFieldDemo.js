@@ -13,10 +13,16 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      visible: false,
     };
   }
-
+  handleClick() {
+    this.setState({
+      visible: true,
+    });
+  }
   render() {
+    const t = this;
     const radioFieldProps = {
       data: [
         {
@@ -70,6 +76,9 @@ class Demo extends React.Component {
       ],
       onChange(value, index, data) {
         console.log(value, index, data);
+        t.setState({
+          visible: false,
+        });
       },
       groupListArgument: {
         lineIndent: 15,
@@ -84,7 +93,14 @@ class Demo extends React.Component {
     };
     return (
       <div>
-        <RadioField {...radioFieldProps} />
+        <div
+          style={{
+ border: '1px', height: '40px', lineHeight: '40px', textAlign: 'center',
+}}
+          onClick={this.handleClick.bind(t)}
+        >popup 显示
+        </div>
+        {t.state.visible ? <RadioField {...radioFieldProps} layoutType="popup" visible={this.state.visible} /> : null}
         <RadioField {...radioFieldProps} iconPosition="right" label="单选（图标在右）" />
       </div>
     );
