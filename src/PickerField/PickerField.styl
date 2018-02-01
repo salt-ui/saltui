@@ -162,7 +162,7 @@ $picker-field-searchbar-height = 45px
   position absolute
   top 30px
   right -10px
-  width 40px
+  width 38px
   text-align center
   font-size 12px
   line-height 17px
@@ -174,3 +174,36 @@ $picker-field-searchbar-height = 45px
 
     &.{$prefix}-picker-field-active-group
       color $brand-primary
+
+.{$prefix}-picker-field-grouping-indicator
+  position absolute
+  width 46px
+  height 46px
+  left -60px
+  top -15px
+  line-height 46px
+  font-size 24px
+  font-weight bold
+  text-align center
+  background rgb(240, 242, 245)
+  color $normal-alpha-6
+  border-radius 3px
+  box-shadow 0 0 1px $dark-alpha-3
+
+  &.{$prefix}-picker-field-grouping-indicator-hide
+    display none
+
+  &.{$prefix}-picker-field-avilible-group
+    color $normal-alpha-2
+
+  &::before
+    content '.'
+    font-size 0
+    display block
+    position absolute
+    width 10px
+    height 10px
+    transform translate(41px, 18px) rotate(45deg)
+    background rgb(240, 242, 245)
+    z-index -1
+    box-shadow 1px -1px 0 $dark-alpha-6

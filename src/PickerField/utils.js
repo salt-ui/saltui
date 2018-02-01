@@ -1,3 +1,5 @@
+import pinyin from 'simple-pinyin';
+
 const getPageSize = (() => {
   const width = window.innerWidth
     || document.documentElement.clientWidth
@@ -62,6 +64,8 @@ const addUrlParam = (name, value) => {
   return currentUrl;
 };
 
+const getPhonetic = text => pinyin(text, { pinyinOnly: false });
+
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#';
 
 export default {
@@ -70,5 +74,6 @@ export default {
   debounce,
   isArray,
   addUrlParam,
+  getPhonetic,
   alphabet,
 };

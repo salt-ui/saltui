@@ -17,7 +17,8 @@ class GroupingBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      holding: null
+      holding: null,
+      indicatorPos: 0
     }
   }
 
@@ -31,7 +32,8 @@ class GroupingBar extends React.Component {
     e.preventDefault();
     if (t.state.key != key) {
       t.setState({
-        holding: key
+        holding: key,
+        indicatorPos: target.offsetTop
       });
       this.props.onSelect(key);
     }
@@ -51,6 +53,8 @@ class GroupingBar extends React.Component {
         onTouchStart={t.hold.bind(t)}
         onTouchMove={t.hold.bind(t)}
         onTouchEnd={t.release.bind(t)}
+        onTouchCancel={t.release.bind(t)}
+        onContextMenu={e => e.preventDefault()}
       >
         {alphabet.map(key => (
           <div
@@ -62,6 +66,14 @@ class GroupingBar extends React.Component {
             data-key={key}
           >{key}</div>
         ))}
+        <div
+          className={classnames(
+            Context.prefixClass('picker-field-grouping-indicator'),
+            t.state.holding ? null : Context.prefixClass('picker-field-grouping-indicator-hide'),
+            t.props.keys.indexOf(t.state.holding) > -1 ? Context.prefixClass('picker-field-avilible-group') : null
+          )}
+          style={{ transform: `translateY(${t.state.indicatorPos}px)`, WebkitTransform: `translateY(${t.state.indicatorPos}px)`}}
+        >{t.state.holding}</div>
       </div>
     )
   }

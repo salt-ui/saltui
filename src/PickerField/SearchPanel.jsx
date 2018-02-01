@@ -20,7 +20,6 @@ import SearchBar from '../SearchBar';
 import SearchResult from './SearchResult';
 import GroupingBar from './GroupingBar';
 import utils from './utils';
-import pinyin from 'simple-pinyin';
 
 class SearchPanel extends React.Component {
   static renderSearchTips() {
@@ -81,13 +80,26 @@ class SearchPanel extends React.Component {
         console.error(e); // eslint-disable-line no-console
       });
     } else {
-      const filteredData = (t.props.options || []).filter(item => {
-        if (!item.text) {
-          return false;
-        }
-        // TODO: 支持拼音
-        return item.text.indexOf(term) > -1;
-      });
+      const options = t.props.options || [];
+      if (!t.searchIndex) {
+        const processFunc = t => {
+          const phonetic = utils.getPhonetic(t);
+          return [
+            t.toLowerCase(),
+            phonetic.join('').toLowerCase(),
+            phonetic.map(str => (str[0] || '')).join('').toLowerCase()
+          ];
+        };
+        t.searchIndex = options.map(item => ({
+          indexes: processFunc(item.text),
+          item
+        }));
+      }
+      const filteredData = term ?
+        t.searchIndex.filter(entity => {
+          return entity.indexes.some(indexText => indexText.indexOf(term.toLowerCase()) > -1)
+        }).map(entity => entity.item) :
+        options
       t.setData(filteredData);
     }
   }
@@ -103,10 +115,10 @@ class SearchPanel extends React.Component {
     if (t.props.grouping) {
       const groups = {};
       fetchData.sort((a, b) => {
-        const phoneticA = pinyin(a.text, { pinyinOnly: false });
-        const phoneticB = pinyin(b.text, { pinyinOnly: false });
+        const phoneticA = utils.getPhonetic(a.text);
+        const phoneticB = utils.getPhonetic(b.text);
         let compare = 0;
-        phoneticA.find((string, i) => {
+        phoneticA.some((string, i) => {
           if (!phoneticB[i] || string > phoneticB[i]) {
             compare = 1;
             return true;
@@ -118,7 +130,7 @@ class SearchPanel extends React.Component {
         return compare;
       });
       fetchData.forEach(item => {
-        let group = (pinyin(item.text[0] || '#')[0] || '#')[0].toUpperCase();
+        let group = (utils.getPhonetic(item.text[0] || '#')[0] || '#')[0].toUpperCase();
         if (group < 'A' || group > 'Z') {
           group = '#';
         }
