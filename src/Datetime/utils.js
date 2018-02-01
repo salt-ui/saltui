@@ -21,7 +21,15 @@ function isLeapYear(year) {
   return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 }
 function getDates(value) {
-  const date = new Date(value);
+  let date;
+  if (Array.isArray(value)) {
+    date = new Date(...value);
+  } else {
+    date = new Date(value);
+  }
+  if (!date) {
+    date = new Date();
+  }
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
   const arr = [];
@@ -32,7 +40,7 @@ function getDates(value) {
       num = 29;
     }
   }
-  if ([1, 3, 5, 8, 10, 12].indexOf(month) !== -1) {
+  if ([1, 3, 5, 7, 8, 10, 12].indexOf(month) !== -1) {
     num = 31;
   }
   for (let i = 1; i <= num; i++) {
@@ -272,7 +280,7 @@ function getDaysByYear(item) {
   const arr = [item - 1, item, item + 1];
   arr.forEach((year) => {
     for (let i = 1; i < 13; i += 1) {
-      getDates(`${year}-${i}`).forEach((el) => {
+      getDates([year, i - 1]).forEach((el) => {
         days.push(`${year}${addZero(i)}${addZero(el)}` - 0);
       });
     }
