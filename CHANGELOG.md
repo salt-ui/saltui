@@ -1,3 +1,23 @@
+## 3.5.18 / 2018-01-31
+
+* `changed`: Dialog's z-index is changed to be equal to Toast/Popup's
+
+## 3.5.17 / 2018-01-31
+
+* `fix`: Gallery will slide to the item whose index is `props.active` if re-render
+
+
+## 3.5.16 / 2018-01-30
+
+* `feat` TextField use multiline in readOnly mode
+
+## 3.5.15 / 2018-01-30
+
+* `feat`: unmount Toast when hiden
+* `feat`: SearchBar will cancel another `doSeacrh` if keycode is enter
+* `fix`: Datetime slot will go to the first value if disabledDate is set
+* `fix`: Datetime Feb should only have 29 days at most.
+
 ## 3.5.14 / 2018-01-26
 
 * `fix`: Field label cannot show 6 chinese words in a line in iPhone

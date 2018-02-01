@@ -19,6 +19,7 @@
   import Datetime from './lib/Datetime';
   import DatetimeField from './lib/DatetimeField';
   import Dialog from './lib/Dialog';
+  import Drawer from './lib/Drawer';
   import EmployeeField from './lib/EmployeeField';
   import Field from './lib/Field';
   import FoldablePane from './lib/FoldablePane';
@@ -90,6 +91,7 @@ const __SALT_BUNDLE__ = {
   Datetime,
   DatetimeField,
   Dialog,
+  Drawer,
   EmployeeField,
   Field,
   FoldablePane,

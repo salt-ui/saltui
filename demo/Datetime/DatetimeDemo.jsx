@@ -14,6 +14,7 @@ class DatetimeDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      value0: '***',
       value1: '***',
       value2: {
         value: '2017-7-20 12:42:44',
@@ -27,14 +28,14 @@ class DatetimeDemo extends React.Component {
   }
 
   onConfirm(value, id) {
-    console.log('onConfirm', value);
+    // console.log('onConfirm', value);
     this.setState({
       [id]: value,
     });
   }
 
   onCancel(id) {
-    console.log('cancel', this.state[id]);
+    // console.log('cancel', this.state[id]);
   }
 
   showSlot(id) {
@@ -46,9 +47,26 @@ class DatetimeDemo extends React.Component {
     return (
       <div className="t-datetime-demo">
         <Button onClick={() => {
+          t.showSlot('slot0');
+        }}
+        >
+        无 disabledDate 日期选择
+        </Button>
+        <Datetime
+          {...this.datetimeProps}
+          slotRef={(s) => { t.slot0 = s; window.slot = s; }}
+          title="日期选择"
+          value={this.state.value1}
+          columns={Datetime.YMD}
+          onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
+          onChange={(value, column) => { /* console.log(value, column); */ }}
+          onCancel={() => { this.onCancel('value1'); }}
+        />
+        <Button onClick={() => {
           t.showSlot('slot1');
         }}
-        >日期选择
+        >
+        日期选择
         </Button>
         <Datetime
           {...this.datetimeProps}
@@ -74,7 +92,7 @@ class DatetimeDemo extends React.Component {
               },
             ]}
           onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
-          onChange={(value, column) => { console.log(value, column); }}
+          onChange={(value, column) => { /* console.log(value, column); */ }}
           onCancel={() => { this.onCancel('value1'); }}
         />
         <Button onClick={() => {

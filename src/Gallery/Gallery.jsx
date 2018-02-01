@@ -11,9 +11,7 @@ import classnames from 'classnames';
 import Slide from '../Slide';
 import Context from '../Context';
 
-const prefixClass = function (name) {
-  return Context.prefixClass ? Context.prefixClass(name) : `t-${name}`;
-};
+const prefixClass = name => (Context.prefixClass ? Context.prefixClass(name) : `t-${name}`);
 
 class Gallery extends React.Component {
   constructor(props) {
@@ -62,7 +60,8 @@ class Gallery extends React.Component {
       changed = true;
     }
     if (changed) {
-      this.setState(displayImages);
+      // slide 无法 re-render，会造成之前的移位被重置
+      this.setState({ displayImages });
     }
   }
 
@@ -107,40 +106,40 @@ class Gallery extends React.Component {
         {...otherProps}
       >
         {
-                    this.state.images.map((item, i) => {
-                        let url = this.props.lazyLoad ? '' : item.src;
-                        let style = {};
-                        const { href } = item;
-                        if (displayImages.indexOf(i) > -1) {
-                            url = item.src;
-                        }
-                        if (url) {
-                            style = { backgroundImage: `url(${url})` };
-                        }
-                        /* eslint-disable react/no-array-index-key */
-                        return (
-                          <Slide.Item
-                            className={prefixClass('gallery-item')}
-                            key={i}
-                            title={item.name}
-                            style={style}
-                          >
-                            {
-                                    href ?
-                                      <a
-                                        style={{ width: '100%', height: '100%', display: 'block' }}
-                                        href={href}
-                                        target={item.target || ''}
-                                      >
-                                            &nbsp;
-                                      </a> :
-                                      <div />
-                                }
-                          </Slide.Item>
-                        );
-                        /* eslint-enable react/no-array-index-key */
-                    })
+          this.state.images.map((item, i) => {
+            let url = this.props.lazyLoad ? '' : item.src;
+            let style = {};
+            const { href } = item;
+            if (displayImages.indexOf(i) > -1) {
+              url = item.src;
+            }
+            if (url) {
+              style = { backgroundImage: `url(${url})` };
+            }
+            /* eslint-disable react/no-array-index-key */
+            return (
+              <Slide.Item
+                className={prefixClass('gallery-item')}
+                key={i}
+                title={item.name}
+                style={style}
+              >
+                {
+                  href ?
+                    <a
+                      style={{ width: '100%', height: '100%', display: 'block' }}
+                      href={href}
+                      target={item.target || ''}
+                    >
+                      &nbsp;
+                    </a> :
+                    <div />
                 }
+              </Slide.Item>
+            );
+            /* eslint-enable react/no-array-index-key */
+          })
+        }
       </Slide>
     );
   }

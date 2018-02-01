@@ -134,30 +134,33 @@ class Toast extends React.Component {
     } else {
       maskTransName = prefixClass(`toast-mask-${maskTransitionName}`);
     }
-    return (
-      <Dialog
-        prefixCls={prefixCls}
-        visible={visible}
-        title=""
-        footer=""
-        style={customStyle}
-        closable={false}
-        mask={hasMask}
-        maskTransitionName={maskTransName}
-        className={classnames({
-          [prefixClass(`toast-${type} toast-has-icon`)]: !!this.hasIcon(),
-          [className]: !!className,
-          [transName]: !!transName,
-        })}
-        transitionName={transName}
-        afterClose={() => { t.handleDidHide(); }}
-      >
-        <VBox hAlign="center">
-          {this.renderIcon()}
-          {content && <div className={prefixClass('toast-content')}>{content}</div>}
-        </VBox>
-      </Dialog>
-    );
+    if (visible) {
+      return (
+        <Dialog
+          prefixCls={prefixCls}
+          visible={visible}
+          title=""
+          footer=""
+          style={customStyle}
+          closable={false}
+          mask={hasMask}
+          maskTransitionName={maskTransName}
+          className={classnames({
+            [prefixClass(`toast-${type} toast-has-icon`)]: !!this.hasIcon(),
+            [className]: !!className,
+            [transName]: !!transName,
+          })}
+          transitionName={transName}
+          afterClose={() => { t.handleDidHide(); }}
+        >
+          <VBox hAlign="center">
+            {this.renderIcon()}
+            {content && <div className={prefixClass('toast-content')}>{content}</div>}
+          </VBox>
+        </Dialog>
+      );
+    }
+    return null;
   }
 }
 

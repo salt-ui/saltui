@@ -63,6 +63,7 @@ class SearchBar extends React.Component {
   onKeyUp(e) {
     const { value } = e.target;
     if (e.keyCode === 13) {
+      this.doDebouceSearch.cancel();
       this.doSearch('click', value);
       if (this.props.exitAfterEnter) {
         this.exitSearch();

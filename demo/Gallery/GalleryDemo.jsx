@@ -6,10 +6,9 @@
  * All rights reserved.
  */
 
-import classnames from 'classnames';
 
-import Context from 'salt-context';
 import Gallery from 'salt-gallery';
+import React from 'react';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const Gallery = require('../../dist');
@@ -39,7 +38,8 @@ class Demo extends React.Component {
           src: 'https://gw.alicdn.com/tps/TB1Qy3RJpXXXXcxXFXXXXXXXXXX-2000-680.jpg',
           name: '信息平台前端团队 突破十大障碍最终登上人生巅峰',
           href: 'http://www.alibaba-inc.com',
-        }],
+        },
+      ],
     };
   }
 
@@ -51,10 +51,8 @@ class Demo extends React.Component {
           images={this.state.images}
           showNav
           showTitle
-        />
-        <Gallery
-          images={this.state.images}
-          showNav
+          lazyLoad
+          auto
         />
       </div>
     );

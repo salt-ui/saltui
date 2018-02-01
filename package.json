@@ -1,6 +1,6 @@
 {
   "name": "saltui",
-  "version": "3.5.14",
+  "version": "3.5.18",
   "description": "React components for mobile",
   "main": "build/salt-ui.js",
   "scripts": {
@@ -74,6 +74,7 @@
     "prop-types": "15.x",
     "rc-collapse": "^1.7.6",
     "rc-dialog": "^6.5.11",
+    "rc-drawer": "^0.4.9",
     "rc-input-number": "^3.6.8",
     "rc-tabs": "^8.1.1",
     "rc-tooltip": "^3.5.0",

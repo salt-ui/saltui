@@ -14,6 +14,7 @@ import Slot from '../Slot';
 import Field from '../Field';
 import Popup from '../Popup';
 import CascadeSlot from './CascadeSlot';
+import i18n from './i18n';
 
 function parseProps(p) {
   const props = cloneDeep(p);
@@ -188,6 +189,8 @@ class CascadeSelectField extends React.Component {
               cancelText={t.props.cancelText}
               data={t.state.options}
               value={t.state.value}
+              confirmText={i18n['zh-cn'].confirmText}
+              cancelText={i18n['zh-cn'].cancelText}
               onChange={t.handleChange}
               onCancel={t.handleCancel}
               onConfirm={t.handleConfirm}
