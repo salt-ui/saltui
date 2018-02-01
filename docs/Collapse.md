@@ -1,23 +1,4 @@
-# tingle-collapse [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-collapse.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-collapse)
-tingle-collapse ui component for react
-
 ![](https://img.alicdn.com/tfs/TB12cKiRXXXXXcNXpXXXXXXXXXX-374-665.png)
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 ```js

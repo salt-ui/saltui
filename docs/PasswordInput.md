@@ -1,29 +1,13 @@
-# tingle-password-input [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-password-input.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-password-input)
+
 
 密码输入框
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PasswordInput from 'tingle-password-input';
+import { PasswordInput } from 'saltui';
 
 class Demo extends React.Component {
 
@@ -32,7 +16,6 @@ class Demo extends React.Component {
       
         this.state = {
           value: '',
-          mask: true,
         };
     }
 
@@ -42,28 +25,19 @@ class Demo extends React.Component {
         });
     }
 
-    handleMaskToggle(next) {
-        this.setState({
-            mask: next,
-        });
-    }
-
     render() {
         return (
-            <div>
-                <PasswordInput
-                    placeholder="请输入密码"
-                    value={this.state.value}
-                    mask={this.state.mask}
-                    onChange={this.handleChange.bind(this)}
-                    onMaskToggle={this.handleMaskToggle.bind(this)} />
-          </div>
-      );
+            <PasswordInput
+                placeholder="请输入密码"
+                value={this.state.value}
+                onChange={this.handleChange.bind(this)}
+            />
+        );
     }
 }
 
 // 渲染demo
-ReactDOM.render(<Demo />, document.getElementById('TingleDemo'));
+ReactDOM.render(<Demo />, document.getElementById('SaltDemo'));
 
 ```
 

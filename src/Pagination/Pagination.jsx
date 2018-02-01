@@ -5,7 +5,8 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Button from '../Button';
@@ -90,15 +91,17 @@ class Pagination extends Component {
 
         {
           !simple ?
-            <div onClick={() => {
+            <div
+              onClick={() => {
               this.current = current;
               this.slotCpnt.show();
-            }} className={classnames(Context.prefixClass('FB1 FBH FBJC FBAC pagination-page-count'))}
+            }}
+              className={classnames(Context.prefixClass('FB1 FBH FBJC FBAC pagination-page-count'))}
             >
               <span className={Context.prefixClass('pagination-page-current')}>{`${current} `}</span>
               {`/ ${totalPageCount}`}
             </div> :
-              <div className={Context.prefixClass('FB1')} />
+            <div className={Context.prefixClass('FB1')} />
         }
 
         <Button

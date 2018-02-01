@@ -1,20 +1,9 @@
-# tingle-refreshcontrol [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-refreshcontrol.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-refreshcontrol)
+
 
 下拉刷新功能组件
 
 
 ![](https://img.alicdn.com/tfs/TB10yZ9PVXXXXXCaXXXXXXXXXXX-412-696.gif)
-
-
-## How to develop
-
-### install
-
-```
-
-tnpm install @ali/tingle-refreshcontrol
-
-```
 
 ## Simple Usage
 

@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import PhotoFieldPane from './PhotoFieldPane';
 import i18n from './i18n';
 
@@ -17,7 +18,7 @@ const autoFixUrl = (url) => {
   if (newUrl) {
     // auto fix cdn url
     if (newUrl.indexOf('//') === 0) {
-      newUrl = `${location.protocol}${newUrl}`;
+      newUrl = `${window.location.protocol}${newUrl}`;
     }
   }
   return newUrl;
@@ -26,7 +27,6 @@ const autoFixUrl = (url) => {
 const Ali = window.Ali || {};
 
 class PhotoField extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -101,9 +101,11 @@ class PhotoField extends React.Component {
   }
 
   render() {
-    const { columns, placeholder, label,
-      photoList, required, layout,
-      maxUpload, readOnly, className, tip } = this.props;
+    const {
+      columns, placeholder, label,
+      photoList, required,
+      maxUpload, readOnly, className, tip,
+    } = this.props;
     const paneProps = {
       columns,
       className,
@@ -114,7 +116,6 @@ class PhotoField extends React.Component {
       readOnly,
       required,
       tip,
-      layout,
       onPickerClick: () => { this.onPickHandler(); },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
       onImagePreview: (index) => { this.handlePreview(index); },
@@ -136,29 +137,36 @@ PhotoField.defaultProps = {
   onChange: noop,
   photoList: [],
   locale: 'zh-cn',
+  icon: undefined,
+  corpId: undefined,
+  className: undefined,
+  placeholder: undefined,
+  onDelete: undefined,
+  required: undefined,
+  tip: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
 PhotoField.propTypes = {
-  icon: React.PropTypes.object,
-  columns: React.PropTypes.number,
-  multiple: React.PropTypes.bool,
-  corpId: React.PropTypes.string,
-  className: React.PropTypes.string,
-  layout: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
-  locale: React.PropTypes.string,
-  label: React.PropTypes.string,
-  max: React.PropTypes.number,
-  maxUpload: React.PropTypes.number,
-  photoList: React.PropTypes.array,
-  readOnly: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  onDelete: React.PropTypes.func,
-  required: React.PropTypes.bool,
-  tip: React.PropTypes.string,
+  icon: PropTypes.object,
+  columns: PropTypes.number,
+  multiple: PropTypes.bool,
+  corpId: PropTypes.string,
+  className: PropTypes.string,
+  layout: PropTypes.string,
+  placeholder: PropTypes.string,
+  locale: PropTypes.string,
+  label: PropTypes.string,
+  max: PropTypes.number,
+  maxUpload: PropTypes.number,
+  photoList: PropTypes.array,
+  readOnly: PropTypes.bool,
+  onChange: PropTypes.func,
+  onDelete: PropTypes.func,
+  required: PropTypes.bool,
+  tip: PropTypes.string,
 };
 
 PhotoField.displayName = 'PhotoField';
 
-module.exports = PhotoField;
+export default PhotoField;

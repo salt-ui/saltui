@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import ImageViewer from '../ImageViewer';
+import PropTypes from 'prop-types';
 import { Events, Status } from 'uploadcore';
 import UploadCore from 'uploadcore/dist/uploadcore';
+import ImageViewer from '../ImageViewer';
 import PhotoFieldPane from './PhotoFieldPane';
 import { getData } from './util';
 
@@ -20,7 +21,7 @@ const autoFixUrl = (url) => {
   if (newUrl) {
     // auto fix cdn url
     if (newUrl.indexOf('//') === 0) {
-      newUrl = `${location.protocol}${newUrl}`;
+      newUrl = `${window.location.protocol}${newUrl}`;
     }
   }
   return newUrl;
@@ -28,7 +29,6 @@ const autoFixUrl = (url) => {
 
 
 class PhotoField extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -125,8 +125,7 @@ class PhotoField extends React.Component {
   getFiles() {
     if (this.core) {
       return this.core.getFiles().filter(file =>
-        [Status.CANCELLED, Status.SUCCESS, Status.QUEUED].indexOf(file.status) === -1
-      );
+        [Status.CANCELLED, Status.SUCCESS, Status.QUEUED].indexOf(file.status) === -1);
     }
     return [];
   }
@@ -178,9 +177,11 @@ class PhotoField extends React.Component {
   }
 
   render() {
-    const { columns, placeholder, label,
-      photoList, required, layout, locale,
-      maxUpload, readOnly, className, tip } = this.props;
+    const {
+      columns, placeholder, label,
+      photoList, required, locale,
+      maxUpload, readOnly, className, tip,
+    } = this.props;
     const paneProps = {
       columns,
       placeholder,
@@ -193,7 +194,6 @@ class PhotoField extends React.Component {
       tip,
       required,
       files: this.getFiles(),
-      layout,
       ref: (c) => { this.pane = c; },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
       onImagePreview: (index) => { this.handlePreview(index); },
@@ -216,32 +216,41 @@ PhotoField.defaultProps = {
   photoList: [],
   locale: 'zh-cn',
   autoPending: true,
+  icon: undefined,
+  corpId: undefined,
+  placeholder: undefined,
+  onDelete: undefined,
+  required: undefined,
+  name: undefined,
+  url: undefined,
+  className: undefined,
+  tip: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
 PhotoField.propTypes = {
-  icon: React.PropTypes.object,
-  columns: React.PropTypes.number,
-  multiple: React.PropTypes.bool,
-  corpId: React.PropTypes.string,
-  layout: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
-  locale: React.PropTypes.string,
-  label: React.PropTypes.string,
-  max: React.PropTypes.number,
-  maxUpload: React.PropTypes.number,
-  photoList: React.PropTypes.array,
-  readOnly: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  onDelete: React.PropTypes.func,
-  required: React.PropTypes.bool,
-  name: React.PropTypes.string,
-  url: React.PropTypes.string,
-  autoPending: React.PropTypes.bool,
-  className: React.PropTypes.string,
-  tip: React.PropTypes.string,
+  icon: PropTypes.object,
+  columns: PropTypes.number,
+  multiple: PropTypes.bool,
+  corpId: PropTypes.string,
+  layout: PropTypes.string,
+  placeholder: PropTypes.string,
+  locale: PropTypes.string,
+  label: PropTypes.string,
+  max: PropTypes.number,
+  maxUpload: PropTypes.number,
+  photoList: PropTypes.array,
+  readOnly: PropTypes.bool,
+  onChange: PropTypes.func,
+  onDelete: PropTypes.func,
+  required: PropTypes.bool,
+  name: PropTypes.string,
+  url: PropTypes.string,
+  autoPending: PropTypes.bool,
+  className: PropTypes.string,
+  tip: PropTypes.string,
 };
 
 PhotoField.displayName = 'PhotoField';
 
-module.exports = PhotoField;
+export default PhotoField;

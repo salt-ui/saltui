@@ -102,3 +102,11 @@ hairline(attribute, color)
     {attribute} 1px solid color
     .hairline &
         {attribute} 0.5px solid color
+
+fix-safe-area(prop, value = 0, direction = 'bottom')
+    if value != 0
+        {prop} unquote('calc(constant(safe-area-inset-' + direction + ') + ' + value + ')')
+        {prop} unquote('calc(env(safe-area-inset-' + direction + ') + ' + value + ')')
+    else
+        {prop} unquote('constant(safe-area-inset-' + direction + ')')
+        {prop} unquote('env(safe-area-inset-' + direction + ')')

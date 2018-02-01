@@ -45,7 +45,7 @@ class Demo extends React.Component {
   render() {
     const t = this;
     const props = {
-      locale: 'zh_CN',
+      locale: 'en_US',
       instantSearch: true,
       hasHistory: true,
       searchDelay: 450,

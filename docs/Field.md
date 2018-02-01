@@ -1,14 +1,6 @@
-# tingle-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-field)
+
 
 基础表单域
-
-![](http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/tingle-ui/tingle-ui/3ec396b0848940e8ef9d3b4a03889140/image.png)
-
-## Install
-
-```
-tnpm install @ali/tingle-field --save
-```
 
 ## Props
 
@@ -54,11 +46,11 @@ tnpm install @ali/tingle-field --save
 
 #### icon
 
-描述：传入 icon 可以显示右侧图标, icon 为 tingle-icon 的使用参数, 如 `{name: 'angle-right', fill: '#ccc'}`, 图标支持tingle-icon-souce里的全局图标,详见http://gitlab.alibaba-inc.com/tingle-ui/tingle-icon-source
+描述：传入 icon 可以显示右侧图标, icon 可以是 salt-icon 的图表实例，如 `import Eye from 'salt-icon/lib/Eye';`
 
-类型：Object
+类型：React Element
 
-默认：{}
+默认: 无
 
 必填：否
 

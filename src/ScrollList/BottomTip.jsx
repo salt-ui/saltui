@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class BottomTip extends React.Component {
   static displayName = 'BottomTip';
@@ -7,15 +8,16 @@ class BottomTip extends React.Component {
     icon: null,
   };
   static propTypes = {
-    icon: React.PropTypes.element,
-    text: React.PropTypes.string.isRequired,
+    icon: PropTypes.element,
+    text: PropTypes.string,
   };
 
   render() {
-    return (<div className="bottom-tip">
-      {this.props.icon}
-      <div className="text">{this.props.text}</div>
-    </div>);
+    return (
+      <div className="bottom-tip">
+        {this.props.icon}
+        <div className="text">{this.props.text}</div>
+      </div>);
   }
 }
 

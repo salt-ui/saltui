@@ -1,12 +1,10 @@
 import React from 'react';
-import Context from '../Context';
+import PropTypes from 'prop-types';
 import DelIcon from 'salt-icon/lib/MinusRound';
+import { prefixClass } from '../Context';
 
-
-const prefixClass = Context.prefixClass;
 
 class PhotoFieldItem extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -38,15 +36,16 @@ class PhotoFieldItem extends React.Component {
       <div className={prefixClass('PR FL photo-item')} style={style} ref={(c) => { this.root = c; }}>
         <img
           src="//gw.alicdn.com/tps/TB18GJsIpXXXXatXFXXXXXXXXXX.png"
-          preview={t.props.pic}
           onLoad={() => {
             this.setState({
               loaded: true,
             });
           }}
           className={prefixClass('photo-item-img')}
-          style={{ backgroundImage: `url(${t.props.url})` }} alt={t.props.name}
+          style={{ backgroundImage: `url(${t.props.url})` }}
+          alt={t.props.name}
           onClick={t.handlePreview.bind(t)}
+          role="presentation"
         />
         {
           !t.props.readOnly &&
@@ -60,13 +59,16 @@ class PhotoFieldItem extends React.Component {
 
 PhotoFieldItem.defaultProps = {
   readOnly: false,
+  index: undefined,
+  onPreviewImage: undefined,
+  onDeleteImage: undefined,
 };
 
 PhotoFieldItem.propTypes = {
-  index: React.PropTypes.number,
-  readOnly: React.PropTypes.bool,
-  onPreviewImage: React.PropTypes.func,
-  onDeleteImage: React.PropTypes.func,
+  index: PropTypes.number,
+  readOnly: PropTypes.bool,
+  onPreviewImage: PropTypes.func,
+  onDeleteImage: PropTypes.func,
 };
 
-module.exports = PhotoFieldItem;
+export default PhotoFieldItem;

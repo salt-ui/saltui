@@ -1,5 +1,6 @@
-const React = require('react');
-const classnames = require('classnames');
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 class Pagination extends React.Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class Pagination extends React.Component {
     this.state = {};
   }
 
-    /**
+  /**
      * 计算总页数
      */
   calcPage() {
@@ -39,8 +40,10 @@ class Pagination extends React.Component {
           className={classnames({
             goPrev: true,
             disable: current === 1,
-          })} onClick={t.handlePageChange.bind(t, -1)}
-        >上一页</div>
+          })}
+          onClick={t.handlePageChange.bind(t, -1)}
+        >上一页
+        </div>
         <div className="options">
           {`${current}/${totalPages}`}
         </div>
@@ -48,8 +51,10 @@ class Pagination extends React.Component {
           className={classnames({
             goNext: true,
             disable: current === totalPages,
-          })} onClick={t.handlePageChange.bind(t, 1)}
-        >下一页</div>
+          })}
+          onClick={t.handlePageChange.bind(t, 1)}
+        >下一页
+        </div>
       </div>);
   }
 }
@@ -62,12 +67,12 @@ Pagination.defaultProps = {
 };
 
 Pagination.propTypes = {
-  current: React.PropTypes.number,
-  total: React.PropTypes.number,
-  pageSize: React.PropTypes.number,
-  onChange: React.PropTypes.func,
+  current: PropTypes.number,
+  total: PropTypes.number,
+  pageSize: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
 Pagination.displayName = 'Pagination';
 
-module.exports = Pagination;
+export default Pagination;

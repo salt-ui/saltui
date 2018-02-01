@@ -21,17 +21,21 @@ class Demo extends React.Component {
     const now = new Date().getTime();// 1500353913176
 
     t.state = {
-      value1: '***',
+      value1: '',
       value2: {
-        value: '2017-7-20 12:42:44',
+        value: '',
         timeType: 'PM',
       },
-      value3: now, // '2017-7-20 12:42:44',
+      value3: {
+        value: '***',
+        timeType: 'PM',
+      },
+      value4: '2017-7-20 12:42:44', // '2017-7-20 12:42:44',
+      value5: '**ji',
     };
   }
 
   handleChange(field, value) {
-    console.log(value);
     this.setState({
       [field]: value,
     });
@@ -46,6 +50,30 @@ class Demo extends React.Component {
           <Group.List>
             <DatetimeField
               label="日期选择"
+              layout="v"
+              placeholder="请选择日期"
+              disabledDate={() => [
+                {
+                  start: new Date(2023, 10, 1), // 2023- 11 - 1
+                },
+                {
+                  start: new Date(2017, 0, 1),
+                  end: new Date(2017, 4, 31),
+                },
+                {
+                  start: new Date(2017, 5, 1),
+                  end: new Date(2017, 6, 31),
+                },
+                {
+                  start: new Date(2017, 7, 2),
+                  end: new Date(2017, 7, 30),
+                },
+                {
+                  start: new Date(2018, 7, 3),
+                  end: new Date(2018, 7, 20),
+                },
+                new Date(2013, 11, 1),
+              ]}
               onSelect={t.handleChange.bind(t, 'value1')}
               value={t.state.value1}
               columns={DatetimeField.YMD}
@@ -62,6 +90,19 @@ class Demo extends React.Component {
               onSelect={t.handleChange.bind(t, 'value3')}
               value={t.state.value3}
               columns={DatetimeField.YMDWHM}
+            />
+            <DatetimeField
+              label="时间选择"
+              readOnly
+              onSelect={t.handleChange.bind(t, 'value4')}
+              value={t.state.value4}
+              columns={DatetimeField.YMDWHM}
+            />
+            <DatetimeField
+              label="日期/上下午选择"
+              onSelect={t.handleChange.bind(t, 'value5')}
+              value={t.state.value5}
+              columns={DatetimeField.YMDT}
             />
           </Group.List>
         </Group>

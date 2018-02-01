@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
@@ -14,7 +15,9 @@ class Box extends React.Component {
   };
   render() {
     const t = this;
-    const { children, className, size, type, onClick } = t.props;
+    const {
+      children, className, size, type, onClick,
+    } = t.props;
     const prefixCls = Context.prefixClass('totop-wrap');
     const finalClass = classnames(prefixCls, `${prefixCls}-${size}`, `${prefixCls}-${type}`, className);
     return (

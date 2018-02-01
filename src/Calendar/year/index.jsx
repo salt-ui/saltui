@@ -1,16 +1,15 @@
 import React from 'react';
-import Context from '../../Context';
+import PropTypes from 'prop-types';
+import { prefixClass } from '../../Context';
 
-const prefixClass = Context.prefixClass;
 
 class YearCalendar extends React.Component {
-
   static propTypes = {
-    className: React.PropTypes.string,
-    locale: React.PropTypes.string, // 国际化语言
-    animationType: React.PropTypes.string,
-    singleMode: React.PropTypes.bool, // 是否是单选模式
-    onChange: React.PropTypes.func,
+    className: PropTypes.string,
+    locale: PropTypes.string, // 国际化语言
+    animationType: PropTypes.string,
+    singleMode: PropTypes.bool, // 是否是单选模式
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -18,6 +17,7 @@ class YearCalendar extends React.Component {
     animationType: 'slideLeft', //  slideUp | slideLeft
     singleMode: true,
     onChange: () => {},
+    className: undefined,
   };
 
   static displayName = 'YearCalendar';

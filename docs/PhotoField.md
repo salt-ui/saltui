@@ -1,4 +1,4 @@
-# tingle-photo-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-photo-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-photo-field)
+
 
 上传/查看图片的组件。
 
@@ -8,11 +8,6 @@
 
 ![image](https://img.alicdn.com/tfs/TB1L0TISXXXXXbDaXXXXXXXXXXX-350-240.png)
 
-## Install
-
-```
-tnpm install @ali/tingle-photo-field --save
-```
 
 ## Props
 
@@ -29,7 +24,7 @@ tnpm install @ali/tingle-photo-field --save
 |corpId              | string        |         |            | 钉钉公司 corpId，使用钉钉版本必填 |
 |name                | string        | 'file'  |            | 上传文件字段名称 |
 
-除此之外，该组件继承自 [tingle-field](https://salt-ui.github.io/components/tingle-field)，支持所有基类的属性。
+除此之外，该组件继承自 [Field](https://salt-ui.github.io/components/field)，支持所有基类的属性。
 
 ### photoList 的最小格式 (格式稍显麻烦，是为了 onChange 的返回值可以传回给 fileList)
 

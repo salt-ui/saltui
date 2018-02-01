@@ -7,15 +7,15 @@
  */
 
 import React from 'react';
+import Avatar from 'salt-avatar';
+import Icon from 'salt-icon';
 
 const avatarColors = ['#78C06E', '#3BC2B5', '#78919D', '#5EC9F6', '#F6BF26'];
 
 // avatarColors 在实际使用中是在 require 之前通过 `Context.setGlobal` 来全局设置:
 // Context.setGlobal({avatar: {colors: avatarColors}});
 // 这里为了展示默认的颜色, 所以使用 props 来设置。
-import Avatar from 'salt-avatar';
 
-import Icon from 'salt-icon';
 
 export default () => (
   <div>
@@ -67,18 +67,18 @@ export default () => (
       <h2>Size normal/large</h2>
       <div className="t-FBH">
         <Avatar name="Keyu Lin" />
-        <Avatar name="林科 宇" size={'large'} />
+        <Avatar name="林科 宇" size="large" />
       </div>
       <h2>自定义大小</h2>
       <div className="t-FBH">
         <Avatar name="tingle" size={60} />
         <Avatar name="天晟" size={80} style={{ fontSize: 16 }} />
-        <Avatar name="马天明" size={'100'} style={{ fontSize: 40 }} />
+        <Avatar name="马天明" size="100px" style={{ fontSize: 40 }} />
       </div>
       <h2>icon</h2>
       <div className="t-FBH">
         <Avatar icon={<Icon name="user" fill="#fff" height={20} width={20} />} />
-        <Avatar icon={<Icon name="star" fill="#fff" height={24} width={24} />} size={'large'} />
+        <Avatar icon={<Icon name="star" fill="#fff" height={24} width={24} />} size="large" />
       </div>
     </div>
   </div>

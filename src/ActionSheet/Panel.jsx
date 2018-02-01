@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import i18n from './i18n';
 
@@ -55,25 +56,26 @@ Panel.defaultProps = {
   options: [],
   onItemClick: () => {},
   onCancel: () => {},
+  destructiveButtonIndex: undefined,
 };
 Panel.propTypes = {
-  title: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
   ]),
-  message: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
+  message: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
   ]),
-  cancelButton: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
+  cancelButton: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
   ]),
-  onItemClick: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  destructiveButtonIndex: React.PropTypes.number,
-  prefixCls: React.PropTypes.string,
-  options: React.PropTypes.array,
-  locale: React.PropTypes.string,
+  onItemClick: PropTypes.func,
+  onCancel: PropTypes.func,
+  destructiveButtonIndex: PropTypes.number,
+  prefixCls: PropTypes.string,
+  options: PropTypes.array,
+  locale: PropTypes.string,
 };
 export default Panel;

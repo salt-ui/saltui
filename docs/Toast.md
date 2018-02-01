@@ -1,11 +1,8 @@
-# tingle-toast
+
 
 ## Toast 浮层
 
 目前包括 success/error/fail/loading/text 类型
-
-![image](http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/tingle-ui/tingle-toast/0d001c10ad2af65005cc88dcd4d0c5a9/image.png)
-
 ## Simple Usage
 
 ```
@@ -53,7 +50,7 @@ icon
 * 必填：否
 
 ```jsx
-import IconCheckRound from '@ali/tingle-icon/lib/CheckRound';
+import IconCheckRound from 'salt-icon/lib/CheckRound';
 
 Toast.show({
   type: 'success',

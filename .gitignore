@@ -24,5 +24,7 @@ sea-modules
 spm_modules
 .cache
 dist
-build
-dev/index.jsx
+/build
+/lib
+/dev/index.jsx
+package-lock.json 

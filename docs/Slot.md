@@ -1,4 +1,4 @@
-# tingle-slot
+
 
 ## Slot 老虎机滚轮选择器
 

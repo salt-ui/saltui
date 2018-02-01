@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./CitySelectField');
+export default from './CitySelectField';

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import i18n from './i18n';
 
@@ -18,6 +19,7 @@ const Panel = (props) => {
   const lang = i18n[locale];
   const multiLine = isTwoDimArray(options);
   const twoDimOptions = multiLine ? options : [options];
+  /* eslint-disable react/no-array-index-key */
   return (
     <div className={`${prefixCls}`}>
       {title ? <h3 className={`${prefixCls}-title`}>{title}</h3> : null}
@@ -54,6 +56,7 @@ const Panel = (props) => {
       </div>
     </div>
   );
+  /* eslint-enable react/no-array-index-key */
 };
 
 Panel.defaultProps = {
@@ -67,22 +70,22 @@ Panel.defaultProps = {
   onCancel: () => {},
 };
 Panel.propTypes = {
-  title: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
   ]),
-  message: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
+  message: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
   ]),
-  cancelButton: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
+  cancelButton: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
   ]),
-  onItemClick: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  prefixCls: React.PropTypes.string,
-  options: React.PropTypes.array,
-  locale: React.PropTypes.string,
+  onItemClick: PropTypes.func,
+  onCancel: PropTypes.func,
+  prefixCls: PropTypes.string,
+  options: PropTypes.array,
+  locale: PropTypes.string,
 };
 export default Panel;

@@ -54,14 +54,15 @@ class RateFieldDemo extends React.Component {
       <div>
         {
           t.state.data.map((props, index) =>
-            <RateField
+            (<RateField
               {...props}
+              layout="v"
               value={t.state[`value${index}`]}
               onChange={(value) => {
                 t.handleChange(index, value);
               }}
-            />
-          )
+              key={index}
+            />))
         }
       </div>
     );

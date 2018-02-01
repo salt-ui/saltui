@@ -1,8 +1,6 @@
-# tingle-text-field
+
 
 ## 单行文本输入框
-
-![](http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/tingle-ui/tingle-ui/87c52be385d64da873fccdc3a5a5e4af/image.png)
 
 ## Props
 
@@ -177,7 +175,7 @@ class Demo extends React.Component {
 
 ```
     <div>
-        <Group.Head className='tFS12 tLH2 tPT16'>文本框</Group.Head>
+        <Group.Head className='t-FS12 t-LH2 t-PT16'>文本框</Group.Head>
         <Group.List >
             <TextField label="姓名" placeholder="请输入" value={t.state.text} onChange={t.handleTextChange.bind(t)}/>
         </Group.List>

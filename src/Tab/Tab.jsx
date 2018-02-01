@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import RcTabs, { TabPane } from 'rc-tabs';
 import SwipeableTabContent from 'rc-tabs/lib/SwipeableTabContent';
@@ -31,6 +32,20 @@ const isChromeLargerThan55 = () => {
     return false;
   }
   return false;
+};
+
+// https://stackoverflow.com/questions/3485365/how-can-i-force-webkit-to-redraw-repaint-to-propagate-style-changes
+// in some case(maybe iOS 11 & dingtalk 4.2 ?),
+// table content cannot be shown if repaint is not called
+
+const forceRepaint = (node) => {
+  /* eslint-disable no-param-reassign */
+  /* eslint-disable no-unused-expressions */
+  node.style.display = 'none';
+  node.offsetHeight; // no need to store this anywhere, the reference is enough
+  node.style.display = '';
+  /* eslint-enable no-unused-expressions */
+  /* eslint-enable no-param-reassign */
 };
 
 export default class Tabs extends React.Component {
@@ -76,6 +91,11 @@ export default class Tabs extends React.Component {
     inkBarWidth: 20,
     onChange() {},
     onTabClick() {},
+    active: undefined,
+    defaultActive: undefined,
+    children: undefined,
+    className: undefined,
+    destroyInactiveTabPane: undefined,
   };
 
   constructor(props) {
@@ -83,6 +103,12 @@ export default class Tabs extends React.Component {
     this.state = {
       activeKey: getActiveKey(props),
     };
+  }
+
+  componentDidMount() {
+    if (this.root) {
+      forceRepaint(this.root);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -138,7 +164,7 @@ export default class Tabs extends React.Component {
   toggleAll(prompt) {
     const tabHeight = 42;
     const allTabsHeight = this.allTabs.offsetHeight;
-    const classList = this.root.classList;
+    const { classList } = this.root;
 
     const arrow = this.arrowBtnWrap.querySelector('.arrow-icon');
     this.arrowRotate = this.arrowRotate || 0;
@@ -208,7 +234,7 @@ export default class Tabs extends React.Component {
   renderAllBtn(fix) {
     const bottom = fix === 'fix-bottom';
     const BottomIcon = bottom ? Top : Bottom;
-
+    /* eslint-disable react/no-array-index-key */
     return (
       <div className={prefixClass('tab-all-wrap')}>
         <div
@@ -244,8 +270,9 @@ export default class Tabs extends React.Component {
                 onClick={(e) => { this.handleItemClick(item.key, item.datas, e); }}
                 className={classnames(prefixClass('tab-all-item'), {
                   [prefixClass('tab-all-item__disabled')]: `${item.key}` === `${this.state.activeKey}`,
-                  [prefixClass('tab-all-item-row-last')]: i % 3 == 2,
+                  [prefixClass('tab-all-item-row-last')]: i % 3 === 2,
                 })}
+                role="menuitem"
               >
                 {item.title}
               </li>
@@ -254,6 +281,7 @@ export default class Tabs extends React.Component {
         </div>
       </div>
     );
+    /* eslint-enable react/no-array-index-key */
   }
 
   render() {

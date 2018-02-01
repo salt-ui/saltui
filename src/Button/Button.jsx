@@ -6,13 +6,13 @@
 * All rights reserved.
 */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import LoadingRound from 'salt-icon/lib/LoadingRound';
 import { prefixClass } from './utils';
 import TextButton from './TextButton';
 
 class Button extends React.Component {
-
   constructor(props) {
     super(props);
     this.onClick = this.handleClick.bind(this);
@@ -97,15 +97,15 @@ Button.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Button.propTypes = {
-  className: React.PropTypes.string,
-  style: React.PropTypes.object,
-  size: React.PropTypes.oneOf(['medium', 'large', 'small']),
-  type: React.PropTypes.oneOf(['primary', 'secondary', 'minor', 'danger']),
-  onClick: React.PropTypes.func,
-  children: React.PropTypes.node,
-  display: React.PropTypes.oneOf(['inline', 'normal', 'banner']),
-  loading: React.PropTypes.bool,
-  disabled: React.PropTypes.bool,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  size: PropTypes.oneOf(['medium', 'large', 'small']),
+  type: PropTypes.oneOf(['primary', 'secondary', 'minor', 'danger']),
+  onClick: PropTypes.func,
+  children: PropTypes.node,
+  display: PropTypes.oneOf(['inline', 'normal', 'banner']),
+  loading: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 Button.displayName = 'Button';

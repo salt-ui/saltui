@@ -1,24 +1,4 @@
-# tingle-progress [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-progress.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-progress)
-Progress Component for Tingle
-
 ![](https://img.alicdn.com/tps/TB1PK1UQXXXXXcxXVXXXXXXXXXX-607-117.png)
-
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 

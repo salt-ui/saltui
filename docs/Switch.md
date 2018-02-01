@@ -1,6 +1,6 @@
-# tingle-switch
 
-## tingle-switch 切换开关
+
+#
 
 <img src="https://img.alicdn.com/tps/TB1dJjWJpXXXXazXFXXXXXXXXXX-750-1254.png" width="375"/>
 

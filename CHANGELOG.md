@@ -1,3 +1,154 @@
+## 3.5.18 / 2018-01-31
+
+* `changed`: Dialog's z-index is changed to be equal to Toast/Popup's
+
+## 3.5.17 / 2018-01-31
+
+* `fix`: Gallery will slide to the item whose index is `props.active` if re-render
+
+
+## 3.5.16 / 2018-01-30
+
+* `feat` TextField use multiline in readOnly mode
+
+## 3.5.15 / 2018-01-30
+
+* `feat`: unmount Toast when hiden
+* `feat`: SearchBar will cancel another `doSeacrh` if keycode is enter
+* `fix`: Datetime slot will go to the first value if disabledDate is set
+* `fix`: Datetime Feb should only have 29 days at most.
+
+## 3.5.14 / 2018-01-26
+
+* `fix`: Field label cannot show 6 chinese words in a line in iPhone
+* `style`: change vertical field-box layout
+
+## 3.5.13 / 2018-01-25
+
+* `feat`: DateTimeField only support horizontal layout
+* `fix`: DateTimeField Icon
+
+## 3.5.12 / 2018-01-24
+
+* `feat`: Some Field (Select, NumberPicker, Rate, CitySelect, Switch) which do not fit vertical layout only support horizontal layout
+
+* `style` adjust field vertical layout
+
+## 3.5.10 / 2018-01-24
+
+* `feat` change readOnly text color to `dark-2`
+
+## 3.5.9 / 2018-01-23
+
+* `feat` TextareaField hide scrollBar
+
+## 3.5.8 / 2018-01-23
+* `feat` PhotoField support placeholder
+* `feat` EmployeeField hide icon in readOnly mode
+* `feat` EmployeeField & PhotoField only support horizontal layout
+
+## 3.5.5
+* `fix` group wrong style
+* `feat` generate atom css class like `t-color-brand-primary` 
+
+## 3.5.4
+* `fix`: none-uniform readonly color
+* `fix`: none-uniform placeholder color
+
+## 3.5.3
+* `fix`: employee field placeholder style
+
+## 3.5.2
+* `fix`: Context Mixin error
+
+## 3.5.1
+* `fix`: TabBar border top style
+
+## 3.5.0
+* `fix`: Field Style improvement
+
+## 3.4.6 / 2018-01-16
+* `fix`: Datetime output timestamp should be set `0h:0m:0s`
+
+## 3.4.5 / 2018-01-10
+* `fix`: incorrect DateTime getOptions output
+
+## 3.4.4 / 2018-01-08
+* `fix`: DateTimeField display value bug
+
+## 3.4.3 / 2018-01-08
+* `fix`: PhotoFieldItem filename
+
+## 3.4.2 / 2018-01-08
+
+* `fix`: DateTime duplicate value calculation
+* `feat`: React 15.x compatible
+
+## 3.4.1. / 2018-01-05
+
+* `fix`: missing Datetime method
+
+## 3.4.0 / 2018-01-05
+
+* `feat`: Datetime support prop `disabledDate`
+
+## 3.3.6 / 2018-01-03
+
+* `feat` React 15.x compatible for ActionSheet, Button, Avatar, Badge, Boxs, Calendar, Group
+* `fix`: SelectField value is not handled correctly in `componentWillReceiveProps`
+
+## 3.3.5 / 2017-12-28
+
+* `change`: all commonjs module are transformed to es6 module
+* `fix`: RadioField check icon style
+
+
+## 3.3.4 / 2017-12-27
+
+* `fix`: vendor prefix typo in Badge
+
+## 3.3.3 / 2017-12-27
+
+* `fix`: SearchBar can doSearch when value is empty string.
+
+## 3.3.2 / 2017-12-20
+
+* `fix`: Slot lastChoose fail to be updated after props.value change.
+
+## 3.3.1 / 2017-12-20
+
+* `fix`: Slot.formatDataValue fail to return formatted value
+
+## 3.3.0 / 2017-12-18
+
+* `feat`: TabBar iphoneX compatible 
+* `feat`: Tab force browser repaint when component mount
+
+## 3.2.0 / 2017-12-18
+
+* `feat`: Crumb support new prop `separator`
+
+## 3.1.33 / 2017-12-15
+
+* `fix`: scrolling to the window's end when toast is shown.
+
+## 3.1.32 / 2017-12-14
+
+* `fix`: scrolling to the window's end when popup is shown.
+
+## 3.1.30 / 2017-12-08
+
+* `fix`: SelectField Icon missing
+* `feat`: SearchBar support `exitAfterEnter`
+
+## 3.1.29 / 2017-12-04
+
+* `doc`: remove tingle keyword from docs
+
+## 3.1.28 / 2017-12-01
+
+* `fix`: cancel button style bug if locale is en_US
+
 ## 3.1.26 / 2017-12-01
 
 * `feat`: remove input change trim

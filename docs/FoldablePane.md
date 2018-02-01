@@ -1,22 +1,6 @@
-# tingle-foldable-pane [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-foldable-pane.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-foldable-pane)
+
 
 折叠面板组件。
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 

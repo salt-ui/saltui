@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from 'salt-icon';
 import Context from '../Context';
@@ -51,7 +51,6 @@ class CheckboxField extends React.Component {
     t.state = {
       selectedText: '',
     };
-    t.handleCancel = t.handleCancel.bind(t);
     t.handleClick = t.handleClick.bind(t);
     t.handleConfirm = t.handleConfirm.bind(t);
   }
@@ -71,7 +70,8 @@ class CheckboxField extends React.Component {
         if (this.props.mode === 'list') {
           selectedText = selectedText + this.props.titleBreakStr + item.text;
         } else {
-          selectedText = selectedText + this.props.titleBreakStr + (item.slotText ? item.slotText : item.text);
+          selectedText =
+          selectedText + this.props.titleBreakStr + (item.slotText ? item.slotText : item.text);
         }
       }
     });
@@ -95,8 +95,8 @@ class CheckboxField extends React.Component {
 
     return data;
   }
-
-  clickAction(value, item, index, data) {
+  /* eslint-disable no-param-reassign */
+  clickAction(value, item) {
     const t = this;
     const { onChange } = t.props;
     const { disable } = item;
@@ -104,14 +104,18 @@ class CheckboxField extends React.Component {
       return;
     }
     item.checked = !item.checked;
-    onChange && onChange(t.getData());
+    if (onChange) {
+      onChange(t.getData());
+    }
     t.forceUpdate();
   }
-  handleClick() {
-    !this.props.readOnly && this.slot.show();
-  }
+  /* eslint-enable no-param-reassign */
 
-  handleCancel() {}
+  handleClick() {
+    if (!this.props.readOnly) {
+      this.slot.show();
+    }
+  }
 
   handleConfirm(data) {
     this.state.value = data;
@@ -122,7 +126,7 @@ class CheckboxField extends React.Component {
 
   renderList() {
     const t = this;
-    const props = t.props;
+    const { props } = t;
     const {
       className, data: checkboxArray, groupListArgument, groupListFlag, label, iconPosition,
     } = props;
@@ -135,8 +139,8 @@ class CheckboxField extends React.Component {
         fill="red"
       />
     );
-
-    const checkboxArrayComponent = checkboxArray.map((item, index, data) => {
+    /* eslint-disable react/no-array-index-key */
+    const checkboxArrayComponent = checkboxArray.map((item, index) => {
       const { checked, disable, value } = item;
       const finalItemJSX = (
         <div
@@ -151,10 +155,9 @@ class CheckboxField extends React.Component {
           }
           <div
             ref={`content${index}`}
-            className={classnames(
-              prefixClass('checkbox-field-content FB1'), { disable },
-            )}
-          >{item.content || item.text}</div>
+            className={classnames(prefixClass('checkbox-field-content FB1'), { disable })}
+          >{item.content || item.text}
+          </div>
           {
             iconPosition === 'right' && renderIcon(checked, disable, 'right')
           }
@@ -168,6 +171,7 @@ class CheckboxField extends React.Component {
         finalItemJSX
       );
     });
+    /* eslint-enable react/no-array-index-key */
 
 
     let finalJSX = (
@@ -283,19 +287,19 @@ CheckboxField.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 CheckboxField.propTypes = {
-  className: React.PropTypes.string,
-  mode: React.PropTypes.string,
-  readOnly: React.PropTypes.bool,
-  label: React.PropTypes.string,
-  titleBreakStr: React.PropTypes.string,
-  data: React.PropTypes.array,
-  onChange: React.PropTypes.func,
-  placeholder: React.PropTypes.string,
-  maskCloseable: React.PropTypes.bool,
-  groupListFlag: React.PropTypes.bool,
-  groupListArgument: React.PropTypes.object,
-  required: React.PropTypes.bool,
-  iconPosition: React.PropTypes.string,
+  className: PropTypes.string,
+  mode: PropTypes.string,
+  readOnly: PropTypes.bool,
+  label: PropTypes.string,
+  titleBreakStr: PropTypes.string,
+  data: PropTypes.array,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  maskCloseable: PropTypes.bool,
+  groupListFlag: PropTypes.bool,
+  groupListArgument: PropTypes.object,
+  required: PropTypes.bool,
+  iconPosition: PropTypes.string,
 };
 
 CheckboxField.displayName = 'CheckboxField';

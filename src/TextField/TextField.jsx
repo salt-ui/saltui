@@ -5,16 +5,16 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Field = require('../Field');
-const CrossRound = require('salt-icon/lib/CrossRound');
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import CrossRound from 'salt-icon/lib/CrossRound';
+import Context, { prefixClass } from '../Context';
+import { renderRight, renderLeft } from './utils';
+import Field from '../Field';
 
-const prefixClass = Context.prefixClass;
 
 class TextField extends React.Component {
-
   getAddons() {
     const addons = {};
     React.Children.forEach(this.props.children, (child) => {
@@ -48,30 +48,30 @@ class TextField extends React.Component {
 
   renderInput() {
     const t = this;
+    const { readOnly } = t.props;
     return (
       <div className={prefixClass('text-field-content-main')}>
         <div
           className={classnames(prefixClass('omit text-field-placeholder'), {
             [prefixClass('DN')]: t.props.value !== '',
           })}
-        >{t.props.placeholder}</div>
-        <input
-          className={prefixClass('text-field-input')}
-          type={t.props.type} value={t.props.value} readOnly={t.props.readOnly}
-          onChange={(e) => { t.handleChange(e); }}
-          onFocus={(e) => { t.handleFocus(e); }}
-          onBlur={(e) => { t.handleBlur(e); }}
-        />
+        >{t.props.placeholder}
+        </div>
+        {!readOnly ? (
+          <input
+            className={prefixClass('text-field-input')}
+            type={t.props.type}
+            value={t.props.value}
+            readOnly={t.props.readOnly}
+            onChange={(e) => { t.handleChange(e); }}
+            onFocus={(e) => { t.handleFocus(e); }}
+            onBlur={(e) => { t.handleBlur(e); }}
+          />
+        ) : <span>{t.props.value}</span>}
       </div>
     );
   }
 
-  renderLeft(addons) {
-    if (addons.left) {
-      return addons.left;
-    }
-    return null;
-  }
 
   renderClear(addons) {
     const { value, allowClear, readOnly } = this.props;
@@ -88,15 +88,6 @@ class TextField extends React.Component {
     return null;
   }
 
-  renderRight(addons) {
-    if (addons.right) {
-      return addons.right;
-    }
-    if (addons.count) {
-      return addons.count;
-    }
-    return null;
-  }
 
   render() {
     const t = this;
@@ -104,15 +95,16 @@ class TextField extends React.Component {
     return (
       <Field
         {...t.props}
+        multiLine={t.props.readOnly}
         className={classnames(prefixClass('text-field'), t.props.className, {
           readonly: t.props.readOnly,
         })}
       >
         <div className={prefixClass('text-field-content')}>
-          {t.renderLeft(addons)}
+          {renderLeft(addons)}
           {t.renderInput()}
           {t.renderClear(addons)}
-          {t.renderRight(addons)}
+          {renderRight(addons)}
         </div>
       </Field>
     );
@@ -131,23 +123,24 @@ TextField.defaultProps = {
   type: 'text',
   value: '',
   allowClear: true,
+  children: undefined,
 };
 
 TextField.propTypes = {
-  className: React.PropTypes.string,
-  filter: React.PropTypes.func,
-  label: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  onFocus: React.PropTypes.func,
-  onBlur: React.PropTypes.func,
-  placeholder: React.PropTypes.string,
-  readOnly: React.PropTypes.bool,
-  type: React.PropTypes.string,
-  value: React.PropTypes.string,
-  children: React.PropTypes.any,
-  allowClear: React.PropTypes.bool,
+  className: PropTypes.string,
+  filter: PropTypes.func,
+  label: PropTypes.string,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
+  type: PropTypes.string,
+  value: PropTypes.string,
+  children: PropTypes.any,
+  allowClear: PropTypes.bool,
 };
 
 TextField.displayName = 'TextField';
 
-module.exports = TextField;
+export default TextField;

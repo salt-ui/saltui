@@ -9,7 +9,9 @@
 ## Simple Usage
 
 ```js
-const {HBox, VBox, Box} = require('@ali/tingle-box');
+import { Boxs } from 'saltui';
+
+const { HBox, VBox, Box } = Boxs;
 
 <HBox vAlign="center">
     <Box>60 * 60</Box>

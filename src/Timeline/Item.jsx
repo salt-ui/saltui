@@ -5,30 +5,22 @@
  * Copyright 2014-2015, Tingle Team, Alinw.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import Context from '../Context';
 
+const genIcon = (icon) => {
+  if (React.isValidElement(icon) && icon.type && icon.type.displayName === 'Icon') {
+    return React.cloneElement(icon, {
+      width: 14,
+      height: 14,
+      fill: '#fff',
+    });
+  }
+  return icon;
+};
 class Item extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
-  genIcon(icon) {
-    if (React.isValidElement(icon) && icon.type && icon.type.displayName === 'Icon') {
-      return React.cloneElement(icon, {
-        width: 14,
-        height: 14,
-        fill: '#fff',
-      });
-    }
-    return icon;
-  }
-
   render() {
     const t = this;
     const tailBackground = {
@@ -38,14 +30,15 @@ class Item extends React.Component {
       background: t.props.color,
     };
     if (t.props.active) {
-      dotStyle['border-color'] = t.props.color;
+      dotStyle.borderColor = t.props.color;
     }
     return (
       <div
         className={classnames(Context.prefixClass('timeline-item'), {
           [t.props.className]: !!t.props.className,
           active: t.props.active,
-        })} key={t.props.index}
+        })}
+        key={t.props.index}
       >
         <div className={classnames(Context.prefixClass('timeline-header'))}>
           {
@@ -56,7 +49,7 @@ class Item extends React.Component {
                     <img
                       src={t.props.icon}
                       alt=""
-                    /> : t.genIcon(t.props.icon)
+                    /> : genIcon(t.props.icon)
                 }
               </div> :
               <div
@@ -94,24 +87,32 @@ class Item extends React.Component {
 
 Item.displayName = 'Timeline.Item';
 
-const indentType = React.PropTypes.oneOfType([
-  React.PropTypes.number,
-  React.PropTypes.string,
-  React.PropTypes.array,
-  React.PropTypes.object,
+const indentType = PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.string,
+  PropTypes.array,
+  PropTypes.object,
 ]);
 
 Item.propTypes = {
-  className: React.PropTypes.string,
+  className: PropTypes.string,
   icon: indentType,
   index: indentType,
-  last: React.PropTypes.bool,
-  active: React.PropTypes.bool,
+  last: PropTypes.bool,
+  active: PropTypes.bool,
   title: indentType,
   description: indentType,
 };
 
-Item.defaultProps = {};
+Item.defaultProps = {
+  className: undefined,
+  icon: undefined,
+  index: undefined,
+  last: undefined,
+  active: undefined,
+  title: undefined,
+  description: undefined,
+};
 
-module.exports = Item;
+export default Item;
 

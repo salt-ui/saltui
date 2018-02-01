@@ -46,9 +46,9 @@ class PopoverDemo extends React.Component {
         onClick={({ key }) => { alert(key); }}
         multiple
       >
-        <MenuItem title="这是操作1" key="1" />
-        <MenuItem title="这是操作1-2" key="1-2" />
-        <MenuItem title="这是操作3" key="3" />
+        <MenuItem title="这是操作1" key="1" keyNew="1" />
+        <MenuItem title="这是操作1-2" key="1-2" keyNew="1-2" />
+        <MenuItem title="这是操作3" key="3" keyNew="3" />
       </Menu>
     );
     const menuHaveIcon = (

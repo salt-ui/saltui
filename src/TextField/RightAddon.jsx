@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { prefixClass } from '../Context';
 
 const RightAddon = props => (
@@ -12,11 +13,11 @@ const RightAddon = props => (
   </div>
 );
 
-RightAddon.defaultProps = {};
+RightAddon.defaultProps = {
+  children: undefined,
+};
 RightAddon.propTypes = {
-  focus: React.PropTypes.bool,
-  hover: React.PropTypes.bool,
-  children: React.PropTypes.any,
+  children: PropTypes.any,
 };
 RightAddon.displayName = 'RightAddon';
 

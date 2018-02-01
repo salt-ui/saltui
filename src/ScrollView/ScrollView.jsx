@@ -5,7 +5,8 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import _throttle from 'lodash/throttle';
 import Context from '../Context';
@@ -19,6 +20,8 @@ class ScrollView extends React.Component {
     refreshControlOptions: {},
     infiniteScroll: false,
     infiniteScrollOptions: {},
+    className: undefined,
+    children: undefined,
   };
 
   static propTypes = {

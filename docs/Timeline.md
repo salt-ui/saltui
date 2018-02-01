@@ -1,23 +1,7 @@
-# tingle-timeline [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-timeline.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-timeline)
+
 用时间线来记录时间的过程和结果，方便查看与追溯
 
 ![img](https://img.alicdn.com/tfs/TB1lqmzRFXXXXc0aXXXXXXXXXXX-750-1334.png)
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 ```javascript

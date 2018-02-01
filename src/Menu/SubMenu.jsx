@@ -5,7 +5,8 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Animate from 'rc-animate';
 import DirectionBottomIcon from 'salt-icon/lib/DirectionBottom';
@@ -27,8 +28,10 @@ class Submenu extends Component {
    */
   onClickdMenu(e) {
     e.stopPropagation();
-    const { childrenLen, pos, disabled, renderedData, selectedKeys,
-      multiple, onSelect, value, onDeselect, onClick } = this.props;
+    const {
+      childrenLen, pos, disabled, renderedData, selectedKeys,
+      multiple, onSelect, value, onDeselect, onClick,
+    } = this.props;
     if (disabled) {
       return;
     }
@@ -59,13 +62,17 @@ class Submenu extends Component {
         onSelect({ item: this, key, selectedKeys: selectedKeysBak });
       }
 
-      onClick({ key, keyPath, item: this, domEvent: e });
+      onClick({
+        key, keyPath, item: this, domEvent: e,
+      });
     }
   }
 
   render() {
-    const { children, childrenLen, prefixCls, title, level, disabled,
-      isLastLeft, value, selectedKeys } = this.props;
+    const {
+      children, childrenLen, prefixCls, title, level, disabled,
+      isLastLeft, value, selectedKeys,
+    } = this.props;
 
     const { expand } = this.state;
     const subMenuPrefixCls = `${prefixCls}-submenu`;
@@ -104,18 +111,19 @@ class Submenu extends Component {
       paddingRight: `${16 + offset + (hasIcon ? 21 : 0)}px`,
     };
 
-    const renderContent = (<div>
-      <span className={`${subMenuPrefixCls}-title`} style={style}>
-        <span className={`${subMenuPrefixCls}-title-inner`}>{title}</span>
-      </span>
-      {childrenLen > 0 &&
+    const renderContent = (
+      <div>
+        <span className={`${subMenuPrefixCls}-title`} style={style}>
+          <span className={`${subMenuPrefixCls}-title-inner`}>{title}</span>
+        </span>
+        {childrenLen > 0 &&
         <DirectionBottomIcon
           className={classnames(iconCls)}
           width={18}
           height={18}
         />
       }
-      {
+        {
         childrenLen < 1 && selectedKeys.indexOf(value) > -1 &&
         <CheckIcon
           className={classnames(selectIconCls)}
@@ -123,12 +131,13 @@ class Submenu extends Component {
           height={20}
         />
       }
-      {level > 1 && !(isLastLeft && !expand) && <div
-        style={{
+        {level > 1 && !(isLastLeft && !expand) && <div
+          style={{
           left: `${offset}px`,
-        }} className={`${subMenuPrefixCls}-line`}
-      />}
-    </div>);
+        }}
+          className={`${subMenuPrefixCls}-line`}
+        />}
+      </div>);
     return (
       <li className={classnames(liCls)}>
         <div className={classnames(itemCls)} onClick={this.onClickdMenu} >
@@ -169,6 +178,9 @@ Submenu.propTypes = {
   renderedData: PropTypes.object,
   onSelect: PropTypes.func,
   onDeselect: PropTypes.func,
+  target: PropTypes.string,
+  href: PropTypes.string,
+  expandPos: PropTypes.array,
 };
 
 
@@ -177,6 +189,21 @@ Submenu.defaultProps = {
   href: '',
   disabled: false,
   expandPos: [],
+  children: undefined,
+  childrenLen: undefined,
+  pos: undefined,
+  level: undefined,
+  title: undefined,
+  multiple: undefined,
+  isLastLeft: undefined,
+  prefixCls: undefined,
+  onClick: undefined,
+  value: undefined,
+  selectedKeys: undefined,
+  openKeys: undefined,
+  renderedData: undefined,
+  onSelect: undefined,
+  onDeselect: undefined,
 };
 
 export default Submenu;

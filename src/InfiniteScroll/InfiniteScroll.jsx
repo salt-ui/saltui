@@ -6,14 +6,16 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import IconLoading from 'salt-icon/lib/Loading';
 import _throttle from 'lodash/throttle';
 import Context from '../Context';
-import IconLoading from 'salt-icon/lib/Loading';
+
 
 class InfiniteScroll extends React.Component {
-
   static defaultProps = {
+    children: undefined,
     loading: false,
     throttle: 250,
     loadingIcon: null,
@@ -33,20 +35,20 @@ class InfiniteScroll extends React.Component {
   };
 
   static propTypes = {
-    loading: React.PropTypes.bool,
-    threshold: React.PropTypes.number,
-    throttle: React.PropTypes.number,
-    showIcon: React.PropTypes.bool,
-    showText: React.PropTypes.bool,
-    loadingIcon: React.PropTypes.element,
-    loadingText: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
+    loading: PropTypes.bool,
+    threshold: PropTypes.number,
+    throttle: PropTypes.number,
+    showIcon: PropTypes.bool,
+    showText: PropTypes.bool,
+    loadingIcon: PropTypes.element,
+    loadingText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
     ]),
-    onLoad: React.PropTypes.func,
-    onScroll: React.PropTypes.func,
-    children: React.PropTypes.element,
-    getDOMNode: React.PropTypes.func,
+    onLoad: PropTypes.func,
+    onScroll: PropTypes.func,
+    children: PropTypes.element,
+    getDOMNode: PropTypes.func,
   };
 
   constructor(props) {
@@ -80,13 +82,14 @@ class InfiniteScroll extends React.Component {
       textElement = <div className="loading-text" key="text">{props.loadingText}</div>;
     }
 
-    return (<div
-      key="scrollArea"
-      className={classnames(Context.prefixClass('infinity-scroll'), { loading: props.loading })}
-    >
-      {iconElement}
-      {textElement}
-    </div>);
+    return (
+      <div
+        key="scrollArea"
+        className={classnames(Context.prefixClass('infinity-scroll'), { loading: props.loading })}
+      >
+        {iconElement}
+        {textElement}
+      </div>);
   }
 
   tryEmitScrollEvent() {

@@ -1,22 +1,30 @@
 module.exports = {
     "extends": "airbnb",
+    "parser": "babel-eslint",
     "plugins": [
-        "react",
-        "import"
+        "react"
     ],
     "env": {
-        "es6": true
+        "browser": true,
+        "mocha": true
     },
-    "parser": "babel-eslint",
     "rules": {
         "import/no-extraneous-dependencies": "off",
-        "react/prefer-stateless-function": "off",
-        "import/no-unresolved": "off",
-        "import/extensions": "off",
+        "no-underscore-dangle": "off",
+        "no-plusplus": [
+            "error",
+            {
+                "allowForLoopAfterthoughts": true
+            }
+        ],
+        "react/no-unused-state": "off",
+        "react/jsx-no-bind": "off",
+        "react/no-unused-prop-types": "off",
         "react/forbid-prop-types": "off",
+        "react/no-did-mount-set-state": "off",
+        "react/prefer-stateless-function": "off",
+        "jsx-a11y/label-has-for": "off",
         "jsx-a11y/no-static-element-interactions": "off",
-        "jsx-a11y/no-noninteractive-element-interactions": "off",
-        "jsx-a11y/click-events-have-key-events": "off",
-        "react/no-unused-prop-types": "off"
+        "jsx-a11y/click-events-have-key-events": "off"
     }
 };

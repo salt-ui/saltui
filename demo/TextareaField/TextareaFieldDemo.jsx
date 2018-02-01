@@ -40,10 +40,11 @@ class Demo extends React.Component {
           <TextareaField
             layout="h"
             label="俩字"
-            minRows={2}
+            minRows={1}
             maxRows={5}
             placeholder="设置2个行高"
-            value={t.state.t2}
+            readOnly
+            value={t.state.t1}
             tip={<p>这里有个tip<a href="http://www.taobao.com" target="_blank" rel="noopener noreferrer">这是个链接</a></p>}
             onChange={(value) => { t.handleChange('t2', value); }}
           />
@@ -69,6 +70,7 @@ class Demo extends React.Component {
           <TextareaField
             label="计数器"
             value={t.state.t2}
+            readOnly
             onChange={(value) => { t.handleChange('t2', value); }}
           >
             <Count total={300} length={t.state.t2.length} />

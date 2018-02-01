@@ -5,11 +5,13 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const Slot = require('../Slot');
-const Field = require('../Field');
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import AngleRight from 'salt-icon/lib/AngleRight';
+import Context from '../Context';
+import Slot from '../Slot';
+import Field from '../Field';
 
 const isNil = value => (value === null || value === undefined);
 
@@ -17,7 +19,7 @@ class SelectField extends React.Component {
   constructor(props) {
     super(props);
     const t = this;
-    const value = props.value;
+    const { value } = props;
     t.state = {
       value: isNil(value) ? value : [value],
       confirmedValue: [value],
@@ -27,9 +29,9 @@ class SelectField extends React.Component {
   // 外部变更选中值
   componentWillReceiveProps(nextProps) {
     const t = this;
-    const value = nextProps.value;
+    const { value } = nextProps;
     t.setState({
-      value: [value],
+      value: isNil(value) ? value : [value],
       confirmedValue: [value],
     });
   }
@@ -60,16 +62,19 @@ class SelectField extends React.Component {
 
   render() {
     const t = this;
-    const icon = t.props.readOnly ? null : {
-      className: Context.prefixClass('select-field-icon'),
-      name: 'angle-right',
-      width: 26,
-      height: 26,
-      onClick: t.handleClick.bind(t),
-    };
+    const icon = !t.props.readOnly ? (
+      <AngleRight
+        className={Context.prefixClass('select-field-icon')}
+        width={26}
+        height={26}
+        onClick={t.handleClick.bind(t)}
+      />
+    ) : null;
     return (
       <Field
-        {...t.props} icon={icon}
+        {...t.props}
+        layout="h"
+        icon={icon}
         className={classnames(Context.prefixClass('select-field'), {
           [t.props.className]: !!t.props.className,
         })}
@@ -81,7 +86,8 @@ class SelectField extends React.Component {
               className={classnames(Context.prefixClass('FB1 omit'), {
                 [Context.prefixClass('select-field-readonly')]: !!t.props.readOnly,
               })}
-            >{t.props.formatter(t.state.confirmedValue[0])}</span>
+            >{t.props.formatter(t.state.confirmedValue[0])}
+            </span>
           </div>
         </div>
         <Slot
@@ -101,25 +107,26 @@ class SelectField extends React.Component {
 }
 
 SelectField.defaultProps = {
-  options: [],
   formatter: value => (value ? value.text : ''),
   onSelect() {},
   readOnly: false,
   placeholder: '',
+  className: undefined,
+  value: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
 SelectField.propTypes = {
-  className: React.PropTypes.string,
-  label: React.PropTypes.string.isRequired,
-  options: React.PropTypes.array.isRequired,
-  value: React.PropTypes.object,
-  formatter: React.PropTypes.func,
-  onSelect: React.PropTypes.func,
-  readOnly: React.PropTypes.bool,
-  placeholder: React.PropTypes.string,
+  className: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  value: PropTypes.object,
+  formatter: PropTypes.func,
+  onSelect: PropTypes.func,
+  readOnly: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 SelectField.displayName = 'SelectField';
 
-module.exports = SelectField;
+export default SelectField;

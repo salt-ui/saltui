@@ -6,10 +6,11 @@
  * All rights reserved.
  */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import assign from 'object-assign';
 import Context from '../Context';
-import classnames from 'classnames';
 import Submenu from './SubMenu';
 import MenuItem from './MenuItem';
 import { toArray, loopChildren } from './utils';
@@ -17,8 +18,10 @@ import { toArray, loopChildren } from './utils';
 
 class Menu extends Component {
   render() {
-    const { style, selectedKeys, defaultSelectedKeys, multiple,
-      openKeys, defaultOpenKeys, onClick, onSelect, onDeselect, className } = this.props;
+    const {
+      style, selectedKeys, defaultSelectedKeys, multiple,
+      openKeys, defaultOpenKeys, onClick, onSelect, onDeselect, className,
+    } = this.props;
     const prefixCls = Context.prefixClass('menu') || 't-menu';
     const renderedData = {};
     let options = [];
@@ -56,9 +59,10 @@ class Menu extends Component {
 
         delete newprops.children;
         if (childrenLen > 0) {
-          return (<Submenu {...newprops} {...allProps} key={item.key}>
-            {recursive(item.children, pos, newprops.isLastLeft)}
-          </Submenu>);
+          return (
+            <Submenu {...newprops} {...allProps} key={item.key}>
+              {recursive(item.children, pos, newprops.isLastLeft)}
+            </Submenu>);
         }
         return <Submenu {...newprops} {...allProps} key={item.key} />;
       });
@@ -90,6 +94,11 @@ Menu.defaultProps = {
   onDeselect: () => { },
   multiple: false,
   style: {},
+  className: undefined,
+  selectedKeys: undefined,
+  openKeys: undefined,
+  defaultOpenKeys: undefined,
+  children: undefined,
 };
 
 Menu.propTypes = {

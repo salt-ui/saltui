@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import Dialog from 'rc-dialog';
@@ -76,7 +77,7 @@ class Toast extends React.Component {
 
   renderIcon() {
     const Icon = this.getIconComp();
-    const icon = this.props.icon;
+    const { icon } = this.props;
     if (!icon && !Icon) {
       return null;
     }
@@ -133,30 +134,33 @@ class Toast extends React.Component {
     } else {
       maskTransName = prefixClass(`toast-mask-${maskTransitionName}`);
     }
-    return (
-      <Dialog
-        prefixCls={prefixCls}
-        visible={visible}
-        title=""
-        footer=""
-        style={customStyle}
-        closable={false}
-        mask={hasMask}
-        maskTransitionName={maskTransName}
-        className={classnames({
-          [prefixClass(`toast-${type} toast-has-icon`)]: !!this.hasIcon(),
-          [className]: !!className,
-          [transName]: !!transName,
-        })}
-        transitionName={transName}
-        afterClose={() => { t.handleDidHide(); }}
-      >
-        <VBox hAlign="center">
-          {this.renderIcon()}
-          {content && <div className={prefixClass('toast-content')}>{content}</div>}
-        </VBox>
-      </Dialog>
-    );
+    if (visible) {
+      return (
+        <Dialog
+          prefixCls={prefixCls}
+          visible={visible}
+          title=""
+          footer=""
+          style={customStyle}
+          closable={false}
+          mask={hasMask}
+          maskTransitionName={maskTransName}
+          className={classnames({
+            [prefixClass(`toast-${type} toast-has-icon`)]: !!this.hasIcon(),
+            [className]: !!className,
+            [transName]: !!transName,
+          })}
+          transitionName={transName}
+          afterClose={() => { t.handleDidHide(); }}
+        >
+          <VBox hAlign="center">
+            {this.renderIcon()}
+            {content && <div className={prefixClass('toast-content')}>{content}</div>}
+          </VBox>
+        </Dialog>
+      );
+    }
+    return null;
   }
 }
 
@@ -168,24 +172,28 @@ Toast.defaultProps = {
   autoHide: true,
   content: '',
   duration: 1500,
+  width: undefined,
+  icon: undefined,
+  transitionName: undefined,
+  type: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Toast.propTypes = {
-  prefixCls: React.PropTypes.string,
-  visible: React.PropTypes.bool,
-  hasMask: React.PropTypes.bool,
-  autoHide: React.PropTypes.bool,
-  onDidHide: React.PropTypes.func,
-  width: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
+  prefixCls: PropTypes.string,
+  visible: PropTypes.bool,
+  hasMask: PropTypes.bool,
+  autoHide: PropTypes.bool,
+  onDidHide: PropTypes.func,
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
   ]),
-  content: React.PropTypes.string,
-  icon: React.PropTypes.string,
-  duration: React.PropTypes.number,
-  transitionName: React.PropTypes.string,
-  type: React.PropTypes.string,
+  content: PropTypes.string,
+  icon: PropTypes.string,
+  duration: PropTypes.number,
+  transitionName: PropTypes.string,
+  type: PropTypes.string,
 };
 
 const WRAPPER_ID = '__TingleGlobalToast__';

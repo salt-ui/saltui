@@ -1,9 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from './utils';
 
 class IconButton extends React.Component {
-
   constructor(props) {
     super(props);
     this.onClick = this.handleClick.bind(this);
@@ -68,16 +68,16 @@ IconButton.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 IconButton.propTypes = {
-  className: React.PropTypes.string,
-  style: React.PropTypes.object,
-  type: React.PropTypes.oneOf(['primary', 'secondary']),
-  size: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  type: PropTypes.oneOf(['primary', 'secondary']),
+  size: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
   ]),
-  onClick: React.PropTypes.func,
-  disabled: React.PropTypes.bool,
-  children: React.PropTypes.node.isRequired,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  children: PropTypes.node.isRequired,
 };
 
 IconButton.displayName = 'IconButton';

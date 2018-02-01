@@ -5,6 +5,5 @@
  * Copyright 2014-2016, Tingle Team, Alinw.
  * All rights reserved.
  */
-import Boxs from './Boxs';
 
-export default Boxs;
+export default from './Boxs';

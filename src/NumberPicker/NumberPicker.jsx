@@ -6,26 +6,27 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import RcInputNumber from 'rc-input-number';
-import Context from '../Context';
 import PlusThin from 'salt-icon/lib/PlusThin';
 import MinusThin from 'salt-icon/lib/MinusThin';
+import RcInputNumber from 'rc-input-number';
+import Context from '../Context';
 
 
 class NumberPicker extends React.Component {
   static propTypes = {
-    className: React.PropTypes.string,
-    step: React.PropTypes.number,
-    value: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-    max: React.PropTypes.number,
-    min: React.PropTypes.number,
-    readOnly: React.PropTypes.bool,
-    showNumber: React.PropTypes.bool,
-    focusOnUpDown: React.PropTypes.bool,
-    useTouch: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
-    disabled: React.PropTypes.bool,
+    className: PropTypes.string,
+    step: PropTypes.number,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    max: PropTypes.number,
+    min: PropTypes.number,
+    readOnly: PropTypes.bool,
+    showNumber: PropTypes.bool,
+    focusOnUpDown: PropTypes.bool,
+    useTouch: PropTypes.bool,
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -33,10 +34,13 @@ class NumberPicker extends React.Component {
     value: 2,
     readOnly: false,
     showNumber: true,
+    className: undefined,
     disabled: false,
     focusOnUpDown: false,
     useTouch: true,
     onChange: () => { },
+    max: undefined,
+    min: undefined,
   };
   static displayName = 'NumberPicker';
   constructor(props) {

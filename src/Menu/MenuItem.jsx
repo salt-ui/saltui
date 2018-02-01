@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class MenuItem extends React.Component {
 
@@ -9,9 +10,15 @@ MenuItem.propTypes = {
     PropTypes.string, PropTypes.number, PropTypes.node,
   ]),
   disabled: PropTypes.bool,
-  key: PropTypes.oneOfType([
+  keyNew: PropTypes.oneOfType([
     PropTypes.string, PropTypes.number,
   ]),
+};
+
+MenuItem.defaultProps = {
+  title: undefined,
+  keyNew: undefined,
+  disabled: undefined,
 };
 
 export default MenuItem;

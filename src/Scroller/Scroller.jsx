@@ -5,19 +5,18 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-const React = require('react');
-const ReactDOM = require('react-dom');
-const classnames = require('classnames');
-const IScroll = require('./iscroll');
-const Context = require('../Context');
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import IScroll from './iscroll';
+import Context from '../Context';
 
 class Scroller extends React.Component {
-
   componentDidMount() {
     const t = this;
 
     // 根节点的dom引用
-    t.el = ReactDOM.findDOMNode(t.root);
+    t.el = t.root;
 
     // 初始化 iscroll
     t.initScroll();
@@ -85,12 +84,11 @@ class Scroller extends React.Component {
         <div
           className={Context.prefixClass('DIB')}
           style={{ minWidth: t.props.minWidth }}
-        >{this.props.children}</div>
+        >{this.props.children}
+        </div>
       </div>
     );
   }
-
-
 }
 
 // 更多配置参数，详见 http://iscrolljs.com/ ，事件用 onXxx 的格式，例如 scrollEnd 事件对应的参数是 onScrollEnd
@@ -99,14 +97,18 @@ Scroller.defaultProps = {
   disablePointer: true,
   autoRefresh: true,
   minWidth: '100%',
+  className: undefined,
+  children: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Scroller.propTypes = {
-  autoRefresh: React.PropTypes.bool,
-  className: React.PropTypes.string,
-  disablePointer: React.PropTypes.bool,
-  children: React.PropTypes.node,
+  autoRefresh: PropTypes.bool,
+  className: PropTypes.string,
+  disablePointer: PropTypes.bool,
+  children: PropTypes.node,
+  click: PropTypes.bool,
+  minWidth: PropTypes.string,
 };
 
-module.exports = Scroller;
+export default Scroller;

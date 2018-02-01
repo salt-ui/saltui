@@ -6,21 +6,21 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Context from '../../Context';
+import { prefixClass } from '../../Context';
 import locale from '../locale';
 
-const prefixClass = Context.prefixClass;
 
 class WeekBar extends React.Component {
-
   static propTypes = {
-    className: React.PropTypes.string, // 国际化语言
-    locale: React.PropTypes.string, // 国际化语言
+    className: PropTypes.string, // 国际化语言
+    locale: PropTypes.string, // 国际化语言
   };
 
   static defaultProps = {
     locale: 'zh-cn',
+    className: undefined,
   };
 
   static displayName = 'WeekBar';
@@ -31,6 +31,7 @@ class WeekBar extends React.Component {
 
   render() {
     const t = this;
+    /* eslint-disable react/no-array-index-key */
     return (
       <div
         className={classnames(prefixClass('day-calendar-week-bar FBH'), {
@@ -45,12 +46,13 @@ class WeekBar extends React.Component {
                 last: index === 6,
               })}
               key={index}
-            >{item}</div>
-            )
-          )
+            >{item}
+            </div>
+            ))
         }
       </div>
     );
+    /* eslint-enable react/no-array-index-key */
   }
 }
 

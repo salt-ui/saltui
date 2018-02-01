@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Step from './Step';
@@ -136,9 +137,11 @@ class Steps extends React.Component {
 
   update(props = this.props) {
     const len = props.children.length - 1;
-    const tw = this.itemsWidth.reduce((prev, w) =>
-      prev + w
-      , 0);
+    const tw = this.itemsWidth.reduce(
+      (prev, w) =>
+        prev + w
+      , 0,
+    );
     const dw = Math.floor((this.previousStepsWidth - tw) / len) - 1;
     if (dw <= 0) {
       return;
@@ -198,7 +201,7 @@ class Steps extends React.Component {
             fixStyle,
             showDetail: showDetail && currentDetail === idx && direction !== 'vertical' && type !== 'long-desc',
             detailContentFixStyle: {
-              marginLeft: !isNaN(-(iws[idx] + this.state.tailWidth) * idx)
+              marginLeft: !Number.isNaN(-(iws[idx] + this.state.tailWidth) * idx)
                 ? -(iws[idx] + this.state.tailWidth) * idx
                 : 0,
               width: this.previousStepsWidth,
@@ -239,17 +242,17 @@ Steps.defaultProps = {
 
 // http://facebook.github.io/react/docs/reusable-components.html
 Steps.propTypes = {
-  className: React.PropTypes.string,
-  iconPrefix: React.PropTypes.string,
-  maxDescriptionWidth: React.PropTypes.number,
-  current: React.PropTypes.number,
-  direction: React.PropTypes.string,
-  showIcon: React.PropTypes.bool,
-  type: React.PropTypes.oneOf(['default', 'title-on-top', 'long-desc']),
-  showDetail: React.PropTypes.bool,
-  currentDetail: React.PropTypes.number,
-  onChange: React.PropTypes.func,
-  children: React.PropTypes.any,
+  className: PropTypes.string,
+  iconPrefix: PropTypes.string,
+  maxDescriptionWidth: PropTypes.number,
+  current: PropTypes.number,
+  direction: PropTypes.string,
+  showIcon: PropTypes.bool,
+  type: PropTypes.oneOf(['default', 'title-on-top', 'long-desc']),
+  showDetail: PropTypes.bool,
+  currentDetail: PropTypes.number,
+  onChange: PropTypes.func,
+  children: PropTypes.any,
 };
 
 Steps.displayName = 'Steps';

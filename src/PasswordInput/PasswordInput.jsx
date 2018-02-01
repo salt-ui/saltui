@@ -7,13 +7,14 @@
  */
 
 import React from 'react';
-import classnames from 'classnames';
-import Context from '../Context';
+import PropTypes from 'prop-types';
 import OpenedEyeIcon from 'salt-icon/lib/Eye';
 import ClosedEyeIcon from 'salt-icon/lib/EyeClose';
 import LockIcon from 'salt-icon/lib/Lock';
+import classnames from 'classnames';
+import Context, { prefixClass } from '../Context';
 
-const prefixClass = Context.prefixClass;
+
 const iconSize = '20px';
 
 /**
@@ -23,17 +24,16 @@ const iconSize = '20px';
  * @extends {React.Component}
  */
 class PasswordInput extends React.Component {
-
   static propTypes = {
-    className: React.PropTypes.string,
-    placeholder: React.PropTypes.string,
-    value: React.PropTypes.string,
-    decrypted: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
-    onDecryptedChange: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
-    hideIcon: React.PropTypes.func,
+    className: PropTypes.string,
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+    decrypted: PropTypes.bool,
+    onChange: PropTypes.func,
+    onDecryptedChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    hideIcon: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -64,7 +64,7 @@ class PasswordInput extends React.Component {
   }
 
   handleChange(e) {
-    const value = e.target.value;
+    const { value } = e.target;
     this.props.onChange(value, e);
   }
 

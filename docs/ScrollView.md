@@ -1,19 +1,13 @@
-# tingle-scroll-view [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-scroll-view.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-scroll-view)
+
 一句话描述
 
 专注滑动列表, 功能: 下拉刷新，上来加载更多, 见Demo
 
 ![](https://img.alicdn.com/tps/TB1WtTVLXXXXXbbXVXXXXXXXXXX-387-521.gif)
 
-### install
-
-```
-tnpm install @ali/tingle-scroll-list --save
-```
-
 ## note
 
-- tingle-scroll-view组件所在的容器必须要限定高度
+- ScrollView 组件所在的容器必须要限定高度
 
 ## Simple Usage
 

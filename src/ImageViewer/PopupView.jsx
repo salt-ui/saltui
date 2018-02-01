@@ -1,16 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Slide from '../Slide';
+import PropTypes from 'prop-types';
 import Animate from 'rc-animate';
 import Hammer from 'hammerjs';
 import classnames from 'classnames';
+import ReactDOM from 'react-dom';
+import Slide from '../Slide';
 import Mask from './Mask';
 
 const pinch = new Hammer.Pinch();
 
 
 class PopupView extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -83,11 +83,17 @@ class PopupView extends React.Component {
     this.props.onClick();
   }
 
+  updateActive(active) {
+    this.setState({
+      current: active.index,
+    });
+  }
 
   renderNavBar() {
     if (!this.props.visible) return null;
     const { photos, prefixCls } = this.props;
     const { current } = this.state;
+    /* eslint-disable react/no-array-index-key */
     return (
       <ul className={`${prefixCls}-nav`}>
         {photos.map((photo, index) => (
@@ -113,48 +119,53 @@ class PopupView extends React.Component {
           <Mask className={`${prefixCls}-mask`} visible={visible} />
         </Animate>
         <Animate transitionAppear transitionName={`${prefixCls}-view`} component="">
-          {visible ? <div
-            className={`${prefixCls}-view`}
-            ref={(c) => {
+          {visible ?
+            <div
+              className={`${prefixCls}-view`}
+              ref={(c) => {
               this.imageBox = c;
             }}
-            onClick={() => {
+              onClick={() => {
               this.handleClick();
             }}
-          >
-            <Slide
-              height={`${windowHeight - 40}px`}
-              active={this.state.current}
-              auto={false}
-              showNav={false}
-              ref={(c) => {
+            >
+              <Slide
+                height={`${windowHeight - 40}px`}
+                active={this.state.current}
+                auto={false}
+                showNav={false}
+                loop={false}
+                onSlideEnd={this.updateActive.bind(this)}
+                ref={(c) => {
                 this.slider = c;
               }}
-            >
-              {photos.map((item, index) => (
-                <img
-                  role="presentation"
-                  key={index}
-                  src={item.src}
-                />
+              >
+                {photos.map((item, index) => (
+                  <img
+                    role="presentation"
+                    key={index}
+                    src={item.src}
+                    alt=" "
+                  />
             ))}
-            </Slide>
-          </div> : null}
+              </Slide>
+            </div> : null}
         </Animate>
         <Animate transitionAppear transitionName={`${prefixCls}-nav`} component="">
           {this.renderNavBar()}
         </Animate>
       </div>
     );
+    /* eslint-enable react/no-array-index-key */
   }
 }
 
 PopupView.propTypes = {
-  prefixCls: React.PropTypes.string,
-  photos: React.PropTypes.array,
-  current: React.PropTypes.number,
-  onClick: React.PropTypes.func,
-  visible: React.PropTypes.bool,
+  prefixCls: PropTypes.string,
+  photos: PropTypes.array,
+  current: PropTypes.number,
+  onClick: PropTypes.func,
+  visible: PropTypes.bool,
 };
 
 PopupView.defaultProps = {
@@ -162,6 +173,7 @@ PopupView.defaultProps = {
   onClick: () => {},
   current: 0,
   visible: true,
+  prefixCls: undefined,
 };
 
-module.exports = PopupView;
+export default PopupView;

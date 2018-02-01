@@ -6,21 +6,21 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import IconCheck from 'salt-icon/lib/Check';
+import IconCheckRound from 'salt-icon/lib/CheckRound';
 import Promise from 'lie';
 import NattyFetch from 'natty-fetch/dist/natty-fetch';
 import Context from '../Context';
 import ScrollView from '../ScrollView';
 import Button from '../Button';
-import IconCheck from 'salt-icon/lib/Check';
-import IconCheckRound from 'salt-icon/lib/CheckRound';
 import Popup from '../Popup';
 import SearchBar from '../SearchBar';
 import SearchResult from './SearchResult';
 import utils from './utils';
 
 class SearchPanel extends React.Component {
-
   static renderSearchTips() {
     return <div />;
   }
@@ -28,7 +28,7 @@ class SearchPanel extends React.Component {
   constructor(props) {
     super(props);
     const t = this;
-    const value = props.value;
+    const { value } = props;
     t.state = {
       value: value || [],
       results: [],
@@ -94,7 +94,7 @@ class SearchPanel extends React.Component {
     const t = this;
 
     if (t.props.multiple) {
-      const value = this.state.value;
+      const { value } = this.state;
 
       let found = -1;
       value.some((v, i) => {
@@ -167,7 +167,7 @@ class SearchPanel extends React.Component {
     this.setState({
       popupVisible: true,
     }, () => {
-      history.pushState({
+      window.history.pushState({
         PickerField: 'SearchPanel.result',
       }, '', utils.addUrlParam('PICKER', Date.now()));
 
@@ -278,7 +278,7 @@ class SearchPanel extends React.Component {
       multiple,
     } = t.props;
     const pageSize = utils.getPageSize();
-    const length = this.state.value.length;
+    const { length } = this.state.value;
     const resultProps = {
       value: [...this.state.value],
       confirmText: this.props.confirmText,
@@ -286,7 +286,7 @@ class SearchPanel extends React.Component {
         this.setState({
           value,
         }, () => {
-          history.go(-1);
+          window.history.go(-1);
         });
       },
       formatter: this.props.formatter,
@@ -339,14 +339,15 @@ class SearchPanel extends React.Component {
                 onClick={(e) => {
                   t.handleConfirm(e);
                 }}
-              >{t.props.confirmText}</Button>
+              >{t.props.confirmText}
+              </Button>
               <div
                 className={Context.prefixClass('picker-field-searchpanel-result-summary')}
                 onClick={(e) => {
                   t.handleEnterResultView(e);
                 }}
               >
-                <a>{t.props.selectText}{length}</a>
+                <a href="javacript:;">{t.props.selectText}{length}</a>
               </div>
             </div>
           ) : null}
@@ -361,29 +362,44 @@ SearchPanel.defaultProps = {
   onConfirm() {},
   showSearch: true,
   multiple: false,
+  value: undefined,
+  searchText: undefined,
+  confirmText: undefined,
+  cancelText: undefined,
+  fetchDataOnOpen: undefined,
+  dataType: undefined,
+  beforeFetch: undefined,
+  fitResponse: undefined,
+  afterFetch: undefined,
+  searchTitle: undefined,
+  searchDelay: undefined,
+  searchPlaceholder: undefined,
+  searchNotFoundContent: undefined,
+  formatter: undefined,
+  selectText: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
 SearchPanel.propTypes = {
-  value: React.PropTypes.array,
-  searchText: React.PropTypes.string,
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  onConfirm: React.PropTypes.func,
-  fetchUrl: React.PropTypes.string.isRequired,
-  fetchDataOnOpen: React.PropTypes.bool,
-  dataType: React.PropTypes.string,
-  beforeFetch: React.PropTypes.func,
-  fitResponse: React.PropTypes.func,
-  afterFetch: React.PropTypes.func,
-  showSearch: React.PropTypes.bool,
-  searchTitle: React.PropTypes.string,
-  searchDelay: React.PropTypes.number,
-  searchPlaceholder: React.PropTypes.string,
-  searchNotFoundContent: React.PropTypes.string,
-  formatter: React.PropTypes.func,
-  multiple: React.PropTypes.bool,
-  selectText: React.PropTypes.string,
+  value: PropTypes.array,
+  searchText: PropTypes.string,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  onConfirm: PropTypes.func,
+  fetchUrl: PropTypes.string.isRequired,
+  fetchDataOnOpen: PropTypes.bool,
+  dataType: PropTypes.string,
+  beforeFetch: PropTypes.func,
+  fitResponse: PropTypes.func,
+  afterFetch: PropTypes.func,
+  showSearch: PropTypes.bool,
+  searchTitle: PropTypes.string,
+  searchDelay: PropTypes.number,
+  searchPlaceholder: PropTypes.string,
+  searchNotFoundContent: PropTypes.string,
+  formatter: PropTypes.func,
+  multiple: PropTypes.bool,
+  selectText: PropTypes.string,
 };
 
 SearchPanel.displayName = 'SearchPanel';

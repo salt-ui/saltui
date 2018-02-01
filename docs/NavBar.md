@@ -1,23 +1,6 @@
-# tingle-nav-bar [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-nav-bar.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-nav-bar)
-
-tingle-nav-bar 一个native导航的H5版本
-
-![](http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/tingle-ui/tingle-checkbox-field/f08a5ab5b894c2f02450be1e2d6b38f6/image.png)
-
-## Install
-
-```
-tnpm install @ali/tingle-nav-bar --save
-```
-
 ## Simple Usage
 
-```html
-<div id="TingleDemo"></div>
-
-```
-
-```js
+```jsx
 class Demo extends React.Component {
 
     constructor(props) {

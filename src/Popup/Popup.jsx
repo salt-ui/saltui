@@ -8,6 +8,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Dialog from 'rc-dialog';
 import classnames from 'classnames';
@@ -25,6 +26,7 @@ function create(instanceId, config, content, afterClose = () => { }) {
     maskClosable = true,
     animationType,
     className,
+    onClose,
   } = props;
 
   let div = document.createElement('div');
@@ -41,23 +43,27 @@ function create(instanceId, config, content, afterClose = () => { }) {
 
   const transName = `${prefixCls}-${animationType}`;
 
-  const maskProps = {
-    onClick: (e) => {
-      e.preventDefault();
-      if (maskClosable) {
-        if (props.onMaskClose && typeof props.onMaskClose === 'function') {
-          const res = props.onMaskClose();
-          if (res && res.then) {
-            res.then(() => {
-              close();
-            });
-          } else {
+  function handleMaskClick() {
+    if (maskClosable) {
+      if (props.onMaskClose && typeof props.onMaskClose === 'function') {
+        const res = props.onMaskClose();
+        if (res && res.then) {
+          res.then(() => {
             close();
-          }
+          });
         } else {
           close();
         }
+      } else {
+        close();
       }
+    }
+  }
+
+  const maskProps = {
+    onClick: (e) => {
+      e.preventDefault();
+      handleMaskClick();
     },
   };
 
@@ -71,6 +77,13 @@ function create(instanceId, config, content, afterClose = () => { }) {
         className={classnames(`${prefixCls}-${animationType}`, {
           [className]: !!className,
         })}
+        onClose={() => {
+          if (onClose) {
+            onClose();
+          } else {
+            handleMaskClick();
+          }
+        }}
         transitionName={transitionName || transName}
         maskTransitionName={maskTransitionName || 't-fade'}
         maskClosable={maskClosable}
@@ -79,7 +92,7 @@ function create(instanceId, config, content, afterClose = () => { }) {
       >
         {newContent || content}
       </Dialog>,
-      div
+      div,
     );
   };
 
@@ -137,15 +150,19 @@ class Popup extends React.Component {
     }
   }
   static propTypes = {
-    children: React.PropTypes.node,
-    content: React.PropTypes.node,
-    options: React.PropTypes.object,
-    visible: React.PropTypes.bool,
-    onMaskClick: React.PropTypes.func,
+    children: PropTypes.node,
+    content: PropTypes.node,
+    options: PropTypes.object,
+    visible: PropTypes.bool,
+    onMaskClick: PropTypes.func,
   }
 
   static defaultProps = {
     onMaskClick: () => {},
+    children: undefined,
+    content: undefined,
+    options: undefined,
+    visible: undefined,
   }
 
   componentDidMount() {
@@ -173,6 +190,9 @@ class Popup extends React.Component {
         onClick: () => {
           this.props.onMaskClick();
         },
+      };
+      options.onClose = () => {
+        this.props.onMaskClick();
       };
     }
     return options;
@@ -207,7 +227,7 @@ class Popup extends React.Component {
   }
 
   render() {
-    const children = this.props.children;
+    const { children } = this.props;
     if (children === undefined || children === null) {
       return null;
     }

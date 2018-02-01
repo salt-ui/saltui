@@ -1,13 +1,8 @@
-# tingle-dialog [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-dialog.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-dialog)
+
 提示窗体: alert, confirm
 
 <img src="https://img.alicdn.com/tps/TB1fFPeJFXXXXa2XVXXXXXXXXXX-640-1136.png" width="300"/>
 
-## Install
-
-```
-tnpm install @ali/tingle-dialog --save
-```
 
 ## Simple Usage
 

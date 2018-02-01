@@ -1,26 +1,13 @@
-# tingle-steps [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-steps.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-steps)
+
 一句话描述
 一张截图
 
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
-
 ## Usage
 ```js
-import Steps, { Step } from 'tingle-steps';
+
+import { Steps } from 'saltui';
+
+const { Step } = Steps;
 
 ReactDOM.render(
     <Steps>
@@ -37,7 +24,6 @@ ReactDOM.render(
 ### Steps
 | 配置项 | 说明 | 类型 | 可选值 | 默认值 |
 |---|---|---|---|---|
-| prefixCls | prefix class name | string | | tingle-steps |
 | className | additional class name added to wrap | string | | |
 |current | 可选参数，指定当前处理正在执行状态的步骤，从0开始记数。在子Step元素中，可以通过status属性覆盖状态。 | number | 无 | 0|
 |direction | 可选参数，指定步骤条方向（目前支持水平和竖直两种方向，默认水平方向）。 | string | vertical | 无 |

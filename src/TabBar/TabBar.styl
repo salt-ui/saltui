@@ -16,6 +16,7 @@ $tabsBarItemBaseColor = $normal-alpha-4;
 $tabsBarItemActiveColor = $brand-primary;
 $tabsBarItemMoreCenterIcon = $brand-primary;
 $tabsBarBadgePointSize = 10px;
+$tabsBarBorderTopColor = $normal-alpha-7;
 
 .{$prefix}-tabs-bar {
   display: block;
@@ -26,6 +27,8 @@ $tabsBarBadgePointSize = 10px;
   z-index: $tabsBarZIndex;
   background: $tabsBarBgColor;
   height: $tabsBarHeight;
+  fix-safe-area(height, $tabsBarHeight);
+  hairline('border-top', $tabsBarBorderTopColor);
 }
 
 // 这一行只是演示 按需删除
@@ -103,7 +106,7 @@ $tabsBarBadgePointSize = 10px;
   &.{$prefix}-tabs-bar-item-icon-more-center {
     width: 48px;
     height: 48px;
-    //background-color: $tabsBarItemMoreCenterIcon;
+    // background-color: $tabsBarItemMoreCenterIcon;
     border-radius: 50%;
     line-height: 48px;
     position: relative;
@@ -184,6 +187,7 @@ $tabsBarBadgePointSize = 10px;
 
   &-inner {
     padding: 38px 10px 80px;
+    fix-safe-area(padding-bottom, 80px);
     height: 100%;
     background: $dark-alpha-6;
   }

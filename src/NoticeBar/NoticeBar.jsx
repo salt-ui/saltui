@@ -6,8 +6,8 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Context from '../Context';
 import InfoRoundIcon from 'salt-icon/lib/InfoRound';
 import NoteRoundIcon from 'salt-icon/lib/NoteRound';
 import CheckRoundIcon from 'salt-icon/lib/CheckRound';
@@ -15,14 +15,17 @@ import CrossRoundIcon from 'salt-icon/lib/CrossRound';
 import DirectionRightIcon from 'salt-icon/lib/DirectionRight';
 import CrossIcon from 'salt-icon/lib/Cross';
 import Animate from 'rc-animate';
+import Context from '../Context';
 
 class NoticeBar extends React.Component {
   static propTypes = {
-    className: React.PropTypes.string,
-    visible: React.PropTypes.bool,
-    optionsType: React.PropTypes.string,
-    onClose: React.PropTypes.func,
-    onClick: React.PropTypes.func,
+    className: PropTypes.string,
+    visible: PropTypes.bool,
+    optionsType: PropTypes.string,
+    onClose: PropTypes.func,
+    onClick: PropTypes.func,
+    message: PropTypes.string,
+    type: PropTypes.string,
   };
 
   static defaultProps = {
@@ -32,6 +35,7 @@ class NoticeBar extends React.Component {
     optionsType: '',
     visible: true,
     onClose: () => { },
+    onClick: () => { },
   };
 
   static displayName = 'NoticeBar';
@@ -88,13 +92,15 @@ class NoticeBar extends React.Component {
     const { optionsType } = t.props;
     // 目前type 分为jumpto、close 等;
     if (optionsType === 'jumpto') {
-      return (<div className="notice-options notice-direction">
-        <DirectionRightIcon width={18} height={18} fill="#fff" className="icon-custom-class" />
-      </div>);
+      return (
+        <div className="notice-options notice-direction">
+          <DirectionRightIcon width={18} height={18} fill="#fff" className="icon-custom-class" />
+        </div>);
     } else if (optionsType === 'close') {
-      return (<div className="notice-options notice-cross">
-        <CrossIcon width={18} height={18} fill="#fff" className="icon-custom-class" onClick={(e) => { t.handleClose(e); }} />
-      </div>);
+      return (
+        <div className="notice-options notice-cross">
+          <CrossIcon width={18} height={18} fill="#fff" className="icon-custom-class" onClick={(e) => { t.handleClose(e); }} />
+        </div>);
     }
     return null;
   }
@@ -107,7 +113,8 @@ class NoticeBar extends React.Component {
       <div
         className={classnames(Context.prefixClass('notice-bar'), {
           [className]: !!className,
-        })} onClick={(e) => { t.handleClick(e); }}
+        })}
+        onClick={(e) => { t.handleClick(e); }}
       >
         {content}
       </div>

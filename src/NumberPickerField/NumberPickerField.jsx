@@ -6,26 +6,26 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import NumberPicker from '../NumberPicker';
 import Field from '../Field';
 
 class NumberPickerField extends React.Component {
-
   static propTypes = {
-    className: React.PropTypes.string,
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    className: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
-    max: React.PropTypes.number,
-    min: React.PropTypes.number,
-    step: React.PropTypes.number,
-    onChange: React.PropTypes.func,
-    label: React.PropTypes.string,
-    readOnly: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
+    max: PropTypes.number,
+    min: PropTypes.number,
+    step: PropTypes.number,
+    onChange: PropTypes.func,
+    label: PropTypes.string,
+    readOnly: PropTypes.bool,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -37,6 +37,7 @@ class NumberPickerField extends React.Component {
     onChange: Context.noop,
     readOnly: false,
     disabled: false,
+    className: undefined,
   };
 
   static displayName = 'NumberPickerField';
@@ -47,7 +48,10 @@ class NumberPickerField extends React.Component {
   render() {
     const t = this;
     return (
-      <Field {...t.props} className={classnames(Context.prefixClass('number-picker-field'), {
+      <Field
+        {...t.props}
+        layout="h"
+        className={classnames(Context.prefixClass('number-picker-field'), {
         [t.props.className]: !!t.props.className,
       })}
       >

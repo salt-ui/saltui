@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 import Field from '../Field';
@@ -14,7 +15,6 @@ import SearchPanel from './SearchPanel';
 import utils from './utils';
 
 class PickerField extends React.Component {
-
   static normalizeValue(input) {
     if (input) {
       if (utils.isArray(input)) {
@@ -67,7 +67,7 @@ class PickerField extends React.Component {
       t.setState({
         popupVisible: true,
       }, () => {
-        history.pushState({
+        window.history.pushState({
           PickerField: 'SearchPanel.index',
         }, '', utils.addUrlParam('PICKER', Date.now()));
 
@@ -117,7 +117,7 @@ class PickerField extends React.Component {
       cancelText: t.props.cancelText,
       onConfirm: (value) => {
         t.handleConfirm(value);
-        history.go(-1);
+        window.history.go(-1);
       },
       fetchUrl: t.props.fetchUrl,
       fetchDataOnOpen: t.props.fetchDataOnOpen,
@@ -156,7 +156,8 @@ class PickerField extends React.Component {
               className={classnames(Context.prefixClass('FB1 omit'), {
                 [Context.prefixClass('picker-field-readonly')]: t.props.readOnly,
               })}
-            >{t.renderResult()}</span>
+            >{t.renderResult()}
+            </span>
           </div>
         </div>
         <Popup visible={this.state.popupVisible} animationType="slide-left" content={<SearchPanel {...panelProps} />} />
@@ -189,36 +190,38 @@ PickerField.defaultProps = {
   onSelect() {},
   multiple: false,
   selectText: '已选择：',
+  className: undefined,
+  value: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
 PickerField.propTypes = {
-  className: React.PropTypes.string,
-  label: React.PropTypes.string.isRequired,
-  value: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.array,
+  className: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
   ]),
-  readOnly: React.PropTypes.bool,
-  placeholder: React.PropTypes.string,
-  searchText: React.PropTypes.string,
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  fetchUrl: React.PropTypes.string.isRequired,
-  fetchDataOnOpen: React.PropTypes.bool,
-  dataType: React.PropTypes.string,
-  beforeFetch: React.PropTypes.func,
-  fitResponse: React.PropTypes.func,
-  afterFetch: React.PropTypes.func,
-  showSearch: React.PropTypes.bool,
-  searchTitle: React.PropTypes.string,
-  searchDelay: React.PropTypes.number,
-  searchPlaceholder: React.PropTypes.string,
-  searchNotFoundContent: React.PropTypes.string,
-  formatter: React.PropTypes.func,
-  onSelect: React.PropTypes.func,
-  multiple: React.PropTypes.bool,
-  selectText: React.PropTypes.string,
+  readOnly: PropTypes.bool,
+  placeholder: PropTypes.string,
+  searchText: PropTypes.string,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  fetchUrl: PropTypes.string,
+  fetchDataOnOpen: PropTypes.bool,
+  dataType: PropTypes.string,
+  beforeFetch: PropTypes.func,
+  fitResponse: PropTypes.func,
+  afterFetch: PropTypes.func,
+  showSearch: PropTypes.bool,
+  searchTitle: PropTypes.string,
+  searchDelay: PropTypes.number,
+  searchPlaceholder: PropTypes.string,
+  searchNotFoundContent: PropTypes.string,
+  formatter: PropTypes.func,
+  onSelect: PropTypes.func,
+  multiple: PropTypes.bool,
+  selectText: PropTypes.string,
 };
 
 PickerField.displayName = 'PickerField';

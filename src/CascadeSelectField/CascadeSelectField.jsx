@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import cloneDeep from 'lodash/fp/cloneDeep';
 import Context from '../Context';
@@ -14,6 +14,7 @@ import Slot from '../Slot';
 import Field from '../Field';
 import Popup from '../Popup';
 import CascadeSlot from './CascadeSlot';
+import i18n from './i18n';
 
 function parseProps(p) {
   const props = cloneDeep(p);
@@ -58,7 +59,7 @@ function parseProps(p) {
     originOptions: p.options,
   };
 }
-
+/* eslint-disable no-param-reassign */
 function parseState(value, options) {
   let cursor = options;
   options = [];
@@ -82,6 +83,7 @@ function parseState(value, options) {
     value,
   };
 }
+/* eslint-enable no-param-reassign */
 
 class CascadeSelectField extends React.Component {
   constructor(props) {
@@ -155,6 +157,7 @@ class CascadeSelectField extends React.Component {
     return (
       <Field
         {...t.props}
+        layout="h"
         icon={t.props.readOnly ? null : {
           className: Context.prefixClass('cascade-select-field-icon'),
           name: 'angle-right',
@@ -186,6 +189,8 @@ class CascadeSelectField extends React.Component {
               cancelText={t.props.cancelText}
               data={t.state.options}
               value={t.state.value}
+              confirmText={i18n['zh-cn'].confirmText}
+              cancelText={i18n['zh-cn'].cancelText}
               onChange={t.handleChange}
               onCancel={t.handleCancel}
               onConfirm={t.handleConfirm}
@@ -209,23 +214,25 @@ CascadeSelectField.defaultProps = {
   columns: [],
   mode: 'normal',
   className: '',
+  confirmText: undefined,
+  cancelText: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
 CascadeSelectField.propTypes = {
-  className: React.PropTypes.string,
-  label: React.PropTypes.string.isRequired,
-  options: React.PropTypes.array,
-  value: React.PropTypes.array,
-  formatter: React.PropTypes.func,
-  onChange: React.PropTypes.func,
-  onSelect: React.PropTypes.func,
-  readOnly: React.PropTypes.bool,
-  placeholder: React.PropTypes.string,
-  confirmText: React.PropTypes.string,
-  cancelText: React.PropTypes.string,
-  columns: React.PropTypes.array,
-  mode: React.PropTypes.oneOf(['normal', 'complex']),
+  className: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  options: PropTypes.array,
+  value: PropTypes.array,
+  formatter: PropTypes.func,
+  onChange: PropTypes.func,
+  onSelect: PropTypes.func,
+  readOnly: PropTypes.bool,
+  placeholder: PropTypes.string,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  columns: PropTypes.array,
+  mode: PropTypes.oneOf(['normal', 'complex']),
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';

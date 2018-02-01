@@ -6,7 +6,9 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import NattyFetch from 'natty-fetch';
 import isEmpty from 'lodash/isEmpty';
 import cloneDeep from 'lodash/cloneDeep';
 import isEqual from 'lodash/isEqual';
@@ -14,12 +16,9 @@ import assign from 'lodash/assign';
 import classnames from 'classnames';
 import Context from '../Context';
 import ScrollView from '../ScrollView';
-import NattyFetch from 'natty-fetch';
 import BottomTip from './BottomTip';
 import EmptyContent from './EmptyContent';
 import Item from './Item';
-
-const { PropTypes } = React;
 
 
 function odd(i) {
@@ -52,6 +51,12 @@ class ScrollList extends React.Component {
     noDataTip: '暂无数据',
     noDataImage: 'https://img.alicdn.com/tps/TB1K6mHNpXXXXXiXpXXXXXXXXXX-1000-1000.svg',
     fetchDataOnOpen: true,
+    className: undefined,
+    children: undefined,
+    url: undefined,
+    pageSize: undefined,
+    dataType: undefined,
+    fetchOption: undefined,
   };
 
   static propTypes = {
@@ -109,7 +114,7 @@ class ScrollList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const props = this.props;
+    const { props } = this;
     if (!this.props.url) {
       const change = {};
       if (props.dataGetted !== nextProps.dataGetted) {
@@ -173,7 +178,7 @@ class ScrollList extends React.Component {
 
     NattyFetch.create(fetchOption)().then((con) => {
       const content = cloneDeep(this.props.processData(con));
-      const state = this.state;
+      const { state } = this;
       const nextState = {
         refreshing: false,
         loading: false,

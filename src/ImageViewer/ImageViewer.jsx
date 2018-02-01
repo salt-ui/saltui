@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import PopupView from './PopupView';
@@ -61,7 +62,8 @@ ImageViewer.show = (config = {}) => {
           renderComponent(false);
         }}
       />,
-    div);
+      div,
+    );
   };
 
   renderComponent();
@@ -72,14 +74,16 @@ ImageViewer.show = (config = {}) => {
 };
 
 ImageViewer.defaultProps = {
+  className: undefined,
+  prefixcls: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
 ImageViewer.propTypes = {
-  className: React.PropTypes.string,
+  className: PropTypes.string,
   prefixcls: 't-image-viewer',
 };
 
 ImageViewer.displayName = 'ImageViewer';
 
-module.exports = ImageViewer;
+export default ImageViewer;

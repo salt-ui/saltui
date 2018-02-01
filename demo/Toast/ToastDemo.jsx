@@ -101,7 +101,7 @@ class Demo extends React.Component {
             Toast.hide(() => {
               console.log(888);
             });
-          }, 4000);
+          }, 10000);
         }}
       >with mask</Button>
       <Button

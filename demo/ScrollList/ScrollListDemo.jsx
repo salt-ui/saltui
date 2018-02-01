@@ -6,11 +6,10 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import DirectionRight from 'salt-icon/lib/DirectionRight';
 import Map from 'salt-icon/lib/Map';
 import ScrollList from 'salt-scroll-list';
-
-const { PropTypes } = React;
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // import ScrollList from  '../../dist';
@@ -21,16 +20,16 @@ Item.propTypes = {
   name: PropTypes.string,
 };
 function Other1() {
-  return <div className="newlist-demo-item other1">{'Other1'}</div>;
+  return <div className="newlist-demo-item other1">Other1</div>;
 }
 
 function Other2() {
-  return <div className="newlist-demo-item other2">{'Other2'}</div>;
+  return <div className="newlist-demo-item other2">Other2</div>;
 }
 
 function getJsonp(page, size) {
   const now = (new Date()).getTime();
-  const url = `http://dip.alibaba-inc.com/api/v2/services/schema/mock/36906.jsonp?callback=jsonpCallbak&pageNum=${page}&pageSize=${size}&rnd=${now}`;
+  const url = `https://www.easy-mock.com/mock/5a2f75a26ce8af6869ec49f0/saltui/scroll-list-data?jsonp_param_name=callback&callback=jsonpCallbak&pageNum=${page}&pageSize=${size}&rnd=${now}`;
   const script = document.createElement('script');
   script.src = url;
   document.head.appendChild(script);
@@ -151,10 +150,11 @@ class Demo extends React.Component {
         });
       });
       getJsonp(curr, this.state.pageSize);
-    }, 1000);
+    }, 500);
   }
 
   bindJsonpCallback(success, error) {
+    console.log('jsonp');
     const i = this.fetchTimes;
 
     window.jsonpCallbak = (data) => {
@@ -172,33 +172,35 @@ class Demo extends React.Component {
   }
 
   render() {
-    return (<div >
-      <div className="container">
-        <ScrollList
-          className="scroll-list-demo"
-          dataGetted={this.state.dataGetted}
-          data={this.state.data}
-          hasError={this.state.hasError}
-          noMore={this.state.noMore}
-          refreshing={this.state.refreshing}
-          onRefresh={this.onRefresh}
-          loading={this.state.loading}
-          onLoad={this.onLoad}
-        >
-          <Other1 />
-          <Other2 />
-          {(data, index) => {
-            const itemProps = propsMap[index % 9];
-            return (
-              <ScrollList.Item
-                key={index}
-                {...itemProps}
-              />
-            );
-          }}
-        </ScrollList>
+    return (
+      <div >
+        <div className="container">
+          <ScrollList
+            className="scroll-list-demo"
+            dataGetted={this.state.dataGetted}
+            data={this.state.data}
+            hasError={this.state.hasError}
+            noMore={this.state.noMore}
+            refreshing={this.state.refreshing}
+            onRefresh={this.onRefresh}
+            loading={this.state.loading}
+            onLoad={this.onLoad}
+          >
+            <Other1 />
+            <Other2 />
+            {(data, index) => {
+              const itemProps = propsMap[index % 9];
+              return (
+                <ScrollList.Item
+                  key={index}
+                  {...itemProps}
+                />
+              );
+            }}
+          </ScrollList>
+        </div>
       </div>
-    </div>);
+    );
   }
 }
 

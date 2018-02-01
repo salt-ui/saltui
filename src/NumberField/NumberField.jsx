@@ -6,25 +6,26 @@
  * All rights reserved.
  */
 import React from 'react';
-import TextField from '../TextField';
+import PropTypes from 'prop-types';
 import Formatter from 'uxcore-formatter';
 import classnames from 'classnames';
+import TextField from '../TextField';
+
 
 class NumberField extends React.Component {
-
   static propTypes = {
-    className: React.PropTypes.string,
-    prefixCls: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    deFormat: React.PropTypes.func,
-    format: React.PropTypes.func,
-    type: React.PropTypes.oneOf(['money', 'card', 'cnmobile', 'cnidcard']),
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    className: PropTypes.string,
+    prefixCls: PropTypes.string,
+    onChange: PropTypes.func,
+    deFormat: PropTypes.func,
+    format: PropTypes.func,
+    type: PropTypes.oneOf(['money', 'card', 'cnmobile', 'cnidcard']),
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
-    delimiter: React.PropTypes.string,
-    fixedNum: React.PropTypes.number,
+    delimiter: PropTypes.string,
+    fixedNum: PropTypes.number,
   };
 
   static defaultProps = {
@@ -32,13 +33,20 @@ class NumberField extends React.Component {
     onChange: () => {},
     delimiter: ' ',
     deFormat: (str, delimiter) => str.split(delimiter).join(''),
+    className: undefined,
+    format: undefined,
+    type: undefined,
+    value: undefined,
+    fixedNum: undefined,
   };
 
   static displayName = 'NumberField';
 
 
   getValue() {
-    const { value, type, delimiter, format, fixedNum } = this.props;
+    const {
+      value, type, delimiter, format, fixedNum,
+    } = this.props;
     if (value === undefined || value === null) return '';
     const newValue = `${value}`;
     if (format) {

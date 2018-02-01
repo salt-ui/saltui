@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import SearchBar from './SearchBar';
 import SearchHistory from './SearchHistory';
 
 const addUrlParam = (name, value) => {
-  let currentUrl = location.href;
+  let currentUrl = window.location.href;
   let reg;
   if (/\?/g.test(currentUrl)) {
     reg = new RegExp(`${name}=[-\\w]{4,25}`, 'g');
@@ -31,11 +32,11 @@ class WithContainer extends React.Component {
   }
 
   static propTypes = {
-    prefixCls: React.PropTypes.string,
-    onEnter: React.PropTypes.func,
-    onExit: React.PropTypes.func,
-    onSearch: React.PropTypes.func,
-    hasHistory: React.PropTypes.bool,
+    prefixCls: PropTypes.string,
+    onEnter: PropTypes.func,
+    onExit: PropTypes.func,
+    onSearch: PropTypes.func,
+    hasHistory: PropTypes.bool,
   };
 
   constructor(props) {
@@ -60,7 +61,7 @@ class WithContainer extends React.Component {
   }
 
   handleSearchEnter = () => {
-    history.pushState(null, '', addUrlParam('SEARCH_BAR', Date.now()));
+    window.history.pushState(null, '', addUrlParam('SEARCH_BAR', Date.now()));
     window.addEventListener('popstate', this.listener, false);
     // document.body.style.overflow = 'hidden';
     this.setState({
@@ -71,7 +72,7 @@ class WithContainer extends React.Component {
   }
 
   handleSearchExit = () => {
-    history.go(-1);
+    window.history.go(-1);
   }
 
   handleSearch = (key, from) => {
@@ -120,7 +121,8 @@ class WithContainer extends React.Component {
         className={classnames(`${t.props.prefixCls}-result`, {
           active: t.state.keyword,
         })}
-      >{t.props.children}</div>
+      >{t.props.children}
+      </div>
     );
   }
 
@@ -146,10 +148,11 @@ class WithContainer extends React.Component {
             onSearch={this.handleSearch}
             isActive={this.state.isActive}
           />
-          {this.state.isActive ? <div className={`${this.props.prefixCls}-list`}>
-            {t.renderHistory()}
-            {t.renderResult()}
-          </div> : null}
+          {this.state.isActive ?
+            <div className={`${this.props.prefixCls}-list`}>
+              {t.renderHistory()}
+              {t.renderResult()}
+            </div> : null}
         </div>
       </div>
     );

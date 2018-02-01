@@ -1,4 +1,4 @@
-# tingle-checkbox-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-checkbox-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-checkbox-field)
+
 复选框犹如韩信点兵，多多益善。
 
 slot交互方式的截图:
@@ -6,11 +6,6 @@ slot交互方式的截图:
 
 list交互方式的截图 
 ![](http://gtms03.alicdn.com/tps/i3/TB1w9vZJFXXXXceXFXX8ziN1XXX-322-193.png)
-## Install
-
-```
-tnpm install @ali/tingle-checkbox-field --save
-```
 
 ## Simple Usage
 
@@ -184,7 +179,7 @@ data，当前选中的数据
 
 #### groupListFlag
 
-描述：是否使用tingle-group来布局checkbox
+描述：是否使用 Group 来布局 Checkbox
 
 类型：`Boolen`
 
@@ -195,7 +190,7 @@ data，当前选中的数据
 
 #### groupListArgument
 
-描述：如果tingle-group为true，可以传入tingle-group相关参数。参考`http://gitlab.alibaba-inc.com/tingle-ui/tingle-group`
+描述：如果 groupListFlag 为 true，可以传入 Group 相关参数。参考 `https://salt-ui.github.io/components/group`
 
 类型：`Object`
 

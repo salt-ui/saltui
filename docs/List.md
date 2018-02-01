@@ -1,4 +1,4 @@
-# tingle-list [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-list.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-list)
+
 
 ## 图文列表 组件 + Demo
 
@@ -17,12 +17,6 @@
 ![](https://img.alicdn.com/tps/TB16LjXJFXXXXXfaXXXXXXXXXXX-291-603.png)
 
 - 以下是组件使用方式介绍
-
-## Install
-
-```
-tnpm install @ali/tingle-list --save
-```
 
 ## Simple Usage
 
@@ -113,7 +107,7 @@ tnpm install @ali/tingle-list --save
 示例：
 
 ```js
-import AngleRight from '@ali/tingle-icon/lib/AngleRight';
+import AngleRight from 'salt-icon/lib/AngleRight';
 <List icon={<AngleRight />} />
 ```
 ### iconWidth

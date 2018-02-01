@@ -1,14 +1,7 @@
-# tingle-layer [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-layer.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-layer)
 
-模态对话框的基础,但NB的是提供了9宫格定位功能，使用top,left,bottom,right等来定位任意你想要定位的位置
 
-![image](http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/tingle-ui/tingle-layer/96153afa65fedc62cd0172869064ca0c/image.png)
+模态对话框的基础,但NB的是提供了9宫格定位功能，使用 top,left,bottom,right 等来定位任意你想要定位的位置
 
-## Install
-
-```
-tnpm install @ali/tingle-layer --save
-```
 
 ## Simple Usage
 

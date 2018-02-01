@@ -6,11 +6,11 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const Context = require('../Context');
-const { VBox } = require('../Boxs');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { prefixClass } from '../Context';
+import { VBox, ALIGN_VALUES } from '../Boxs';
 
-const prefixClass = Context.prefixClass;
 
 class Row extends React.Component {
   // 根据`col`的设置，补充空的`item`
@@ -21,17 +21,16 @@ class Row extends React.Component {
 
     const t = this;
     const ret = [];
-
-    while (n-- > 0) {
-      ret.push(
-        <VBox
-          flex={1}
-          hAlign={t.props.itemHAlign}
-          vAlign={t.props.itemVAlign}
-          className={prefixClass('grid-item')}
-          style={t.props.square ? { height: `${10 / t.props.col}rem` } : {}}
-        />
-      );
+    let nNew = n;
+    while (nNew > 0) {
+      nNew -= 1;
+      ret.push(<VBox
+        flex={1}
+        hAlign={t.props.itemHAlign}
+        vAlign={t.props.itemVAlign}
+        className={prefixClass('grid-item')}
+        style={t.props.square ? { height: `${10 / t.props.col}rem` } : {}}
+      />);
     }
     return React.Children.toArray(ret);
   }
@@ -48,7 +47,8 @@ class Row extends React.Component {
               flex={1}
               hAlign={t.props.itemHAlign}
               vAlign={t.props.itemVAlign}
-              className={prefixClass('grid-item')} key={i}
+              className={prefixClass('grid-item')}
+              key={i}
               style={t.props.square ? { height: `${10 / t.props.col}rem` } : {}}
             >
               {child}
@@ -64,15 +64,17 @@ class Row extends React.Component {
 Row.defaultProps = {
   col: 4,
   square: false,
+  itemHAlign: undefined,
+  itemVAlign: undefined,
 };
 
 Row.propTypes = {
-  col: React.PropTypes.number,
-  square: React.PropTypes.bool,
+  col: PropTypes.number,
+  square: PropTypes.bool,
   // 单个格子的水平对其方式
-  itemHAlign: VBox.propTypes.hAlign,
+  itemHAlign: PropTypes.oneOf(ALIGN_VALUES()),
   // 单个格子的垂直对其方式
-  itemVAlign: VBox.propTypes.vAlign,
+  itemVAlign: PropTypes.oneOf(ALIGN_VALUES()),
 };
 
-module.exports = Row;
+export default Row;

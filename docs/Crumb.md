@@ -1,14 +1,8 @@
-# tingle-crumb [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-crumb.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-crumb)
+
 
 面包屑。
 
 ![](https://img.alicdn.com/tps/TB1r7gQOVXXXXagXpXXXXXXXXXX-417-73.png)
-
-## Install
-
-```
-tnpm install @ali/tingle-crumb --save
-```
 
 ## Simple Usage
 
@@ -80,4 +74,14 @@ module.exports = Demo;
 必选：否
 
 * index: 当前点击的项的索引
+
+### separator
+
+描述：分隔符	
+
+类型：`String`
+
+默认：`>`
+
+必选：否
 

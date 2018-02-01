@@ -1,24 +1,7 @@
-# tingle-employee-field [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-employee-field.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-employee-field)
+
 
 人员选择表单域
 
-
-
-## How to develop
-
-### install
-
-```bash
-tnpm i salt-tools -g
-npm run tnpm-dep 
-npm start
-```
-
-### update
-
-```bash
-npm run tnpm-update
-```
 
 ## Simple Usage
 

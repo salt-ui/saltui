@@ -6,26 +6,27 @@
  * All rights reserved.
  */
 import React from 'react';
-import Context from '../../Context';
+import PropTypes from 'prop-types';
+import { prefixClass } from '../../Context';
 import locale from '../locale';
 import formatter from '../formatter';
 
-const prefixClass = Context.prefixClass;
 
 class MonthTitle extends React.Component {
-
   static propTypes = {
-    className: React.PropTypes.string,
-    locale: React.PropTypes.string,
+    className: PropTypes.string,
+    locale: PropTypes.string,
     // 一个月中的任意一天都可以
-    anyDayInMonth: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
+    anyDayInMonth: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
     ]),
   };
 
   static defaultProps = {
     anyDayInMonth: '',
+    className: undefined,
+    locale: undefined,
   };
 
   componentWillMount() {

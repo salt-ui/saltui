@@ -9,13 +9,13 @@
    * 非纯英文，移除逗号点号多个空格后返回最后两个字符
    
 
-  <img src="http://git.cn-hangzhou.oss-cdn.aliyun-inc.com/uploads/tingle-ui/tingle-avatar/de9e01f2e0117a1158750e365aa9af22/image.png" width="375"/>
+  <img src="https://img.alicdn.com/tfs/TB1c3NBgMvD8KJjy0FlXXagBFXa-348-954.png" width="375"/>
 
 ## Simple Usage
 
-```
-const Avatar = require('../src');
-const Context = require('tingle-context');
+```jsx
+import {Avatar, Context} from 'saltui';
+
 let global = Context.getGlobal('avatar');
 global.colors = ['green', 'grey', 'orange', 'blue', 'red'];
 global.defaultSrc = 'https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png';
@@ -31,7 +31,7 @@ class Demo extends React.Component {
                 <Avatar name="天晟"/>
                 <Avatar name="马天明"/>
                 <Avatar name="欧阳夏丹"/>
-                <Avatar src="" name="tingle"/>
+                <Avatar src="" name="saltui"/>
                 <Avatar src="https://img.alicdn.com/tps/TB1amOaKpXXXXbsXVXXXXXXXXXX-144-144.png"/>
                 <Avatar />
             </div>

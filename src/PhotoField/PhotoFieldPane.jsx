@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import PlusThin from 'salt-icon/lib/PlusThin';
+import IconPhoto from 'salt-icon/lib/Photo';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import Field from '../Field';
-import IconPhoto from 'salt-icon/lib/Photo';
 import { prefixClass } from '../Context';
-import PlusThin from 'salt-icon/lib/PlusThin';
 import FoldablePane from '../FoldablePane';
 import PhotoFieldItem from './PhotoFieldItem';
 import PhotoFieldUploadItem from './PhotoFieldUploadItem';
@@ -16,14 +17,13 @@ const getStyle = (oElm, strCssRule) => {
   if (window && window.getComputedStyle) {
     strValue = window.getComputedStyle(oElm, '').getPropertyValue(strCssRule);
   } else if (oElm.currentStyle) {
-    const camelCssRule = strCssRule.replace(/\-(\w)/g, (strMatch, p1) => p1.toUpperCase());
+    const camelCssRule = strCssRule.replace(/-(\w)/g, (strMatch, p1) => p1.toUpperCase());
     strValue = oElm.currentStyle[camelCssRule];
   }
   return strValue;
 };
 
 class PhotoFieldPane extends React.Component {
-
   constructor(props) {
     super(props);
     this.foldHeight = 300;
@@ -112,7 +112,7 @@ class PhotoFieldPane extends React.Component {
         };
         return (
           <PhotoFieldUploadItem {...props} />
-      );
+        );
       });
     const list = (
       <div
@@ -146,7 +146,8 @@ class PhotoFieldPane extends React.Component {
               [prefixClass('hide')]: t.props.readOnly,
             })}
         >
-          {`${t.props.photoList.length}/${t.props.maxUpload}`}
+          {t.props.placeholder}
+          {` ${t.props.photoList.length}/${t.props.maxUpload}`}
         </div>
       );
     }
@@ -178,7 +179,8 @@ class PhotoFieldPane extends React.Component {
               })}
               ref={(c) => { this.uploadIcon = c; }}
               fill={t.props.fill}
-              width={24} height={24}
+              width={24}
+              height={24}
             />
             : null}
         >
@@ -197,19 +199,24 @@ PhotoFieldPane.defaultProps = {
   onPickerClick: () => { },
   onImageDelete: () => { },
   onImagePreview: () => { },
+  columns: undefined,
+  placeholder: undefined,
+  label: undefined,
+  readOnly: undefined,
+  required: undefined,
 };
 // http://facebook.github.io/react/docs/reusable-components.html
 PhotoFieldPane.propTypes = {
-  columns: React.PropTypes.number,
-  placeholder: React.PropTypes.string,
-  label: React.PropTypes.string,
-  photoList: React.PropTypes.array,
-  files: React.PropTypes.array,
-  readOnly: React.PropTypes.bool,
-  required: React.PropTypes.bool,
-  onPickerClick: React.PropTypes.func,
-  onImageDelete: React.PropTypes.func,
-  onImagePreview: React.PropTypes.func,
+  columns: PropTypes.number,
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
+  photoList: PropTypes.array,
+  files: PropTypes.array,
+  readOnly: PropTypes.bool,
+  required: PropTypes.bool,
+  onPickerClick: PropTypes.func,
+  onImageDelete: PropTypes.func,
+  onImagePreview: PropTypes.func,
 };
 
 export default PhotoFieldPane;

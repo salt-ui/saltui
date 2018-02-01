@@ -1,18 +1,20 @@
 import React from 'react';
-import Context from '../Context';
+import PropTypes from 'prop-types';
+import Context, { prefixClass } from '../Context';
 import locale from './locale';
 
-const prefixClass = Context.prefixClass;
 
 class TopBar extends React.Component {
-
   static displayName = 'TopBar';
 
   static propTypes = {
-    className: React.PropTypes.string,
-    locale: React.PropTypes.string,
+    className: PropTypes.string,
+    locale: PropTypes.string,
   };
-
+  static defaultProps = {
+    className: undefined,
+    locale: undefined,
+  };
   componentWillMount() {
     this.locale = locale[this.props.locale];
   }
@@ -25,8 +27,11 @@ class TopBar extends React.Component {
       >
         <div className="cancel" onClick={t.props.onCancel}>{t.locale.button.cancel}</div>
         <div className={`${Context.prefixClass('FB1 FAC')} title`}>{t.props.topPanelTitle}</div>
-        <div className="confirm" onClick={t.props.onOk}
-        >{t.locale.button.confirm}</div>
+        <div
+          className="confirm"
+          onClick={t.props.onOk}
+        >{t.locale.button.confirm}
+        </div>
       </div>
     );
   }

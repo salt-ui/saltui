@@ -1,17 +1,7 @@
-# tingle-popover [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-popover.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-popover)
+
 
 在点击控件或者某个区域后，浮出一个气泡菜单来做更多的操作。 如果设置了遮罩层，建议通过点击遮罩层的任一位置，进行退出。
 
-
-![popover](http://git.cn-hangzhou.oss-cdn.aliyun-inc.com/uploads/tingle-ui/tingle-slide/345be6d5a7ef06a679c5ec1de92dd08a/image.png)
-
-
-
-## install
-
-```bash
-npm install tingle-popover --save
-```
 
 ## Simple Usage
 
@@ -115,7 +105,7 @@ npm install tingle-popover --save
       <td>getTooltipContainer</td>
       <td>function</td>
       <td></td>
-      <td>用于获取作为 popover 容器 html 节点的函数。tingle-popover 默认会将 popover 附在 body 节点上。如果想改变，请直接返回一个新的element。</td>
+      <td>用于获取作为 popover 容器 html 节点的函数。默认会将 popover 附在 body 节点上。如果想改变，请直接返回一个新的element。</td>
     </tr>
     <tr>
       <td>destroyTooltipOnHide</td>

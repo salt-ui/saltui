@@ -1,4 +1,4 @@
-# tingle-table [![tnpm version](http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-table.svg?style=flat-square)](http://web.npm.alibaba-inc.com/package/@ali/tingle-table)
+
 一句话描述
 一张截图
 

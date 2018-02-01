@@ -6,25 +6,26 @@
  * All rights reserved.
  */
 import React from 'react';
-import classnames from 'classnames';
-import Context from '../Context';
+import PropTypes from 'prop-types';
 import debounce from 'lodash/fp/debounce';
 import IconToTop from 'salt-icon/lib/Totop';
 import Animate from 'rc-animate';
+import classnames from 'classnames';
+import Context from '../Context';
 import util from './utils';
 import Box from './Box';
 
 class Totop extends React.Component {
-
   static propTypes = {
-    className: React.PropTypes.string,
-    hideToTopButton: React.PropTypes.bool,
-    size: React.PropTypes.oneOf(['large', 'medium', 'small']),
-    type: React.PropTypes.oneOf(['primary', 'secondary']),
-    debounceNum: React.PropTypes.number,
-    distance: React.PropTypes.number,
-    onScroll: React.PropTypes.func,
-    icon: React.PropTypes.element,
+    className: PropTypes.string,
+    hideToTopButton: PropTypes.bool,
+    size: PropTypes.oneOf(['large', 'medium', 'small']),
+    type: PropTypes.oneOf(['primary', 'secondary']),
+    debounceNum: PropTypes.number,
+    distance: PropTypes.number,
+    onScroll: PropTypes.func,
+    icon: PropTypes.element,
+    duration: PropTypes.number,
   };
 
   static defaultProps = {
@@ -34,6 +35,9 @@ class Totop extends React.Component {
     distance: 30,
     duration: 600,
     onScroll: () => { },
+    className: undefined,
+    size: undefined,
+    icon: undefined,
   };
   static displayName = 'Totop';
 
@@ -51,13 +55,20 @@ class Totop extends React.Component {
 
     this.toggleShow();
 
+    t.scrollListener = debounce(debounceNum, (e) => {
+      this.toggleShow(e);
+    });
+
     window.addEventListener(
       'scroll',
-      debounce(debounceNum, (e) => {
-        this.toggleShow(e);
-      }),
-      false
+      t.scrollListener,
+      false,
     );
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+    window.removeEventListener('scroll', this.scrollListener, false);
   }
 
   toggleShow(e) {
@@ -65,8 +76,7 @@ class Totop extends React.Component {
     if (window.scrollY >= distance) {
       onScroll(e);
       this.setState({ hide: false });
-    }
-    else {
+    } else {
       this.setState({ hide: true });
     }
   }
@@ -92,8 +102,8 @@ class Totop extends React.Component {
   toTop() {
     const t = this;
     const to = t.props.to || 10;
-    const duration = t.props.duration;
-    const scrolling = t.scrolling;
+    const { duration } = t.props;
+    const { scrolling } = t;
     if (scrolling) {
       return;
     }
@@ -103,8 +113,7 @@ class Totop extends React.Component {
     if (duration === 0) {
       document.body.scrollTop = to;
       t.scrolling = false;
-    }
-    else {
+    } else {
       t.scrollTo(to, duration, () => {
         t.scrolling = false;
       });
@@ -112,7 +121,9 @@ class Totop extends React.Component {
   }
 
   renderToTopButton() {
-    const { hideToTopButton, icon, type, size } = this.props;
+    const {
+      hideToTopButton, icon, type, size,
+    } = this.props;
     if (hideToTopButton || this.state.hide) {
       return null;
     }
@@ -140,7 +151,6 @@ class Totop extends React.Component {
       </div>
     );
   }
-
 }
 
 Totop.Box = Box;

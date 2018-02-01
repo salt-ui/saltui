@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-module.exports = require('./Table');
+export default from './Table';

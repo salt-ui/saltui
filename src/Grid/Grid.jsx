@@ -5,13 +5,12 @@
  * Copyright 2014-2017, Tingle Team, Alinw.
  * All rights reserved.
  */
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../Context');
-const { VBox } = require('../Boxs');
-const Row = require('./Row');
-
-const prefixClass = Context.prefixClass;
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import { prefixClass } from '../Context';
+import Row from './Row';
+import { ALIGN_VALUES } from '../Boxs';
 
 class Grid extends React.Component {
   /**
@@ -44,7 +43,7 @@ class Grid extends React.Component {
 
     const rows = t.cutIndexesIntoRows();
     const { className, noLine, ...rowProps } = t.props;
-
+    /* eslint-disable react/no-array-index-key */
     return (
       <div
         className={classnames(prefixClass('grid'), {
@@ -63,6 +62,7 @@ class Grid extends React.Component {
         }
       </div>
     );
+    /* eslint-enable react/no-array-index-key */
   }
 }
 
@@ -75,24 +75,23 @@ Grid.defaultProps = {
   itemVAlign: 'center',
   touchable: false,
 };
-
 // http://facebook.github.io/react/docs/reusable-components.html
 Grid.propTypes = {
-  className: React.PropTypes.string,
+  className: PropTypes.string,
   // 列数
-  col: React.PropTypes.number,
+  col: PropTypes.number,
   // 是否自适应单元格的高度 使单元格成为正方形
-  square: React.PropTypes.bool,
+  square: PropTypes.bool,
   // 是否隐藏分割线
-  noLine: React.PropTypes.bool,
+  noLine: PropTypes.bool,
   // 单个格子的水平对其方式
-  itemHAlign: VBox.propTypes.hAlign,
+  itemHAlign: PropTypes.oneOf(ALIGN_VALUES()),
   // 单个格子的垂直对其方式
-  itemVAlign: VBox.propTypes.vAlign,
+  itemVAlign: PropTypes.oneOf(ALIGN_VALUES()),
   // 单元格是否可点击
-  touchable: React.PropTypes.bool,
+  touchable: PropTypes.bool,
 };
 
 Grid.displayName = 'Grid';
 
-module.exports = Grid;
+export default Grid;
