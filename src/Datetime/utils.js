@@ -21,8 +21,15 @@ function isLeapYear(year) {
   return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 }
 function getDates(value) {
-  if (!value.length) { return; }
-  const date = new Date(...value);
+  let date;
+  if (Array.isArray(value)) {
+    date = new Date(...value);
+  } else {
+    date = new Date(value);
+  }
+  if (!date) {
+    date = new Date();
+  }
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
   const arr = [];
