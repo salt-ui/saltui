@@ -136,7 +136,7 @@ class Demo extends React.Component {
               }}
               value={t.state.value5}
               grouping
-              noIcon
+              compact
             />
             <PickerField
               fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"

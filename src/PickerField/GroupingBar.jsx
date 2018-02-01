@@ -66,14 +66,16 @@ class GroupingBar extends React.Component {
             data-key={key}
           >{key}</div>
         ))}
-        <div
+        {t.props.indicator ? <div
           className={classnames(
             Context.prefixClass('picker-field-grouping-indicator'),
             t.state.holding ? null : Context.prefixClass('picker-field-grouping-indicator-hide'),
             t.props.keys.indexOf(t.state.holding) > -1 ? Context.prefixClass('picker-field-avilible-group') : null
           )}
           style={{ transform: `translateY(${t.state.indicatorPos}px)`, WebkitTransform: `translateY(${t.state.indicatorPos}px)`}}
-        >{t.state.holding}</div>
+        >
+          {t.state.holding}
+        </div> : null}
       </div>
     )
   }
@@ -87,6 +89,7 @@ GroupingBar.defaultProps = {
 // http://facebook.github.io/react/docs/reusable-components.html
 GroupingBar.propTypes = {
   keys: PropTypes.array,
+  indicator: PropTypes.bool,
   onSelect: PropTypes.func,
 };
 

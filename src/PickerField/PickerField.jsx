@@ -134,7 +134,8 @@ class PickerField extends React.Component {
       formatter: t.props.formatter,
       multiple: t.props.multiple,
       grouping: t.props.grouping,      
-      noIcon: t.props.noIcon,      
+      groupingIndicator: t.props.groupingIndicator,      
+      compact: t.props.compact,      
       selectText: t.props.selectText,
       searchText: t.props.searchText,
     };
@@ -193,7 +194,8 @@ PickerField.defaultProps = {
   onSelect() {},
   multiple: false,
   grouping: false,
-  noIcon: false,
+  groupingIndicator: false,
+  compact: false,
   selectText: '已选择：',
   className: undefined,
   value: undefined,
@@ -228,7 +230,8 @@ PickerField.propTypes = {
   onSelect: PropTypes.func,
   multiple: PropTypes.bool,
   grouping: PropTypes.bool,  
-  noIcon: PropTypes.bool,  
+  groupingIndicator: PropTypes.bool,  
+  compact: PropTypes.bool,  
   selectText: PropTypes.string,
 };
 

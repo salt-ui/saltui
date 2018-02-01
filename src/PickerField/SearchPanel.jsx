@@ -91,7 +91,7 @@ class SearchPanel extends React.Component {
           ];
         };
         t.searchIndex = options.map(item => ({
-          indexes: processFunc(item.text),
+          indexes: processFunc(t.props.formatter(item)),
           item
         }));
       }
@@ -115,8 +115,8 @@ class SearchPanel extends React.Component {
     if (t.props.grouping) {
       const groups = {};
       fetchData.sort((a, b) => {
-        const phoneticA = utils.getPhonetic(a.text);
-        const phoneticB = utils.getPhonetic(b.text);
+        const phoneticA = utils.getPhonetic(t.props.formatter(a));
+        const phoneticB = utils.getPhonetic(t.props.formatter(b));
         let compare = 0;
         phoneticA.some((string, i) => {
           if (!phoneticB[i] || string > phoneticB[i]) {
@@ -130,7 +130,7 @@ class SearchPanel extends React.Component {
         return compare;
       });
       fetchData.forEach(item => {
-        let group = (utils.getPhonetic(item.text[0] || '#')[0] || '#')[0].toUpperCase();
+        let group = (utils.getPhonetic(t.props.formatter(item).toString()[0] || '#')[0] || '#')[0].toUpperCase();
         if (group < 'A' || group > 'Z') {
           group = '#';
         }
@@ -339,17 +339,17 @@ class SearchPanel extends React.Component {
     return (
       <div
         key={index}
-        className={classnames(Context.prefixClass('picker-field-search-result-item'), t.props.noIcon ? Context.prefixClass('picker-field-no-icon') : null, Context.prefixClass('clear'))}
+        className={classnames(Context.prefixClass('picker-field-search-result-item'), t.props.compact ? Context.prefixClass('picker-field-no-icon') : null, Context.prefixClass('clear'))}
         onClick={() => {
           t.handleItemClick(item);
         }}
       >
-        {t.props.noIcon ? null :
+        {t.props.compact ? null :
           <span className={Context.prefixClass('picker-field-search-result-item-icon')}>
             {iconHTML}
           </span>
         }
-        <span className={classnames(Context.prefixClass('picker-field-search-result-item-entry'), t.props.noIcon ? Context.prefixClass('picker-field-no-icon') : null)}>{t.props.formatter(item)}</span>
+        <span className={classnames(Context.prefixClass('picker-field-search-result-item-entry'), t.props.compact ? Context.prefixClass('picker-field-no-icon') : null)}>{t.props.formatter(item)}</span>
       </div>
     );
   }
@@ -379,6 +379,7 @@ class SearchPanel extends React.Component {
     return (
       <GroupingBar
         keys={keys}
+        indicator={t.props.groupingIndicator}
         onSelect={t.selectGrouping.bind(t)}
       />
     )
@@ -515,7 +516,7 @@ SearchPanel.propTypes = {
   formatter: PropTypes.func,
   multiple: PropTypes.bool,
   grouping: PropTypes.bool,  
-  noIcon: PropTypes.bool,  
+  compact: PropTypes.bool,  
   selectText: PropTypes.string,
 };
 
