@@ -91,7 +91,7 @@ class Datetime extends React.Component {
   };
   setOptions = (props) => {
     const currentValue = parseValue(props.value);
-    const options = getOptions({ value: props.value }, props);
+    const options = getOptions({ value: currentValue }, props);
     const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
     let data = formatFromProps(formatText(ret.data, undefined, props), props);
     const value = formatFromProps(formatText(ret.value, undefined, props), props);

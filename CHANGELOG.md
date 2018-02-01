@@ -1,3 +1,7 @@
+## 3.5.19 / 2018-02-01
+
+* `fix`: Datetime value processing bug when date is 31
+
 ## 3.5.18 / 2018-01-31
 
 * `changed`: Dialog's z-index is changed to be equal to Toast/Popup's
