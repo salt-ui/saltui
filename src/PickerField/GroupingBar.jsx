@@ -59,6 +59,7 @@ class GroupingBar extends React.Component {
         {alphabet.map(key => (
           <div
             className={classnames(
+              Context.prefixClass('picker-field-group'),
               t.props.keys.indexOf(key) > -1 ? Context.prefixClass('picker-field-avilible-group') : null,
               t.state.holding == key ? Context.prefixClass('picker-field-active-group') : null
             )}
