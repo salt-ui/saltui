@@ -67,12 +67,25 @@ class Demo extends React.Component {
 示例：
 
 ```
-<DatetimeField placeholder="请输入"></DatetimeField>
+<CitySelectField placeholder="请输入"></CitySelectField>
+```
+
+### mode
+
+描述：选择展示模式。`wheel` 为转轮模式，`cascade` 为级联模式，`picker` 为支持检索的单层选择模式。
+类型：`string`
+默认：`'wheel'`
+必选：否
+
+示例：
+
+```
+<CitySelectField mode="picker"></CitySelectField>
 ```
 
 ### confirmText
 
-描述：确认文案。
+描述：确认文案。仅在 `wheel` 和 `cascade` 模式下有效。
 类型：`string`
 默认：`'完成'`
 必选：否
@@ -80,12 +93,12 @@ class Demo extends React.Component {
 示例：
 
 ```
-<CitySelectField confirmText="完成"></DatetimeField>
+<CitySelectField confirmText="完成"></CitySelectField>
 ```
 
 ### cancelText
 
-描述：清除文案。
+描述：清除 / 取消搜索文案。
 类型：`string`
 默认：`'清除'`
 必选：否
@@ -93,57 +106,34 @@ class Demo extends React.Component {
 示例：
 
 ```
-<CitySelectField cancelText="取消"></DatetimeField>
+<CitySelectField cancelText="取消"></CitySelectField>
 ```
 
-### cancelText
+### searchText
 
-描述：清除文案。
+描述：搜索文案。仅在 `picker` 模式下有效。
 类型：`string`
-默认：`'清除'`
-必选：否
-
-### cancelText
-
-描述：清除文案。
-类型：`string`
-默认：`'清除'`
-必选：否
-
-### cancelText
-
-描述：清除文案。
-类型：`string`
-默认：`'清除'`
+默认：`'请输入城市名称进行搜索'`
 必选：否
 
 ### provinceText
 
-描述：省文案。
+描述：省文案。仅在 `wheel` 模式下有效。
 类型：`string`
 默认：`'省/自治区/直辖市'`
 
 ### cityText
 
-描述：市文案。
+描述：市文案。仅在 `wheel` 模式下有效。
 类型：`string`
 默认：`'市'`
 必选：否
 
 ### districtText
 
-描述：区文案。
+描述：区文案。仅在 `wheel` 模式下有效。
 类型：`string`
 默认：`'区'`
-
-### layout 
-
-描述：Field 展示方式。
-类型：`string`
-默认：`v`
-必选：否
-
-垂直或者水平显示。两个可选值 `v` or `h`
 
 ### selectorType
 
@@ -210,7 +200,7 @@ value 为省市区的对应编码构成的数组。
 示例：
 
 ```
-<CitySelectField value={['100010', '100011]}></CitySelectField>
+<CitySelectField value={['100010', '100011']}></CitySelectField>
 ```
 
 ### onSelect
@@ -220,7 +210,7 @@ value 为省市区的对应编码构成的数组。
 默认：无
 必选：否
 
-参数是时间戳。
+参数是省市区的对应编码构成的数组。
 
 示例：
 
@@ -238,17 +228,15 @@ onSelect(value) {
 
 ### onCancel
 
-描述：清除值时的事件。
+描述：在 `wheel` 和 `cascade` 模式下用户取消选择时的事件。
 类型：`function`
 默认：无
 必选：否
 
-参数是时间戳。
-
 示例：
 
 ```
-onCancel(value) {
+onCancel() {
     this.setState({
         value: []
     });

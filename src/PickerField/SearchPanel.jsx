@@ -91,7 +91,7 @@ class SearchPanel extends React.Component {
           ];
         };
         t.searchIndex = options.map(item => ({
-          indexes: processFunc(t.props.formatter(item)),
+          indexes: processFunc(t.props.formatter(item).toString()),
           item
         }));
       }
@@ -423,7 +423,7 @@ class SearchPanel extends React.Component {
                 ref={(c) => {
                   t.searchBar = c;
                 }}
-                searchText={t.props.searchText}
+                placeholder={t.props.searchText}
                 cancelText={t.props.cancelText}
                 className={Context.prefixClass('picker-field-searchpanel-search')}
                 onChange={(val) => {

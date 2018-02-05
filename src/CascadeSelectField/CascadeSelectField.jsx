@@ -150,6 +150,7 @@ class CascadeSelectField extends React.Component {
       t.setState(parseState(t.state.confirmedValue, t.props.options));
     }
     Popup.hide();
+    t.props.onCancel();
   }
 
   render() {
@@ -209,6 +210,7 @@ CascadeSelectField.defaultProps = {
   formatter: value => value.map(v => v.text).join('/'),
   onChange: () => { },
   onSelect: () => { },
+  onCancel: () => { },
   readOnly: false,
   placeholder: '',
   columns: [],
@@ -227,6 +229,7 @@ CascadeSelectField.propTypes = {
   formatter: PropTypes.func,
   onChange: PropTypes.func,
   onSelect: PropTypes.func,
+  onCancel: PropTypes.func,
   readOnly: PropTypes.bool,
   placeholder: PropTypes.string,
   confirmText: PropTypes.string,

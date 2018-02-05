@@ -64,7 +64,7 @@ const addUrlParam = (name, value) => {
   return currentUrl;
 };
 
-const getPhonetic = text => pinyin(text, { pinyinOnly: false });
+const getPhonetic = text => pinyin(text.toString(), { pinyinOnly: false });
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#';
 

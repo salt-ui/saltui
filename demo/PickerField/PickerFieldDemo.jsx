@@ -136,6 +136,7 @@ class Demo extends React.Component {
               }}
               value={t.state.value5}
               grouping
+              groupingIndicator
               compact
             />
             <PickerField
