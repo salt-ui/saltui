@@ -36,9 +36,13 @@ class Demo extends React.Component {
           showToast({
             type: 'success',
             content: '提交成功你好',
+            onDidHide: () => {
+              console.log('hide');
+            },
           });
         }}
-      >success</Button>
+      >success
+      </Button>
       <Button
         className="demo"
         onClick={() => {
@@ -47,49 +51,63 @@ class Demo extends React.Component {
             content: '提交成功你好好',
           });
         }}
-      >has icon overLength</Button>
+      >has icon overLength
+      </Button>
       <Button
-        className="demo" onClick={() => {
+        className="demo"
+        onClick={() => {
           showToast({
             type: 'error',
             content: '提交出错',
           });
         }}
-      >error</Button>
+      >error
+      </Button>
       <Button
-        className="demo" onClick={() => {
+        className="demo"
+        onClick={() => {
           showToast({
             type: 'fail',
             content: '网络连接失败',
           });
         }}
-      >fail</Button>
+      >fail
+      </Button>
       <Button
-        className="demo" onClick={() => { showLoadingToast(); }}
-      >loading</Button>
+        className="demo"
+        onClick={() => { showLoadingToast(); }}
+      >loading
+      </Button>
       <Button
-        className="demo" onClick={() => {
+        className="demo"
+        onClick={() => {
           showToast({
             content: '你好听狗',
           });
         }}
-      >text only</Button>
+      >text only
+      </Button>
       <Button
-        className="demo" onClick={() => {
+        className="demo"
+        onClick={() => {
           showToast({
             content: '字字字字字字字字字字字字字字字',
           });
         }}
-      >long text</Button>
+      >long text
+      </Button>
       <Button
-        className="demo" onClick={() => {
+        className="demo"
+        onClick={() => {
           showToast({
             content: '字字字字字字字字字字字字字字字字',
           });
         }}
-      >long text overLentgh</Button>
+      >long text overLentgh
+      </Button>
       <Button
-        className="demo" onClick={() => {
+        className="demo"
+        onClick={() => {
           showToast({
             type: 'success',
             content: '带遮罩层',
@@ -103,9 +121,11 @@ class Demo extends React.Component {
             });
           }, 10000);
         }}
-      >with mask</Button>
+      >with mask
+      </Button>
       <Button
-        className="demo" onClick={() => {
+        className="demo"
+        onClick={() => {
           showToast({
             type: 'light',
             content: '这是一句轻提示这是一句轻提示好',
@@ -114,9 +134,11 @@ class Demo extends React.Component {
             },
           });
         }}
-      >light toast</Button>
+      >light toast
+      </Button>
       <Button
-        className="demo" onClick={() => {
+        className="demo"
+        onClick={() => {
           showToast({
             type: 'light',
             content: '这是一句轻提示这是一句轻提示好吗',
@@ -125,9 +147,11 @@ class Demo extends React.Component {
             },
           });
         }}
-      >light toast overLength</Button>
+      >light toast overLength
+      </Button>
       <Button
-        className="demo" onClick={() => {
+        className="demo"
+        onClick={() => {
           showToast({
             type: 'light',
             transitionName: 'fix-bottom',
@@ -137,7 +161,8 @@ class Demo extends React.Component {
             },
           });
         }}
-      >light toast fix-bottom</Button>
+      >light toast fix-bottom
+      </Button>
     </div>);
   }
 }
