@@ -72,6 +72,7 @@ class PhotoField extends React.Component {
   getCore() {
     const options = {
       queueCapcity: this.getMax(),
+      accept: 'images',
     };
     ['name', 'url', 'params', 'action', 'data', 'headers', 'withCredentials', 'timeout',
       'chunkEnable', 'chunkSize', 'chunkRetries', 'chunkProcessThreads', 'processThreads',
