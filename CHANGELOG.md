@@ -1,4 +1,4 @@
-## 3.5.19 / 2018-02-06
+## 3.5.20 / 2018-02-06
 
 * `fix`: Toast fail to call `props.onDidHide`
 
