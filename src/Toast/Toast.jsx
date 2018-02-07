@@ -65,6 +65,7 @@ class Toast extends React.Component {
       visible: false,
       hasMask: false,
     }, () => {
+      this.props.onDidHide();
       if (typeof fn === 'function') {
         fn();
       }

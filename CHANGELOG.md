@@ -1,3 +1,11 @@
+## 3.5.21 / 2018-02-06
+
+* `fix`: PhotoField add default accept to prevent user upload wrong files to a certain extent.
+
+## 3.5.20 / 2018-02-06
+
+* `fix`: Toast fail to call `props.onDidHide`
+
 ## 3.5.19 / 2018-02-01
 
 * `fix`: Datetime value processing bug when date is 31

@@ -9,6 +9,9 @@
 import React from 'react';
 import Menu from 'salt-menu';
 import Popover from 'salt-popover';
+import CheckRound from 'salt-icon/lib/CheckRound';
+import Upload from 'salt-icon/lib/Upload';
+import Eye from 'salt-icon/lib/Eye';
 
 const { MenuItem } = Menu;
 
@@ -46,6 +49,40 @@ class PopoverDemo extends React.Component {
         <MenuItem title="这是操作1" key="1" keyNew="1" />
         <MenuItem title="这是操作1-2" key="1-2" keyNew="1-2" />
         <MenuItem title="这是操作3" key="3" keyNew="3" />
+      </Menu>
+    );
+    const menuHaveIcon = (
+      <Menu
+        onClick={({ key }) => { alert(key); }}
+        multiple
+      >
+        <MenuItem
+          title={
+            <div>
+              <CheckRound className="demo-icon" width={20} height={20} fill="rgba(0,0,0,0.8)" />
+              <span>这是操作1</span>
+            </div>
+          }
+          key="1"
+        />
+        <MenuItem
+          title={
+            <div>
+              <Upload className="demo-icon" width={20} height={20} fill="rgba(0,0,0,0.8)" />
+              <span>这是操作2</span>
+            </div>
+          }
+          key="1-2"
+        />
+        <MenuItem
+          title={
+            <div>
+              <Eye className="demo-icon" width={20} height={20} fill="rgba(0,0,0,0.8)" />
+              <span>这是操作3</span>
+            </div>
+          }
+          key="3"
+        />
       </Menu>
     );
     return (
@@ -90,6 +127,10 @@ class PopoverDemo extends React.Component {
         </Popover>
         <h1>和 Menu 公用</h1>
         <Popover placement="bottomLeft" overlay={menu} mask overlayClassName="t-popover-menu">
+          <div style={{ marginLeft: '20px', marginBottom: '10px' }}>操作</div>
+        </Popover>
+        <h1>图标配合展示</h1>
+        <Popover placement="bottomLeft" overlay={menuHaveIcon} mask overlayClassName="t-popover-menu">
           <div style={{ marginLeft: '20px', marginBottom: '10px' }}>操作</div>
         </Popover>
       </div>
