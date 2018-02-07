@@ -18,8 +18,10 @@ const Panel = (props) => {
   const lang = i18n[locale];
   return (
     <div className={`${prefixCls}`}>
-      {title ? <h3 className={`${prefixCls}-title`}>{title}</h3> : null}
-      {message ? <div className={`${prefixCls}-message`}>{message}</div> : null}
+      {(title || message) ? <div className={`${prefixCls}-message`}>
+        {title ? <h3 className={`${prefixCls}-title`}>{title}</h3> : null}
+        <p>{message}</p>
+      </div> : null}
       {options.map((option, index) => (
         <div
           className={classnames(`${prefixCls}-item`, 'tTE', {
@@ -34,7 +36,7 @@ const Panel = (props) => {
           {option}
         </div>
       ))}
-      {/* <div className={`${prefixCls}-item-split`} /> */}
+      <div className={`${prefixCls}-item-split`} />
       <div
         className={`${prefixCls}-item ${prefixCls}-item-cancel tTE`}
         onClick={() => {
