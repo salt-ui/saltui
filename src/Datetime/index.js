@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-export default from './Datetime';
+export default from './Datetime.jsx';
