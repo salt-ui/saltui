@@ -28,14 +28,14 @@ class DatetimeDemo extends React.Component {
   }
 
   onConfirm(value, id) {
-    // console.log('onConfirm', value);
+    console.log('onConfirm', value);
     this.setState({
       [id]: value,
     });
   }
 
   onCancel(id) {
-    // console.log('cancel', this.state[id]);
+    console.log('cancel', this.state[id]);
   }
 
   showSlot(id) {
@@ -59,7 +59,7 @@ class DatetimeDemo extends React.Component {
           value={this.state.value1}
           columns={Datetime.YMD}
           onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
-          onChange={(value, column) => { /* console.log(value, column); */ }}
+          onChange={(value, column) => { console.log(value, column);}}
           onCancel={() => { this.onCancel('value1'); }}
         />
         <Button onClick={() => {

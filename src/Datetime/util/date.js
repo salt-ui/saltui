@@ -10,6 +10,7 @@ import {
   getDaysByYear,
   getDaysByMonth,
   getMonthsByYear,
+  isObject,
 } from './base';
 import locale from './locale';
 import dateFormat from './dateFormat';
@@ -479,6 +480,15 @@ function filterDate({
   }
   return outArr;
 }
+function getSlotFormattedValue(value, props) {
+  // 使用当前时间或传入时间作为默认值
+  // 形成候选项
+  const currentValueNew = parseValue(value);
+  const options = getOptions(value, props);
+  // 数据格式化
+  const ret = Slot.formatDataValue([].concat(options), [].concat(currentValueNew));
+  return formatFromProps(ret.value, props);
+}
 module.exports = {
   parseValue,
   addDayOfWeek,
@@ -488,5 +498,6 @@ module.exports = {
   Slot,
   locale,
   filterDate,
+  getSlotFormattedValue,
 };
 
