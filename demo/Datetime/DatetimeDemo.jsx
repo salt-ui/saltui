@@ -108,7 +108,7 @@ class DatetimeDemo extends React.Component {
           columns={Datetime.YMDT}
           disabledDate={() => [
               {
-                start: new Date(2023, 10, 1), // 2023- 11 - 1
+                start: new Date(2023, 10, 1), //  2023- 11 - 1
               },
               {
                 start: new Date(2017, 0, 1),
