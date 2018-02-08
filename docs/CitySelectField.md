@@ -72,9 +72,9 @@ class Demo extends React.Component {
 
 ### mode
 
-描述：选择展示模式。`wheel` 为转轮模式，`cascade` 为级联模式，`picker` 为支持检索的单层选择模式。
+描述：选择展示模式。`slot` 为转轮模式，`tab` 为级联模式，`picker` 为支持检索的单层选择模式。
 类型：`string`
-默认：`'wheel'`
+默认：`'tab'`
 必选：否
 
 示例：
@@ -85,7 +85,7 @@ class Demo extends React.Component {
 
 ### confirmText
 
-描述：确认文案。仅在 `wheel` 和 `cascade` 模式下有效。
+描述：确认文案。仅在 `slot` 和 `tab` 模式下有效。
 类型：`string`
 默认：`'完成'`
 必选：否
@@ -118,20 +118,20 @@ class Demo extends React.Component {
 
 ### provinceText
 
-描述：省文案。仅在 `wheel` 模式下有效。
+描述：省文案。仅在 `slot` 模式下有效。
 类型：`string`
 默认：`'省/自治区/直辖市'`
 
 ### cityText
 
-描述：市文案。仅在 `wheel` 模式下有效。
+描述：市文案。仅在 `slot` 模式下有效。
 类型：`string`
 默认：`'市'`
 必选：否
 
 ### districtText
 
-描述：区文案。仅在 `wheel` 模式下有效。
+描述：区文案。仅在 `slot` 模式下有效。
 类型：`string`
 默认：`'区'`
 
@@ -228,7 +228,7 @@ onSelect(value) {
 
 ### onCancel
 
-描述：在 `wheel` 和 `cascade` 模式下用户取消选择时的事件。
+描述：在 `slot` 和 `tab` 模式下用户取消选择时的事件。
 类型：`function`
 默认：无
 必选：否

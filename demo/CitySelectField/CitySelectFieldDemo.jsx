@@ -29,6 +29,7 @@ class Demo extends React.Component {
           required
           confirmText="确认"
           cancelText="取消"
+          mode="slot"          
           districtData={districtData}
           onSelect={value => this.setState({ value })}
         />
@@ -39,6 +40,7 @@ class Demo extends React.Component {
           required
           confirmText="确认"
           cancelText="取消"
+          mode="slot"          
           districtData={districtData}
           onSelect={value => this.setState({ value2: value })}
         />
@@ -48,6 +50,7 @@ class Demo extends React.Component {
           required
           confirmText="确认"
           cancelText="取消"
+          mode="slot"          
           districtData={districtData}
           onSelect={value => this.setState({ value3: value })}
         />
@@ -63,7 +66,6 @@ class Demo extends React.Component {
           required
           confirmText="确认"
           cancelText="取消"
-          mode="cascade"
           districtData={districtData}
           onSelect={value => this.setState({ value4: value })}
         />

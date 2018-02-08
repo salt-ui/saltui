@@ -153,7 +153,7 @@ export default class CitySelectField extends Component {
         {...this.props}
         className={fieldClassName}
         options={options}
-        mode={this.props.mode === 'cascade' ? 'complex' : 'normal'}
+        mode={this.props.mode === 'slot' ? 'normal' : 'complex'}
         onSelect={this.cascadeSelect.bind(this)}
         columns={labels} />
     }
