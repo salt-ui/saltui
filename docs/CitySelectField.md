@@ -179,8 +179,9 @@ class Demo extends React.Component {
 示例：
 
 ```
-districtData = [{ label: '北京', value: '100001', children: [{
+districtData = [{ label: '北京', value: '100001', phonetic: ['bei', 'jing'], children: [{
     label: '西城区',
+    phonetic: ['xi', 'cheng', 'qu'],
     value: '100002',
     children: [ ... ]
   }] 

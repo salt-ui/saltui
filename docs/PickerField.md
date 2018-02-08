@@ -143,12 +143,25 @@ var value = {
 <PickerField cancelText="取消"></PickerField>
 ```
 
+### options
+
+描述：选项内容，可由本地传入。
+类型：`array`
+默认：`无`
+必选：否
+
+示例：
+
+```
+<PickerField options={[{ value: 1, text: '选项 1' }, { value: 2, text: '选项 2' }]}></PickerField>
+```
+
 ### fetchUrl
 
-描述：搜索接口地址。
+描述：搜索接口地址。未传入 `options` 时有效。
 类型：`string`
 默认：`无`
-必选：是
+必选：否
 
 示例：
 
@@ -331,6 +344,26 @@ formatItem(value) {
 ...
 
 <PickerField value={this.state.value} formatter={this.formatItem}></PickerField>
+```
+
+### phonetic
+
+描述：获取选项对应拼音的方法，返回每个字的拼音数组。用于首字母分组或本地数据模糊搜索。
+类型：`function`
+默认：`value => (value.phonetic || [])`
+必选：否
+
+示例：
+
+```
+import pinyin from 'simple-pinyin';
+getPhonetic(value) {
+  return pinyin(value.text, { pinyinOnly: false });
+}
+
+...
+
+<PickerField formatter={getPhonetic}></PickerField>
 ```
 
 ### onSelect

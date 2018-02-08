@@ -82,16 +82,16 @@ class SearchPanel extends React.Component {
     } else {
       const options = t.props.options || [];
       if (!t.searchIndex) {
-        const processFunc = t => {
-          const phonetic = utils.getPhonetic(t);
+        const processFunc = value => {
+          const phonetic = t.props.phonetic(value);
           return [
-            t.toLowerCase(),
+            t.props.formatter(value).toString().toLowerCase(),
             phonetic.join('').toLowerCase(),
             phonetic.map(str => (str[0] || '')).join('').toLowerCase()
           ];
         };
         t.searchIndex = options.map(item => ({
-          indexes: processFunc(t.props.formatter(item).toString()),
+          indexes: processFunc(item),
           item
         }));
       }
@@ -115,8 +115,8 @@ class SearchPanel extends React.Component {
     if (t.props.grouping) {
       const groups = {};
       fetchData.sort((a, b) => {
-        const phoneticA = utils.getPhonetic(t.props.formatter(a));
-        const phoneticB = utils.getPhonetic(t.props.formatter(b));
+        const phoneticA = t.props.phonetic(a);
+        const phoneticB = t.props.phonetic(b);
         let compare = 0;
         phoneticA.some((string, i) => {
           if (!phoneticB[i] || string > phoneticB[i]) {
@@ -130,7 +130,7 @@ class SearchPanel extends React.Component {
         return compare;
       });
       fetchData.forEach(item => {
-        let group = (utils.getPhonetic(t.props.formatter(item).toString()[0] || '#')[0] || '#')[0].toUpperCase();
+        let group = (t.props.phonetic(item)[0] || '#')[0].toUpperCase();
         if (group < 'A' || group > 'Z') {
           group = '#';
         }
@@ -491,6 +491,7 @@ SearchPanel.defaultProps = {
   searchPlaceholder: undefined,
   searchNotFoundContent: undefined,
   formatter: undefined,
+  phonetic: undefined,
   selectText: undefined,
 };
 
@@ -514,6 +515,7 @@ SearchPanel.propTypes = {
   searchPlaceholder: PropTypes.string,
   searchNotFoundContent: PropTypes.string,
   formatter: PropTypes.func,
+  phonetic: PropTypes.func,
   multiple: PropTypes.bool,
   grouping: PropTypes.bool,  
   compact: PropTypes.bool,  

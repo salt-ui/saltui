@@ -79,7 +79,6 @@
     "rc-tabs": "^8.1.1",
     "rc-tooltip": "^3.5.0",
     "salt-icon": "^3.1.4",
-    "simple-pinyin": "^3.0.2",
     "uploadcore": "^2.3.1",
     "uxcore-formatter": "^0.1.6"
   }
