@@ -10,7 +10,7 @@
 - cancelButton (string/React.element) - 按钮列表中取消按钮的索引位置
 - destructiveButtonIndex (int) - 按钮列表中破坏性按钮（一般为删除）的索引位置
 - title (string) - 顶部标题
-- message (string/React.element) - 顶部标题下的简要消息
+- message (string/React.element) `不推荐` - 顶部标题下的简要消息。该配置项已弃用。
 - maskClosable (bool) - 点击蒙层是否允许关闭，默认允许 
 
 `callback`: function(buttonIndex)   
@@ -28,7 +28,7 @@
     - 当为二维数组时 callback 有两个参数，第一个为`列`序列、第二个为`行`序列
 - cancelButton (string/React.element) - 默认为`取消`
 - title (string) - 顶部标题
-- message (string/React.element) - 顶部标题下的简要消息
+- message (string/React.element) `不推荐` - 顶部标题下的简要消息。该配置项已弃用。
 - maskClosable (bool) - 点击蒙层是否允许关闭，默认允许
 
 `callback`: function(buttonIndex, rowIndex)   
@@ -36,4 +36,4 @@
 点击动作后的回调函数，支持返回 Promise，buttonIndex 为传入 options 数组的 index  
 取消时也会触发该动作，buttonIndex 为 -1  
 
-#### .close() -  关闭动作面板那
+#### .close() -  关闭动作面板

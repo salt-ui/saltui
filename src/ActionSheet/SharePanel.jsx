@@ -22,30 +22,33 @@ const Panel = (props) => {
   /* eslint-disable react/no-array-index-key */
   return (
     <div className={`${prefixCls}`}>
-      {title ? <h3 className={`${prefixCls}-title`}>{title}</h3> : null}
-      {message ? <div className={`${prefixCls}-message`}>{message}</div> : null}
-      {twoDimOptions.map((item, rowIndex) => (
-        <div>
-          <div className={`${prefixCls}-item-list-split-line`} />
-          <div className={`${prefixCls}-item-list-wrapper`} key={rowIndex}>
-            <div className={`${prefixCls}-item-list`}>
-              {item.map((option, index) => (
-                <div
-                  className={classnames(`${prefixCls}-item`, 'tTE', {
-                  })}
-                  onClick={() => {
-                    onItemClick(index, rowIndex);
-                  }}
-                  key={index}
-                >
-                  <div className={`${prefixCls}-item-icon`}>{option.icon}</div>
-                  <div className={`${prefixCls}-item-title`}>{option.title}</div>
-                </div>
-            ))}
+      {(title || message) ? <div className={`${prefixCls}-message`}>
+        {title ? <h3 className={`${prefixCls}-title`}>{title}</h3> : null}
+        <p>{message}</p>
+      </div> : null}
+      <div className={`${prefixCls}-content`}>
+        {twoDimOptions.map((item, rowIndex) => (
+          <div>
+            <div className={`${prefixCls}-item-list-wrapper`} key={rowIndex}>
+              <div className={`${prefixCls}-item-list`}>
+                {item.map((option, index) => (
+                  <div
+                    className={classnames(`${prefixCls}-item`, 'tTE', {
+                    })}
+                    onClick={() => {
+                      onItemClick(index, rowIndex);
+                    }}
+                    key={index}
+                  >
+                    <div className={`${prefixCls}-item-icon`}>{option.icon}</div>
+                    <div className={`${prefixCls}-item-title`}>{option.title}</div>
+                  </div>
+              ))}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <div
         className={`${prefixCls}-item-cancel tTE`}
         onClick={() => {
