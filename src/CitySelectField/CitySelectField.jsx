@@ -136,7 +136,6 @@ export default class CitySelectField extends Component {
     );
     if (this.props.mode === 'picker') {
       return <PickerField
-        compact
         grouping
         groupingIndicator
         searchText={this.defaultSearchText()}

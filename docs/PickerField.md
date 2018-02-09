@@ -400,19 +400,6 @@ onSelect(value) {
 <PickerField multiple></PickerField>
 ```
 
-### compact
-
-描述：是否以紧凑模式展示列表。紧凑模式下不展示选中项图标。
-类型：`bool`
-默认：`false`
-必选：否
-
-示例：
-
-```
-<PickerField compact></PickerField>
-```
-
 ### grouping
 
 描述：是否按照首字母分组，并在右侧显示分组快速跳转列表。

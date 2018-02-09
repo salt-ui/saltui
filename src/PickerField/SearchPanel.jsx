@@ -339,17 +339,16 @@ class SearchPanel extends React.Component {
     return (
       <div
         key={index}
-        className={classnames(Context.prefixClass('picker-field-search-result-item'), t.props.compact ? Context.prefixClass('picker-field-no-icon') : null, Context.prefixClass('clear'))}
+        className={classnames(Context.prefixClass('picker-field-search-result-item'), Context.prefixClass('clear'))}
         onClick={() => {
           t.handleItemClick(item);
         }}
       >
-        {t.props.compact ? null :
-          <span className={Context.prefixClass('picker-field-search-result-item-icon')}>
-            {iconHTML}
-          </span>
-        }
-        <span className={classnames(Context.prefixClass('picker-field-search-result-item-entry'), t.props.compact ? Context.prefixClass('picker-field-no-icon') : null)}>{t.props.formatter(item)}</span>
+        <span className={classnames(
+          Context.prefixClass('picker-field-search-result-item-icon'),
+          t.props.grouping ? null : Context.prefixClass('picker-field-right-icon')
+        )}>{iconHTML}</span>
+        <span className={classnames(Context.prefixClass('picker-field-search-result-item-entry'), t.props.grouping ? null : Context.prefixClass('picker-field-right-icon'))}>{t.props.formatter(item)}</span>
       </div>
     );
   }
@@ -518,7 +517,6 @@ SearchPanel.propTypes = {
   phonetic: PropTypes.func,
   multiple: PropTypes.bool,
   grouping: PropTypes.bool,  
-  compact: PropTypes.bool,  
   selectText: PropTypes.string,
 };
 

@@ -118,15 +118,10 @@ $picker-field-searchbar-height = 45px
   hairline('border-bottom', $normal-alpha-7)
   padding 18px
 
-  &.{$prefix}-picker-field-no-icon
-    padding-top 13px
-    padding-bottom 13px
-
   .{$prefix}-icon
     display block
     width 20px
     height 20px
-    margin-right 20px
 
     &.un-checked
       width 18px
@@ -150,13 +145,18 @@ $picker-field-searchbar-height = 45px
   left 18px
   transform translateY(-50%)
 
+  &.{$prefix}-picker-field-right-icon
+    left auto
+    right 18px
+
 .{$prefix}-picker-field-search-result-item-entry
   display block
   margin-left 34px
   line-height $font-size-t4-lh
 
-  &.{$prefix}-picker-field-no-icon
+  &.{$prefix}-picker-field-right-icon
     margin-left 0
+    margin-right 34px
 
 .{$prefix}-picker-field-grouping-bar
   position absolute
