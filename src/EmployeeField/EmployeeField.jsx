@@ -89,6 +89,7 @@ class EmployeeField extends React.Component {
         }
       });
     } else if (window.dd) {
+      const _this = this;
       // fall back to dd api
       window.dd.biz.contact.choose({
         ...option,
@@ -99,7 +100,7 @@ class EmployeeField extends React.Component {
             const result = {
               results,
             };
-            this.props.onChange(this.transToValue(result.results));
+            _this.props.onChange(transToValue(result.results));
           }
           /* eslint-enable no-param-reassign */
         },
