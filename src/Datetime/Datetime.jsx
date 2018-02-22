@@ -11,25 +11,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Context from '../Context';
 
-
 import {
-  isArray,
-  parseDate,
-  parseValue,
+  Slot,
+  locale,
+  getSlotFormattedValue,
+  getOptions,
+  getDaysByMonth,
+  addZero,
   formatFromProps,
   formatText,
-  Slot,
+  isArray,
+  filterDate,
+  parseValue,
   Y,
   YM,
   YMD,
   YMDT,
   YMDHM,
-  YMDWHM,
-  filterDate,
-  getSlotFormattedValue,
-  getOptions,
-  locale,
-} from './utils';
+  YMDWHM } from './util/index';
 
 const columnsFlexMap = {
   YMD: [1.24, 1.1, 1.1],
@@ -38,7 +37,6 @@ const columnsFlexMap = {
   YMDWHm: [1.64, 0.89, 0.89],
 };
 
-
 class Datetime extends React.Component {
   constructor(props) {
     super(props);
@@ -46,17 +44,45 @@ class Datetime extends React.Component {
     if (props.columns.indexOf('T') !== -1 && props.columns.indexOf('H') !== -1) {
       throw new Error('Please refer to tingle-document.');
     }
-    this.init(props);
   }
-  // 外部变更选中值
+  componentWillMount() {
+    this.setOptions(this.props);
+  }
   componentWillReceiveProps(nextProps) {
     this.setOptions(nextProps);
+  }
+  setOptions = (props) => {
+    const { columns, minDate, maxDate } = props;
+    const currentValue = parseValue(props.value);
+    const options = getOptions(props.value, props);
+    const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
+    let data = formatFromProps(formatText(ret.data, undefined, props), props);
+    const value = formatFromProps(formatText(ret.value, undefined, props), props);
+    const columnsStyle = columns[0];
+    // disabledDate 仅支持 YMD
+    if (props.disabledDate && columnsStyle === 'Y') {
+      const disabledArr = props.disabledDate();
+      if (isArray(disabledArr) && disabledArr.length) {
+        data = filterDate({
+          data,
+          disabledArr,
+          value,
+          columns,
+          minDate,
+          maxDate,
+          props,
+        });
+      }
+    }
+    this.setState({
+      data,
+      value,
+    });
   }
   getPlainDate = (value) => {
     const date = [];
     const { columns } = this.props;
     let timeType = 0;
-
     for (let i = 0; i < columns.length; i += 1) {
       if (columns[i] === 'Y') {
         date[0] = value[i].value;
@@ -73,6 +99,9 @@ class Datetime extends React.Component {
       } else if (columns[i] === 'T') {
         timeType = value[i].value;
       } else if (columns[i] === 'YMD' || columns[i] === 'YMDW') {
+        if (value[1].value >= 12) {
+          timeType = 1;
+        }
         date[0] = (`${value[i].value}`).substring(0, 4);
         date[1] = (`${value[i].value}`).substring(4, 6) - 1;
         date[2] = (`${value[i].value}`).substring(6, 8);
@@ -88,96 +117,82 @@ class Datetime extends React.Component {
       value: new Date(...date).getTime(),
       timeType: timeType ? 'PM' : 'AM',
     };
-  };
-  setOptions = (props) => {
-    const currentValue = parseValue(props.value);
-    const options = getOptions({ value: currentValue }, props);
-    const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
-    let data = formatFromProps(formatText(ret.data, undefined, props), props);
-    const value = formatFromProps(formatText(ret.value, undefined, props), props);
-    const { columns, minDate, maxDate } = props;
-    const columnsStyle = columns[0];
-    if (props.disabledDate && columnsStyle === 'Y') {
-      const disabledArr = props.disabledDate();
-      if (isArray(disabledArr) && disabledArr.length) {
-        data = filterDate({
-          data,
-          disabledArr,
-          value,
-          columns,
-          minDate,
-          maxDate,
-        });
-      }
-    }
-    this.state = {
-      data,
-      value,
-    };
-  };
+  }
+
   handleConfirm = (value) => {
-    const output = this.getPlainDate(value);
-    this.props.onConfirm(output);
-  };
+    const outputDate = this.getPlainDate(value);
+    this.props.onConfirm(outputDate);
+  }
+
   handleCancel = () => {
     this.props.onCancel();
   };
-  handleChange = (value, column) => {
-    const { props } = this;
+
+  handleChange = (value, columnIndex) => {
     const {
       columns,
       minDate,
       maxDate,
       disabledDate,
-    } = props;
-    const { data } = this.state;
-    const date = parseDate({ columns, value });
-    const columnsStyle = columns[column];
-    const newValue = [...this.state.value];
-    newValue[column] = value[column];
-    if (columnsStyle === 'D') {
-      this.setState({ value: newValue });
-      props.onChange(date, column);
+      onChange,
+    } = this.props;
+    const columnsStyle = columns[columnIndex];
+    const outputDate = this.getPlainDate(value);
+    // YMD,YMDT 等模式 更改最后一列时不做处理, Y,YM,YMDHM, YMDWHM 更任意一列都不做处理
+    if (columns.length <= 2 || columns[0] !== 'Y' || columns.length === (columnIndex + 1)) {
+      this.setState({ value });
+      onChange(outputDate);
       return;
     }
-    const currentValue = parseValue(date);
-    const options = getOptions({ value: date }, props);
-    const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
-    const updateObj = {
-      data: formatFromProps(formatText(ret.data, undefined, props), props),
-      value: newValue,
-    };
-
     const disabledArr = disabledDate ? disabledDate() : [];
-    if (isArray(disabledArr) && columns[0] === 'Y') {
-      const YEARDATE = data[0];
-      const MONTHDATE = data[1];
+    const data = [].concat(this.state.data);
+    const yearData = data[0];
+    const monthData = data[1];
+    const yearValue = value[0].value;
+    const monthValue = value[1].value;
+    // disabledDate 仅支持 YMD、YMDT
+    const updateObj = { value };
+    if (isArray(disabledArr) && disabledArr.length && columns.length >= 3 && columns[0] === 'Y') {
+      const newValue = parseValue(outputDate.value);
+      const options = getOptions(outputDate.value, this.props);
+      const ret = Slot.formatDataValue([].concat(options), [].concat(newValue));
+      const newData = formatFromProps(formatText(ret.data, undefined, this.props), this.props);
       const oldData = {};
       if (columnsStyle === 'Y') {
-        oldData.yearData = YEARDATE;
+        oldData.yearData = yearData;
       }
       if (columnsStyle === 'M') {
-        oldData.yearData = YEARDATE;
-        oldData.monthData = MONTHDATE;
+        oldData.yearData = yearData;
+        oldData.monthData = monthData;
       }
       const AllData = filterDate({
-        data: updateObj.data,
+        data: newData,
         disabledArr,
         value,
         columns,
         minDate,
         maxDate,
         oldData,
+        props: this.props,
       });
-      updateObj.data = AllData.length >= 3 ? AllData : updateObj.data;
+      updateObj.data = AllData;
+    } else if ((columnsStyle === 'Y' && monthValue === 1) || (columnsStyle === 'M')) {
+      // 修改年根据年份，当月份是 2 月 动态计算日  或者 修改月份根据年份动态计算日
+      let dayArr = getDaysByMonth({
+        minDate, maxDate, year: yearValue, month: monthValue,
+      });
+      // dayArr = formatText(dayArr, undefined, this.props);
+      const unit = locale[this.props.locale].surfix.D;
+      dayArr = dayArr.map((item) => {
+        item.text = addZero(item.text) + (unit || '');
+        return item;
+      });
+      data[2] = dayArr;
+      updateObj.data = data;
     }
     this.setState(updateObj);
-    props.onChange(date, column);
   };
-  // 初始化日历面板
-  init = (props) => {
-    this.setOptions(props);
-  };
+
   render() {
     const { props, state } = this;
     const { data, value } = state;
@@ -187,9 +202,9 @@ class Datetime extends React.Component {
         ref={props.slotRef}
         columnsFlex={columnsFlexMap[props.columns.join('')]}
         title={props.title}
-        confirmText={props.confirmText || locale[props.locale].confirmText}
         data={data}
         value={value}
+        confirmText={props.confirmText || locale[props.locale].confirmText}
         onChange={this.handleChange}
         onCancel={this.handleCancel}
         onConfirm={this.handleConfirm}
@@ -197,6 +212,7 @@ class Datetime extends React.Component {
     );
   }
 }
+
 Datetime.defaultProps = {
   className: '',
   locale: 'zh-cn',
@@ -242,6 +258,7 @@ Datetime.propTypes = {
   ]),
   disabledDate: PropTypes.func,
 };
+
 Datetime.Y = Y;
 Datetime.YM = YM;
 Datetime.YMD = YMD;
