@@ -1,7 +1,7 @@
 /**
  * Datetime Component for tingle
  * @author caoke.ck & shumi.lg
- * @modify quanyun.mqy 于 2017.9.8 从tingle-datetime-field中分拆出来
+ * @modify quanyun.mqy 于 2017.9.8 从 tingle-datetime-field 中分拆出来
  *
  * Copyright 2014-2017, Tingle Team.
  * All rights reserved.
@@ -42,16 +42,14 @@ class Datetime extends React.Component {
     super(props);
     // 如果二者同时存在，是提示出错
     if (props.columns.indexOf('T') !== -1 && props.columns.indexOf('H') !== -1) {
-      throw new Error('Please refer to tingle-document.');
+      throw new Error('Please refer to the component document.');
     }
-  }
-  componentWillMount() {
-    this.setOptions(this.props);
+    this.state = this.getState(props);
   }
   componentWillReceiveProps(nextProps) {
-    this.setOptions(nextProps);
+    this.setState(this.getState(nextProps));
   }
-  setOptions = (props) => {
+  getState = (props) => {
     const { columns, minDate, maxDate } = props;
     const currentValue = parseValue(props.value);
     const options = getOptions(props.value, props);
@@ -74,10 +72,10 @@ class Datetime extends React.Component {
         });
       }
     }
-    this.setState({
+    return {
       data,
       value,
-    });
+    };
   }
   getPlainDate = (value) => {
     const date = [];

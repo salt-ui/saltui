@@ -1,8 +1,13 @@
-## 3.5.22 / 2018-02-08
+## 3.5.23 / 2018-02-22
+
+* `feat`: Datetime logic optimization when handling disabledDate
+
+
+## 3.5.22 / 2018-02-22
 
 * `feat`: Action/Popover/Popup/Drawer/CascadeSelect style optimization
 * `fix`: EmployeeField `transToValue` method not found.
-* `feat`: readOnly when not in dingtalk
+* `feat`: EmployeeField readOnly when not in dingtalk
 
 ## 3.5.21 / 2018-02-06
 

@@ -10,7 +10,6 @@ import {
   getDaysByYear,
   getDaysByMonth,
   getMonthsByYear,
-  isObject,
 } from './base';
 import locale from './locale';
 import dateFormat from './dateFormat';
