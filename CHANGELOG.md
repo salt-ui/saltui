@@ -1,3 +1,9 @@
+## 3.5.22 / 2018-02-08
+
+* `feat`: Action/Popover/Popup/Drawer/CascadeSelect style optimization
+* `fix`: EmployeeField `transToValue` method not found.
+* `feat`: readOnly when not in dingtalk
+
 ## 3.5.21 / 2018-02-06
 
 * `fix`: PhotoField add default accept to prevent user upload wrong files to a certain extent.

@@ -5,6 +5,7 @@ const locale = {
     getTotalText(total) {
       return `共${total}人`;
     },
+    onlyForDd: '非钉钉内仅支持查看。 ',
   },
   'en-us': {
     ok: 'OK',
@@ -12,6 +13,7 @@ const locale = {
     getTotalText(total) {
       return `Total ${total}`;
     },
+    onlyForDd: 'Read only when not in Dingtalk. ',
   },
 };
 

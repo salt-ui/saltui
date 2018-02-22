@@ -19,6 +19,13 @@ import EmployeeList from './EmployeeList';
 import locale from './locale';
 import { transToValue } from './utils';
 
+const isDd = () => {
+  if (typeof window !== 'undefined') {
+    return window.dd;
+  }
+  return false;
+};
+
 
 class EmployeeField extends React.Component {
   static propTypes = {
@@ -54,7 +61,7 @@ class EmployeeField extends React.Component {
   static displayName = 'EmployeeField';
 
   onPickHandler() {
-    if (this.props.readOnly) {
+    if (this.getReadOnly()) {
       return;
     }
     const i18n = locale[this.props.locale];
@@ -68,28 +75,29 @@ class EmployeeField extends React.Component {
     };
     const Ali = window.Ali || {};
     if (Ali.contacts) {
-      if (!this.props.corpId) {
-        Ali.alert({
-          message: i18n.corpIdRequired,
-          okButton: i18n.ok,
-        });
-        return;
-      }
       if (Ali.isDingDing) {
-        option.corpId = this.props.corpId;
-      }
-      Ali.contacts.get(option, (result) => {
-        if (result && !result.errorCode) {
-          this.props.onChange(transToValue(result.results));
-        } else {
+        if (!this.props.corpId) {
           Ali.alert({
-            message: result.errorMessage,
+            message: i18n.corpIdRequired,
             okButton: i18n.ok,
           });
+          return;
         }
-      });
+        option.corpId = this.props.corpId;
+        Ali.contacts.get(option, (result) => {
+          if (result && !result.errorCode) {
+            this.props.onChange(transToValue(result.results));
+          } else {
+            Ali.alert({
+              message: result.errorMessage,
+              okButton: i18n.ok,
+            });
+          }
+        });
+      }
     } else if (window.dd) {
       // fall back to dd api
+      const t = this;
       window.dd.biz.contact.choose({
         ...option,
         onSuccess(results) {
@@ -99,7 +107,7 @@ class EmployeeField extends React.Component {
             const result = {
               results,
             };
-            this.props.onChange(this.transToValue(result.results));
+            t.props.onChange(transToValue(result.results));
           }
           /* eslint-enable no-param-reassign */
         },
@@ -124,11 +132,21 @@ class EmployeeField extends React.Component {
     return i18n.getTotalText(this.props.value.length);
   }
 
+  getReadOnly() {
+    if (typeof window !== 'undefined') {
+      if (!window.Ali && !window.dd) {
+        return true;
+      } else if (window.Ali && !window.Ali.isDingDing) {
+        return true;
+      }
+    }
+    return this.props.readOnly;
+  }
 
   renderEmployeeList() {
     return (
       <EmployeeList
-        readOnly={this.props.readOnly}
+        readOnly={this.getReadOnly()}
         list={this.props.value}
         onDel={(id) => { this.onItemDel(id); }}
       />
@@ -139,7 +157,7 @@ class EmployeeField extends React.Component {
     const t = this;
     const iconProps = {
       className: classnames(Context.prefixClass('employee-field-icon'), {
-        active: !t.props.readOnly,
+        active: !t.getReadOnly(),
       }),
       // name: 'plus-circle',
       width: 20,
@@ -149,16 +167,18 @@ class EmployeeField extends React.Component {
       },
     };
 
-    const icon = !t.props.readOnly ? <PlusCircle {...iconProps} /> : null;
-    const { className, ...otherProps } = t.props;
+    const icon = !t.getReadOnly() ? <PlusCircle {...iconProps} /> : null;
+    const { className, tip, ...otherProps } = t.props;
     delete otherProps.layout;
+    const i18n = locale[this.props.locale];
+
     return (
       <div
         className={classnames(Context.prefixClass('employee-field'), {
           [className]: !!className,
         })}
       >
-        <Field {...otherProps} icon={icon}>
+        <Field {...otherProps} icon={icon} tip={<div>{isDd() ? '' : i18n.onlyForDd}{tip}</div>}>
           <div onClick={(e) => { t.onPickHandler(e); }}>
             {
               !t.props.value.length ?

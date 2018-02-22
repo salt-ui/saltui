@@ -34,10 +34,11 @@ class EmployeeFieldDemo extends React.Component {
         <Group.List>
           <EmployeeField
             tip="这是一个 tip"
+            corpId="dingd8e1123006514592"
             label="选择人员"
             layout="v"
             placeholder="请选择"
-            readOnly
+            locale="en-us"
             value={this.state.value}
             onChange={(value) => { this.onChange(value); }}
           />
