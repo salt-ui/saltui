@@ -29,7 +29,7 @@ class Demo extends React.Component {
           required
           confirmText="确认"
           cancelText="取消"
-          mode="slot"          
+          mode="slot"
           districtData={districtData}
           onSelect={value => this.setState({ value })}
         />
@@ -40,7 +40,7 @@ class Demo extends React.Component {
           required
           confirmText="确认"
           cancelText="取消"
-          mode="slot"          
+          mode="slot"
           districtData={districtData}
           onSelect={value => this.setState({ value2: value })}
         />
@@ -50,7 +50,7 @@ class Demo extends React.Component {
           required
           confirmText="确认"
           cancelText="取消"
-          mode="slot"          
+          mode="slot"
           districtData={districtData}
           onSelect={value => this.setState({ value3: value })}
         />

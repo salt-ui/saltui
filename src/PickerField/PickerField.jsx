@@ -134,8 +134,8 @@ class PickerField extends React.Component {
       formatter: t.props.formatter,
       phonetic: t.props.phonetic,
       multiple: t.props.multiple,
-      grouping: t.props.grouping,      
-      groupingIndicator: t.props.groupingIndicator,      
+      grouping: t.props.grouping,
+      groupingIndicator: t.props.groupingIndicator,
       selectText: t.props.selectText,
       searchText: t.props.searchText,
     };
@@ -199,6 +199,7 @@ PickerField.defaultProps = {
   selectText: '已选择：',
   className: undefined,
   value: undefined,
+  options: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -230,8 +231,8 @@ PickerField.propTypes = {
   phonetic: PropTypes.func,
   onSelect: PropTypes.func,
   multiple: PropTypes.bool,
-  grouping: PropTypes.bool,  
-  groupingIndicator: PropTypes.bool,  
+  grouping: PropTypes.bool,
+  groupingIndicator: PropTypes.bool,
   selectText: PropTypes.string,
 };
 

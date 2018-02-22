@@ -18,22 +18,22 @@ class GroupingBar extends React.Component {
     super(props);
     this.state = {
       holding: null,
-      indicatorPos: 0
-    }
+      indicatorPos: 0,
+    };
   }
 
   hold(e) {
-    const t = this,
-      clientX = utils.getPageSize().width - 10,
-      clientY = e.touches[0].clientY,
-      target = document.elementFromPoint(clientX, clientY),
-      key = target && target.getAttribute('data-key');
+    const t = this;
+    const clientX = utils.getPageSize().width - 10;
+    const { clientY } = e.touches[0];
+    const target = document.elementFromPoint(clientX, clientY);
+    const key = target && target.getAttribute('data-key');
 
     e.preventDefault();
-    if (t.state.key != key) {
+    if (t.state.key !== key) {
       t.setState({
         holding: key,
-        indicatorPos: target.offsetTop
+        indicatorPos: target.offsetTop,
       });
       this.props.onSelect(key);
     }
@@ -42,14 +42,15 @@ class GroupingBar extends React.Component {
   release() {
     const t = this;
     t.setState({
-      holding: null
-    })
+      holding: null,
+    });
   }
 
   render() {
     const t = this;
     return (
-      <div className={Context.prefixClass('picker-field-grouping-bar')}
+      <div
+        className={Context.prefixClass('picker-field-grouping-bar')}
         onTouchStart={t.hold.bind(t)}
         onTouchMove={t.hold.bind(t)}
         onTouchEnd={t.release.bind(t)}
@@ -61,30 +62,34 @@ class GroupingBar extends React.Component {
             className={classnames(
               Context.prefixClass('picker-field-group'),
               t.props.keys.indexOf(key) > -1 ? Context.prefixClass('picker-field-avilible-group') : null,
-              t.state.holding == key ? Context.prefixClass('picker-field-active-group') : null
+              t.state.holding === key ? Context.prefixClass('picker-field-active-group') : null,
             )}
             key={key}
             data-key={key}
-          >{key}</div>
+          >{key}
+          </div>
         ))}
-        {t.props.indicator ? <div
-          className={classnames(
-            Context.prefixClass('picker-field-grouping-indicator'),
-            t.state.holding ? null : Context.prefixClass('picker-field-grouping-indicator-hide'),
-            t.props.keys.indexOf(t.state.holding) > -1 ? Context.prefixClass('picker-field-avilible-group') : null
-          )}
-          style={{ transform: `translateY(${t.state.indicatorPos}px)`, WebkitTransform: `translateY(${t.state.indicatorPos}px)`}}
-        >
-          {t.state.holding}
-        </div> : null}
+        {t.props.indicator ? (
+          <div
+            className={classnames(
+              Context.prefixClass('picker-field-grouping-indicator'),
+              t.state.holding ? null : Context.prefixClass('picker-field-grouping-indicator-hide'),
+              t.props.keys.indexOf(t.state.holding) > -1 ? Context.prefixClass('picker-field-avilible-group') : null,
+            )}
+            style={{ transform: `translateY(${t.state.indicatorPos}px)`, WebkitTransform: `translateY(${t.state.indicatorPos}px)` }}
+          >
+            {t.state.holding}
+          </div>
+        ) : null}
       </div>
-    )
+    );
   }
 }
 
 GroupingBar.defaultProps = {
   keys: [],
-  onSelect() {},
+  onSelect() { },
+  indicator: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

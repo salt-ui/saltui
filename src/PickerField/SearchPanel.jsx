@@ -55,6 +55,56 @@ class SearchPanel extends React.Component {
     }
   }
 
+
+  setData(fetchData) {
+    const t = this;
+    const state = {};
+    if (fetchData && fetchData.length) {
+      state.searchEmpty = false;
+    } else {
+      state.searchEmpty = true;
+    }
+    if (t.props.grouping) {
+      const groups = {};
+      fetchData.sort((a, b) => {
+        const phoneticA = t.props.phonetic(a);
+        const phoneticB = t.props.phonetic(b);
+        let compare = 0;
+        phoneticA.some((string, i) => {
+          if (!phoneticB[i] || string > phoneticB[i]) {
+            compare = 1;
+            return true;
+          } else if (string < phoneticB[i]) {
+            compare = -1;
+            return true;
+          }
+        });
+        return compare;
+      });
+      fetchData.forEach((item) => {
+        let group = (t.props.phonetic(item)[0] || '#')[0].toUpperCase();
+        if (group < 'A' || group > 'Z') {
+          group = '#';
+        }
+        groups[group] = groups[group] || [];
+        groups[group].push(item);
+      });
+      fetchData = Object.keys(groups)
+        .sort((a, b) => utils.alphabet.indexOf(a) - utils.alphabet.indexOf(b))
+        .map(key => ({
+          title: key,
+          items: groups[key],
+        }));
+    }
+    if (t.state.isOpenSearch) {
+      state.openResults = fetchData;
+      state.isOpenSearch = false;
+    } else {
+      state.results = state.searchEmpty ? [] : fetchData;
+    }
+    t.setState(state);
+  }
+
   search(term) {
     const t = this;
     if (t.fetch) {
@@ -82,75 +132,25 @@ class SearchPanel extends React.Component {
     } else {
       const options = t.props.options || [];
       if (!t.searchIndex) {
-        const processFunc = value => {
+        const processFunc = (value) => {
           const phonetic = t.props.phonetic(value);
           return [
             t.props.formatter(value).toString().toLowerCase(),
             phonetic.join('').toLowerCase(),
-            phonetic.map(str => (str[0] || '')).join('').toLowerCase()
+            phonetic.map(str => (str[0] || '')).join('').toLowerCase(),
           ];
         };
         t.searchIndex = options.map(item => ({
           indexes: processFunc(item),
-          item
+          item,
         }));
       }
       const filteredData = term ?
-        t.searchIndex.filter(entity => {
-          return entity.indexes.some(indexText => indexText.indexOf(term.toLowerCase()) > -1)
-        }).map(entity => entity.item) :
-        options
+        t.searchIndex.filter(entity => entity.indexes.some(indexText =>
+          indexText.indexOf(term.toLowerCase()) > -1)).map(entity => entity.item)
+        : options;
       t.setData(filteredData);
     }
-  }
-
-  setData(fetchData) {
-    const t = this;
-    const state = {};
-    if (fetchData && fetchData.length) {
-      state.searchEmpty = false;
-    } else {
-      state.searchEmpty = true;
-    }
-    if (t.props.grouping) {
-      const groups = {};
-      fetchData.sort((a, b) => {
-        const phoneticA = t.props.phonetic(a);
-        const phoneticB = t.props.phonetic(b);
-        let compare = 0;
-        phoneticA.some((string, i) => {
-          if (!phoneticB[i] || string > phoneticB[i]) {
-            compare = 1;
-            return true;
-          } else if (string < phoneticB[i]) {
-            compare = -1;
-            return true;
-          }
-        });
-        return compare;
-      });
-      fetchData.forEach(item => {
-        let group = (t.props.phonetic(item)[0] || '#')[0].toUpperCase();
-        if (group < 'A' || group > 'Z') {
-          group = '#';
-        }
-        groups[group] = groups[group] || [];
-        groups[group].push(item);
-      });
-      fetchData = Object.keys(groups).sort((a, b) => {
-        return utils.alphabet.indexOf(a) - utils.alphabet.indexOf(b)
-      }).map(key => ({
-        title: key,
-        items: groups[key]
-      }));
-    }
-    if (t.state.isOpenSearch) {
-      state.openResults = fetchData;
-      state.isOpenSearch = false;
-    } else {
-      state.results = state.searchEmpty ? [] : fetchData;
-    }
-    t.setState(state);
   }
 
   handleItemClick(item) {
@@ -261,7 +261,7 @@ class SearchPanel extends React.Component {
 
   selectGrouping(key) {
     const t = this;
-    let element = t.groupEl[key];
+    const element = t.groupEl[key];
     if (element) {
       element.scrollIntoView();
     }
@@ -295,21 +295,19 @@ class SearchPanel extends React.Component {
   renderGroups(groups) {
     const t = this;
     return (
-      groups.map((group, index) => {
-        return (
-          <div
-            className={Context.prefixClass('picker-field-grouping')}
-            key={group.title}
-            ref={ref => { t.groupEl[group.title] = ref }}
-          >
-            <div className={Context.prefixClass('picker-field-grouping-title')}>
-              <p className={Context.prefixClass('picker-field-grouping-title-inner')}>{group.title}</p>
-            </div>
-            {group.items.map((item, index) => t.renderResultItem(item, index))}
+      groups.map(group => (
+        <div
+          className={Context.prefixClass('picker-field-grouping')}
+          key={group.title}
+          ref={(ref) => { t.groupEl[group.title] = ref; }}
+        >
+          <div className={Context.prefixClass('picker-field-grouping-title')}>
+            <p className={Context.prefixClass('picker-field-grouping-title-inner')}>{group.title}</p>
           </div>
-        )
-      })
-    )
+          {group.items.map((item, index) => t.renderResultItem(item, index))}
+        </div>
+      ))
+    );
   }
 
   renderResultItem(item, index) {
@@ -346,8 +344,10 @@ class SearchPanel extends React.Component {
       >
         <span className={classnames(
           Context.prefixClass('picker-field-search-result-item-icon'),
-          t.props.grouping ? null : Context.prefixClass('picker-field-right-icon')
-        )}>{iconHTML}</span>
+          t.props.grouping ? null : Context.prefixClass('picker-field-right-icon'),
+        )}
+        >{iconHTML}
+        </span>
         <span className={classnames(Context.prefixClass('picker-field-search-result-item-entry'), t.props.grouping ? null : Context.prefixClass('picker-field-right-icon'))}>{t.props.formatter(item)}</span>
       </div>
     );
@@ -381,7 +381,7 @@ class SearchPanel extends React.Component {
         indicator={t.props.groupingIndicator}
         onSelect={t.selectGrouping.bind(t)}
       />
-    )
+    );
   }
 
   render() {
@@ -492,6 +492,9 @@ SearchPanel.defaultProps = {
   formatter: undefined,
   phonetic: undefined,
   selectText: undefined,
+  options: undefined,
+  fetchUrl: undefined,
+  grouping: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -516,7 +519,7 @@ SearchPanel.propTypes = {
   formatter: PropTypes.func,
   phonetic: PropTypes.func,
   multiple: PropTypes.bool,
-  grouping: PropTypes.bool,  
+  grouping: PropTypes.bool,
   selectText: PropTypes.string,
 };
 

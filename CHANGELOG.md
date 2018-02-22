@@ -1,7 +1,12 @@
+## 3.6.0 / 2018-02-22
+
+* `feat`: PickerField style optimization.
+* `feat`: PickerField support grouping & grouping indicator
+* `feat`: CitySelectField refactor with CascadeSelectField & PickerField
+
 ## 3.5.23 / 2018-02-22
 
 * `feat`: Datetime logic optimization when handling disabledDate
-
 
 ## 3.5.22 / 2018-02-22
 

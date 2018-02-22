@@ -8,8 +8,7 @@
 
 import Group from 'salt-group';
 import PickerField from 'salt-picker-field';
-
-const React = window.React;
+import React from 'react';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const PickerField = require('../../dist');
