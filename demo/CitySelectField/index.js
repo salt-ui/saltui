@@ -5,12 +5,17 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
+
+
 import 'salt-context';
-
 import './CitySelectFieldDemo.styl';
-window.FastClick && FastClick.attach(document.body);
-
 // 渲染demo
 import Demo from './CitySelectFieldDemo';
+
+
+if (window.FastClick) {
+  window.FastClick.attach(document.body);
+}
+
 
 export default Demo;

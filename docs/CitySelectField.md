@@ -1,8 +1,7 @@
 
 
-CitySelectField 是针对中国的城市选择输入表单域。
+# 城市选择表单域
 
-![CitySelectField](https://img.alicdn.com/tps/TB11mR4PFXXXXcYXVXXXXXXXXXX-314-565.jpg)
 
 ## Simple Usage
 
@@ -178,7 +177,7 @@ class Demo extends React.Component {
 
 示例：
 
-```
+```jsx
 districtData = [{ label: '北京', value: '100001', phonetic: ['bei', 'jing'], children: [{
     label: '西城区',
     phonetic: ['xi', 'cheng', 'qu'],

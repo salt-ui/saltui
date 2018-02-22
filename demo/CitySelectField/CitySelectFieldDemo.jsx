@@ -8,18 +8,33 @@
 
 import React from 'react';
 import CitySelectField from 'salt-city-select-field';
+import nattyFetch from 'natty-fetch';
 
-import districtData from './staticData';
+// import districtData from './staticData';
 
 class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: [],
+      districtData: [],
     };
   }
 
+  componentDidMount() {
+    const fetch = nattyFetch.create({
+      url: 'https://www.easy-mock.com/mock/5a2f75a26ce8af6869ec49f0/saltui/city-data?jsonp_param_name=callback',
+      jsonp: true,
+    });
+    fetch().then((reuslt) => {
+      this.setState({
+        districtData: reuslt,
+      });
+    });
+  }
+
   render() {
+    const { districtData } = this.state;
     return (
       <div>
         <CitySelectField
