@@ -62,10 +62,13 @@ const addUrlParam = (name, value) => {
   return currentUrl;
 };
 
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#';
+
 export default {
   getPageSize,
   processData,
   debounce,
   isArray,
   addUrlParam,
+  alphabet,
 };

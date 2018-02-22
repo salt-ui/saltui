@@ -119,6 +119,7 @@ class PickerField extends React.Component {
         t.handleConfirm(value);
         window.history.go(-1);
       },
+      options: t.props.options,
       fetchUrl: t.props.fetchUrl,
       fetchDataOnOpen: t.props.fetchDataOnOpen,
       dataType: t.props.dataType,
@@ -131,7 +132,10 @@ class PickerField extends React.Component {
       searchPlaceholder: t.props.searchPlaceholder,
       searchNotFoundContent: t.props.searchNotFoundContent,
       formatter: t.props.formatter,
+      phonetic: t.props.phonetic,
       multiple: t.props.multiple,
+      grouping: t.props.grouping,      
+      groupingIndicator: t.props.groupingIndicator,      
       selectText: t.props.selectText,
       searchText: t.props.searchText,
     };
@@ -187,8 +191,11 @@ PickerField.defaultProps = {
   searchPlaceholder: '搜索',
   searchNotFoundContent: '无搜索结果',
   formatter: value => (value ? value.text : ''),
+  phonetic: value => (value.phonetic || []),
   onSelect() {},
   multiple: false,
+  grouping: false,
+  groupingIndicator: false,
   selectText: '已选择：',
   className: undefined,
   value: undefined,
@@ -207,6 +214,7 @@ PickerField.propTypes = {
   searchText: PropTypes.string,
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
+  options: PropTypes.array,
   fetchUrl: PropTypes.string,
   fetchDataOnOpen: PropTypes.bool,
   dataType: PropTypes.string,
@@ -219,8 +227,11 @@ PickerField.propTypes = {
   searchPlaceholder: PropTypes.string,
   searchNotFoundContent: PropTypes.string,
   formatter: PropTypes.func,
+  phonetic: PropTypes.func,
   onSelect: PropTypes.func,
   multiple: PropTypes.bool,
+  grouping: PropTypes.bool,  
+  groupingIndicator: PropTypes.bool,  
   selectText: PropTypes.string,
 };
 

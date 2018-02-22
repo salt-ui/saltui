@@ -18,6 +18,7 @@ options | array | 候选数据，数据格式参考下方 Simple Usage
 value | array | 值，数据格式参考下方 Simple Usage
 columns | array | 表头文案
 onSelect | function | 选中回调函数
+onCancel | function | 取消选中回调函数
 formatter | function | 格式化显示值函数
 mode | string | 'normal', 'complex' 其中之一，代表显示的模式
 locale | string | 'zh-cn', 'en-us' 国际化文案
@@ -118,6 +119,22 @@ onSelect(value) {
 ...
 
 <CascadeSelectField value={this.state.value} onSelect={this.onSelect}></CascadeSelectField>
+```
+
+### onCancel
+
+示例：
+
+```
+onCancel() {
+    this.setState({
+        value: []
+    });
+}
+
+...
+
+<CascadeSelectField value={this.state.value} onCancel={this.onCancel}></CascadeSelectField>
 ```
 
 ### formatter

@@ -143,12 +143,25 @@ var value = {
 <PickerField cancelText="取消"></PickerField>
 ```
 
+### options
+
+描述：选项内容，可由本地传入。
+类型：`array`
+默认：`无`
+必选：否
+
+示例：
+
+```
+<PickerField options={[{ value: 1, text: '选项 1' }, { value: 2, text: '选项 2' }]}></PickerField>
+```
+
 ### fetchUrl
 
-描述：搜索接口地址。
+描述：搜索接口地址。未传入 `options` 时有效。
 类型：`string`
 默认：`无`
-必选：是
+必选：否
 
 示例：
 
@@ -333,6 +346,26 @@ formatItem(value) {
 <PickerField value={this.state.value} formatter={this.formatItem}></PickerField>
 ```
 
+### phonetic
+
+描述：获取选项对应拼音的方法，返回每个字的拼音数组。用于首字母分组或本地数据模糊搜索。
+类型：`function`
+默认：`value => (value.phonetic || [])`
+必选：否
+
+示例：
+
+```
+import pinyin from 'simple-pinyin';
+getPhonetic(value) {
+  return pinyin(value.text, { pinyinOnly: false });
+}
+
+...
+
+<PickerField formatter={getPhonetic}></PickerField>
+```
+
 ### onSelect
 
 描述：值变化触发的事件。
@@ -365,6 +398,32 @@ onSelect(value) {
 
 ```
 <PickerField multiple></PickerField>
+```
+
+### grouping
+
+描述：是否按照首字母分组，并在右侧显示分组快速跳转列表。
+类型：`bool`
+默认：`false`
+必选：否
+
+示例：
+
+```
+<PickerField grouping></PickerField>
+```
+
+### groupingIndicator
+
+描述：点击分组快速跳转列表时，是否放大展示当前字母。仅在 `grouping` 为真时有效。
+类型：`bool`
+默认：`false`
+必选：否
+
+示例：
+
+```
+<PickerField grouping groupingIndicator></PickerField>
 ```
 
 ### selectText

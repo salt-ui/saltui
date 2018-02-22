@@ -18,6 +18,7 @@ import Button from '../Button';
 import Popup from '../Popup';
 import SearchBar from '../SearchBar';
 import SearchResult from './SearchResult';
+import GroupingBar from './GroupingBar';
 import utils from './utils';
 
 class SearchPanel extends React.Component {
@@ -41,11 +42,12 @@ class SearchPanel extends React.Component {
     };
     t.delaySearch = utils.debounce(t.search.bind(t), t.props.searchDelay);
     t.handleLeaveResultView = t.handleLeaveResultView.bind(t);
+    t.groupEl = {};
   }
 
   componentDidMount() {
     const t = this;
-    if (t.props.fetchUrl && t.props.fetchDataOnOpen) {
+    if (t.props.fetchDataOnOpen) {
       t.delaySearch('');
       t.setState({
         isOpenSearch: true,
@@ -63,31 +65,92 @@ class SearchPanel extends React.Component {
         });
       }
     }
-    t.fetch = NattyFetch.create({
-      url: t.props.fetchUrl,
-      jsonp: t.props.dataType ? t.props.dataType === 'jsonp' : (/\.jsonp/.test(t.props.fetchUrl)),
-      data: t.props.beforeFetch({ q: term }),
-      fit: t.props.fitResponse,
-      Promise,
-    });
-    t.fetch().then((data) => {
-      const fetchData = t.props.afterFetch(data);
-      const state = {};
-      if (fetchData && fetchData.length) {
-        state.searchEmpty = false;
-      } else {
-        state.searchEmpty = true;
+    if (t.props.fetchUrl) {
+      t.fetch = NattyFetch.create({
+        url: t.props.fetchUrl,
+        jsonp: t.props.dataType ? t.props.dataType === 'jsonp' : (/\.jsonp/.test(t.props.fetchUrl)),
+        data: t.props.beforeFetch({ q: term }),
+        fit: t.props.fitResponse,
+        Promise,
+      });
+      t.fetch().then((data) => {
+        const fetchData = t.props.afterFetch(data);
+        t.setData(fetchData);
+      }).catch((e) => {
+        console.error(e); // eslint-disable-line no-console
+      });
+    } else {
+      const options = t.props.options || [];
+      if (!t.searchIndex) {
+        const processFunc = value => {
+          const phonetic = t.props.phonetic(value);
+          return [
+            t.props.formatter(value).toString().toLowerCase(),
+            phonetic.join('').toLowerCase(),
+            phonetic.map(str => (str[0] || '')).join('').toLowerCase()
+          ];
+        };
+        t.searchIndex = options.map(item => ({
+          indexes: processFunc(item),
+          item
+        }));
       }
-      if (t.state.isOpenSearch) {
-        state.openResults = fetchData;
-        state.isOpenSearch = false;
-      } else {
-        state.results = state.searchEmpty ? [] : fetchData;
-      }
-      t.setState(state);
-    }).catch((e) => {
-      console.error(e); // eslint-disable-line no-console
-    });
+      const filteredData = term ?
+        t.searchIndex.filter(entity => {
+          return entity.indexes.some(indexText => indexText.indexOf(term.toLowerCase()) > -1)
+        }).map(entity => entity.item) :
+        options
+      t.setData(filteredData);
+    }
+  }
+
+  setData(fetchData) {
+    const t = this;
+    const state = {};
+    if (fetchData && fetchData.length) {
+      state.searchEmpty = false;
+    } else {
+      state.searchEmpty = true;
+    }
+    if (t.props.grouping) {
+      const groups = {};
+      fetchData.sort((a, b) => {
+        const phoneticA = t.props.phonetic(a);
+        const phoneticB = t.props.phonetic(b);
+        let compare = 0;
+        phoneticA.some((string, i) => {
+          if (!phoneticB[i] || string > phoneticB[i]) {
+            compare = 1;
+            return true;
+          } else if (string < phoneticB[i]) {
+            compare = -1;
+            return true;
+          }
+        });
+        return compare;
+      });
+      fetchData.forEach(item => {
+        let group = (t.props.phonetic(item)[0] || '#')[0].toUpperCase();
+        if (group < 'A' || group > 'Z') {
+          group = '#';
+        }
+        groups[group] = groups[group] || [];
+        groups[group].push(item);
+      });
+      fetchData = Object.keys(groups).sort((a, b) => {
+        return utils.alphabet.indexOf(a) - utils.alphabet.indexOf(b)
+      }).map(key => ({
+        title: key,
+        items: groups[key]
+      }));
+    }
+    if (t.state.isOpenSearch) {
+      state.openResults = fetchData;
+      state.isOpenSearch = false;
+    } else {
+      state.results = state.searchEmpty ? [] : fetchData;
+    }
+    t.setState(state);
   }
 
   handleItemClick(item) {
@@ -196,6 +259,14 @@ class SearchPanel extends React.Component {
     return found > -1;
   }
 
+  selectGrouping(key) {
+    const t = this;
+    let element = t.groupEl[key];
+    if (element) {
+      element.scrollIntoView();
+    }
+  }
+
   isEmpty() {
     return this.state.value.length === 0;
   }
@@ -213,9 +284,32 @@ class SearchPanel extends React.Component {
     const t = this;
     return (
       <div className={Context.prefixClass('picker-field-search-results')}>
-        {results.map((item, index) => t.renderResultItem(item, index))}
+        {t.props.grouping ?
+          t.renderGroups(results) :
+          results.map((item, index) => t.renderResultItem(item, index))
+        }
       </div>
     );
+  }
+
+  renderGroups(groups) {
+    const t = this;
+    return (
+      groups.map((group, index) => {
+        return (
+          <div
+            className={Context.prefixClass('picker-field-grouping')}
+            key={group.title}
+            ref={ref => { t.groupEl[group.title] = ref }}
+          >
+            <div className={Context.prefixClass('picker-field-grouping-title')}>
+              <p className={Context.prefixClass('picker-field-grouping-title-inner')}>{group.title}</p>
+            </div>
+            {group.items.map((item, index) => t.renderResultItem(item, index))}
+          </div>
+        )
+      })
+    )
   }
 
   renderResultItem(item, index) {
@@ -250,10 +344,11 @@ class SearchPanel extends React.Component {
           t.handleItemClick(item);
         }}
       >
-        <span className={Context.prefixClass('picker-field-search-result-item-icon')}>
-          {iconHTML}
-        </span>
-        <span className={Context.prefixClass('picker-field-search-result-item-entry')}>{t.props.formatter(item)}</span>
+        <span className={classnames(
+          Context.prefixClass('picker-field-search-result-item-icon'),
+          t.props.grouping ? null : Context.prefixClass('picker-field-right-icon')
+        )}>{iconHTML}</span>
+        <span className={classnames(Context.prefixClass('picker-field-search-result-item-entry'), t.props.grouping ? null : Context.prefixClass('picker-field-right-icon'))}>{t.props.formatter(item)}</span>
       </div>
     );
   }
@@ -269,6 +364,24 @@ class SearchPanel extends React.Component {
       return t.renderResults(t.state.openResults);
     }
     return SearchPanel.renderSearchTips();
+  }
+
+  renderGroupingBar() {
+    const t = this;
+    let groups = [];
+    if (t.state.hasKeyword) {
+      groups = t.state.results;
+    } else if (t.props.fetchDataOnOpen && t.state.openResults.length) {
+      groups = t.state.openResults;
+    }
+    const keys = groups.map(group => group.title);
+    return (
+      <GroupingBar
+        keys={keys}
+        indicator={t.props.groupingIndicator}
+        onSelect={t.selectGrouping.bind(t)}
+      />
+    )
   }
 
   render() {
@@ -309,7 +422,7 @@ class SearchPanel extends React.Component {
                 ref={(c) => {
                   t.searchBar = c;
                 }}
-                searchText={t.props.searchText}
+                placeholder={t.props.searchText}
                 cancelText={t.props.cancelText}
                 className={Context.prefixClass('picker-field-searchpanel-search')}
                 onChange={(val) => {
@@ -325,9 +438,10 @@ class SearchPanel extends React.Component {
             </div>
           ) : null}
           <div className={Context.prefixClass('picker-field-searchpanel-content')}>
-            <ScrollView>
+            <ScrollView bounce={false} disablePointer>
               {t.renderResultCondition()}
             </ScrollView>
+            {t.props.grouping ? t.renderGroupingBar() : null}
           </div>
           {multiple ? (
             <div className={Context.prefixClass('picker-field-searchpanel-footer')}>
@@ -376,6 +490,7 @@ SearchPanel.defaultProps = {
   searchPlaceholder: undefined,
   searchNotFoundContent: undefined,
   formatter: undefined,
+  phonetic: undefined,
   selectText: undefined,
 };
 
@@ -386,7 +501,8 @@ SearchPanel.propTypes = {
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
   onConfirm: PropTypes.func,
-  fetchUrl: PropTypes.string.isRequired,
+  options: PropTypes.array,
+  fetchUrl: PropTypes.string,
   fetchDataOnOpen: PropTypes.bool,
   dataType: PropTypes.string,
   beforeFetch: PropTypes.func,
@@ -398,7 +514,9 @@ SearchPanel.propTypes = {
   searchPlaceholder: PropTypes.string,
   searchNotFoundContent: PropTypes.string,
   formatter: PropTypes.func,
+  phonetic: PropTypes.func,
   multiple: PropTypes.bool,
+  grouping: PropTypes.bool,  
   selectText: PropTypes.string,
 };
 

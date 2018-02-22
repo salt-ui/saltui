@@ -23,85 +23,60 @@ class Demo extends React.Component {
     return (
       <div>
         <CitySelectField
-          // value={['110000', '110100']}
-          layout="v"
+          value={this.state.value}
           selectorType="province"
           label="省选择"
-          placeholder="请选择"
           required
           confirmText="确认"
           cancelText="取消"
-          provinceText="省"
-          cityText="市"
-          districtText="区"
-          // readOnly
+          mode="slot"          
           districtData={districtData}
-          // onSelect={value => this.setState({ value })}
+          onSelect={value => this.setState({ value })}
         />
         <CitySelectField
-          // value={['110000', '110100']}
-          layout="v"
+          value={this.state.value2}
           selectorType="city"
           label="市选择"
-          placeholder="请选择"
           required
           confirmText="确认"
           cancelText="取消"
-          provinceText="省"
-          cityText="市"
-          districtText="区"
-          // readOnly
+          mode="slot"          
           districtData={districtData}
-        // onSelect={value => this.setState({ value })}
+          onSelect={value => this.setState({ value2: value })}
         />
         <CitySelectField
-          // value={['110000', '110100']}
-          layout="v"
-          selectorType="district"
+          value={this.state.value3}
           label="区选择"
-          placeholder="请选择"
           required
           confirmText="确认"
           cancelText="取消"
-          provinceText="省"
-          cityText="市"
-          districtText="区"
-          // readOnly
+          mode="slot"          
           districtData={districtData}
-        // onSelect={value => this.setState({ value })}
+          onSelect={value => this.setState({ value3: value })}
         />
         <CitySelectField
-          // value={['110000', '110100']}
-          layout="v"
-          // selectorType="city"
-          label="省市区选择"
-          placeholder="请选择"
-          required
-          confirmText="确认"
-          cancelText="取消"
-          provinceText="省"
-          cityText="市"
-          districtText="区"
-          // readOnly
-          districtData={districtData}
-          // onSelect={value => this.setState({ value })}
-          tip="这里是提示信息"
-        />
-        <CitySelectField
-          // value={['110000', '110100']}
-          layout="v"
-          // selectorType="city"
-          label="省市区选择"
-          placeholder="请选择"
-          required
-          confirmText="确认"
-          cancelText="取消"
-          provinceText="省"
-          cityText="市"
-          districtText="区"
+          value={['110000', '110100', '110102']}
+          label="只读"
           readOnly
-          value={['***']}
           districtData={districtData}
+        />
+        <CitySelectField
+          value={this.state.value4}
+          label="级联模式"
+          required
+          confirmText="确认"
+          cancelText="取消"
+          districtData={districtData}
+          onSelect={value => this.setState({ value4: value })}
+        />
+        <CitySelectField
+          value={this.state.value5}
+          label="检索模式"
+          required
+          selectorType="city"
+          mode="picker"
+          districtData={districtData}
+          onSelect={value => this.setState({ value5: value })}
         />
       </div>
     );

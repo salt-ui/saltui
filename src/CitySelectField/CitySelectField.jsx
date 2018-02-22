@@ -10,9 +10,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from '../Context';
-import Field from '../Field';
-import Selector from './CitySelector';
-import { findDistrictObjs, clearChildren } from './utils';
+import CascadeSelectField from '../CascadeSelectField';
+import PickerField from '../PickerField';
+import { find, findTree, clearChildren, joinArray } from './utils';
 
 export default class CitySelectField extends Component {
   static displayName = 'CitySelectField';
@@ -27,6 +27,9 @@ export default class CitySelectField extends Component {
       PropTypes.string,
       PropTypes.element,
     ]),
+    provinceText: PropTypes.string,
+    cityText: PropTypes.string,
+    districtText: PropTypes.string,
     value: PropTypes.array,
     districtData: PropTypes.array,
     required: PropTypes.bool,
@@ -39,9 +42,11 @@ export default class CitySelectField extends Component {
     className: '',
     label: '省市区',
     placeholder: '请选择',
-    layout: 'h', // v | h
     tip: '',
     selectorType: 'default', // default | city | province
+    provinceText: "省",
+    cityText: "市",
+    districtText: "区",
     value: [],
     districtData: [],
     required: false,
@@ -52,98 +57,104 @@ export default class CitySelectField extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      // 当前选中值
-      value: this.props.value || [],
-      // 选择城市的浮层是否弹出
-      selectorIsOpen: false,
-    };
+    this.state = this.initData(props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ value: nextProps.value });
+    this.setState(this.initData(nextProps));
   }
 
-  openSelector() {
-    if (this.props.readOnly) return;
-    this.setState({ selectorIsOpen: true });
+  initData(props) {
+    let data = clearChildren(props.districtData, props.selectorType);
+    if (props.mode === 'picker') {
+      switch (props.selectorType) {
+        case 'province':
+          break;
+        case 'city':
+          data = joinArray(data.map(province => province.children));
+          break;
+        default:
+          data = joinArray(
+            joinArray(
+              data.map(province => province.children)
+            ).map(city => city.children)
+          );
+      }
+    }
+    return {
+      value: props.value || [],
+      options: data
+    };
+  }
+  
+  defaultSearchText() {
+    return `请输入${{ 'province': '省份', 'city': '城市' }[this.props.selectorType] || '区县'}名称进行搜索`
   }
 
-  closeSelector() {
-    this.setState({ selectorIsOpen: false });
-    this.props.onCancel.call(null);
+  getPickerValue() {
+    let arr = this.props.value;
+    let len = arr.length;
+    if (len) {
+      let parent = { children: this.props.districtData || [] };
+      let found = !arr.some(childValue => {
+        if (parent.children) {
+          parent = find(parent.children, childValue);
+          return !parent;
+        } else {
+          return true;
+        }
+      })
+      if (found) {
+        let { label, value } = parent
+        return {
+          text: label,
+          label, value
+        }
+      }
+    } else {
+      return undefined;
+    }
   }
 
-  selectValue(value) {
-    this.setState({ value, selectorIsOpen: false });
-    this.props.onSelect.call(null, value);
+  pickerSelect(item) {
+    let tree = findTree(this.props.districtData || [], item.value);
+    this.props.onSelect.call(null, tree.map(node => node.value));
   }
 
-  renderSelector() {
-    if (!this.state.selectorIsOpen) return '';
-    return (
-      <Selector
-        {...this.props}
-        districtData={clearChildren(this.props.districtData, this.props.selectorType)}
-        value={[...this.state.value]}
-        onSelect={this.selectValue.bind(this)}
-        onCancel={this.closeSelector.bind(this)}
-      />
-    );
+  cascadeSelect(tree) {
+    this.props.onSelect.call(null, tree.map(node => node.value));
   }
 
   render() {
     const {
-      className, label, required,
-      placeholder, readOnly, districtData, tip,
+      className
     } = this.props;
-    const fieldProps = {
-      label, required, tip, readOnly,
-    };
-    const isSelectedValue = !!this.state.value.length;
+    const { options } = this.state;
     const fieldClassName = classnames(
       prefixClass('city-select-field'),
       { [className]: !!className },
     );
-    const fieldPlaceholderClassName =
-      prefixClass(`omit city-field-placeholder ${isSelectedValue ? 'DN' : ''}`);
-    const fieldValueClassName =
-      prefixClass(`city-field-value FBH FBAC ${isSelectedValue ? '' : 'DN'}`);
-    const fieldValueInnerClassName = classnames(
-      prefixClass('FB1 omit'),
-      { [prefixClass('city-field-readonly')]: readOnly },
-    );
-    const iconConfig = readOnly ? null : {
-      className: prefixClass('city-field-icon'),
-      name: 'angle-right',
-      width: 26,
-      height: 26,
-      onClick: this.openSelector.bind(this),
-    };
-    let fieldValue = findDistrictObjs(districtData, this.state.value)
-      .map(i => i.label).join(' / ');
-
-    // 针对只读模式下，如果没有匹配省份的值，则默认选择 props 传递过来的值
-    if (readOnly && !fieldValue) {
-      fieldValue = this.props.value.join(' / ');
+    if (this.props.mode === 'picker') {
+      return <PickerField
+        grouping
+        groupingIndicator
+        searchText={this.defaultSearchText()}
+        {...this.props}
+        className={fieldClassName}
+        options={options}
+        value={this.getPickerValue()}
+        onSelect={this.pickerSelect.bind(this)}
+        formatter={t => t && t.label} />
+    } else {
+      let levels = {'province': 1, 'city': 2}[this.props.selectorType] || 3;
+      let labels = ['provinceText', 'cityText', 'districtText'].map(k => this.props[k]).slice(0, levels);
+      return <CascadeSelectField
+        {...this.props}
+        className={fieldClassName}
+        options={options}
+        mode={this.props.mode === 'slot' ? 'normal' : 'complex'}
+        onSelect={this.cascadeSelect.bind(this)}
+        columns={labels} />
     }
-
-    return (
-      <div className={fieldClassName}>
-        <Field {...fieldProps} icon={iconConfig}>
-          <div onClick={this.openSelector.bind(this)}>
-            <div className={fieldPlaceholderClassName}>
-              {placeholder}
-            </div>
-            <div className={fieldValueClassName}>
-              <span className={fieldValueInnerClassName}>
-                {fieldValue}
-              </span>
-            </div>
-          </div>
-          {this.renderSelector()}
-        </Field>
-      </div>
-    );
   }
 }
