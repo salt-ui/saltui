@@ -2,7 +2,6 @@
 
 # 城市选择表单域
 
-
 ## Simple Usage
 
 ```js

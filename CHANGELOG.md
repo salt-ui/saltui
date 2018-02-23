@@ -1,3 +1,7 @@
+## 3.6.2 / 2018-02-23
+
+* `fix`: TextField label & placeholder are misaligned.
+
 ## 3.6.0 / 2018-02-22
 
 * `feat`: PickerField style optimization.
