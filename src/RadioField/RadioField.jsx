@@ -13,6 +13,7 @@ import FieldRequiredIcon from 'salt-icon/lib/FieldRequired';
 import { prefixClass } from '../Context';
 import Group from '../Group';
 import Popup from '../Popup';
+import Field from '../Field';
 
 const renderIcon = (checked, position) => (
   <div className={classnames(prefixClass('radio-field-icon-wrapper FBAC FBH'), {
@@ -29,26 +30,6 @@ const renderIcon = (checked, position) => (
   </div>
 );
 class RadioField extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  componentDidMount() {
-    if (this.props.layoutType === 'popup') {
-      if (!this.instance) {
-        this.instance = Popup.show(this.finalJSX, {
-          animationType: 'slide-up',
-        });
-      }
-    }
-  }
-
-  componentDidUpdate() {
-    if (this.instance) {
-      this.instance.update(this.finalJSX);
-    }
-  }
-
   /* eslint-disable no-param-reassign */
   clickAction(value, item, index, data) {
     const t = this;
@@ -65,11 +46,11 @@ class RadioField extends React.Component {
     item.checked = !item.checked;
     t.forceUpdate(() => {
       if (onChange) {
-        onChange(value, index, data, t.instance);
+        onChange(value, index, data);
       }
-      t.instance.close();
     });
   }
+
   /* eslint-enable no-param-reassign */
   render() {
     const t = this;
@@ -160,7 +141,25 @@ class RadioField extends React.Component {
       );
     }
 
-    return <div>{layoutType === 'popup' ? null : this.finalJSX }</div>;
+    return (
+      <div>
+        {layoutType === 'popup' ?
+          <Field
+            {...t.props}
+            layout="h"
+            className={classnames(prefixClass('pop-radio-field'), {
+      [t.props.className]: !!t.props.className,
+    })}
+          ><Popup
+            content={this.finalJSX}
+            visible={t.props.visible}
+            animationType="slide-up"
+            maskClosable={t.props.maskClosable}
+            onMaskClick={t.props.onMaskClick}
+            onMaskClose={t.props.onMaskClose}
+          />
+          </Field> : this.finalJSX }
+      </div>);
   }
 }
 
@@ -177,7 +176,9 @@ RadioField.defaultProps = {
   required: false,
   className: undefined,
   layoutType: 'default',
-  visible: false,
+  maskClosable: true,
+  visible: true,
+  onMaskClose() {},
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -185,12 +186,14 @@ RadioField.propTypes = {
   className: PropTypes.string,
   data: PropTypes.array,
   onChange: PropTypes.func,
+  onMaskClose: PropTypes.func,
   groupListFlag: PropTypes.bool,
   groupListArgument: PropTypes.object,
   iconPosition: PropTypes.string,
   required: PropTypes.bool,
   label: PropTypes.node,
   layoutType: PropTypes.string,
+  maskClosable: PropTypes.bool,
   visible: PropTypes.bool,
 };
 

@@ -16,6 +16,12 @@ class Demo extends React.Component {
       visible: false,
     };
   }
+
+  onMaskClick() {
+    this.setState({
+      visible: false,
+    });
+  }
   handleClick() {
     this.setState({
       visible: true,
@@ -23,7 +29,56 @@ class Demo extends React.Component {
   }
   render() {
     const t = this;
-    const radioFieldProps = {
+    const radioFieldProps1 = {
+      data: [
+        {
+          value: {
+            name: '周姮',
+            postName: '资深交互设计师',
+          },
+          checked: true,
+          content: (
+            <table className="demoTable">
+              <tbody>
+                <tr>
+                  <td className="avatar-td"><img className="avatar" src="https://img.alicdn.com/tps/TB1vZnyJFXXXXX5XpXXXXXXXXXX-32-32.png" /></td>
+                  <td className="info-td"><div className="name">周姮</div><div className="postName">资深交互设计师</div></td>
+                </tr>
+              </tbody>
+            </table>
+          ),
+          disable: false,
+        },
+        {
+          value: {
+            name: '李伟（孟则）',
+            postName: '资深交互设计师',
+          },
+          checked: false,
+          content: (
+            <table className="demoTable">
+              <tbody>
+                <tr>
+                  <td className="avatar-td"><img className="avatar" src="https://img.alicdn.com/tps/TB1CmDsJFXXXXcxXpXXXXXXXXXX-32-32.png" /></td>
+                  <td className="info-td"><div className="name">李伟（孟则）</div><div className="postName">资深交互设计师</div></td>
+                </tr>
+              </tbody>
+            </table>
+          ),
+          disable: false,
+        },
+      ],
+      onChange(value, index, data) {
+        t.setState({
+          visible: false,
+        });
+      },
+      groupListArgument: {
+        lineIndent: 15,
+        itemIndent: 15,
+      },
+    };
+    const radioFieldProps2 = {
       data: [
         {
           value: {
@@ -76,20 +131,11 @@ class Demo extends React.Component {
       ],
       onChange(value, index, data) {
         console.log(value, index, data);
-        t.setState({
-          visible: false,
-        });
       },
       groupListArgument: {
         lineIndent: 15,
         itemIndent: 15,
       },
-      label: '单选（图标在左）',
-      groupListFlag: true,
-      className: 'ccc',
-      iconPosition: 'left',
-      required: true,
-      tip: '这里是提示信息',
     };
     return (
       <div>
@@ -100,8 +146,8 @@ class Demo extends React.Component {
           onClick={this.handleClick.bind(t)}
         >popup 显示
         </div>
-        {t.state.visible ? <RadioField {...radioFieldProps} layoutType="popup" visible={this.state.visible} /> : null}
-        <RadioField {...radioFieldProps} iconPosition="right" label="单选（图标在右）" />
+        <RadioField {...radioFieldProps1} layoutType="popup" onMaskClick={this.onMaskClick.bind(this)} visible={this.state.visible} />
+        <RadioField {...radioFieldProps2} iconPosition="right" label="单选（图标在右）" />
       </div>
     );
   }
