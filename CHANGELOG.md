@@ -1,3 +1,8 @@
+
+## 3.6.3 / 2018-02-24
+
+* `fix`: DatetimeField placeholder & value will show in the meantime.
+
 ## 3.6.2 / 2018-02-23
 
 * `fix`: TextField label & placeholder are misaligned.

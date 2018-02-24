@@ -100,6 +100,8 @@ class DatetimeField extends React.Component {
       height: 26,
       onClick: t.handleClick.bind(t),
     };
+
+    const shouldShowValue = (isObject(value) && value.value) || (!isObject(value) && value);
     return (
       <Field
         {...t.props}
@@ -113,9 +115,7 @@ class DatetimeField extends React.Component {
       >
         <div onClick={t.handleClick.bind(t)}>
           {
-            ((isObject(value) && value.value) || (!isObject(value) && value)) ?
-              '' :
-              <div className={Context.prefixClass('omit datetime-field-placeholder')}>{placeholder}</div>
+            shouldShowValue ? null : <div className={Context.prefixClass('omit datetime-field-placeholder')}>{placeholder}</div>
           }
           <div className={Context.prefixClass('datetime-field-value FBH FBAC')}>
             <span
@@ -125,7 +125,7 @@ class DatetimeField extends React.Component {
                 })
               }
             >
-              {t.formatter(t.state.slotValue)}
+              {shouldShowValue ? t.formatter(t.state.slotValue) : null}
             </span>
           </div>
         </div>

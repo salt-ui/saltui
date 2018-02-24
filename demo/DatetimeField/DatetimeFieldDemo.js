@@ -84,6 +84,7 @@ class Demo extends React.Component {
               onSelect={t.handleChange.bind(t, 'value2')}
               value={t.state.value2}
               columns={DatetimeField.YMDT}
+              placeholder="请选择日期"
             />
             <DatetimeField
               label="时间选择"
