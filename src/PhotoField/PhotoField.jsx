@@ -197,7 +197,7 @@ class PhotoField extends React.Component {
       files: this.getFiles(),
       ref: (c) => { this.pane = c; },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
-      onImagePreview: (index) => { this.handlePreview(index); },
+      onImagePreview: (index) => { this.props.onImagePreview === undefined ? this.handlePreview(index) : this.props.onImagePreview(index); },
     };
     return (
       <PhotoFieldPane {...paneProps} />
@@ -221,6 +221,7 @@ PhotoField.defaultProps = {
   corpId: undefined,
   placeholder: undefined,
   onDelete: undefined,
+  onImagePreview: undefined,
   required: undefined,
   name: undefined,
   url: undefined,
@@ -244,6 +245,7 @@ PhotoField.propTypes = {
   readOnly: PropTypes.bool,
   onChange: PropTypes.func,
   onDelete: PropTypes.func,
+  onImagePreview: PropTypes.func,
   required: PropTypes.bool,
   name: PropTypes.string,
   url: PropTypes.string,

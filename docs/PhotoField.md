@@ -66,6 +66,7 @@
 |----------|--------------|------------------|
 | onChange | values, photos   | 上传图片回调，values 是一个数组，里面为上传的多张图片 url, photos 为变化后的 fileList 的合集|
 | onDelete | index        | 删除图片回调，index 是序号 |
+| onImagePreview | index        | 点击图片预览回调，index 是序号，如不设置该回调，则使用ImageViewer预览图片，如设置该回调，需自行处理如何进行图片预览 |
 
 ### onChange 的 fileList 的枚举格式有如下几种
 ```javascript
