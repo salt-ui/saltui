@@ -197,7 +197,7 @@ class PhotoField extends React.Component {
       files: this.getFiles(),
       ref: (c) => { this.pane = c; },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
-      onImagePreview: (index) => { this.props.onImagePreview === undefined ? this.handlePreview(index) : this.props.onImagePreview(index); },
+      onImagePreview: (index) => { this.props.onImagePreview ? this.props.onImagePreview(index) : this.handlePreview(index); },
     };
     return (
       <PhotoFieldPane {...paneProps} />

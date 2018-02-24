@@ -118,7 +118,7 @@ class PhotoField extends React.Component {
       tip,
       onPickerClick: () => { this.onPickHandler(); },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
-      onImagePreview: (index) => { this.props.onImagePreview === noop ? this.handlePreview(index) : this.props.onImagePreview(index); },
+      onImagePreview: (index) => { this.props.onImagePreview ? this.props.onImagePreview(index) : this.handlePreview(index); },
     };
     return (
       <PhotoFieldPane {...paneProps} />
@@ -135,7 +135,7 @@ PhotoField.defaultProps = {
   maxUpload: 12, // 总共上传图片总数
   readOnly: false,
   onChange: noop,
-  onImagePreview: noop,
+  onImagePreview: undefined,
   photoList: [],
   locale: 'zh-cn',
   icon: undefined,
