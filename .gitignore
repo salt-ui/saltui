@@ -23,6 +23,7 @@ _site
 sea-modules
 spm_modules
 .cache
+.vscode
 dist
 /build
 /lib
