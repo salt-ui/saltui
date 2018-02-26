@@ -7,7 +7,7 @@
  */
 $field-min-height = 44px;
 $field-padding-left = 16px;
-$field-label-color = $dark-alpha-3;
+$field-label-color = $dark-alpha-2;
 $field-text-color = $dark-alpha-2;
 
 .{$prefix}-field {
@@ -39,8 +39,8 @@ $field-text-color = $dark-alpha-2;
 
 .{$prefix}-field-layout-h-label {
     padding: (($field-min-height - $font-size-field-label-lh) / 2) 0;
-    padding-right: 24px;
-    width: 108px;
+    padding-right: 20px;
+    width: 116px;
     line-height: $font-size-field-label-lh;
 
     .{$prefix}-field-box.loose & {
@@ -55,10 +55,11 @@ $field-text-color = $dark-alpha-2;
 }
 
 .{$prefix}-field-layout-v-label {
-    hairline: border-bottom $border;
+    hairline: border-bottom $normal-alpha-7;
     line-height: $font-size-field-label-lh;
     padding: 10px $field-padding-left;
-    background-color: $bg;
+    background-color: white;
+    font-size: 14px;
 }
 
 .{$prefix}-field-layout-h-label,
@@ -86,7 +87,7 @@ $field-text-color = $dark-alpha-2;
 .{$prefix}-field-tip {
     flex: 1;
     padding: 8px 16px 8px 0;
-    hairline: border-top $border;
+    hairline: border-top $normal-alpha-7;
     font-size: $font-size-t2;
     color: $normal-alpha-4;
 

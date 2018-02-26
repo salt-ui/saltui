@@ -88,6 +88,28 @@ class EmployeeField extends React.Component {
           });
         }
       });
+    } else if (window.dd) {
+      // fall back to dd api
+      window.dd.biz.contact.choose({
+        ...option,
+        onSuccess(results) {
+          /* eslint-disable no-param-reassign */
+          for (let i = 0; i < results.length; i++) {
+            results[i].phoneNumber = results[i].mobilePhone;
+            const result = {
+              results,
+            };
+            this.props.onChange(this.transToValue(result.results));
+          }
+          /* eslint-enable no-param-reassign */
+        },
+        onFail(err) {
+          window.dd.device.notification.alert({
+            message: err.message,
+            buttonName: i18n.ok,
+          });
+        },
+      });
     }
   }
 

@@ -20,11 +20,11 @@ Item.propTypes = {
   name: PropTypes.string,
 };
 function Other1() {
-  return <div className="newlist-demo-item other1">{'Other1'}</div>;
+  return <div className="newlist-demo-item other1">Other1</div>;
 }
 
 function Other2() {
-  return <div className="newlist-demo-item other2">{'Other2'}</div>;
+  return <div className="newlist-demo-item other2">Other2</div>;
 }
 
 function getJsonp(page, size) {
@@ -150,10 +150,11 @@ class Demo extends React.Component {
         });
       });
       getJsonp(curr, this.state.pageSize);
-    }, 1000);
+    }, 500);
   }
 
   bindJsonpCallback(success, error) {
+    console.log('jsonp');
     const i = this.fetchTimes;
 
     window.jsonpCallbak = (data) => {
@@ -171,33 +172,35 @@ class Demo extends React.Component {
   }
 
   render() {
-    return (<div >
-      <div className="container">
-        <ScrollList
-          className="scroll-list-demo"
-          dataGetted={this.state.dataGetted}
-          data={this.state.data}
-          hasError={this.state.hasError}
-          noMore={this.state.noMore}
-          refreshing={this.state.refreshing}
-          onRefresh={this.onRefresh}
-          loading={this.state.loading}
-          onLoad={this.onLoad}
-        >
-          <Other1 />
-          <Other2 />
-          {(data, index) => {
-            const itemProps = propsMap[index % 9];
-            return (
-              <ScrollList.Item
-                key={index}
-                {...itemProps}
-              />
-            );
-          }}
-        </ScrollList>
+    return (
+      <div >
+        <div className="container">
+          <ScrollList
+            className="scroll-list-demo"
+            dataGetted={this.state.dataGetted}
+            data={this.state.data}
+            hasError={this.state.hasError}
+            noMore={this.state.noMore}
+            refreshing={this.state.refreshing}
+            onRefresh={this.onRefresh}
+            loading={this.state.loading}
+            onLoad={this.onLoad}
+          >
+            <Other1 />
+            <Other2 />
+            {(data, index) => {
+              const itemProps = propsMap[index % 9];
+              return (
+                <ScrollList.Item
+                  key={index}
+                  {...itemProps}
+                />
+              );
+            }}
+          </ScrollList>
+        </div>
       </div>
-    </div>);
+    );
   }
 }
 
