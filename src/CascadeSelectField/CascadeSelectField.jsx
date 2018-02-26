@@ -186,8 +186,6 @@ class CascadeSelectField extends React.Component {
             <Slot
               ref={(c) => { this.slot = c; }}
               title={t.props.label}
-              confirmText={t.props.confirmText}
-              cancelText={t.props.cancelText}
               data={t.state.options}
               value={t.state.value}
               confirmText={i18n['zh-cn'].confirmText}

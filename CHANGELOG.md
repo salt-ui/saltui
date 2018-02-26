@@ -1,4 +1,8 @@
 
+## 3.6.4 / 2018-02-26
+
+* `feat`: PhotoField support new prop `onImagePreview`
+
 ## 3.6.3 / 2018-02-24
 
 * `fix`: DatetimeField placeholder & value will show in the meantime.

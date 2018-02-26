@@ -56,19 +56,20 @@ const options = [
         label: '狮子林',
       }],
     }],
-  }, {
-    value: 'sichuan',
-    label: '四川',
-  }, {
-    value: 'hubei',
-    label: '湖北',
-  }, {
-    value: 'hunan',
-    label: '湖南',
-  }, {
-    value: 'liaoning',
-    label: '辽宁',
   },
+  // {
+  //   value: 'sichuan',
+  //   label: '四川',
+  // }, {
+  //   value: 'hubei',
+  //   label: '湖北',
+  // }, {
+  //   value: 'hunan',
+  //   label: '湖南',
+  // }, {
+  //   value: 'liaoning',
+  //   label: '辽宁',
+  // },
 ];
 const columns = ['省', '市', '景点'];
 
