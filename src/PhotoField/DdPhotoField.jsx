@@ -105,6 +105,7 @@ class PhotoField extends React.Component {
       columns, placeholder, label,
       photoList, required,
       maxUpload, readOnly, className, tip,
+      onImagePreview
     } = this.props;
     const paneProps = {
       columns,
@@ -118,7 +119,7 @@ class PhotoField extends React.Component {
       tip,
       onPickerClick: () => { this.onPickHandler(); },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
-      onImagePreview: (index) => { this.props.onImagePreview ? this.props.onImagePreview(index) : this.handlePreview(index); },
+      onImagePreview: (index) => { onImagePreview ? onImagePreview(index) : this.handlePreview(index); },
     };
     return (
       <PhotoFieldPane {...paneProps} />
