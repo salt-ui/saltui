@@ -6,27 +6,11 @@
  * All rights reserved.
  */
 
-import React from 'react';
+import Group from 'salt-group';
+
 import RadioField from 'salt-radio-field';
 
 class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-    };
-  }
-
-  onMaskClick() {
-    this.setState({
-      visible: false,
-    });
-  }
-  handleClick() {
-    this.setState({
-      visible: true,
-    });
-  }
   render() {
     const t = this;
     const radioFieldProps1 = {
@@ -48,6 +32,7 @@ class Demo extends React.Component {
             </table>
           ),
           disable: false,
+          label: '周姮'
         },
         {
           value: {
@@ -66,12 +51,16 @@ class Demo extends React.Component {
             </table>
           ),
           disable: false,
+          label: '李伟（孟则）'
+        },
+        {
+          value: 'plain',
+          content: '纯文本条目不需要指定 label',
+          disable: false,
         },
       ],
       onChange(value, index, data) {
-        t.setState({
-          visible: false,
-        });
+        console.log(value, index, data);
       },
       groupListArgument: {
         lineIndent: 15,
@@ -96,7 +85,7 @@ class Demo extends React.Component {
               </tbody>
             </table>
           ),
-          disable: false,
+          disable: true,
         },
         {
           value: {
@@ -139,15 +128,13 @@ class Demo extends React.Component {
     };
     return (
       <div>
-        <div
-          style={{
- border: '1px', height: '40px', lineHeight: '40px', textAlign: 'center',
-}}
-          onClick={this.handleClick.bind(t)}
-        >popup 显示
-        </div>
-        <RadioField {...radioFieldProps1} layoutType="popup" onMaskClick={this.onMaskClick.bind(this)} visible={this.state.visible} />
-        <RadioField {...radioFieldProps2} iconPosition="right" label="单选（图标在右）" />
+        <Group>
+          <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">popup 显示</Group.Head>
+          <Group.List>
+            <RadioField {...radioFieldProps1} layoutType="popup" />
+            <RadioField {...radioFieldProps2} iconPosition="right" label="单选（图标在右）" />
+          </Group.List>
+        </Group>
       </div>
     );
   }

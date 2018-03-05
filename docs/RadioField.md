@@ -153,13 +153,23 @@ return <div>
 
 必填：否
 
-#### visible
+#### readOnly
 
-描述：如果layoutType 为popup 的时候是否默认展现
+描述：如果 `layoutType` 为 `'popup'` 的时候是否只读
 
 类型：bool
 
 默认：false
+
+必填：否
+
+#### formatter
+
+描述：如果 `layoutType` 为 `'popup'` 时在外层如何展示条目文本
+
+类型：function
+
+默认：item => item.label || item.content.toString()
 
 必填：否
 
