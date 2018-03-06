@@ -143,6 +143,37 @@ return <div>
 
 必填：否
 
+#### layoutType
+
+描述：支持单选以何种方式渲染
+
+类型：String
+
+默认：'default' // 'popup' 以popup方式展现
+
+必填：否
+
+#### readOnly
+
+描述：如果 `layoutType` 为 `'popup'` 的时候是否只读
+
+类型：bool
+
+默认：false
+
+必填：否
+
+#### formatter
+
+描述：如果 `layoutType` 为 `'popup'` 时在外层如何展示条目文本
+
+类型：function
+
+默认：item => item.label || item.content.toString()
+
+必填：否
+
+
 ## APIs
 #### getData(TO DO)
 
@@ -154,3 +185,4 @@ return <div>
 
 1. 点击disable的复选框，不会触发用户注册的回调函数。
 2. 单选框语义上你只能传入一个checked:true，如果你传入多个，我不阻止。
+3. 当RadioField 为popup 模式下 Props 参考 Popup 的 Props 配置;
