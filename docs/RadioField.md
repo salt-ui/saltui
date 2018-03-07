@@ -101,7 +101,7 @@ return <div>
 
 #### label
 
-描述：一个checkbox组的label
+描述：一个 checkbox 组的 label
 
 类型：String
 
@@ -143,19 +143,19 @@ return <div>
 
 必填：否
 
-#### layoutType
+#### mode
 
 描述：支持单选以何种方式渲染
 
 类型：String
 
-默认：'default' // 'popup' 以popup方式展现
+默认：'default' // 'popup' 以 popup 方式展现
 
 必填：否
 
 #### readOnly
 
-描述：如果 `layoutType` 为 `'popup'` 的时候是否只读
+描述：如果 `type` 为 `popup` 的时候是否只读
 
 类型：bool
 
@@ -165,7 +165,7 @@ return <div>
 
 #### formatter
 
-描述：如果 `layoutType` 为 `'popup'` 时在外层如何展示条目文本
+描述：如果 `type` 为 `popup` 时在外层如何展示条目文本
 
 类型：function
 

@@ -13,7 +13,7 @@ import Context from '../Context';
 import Slot from '../Slot';
 import Field from '../Field';
 import Popup from '../Popup';
-import CascadeSlot from './CascadeSlot';
+import CascadeTab from './CascadeTab';
 import i18n from './i18n';
 
 function parseProps(p) {
@@ -65,6 +65,7 @@ function parseState(value, options) {
   options = [];
   for (let deep = 0; cursor; deep += 1) {
     let index = 0;
+    let valueIsFound = false;
     options[deep] = cursor.map((o, i) => {
       const option = {
         value: o.value,
@@ -73,9 +74,13 @@ function parseState(value, options) {
       if ((deep in value) && o.value === value[deep].value) {
         index = i;
         value[deep] = option;
+        valueIsFound = true;
       }
       return option;
     });
+    if (!valueIsFound) {
+      [value[deep]] = options[deep];
+    }
     cursor = cursor[index] ? cursor[index].children : null;
   }
   return {
@@ -111,15 +116,14 @@ class CascadeSelectField extends React.Component {
       if (t.props.mode === 'normal') {
         t.slot.show();
       } else if (t.props.mode === 'complex') {
-        // this.setState({ cascadeSlotVisible: true });
-        this.showCascadeSlot();
+        this.showCascadeTab();
       }
     }
   }
 
-  showCascadeSlot() {
+  showCascadeTab() {
     const t = this;
-    Popup.show(<CascadeSlot
+    Popup.show(<CascadeTab
       visible
       title={t.props.label}
       confirmText={t.props.confirmText}

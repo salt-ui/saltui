@@ -1,4 +1,10 @@
 
+
+## 3.7.0 / 2018-03-07
+
+* `feat`: RadioField support `popup` mode
+* `fix`: CascadeSelectField value is wrong if columns data is changed.
+
 ## 3.6.4 / 2018-02-26
 
 * `feat`: PhotoField support new prop `onImagePreview`

@@ -10,8 +10,8 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import OptionCheckedIcon from 'salt-icon/lib/OptionChecked';
 import FieldRequiredIcon from 'salt-icon/lib/FieldRequired';
-import { prefixClass } from '../Context';
 import AngleRight from 'salt-icon/lib/AngleRight';
+import { prefixClass } from '../Context';
 import Group from '../Group';
 import Popup from '../Popup';
 import Field from '../Field';
@@ -42,7 +42,7 @@ class RadioField extends React.Component {
   clickAction(value, item, index, data) {
     const t = this;
     const { data: radioArray, onChange } = t.props;
-    
+
     const { disable } = item;
     if (disable) {
       return;
@@ -82,11 +82,12 @@ class RadioField extends React.Component {
       />
     ) : null;
     let currentValue = '';
-    t.props.data.some(item => {
+    t.props.data.some((item) => {
       if (item.checked) {
         currentValue = item;
         return true;
       }
+      return false;
     });
     return (
       <Field
@@ -112,7 +113,7 @@ class RadioField extends React.Component {
           content={t.finalJSX}
           visible={t.state.visible}
           animationType="slide-up"
-          maskClosable={true}
+          maskClosable
           onMaskClick={t.hidePopup.bind(t)}
         />
       </Field>
@@ -122,7 +123,6 @@ class RadioField extends React.Component {
   /* eslint-enable no-param-reassign */
   render() {
     const t = this;
-    // add layoutType for mobile Popup layout;
     const {
       rootClassName,
       className,
@@ -130,7 +130,7 @@ class RadioField extends React.Component {
       groupListArgument,
       groupListFlag,
       label,
-      layoutType,
+      mode,
     } = t.props;
 
     const radioArrayComponent = radioArray.map((item, index, data) => {
@@ -211,7 +211,7 @@ class RadioField extends React.Component {
 
     return (
       <div>
-        {layoutType === 'popup' ? this.renderField() : this.finalJSX }
+        {mode === 'popup' ? this.renderField() : this.finalJSX }
       </div>);
   }
 }
@@ -227,10 +227,12 @@ RadioField.defaultProps = {
   label: '',
   iconPosition: 'right',
   required: false,
+  readOnly: false,
   className: undefined,
-  layoutType: 'default',
+  mode: 'default',
   maskClosable: true,
   formatter: item => item.label || item.content.toString(),
+  onMaskClose: () => {},
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -239,12 +241,13 @@ RadioField.propTypes = {
   data: PropTypes.array,
   onChange: PropTypes.func,
   onMaskClose: PropTypes.func,
+  readOnly: PropTypes.bool,
   groupListFlag: PropTypes.bool,
   groupListArgument: PropTypes.object,
   iconPosition: PropTypes.string,
   required: PropTypes.bool,
   label: PropTypes.node,
-  layoutType: PropTypes.string,
+  mode: PropTypes.string,
   maskClosable: PropTypes.bool,
   formatter: PropTypes.func,
 };

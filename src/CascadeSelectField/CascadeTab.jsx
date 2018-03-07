@@ -19,7 +19,7 @@ const getOptionsByValue = (options, valueItem = {}) => {
   return [];
 };
 
-export default class CascadeSlot extends React.Component {
+export default class CascadeTab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -156,7 +156,7 @@ export default class CascadeSlot extends React.Component {
   }
 }
 
-CascadeSlot.defaultProps = {
+CascadeTab.defaultProps = {
   visible: false,
   options: [],
   value: [],
@@ -169,7 +169,7 @@ CascadeSlot.defaultProps = {
   cancelText: i18n['zh-cn'].cancelText,
 };
 
-CascadeSlot.propTypes = {
+CascadeTab.propTypes = {
   visible: PropTypes.bool,
   title: PropTypes.string,
   options: PropTypes.array,
