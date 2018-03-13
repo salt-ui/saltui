@@ -148,6 +148,7 @@ class ScrollList extends React.Component {
   }
 
   onFetch(refresh, from) {
+    if (this.state.loading) return;
     this.setState(refresh ? { refreshing: true } : { loading: true });
 
     this.fetchFrom = this.fetchFrom || from;

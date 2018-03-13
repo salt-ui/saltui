@@ -1,5 +1,9 @@
 
 
+## 3.7.1 / 2018-03-13
+
+* `fix`: ScrollList onFetch can be fired only in none-loading state.
+
 ## 3.7.0 / 2018-03-07
 
 * `feat`: RadioField support `popup` mode
