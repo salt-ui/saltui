@@ -6,13 +6,14 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import RcDrawer from 'rc-drawer';
 import { prefixClass } from '../Context';
 
 class Drawer extends React.Component {
 
   static propTypes = {
-    prefixCls: React.PropTypes.string,
+    prefixCls: PropTypes.string,
   };
 
   static defaultProps = {
