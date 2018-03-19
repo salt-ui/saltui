@@ -6,17 +6,18 @@
  * All rights reserved.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import DirectionBottomIcon from 'salt-icon/lib/DirectionBottom';
 import classnames from 'classnames';
 import Context from '../Context';
 
 class FoldablePane extends React.Component {
   static propTypes = {
-    className: React.PropTypes.string,
-    children: React.PropTypes.node,
-    foldHeight: React.PropTypes.number,
-    isFold: React.PropTypes.bool,
-    onFold: React.PropTypes.func,
+    className: PropTypes.string,
+    children: PropTypes.node,
+    foldHeight: PropTypes.number,
+    isFold: PropTypes.bool,
+    onFold: PropTypes.func,
   };
 
   static defaultProps = {
