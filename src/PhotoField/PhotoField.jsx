@@ -66,6 +66,9 @@ class PhotoField extends React.Component {
 
   componentWillUnmount() {
     this.stopListen();
+    if (this.viewer) {
+      this.viewer.remove();
+    }
   }
 
 
@@ -171,7 +174,7 @@ class PhotoField extends React.Component {
     const photos = t.props.photoList.map(item => (
       { src: autoFixUrl(item.url || (item.response && item.response.url) || '') }
     ));
-    ImageViewer.show({
+    this.viewer = ImageViewer.show({
       photos,
       current,
     });
@@ -182,7 +185,7 @@ class PhotoField extends React.Component {
       columns, placeholder, label,
       photoList, required, locale,
       maxUpload, readOnly, className, tip,
-      onImagePreview
+      onImagePreview,
     } = this.props;
     const paneProps = {
       columns,
@@ -198,7 +201,13 @@ class PhotoField extends React.Component {
       files: this.getFiles(),
       ref: (c) => { this.pane = c; },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
-      onImagePreview: (index) => { onImagePreview ? onImagePreview(index) : this.handlePreview(index); },
+      onImagePreview: (index) => {
+        if (onImagePreview) {
+          onImagePreview(index);
+        } else {
+          this.handlePreview(index);
+        }
+      },
     };
     return (
       <PhotoFieldPane {...paneProps} />

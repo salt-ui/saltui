@@ -94,19 +94,23 @@ class PopupView extends React.Component {
     const { photos, prefixCls } = this.props;
     const { current } = this.state;
     /* eslint-disable react/no-array-index-key */
-    return (
-      <ul className={`${prefixCls}-nav`}>
-        {photos.map((photo, index) => (
-          <li
-            key={index}
-            className={classnames(`${prefixCls}-nav-item`, {
-              active: index === current,
-              last: index === photos.length - 1,
-            })}
-          />
-        ))}
-      </ul>
-    );
+    if (photos.length) {
+      return (
+        <ul className={`${prefixCls}-nav`}>
+          {photos.map((photo, index) => (
+            <li
+              key={index}
+              className={classnames(`${prefixCls}-nav-item`, {
+                active: index === current,
+                last: index === photos.length - 1,
+              })}
+            />
+          ))}
+        </ul>
+      );
+    }
+    /* eslint-enable react/no-array-index-key */
+    return null;
   }
 
 
@@ -165,12 +169,14 @@ PopupView.propTypes = {
   photos: PropTypes.array,
   current: PropTypes.number,
   onClick: PropTypes.func,
+  onUnmount: PropTypes.func,
   visible: PropTypes.bool,
 };
 
 PopupView.defaultProps = {
   photos: [],
   onClick: () => {},
+  onUnmount: () => {},
   current: 0,
   visible: true,
   prefixCls: undefined,

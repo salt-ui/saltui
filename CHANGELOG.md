@@ -4,6 +4,8 @@
 
 * `fix`: Popup did not remove dom node when unmount
 * `fix`: drawer/foldablePane React 15.x compatible
+* `fix`: PhotoField did not remove imageViewer when unmount
+* `doc`: ImageViewer remove api
 
 ## 3.7.1 / 2018-03-13
 
