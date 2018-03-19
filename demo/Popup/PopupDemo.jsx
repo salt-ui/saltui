@@ -43,43 +43,54 @@ class PopupDemo extends React.Component {
             animationType: 'slide-up',
           });
         }}
-        >默认向上划出</Button>
+        >默认向上划出
+        </Button>
         <Button onClick={() => {
           Popup.show(<div className="demo-popup-container">我是弹出层</div>, {
             animationType: 'slide-down',
           });
         }}
-        >向下划出</Button>
+        >向下划出
+        </Button>
         <Button onClick={() => {
           Popup.show(<div className="demo-popup-container-2">我是弹出层</div>, {
             animationType: 'slide-right',
           });
         }}
-        >向右划出</Button>
+        >向右划出
+        </Button>
         <Button onClick={() => {
           Popup.show(<div className="demo-popup-container-2">我是弹出层</div>, {
             animationType: 'slide-left',
           });
         }}
-        >向左划出</Button>
+        >向左划出
+        </Button>
         <Button onClick={() => {
           Popup.show(
-            <div className="demo-popup-container-2">
-              <div onClick={() => {
-                Popup.hide();
-              }}
-              >点我关闭 popup</div>
-            </div>, {
+            (
+              <div className="demo-popup-container-2">
+                <div onClick={() => {
+                  Popup.hide();
+                }}
+                >点我关闭 popup
+                </div>
+              </div>
+            ), {
               maskClosable: false,
-            });
+            },
+          );
         }}
-        >手动控制关闭 Popup</Button>
+        >手动控制关闭 Popup
+        </Button>
         <Button onClick={() => {
           this.instance = Popup.show(
             this.getContent()
-            , {});
+            , {},
+          );
         }}
-        >测试内部数据透传</Button>
+        >测试内部数据透传
+        </Button>
         <Popup
           content={
             <div>

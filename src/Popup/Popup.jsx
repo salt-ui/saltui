@@ -182,6 +182,10 @@ class Popup extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.hide();
+  }
+
   getOptions() {
     const options = { ...this.props };
     delete options.content;
