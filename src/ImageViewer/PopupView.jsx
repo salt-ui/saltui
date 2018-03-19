@@ -117,6 +117,7 @@ class PopupView extends React.Component {
   render() {
     const { prefixCls, photos, visible } = this.props;
     const windowHeight = window.innerHeight;
+    /* eslint-disable react/no-array-index-key */
     return (
       <div className={`${prefixCls}`}>
         <Animate transitionAppear transitionName={`${prefixCls}-mask`} component="" showProp="visible">

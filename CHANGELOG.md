@@ -6,6 +6,8 @@
 * `fix`: drawer/foldablePane React 15.x compatible
 * `fix`: PhotoField did not remove imageViewer when unmount
 * `doc`: ImageViewer remove api
+* `change`: SelectField receive layout prop
+* `change`: `FhotoField` total count in uploading and failed files.
 
 ## 3.7.1 / 2018-03-13
 

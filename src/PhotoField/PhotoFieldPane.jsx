@@ -56,7 +56,8 @@ class PhotoFieldPane extends React.Component {
 
   isUploadDisabled() {
     const t = this;
-    return t.props.maxUpload && t.props.photoList.length >= t.props.maxUpload;
+    return t.props.maxUpload
+      && (t.props.photoList.length + t.props.filesLengthInCore) >= t.props.maxUpload;
   }
 
   renderUploadIcon() {
@@ -102,6 +103,8 @@ class PhotoFieldPane extends React.Component {
         <PhotoFieldItem {...props} />
       );
     });
+    const isItemDisabled =
+      parseInt(t.props.photoList.length, 10) >= parseInt(t.props.maxUpload, 10);
     const files = t.props.files
       .map((file, index) => {
         const props = {
@@ -109,6 +112,7 @@ class PhotoFieldPane extends React.Component {
           width: itemWidth,
           key: index,
           locale: t.props.locale,
+          disabled: isItemDisabled,
         };
         return (
           <PhotoFieldUploadItem {...props} />

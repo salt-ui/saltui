@@ -31,6 +31,7 @@ class PhotoFieldUploadItem extends React.Component {
         <div
           className={prefixClass('photo-upload-item-box photo-upload-item-box__error')}
           onClick={() => {
+            console.log(this.props.disabled);
             this.props.file.pending();
           }}
         >
@@ -62,11 +63,13 @@ class PhotoFieldUploadItem extends React.Component {
 PhotoFieldUploadItem.defaultProps = {
   file: undefined,
   locale: undefined,
+  disabled: false,
 };
 
 PhotoFieldUploadItem.propTypes = {
   file: PropTypes.object,
   locale: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default PhotoFieldUploadItem;

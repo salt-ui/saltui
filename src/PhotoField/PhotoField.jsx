@@ -47,7 +47,6 @@ class PhotoField extends React.Component {
     if (listUploadIcon) {
       picker.addArea(listUploadIcon);
     }
-    window.core = this.core;
   }
 
 
@@ -61,6 +60,11 @@ class PhotoField extends React.Component {
       if (uploadIcon) {
         this.picker = picker.addArea(uploadIcon);
       }
+    }
+    if (this.core) {
+      this.core.setOptions({
+        queueCapcity: this.getMax() + this.core.getTotal(),
+      });
     }
   }
 
@@ -115,15 +119,20 @@ class PhotoField extends React.Component {
     core.on(Events.FILE_UPLOAD_SUCCESS, this.fileuploadsuccess);
     core.on(Events.FILE_UPLOAD_ERROR, this.fileuploaderror);
     core.on(Events.FILE_CANCEL, this.filecancel);
+    // window.core = core;
     return core;
   }
 
   getMax() {
     const { maxUpload, max, photoList } = this.props;
+    let realMax = maxUpload;
     if (maxUpload && (max > maxUpload - photoList.length)) {
-      return maxUpload - photoList.length;
+      realMax -= photoList.length;
     }
-    return max;
+    if (this.core) {
+      realMax -= this.core.getTotal();
+    }
+    return realMax;
   }
 
   getFiles() {
@@ -196,6 +205,7 @@ class PhotoField extends React.Component {
       photoList,
       maxUpload,
       readOnly,
+      filesLengthInCore: this.core ? this.core.getTotal() : 0,
       tip,
       required,
       files: this.getFiles(),
