@@ -1,5 +1,10 @@
 
 
+## 3.7.2 / 2018-03-19
+
+* `fix`: Popup did not remove dom node when unmount
+* `fix`: drawer/foldablePane React 15.x compatible
+
 ## 3.7.1 / 2018-03-13
 
 * `fix`: ScrollList onFetch can be fired only in none-loading state.
