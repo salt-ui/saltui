@@ -1,5 +1,9 @@
 
 
+## 3.7.3 / 2018-03-22
+
+* `feat`: `NumberField` support `formatOnBlur`
+
 ## 3.7.2 / 2018-03-19
 
 * `fix`: Popup did not remove dom node when unmount

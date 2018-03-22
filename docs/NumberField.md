@@ -15,4 +15,5 @@ NumberField 共享 TextField 所有配置，除此外
 | fixedNum | number | optional |  | type 为 money 时有效，指定最多几位小数 |  
 | format | function(value, delimiter) | optional | noop | 自定义格式化函数，优先级高于 type |
 | deFormat | func(value, delimiter) | optional | (str, delimiter) => str.split(delimiter).join('') | 去格式化的函数，在自己指定 format 的时候会用到。|
+| formatOnBlur | bool | optional | false | 失焦时格式化 |
 

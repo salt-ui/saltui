@@ -17,6 +17,7 @@ class NumberField extends React.Component {
     className: PropTypes.string,
     prefixCls: PropTypes.string,
     onChange: PropTypes.func,
+    onBlur: PropTypes.func,
     deFormat: PropTypes.func,
     format: PropTypes.func,
     type: PropTypes.oneOf(['money', 'card', 'cnmobile', 'cnidcard']),
@@ -26,11 +27,13 @@ class NumberField extends React.Component {
     ]),
     delimiter: PropTypes.string,
     fixedNum: PropTypes.number,
+    formatOnBlur: PropTypes.bool,
   };
 
   static defaultProps = {
     prefixCls: 't-number-field',
     onChange: () => {},
+    onBlur: () => {},
     delimiter: ' ',
     deFormat: (str, delimiter) => str.split(delimiter).join(''),
     className: undefined,
@@ -38,12 +41,13 @@ class NumberField extends React.Component {
     type: undefined,
     value: undefined,
     fixedNum: undefined,
+    formatOnBlur: false,
   };
 
   static displayName = 'NumberField';
 
 
-  getValue() {
+  formatValue() {
     const {
       value, type, delimiter, format, fixedNum,
     } = this.props;
@@ -62,6 +66,24 @@ class NumberField extends React.Component {
     }
     return newValue;
   }
+
+  formatValueOnBlur() {
+    const {
+      value, type, delimiter, format, fixedNum,
+    } = this.props;
+    if (value === undefined || value === null) return '';
+    const newValue = `${value}`;
+    if (format) {
+      return format(newValue, delimiter);
+    }
+    if (type === 'money') {
+      return Formatter.money(newValue, delimiter, fixedNum);
+    } else if (['card', 'cnmobile'].indexOf(type) !== -1) {
+      return Formatter[type](newValue, delimiter);
+    }
+    return newValue;
+  }
+
   handleChange(value) {
     const { deFormat, onChange, delimiter } = this.props;
     onChange(deFormat(value, delimiter));
@@ -69,7 +91,9 @@ class NumberField extends React.Component {
 
   render() {
     const t = this;
-    const { prefixCls, className, ...otherProps } = t.props;
+    const {
+      prefixCls, className, formatOnBlur, ...otherProps
+    } = t.props;
     ['value', 'onChange'].forEach((key) => {
       delete otherProps[key];
     });
@@ -79,9 +103,16 @@ class NumberField extends React.Component {
         className={classnames(prefixCls, {
           [className]: !!className,
         })}
-        value={this.getValue()}
+        value={this.formatValue()}
         onChange={(value) => {
           this.handleChange(value);
+        }}
+        onBlur={(value, e) => {
+          otherProps.onBlur(value, e);
+          if (formatOnBlur) {
+            const { deFormat, onChange, delimiter } = this.props;
+            onChange(deFormat(this.formatValueOnBlur(deFormat(value, delimiter))));
+          }
         }}
       />
     );
