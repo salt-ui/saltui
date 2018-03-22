@@ -92,7 +92,7 @@ class NumberField extends React.Component {
   render() {
     const t = this;
     const {
-      prefixCls, className, formatOnBlur, ...otherProps
+      prefixCls, className, formatOnBlur, inputType, ...otherProps
     } = t.props;
     ['value', 'onChange'].forEach((key) => {
       delete otherProps[key];
@@ -103,6 +103,7 @@ class NumberField extends React.Component {
         className={classnames(prefixCls, {
           [className]: !!className,
         })}
+        type={inputType}
         value={this.formatValue()}
         onChange={(value) => {
           this.handleChange(value);

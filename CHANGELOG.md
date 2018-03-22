@@ -1,5 +1,9 @@
 
 
+## 3.7.4 / 2018-03-22
+
+* `feat`: `NumberField` support `inputType`
+
 ## 3.7.3 / 2018-03-22
 
 * `feat`: `NumberField` support `formatOnBlur`
