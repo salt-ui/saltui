@@ -112,7 +112,7 @@ class Datetime extends React.Component {
       date[5] = 0;
     }
     return {
-      value: new Date(...date).getTime(),
+      value: (date.length === 1 ? new Date(date) : new Date(...date)).getTime(),
       timeType: timeType ? 'PM' : 'AM',
     };
   }

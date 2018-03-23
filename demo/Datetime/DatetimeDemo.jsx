@@ -57,7 +57,7 @@ class DatetimeDemo extends React.Component {
           slotRef={(s) => { t.slot0 = s; window.slot = s; }}
           title="日期选择"
           value={this.state.value1}
-          columns={Datetime.YMD}
+          columns={Datetime.Y}
           onConfirm={(value) => { this.onConfirm(value, 'value1'); }}
           onChange={(value, column) => { console.log(value, column);}}
           onCancel={() => { this.onCancel('value1'); }}
