@@ -6,7 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Icon from 'salt-icon';
+import CheckRound from 'salt-icon/lib/CheckRound';
 import { prefixClass } from '../Context';
 import Layer from '../Layer';
 import Scroller from '../Scroller';
@@ -19,11 +19,10 @@ const renderIcon = (checked, disable) => {
   });
   return (
     checked ?
-      <Icon
+      <CheckRound
         key="check-round"
         width={26}
         height={26}
-        name="check-round"
         className={iconClassName}
       /> : <div className={iconClassName} />
   );

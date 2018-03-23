@@ -1,4 +1,9 @@
 
+## 3.7.5 / 2018-03-23
+
+* `fix`: `NavBar` arrow style
+* `fix`: `CheckboxField` `NavBar` incorrect salt-icon import.
+
 
 ## 3.7.4 / 2018-03-22
 

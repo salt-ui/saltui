@@ -8,7 +8,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import Icon from 'salt-icon';
+import AngleLeft from 'salt-icon/lib/AngleLeft';
 import { prefixClass } from '../Context';
 
 
@@ -44,7 +44,7 @@ class NavBar extends React.Component {
       >
         <div className={prefixClass('nav-bar-left FAL')}>
           <div className={prefixClass('nav-bar-left-option')} onClick={this.handleBackClick.bind(this)}>
-            <Icon className={prefixClass('nav-bar-arrow-left')} name="angle-left" />
+            <AngleLeft className={prefixClass('nav-bar-arrow-left')} />
             <span>返回</span>
           </div>
           {this.state.isShow ?

@@ -8,7 +8,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Icon from 'salt-icon';
+import CheckRound from 'salt-icon/lib/CheckRound';
+import FieldRequired from 'salt-icon/lib/FieldRequired';
 import Context from '../Context';
 import Group from '../Group';
 import Field from '../Field';
@@ -30,11 +31,9 @@ const renderIcon = (checked, disable, position) => {
     >
       {
         checked ?
-          <Icon
-            key="check-round"
+          <CheckRound
             width={26}
             height={26}
-            name="check-round"
             className={iconClassName}
           /> :
           <div className={iconClassName} />
@@ -131,8 +130,7 @@ class CheckboxField extends React.Component {
       className, data: checkboxArray, groupListArgument, groupListFlag, label, iconPosition,
     } = props;
     const requiredTag = (
-      <Icon
-        name="field-required"
+      <FieldRequired
         className={prefixClass('field-layout-label-required')}
         width={6}
         height={6}
