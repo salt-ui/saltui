@@ -108,7 +108,7 @@ function getMonthsByYear({ minDate, maxDate, year }) {
   const maxYear = max.getFullYear();
   const minYear = min.getFullYear();
   let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item, index) => ({
-    text: `${addZero(index + 1)}月`,
+    text: index + 1,
     value: index,
   }));
   if (year > minYear && year < maxYear) {
@@ -124,7 +124,7 @@ function getMonthsByYear({ minDate, maxDate, year }) {
   }
   if (year === minYear) {
     arr = arr.filter((item) => {
-      const date = new Date(year, item.value, 1);
+      const date = new Date(year, item.value + 1, 0);
       return date.getTime() > minTime;
     });
   }

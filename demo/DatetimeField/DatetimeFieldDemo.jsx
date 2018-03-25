@@ -52,28 +52,29 @@ class Demo extends React.Component {
               label="日期选择"
               layout="v"
               placeholder="请选择日期"
-              disabledDate={() => [
-                {
-                  end: new Date(),
-                },
-                {
-                  start: new Date(2017, 0, 1),
-                  end: new Date(2017, 4, 31),
-                },
-                {
-                  start: new Date(2017, 5, 1),
-                  end: new Date(2017, 6, 31),
-                },
-                {
-                  start: new Date(2017, 7, 2),
-                  end: new Date(2017, 7, 30),
-                },
-                {
-                  start: new Date(2018, 7, 3),
-                  end: new Date(2018, 7, 20),
-                },
-                new Date(2013, 11, 1),
-              ]}
+              // disabledDate={() => [
+              //   {
+              //     end: new Date(),
+              //   },
+              //   {
+              //     start: new Date(2017, 0, 1),
+              //     end: new Date(2017, 4, 31),
+              //   },
+              //   {
+              //     start: new Date(2017, 5, 1),
+              //     end: new Date(2017, 6, 31),
+              //   },
+              //   {
+              //     start: new Date(2017, 7, 2),
+              //     end: new Date(2017, 7, 30),
+              //   },
+              //   {
+              //     start: new Date(2018, 7, 3),
+              //     end: new Date(2018, 7, 20),
+              //   },
+              //   new Date(2013, 11, 1),
+              // ]}
+              minDate={new Date()}
               onSelect={t.handleChange.bind(t, 'value1')}
               value={t.state.value1}
               columns={DatetimeField.YMD}

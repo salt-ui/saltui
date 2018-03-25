@@ -3,6 +3,7 @@
 
 * `fix`: `CalendarField` replace `object.assign` with `spread`
 * `fix`: `DateTime` wrong value if column is `Y`
+* `fix`: `DateTime` confirm without any scrolling return wrong value if the value is disabled
 
 ## 3.7.5 / 2018-03-23
 

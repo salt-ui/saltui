@@ -71,8 +71,8 @@ class Datetime extends React.Component {
           maxDate,
           props,
         });
+        value = Slot.formatDataValue(data, value);
       }
-      value = Slot.formatDataValue(data, value);
     }
     return {
       data,

@@ -281,7 +281,8 @@ function getOptions(value, props) {
   const dayYear = getDaysByYear({ year: currentValue.getFullYear(), minDate, maxDate });
   const options = [
     makeRange(minDate.getFullYear(), maxDate.getFullYear()),
-    makeRange(1, 12).map(v => ({ text: `${v}`, value: v - 1 })),
+    // makeRange(1, 12).map(v => ({ text: `${v}`, value: v - 1 })),
+    getMonthsByYear({ year: currentValue.getFullYear(), minDate, maxDate }),
     getDaysByMonth({
       minDate, maxDate, year: currentValue.getFullYear(), month: currentValue.getMonth(),
     }),
