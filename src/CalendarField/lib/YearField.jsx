@@ -10,7 +10,7 @@ class YearField extends DayField {
 
   processValue(value, key) {
     const t = this;
-    const valueNew = Object.assign({}, value);
+    const valueNew = { ...value };
     // 非级联模式
     if (t.props.singleMode) {
       if (isObject(valueNew) && !Object.prototype.hasOwnProperty.call(valueNew, 'value')) {

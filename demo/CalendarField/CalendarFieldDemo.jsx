@@ -46,19 +46,19 @@ class Demo extends React.Component {
   render() {
     const props = {
       className: 'calendar-field-demo',
-      label: '日期区间',
+      label: '日期',
       placeholder: ['请选择开始日期', '请选择结束日期'],
       required: false,
       // multiLine: true,
       // readOnly: true,
       layout: 'h',
-      type: 'day',
+      type: 'year',
       singleMode: true,
       formatter: 'yyyy-MM-dd',
       showWeek: true,
       showDateType: true,
       showHalfDay: true,
-      topPanelTitle: 'title',
+      topPanelTitle: '请选择日期',
       value: this.state.value,
       tip: '这里是提示信息',
       // animationType: 'slideLeft',
@@ -67,7 +67,7 @@ class Demo extends React.Component {
     };
     return (
       <Group>
-        <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">日期区间演示</Group.Head>
+        <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">基本演示</Group.Head>
         <Group.List>
           <CalendarField {...props} />
         </Group.List>

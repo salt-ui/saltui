@@ -1,4 +1,9 @@
 
+## 3.7.6 / 2018-03-25
+
+* `fix`: `CalendarField` replace `object.assign` with `spread`
+* `fix`: `DateTime` wrong value if column is `Y`
+
 ## 3.7.5 / 2018-03-23
 
 * `fix`: `NavBar` arrow style

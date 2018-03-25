@@ -28,7 +28,8 @@ import {
   YMD,
   YMDT,
   YMDHM,
-  YMDWHM } from './util/index';
+  YMDWHM 
+} from './util/index';
 
 const columnsFlexMap = {
   YMD: [1.24, 1.1, 1.1],
@@ -111,8 +112,9 @@ class Datetime extends React.Component {
       date[4] = 0;
       date[5] = 0;
     }
+    const passedDate = date.length === 1 ? date.concat([0]) : date;
     return {
-      value: new Date(...date).getTime(),
+      value: new Date(...passedDate).getTime(),
       timeType: timeType ? 'PM' : 'AM',
     };
   }
