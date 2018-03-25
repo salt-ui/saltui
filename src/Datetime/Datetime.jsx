@@ -28,7 +28,7 @@ import {
   YMD,
   YMDT,
   YMDHM,
-  YMDWHM 
+  YMDWHM,
 } from './util/index';
 
 const columnsFlexMap = {
@@ -56,7 +56,7 @@ class Datetime extends React.Component {
     const options = getOptions(props.value, props);
     const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
     let data = formatFromProps(formatText(ret.data, undefined, props), props);
-    const value = formatFromProps(formatText(ret.value, undefined, props), props);
+    let value = formatFromProps(formatText(ret.value, undefined, props), props);
     const columnsStyle = columns[0];
     // disabledDate 仅支持 YMD
     if (props.disabledDate && columnsStyle === 'Y') {
@@ -72,6 +72,7 @@ class Datetime extends React.Component {
           props,
         });
       }
+      value = Slot.formatDataValue(data, value);
     }
     return {
       data,

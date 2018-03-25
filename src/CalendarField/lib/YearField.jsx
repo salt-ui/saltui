@@ -133,10 +133,12 @@ class YearField extends DayField {
               null :
               t.handleFieldClick.bind(t, key)}
         >
-          <span className={classnames('date-text', {
-            [prefixClass('calendar-field-readonly')]: !!t.props.readOnly,
-          })}
-          >{value[`${key}Date`]}
+          <span
+            className={classnames('date-text', {
+              [prefixClass('calendar-field-readonly')]: !!t.props.readOnly,
+            })}
+          >
+            {value[`${key}Date`]}
           </span>
           {
             t.renderWeekText(value, key)
