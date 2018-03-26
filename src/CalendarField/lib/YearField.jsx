@@ -1,4 +1,5 @@
 import React from 'react';
+import cloneDeep from 'lodash/cloneDeep';
 import classnames from 'classnames';
 import Datetime from '../../Datetime';
 import { prefixClass } from '../../Context';
@@ -10,7 +11,7 @@ class YearField extends DayField {
 
   processValue(value, key) {
     const t = this;
-    const valueNew = Object.assign({}, value);
+    const valueNew = cloneDeep(value);
     // 非级联模式
     if (t.props.singleMode) {
       if (isObject(valueNew) && !Object.prototype.hasOwnProperty.call(valueNew, 'value')) {
