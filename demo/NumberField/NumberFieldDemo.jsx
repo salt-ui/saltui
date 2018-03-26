@@ -44,7 +44,7 @@ class NumberFieldDemo extends React.Component {
     return (
       <div>
         <Group.List>
-          <NumberField formatOnBlur={false} tip="请输入金额" label="金额" value={this.state.money} type="money" fixedNum={4} onChange={(value) => { this.handleChange(value, 'money'); }} />
+          <NumberField formatOnBlur tip="请输入金额" label="金额" value={this.state.money} type="money" fixedNum={4} onChange={(value) => { this.handleChange(value, 'money'); }} />
           <NumberField label="手机号" value={this.state.cnmobile} type="cnmobile" onChange={(value) => { this.handleChange(value, 'cnmobile'); }} />
           <NumberField label="银行卡号" value={this.state.card} type="card" onChange={(value) => { this.handleChange(value, 'card'); }} />
           <NumberField label="身份证号" value={this.state.cnidcard} type="cnidcard" onChange={(value) => { this.handleChange(value, 'cnidcard'); }} />

@@ -1,4 +1,8 @@
 
+## 3.7.7 / 2018-03-26
+
+* `fix`: `NumberField` formatOnBlur bug
+
 ## 3.7.6 / 2018-03-25
 
 * `fix`: `CalendarField` replace `object.assign` with `spread`

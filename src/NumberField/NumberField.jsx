@@ -51,7 +51,7 @@ class NumberField extends React.Component {
     const {
       value, type, delimiter, format, fixedNum,
     } = this.props;
-    if (value === undefined || value === null) return '';
+    if (value === undefined || value === null || value === '') return '';
     const newValue = `${value}`;
     if (format) {
       return format(newValue, delimiter);
@@ -71,7 +71,7 @@ class NumberField extends React.Component {
     const {
       value, type, delimiter, format, fixedNum,
     } = this.props;
-    if (value === undefined || value === null) return '';
+    if (value === undefined || value === null || value === '') return '';
     const newValue = `${value}`;
     if (format) {
       return format(newValue, delimiter);
@@ -112,7 +112,7 @@ class NumberField extends React.Component {
           otherProps.onBlur(value, e);
           if (formatOnBlur) {
             const { deFormat, onChange, delimiter } = this.props;
-            onChange(deFormat(this.formatValueOnBlur(deFormat(value, delimiter))));
+            onChange(deFormat(this.formatValueOnBlur(deFormat(value, delimiter)), delimiter));
           }
         }}
       />
