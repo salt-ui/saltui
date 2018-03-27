@@ -66,6 +66,7 @@
   import Timeline from './lib/Timeline';
   import Toast from './lib/Toast';
   import Totop from './lib/Totop';
+  import Utils from './lib/Utils';
 
 
 let __SALT_VERSION__;
@@ -138,6 +139,7 @@ const __SALT_BUNDLE__ = {
   Timeline,
   Toast,
   Totop,
+  Utils,
 };
 
 if (typeof window !== 'undefined') {

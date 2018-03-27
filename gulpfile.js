@@ -91,7 +91,7 @@ const getQuestions = () => (
 
 gulp.task('build_style', () => {
   const dirs = fs.readdirSync('./src');
-  const ComponentNames = dirs.filter(dirName => dirName !== 'Style' && !/^\./.test(dirName));
+  const ComponentNames = dirs.filter(dirName => (['Style', 'Utils'].indexOf(dirName) === -1) && !/^\./.test(dirName));
   gulp.src('./template/component.styl')
     .pipe(ejs({ ComponentNames }))
     .pipe(gulp.dest('./style'))
@@ -180,7 +180,7 @@ gulp.task('build_js', ['build_lib', 'make_index'], (done) => {
         commonjs2: 'react-dom',
         amd: 'react-dom',
       },
-    }
+    },
   });
   webpack(webpackCfg, (err, stats) => {
     if (err) {
@@ -268,7 +268,7 @@ gulp.task('server', () => {
               resource.request = resource.request.replace(/salt-(.+)/, (match, s1) => require.resolve(`./src/${upperInitWord(s1)}`));
             }
             /* eslint-enable no-param-reassign */
-          }
+          },
         ),
       ];
       const compiler = webpack(assign({}, commonWebpackCfg, { plugins }));

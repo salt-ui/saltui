@@ -13,6 +13,7 @@ import classnames from 'classnames';
 import RcDialog from 'rc-dialog';
 import IconToastError from 'salt-icon/lib/ToastError';
 import Context from '../Context';
+import { stopBodyScrolling } from '../Utils';
 import i18nData from './i18n';
 
 const { prefixClass } = Context;
@@ -47,11 +48,30 @@ class Dialog extends React.Component {
     };
   }
 
+  componentDidMount() {
+    if (this.state.show === true) {
+      stopBodyScrolling(true);
+    }
+  }
+
   // 属性变化时把响应状态设置到 state
   componentWillReceiveProps(nextProps) {
     const changeState = {};
     changeState.show = nextProps.show;
     this.setState(changeState);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.show === false && this.state.show === true) {
+      stopBodyScrolling(true);
+    } else if (prevState.show === true && this.state.show === false) {
+      stopBodyScrolling(false);
+    }
+  }
+
+
+  componentWillUnmount() {
+    stopBodyScrolling(false);
   }
 
   getButtons() {
