@@ -45,13 +45,23 @@ class DayCalendar extends React.Component {
     this.value = cloneDeep(props.value);
   }
 
+
   onTopBarOk() {
-    this.props.onOk(this.value);
+    this.props.onOk(this.normalizeValue());
   }
 
   onChange(value) {
     this.value = value;
     this.props.onChange(value);
+  }
+
+  normalizeValue(value = this.value) {
+    if (typeof value === 'string' || typeof value === 'number') {
+      return {
+        value: new Date(value).getTime(),
+      };
+    }
+    return value;
   }
 
   render() {

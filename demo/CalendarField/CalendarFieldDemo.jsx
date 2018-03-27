@@ -28,7 +28,10 @@ class Demo extends React.Component {
       //   startDate: 1491111113332,
       //   endDate: 1481111113332, // 错误的情况：endDate < 1491111113332
       // },
-      value: '2016-01-02', //
+      // value: '2016-01-02',
+      value: {
+        value: '2016-01-02',
+      },
       // value: {
       //   startDate: null,
       //   endDate: null,
@@ -52,7 +55,7 @@ class Demo extends React.Component {
       // multiLine: true,
       // readOnly: true,
       layout: 'h',
-      type: 'month',
+      type: 'day',
       singleMode: true,
       // formatter: 'yyyy-MM-dd',
       showWeek: true,

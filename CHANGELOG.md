@@ -1,4 +1,8 @@
 
+## 3.7.8 / 2018-03-27
+
+* `fix`: `CalendarField` normalize onOk's value format.
+
 ## 3.7.7 / 2018-03-26
 
 * `fix`: `NumberField` formatOnBlur bug
