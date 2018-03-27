@@ -10,8 +10,6 @@ const YMDT = ['Y', 'M', 'D', 'T'];
 const YMDHM = ['YMD', 'H', 'm'];
 const YMDWHM = ['YMDW', 'H', 'm'];
 
-const { warn } = console;
-
 /**
  * addZero
  * @param { number } num
@@ -86,11 +84,10 @@ function parseDate(value) {
     // string number  null 、''、undefined
     date = new Date(date).getTime();
   }
-  const outputDate = new Date(date).getTime();
-  if (outputDate) {
-    return outputDate;
+  if (date) {
+    return date;
   }
-  warn('Invalid Date ', value);
+  console.warn('Invalid Date ', value);
   return new Date().getTime();
 }
 

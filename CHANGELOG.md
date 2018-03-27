@@ -2,6 +2,7 @@
 ## 3.7.8 / 2018-03-27
 
 * `fix`: `CalendarField` normalize onOk's value format.
+* `fix`: `CalendarField` android dingtalk bug if value is null
 
 ## 3.7.7 / 2018-03-26
 

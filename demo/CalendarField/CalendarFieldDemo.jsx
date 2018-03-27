@@ -29,8 +29,12 @@ class Demo extends React.Component {
       //   endDate: 1481111113332, // 错误的情况：endDate < 1491111113332
       // },
       // value: '2016-01-02',
+      // value: {
+      //   value: '2016-01-02',
+      // },
       value: {
-        value: '2016-01-02',
+        startDate: null,
+        endDate: null,
       },
       // value: {
       //   startDate: null,
@@ -55,12 +59,12 @@ class Demo extends React.Component {
       // multiLine: true,
       // readOnly: true,
       layout: 'h',
-      type: 'day',
-      singleMode: true,
+      type: 'dayWithSlot',
+      singleMode: false,
       // formatter: 'yyyy-MM-dd',
-      showWeek: true,
-      showDateType: true,
-      showHalfDay: true,
+      showWeek: false,
+      showDateType: false,
+      showHalfDay: false,
       topPanelTitle: '请选择日期',
       value: this.state.value,
       tip: '这里是提示信息',
