@@ -1,4 +1,8 @@
 
+## 3.7.9 / 2018-03-28
+
+* `fix`: `Dialog`, `Popup` fail to stop body scrolling when it's shown
+
 ## 3.7.8 / 2018-03-27
 
 * `fix`: `CalendarField` normalize onOk's value format.

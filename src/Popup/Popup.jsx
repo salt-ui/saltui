@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Dialog from 'rc-dialog';
 import classnames from 'classnames';
+import { stopBodyScrolling } from '../Utils';
 
 function create(instanceId, config, content, afterClose = () => { }) {
   const props = {
@@ -206,6 +207,7 @@ class Popup extends React.Component {
     if (this.instance) {
       this.instance.hide();
       this.instance = null;
+      stopBodyScrolling(false);
     }
   }
 
@@ -214,6 +216,7 @@ class Popup extends React.Component {
       this.instance = Popup.newInstance();
     }
     this.instance.show(this.props.content, this.getOptions());
+    stopBodyScrolling(true);
   }
 
   handleClick(e) {

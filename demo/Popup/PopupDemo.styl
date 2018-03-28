@@ -1,28 +1,32 @@
+// tingle-style's utils
 /**
  * Popup Component Demo for tingle
  * @author guanghong.wsj
- *
+ * 
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
+@require '../../src/Style/tingle';
+@require '../../src/Popup/Popup';
 
-// tingle-style's utils
+body {
+  background-color: #f2f2f2;
+  padding: 10px;
+  padding-top: 500px;
 
-@require '../../src/Style/tingle'
-@require '../../src/Popup/Popup'
+  .t-button {
+    margin-bottom: 10px;
+  }
+}
 
-body
-  background-color #f2f2f2
-  padding 10px
-  .t-button
-    margin-bottom 10px
+.demo-popup-container {
+  height: 400px;
+  width: 100%;
+  padding: 20px;
+}
 
-.demo-popup-container 
-  height 400px
-  width 100%
-  padding 20px
-
-.demo-popup-container-2
-  height 100%
-  width 280px
-  padding 20px
+.demo-popup-container-2 {
+  height: 100%;
+  width: 280px;
+  padding: 20px;
+}
