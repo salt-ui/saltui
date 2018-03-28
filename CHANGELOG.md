@@ -1,4 +1,8 @@
 
+## 3.7.10 / 2018-03-28
+
+* `fix`: `Datetime` missing month suffix if disabledDate is enabled
+
 ## 3.7.9 / 2018-03-28
 
 * `fix`: `Dialog`, `Popup` fail to stop body scrolling when it's shown

@@ -444,6 +444,10 @@ function filterDate({
   const month = value[1].value;
   let yearData = data[0];
   let monthData = getMonthsByYear({ year, minDate, maxDate });
+  monthData = monthData.map(item => ({
+    value: item.value,
+    text: `${addZero(item.text)}${locale[props.locale].surfix.M}`,
+  }));
   let dayData = getDaysByMonth({
     year, month, minDate, maxDate,
   });

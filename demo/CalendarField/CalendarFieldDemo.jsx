@@ -59,7 +59,7 @@ class Demo extends React.Component {
       // multiLine: true,
       // readOnly: true,
       layout: 'h',
-      type: 'dayWithSlot',
+      type: 'day',
       singleMode: false,
       // formatter: 'yyyy-MM-dd',
       showWeek: false,
@@ -68,8 +68,8 @@ class Demo extends React.Component {
       topPanelTitle: '请选择日期',
       value: this.state.value,
       tip: '这里是提示信息',
-      // animationType: 'slideLeft',
-      animationType: 'slideUp',
+      animationType: 'slideLeft',
+      // animationType: 'slideUp',
       onOk: this.onOk.bind(this),
     };
     return (
