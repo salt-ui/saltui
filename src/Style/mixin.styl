@@ -110,3 +110,16 @@ fix-safe-area(prop, value = 0, direction = 'bottom')
     else
         {prop} unquote('constant(safe-area-inset-' + direction + ')')
         {prop} unquote('env(safe-area-inset-' + direction + ')')
+
+
+getr(rgb_background, rgba)
+  (1 - alpha(rgba)) * red(rgb_background) + alpha(rgba) * red(rgba)
+
+getg(rgb_background, rgba)
+  (1 - alpha(rgba)) * green(rgb_background) + alpha(rgba) * green(rgba)  
+
+getb(rgb_background, rgba)
+  (1 - alpha(rgba)) * blue(rgb_background) + alpha(rgba) * blue(rgba)
+
+rgba2rgb(rgb_background, rgba)
+  rgb(getr(rgb_background, rgba), getg(rgb_background, rgba), getb(rgb_background, rgba))

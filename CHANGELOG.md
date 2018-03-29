@@ -1,8 +1,11 @@
 
 
-## 3.7.11
+## 3.8.0
 
+* `style`: orange brand color change & add new theme blue, green
+* `style`: new color generation formula
 * `fix`: `TabBar` ItemMore fail to pass right params to onChange
+
 
 ## 3.7.10 / 2018-03-28
 
