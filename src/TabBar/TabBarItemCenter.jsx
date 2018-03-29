@@ -46,7 +46,7 @@ class TabBarItemCenter extends React.Component {
 
   render() {
     const t = this;
-    const { active } = t.props;
+    const { active, activeIndex } = t.props;
     const item = t.props.item ? t.props.item : t;
     let clickCB;
     if (item.props.items.length > 0) {
@@ -85,7 +85,8 @@ class TabBarItemCenter extends React.Component {
                 item.props.items.map((it, idx) =>
                   (<TabBarItemMore
                     key={idx.toString()}
-                    index={t.props.index - idx}
+                    index={`${t.props.index}-${idx}`}
+                    active={activeIndex === `${t.props.index}-${idx}`}
                     {...it}
                     iconHeight={t.props.childIconHeight}
                     onClick={t.props.onClick}

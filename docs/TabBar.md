@@ -2,8 +2,6 @@
 
 ## 底部选项卡菜单
 
-<img src="http://alipay-rmsdeploy-image.cn-hangzhou.alipay.aliyun-inc.com/skylark/attach/5304/92f2deaaa2f4dd1c/image.png" width="345"/>
-
 ## Simple Usage
 
 ```
@@ -103,9 +101,3 @@ module.exports = Demo;
 |badge|*|`string` or `number` or `object` |-|选项卡角标,支持数字、红点、string、以及对象(version>=1.3.11)
 |badgeStyle|-|`object`|-|选项卡自定义角标样式(version>=1.2.0)
 |path|-|`string`|-|选项的路径
-
-## APIs
-
-* onChange 
- * type:function
- * 点击每个item的时候触发的事件；

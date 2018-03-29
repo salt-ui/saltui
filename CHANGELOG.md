@@ -1,4 +1,9 @@
 
+
+## 3.7.11
+
+* `fix`: `TabBar` ItemMore fail to pass right params to onChange
+
 ## 3.7.10 / 2018-03-28
 
 * `fix`: `Datetime` missing month suffix if disabledDate is enabled

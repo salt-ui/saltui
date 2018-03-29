@@ -59,9 +59,9 @@ class Demo extends React.Component {
   }
 
   render() {
-    const onChange = (activeIndex) => {
+    const onChange = (activeIndex, path) => {
       // 这里是触发每个item之后的回调，会返回当前点击的item的index 值
-      console.log(activeIndex);
+      console.log(activeIndex, path);
     };
 
     const tabBarStyle = {};
