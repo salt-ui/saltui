@@ -1,11 +1,12 @@
-## 3.9.0
+## 3.8.2 / 2018-03-30
+
 * `feat`: onClick will not called if button's loading is true
 
-## 3.8.1
+## 3.8.1 / 2018-03-30
 
 * `fix`: icon size bug
 
-## 3.8.0
+## 3.8.0/ 2018-03-29
 
 * `style`: orange brand color change & add new theme blue, green
 * `style`: new color generation formula
