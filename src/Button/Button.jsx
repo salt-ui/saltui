@@ -19,8 +19,9 @@ class Button extends React.Component {
   }
 
   handleClick(evt) {
-    if (!this.props.disabled) {
-      this.props.onClick(evt);
+    const { disabled, loading, onClick } = this.props;
+    if (!disabled && !loading) {
+      onClick(evt);
     }
   }
 
