@@ -20,7 +20,7 @@ const git = require('git-rev');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const commonWebpackCfg = require('./webpack.dev.js');
 const pkg = require('./package.json');
 
