@@ -1,8 +1,9 @@
+## 3.9.0
+* `feat`: onClick will not called if button's loading is true
 
 ## 3.8.1
 
 * `fix`: icon size bug
-
 
 ## 3.8.0
 
