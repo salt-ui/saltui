@@ -1,15 +1,20 @@
 
+## 3.8.4 / 2018-04-02
+
+* `feat`: `Slot` disable iscroll's bounce to improve performance 
+
+
 ## 3.8.3 / 2018-04-02
 
-* `fix`: empty img will be seen in the `View Larger Image` mode
+* `fix`: `PhotoField` empty img will be seen in the `View Larger Image` mode
 
 ## 3.8.2 / 2018-03-30
 
-* `feat`: onClick will not called if button's loading is true
+* `feat`: `Button` onClick will not be called if button's loading is true
 
 ## 3.8.1 / 2018-03-30
 
-* `fix`: icon size bug
+* `fix`: `ICON` icon size bug
 
 ## 3.8.0/ 2018-03-29
 
