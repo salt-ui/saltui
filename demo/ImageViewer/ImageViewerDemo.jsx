@@ -9,7 +9,7 @@
 import React from 'react';
 
 import Button from 'salt-button';
-import ImageViewer from 'salt-image-viewer/mix';
+import ImageViewer from 'salt-image-viewer';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const ImageViewer = require('../../dist');
@@ -42,7 +42,8 @@ class Demo extends React.Component {
               current: 1,
             });
           }}
-        >点击查看</Button>
+        >点击查看
+        </Button>
         <Button
           style={{
             marginTop: 400,
@@ -60,7 +61,8 @@ class Demo extends React.Component {
               current: 1,
             });
           }}
-        >点击查看</Button>
+        >点击查看
+        </Button>
       </div>
     );
   }

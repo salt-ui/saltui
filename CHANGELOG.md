@@ -1,4 +1,8 @@
 
+## 3.8.5 / 2018-04-02
+
+* `fix`: `ImageViewer` fail to stop body scrolling when it's shown
+
 ## 3.8.4 / 2018-04-02
 
 * `feat`: `Slot` disable iscroll's bounce to improve performance 

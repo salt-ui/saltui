@@ -1,13 +1,3 @@
-
-一句话描述
-一张截图
-
-## Simple Usage
-
-## Props
-
-## APIs
-
 ### .show()
 
 描述：显示大图

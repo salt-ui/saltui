@@ -10,12 +10,14 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import PopupView from './PopupView';
+import { stopBodyScrolling } from '../Utils';
 
 let div;
 
 const remove = () => {
   ReactDOM.unmountComponentAtNode(div);
   div.parentNode.removeChild(div);
+  stopBodyScrolling(false);
   div = null;
 };
 
@@ -51,8 +53,14 @@ ImageViewer.show = (config = {}) => {
   if (!div) {
     div = getContainer();
   }
-
+  let prevVisible = false;
   const renderComponent = (visible = true) => {
+    if (prevVisible === false && visible === true) {
+      stopBodyScrolling(true);
+    } else if (prevVisible === true && visible === false) {
+      stopBodyScrolling(false);
+    }
+    prevVisible = visible;
     ReactDOM.render(
       <PopupView
         {...props}

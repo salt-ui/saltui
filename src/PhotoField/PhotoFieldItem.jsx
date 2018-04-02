@@ -37,7 +37,6 @@ class PhotoFieldItem extends React.Component {
           style={{ backgroundImage: `url(${t.props.url})` }}
           alt={t.props.name}
           onClick={t.handlePreview.bind(t)}
-          role="presentation"
         />
         {
           !t.props.readOnly &&

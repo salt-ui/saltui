@@ -61,6 +61,10 @@ const show = (config) => {
       });
     });
   }
+  return {
+    // make api same as h5 version
+    remove: () => {},
+  };
 };
 
 const ImageViewer = {
