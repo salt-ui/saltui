@@ -28,19 +28,11 @@ class PhotoFieldItem extends React.Component {
     const t = this;
     const style = {
       width: t.props.width,
+      height: t.props.width,
     };
-    if (!this.state.loaded) {
-      style.paddingTop = style.width;
-    }
     return (
       <div className={prefixClass('PR FL photo-item')} style={style} ref={(c) => { this.root = c; }}>
-        <img
-          src="//gw.alicdn.com/tps/TB18GJsIpXXXXatXFXXXXXXXXXX.png"
-          onLoad={() => {
-            this.setState({
-              loaded: true,
-            });
-          }}
+        <div
           className={prefixClass('photo-item-img')}
           style={{ backgroundImage: `url(${t.props.url})` }}
           alt={t.props.name}

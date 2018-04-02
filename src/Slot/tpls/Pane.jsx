@@ -294,6 +294,7 @@ class SlotPane extends React.Component {
                 className={Context.prefixClass('FB1')}
                 style={style}
                 tap="iscroll:tap"
+                // deceleration={0.001}
                 autoRefresh={!!visible}
                 onScrollStart={() => { t.handleScrollStart(); }}
                 onScrollEnd={() => { t.handleScrollEnd(i); }}

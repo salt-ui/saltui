@@ -31,7 +31,6 @@ class PhotoFieldUploadItem extends React.Component {
         <div
           className={prefixClass('photo-upload-item-box photo-upload-item-box__error')}
           onClick={() => {
-            console.log(this.props.disabled);
             this.props.file.pending();
           }}
         >

@@ -1,3 +1,8 @@
+
+## 3.8.3 / 2018-04-02
+
+* `fix`: empty img will be seen in the `View Larger Image` mode
+
 ## 3.8.2 / 2018-03-30
 
 * `feat`: onClick will not called if button's loading is true

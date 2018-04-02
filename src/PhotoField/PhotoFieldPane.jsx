@@ -85,7 +85,7 @@ class PhotoFieldPane extends React.Component {
 
   renderPhotoList() {
     const t = this;
-    const itemWidth = `${100 / t.props.columns}%`;
+    const itemWidth = `calc((100vw - 20px) / ${t.props.columns})`;
     const photoItem = t.props.photoList.map((item, index) => {
       const props = {
         index,
