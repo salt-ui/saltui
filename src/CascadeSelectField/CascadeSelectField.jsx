@@ -23,7 +23,7 @@ function parseProps(p) {
   options = [];
   value = value || [];
   const confirmedValue = value.length ? value : [];
-  for (let deep = 0; cursor && deep < props.columns.length; deep += 1) {
+  for (let deep = 0; cursor; deep += 1) {
     let index = 0;
     options[deep] = cursor.map((o, i) => {
       const option = {
