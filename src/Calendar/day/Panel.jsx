@@ -86,22 +86,31 @@ class Panel extends React.Component {
     }, false);
 
     t.root.addEventListener('touchmove', (ev) => {
-      ev.stopPropagation();
-      t.endY = ev.touches[0].screenY;
-      if (t.endY - t.startY < 0) {
-        t.direction = 'up';
-        t.loadMonth();
-      } else {
-        t.direction = 'down';
-        if (!t.locked) {
-          t.loadMonth();
-          t.locked = true;
-          setTimeout(() => {
-            t.locked = false;
-            this.loadMonth();
-          }, 30);
-        }
+      // debounce touchmove callback to prevent load too much month in iOS
+      // when -webkit-touch-scrolling is set touch
+      if (this.moveTimer) {
+        clearTimeout(this.moveTimer);
+        this.moveTimer = null;
       }
+      this.moveTimer = setTimeout(() => {
+        ev.stopPropagation();
+        t.endY = ev.touches[0].screenY;
+        if (t.endY - t.startY < 0) {
+          t.direction = 'up';
+          t.loadMonth();
+        } else {
+          t.direction = 'down';
+          if (!t.locked) {
+            t.loadMonth();
+            t.locked = true;
+            setTimeout(() => {
+              t.locked = false;
+              this.loadMonth();
+            }, 30);
+          }
+        }
+        this.moveTimer = null;
+      }, 200);
     }, false);
   }
 
@@ -111,6 +120,13 @@ class Panel extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     return !deepEqual(nextProps, this.props) || !deepEqual(nextState, this.state);
+  }
+
+  componentWillUnmount() {
+    if (this.moveTimer) {
+      clearTimeout(this.moveTimer);
+      this.moveTimer = null;
+    }
   }
 
   onDaySelected(timestamp) {
@@ -217,7 +233,7 @@ class Panel extends React.Component {
     const { scrollTop } = t.root;
     const scrollBottom = docHeight - scrollTop - clientHeight;
     // 正在加载，或者滑动距离小于100px，都不触发loadMonth
-    if (t.monthLoading || Math.abs(t.endY - t.startY) < 100) {
+    if (t.monthLoading || Math.abs(t.endY - t.startY) < 50) {
       return;
     }
 

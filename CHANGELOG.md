@@ -1,7 +1,9 @@
 
-## 3.8.5 / 2018-04-02
+## 3.8.5/ 2018-04-03
 
 * `fix`: `ImageViewer` fail to stop body scrolling when it's shown
+* `fix`: `CascadeSelectField` options cannot be shown if columns is set `[]`
+* `feat`: `Calendar` improve scroll experience in iOS
 
 ## 3.8.4 / 2018-04-02
 

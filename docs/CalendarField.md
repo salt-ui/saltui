@@ -1,29 +1,31 @@
 
 
-级联日期表单组件
-
-<img src="https://img.alicdn.com/tps/TB1me1UPFXXXXajXVXXXXXXXXXX-750-1334.png" width="375">
-
-## Simple Usage
+日期表单组件
 
 ## Props
 
 - 支持表单域的所有属性和方法，[参见这里](https://salt-ui.github.io/components/field)
-- 面板模式选择天、上下午：支持Calendar的属性和方法，[参见这里](https://salt-ui.github.io/components/calendar)
-- 滚轮模式选择天、年、月、上下午、时间：支持Datetime的属性和方法，[参见这里](https://salt-ui.github.io/components/datetime)
+- 面板模式选择天、上下午：支持 Calendar 的属性和方法，[参见这里](https://salt-ui.github.io/components/calendar)
+- 滚轮模式选择天、年、月、上下午、时间：支持 Datetime 的属性和方法，[参见这里](https://salt-ui.github.io/components/datetime)
 
 - 另外支持以下属性:
 
 #### type
 描述：calendar类型
 类型：`String`
-默认：`day` // 可选值：year, month, day(面板形式), dayWithSlot(拨盘形式), dayWithHalf, dayWithTime
+默认：`day` // 可选值：year, month, day(面板形式), dayWithSlot(滚轮形式), dayWithHalf, dayWithTime
 必选：否
 
 #### placeholder
 描述：占位文字
 类型：`String|Array`
 默认：`['开始日期', '结束日期']`
+必选：否
+
+### singleMode
+描述：使用单点模式，还是级联选择模式。
+类型：`Boolean`  
+默认：`true`  
 必选：否
 
 #### formatter
@@ -66,7 +68,7 @@
     timeType: "AM" // 可能没有该属性
   }
 
-// 如果 singleMode === true，此 value 的格式为：
+// 如果 singleMode === false value 的格式为：
   {
     startDate: 1452038400000,
     startDateType: "FULL", // AM PM FULL
