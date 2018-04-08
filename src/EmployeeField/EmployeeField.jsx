@@ -179,7 +179,7 @@ class EmployeeField extends React.Component {
         })}
       >
         <Field {...otherProps} icon={icon} tip={<div>{isDd() ? '' : i18n.onlyForDd}{tip}</div>}>
-          <div onClick={(e) => { t.onPickHandler(e); }}>
+          <div className="needsclick" onClick={(e) => { t.onPickHandler(e); }}>
             {
               !t.props.value.length ?
                 <div className={Context.prefixClass('omit employee-field-placeholder')}>{t.props.placeholder}</div>

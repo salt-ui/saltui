@@ -19,12 +19,6 @@ const showLoadingToast = () => {
     type: 'loading',
     content: '加载中...',
   });
-
-  setTimeout(() => {
-    Toast.hide(() => {
-      console.log(888);
-    });
-  }, 4000);
 };
 
 class Demo extends React.Component {
@@ -163,7 +157,7 @@ class Demo extends React.Component {
         }}
       >light toast fix-bottom
       </Button>
-    </div>);
+            </div>);
   }
 }
 

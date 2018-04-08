@@ -1,5 +1,14 @@
 
-## 3.8.5/ 2018-04-03
+## 3.8.7
+
+* `feat`: `Toast` change loading icon
+
+## 3.8.6
+
+* `feat`: `Employee` add `needsclick` className to the active element
+
+
+## 3.8.5 / 2018-04-03
 
 * `fix`: `ImageViewer` fail to stop body scrolling when it's shown
 * `fix`: `CascadeSelectField` options cannot be shown if columns is set `[]`
