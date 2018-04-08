@@ -1,11 +1,15 @@
 
-## 3.8.7
+## 3.8.9 / 2018-04-03
+
+* `fix`: TabBar style bug if center icon is not set
+
+## 3.8.7 / 2018-04-08
 
 * `feat`: `Toast` change loading icon
 * `fix`: `PickerField` Panel fail to scroll
 
 
-## 3.8.6
+## 3.8.6 / 2018-04-03
 
 * `feat`: `Employee` add `needsclick` className to the active element
 
