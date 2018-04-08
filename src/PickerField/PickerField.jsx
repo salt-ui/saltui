@@ -164,7 +164,7 @@ class PickerField extends React.Component {
             </span>
           </div>
         </div>
-        <Popup visible={this.state.popupVisible} animationType="slide-left" content={<SearchPanel {...panelProps} />} />
+        <Popup stopBodyScrolling={false} visible={this.state.popupVisible} animationType="slide-left" content={<SearchPanel {...panelProps} />} />
       </Field>
     );
   }
@@ -192,7 +192,7 @@ PickerField.defaultProps = {
   searchNotFoundContent: '无搜索结果',
   formatter: value => (value ? value.text : ''),
   phonetic: value => (value.phonetic || []),
-  onSelect() {},
+  onSelect() { },
   multiple: false,
   grouping: false,
   groupingIndicator: false,

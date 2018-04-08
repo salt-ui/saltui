@@ -438,7 +438,7 @@ class SearchPanel extends React.Component {
             </div>
           ) : null}
           <div className={Context.prefixClass('picker-field-searchpanel-content')}>
-            <ScrollView bounce={false} disablePointer>
+            <ScrollView>
               {t.renderResultCondition()}
             </ScrollView>
             {t.props.grouping ? t.renderGroupingBar() : null}

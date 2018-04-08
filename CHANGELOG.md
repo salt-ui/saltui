@@ -1,4 +1,8 @@
 
+## 3.8.8
+
+* `fix`: `PickerField` Panel fail to scroll
+
 ## 3.8.7
 
 * `feat`: `Toast` change loading icon

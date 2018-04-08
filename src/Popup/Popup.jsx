@@ -156,6 +156,7 @@ class Popup extends React.Component {
     options: PropTypes.object,
     visible: PropTypes.bool,
     onMaskClick: PropTypes.func,
+    stopBodyScrolling: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -164,6 +165,7 @@ class Popup extends React.Component {
     content: undefined,
     options: undefined,
     visible: undefined,
+    stopBodyScrolling: true,
   }
 
   componentDidMount() {
@@ -207,7 +209,9 @@ class Popup extends React.Component {
     if (this.instance) {
       this.instance.hide();
       this.instance = null;
-      stopBodyScrolling(false);
+      if (this.props.stopBodyScrolling) {
+        stopBodyScrolling(false);
+      }
     }
   }
 
@@ -216,7 +220,9 @@ class Popup extends React.Component {
       this.instance = Popup.newInstance();
     }
     this.instance.show(this.props.content, this.getOptions());
-    stopBodyScrolling(true);
+    if (this.props.stopBodyScrolling) {
+      stopBodyScrolling(true);
+    }
   }
 
   handleClick(e) {
