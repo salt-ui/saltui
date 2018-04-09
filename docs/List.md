@@ -1,46 +1,12 @@
 
 
-## 图文列表 组件 + Demo
+## 图文列表 
 
 - 组件支持
   - 两种布局方式：左图右文、左文右图
   - 右侧 icon 显示、类型、大小 可配置
   - 滑动删除 可配置
 
-- Demo包括
-  - 图加标题
-  - 图文纵排
-  - 信息卡列表
-
-![](https://img.alicdn.com/tps/TB1nYvqJFXXXXasXFXXXXXXXXXX-292-743.png)
-
-![](https://img.alicdn.com/tps/TB16LjXJFXXXXXfaXXXXXXXXXXX-291-603.png)
-
-- 以下是组件使用方式介绍
-
-## Simple Usage
-
-```html
-<List
-    layout="left"
-    hasRightIcon={true}
-    iconName='angle-right'
-    iconWidth={20}
-    isDelete={false}
-    onClick={this.handleClick.bind(this)}
-    clickPhoto={this.handleClickImg.bind(this)}
-    data={[
-    {
-        imgUrl : "https://img.alicdn.com/tps/TB1P1vaLpXXXXXxaXXXXXXXXXXX-50-50.jpg",
-        title : "列表标题",
-        text : "列表内容测试测试测试测试测试测试测试测试测试测试测试测试",
-        date  : "2016-7-18"
-    },
-    {
-        title : "列表标题",
-        text : "列表内容测试测试测试测试测试测试测试测试测试测试测试测试"
-    }]}/>
-```
 
 ## Props
 
