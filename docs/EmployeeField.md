@@ -45,7 +45,7 @@
 [{
   label: '欧阳震华',
   key: '023456',
-  avater: 'http://www.xxxxxx.com/aaa.jpg',
+  avatar: 'https://gw.alicdn.com/tfs/TB1D9YIkb9YBuNjy0FgXXcxcXXa-200-200.jpg',
 }]
 ```
 
