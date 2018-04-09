@@ -33,17 +33,20 @@ class List extends React.Component {
     const t = this;
     const datas = t.props.data || [];
 
+    let newData = [];
+
     if (datas.length) {
-      datas.map((d, i) => {
+      newData = (props.data || []).map((d, i) => {
         const dNew = { ...d };
         dNew.keyIndex = `index${i}`;
         dNew.listLeft = 0;
-        return false;
+        return dNew;
       });
     }
 
+
     this.state = {
-      data: datas,
+      data: newData,
       isCanMove: true, // 当前能不能进行滑动
       startX: 0, // 鼠标开始的X轴位置
       startY: 0, // 鼠标开始的Y轴位置
@@ -56,15 +59,9 @@ class List extends React.Component {
 
   componentWillReceiveProps(nextProp) {
     if (nextProp.data && nextProp.data.length) {
-      nextProp.data.map((d, i) => {
-        const dNew = { ...d };
-        dNew.keyIndex = `index${i}`;
-        dNew.listLeft = 0;
-        return false;
-      });
-
+      const newData = nextProp.data.map((d, i) => ({ ...d, keyIndex: `index${i}`, listLeft: 0 }));
       this.setState({
-        data: nextProp.data,
+        data: newData,
       });
     }
   }
@@ -128,7 +125,7 @@ class List extends React.Component {
     // 如果X轴的移动距离先达到5px并且Y轴的移动距离小于5px，则执行list的滑动
     // 如果Y轴的移动距离先达到5px，则执行浏览器默认的页面滚动
     if (Math.abs(deltaX) > 5 && Math.abs(deltaY) < 5) {
-      data.map((d) => {
+      const newData = data.map((d) => {
         const dNew = { ...d };
         if (dNew.keyIndex === id) {
           if (isCanMove) {
@@ -140,17 +137,16 @@ class List extends React.Component {
             }, false);
           }
         }
-        return false;
+        return dNew;
       });
 
       e.preventDefault();
       e.stopPropagation();
-
       t.setState({
         endX: touchPageX,
         delateX: change,
         listLeft: change,
-        data,
+        data: newData,
         isCanMove,
       });
     }
@@ -171,7 +167,7 @@ class List extends React.Component {
 
     e.currentTarget.style.transitionDuration = '.2s';
 
-    data.map((d) => {
+    data.forEach((d) => {
       if (d.keyIndex === id) {
         left = parseInt(d.listLeft, 10);
       }
@@ -187,20 +183,20 @@ class List extends React.Component {
     }
 
 
-    data.map((d) => {
-      const dNew = { ...d };
-      if (dNew.keyIndex !== id) {
-        dNew.listLeft = 0;
+    const newData = data.map((d) => {
+      const newD = { ...d };
+      if (newD.keyIndex !== id) {
+        newD.listLeft = 0;
         isCanMove = true;
       } else {
-        dNew.listLeft = newLeft;
+        newD.listLeft = newLeft;
       }
-      return false;
+      return newD;
     });
 
     t.setState({
       listLeft: newLeft,
-      data,
+      data: newData,
       isCanMove,
     });
 
@@ -213,24 +209,8 @@ class List extends React.Component {
 
   delete(dataItem, e) {
     const t = this;
-
     e.preventDefault();
     t.props.onDelete(e, dataItem);
-
-    // let data = t.state.data;
-    // let id = event.currentTarget.id;
-
-    // data.map((d,i) => {
-
-    //     if(d.keyIndex === id) {
-
-    //         data.splice(i,1);
-    //     }
-    // })
-
-    // t.setState({
-    //     data : data
-    // })
   }
 
   clickHandle(dataItem, e) {

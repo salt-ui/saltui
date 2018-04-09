@@ -1,5 +1,10 @@
 
-## 3.8.9 / 2018-04-03
+## 3.8.10 / 2018-04-09
+
+* `fix`: `List` isDelete fail to work
+* `feat`: `Refreshcontrol` performance improvement
+
+## 3.8.9 / 2018-04-08
 
 * `fix`: TabBar style bug if center icon is not set
 

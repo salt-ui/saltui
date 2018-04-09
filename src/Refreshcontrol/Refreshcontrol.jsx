@@ -66,12 +66,10 @@ class RefreshControl extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      y: 0,
-    };
-
+    this.y = 0;
+    this.oldY = 0;
     this.initTop = 0;
+    this.state = {};
   }
 
   componentDidMount() {
@@ -114,6 +112,7 @@ class RefreshControl extends React.Component {
     if (top === this.initTop) {
       this.draging = true;
     }
+    this.forceUpdate();
   }
 
   onDrag(pos, event) {
@@ -121,6 +120,7 @@ class RefreshControl extends React.Component {
 
     // 消除误差
     const { initTop } = this;
+    const { threshold } = this.props;
     const { top } = getOffset(this.trigger);
 
     if (this.refreshing || top < initTop) {
@@ -137,10 +137,13 @@ class RefreshControl extends React.Component {
       event.preventDefault();
       event.stopPropagation();
     }
-
+    this.oldY = this.y;
     this.y = pos.y;
     if (this.y < 0) {
       this.y = 1;
+    }
+    if ((this.oldY < threshold && this.y >= threshold) || (this.oldY > threshold && this.y <= threshold)) {
+      this.forceUpdate();
     }
     this.triggerStyle(this.props.showRefreshing);
   }
@@ -211,7 +214,6 @@ class RefreshControl extends React.Component {
     this.status = Status.ready;
     this.draging = false;
     this.y = 0;
-    // this.triggerStyle(this.props.showRefreshing);
   }
 
   circularStyle(showRefreshing) {
@@ -230,7 +232,6 @@ class RefreshControl extends React.Component {
       opacity = 0.8;
     }
     ele.style.opacity = opacity;
-    // return { opacity };
   }
 
   refreshText() {
@@ -240,9 +241,10 @@ class RefreshControl extends React.Component {
     if (this.refreshing) {
       return refreshingText;
     }
-
     if (this.draging) {
-      return this.y >= threshold ? afterPullLoadText : beforePullLoadText;
+      const text = this.y >= threshold ? afterPullLoadText : beforePullLoadText;
+      console.log(text, this.y);
+      return text;
     }
 
     return '';
@@ -311,7 +313,6 @@ class RefreshControl extends React.Component {
           key="refreshControl"
           ref={(c) => { this.innerNode = c; }}
           className={classnames(Context.prefixClass('refresh-control-inner'))}
-          // style={this.circularStyle()}
         >
           {this.renderIcon()}
           {this.renderRefreshText()}
@@ -322,7 +323,6 @@ class RefreshControl extends React.Component {
           this.trigger = node;
         }}
           className={classnames(Context.prefixClass('refresh-control-area'))}
-          // style={this.triggerStyle(showRefreshing)}
         >
           {children}
         </div>
