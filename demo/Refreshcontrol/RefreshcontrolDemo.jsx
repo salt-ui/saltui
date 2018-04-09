@@ -8,16 +8,21 @@
 
 import React from 'react';
 import Refreshcontrol from 'salt-refreshcontrol';
+import PropTypes from 'prop-types';
 
 function Item(props) {
   return <div className="item">{`this is item ${props.index}`}</div>;
 }
 
+Item.propTypes = {
+  index: PropTypes.number.isRequired,
+};
+
 class RefreshcontrolDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      refreshing: true,
+      refreshing: false,
       repeat: 1,
     };
   }
@@ -43,11 +48,13 @@ class RefreshcontrolDemo extends React.Component {
   }
 
   render() {
-    return (<Refreshcontrol refreshing={this.state.refreshing} onRefresh={this.onRefresh.bind(this)}>
-      <div className="demo">
-        {this.renderItems()}
-      </div>
-    </Refreshcontrol>);
+    return (
+      <Refreshcontrol refreshing={this.state.refreshing} onRefresh={this.onRefresh.bind(this)}>
+        <div className="demo">
+          {this.renderItems()}
+        </div>
+      </Refreshcontrol>
+    );
   }
 }
 

@@ -84,6 +84,10 @@ class RefreshControl extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    this.triggerStyle(this.props.showRefreshing);
+  }
+
 
   componentWillUnmount() {
     if (!this.drager) return;
@@ -138,6 +142,7 @@ class RefreshControl extends React.Component {
     if (this.y < 0) {
       this.y = 1;
     }
+    this.triggerStyle(this.props.showRefreshing);
   }
 
   onDragEnd(pos) {
@@ -158,6 +163,7 @@ class RefreshControl extends React.Component {
       this.y = 0;
       transitionEnd(this.trigger, this.clearState.bind(this));
     }
+    this.triggerStyle(this.props.showRefreshing);
   }
 
   get max() {
@@ -176,7 +182,7 @@ class RefreshControl extends React.Component {
   }
 
   get y() {
-    return Math.min(Math.max(this.state.y, 0), this.max);
+    return Math.min(Math.max(this._y, 0), this.max);
   }
 
   set status(status) {
@@ -187,7 +193,7 @@ class RefreshControl extends React.Component {
     this._draging = draging;
   }
   set y(y) {
-    this.setState({ y });
+    this._y = y;
   }
 
   bindDrag() {
@@ -205,11 +211,13 @@ class RefreshControl extends React.Component {
     this.status = Status.ready;
     this.draging = false;
     this.y = 0;
+    // this.triggerStyle(this.props.showRefreshing);
   }
 
   circularStyle(showRefreshing) {
     const { threshold } = this.props;
     const y = Math.min(this.y, threshold);
+    const ele = this.innerNode;
 
     let opacity = 0;
     if (this.refreshing) {
@@ -221,8 +229,8 @@ class RefreshControl extends React.Component {
     if (showRefreshing === false) {
       opacity = 0.8;
     }
-
-    return { opacity };
+    ele.style.opacity = opacity;
+    // return { opacity };
   }
 
   refreshText() {
@@ -241,28 +249,25 @@ class RefreshControl extends React.Component {
   }
 
   triggerStyle(showRefreshing) {
-    const style = {};
     let y = 0;
+    const ele = this.trigger;
 
     if (this.refreshing) {
       y = this.props.threshold;
     }
-
     if (this.draging) {
       ({ y } = this);
     }
-
     if (showRefreshing === false) {
       y = 0;
-      style.visibility = 'hidden';
+      ele.style.visibility = 'hidden';
     } else {
-      style.visibility = 'visible';
+      ele.style.visibility = 'visible';
     }
 
-    style.WebkitTransform = `translate3d(0, ${y}px, 0)`;
-    style.transform = `translate3d(0, ${y}px, 0)`;
-
-    return style;
+    ele.style.WebkitTransform = `translate3d(0, ${y}px, 0)`;
+    ele.style.transform = `translate3d(0, ${y}px, 0)`;
+    this.circularStyle(showRefreshing);
   }
 
   renderIcon() {
@@ -304,8 +309,9 @@ class RefreshControl extends React.Component {
       >
         <div
           key="refreshControl"
+          ref={(c) => { this.innerNode = c; }}
           className={classnames(Context.prefixClass('refresh-control-inner'))}
-          style={this.circularStyle()}
+          // style={this.circularStyle()}
         >
           {this.renderIcon()}
           {this.renderRefreshText()}
@@ -316,7 +322,7 @@ class RefreshControl extends React.Component {
           this.trigger = node;
         }}
           className={classnames(Context.prefixClass('refresh-control-area'))}
-          style={this.triggerStyle(showRefreshing)}
+          // style={this.triggerStyle(showRefreshing)}
         >
           {children}
         </div>

@@ -9,12 +9,19 @@
 import React from 'react';
 import Group from 'salt-group';
 import EmployeeField from 'salt-employee-field';
-import TextField from 'salt-text-field';
-import Button from 'salt-button';
 
 
-const testData = [
-];
+const testData = [{
+  label: '范范',
+  key: '023456',
+  avatar: 'https://gw.alicdn.com/tfs/TB1D9YIkb9YBuNjy0FgXXcxcXXa-200-200.jpg',
+}, {
+  label: '笑笑',
+  key: '023457',
+}, {
+  label: '闹闹',
+  key: '023458',
+}];
 
 class EmployeeFieldDemo extends React.Component {
   constructor(props) {
@@ -48,16 +55,6 @@ class EmployeeFieldDemo extends React.Component {
   render() {
     return (
       <Group>
-        <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">Label文字长度测试</Group.Head>
-        <Group.List >
-          <TextField
-            label="标题"
-            placeholder="请输入"
-            value={this.state.t1}
-            tip="这里是提示信息"
-            onChange={(value) => { this.handleTextChange('t1', value); }}
-          />
-        </Group.List>
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">EmployeeField演示</Group.Head>
         <Group.List>
           <EmployeeField
@@ -71,11 +68,6 @@ class EmployeeFieldDemo extends React.Component {
             onChange={(value) => { this.onChange(value); }}
           />
         </Group.List>
-        <div
-          onTouchEnd={() => { this.delay = Date.now(); }}
-          onClick={() => { alert(Date.now() - this.delay); }}
-        >测试三百毫秒延迟
-        </div>
       </Group>
     );
   }
