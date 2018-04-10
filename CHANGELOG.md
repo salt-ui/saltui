@@ -1,4 +1,9 @@
 
+## 3.8.11 
+
+* `feat`: `Refreshcontrol` add `needsclick` to the content area.
+
+
 ## 3.8.10 / 2018-04-09
 
 * `fix`: `List` isDelete fail to work

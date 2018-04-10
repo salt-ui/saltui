@@ -142,7 +142,9 @@ class RefreshControl extends React.Component {
     if (this.y < 0) {
       this.y = 1;
     }
-    if ((this.oldY < threshold && this.y >= threshold) || (this.oldY > threshold && this.y <= threshold)) {
+    if (
+      (this.oldY < threshold && this.y >= threshold)
+        || (this.oldY > threshold && this.y <= threshold)) {
       this.forceUpdate();
     }
     this.triggerStyle(this.props.showRefreshing);
@@ -322,7 +324,7 @@ class RefreshControl extends React.Component {
           ref={(node) => {
           this.trigger = node;
         }}
-          className={classnames(Context.prefixClass('refresh-control-area'))}
+          className={classnames('needsclick', Context.prefixClass('refresh-control-area'))}
         >
           {children}
         </div>
