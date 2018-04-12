@@ -36,7 +36,7 @@
 |dataKey|required|''|表格的数据中用于查看模式展示的字段|
 |width|optional|0.25|只支持小数配置，表示占屏幕的比例|
 |align|optional|'left'|该列的对其方式|
-|render|optional| null | 列的定制化渲染 function(key, item) { return xxx; } |
+|render|optional| null | 列的定制化渲染 function(cellData, rowData) { return xxx; } |
 
 
 ### data 的数据结构
