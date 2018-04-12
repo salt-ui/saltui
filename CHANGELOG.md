@@ -1,5 +1,8 @@
+## 3.8.12 / 2018-04-12
 
-## 3.8.11 
+* `feat`: `Slot`, `Calendar`, `CascadeSelectField` header font-size adjustment. 
+
+## 3.8.11 / 2018-04-12
 
 * `feat`: `Refreshcontrol` add `needsclick` to the content area.
 

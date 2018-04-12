@@ -21,7 +21,7 @@ class CalendarDemo extends React.Component {
       // endDate: 1499961600000,
       // endDateType: 'PM',
       // },
-      value: 1489702400000, // 1499961600000
+      // value: 1489702400000, // 1499961600000
     };
     // 禁用钉钉容器的 webViewBounce
     window.dd && window.dd.ui.webViewBounce.disable();
@@ -31,6 +31,7 @@ class CalendarDemo extends React.Component {
         '2017-07-22': 'work',
         '2017-07-25': 'leave',
       }),
+      disabledDate: current => current > new Date().getTime(),
       renderCustomDayLabel(curren, value) {
         if (Calendar.util.isSameDay(curren, '2017.7.31')) {
           return (
@@ -72,7 +73,8 @@ class CalendarDemo extends React.Component {
             showHalfDay: false,
           });
         }}
-        >打开单点日历</Button>
+        >打开单点日历
+        </Button>
         <Button onClick={() => {
           this.setState({
             visible: true,
@@ -81,7 +83,8 @@ class CalendarDemo extends React.Component {
             showHalfDay: false,
           });
         }}
-        >打开级联日历</Button>
+        >打开级联日历
+        </Button>
         <Button onClick={() => {
           this.setState({
             visible: true,
@@ -90,7 +93,8 @@ class CalendarDemo extends React.Component {
             animationType: 'slideLeft',
           });
         }}
-        >打开级联日历，可选择半天</Button>
+        >打开级联日历，可选择半天
+        </Button>
         <Button onClick={() => {
           this.setState({
             visible: true,
@@ -99,7 +103,8 @@ class CalendarDemo extends React.Component {
             showHalfDay: true,
           });
         }}
-        >展示Popup模式</Button>
+        >展示Popup模式
+        </Button>
         <Calendar
           {...this.calendarProps}
           {...this.state}

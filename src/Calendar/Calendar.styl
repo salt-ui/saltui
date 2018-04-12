@@ -1,40 +1,48 @@
 /**
  * Calendar Component Style for tingle
  * @author quanyun.mqy
- *
+ * 
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-@import "day/index.styl";
-@import "month/index.styl";
-@import "year/index.styl";
+@import 'day/index.styl';
+@import 'month/index.styl';
+@import 'year/index.styl';
 
-$top-bar-height = 48px
+$top-bar-height = 48px;
 
-.{$prefix}-calendar-popup
-  width 100%
+.{$prefix}-calendar-popup {
+  width: 100%;
+}
 
-.{$prefix}-calendar-top-bar
-  background-color $basic-100
-  hairline('border-top', $normal-alpha-7)
-  hairline('border-bottom', $normal-alpha-7)
-  border-style solid none
-  height $top-bar-height
-  font-size $font-size-t4
-  color $dark-alpha-3
+.{$prefix}-calendar-top-bar {
+  background-color: $basic-100;
+  hairline('border-top', $normal-alpha-7);
+  hairline('border-bottom', $normal-alpha-7);
+  border-style: solid none;
+  height: $top-bar-height;
+  font-size: 16px;
+  color: $dark-alpha-3;
 
-  .cancel
-    margin-left 16px
-    color $normal-alpha-3
+  .cancel {
+    margin-left: 16px;
+    color: $normal-alpha-3;
+  }
 
-  .confirm
-    margin-right 16px
-    color $brand-primary
+  .confirm {
+    margin-right: 16px;
+    color: $brand-primary;
+  }
 
-  .cancel, .confirm
-    min-width 29px
-    line-height $top-bar-height
-    white-space nowrap
+  .cancel,
+  .confirm {
+    min-width: 29px;
+    line-height: $top-bar-height;
+    white-space: nowrap;
+  }
 
-  .title
-    color $dark-alpha-2
+  .title {
+    color: $dark-alpha-2;
+    font-size: 17px;
+  }
+}
