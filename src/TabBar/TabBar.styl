@@ -20,7 +20,7 @@ $tabsBarBorderTopColor = $normal-alpha-7;
 
 .{$prefix}-tabs-bar {
   display: block;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -31,29 +31,20 @@ $tabsBarBorderTopColor = $normal-alpha-7;
   hairline('border-top', $tabsBarBorderTopColor);
 }
 
-// 这一行只是演示 按需删除
-.{$prefix}-tabs-bar-contents {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: $tabsBarHeight;
-}
+// .{$prefix}-tabs-bar-content {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   overflow: scroll;
+//   -webkit-overflow-scrolling: touch;
+//   display: none;
 
-.{$prefix}-tabs-bar-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
-  display: none;
-
-  &.active {
-    display: block;
-  }
-}
+//   &.active {
+//     display: block;
+//   }
+// }
 
 .{$prefix}-tabs-bar-items {
   height: 100%;
