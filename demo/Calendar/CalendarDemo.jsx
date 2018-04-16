@@ -75,7 +75,9 @@ class CalendarDemo extends React.Component {
         }}
         >打开单点日历
         </Button>
-        <Button onClick={() => {
+        <Button
+          style={{ marginTop: 10 }}
+          onClick={() => {
           this.setState({
             visible: true,
             singleMode: false,
@@ -85,7 +87,9 @@ class CalendarDemo extends React.Component {
         }}
         >打开级联日历
         </Button>
-        <Button onClick={() => {
+        <Button
+          style={{ marginTop: 10 }}
+          onClick={() => {
           this.setState({
             visible: true,
             singleMode: false,
@@ -95,7 +99,9 @@ class CalendarDemo extends React.Component {
         }}
         >打开级联日历，可选择半天
         </Button>
-        <Button onClick={() => {
+        <Button
+          style={{ marginTop: 10 }}
+          onClick={() => {
           this.setState({
             visible: true,
             singleMode: true,

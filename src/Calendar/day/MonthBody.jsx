@@ -109,7 +109,7 @@ class MonthBody extends React.Component {
     return null;
   }
 
-  renderSingModeDay(day, idx) {
+  renderSingModeDay(day, idx, isWeekend) {
     const t = this;
     const today = util.isSameDay(day, Date.now());
     let { value } = t.props;
@@ -132,6 +132,7 @@ class MonthBody extends React.Component {
             today,
             selected,
             disabled,
+            isWeekend,
           })}
         >
           {formatter(day, 'DD')}
@@ -149,7 +150,7 @@ class MonthBody extends React.Component {
     );
   }
 
-  renderCascadeModeDay(day, idx) {
+  renderCascadeModeDay(day, idx, isWeekend) {
     const t = this;
     const today = util.isSameDay(day, Date.now());
     let selected = false;
@@ -169,6 +170,7 @@ class MonthBody extends React.Component {
               today,
               selected,
               disabled,
+              isWeekend,
             })}
           >
             {formatter(day, 'DD')}
@@ -208,7 +210,7 @@ class MonthBody extends React.Component {
     // 非起、止，非周始、周尾
     const isInRange = selected &&
       !(isStartDate || isEndDate || isWeekFirstDay ||
-      isWeekLastDay || isMonthFirstDay || isMonthLastDay);
+        isWeekLastDay || isMonthFirstDay || isMonthLastDay);
     // 是否应该出现"色块垫子"
     const shouldHaveBackBlock = selected &&
       !(isStartDate && isEndDate) && // 非同时是起、止
@@ -275,11 +277,11 @@ class MonthBody extends React.Component {
         }
         {
           isStartDate && !isEndDate &&
-            <span className="day-label start-label">{t.locale.duration.start}</span>
+          <span className="day-label start-label">{t.locale.duration.start}</span>
         }
         {
           isEndDate && !isStartDate &&
-            <span className="day-label end-label">{t.locale.duration.end}</span>
+          <span className="day-label end-label">{t.locale.duration.end}</span>
         }
         {
           t.props.showHalfDay && isAM && <span className="day-label am-label">{t.locale.dayTipMap.AM}</span>
@@ -311,17 +313,18 @@ class MonthBody extends React.Component {
             <div className={classnames(prefixClass('FBH FBAC'), 'week-block')} key={index}>
               {
                 week.map((day, idx) => {
+                  const isWeekend = idx === 0 || idx === 6;
                   if (!day) {
                     return renderEmptyDay(idx);
                   }
                   if (t.props.singleMode) {
-                    return t.renderSingModeDay(day, idx);
+                    return t.renderSingModeDay(day, idx, isWeekend);
                   }
-                  return t.renderCascadeModeDay(day, idx);
+                  return t.renderCascadeModeDay(day, idx, isWeekend);
                 })
               }
             </div>
-            ))
+          ))
         }
       </div>
     );

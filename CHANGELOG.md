@@ -1,3 +1,7 @@
+## 3.8.13 / 2018-04-16
+
+* `feat`: `Calendar` style adjustment
+
 ## 3.8.12 / 2018-04-12
 
 * `feat`: `Slot`, `Calendar`, `CascadeSelectField` header font-size adjustment. 

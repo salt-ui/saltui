@@ -92,8 +92,8 @@ class Panel extends React.Component {
         clearTimeout(this.moveTimer);
         this.moveTimer = null;
       }
+      ev.stopPropagation();
       this.moveTimer = setTimeout(() => {
-        ev.stopPropagation();
         t.endY = ev.touches[0].screenY;
         if (t.endY - t.startY < 0) {
           t.direction = 'up';

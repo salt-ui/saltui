@@ -58,6 +58,7 @@ $day-cell-inner-height = 36px;
       height $day-cell-inner-height
       line-height $day-cell-inner-height
       font-size $font-size-t5
+      font-weight bold
       &.today
         line-height ($day-cell-inner-height - 2)
         border-radius 50%
@@ -73,8 +74,11 @@ $day-cell-inner-height = 36px;
         border-radius 0
       &.half-day
         background-color $function-orange
+      &.isWeekend
+        color $brand-primary
       &.disabled
         color $normal-alpha-5
+        font-weight normal
     .day-label
       position absolute
       bottom -17px
