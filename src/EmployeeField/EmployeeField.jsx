@@ -172,13 +172,15 @@ class EmployeeField extends React.Component {
     delete otherProps.layout;
     const i18n = locale[this.props.locale];
 
+    const modifiedTip = isDd() ? tip : <div>{i18n.onlyForDd}{tip}</div>;
+
     return (
       <div
         className={classnames(Context.prefixClass('employee-field'), {
           [className]: !!className,
         })}
       >
-        <Field {...otherProps} icon={icon} tip={<div>{isDd() ? '' : i18n.onlyForDd}{tip}</div>}>
+        <Field {...otherProps} icon={icon} tip={modifiedTip}>
           <div className="needsclick" onClick={(e) => { t.onPickHandler(e); }}>
             {
               !t.props.value.length ?

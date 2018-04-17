@@ -62,6 +62,7 @@ class EmployeeFieldDemo extends React.Component {
             corpId="dingd8e1123006514592"
             label="选择人员"
             layout="v"
+            multiple={false}
             placeholder="请选择"
             locale="en-us"
             value={this.state.value}
