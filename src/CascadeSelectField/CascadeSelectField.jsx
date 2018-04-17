@@ -126,8 +126,9 @@ class CascadeSelectField extends React.Component {
     Popup.show(<CascadeTab
       visible
       title={t.props.label}
-      confirmText={t.props.confirmText}
-      cancelText={t.props.cancelText}
+      locale={t.props.locale}
+      confirmText={t.props.confirmText || i18n[t.props.locale].confirmText}
+      cancelText={t.props.confirmText || i18n[t.props.locale].cancelText}
       options={t.state.originOptions}
       value={t.state.value}
       onChange={t.handleChange}
@@ -192,8 +193,8 @@ class CascadeSelectField extends React.Component {
               title={t.props.label}
               data={t.state.options}
               value={t.state.value}
-              confirmText={i18n['zh-cn'].confirmText}
-              cancelText={i18n['zh-cn'].cancelText}
+              confirmText={t.props.confirmText || i18n[t.props.locale].confirmText}
+              cancelText={t.props.cancelText || i18n[t.props.locale].cancelText}
               onChange={t.handleChange}
               onCancel={t.handleCancel}
               onConfirm={t.handleConfirm}
@@ -217,6 +218,7 @@ CascadeSelectField.defaultProps = {
   placeholder: '',
   columns: [],
   mode: 'normal',
+  locale: 'zh-cn',
   className: '',
   confirmText: undefined,
   cancelText: undefined,
@@ -237,6 +239,7 @@ CascadeSelectField.propTypes = {
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
   columns: PropTypes.array,
+  locale: PropTypes.string,
   mode: PropTypes.oneOf(['normal', 'complex']),
 };
 

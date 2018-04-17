@@ -1,3 +1,9 @@
+
+## 3.8.14
+
+* `fix`: `TabBar` fixed position render bug in iOS
+* `fix`: `CascadeSelectField` support `locale`
+
 ## 3.8.13 / 2018-04-16
 
 * `feat`: `Calendar` style adjustment
