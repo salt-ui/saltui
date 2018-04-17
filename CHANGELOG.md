@@ -1,5 +1,5 @@
 
-## 3.8.14
+## 3.8.14 / 2018-04-17
 
 * `fix`: `TabBar` fixed position render bug in iOS
 * `fix`: `CascadeSelectField` support `locale`
