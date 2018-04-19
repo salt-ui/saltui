@@ -41,7 +41,7 @@ class RefreshControl extends React.Component {
     children: null,
     beforePullLoadText: '下拉显示更多',
     afterPullLoadText: '松开显示更多',
-    refreshingText: '加载中...',
+    refreshingText: '加载中....',
     refreshIcon: null,
     showIcon: true,
     showText: true,
