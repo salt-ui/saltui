@@ -123,7 +123,7 @@ class Demo extends React.Component {
       });
 
       getJsonp(1, this.state.pageSize);
-    }, 2000);
+    }, 500);
   }
 
   onLoad = () => {

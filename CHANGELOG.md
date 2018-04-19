@@ -1,4 +1,8 @@
 
+## 3.8.19 / 2018-04-19
+
+* `fix`: `Refreshcontrol` duplicate drag binding
+
 ## 3.8.18 / 2018-04-19
 
 * `fix`: `Calendar` slideUp popup fail to close when page is changed in single page app

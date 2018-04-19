@@ -202,14 +202,14 @@ class RefreshControl extends React.Component {
   }
 
   bindDrag() {
-    const drager = new Drag(this.$container);
+    // const drager = new Drag(this.$container);
     this.drager = new Drag(this.$container);
     this.initTop = getOffset(this.trigger).top;
     this.status = Status.ready;
 
-    drager.start(this.onDragStart.bind(this));
-    drager.drag(this.onDrag.bind(this));
-    drager.end(this.onDragEnd.bind(this));
+    this.drager.start(this.onDragStart.bind(this));
+    this.drager.drag(this.onDrag.bind(this));
+    this.drager.end(this.onDragEnd.bind(this));
   }
 
   clearState() {
