@@ -1,4 +1,8 @@
 
+## 3.8.18 / 2018-04-19
+
+* `fix`: `Calendar` slideUp popup fail to close when page is changed in single page app
+
 ## 3.8.16 / 2018-04-19
 
 * `fix`: `Calendar` selected weekend day style

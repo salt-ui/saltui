@@ -55,6 +55,8 @@ class Calendar extends React.Component {
   componentWillUnmount() {
     if (this.props.animationType === 'slideLeft' && this.props.visible) {
       window.history.go(-1);
+    } else if (this.popup) {
+      this.popup.close();
     }
   }
 

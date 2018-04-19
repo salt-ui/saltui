@@ -109,7 +109,7 @@ class CalendarDemo extends React.Component {
             showHalfDay: true,
           });
         }}
-        >展示Popup模式
+        >从底部划出
         </Button>
         <Calendar
           {...this.calendarProps}
