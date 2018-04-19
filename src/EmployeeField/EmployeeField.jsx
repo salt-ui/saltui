@@ -53,7 +53,7 @@ class EmployeeField extends React.Component {
     readOnly: false,
     value: [],
     disabledUsers: [],
-    onChange: () => {},
+    onChange: () => { },
     className: undefined,
     corpId: undefined,
   };
@@ -84,17 +84,17 @@ class EmployeeField extends React.Component {
           return;
         }
         option.corpId = this.props.corpId;
+        Ali.contacts.get(option, (result) => {
+          if (result && !result.errorCode) {
+            this.props.onChange(transToValue(result.results));
+          } else {
+            Ali.alert({
+              message: result.errorMessage,
+              okButton: i18n.ok,
+            });
+          }
+        });
       }
-      Ali.contacts.get(option, (result) => {
-        if (result && !result.errorCode) {
-          this.props.onChange(transToValue(result.results));
-        } else {
-          Ali.alert({
-            message: result.errorMessage,
-            okButton: i18n.ok,
-          });
-        }
-      });
     } else if (window.dd) {
       // fall back to dd api
       const t = this;
@@ -135,6 +135,8 @@ class EmployeeField extends React.Component {
   getReadOnly() {
     if (typeof window !== 'undefined') {
       if (!window.Ali && !window.dd) {
+        return true;
+      } else if (window.Ali && !window.Ali.isDingDing) {
         return true;
       }
     }
