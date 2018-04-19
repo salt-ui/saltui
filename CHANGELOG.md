@@ -1,4 +1,8 @@
 
+## 3.8.16 / 2018-04-19
+
+* `fix`: `Calendar` selected weekend day style
+
 ## 3.8.15 / 2018-04-17
 
 * `fix`: `EmployeeField` empty tip will be rendered

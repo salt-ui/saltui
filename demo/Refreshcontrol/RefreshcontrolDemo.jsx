@@ -23,7 +23,7 @@ class RefreshcontrolDemo extends React.Component {
     super(props);
     this.state = {
       refreshing: false,
-      repeat: 1,
+      repeat: 10,
     };
   }
 

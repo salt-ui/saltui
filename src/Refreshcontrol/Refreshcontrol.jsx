@@ -245,7 +245,6 @@ class RefreshControl extends React.Component {
     }
     if (this.draging) {
       const text = this.y >= threshold ? afterPullLoadText : beforePullLoadText;
-      console.log(text, this.y);
       return text;
     }
 

@@ -64,6 +64,8 @@ $day-cell-inner-height = 36px;
         border-radius 50%
         border 1px solid $brand-primary
         color $brand-primary
+      &.isWeekend
+        color $brand-primary
       &.selected, &.start-date, &.end-date
         line-height $day-cell-inner-height
         border-radius 50%
@@ -74,8 +76,6 @@ $day-cell-inner-height = 36px;
         border-radius 0
       &.half-day
         background-color $function-orange
-      &.isWeekend
-        color $brand-primary
       &.disabled
         color $normal-alpha-5
         font-weight normal
