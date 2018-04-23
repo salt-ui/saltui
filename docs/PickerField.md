@@ -78,6 +78,12 @@ var value = {
 <PickerField value={value}></PickerField>
 ```
 
+### locale  
+描述：国际化。  
+类型：`String`  
+默认：`zh-cn`  
+必选：否  
+
 ### readOnly
 
 描述：是否只读。
@@ -102,19 +108,6 @@ var value = {
 
 ```
 <PickerField placeholder="请输入"></PickerField>
-```
-
-### searchText
-
-描述：搜索文案。
-类型：`string`
-默认：`'搜索'`
-必选：否
-
-示例：
-
-```
-<PickerField searchText="搜索"></PickerField>
 ```
 
 ### confirmText
@@ -426,15 +419,3 @@ onSelect(value) {
 <PickerField grouping groupingIndicator></PickerField>
 ```
 
-### selectText
-
-描述：多选时已选择项的文案。
-类型：`string`
-默认：`已选择：`
-必选：否
-
-示例：
-
-```
-<PickerField selectText="已选择："></PickerField>
-```

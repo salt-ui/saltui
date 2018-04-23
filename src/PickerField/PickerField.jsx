@@ -13,6 +13,7 @@ import Field from '../Field';
 import Popup from '../Popup';
 import SearchPanel from './SearchPanel';
 import utils from './utils';
+import i18n from './i18n';
 
 class PickerField extends React.Component {
   static normalizeValue(input) {
@@ -113,7 +114,7 @@ class PickerField extends React.Component {
 
     const panelProps = {
       value: t.state.confirmedValue,
-      confirmText: t.props.confirmText,
+      confirmText: t.props.confirmText || i18n[t.props.locale].confirm,
       cancelText: t.props.cancelText,
       onConfirm: (value) => {
         t.handleConfirm(value);
@@ -127,17 +128,16 @@ class PickerField extends React.Component {
       fitResponse: t.props.fitResponse,
       afterFetch: t.props.afterFetch,
       showSearch: t.props.showSearch,
-      searchTitle: t.props.searchTitle || t.props.placeholder,
+      searchTitle: t.props.searchTitle || t.props.placeholder || i18n[t.props.locale].placeholder,
       searchDelay: t.props.searchDelay,
-      searchPlaceholder: t.props.searchPlaceholder,
-      searchNotFoundContent: t.props.searchNotFoundContent,
+      searchPlaceholder: t.props.searchPlaceholder || i18n[t.props.locale].searchPlaceholder,
+      searchNotFoundContent: t.props.searchNotFoundContent || i18n[t.props.locale].noData,
       formatter: t.props.formatter,
       phonetic: t.props.phonetic,
       multiple: t.props.multiple,
       grouping: t.props.grouping,
       groupingIndicator: t.props.groupingIndicator,
-      selectText: t.props.selectText,
-      searchText: t.props.searchText,
+      locale: t.props.locale,
     };
 
     return (
@@ -154,7 +154,7 @@ class PickerField extends React.Component {
           }}
         >
           {!t.state.confirmedValue[0] ?
-            <div className={Context.prefixClass('omit picker-field-placeholder')}>{t.props.placeholder}</div> : ''}
+            <div className={Context.prefixClass('omit picker-field-placeholder')}>{t.props.placeholder || i18n[t.props.locale].placeholder}</div> : ''}
           <div className={Context.prefixClass('picker-field-value FBH FBAC')}>
             <span
               className={classnames(Context.prefixClass('FB1 omit'), {
@@ -172,10 +172,6 @@ class PickerField extends React.Component {
 
 PickerField.defaultProps = {
   readOnly: false,
-  placeholder: '请选择',
-  searchText: '搜索',
-  confirmText: '确认',
-  cancelText: '取消',
   fetchUrl: '',
   fetchDataOnOpen: true,
   dataType: 'jsonp',
@@ -188,18 +184,21 @@ PickerField.defaultProps = {
   showSearch: true,
   searchTitle: '',
   searchDelay: 100,
-  searchPlaceholder: '搜索',
-  searchNotFoundContent: '无搜索结果',
   formatter: value => (value ? value.text : ''),
   phonetic: value => (value.phonetic || []),
   onSelect() { },
   multiple: false,
   grouping: false,
   groupingIndicator: false,
-  selectText: '已选择：',
   className: undefined,
   value: undefined,
   options: undefined,
+  placeholder: undefined,
+  confirmText: undefined,
+  cancelText: undefined,
+  searchPlaceholder: undefined,
+  searchNotFoundContent: undefined,
+  locale: 'zh-cn',
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -212,7 +211,6 @@ PickerField.propTypes = {
   ]),
   readOnly: PropTypes.bool,
   placeholder: PropTypes.string,
-  searchText: PropTypes.string,
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
   options: PropTypes.array,
@@ -233,7 +231,7 @@ PickerField.propTypes = {
   multiple: PropTypes.bool,
   grouping: PropTypes.bool,
   groupingIndicator: PropTypes.bool,
-  selectText: PropTypes.string,
+  locale: PropTypes.string,
 };
 
 PickerField.displayName = 'PickerField';

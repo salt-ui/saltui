@@ -13,6 +13,7 @@ import debounce from 'lodash/debounce';
 import React from 'react';
 import Context from '../Context';
 import locale from './locale';
+import { getLocale } from '../Utils';
 
 
 class SearchBar extends React.Component {
@@ -117,17 +118,17 @@ class SearchBar extends React.Component {
 
   render() {
     const t = this;
-    const i18n = locale[t.props.locale];
+    const i18n = locale[getLocale(t.props.locale)];
     let { placeholder } = t.props;
     if (typeof placeholder === 'object' && placeholder !== null) {
-      placeholder = placeholder[t.props.locale];
+      placeholder = placeholder[getLocale(t.props.locale)];
     }
     const { keyword } = t.state;
     return (
       <div
         className={classnames(Context.prefixClass('search-bar'), {
           [t.props.className]: !!t.props.className,
-          [t.props.locale]: !!t.props.locale,
+          [getLocale(t.props.locale)]: !!getLocale(t.props.locale),
           active: t.state.isActive,
         })}
       >
@@ -193,7 +194,7 @@ SearchBar.defaultProps = {
   iconWidth: 20,
   iconHeight: 20,
   iconColor: '#bcbcbc',
-  locale: 'zh_CN',
+  locale: 'zh-cn',
   value: '',
   placeholder: {
     zh_CN: '搜索',

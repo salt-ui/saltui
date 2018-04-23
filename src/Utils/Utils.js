@@ -10,6 +10,19 @@ const stopBodyScrolling = (bool) => {
   }
 };
 
+// uniform locale for en-us, en_US
+const getLocale = (locale) => {
+  if (typeof locale === 'string') {
+    const spliter = locale.match(/[-_]/) ? locale.match(/[-_]/)[0] : '';
+    if (!spliter) {
+      return locale;
+    }
+    return locale.toLowerCase().split(spliter).join('-');
+  }
+  return locale;
+};
+
 export default {
   stopBodyScrolling,
+  getLocale,
 };

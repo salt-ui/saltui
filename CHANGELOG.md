@@ -1,4 +1,11 @@
 
+## 3.8.21 / 2018-04-23
+
+* `feat`: `PickerField` Search Result panel style change
+* `feat`: `PickerField` remove `cancelText`, `searchText`, add `locale`.
+* `feat`: `Utils` add `getLocale` method to uniform locale(zh-cn/zh_CN)
+* `feat`: `Avatar` filter unexpected characters
+
 ## 3.8.19 / 2018-04-19
 
 * `fix`: `Refreshcontrol` duplicate drag binding

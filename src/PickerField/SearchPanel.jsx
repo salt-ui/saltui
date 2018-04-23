@@ -20,6 +20,7 @@ import SearchBar from '../SearchBar';
 import SearchResult from './SearchResult';
 import GroupingBar from './GroupingBar';
 import utils from './utils';
+import i18n from './i18n';
 
 class SearchPanel extends React.Component {
   static renderSearchTips() {
@@ -389,6 +390,7 @@ class SearchPanel extends React.Component {
     const {
       showSearch,
       multiple,
+      locale,
     } = t.props;
     const pageSize = utils.getPageSize();
     const { length } = this.state.value;
@@ -403,7 +405,7 @@ class SearchPanel extends React.Component {
         });
       },
       formatter: this.props.formatter,
-      selectText: this.props.selectText,
+      locale: this.props.locale,
     };
     return (
       <div
@@ -422,8 +424,8 @@ class SearchPanel extends React.Component {
                 ref={(c) => {
                   t.searchBar = c;
                 }}
-                placeholder={t.props.searchText}
-                cancelText={t.props.cancelText}
+                locale={t.props.locale}
+                placeholder={t.props.searchPlaceholder}
                 className={Context.prefixClass('picker-field-searchpanel-search')}
                 onChange={(val) => {
                   t.handleSearchChange(val);
@@ -449,7 +451,6 @@ class SearchPanel extends React.Component {
                 className={Context.prefixClass('picker-field-searchpanel-btn-ok')}
                 size="small"
                 display="inline"
-                disabled={t.isEmpty()}
                 onClick={(e) => {
                   t.handleConfirm(e);
                 }}
@@ -461,7 +462,7 @@ class SearchPanel extends React.Component {
                   t.handleEnterResultView(e);
                 }}
               >
-                <a href="javacript:;">{t.props.selectText}{length}</a>
+                <a href="javacript:;">{i18n[locale].selected(length)}</a>
               </div>
             </div>
           ) : null}
@@ -491,10 +492,10 @@ SearchPanel.defaultProps = {
   searchNotFoundContent: undefined,
   formatter: undefined,
   phonetic: undefined,
-  selectText: undefined,
   options: undefined,
   fetchUrl: undefined,
   grouping: undefined,
+  locale: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -520,7 +521,7 @@ SearchPanel.propTypes = {
   phonetic: PropTypes.func,
   multiple: PropTypes.bool,
   grouping: PropTypes.bool,
-  selectText: PropTypes.string,
+  locale: PropTypes.string,
 };
 
 SearchPanel.displayName = 'SearchPanel';

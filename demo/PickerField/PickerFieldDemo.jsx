@@ -129,6 +129,7 @@ class Demo extends React.Component {
               onSelect={(e) => {
                 t.handleChange4(e);
               }}
+              locale="en-us"
               value={t.state.value4}
               tip="这里是tip"
               multiple

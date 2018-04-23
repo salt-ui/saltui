@@ -11,8 +11,9 @@ import CheckRound from 'salt-icon/lib/CheckRound';
 import classnames from 'classnames';
 import Context from '../Context';
 import ScrollView from '../ScrollView';
-import Button from '../Button';
+// import Button from '../Button';
 import utils from './utils';
+import i18n from './i18n';
 
 class SearchResult extends React.Component {
   constructor(props) {
@@ -95,10 +96,10 @@ class SearchResult extends React.Component {
           t.handleItemClick(item);
         }}
       >
-        <span className={Context.prefixClass('picker-field-search-result-item-icon')}>
+        <span className={Context.prefixClass('picker-field-search-result-item-entry picker-field-right-icon')}>{t.props.formatter(item)}</span>
+        <span className={Context.prefixClass('picker-field-search-result-item-icon picker-field-right-icon')}>
           {iconHTML}
         </span>
-        <span className={Context.prefixClass('picker-field-search-result-item-entry')}>{t.props.formatter(item)}</span>
       </div>
     );
   }
@@ -106,6 +107,7 @@ class SearchResult extends React.Component {
   render() {
     const t = this;
     const pageSize = utils.getPageSize();
+    const { locale } = t.props;
     const { length } = this.state.value;
     return (
       <div
@@ -116,12 +118,22 @@ class SearchResult extends React.Component {
         }}
       >
         <div className={Context.prefixClass('picker-field-searchpanel-inner')}>
+          <div className={Context.prefixClass('picker-field-searchpanel-head-bar')}>
+            <div className={Context.prefixClass('picker-field-searchpanel-head-bar-total')}>{i18n[locale].selected(length)}</div>
+            <div
+              className={Context.prefixClass('picker-field-searchpanel-head-bar-button')}
+              onClick={(e) => {
+                t.handleConfirm(e);
+              }}
+            >{i18n[locale].complete}
+            </div>
+          </div>
           <div className={Context.prefixClass('picker-field-searchpanel-content')}>
             <ScrollView>
               {t.renderResults()}
             </ScrollView>
           </div>
-          <div className={Context.prefixClass('picker-field-searchpanel-footer')}>
+          {/* <div className={Context.prefixClass('picker-field-searchpanel-footer')}>
             <Button
               className={Context.prefixClass('picker-field-searchpanel-btn-ok')}
               display="inline"
@@ -139,7 +151,7 @@ class SearchResult extends React.Component {
             >
               <span>{t.props.selectText}{length}</span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     );
