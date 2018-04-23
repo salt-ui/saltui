@@ -50,7 +50,7 @@ export default class Avatar extends Component {
   static formatName = (name) => {
     let formattedName = name;
     const isEnglishName = /^[A-Za-z,. ]+$/.test(formattedName);
-    formattedName = formattedName.replace(/[,. ]+/g, isEnglishName ? ' ' : '');
+    formattedName = formattedName.replace(/[()\d]/g, '').replace(/[,. ]+/g, isEnglishName ? ' ' : '');
     if (formattedName.indexOf(' ') !== -1) {
       formattedName = formattedName.split(' ').map(p => p.slice(0, 1)).join('');
     }
