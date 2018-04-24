@@ -1,4 +1,8 @@
 
+## 3.8.22 / 2018-04-24
+
+* `feat`: `DateTime` change minDate & maxDate to `1900-01-01` & `2051-01-01`
+
 ## 3.8.21 / 2018-04-23
 
 * `feat`: `PickerField` Search Result panel style change

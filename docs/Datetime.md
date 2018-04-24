@@ -102,14 +102,14 @@ export default DatetimeDemo;
 ### minDate
 描述：最小可选日期。
 类型： `number, string, date`
-默认值： 946656000000,
-示例：`<Datetime minDate={new Date(2000,0,1).getTime()} />` 
+默认值： `new Date(1900, 0, 1).getTime()`,
+示例：`<Datetime minDate={new Date(1900, 0, 1).getTime()} />` 
 
 ### maxDate
 描述：最大可选日期。
 类型： `number, string, date`
-默认值： 1924876800000
-示例：`<Datetime maxDate={new Date(2030,11,31).getTime()} />`
+默认值： `new Date(2051, 0, 1).getTime() - 1`
+示例：`<Datetime maxDate={new Date(2051, 0, 1).getTime() - 1} />`
 
 ### minuteStep
 描述： 分钟数递增步长设置
