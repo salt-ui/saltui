@@ -49,6 +49,10 @@ class ScrollView extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.onScroll.cancel();
+  }
+
   doScroll() {
     const { scrollTop } = this.scrollView;
     const onScroll = this.props.infiniteScrollOptions.onScroll || Context.noop;
