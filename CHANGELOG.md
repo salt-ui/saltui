@@ -1,4 +1,9 @@
 
+
+## 3.8.23 / 2018-04-25
+
+* `fix`: `ScrollView` trigger tryEmitScrollEvent unexpectedly
+
 ## 3.8.22 / 2018-04-24
 
 * `feat`: `DateTime` change minDate & maxDate to `1900-01-01` & `2051-01-01`
