@@ -26,6 +26,13 @@ const isDd = () => {
   return false;
 };
 
+const isAliWork = () => {
+  if (typeof window !== 'undefined') {
+    return window.Ali.isAliwork;
+  }
+  return false;
+};
+
 
 class EmployeeField extends React.Component {
   static propTypes = {
@@ -41,6 +48,7 @@ class EmployeeField extends React.Component {
     value: PropTypes.array,
     disabledUsers: PropTypes.array,
     onChange: PropTypes.func,
+    enableNW: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -51,6 +59,7 @@ class EmployeeField extends React.Component {
     locale: 'zh-cn',
     startWithDepartmentId: -1,
     readOnly: false,
+    enableNW: false,
     value: [],
     disabledUsers: [],
     onChange: () => { },
@@ -70,7 +79,7 @@ class EmployeeField extends React.Component {
       max: this.props.max,
       isNeedSearch: this.props.isNeedSearch,
       startWithDepartmentId: this.props.startWithDepartmentId, //  SELF TOP
-      users: this.props.value.map(v => v.key),
+      users: this.props.value.map(v => ({ emplId: v.key, name: v.label, nickNameCn: v.label })),
       disabledUsers: this.props.disabledUsers,
     };
     const Ali = window.Ali || {};
@@ -84,17 +93,17 @@ class EmployeeField extends React.Component {
           return;
         }
         option.corpId = this.props.corpId;
-        Ali.contacts.get(option, (result) => {
-          if (result && !result.errorCode) {
-            this.props.onChange(transToValue(result.results));
-          } else {
-            Ali.alert({
-              message: result.errorMessage,
-              okButton: i18n.ok,
-            });
-          }
-        });
       }
+      Ali.contacts.get(option, (result) => {
+        if (result && !result.errorCode) {
+          this.props.onChange(transToValue(result.results));
+        } else {
+          Ali.alert({
+            message: result.errorMessage,
+            okButton: i18n.ok,
+          });
+        }
+      });
     } else if (window.dd) {
       // fall back to dd api
       const t = this;
@@ -134,11 +143,15 @@ class EmployeeField extends React.Component {
 
   getReadOnly() {
     if (typeof window !== 'undefined') {
-      if (!window.Ali && !window.dd) {
+      // 如果不在 native 容器中，则强制只读态
+      if (window.Ali && !window.Ali.isDingDing && !window.Ali.isAliwork) {
         return true;
-      } else if (window.Ali && !window.Ali.isDingDing) {
-        return true;
+      // 如果在内外容器中，但没有 enableNW，也强制只读
+      // 因内外搜人同时要求容器版本大于 3.4.8，且 loader 版本大于 0.1.30。
       }
+      // else if (window.Ali && window.Ali.isAliwork && !this.props.enableNW) {
+      //   return true;
+      // }
     }
     return this.props.readOnly;
   }
