@@ -1,5 +1,9 @@
 
 
+## 3.8.24 / 2018-04-26
+
+* `fix`: `ScrollList` `noDataImage` fail to work
+
 ## 3.8.23 / 2018-04-25
 
 * `fix`: `ScrollView` trigger tryEmitScrollEvent unexpectedly
