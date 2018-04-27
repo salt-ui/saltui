@@ -66,6 +66,7 @@ class ScrollView extends React.Component {
     if (refreshControl) {
       element = (<RefreshControl
         key="refreshControl"
+        getScrollContainer={() => this.scrollView}
         {...refreshControlOptions}
         className={Context.prefixClass('scroll-view-inner')}
       />);
@@ -105,7 +106,7 @@ class ScrollView extends React.Component {
           {...this.props.infiniteScrollOptions}
           getDOMNode={(node) => {
             if (node) {
-              this.scrollNode = node;
+              this.scrollView = node;
             }
           }}
         >
@@ -114,7 +115,7 @@ class ScrollView extends React.Component {
       );
       this.hasInfiniteScroll = true;
     } else if (this.hasInfiniteScroll) {
-      this.scrollTop = this.scrollNode.scrollTop;
+      this.scrollTop = this.scrollView.scrollTop;
     }
 
     return element;

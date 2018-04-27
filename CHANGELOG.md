@@ -1,5 +1,9 @@
 
 
+## 3.8.28 / 2018-04-28
+
+* `performance`: `RefreshControl` improve pull to refresh performance if in a scrollable container
+
 ## 3.8.25 / 2018-04-27
 
 * `fix`: `SearchBar` locale bug when locale is zh_CN
