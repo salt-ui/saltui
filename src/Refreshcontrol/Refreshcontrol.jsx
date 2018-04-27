@@ -83,7 +83,9 @@ class RefreshControl extends React.Component {
   }
 
   componentDidUpdate() {
-    this.triggerStyle(this.props.showRefreshing);
+    if (this.y > 0) {
+      this.triggerStyle(this.props.showRefreshing);
+    }
   }
 
 
@@ -104,8 +106,6 @@ class RefreshControl extends React.Component {
 
 
   onDragStart() {
-    if (this.refreshing) return;
-
     this.status = Status.dragStart;
 
     const { top } = getOffset(this.trigger);
@@ -116,7 +116,7 @@ class RefreshControl extends React.Component {
   }
 
   onDrag(pos, event) {
-    if (pos.y < 0) return;
+    if (pos.y <= 0) return;
 
     // 消除误差
     const { initTop } = this;
@@ -182,17 +182,17 @@ class RefreshControl extends React.Component {
     return this._draging;
   }
 
-  get status() {
-    return this.state.status;
-  }
+  // get status() {
+  //   return this.state.status;
+  // }
 
   get y() {
     return Math.min(Math.max(this._y, 0), this.max);
   }
 
-  set status(status) {
-    this.setState({ status });
-  }
+  // set status(status) {
+  //   this.setState({ status });
+  // }
 
   set draging(draging) {
     this._draging = draging;
@@ -267,7 +267,6 @@ class RefreshControl extends React.Component {
     } else {
       ele.style.visibility = 'visible';
     }
-
     ele.style.WebkitTransform = `translate3d(0, ${y}px, 0)`;
     ele.style.transform = `translate3d(0, ${y}px, 0)`;
     this.circularStyle(showRefreshing);

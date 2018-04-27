@@ -1,8 +1,9 @@
 
 
-## 3.8.24 / 2018-04-26
+## 3.8.24 / 2018-04-27
 
 * `fix`: `ScrollList` `noDataImage` fail to work
+* `fix`: `CheckboxField` Select layer checkbox icon color does not follow theme color
 
 ## 3.8.23 / 2018-04-25
 
