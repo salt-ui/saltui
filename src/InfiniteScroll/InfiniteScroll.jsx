@@ -16,6 +16,7 @@ import Context from '../Context';
 class InfiniteScroll extends React.Component {
   static defaultProps = {
     children: undefined,
+    enabled: true,
     loading: false,
     throttle: 250,
     loadingIcon: null,
@@ -35,6 +36,7 @@ class InfiniteScroll extends React.Component {
   };
 
   static propTypes = {
+    enabled: PropTypes.bool,
     loading: PropTypes.bool,
     threshold: PropTypes.number,
     throttle: PropTypes.number,
@@ -53,8 +55,6 @@ class InfiniteScroll extends React.Component {
 
   constructor(props) {
     super(props);
-
-
     this.onScroll = _throttle(this.tryEmitScrollEvent.bind(this), this.props.throttle);
   }
 
@@ -123,7 +123,7 @@ class InfiniteScroll extends React.Component {
         this.$scroller = node;
         this.props.getDOMNode(node);
       },
-      onScroll: this.onScroll,
+      ...(this.props.enabled ? { onScroll: this.onScroll } : {}),
       children: React.cloneElement(elementChildren, {
         children: [
           ...React.Children.toArray(elementChildren.props.children),
