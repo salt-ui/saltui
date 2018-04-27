@@ -9,6 +9,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import locale from './locale';
+import { getLocale } from '../Utils';
 
 const Storage = {
 
@@ -89,7 +90,7 @@ class SearchHistory extends React.Component {
     if (list.length === 0) {
       return null;
     }
-    const i18n = locale[t.props.locale];
+    const i18n = locale[getLocale(t.props.locale)];
     /* eslint-disable react/no-array-index-key */
     return (
       <div ref={(c) => { this.root = c; }} className={classnames(`${this.props.prefixCls}-history`, t.props.className)}>

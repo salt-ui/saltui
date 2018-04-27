@@ -106,6 +106,8 @@ class RefreshControl extends React.Component {
 
 
   onDragStart() {
+    const scrollTop = window.pageYOffset || this.trigger.scrollTop;
+    if (scrollTop > 0) return;
     this.status = Status.dragStart;
 
     const { top } = getOffset(this.trigger);
@@ -116,7 +118,11 @@ class RefreshControl extends React.Component {
   }
 
   onDrag(pos, event) {
-    if (pos.y <= 0) return;
+    const scrollTop = window.pageYOffset || this.trigger.scrollTop;
+
+    if (pos.y < 0 || scrollTop > 0) return;
+
+    console.log('drag');
 
     // 消除误差
     const { initTop } = this;
@@ -213,6 +219,7 @@ class RefreshControl extends React.Component {
   }
 
   clearState() {
+    console.log('clear');
     this.status = Status.ready;
     this.draging = false;
     this.y = 0;
