@@ -122,8 +122,6 @@ class RefreshControl extends React.Component {
 
     if (pos.y < 0 || scrollTop > 0) return;
 
-    console.log('drag');
-
     // 消除误差
     const { initTop } = this;
     const { threshold } = this.props;
@@ -219,7 +217,6 @@ class RefreshControl extends React.Component {
   }
 
   clearState() {
-    console.log('clear');
     this.status = Status.ready;
     this.draging = false;
     this.y = 0;
