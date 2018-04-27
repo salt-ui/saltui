@@ -1,5 +1,9 @@
 
 
+## 3.8.25 / 2018-04-27
+
+* `fix`: `SearchBar` locale bug when locale is zh_CN
+
 ## 3.8.24 / 2018-04-27
 
 * `fix`: `ScrollList` `noDataImage` fail to work
