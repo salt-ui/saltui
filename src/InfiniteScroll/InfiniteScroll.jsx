@@ -127,7 +127,7 @@ class InfiniteScroll extends React.Component {
       children: React.cloneElement(elementChildren, {
         children: [
           ...React.Children.toArray(elementChildren.props.children),
-          this.scrollArea(),
+          ...(this.props.enabled ? [this.scrollArea()] : []),
         ],
       }),
     });

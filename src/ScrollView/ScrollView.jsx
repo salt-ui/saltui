@@ -42,13 +42,6 @@ class ScrollView extends React.Component {
     this.onScroll = _throttle(this.doScroll.bind(this), throttle);
   }
 
-  componentDidUpdate(prevProps) {
-    // 由于infiniteScroll的变化导致react会去替换scroll-view元素, 导致scroll-view元素的scroll信息丢失
-    if (!this.props.infiniteScroll && prevProps.infiniteScroll) {
-      this.scrollView.scrollTop = this.scrollTop;
-    }
-  }
-
   componentWillUnmount() {
     this.onScroll.cancel();
   }
@@ -101,8 +94,6 @@ class ScrollView extends React.Component {
         }}
       >
         <div
-          ref={(ref) => { this.scrollView = ref; }}
-          onScroll={this.onScroll}
           className={classnames(Context.prefixClass('scroll-view'), this.props.className)}
         >
           {this.tryWrapRefreshControl()}
