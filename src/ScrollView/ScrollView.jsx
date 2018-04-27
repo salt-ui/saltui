@@ -8,7 +8,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import _throttle from 'lodash/throttle';
 import Context from '../Context';
 import InfiniteScroll from '../InfiniteScroll';
 import RefreshControl from '../Refreshcontrol';
@@ -34,24 +33,6 @@ class ScrollView extends React.Component {
     children: PropTypes.any,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.hasInfiniteScroll = false;
-    const throttle = this.props.infiniteScrollOptions.throttle || 250;
-    this.onScroll = _throttle(this.doScroll.bind(this), throttle);
-  }
-
-  componentWillUnmount() {
-    this.onScroll.cancel();
-  }
-
-  doScroll() {
-    const { scrollTop } = this.scrollView;
-    const onScroll = this.props.infiniteScrollOptions.onScroll || Context.noop;
-    onScroll(scrollTop);
-  }
-
   tryWrapRefreshControl() {
     const { refreshControl, refreshControlOptions = {} } = this.props;
     let element = null;
@@ -70,12 +51,6 @@ class ScrollView extends React.Component {
     return React.cloneElement(element, {
       children: this.props.children,
     });
-  }
-
-  tryEmitScrollEvent() {
-    if (this.infiniteScroll) {
-      this.infiniteScroll.tryEmitScrollEvent();
-    }
   }
 
   render() {

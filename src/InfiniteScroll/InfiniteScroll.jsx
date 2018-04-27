@@ -63,7 +63,13 @@ class InfiniteScroll extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.loading !== this.props.loading) {
+    this.onScroll.cancel();
+    if (prevProps.enabled === true && this.props.enabled === false) {
+      return; // 在即将禁用的时候不触发以下判断
+    }
+    if (prevProps.enabled === false && this.props.enabled === true) {
+      this.tryEmitScrollEvent();
+    } else if (prevProps.loading !== this.props.loading) {
       this.tryEmitScrollEvent();
     }
   }
@@ -97,10 +103,10 @@ class InfiniteScroll extends React.Component {
   }
 
   tryEmitScrollEvent() {
-    if (this.props.loading || !this.$scroller) return false;
-
+    const { enabled, loading, threshold } = this.props;
     const { $scroller } = this;
-    const { threshold } = this.props;
+    if (!enabled || loading || !$scroller) return false;
+
     const { clientHeight, scrollHeight, scrollTop } = $scroller;
     const h = scrollHeight - scrollTop - threshold;
 
