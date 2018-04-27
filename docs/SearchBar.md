@@ -35,8 +35,8 @@ SearchBar 本身只关心本身自己的逻辑，移除history 和 result 面板
 | 配置项        | 类型        | 必填    | 默认值  | 功能/备注                      |
 | ---------- | --------- | ----- | ---- | -------------------------- |
 | className | `String` | 否 | - | 自定义样式的`class`名称 |
-| placeholder | `string`  或 i18n `object` | 否 | `'{'zh_CN': '搜索', 'en_US': 'Search'}` | 
-| locale | `string` | 否 | `zh_CN` | 语言，zh_CN或en_US |
+| placeholder | `string`  或 i18n `object` | 否 | `'{'zh-cn': '搜索', 'en-us': 'Search'}` | 
+| locale | `string` | 否 | `zh-cn` | 语言，zh-cn 或 en-us |
 | value | `string` | 否 | - | 填充值 |
 | instantSearch | `boolean` | 否 | `true` | 是否开启即时搜索，即输入过程中触发搜索，和属性searchDelay配合使用 |
 | searchDelay | `number` | 否 | `350` | 触发频率限制，输入过程中多少毫秒后未输入才触发搜索 |

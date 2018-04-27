@@ -15,6 +15,14 @@ import Context from '../Context';
 import locale from './locale';
 import { getLocale } from '../Utils';
 
+const formatPlaceholder = (placeholder = {}) => {
+  const newPlaceholder = {};
+  Object.keys(placeholder).forEach((key) => {
+    newPlaceholder[getLocale(key)] = placeholder[key];
+  });
+  return newPlaceholder;
+};
+
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -121,7 +129,7 @@ class SearchBar extends React.Component {
     const i18n = locale[getLocale(t.props.locale)];
     let { placeholder } = t.props;
     if (typeof placeholder === 'object' && placeholder !== null) {
-      placeholder = placeholder[getLocale(t.props.locale)];
+      placeholder = formatPlaceholder(placeholder)[getLocale(t.props.locale)];
     }
     const { keyword } = t.state;
     return (
@@ -197,8 +205,8 @@ SearchBar.defaultProps = {
   locale: 'zh-cn',
   value: '',
   placeholder: {
-    zh_CN: '搜索',
-    en_US: 'Search',
+    'zh-cn': '搜索',
+    'en-us': 'Search',
   },
   hasHistory: true,
   instantSearch: true, // whether trigger search when  input change
