@@ -118,14 +118,14 @@ class InfiniteScroll extends React.Component {
   render() {
     const element = React.Children.only(this.props.children);
     const elementChildren = React.Children.only(element.props.children);
-    const rootProps = { ...element.props };
+    const newProps = {};
     const grandChildren = React.Children.toArray(elementChildren.props.children);
     if (this.props.enabled) {
-      rootProps.onScroll = this.onScroll;
+      newProps.onScroll = this.onScroll;
       grandChildren.push(this.scrollArea());
     }
     return React.cloneElement(element, {
-      ...rootProps,
+      ...newProps,
       ref: (node) => {
         this.$scroller = node;
         this.props.getDOMNode(node);
