@@ -8,7 +8,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import _throttle from 'lodash/throttle';
 import Context from '../Context';
 import InfiniteScroll from '../InfiniteScroll';
 import RefreshControl from '../Refreshcontrol';
@@ -34,31 +33,6 @@ class ScrollView extends React.Component {
     children: PropTypes.any,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.hasInfiniteScroll = false;
-    const throttle = this.props.infiniteScrollOptions.throttle || 250;
-    this.onScroll = _throttle(this.doScroll.bind(this), throttle);
-  }
-
-  componentDidUpdate(prevProps) {
-    // 由于infiniteScroll的变化导致react会去替换scroll-view元素, 导致scroll-view元素的scroll信息丢失
-    if (!this.props.infiniteScroll && prevProps.infiniteScroll) {
-      this.scrollView.scrollTop = this.scrollTop;
-    }
-  }
-
-  componentWillUnmount() {
-    this.onScroll.cancel();
-  }
-
-  doScroll() {
-    const { scrollTop } = this.scrollView;
-    const onScroll = this.props.infiniteScrollOptions.onScroll || Context.noop;
-    onScroll(scrollTop);
-  }
-
   tryWrapRefreshControl() {
     const { refreshControl, refreshControlOptions = {} } = this.props;
     let element = null;
@@ -79,46 +53,28 @@ class ScrollView extends React.Component {
     });
   }
 
-  tryEmitScrollEvent() {
-    if (this.infiniteScroll) {
-      this.infiniteScroll.tryEmitScrollEvent();
-    }
-  }
-
   render() {
-    let element = (
-      <div
-        ref={(ref) => { this.scrollView = ref; }}
-        onScroll={this.onScroll}
-        className={classnames(Context.prefixClass('scroll-view'), this.props.className)}
+    return (
+      <InfiniteScroll
+        key="infiniteScroll"
+        ref={(ref) => {
+          this.infiniteScroll = ref;
+        }}
+        enabled={this.props.infiniteScroll}
+        {...this.props.infiniteScrollOptions}
+        getDOMNode={(node) => {
+          if (node) {
+            this.scrollNode = node;
+          }
+        }}
       >
-        {this.tryWrapRefreshControl()}
-      </div>
-    );
-
-    if (this.props.infiniteScroll) {
-      element = (
-        <InfiniteScroll
-          key="infiniteScroll"
-          ref={(ref) => {
-            this.infiniteScroll = ref;
-          }}
-          {...this.props.infiniteScrollOptions}
-          getDOMNode={(node) => {
-            if (node) {
-              this.scrollView = node;
-            }
-          }}
+        <div
+          className={classnames(Context.prefixClass('scroll-view'), this.props.className)}
         >
-          {element}
-        </InfiniteScroll>
-      );
-      this.hasInfiniteScroll = true;
-    } else if (this.hasInfiniteScroll) {
-      this.scrollTop = this.scrollView.scrollTop;
-    }
-
-    return element;
+          {this.tryWrapRefreshControl()}
+        </div>
+      </InfiniteScroll>
+    );
   }
 }
 

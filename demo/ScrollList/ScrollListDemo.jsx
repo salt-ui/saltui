@@ -92,7 +92,7 @@ class Demo extends React.Component {
       data: [],
       hasError: false,
       pageSize: 10,
-      pageNum: 1,
+      pageNum: 0,
       loading: false,
       refreshing: false,
     };
@@ -101,6 +101,7 @@ class Demo extends React.Component {
   }
 
   onRefresh = () => {
+    console.log('refreshing');
     this.setState({ refreshing: true });
 
     setTimeout(() => {
@@ -128,9 +129,19 @@ class Demo extends React.Component {
 
   onLoad = () => {
     const curr = this.state.pageNum;
-
     this.setState({ loading: true });
-
+    console.log('will load page', curr);
+    if (curr >= 3) {
+      this.setState({
+        loading: false,
+        dataGetted: true,
+        noMore: true,
+        hasError: false,
+      });
+      console.log('no more');
+      return;
+    }
+    console.log('start loading page', curr);
     setTimeout(() => {
       this.bindJsonpCallback((noMore, items) => {
         this.setState({

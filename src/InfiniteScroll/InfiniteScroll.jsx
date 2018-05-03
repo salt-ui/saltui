@@ -16,6 +16,7 @@ import Context from '../Context';
 class InfiniteScroll extends React.Component {
   static defaultProps = {
     children: undefined,
+    enabled: true,
     loading: false,
     throttle: 250,
     loadingIcon: null,
@@ -35,6 +36,7 @@ class InfiniteScroll extends React.Component {
   };
 
   static propTypes = {
+    enabled: PropTypes.bool,
     loading: PropTypes.bool,
     threshold: PropTypes.number,
     throttle: PropTypes.number,
@@ -53,8 +55,6 @@ class InfiniteScroll extends React.Component {
 
   constructor(props) {
     super(props);
-
-
     this.onScroll = _throttle(this.tryEmitScrollEvent.bind(this), this.props.throttle);
   }
 
@@ -63,7 +63,9 @@ class InfiniteScroll extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.loading !== this.props.loading) {
+    if (prevProps.enabled === false && this.props.enabled === true) {
+      this.tryEmitScrollEvent();
+    } else if (prevProps.loading !== this.props.loading) {
       this.tryEmitScrollEvent();
     }
   }
@@ -97,10 +99,10 @@ class InfiniteScroll extends React.Component {
   }
 
   tryEmitScrollEvent() {
-    if (this.props.loading || !this.$scroller) return false;
-
+    const { enabled, loading, threshold } = this.props;
     const { $scroller } = this;
-    const { threshold } = this.props;
+    if (!enabled || loading || !$scroller) return false;
+
     const { clientHeight, scrollHeight, scrollTop } = $scroller;
     const h = scrollHeight - scrollTop - threshold;
 
@@ -116,19 +118,20 @@ class InfiniteScroll extends React.Component {
   render() {
     const element = React.Children.only(this.props.children);
     const elementChildren = React.Children.only(element.props.children);
-
+    const newProps = {};
+    const grandChildren = React.Children.toArray(elementChildren.props.children);
+    if (this.props.enabled) {
+      newProps.onScroll = this.onScroll;
+      grandChildren.push(this.scrollArea());
+    }
     return React.cloneElement(element, {
-      ...element.props,
+      ...newProps,
       ref: (node) => {
         this.$scroller = node;
         this.props.getDOMNode(node);
       },
-      onScroll: this.onScroll,
       children: React.cloneElement(elementChildren, {
-        children: [
-          ...React.Children.toArray(elementChildren.props.children),
-          this.scrollArea(),
-        ],
+        children: grandChildren,
       }),
     });
   }
