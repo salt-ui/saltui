@@ -63,10 +63,6 @@ class InfiniteScroll extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    this.onScroll.cancel();
-    if (prevProps.enabled === true && this.props.enabled === false) {
-      return; // 在即将禁用的时候不触发以下判断
-    }
     if (prevProps.enabled === false && this.props.enabled === true) {
       this.tryEmitScrollEvent();
     } else if (prevProps.loading !== this.props.loading) {
