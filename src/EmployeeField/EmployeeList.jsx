@@ -55,7 +55,7 @@ class EmployeeList extends React.Component {
     const row0H = this.row0 ? this.row0.offsetHeight : 0;
     const row1H = this.row1 ? this.row1.offsetHeight : 0;
     this.setState({
-      foldablePaneHeight: row0H + row1H,
+      foldablePaneHeight: row0H + row1H + 1,
       isFold: this.state.isFold,
     });
   }

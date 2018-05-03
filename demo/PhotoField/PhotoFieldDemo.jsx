@@ -30,6 +30,20 @@ class Demo extends React.Component {
           name: '222',
         },
         {
+          url: 'http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/tingle-ui/tingle-photo-field/eed863a778315746f6f0bf736a3200fc/image.png',
+          name: '222',
+        },
+        {
+          name: '111',
+          response: {
+            url: 'http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/tingle-ui/tingle-photo-field/eed863a778315746f6f0bf736a3200fc/image.png',
+          },
+        },
+        {
+          url: 'http://aligitlab.oss-cn-hangzhou-zmf.aliyuncs.com/uploads/tingle-ui/tingle-photo-field/eed863a778315746f6f0bf736a3200fc/image.png',
+          name: '222',
+        },
+        {
           url: 'http://via.placeholder.com/120x500',
           name: '222',
         },
@@ -75,6 +89,7 @@ class Demo extends React.Component {
           max={4}
           maxUpload={9}
           name="file"
+          readOnly
           url="http://eternalsky.me:8122/file/upload"
           photoList={this.state.photoList}
           tip="这里是提示信息"

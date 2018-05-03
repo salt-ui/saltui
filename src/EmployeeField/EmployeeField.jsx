@@ -19,21 +19,6 @@ import EmployeeList from './EmployeeList';
 import locale from './locale';
 import { transToValue } from './utils';
 
-const isDd = () => {
-  if (typeof window !== 'undefined') {
-    return window.dd;
-  }
-  return false;
-};
-
-const isAliWork = () => {
-  if (typeof window !== 'undefined') {
-    return window.Ali.isAliwork;
-  }
-  return false;
-};
-
-
 class EmployeeField extends React.Component {
   static propTypes = {
     className: PropTypes.string,
@@ -68,6 +53,15 @@ class EmployeeField extends React.Component {
   };
 
   static displayName = 'EmployeeField';
+
+  componentDidMount() {
+    const Ali = window.Ali || {};
+    if (Ali.ready) {
+      Ali.ready(() => {
+        this.forceUpdate();
+      });
+    }
+  }
 
   onPickHandler() {
     if (this.getReadOnly()) {
@@ -142,18 +136,24 @@ class EmployeeField extends React.Component {
   }
 
   getReadOnly() {
-    if (typeof window !== 'undefined') {
-      // 如果不在 native 容器中，则强制只读态
-      if (window.Ali && !window.Ali.isDingDing && !window.Ali.isAliwork) {
-        return true;
-      // 如果在内外容器中，但没有 enableNW，也强制只读
-      // 因内外搜人同时要求容器版本大于 3.4.8，且 loader 版本大于 0.1.30。
-      }
-      // else if (window.Ali && window.Ali.isAliwork && !this.props.enableNW) {
-      //   return true;
-      // }
+    const nativeEnabled = this.isNativeEnabled();
+    if (!nativeEnabled) {
+      return true;
     }
     return this.props.readOnly;
+  }
+
+  isNativeEnabled() {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+    if (window.dd) {
+      return true;
+    }
+    if (window.Ali && window.Ali.isAliwork && this.props.enableNW) {
+      return true;
+    }
+    return false;
   }
 
   renderEmployeeList() {
@@ -185,7 +185,7 @@ class EmployeeField extends React.Component {
     delete otherProps.layout;
     const i18n = locale[this.props.locale];
 
-    const modifiedTip = isDd() ? tip : <div>{i18n.onlyForDd}{tip}</div>;
+    const modifiedTip = this.isNativeEnabled() ? tip : <div>{i18n.readOnly}{tip}</div>;
 
     return (
       <div

@@ -32,7 +32,7 @@ class PhotoFieldPane extends React.Component {
   componentDidMount() {
     if (this.item && this.list) {
       this.foldHeight = (this.item.getDom().clientHeight * 2)
-        + parseInt(getStyle(this.list, 'padding-top'), 10) + 1;
+        + parseInt(this.splitLine.clientHeight, 10) + 1;
       this.forceUpdate();
     }
   }
@@ -125,7 +125,7 @@ class PhotoFieldPane extends React.Component {
         })}
         ref={(c) => { this.list = c; }}
       >
-        <div className={prefixClass('photo-list-split-line')} />
+        <div className={prefixClass('photo-list-split-line')} ref={(c) => { this.splitLine = c; }} />
         {files}
         {photoItem.reverse()}
         {this.renderUploadIcon()}
