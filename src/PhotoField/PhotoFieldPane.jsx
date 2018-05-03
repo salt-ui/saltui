@@ -177,7 +177,7 @@ class PhotoFieldPane extends React.Component {
           layout={t.props.layout}
           readOnly={t.props.readOnly}
           labelRight={
-            <div>
+            <div className={classnames(prefixClass('photo-field-label-right'))}>
               {t.renderPlaceholder()}
               {!t.props.readOnly
                 ? <IconPhoto
