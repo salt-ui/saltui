@@ -30,6 +30,7 @@
 | readOnly     | bool      | false |   No   | 是否只读 |
 | value     | array      | No |   []   | 值 |
 | onChange     | func      | No |      | function(list){} |
+| enableNW | bool | No | false | 内部应用使用，是否在内外容器中启用，注意：内外需要在 loader 版本不小于 0.1.30，且内外容器版本不小于 v3.5.0 的情况下才可以开启使用 |
 
 - 钉钉api接受的参数，请查看[这里](https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.Du9ebD&treeId=171&articleId=104926&docType=1)
 

@@ -4,6 +4,9 @@
 
 * `style`: `PhotoField` `EmployeeField` render action & placeholder into label right container.
 * `feat`: `Field` hide field-box in vertical layout if there's no need to show.
+* `feat`: `EmployeeField` support Alinw app container (using enableNW)
+* `fix`: `ScrollList` flickering when `noMoreDataTip` is changed to true.
+* `fix`: `ScrollList` only render EmptyContentImage if noDataImage is not empty.
 
 ## 3.8.28 / 2018-04-28
 
