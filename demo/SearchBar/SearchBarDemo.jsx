@@ -45,11 +45,11 @@ class Demo extends React.Component {
   render() {
     const t = this;
     const props = {
-      locale: 'en_US',
+      locale: 'zh_CN',
       instantSearch: true,
       hasHistory: true,
       searchDelay: 450,
-      placeholder: 'xxxxxxxxxxxxxxxxxxxxxxxxx',
+      // placeholder: 'xxxxxxxxxxxxxxxxxxxxxxxxx',
       onEnter: () => { console.log('enter'); },
       onExit: () => { console.log('exit'); },
       onChange: (value) => {

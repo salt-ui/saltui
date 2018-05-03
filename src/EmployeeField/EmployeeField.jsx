@@ -193,16 +193,24 @@ class EmployeeField extends React.Component {
           [className]: !!className,
         })}
       >
-        <Field {...otherProps} icon={icon} tip={modifiedTip}>
-          <div className="needsclick" onClick={(e) => { t.onPickHandler(e); }}>
-            {
-              !t.props.value.length ?
-                <div className={Context.prefixClass('omit employee-field-placeholder')}>{t.props.placeholder}</div>
-                :
-                <div className={Context.prefixClass('omit employee-field-num')}>{t.getTotalText()}</div>
-            }
-          </div>
-        </Field>
+        <Field
+          {...otherProps}
+          labelRight={
+            <div>
+              <div className={classnames(Context.prefixClass('employee-field-placeholder-wrapper'), 'needsclick')} onClick={(e) => { t.onPickHandler(e); }}>
+                {
+                  !t.props.value.length ?
+                    <div className={Context.prefixClass('omit employee-field-placeholder')}>{t.props.placeholder}</div>
+                    :
+                    <div className={Context.prefixClass('omit employee-field-num')}>{t.getTotalText()}</div>
+                }
+              </div>
+              {icon}
+            </div>
+          }
+          tip={modifiedTip}
+          layout="v"
+        />
         {
           t.renderEmployeeList()
         }

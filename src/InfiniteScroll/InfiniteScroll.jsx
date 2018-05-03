@@ -68,6 +68,10 @@ class InfiniteScroll extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.onScroll.cancel(); // cancel pending throttled calls
+  }
+
   scrollArea() {
     const { props } = this;
     let iconElement = null;
@@ -93,7 +97,7 @@ class InfiniteScroll extends React.Component {
   }
 
   tryEmitScrollEvent() {
-    if (this.props.loading) return false;
+    if (this.props.loading || !this.$scroller) return false;
 
     const { $scroller } = this;
     const { threshold } = this.props;

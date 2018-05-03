@@ -42,6 +42,8 @@
 
 ## Other Props （H5专属）
 
+H5 版是对 [uploadcore](https://github.com/uxcore/uploadcore) 的 H5 封装，故详细使用说明可以参考：[uploadcore 使用文档](https://github.com/uxcore/uploadcore)
+
 | name               | type          | default | Required   |  description |
 |----------          |---------------|---------|------------|------------|
 |url                 | string        | ''      |            | 响应上传服务器地址 |

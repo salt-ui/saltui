@@ -1,4 +1,27 @@
 
+
+## 3.9.29 / 2018-05-03
+
+* `style`: `PhotoField` `EmployeeField` render action & placeholder into label right container.
+* `feat`: `Field` hide field-box in vertical layout if there's no need to show.
+
+## 3.8.28 / 2018-04-28
+
+* `performance`: `RefreshControl` improve pull to refresh performance if in a scrollable container
+
+## 3.8.25 / 2018-04-27
+
+* `fix`: `SearchBar` locale bug when locale is zh_CN
+
+## 3.8.24 / 2018-04-27
+
+* `fix`: `ScrollList` `noDataImage` fail to work
+* `fix`: `CheckboxField` Select layer checkbox icon color does not follow theme color
+
+## 3.8.23 / 2018-04-25
+
+* `fix`: `ScrollView` trigger tryEmitScrollEvent unexpectedly
+
 ## 3.8.22 / 2018-04-24
 
 * `feat`: `DateTime` change minDate & maxDate to `1900-01-01` & `2051-01-01`

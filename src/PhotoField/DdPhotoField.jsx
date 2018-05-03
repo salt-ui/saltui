@@ -13,6 +13,38 @@ import i18n from './i18n';
 
 const noop = () => { };
 
+// const ddUpload = (opt, fn) => {
+//   if (typeof window === 'undefined' || !window.dd) return;
+//   const { dd } = window;
+//   if (opt.cameraOnly) {
+//     dd.biz.util.uploadImageFromCamera({
+//       compression: opt.compression !== undefined ? opt.compression : true,
+//       onSuccess(result) {
+//         result.photo = result['0'];
+//         result.photos = result;
+//         fn(result); // 返回的参数还是不一样
+//       },
+//       onFail(err) {
+//         fn(err);
+//       },
+//     });
+//   } else {
+//     dd.biz.util.uploadImage({
+//       multiple: opt.multiple, // 是否多选，默认false
+//       max: opt.max, // 最多可选个数 0.0.3
+//       compression: opt.compression !== undefined ? opt.compression : true,
+//       onSuccess(result) {
+//         result.photo = result['0'];
+//         result.photos = result;
+//         fn(result); // 返回的参数还是不一样
+//       },
+//       onFail(err) {
+//         fn(err);
+//       },
+//     });
+//   }
+// };
+
 const autoFixUrl = (url) => {
   let newUrl = url;
   if (newUrl) {

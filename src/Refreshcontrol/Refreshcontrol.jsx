@@ -46,6 +46,7 @@ class RefreshControl extends React.Component {
     showIcon: true,
     showText: true,
     showRefreshing: true,
+    getScrollContainer: undefined,
   };
 
   static propTypes = {
@@ -62,6 +63,7 @@ class RefreshControl extends React.Component {
     showIcon: PropTypes.bool,
     showText: PropTypes.bool,
     showRefreshing: PropTypes.bool,
+    getScrollContainer: PropTypes.func,
   };
 
   constructor(props) {
@@ -83,7 +85,9 @@ class RefreshControl extends React.Component {
   }
 
   componentDidUpdate() {
-    this.triggerStyle(this.props.showRefreshing);
+    if (this.y > 0) {
+      this.triggerStyle(this.props.showRefreshing);
+    }
   }
 
 
@@ -94,6 +98,7 @@ class RefreshControl extends React.Component {
     this.drager = null;
   }
 
+
   onRefreshingChanged(val) {
     if (!val) {
       transitionEnd(this.trigger, this.clearState.bind(this));
@@ -102,10 +107,8 @@ class RefreshControl extends React.Component {
     }
   }
 
-
   onDragStart() {
-    if (this.refreshing) return;
-
+    if (!this.getEnable()) return;
     this.status = Status.dragStart;
 
     const { top } = getOffset(this.trigger);
@@ -116,6 +119,7 @@ class RefreshControl extends React.Component {
   }
 
   onDrag(pos, event) {
+    if (!this.getEnable()) return;
     if (pos.y < 0) return;
 
     // 消除误差
@@ -151,6 +155,7 @@ class RefreshControl extends React.Component {
   }
 
   onDragEnd(pos) {
+    if (!this.getEnable()) return;
     if (pos.y <= 0) {
       this.clearState();
       return;
@@ -182,17 +187,10 @@ class RefreshControl extends React.Component {
     return this._draging;
   }
 
-  get status() {
-    return this.state.status;
-  }
-
   get y() {
     return Math.min(Math.max(this._y, 0), this.max);
   }
 
-  set status(status) {
-    this.setState({ status });
-  }
 
   set draging(draging) {
     this._draging = draging;
@@ -200,6 +198,14 @@ class RefreshControl extends React.Component {
   set y(y) {
     this._y = y;
   }
+
+  getEnable() {
+    if (this.props.getScrollContainer && this.props.getScrollContainer()) {
+      return this.props.getScrollContainer().scrollTop === 0;
+    }
+    return true;
+  }
+
 
   bindDrag() {
     // const drager = new Drag(this.$container);
@@ -267,7 +273,6 @@ class RefreshControl extends React.Component {
     } else {
       ele.style.visibility = 'visible';
     }
-
     ele.style.WebkitTransform = `translate3d(0, ${y}px, 0)`;
     ele.style.transform = `translate3d(0, ${y}px, 0)`;
     this.circularStyle(showRefreshing);
@@ -296,7 +301,8 @@ class RefreshControl extends React.Component {
     const {
       className, children, showRefreshing,
       refreshing, onRefresh, threshold, beforePullLoadText,
-      afterPullLoadText, refreshingText, refreshIcon, showIcon, showText, ...otherProps
+      afterPullLoadText, refreshingText, refreshIcon, showIcon,
+      showText, getScrollContainer, ...otherProps
     } = this.props;
 
     return (
