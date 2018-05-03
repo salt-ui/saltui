@@ -16,11 +16,12 @@
         }
     }
 
-    .{$prefix}-select-field-placeholder {
+    .{$prefix}-photo-field-placeholder {
         text-align: right;
         color: $normal-alpha-4;
         padding-right: 6px;
         font-size: 12px;
+        display: inline-block;
     }
 }
 
@@ -126,14 +127,20 @@
 }
 
 .{$prefix}-photo-list {
-    hairline: border-top $normal-alpha-7;
-    padding: 4px 4px 30px 16px;
+    // hairline: border-top $normal-alpha-7;
+    padding: 0px 4px 30px 16px;
     width: 100%;
     overflow: hidden;
 
     .{$prefix}-photo-field .{$prefix}-foldable-pane & {
         padding-bottom: 0;
     }
+}
+
+.{$prefix}-photo-list-split-line {
+    hairline: border-top $normal-alpha-7;    
+    height: 5px;
+    margin-right: 12px;
 }
 
 .{$prefix}-photo-delete-icon {

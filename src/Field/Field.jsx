@@ -62,6 +62,10 @@ class Field extends React.Component {
     return null;
   }
 
+  renderLabelRight() {
+    return this.props.labelRight;
+  }
+
   renderLabel(options = {}) {
     const t = this;
     if (t.props.label) {
@@ -70,11 +74,47 @@ class Field extends React.Component {
           label={t.props.label}
           required={t.props.required}
           layout={t.props.layout}
+          right={t.props.layout === 'v' ? this.renderLabelRight() : null}
           {...options}
         />
       );
     }
     return null;
+  }
+
+  renderContent() {
+    const t = this;
+    const {
+      children, extra, icon, errMsg, layout, tappable, multiLine,
+    } = t.props;
+    if (layout === 'v' && !children && !extra && !icon && !errMsg) {
+      return null;
+    }
+    return (
+      <div
+        className={classnames(prefixClass('field-box field-content-box FBH'), {
+            [prefixClass('TE')]: tappable,
+            [prefixClass('FBAC')]: !multiLine,
+          })}
+      >
+        {
+            layout === 'h' ? t.renderLabel() : null
+          }
+        <div
+          className={classnames(prefixClass('FB1 PR'), {
+              [prefixClass('field-multi')]: multiLine,
+            })}
+        >
+          {children}
+        </div>
+        {extra}
+        {(icon || errMsg) ?
+          <div className={prefixClass('FBH FBAC field-icon')}>
+            {this.renderErrMsg()}
+            {this.renderIcon()}
+          </div> : null}
+      </div>
+    );
   }
 
   render() {
@@ -88,29 +128,7 @@ class Field extends React.Component {
         {
           t.props.layout === 'v' ? t.renderLabel() : null
         }
-        <div
-          className={classnames(prefixClass('field-box FBH'), {
-            [prefixClass('TE')]: t.props.tappable,
-            [prefixClass('FBAC')]: !t.props.multiLine,
-          })}
-        >
-          {
-            t.props.layout === 'h' ? t.renderLabel() : null
-          }
-          <div
-            className={classnames(prefixClass('FB1 PR'), {
-              [prefixClass('field-multi')]: t.props.multiLine,
-            })}
-          >
-            {t.props.children}
-          </div>
-          {t.props.extra}
-          {(t.props.icon || t.props.errMsg) ?
-            <div className={prefixClass('FBH FBAC field-icon')}>
-              {this.renderErrMsg()}
-              {this.renderIcon()}
-            </div> : null}
-        </div>
+        {this.renderContent()}
         {this.renderTip()}
       </div>
     );

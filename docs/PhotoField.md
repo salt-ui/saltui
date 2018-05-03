@@ -42,6 +42,8 @@
 
 ## Other Props （H5专属）
 
+H5 版是对 [uploadcore](https://github.com/uxcore/uploadcore) 的 H5 封装，故详细使用说明可以参考：[uploadcore 使用文档](https://github.com/uxcore/uploadcore)
+
 | name               | type          | default | Required   |  description |
 |----------          |---------------|---------|------------|------------|
 |url                 | string        | ''      |            | 响应上传服务器地址 |
@@ -55,7 +57,7 @@
 |chunkProcessThreads | int           | 2       |            | 分片上传并发数 |
 |processThreads      | int           | 2       |            | 文件上传并发数 |
 |autoPending         | bool          | true    |            | 是否选择后自动等待上传 |
-|multiple            | bool          | true    |            | 是否多选 | 
+|multiple            | bool          | true    |            | 是否多选，在钉钉 5.3.6 版本以前的容器中不支持， | 
 |accept              | string/array  | null    |            | 允许文件类型, [chrome 下的已知问题](http://stackoverflow.com/questions/39187857/inputfile-accept-image-open-dialog-so-slow-with-chrome) |
 |sizeLimit           | size          | 0       |            | 文件大小限制, 0表示不限制 |
 |preventDuplicate    | bool          | false   |            | 是否防止文件重复 |

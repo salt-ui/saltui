@@ -62,9 +62,10 @@ class EmployeeFieldDemo extends React.Component {
             corpId="dingd8e1123006514592"
             label="选择人员"
             layout="v"
-            multiple={false}
+            multiple
             placeholder="请选择"
             locale="en-us"
+            enableNW
             value={this.state.value}
             onChange={(value) => { this.onChange(value); }}
           />

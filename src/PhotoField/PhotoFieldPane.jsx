@@ -32,7 +32,7 @@ class PhotoFieldPane extends React.Component {
   componentDidMount() {
     if (this.item && this.list) {
       this.foldHeight = (this.item.getDom().clientHeight * 2)
-        + parseInt(getStyle(this.list, 'padding-top'), 10) + 1;
+        + parseInt(this.splitLine.clientHeight, 10) + 1;
       this.forceUpdate();
     }
   }
@@ -125,6 +125,7 @@ class PhotoFieldPane extends React.Component {
         })}
         ref={(c) => { this.list = c; }}
       >
+        <div className={prefixClass('photo-list-split-line')} ref={(c) => { this.splitLine = c; }} />
         {files}
         {photoItem.reverse()}
         {this.renderUploadIcon()}
@@ -146,7 +147,7 @@ class PhotoFieldPane extends React.Component {
       return (
         <div
           className={
-            classnames(prefixClass('omit select-field-placeholder'), {
+            classnames(prefixClass('omit photo-field-placeholder'), {
               [prefixClass('hide')]: t.props.readOnly,
             })}
         >
@@ -175,21 +176,24 @@ class PhotoFieldPane extends React.Component {
           tip={t.props.tip}
           layout={t.props.layout}
           readOnly={t.props.readOnly}
-          icon={!t.props.readOnly
-            ? <IconPhoto
-              onClick={() => { if (!t.isUploadDisabled()) { t.props.onPickerClick(); } }}
-              className={classnames(prefixClass('photo-upload-icon'), {
-                [prefixClass('photo-upload-icon__disabled')]: t.isUploadDisabled(),
-              })}
-              ref={(c) => { this.uploadIcon = c; }}
-              fill={t.props.fill}
-              width={24}
-              height={24}
-            />
-            : null}
-        >
-          {t.renderPlaceholder()}
-        </Field>
+          labelRight={
+            <div>
+              {t.renderPlaceholder()}
+              {!t.props.readOnly
+                ? <IconPhoto
+                  onClick={() => { if (!t.isUploadDisabled()) { t.props.onPickerClick(); } }}
+                  className={classnames(prefixClass('photo-upload-icon'), {
+                    [prefixClass('photo-upload-icon__disabled')]: t.isUploadDisabled(),
+                  })}
+                  ref={(c) => { this.uploadIcon = c; }}
+                  fill={t.props.fill}
+                  width={24}
+                  height={24}
+                />
+                : null}
+            </div>
+          }
+        />
         {this.renderPhotoList()}
       </div>
     );
@@ -208,6 +212,7 @@ PhotoFieldPane.defaultProps = {
   label: undefined,
   readOnly: undefined,
   required: undefined,
+  layout: 'v',
 };
 // http://facebook.github.io/react/docs/reusable-components.html
 PhotoFieldPane.propTypes = {
@@ -221,6 +226,7 @@ PhotoFieldPane.propTypes = {
   onPickerClick: PropTypes.func,
   onImageDelete: PropTypes.func,
   onImagePreview: PropTypes.func,
+  layout: PropTypes.string,
 };
 
 export default PhotoFieldPane;

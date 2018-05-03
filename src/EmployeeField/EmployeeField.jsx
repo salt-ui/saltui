@@ -19,14 +19,6 @@ import EmployeeList from './EmployeeList';
 import locale from './locale';
 import { transToValue } from './utils';
 
-const isDd = () => {
-  if (typeof window !== 'undefined') {
-    return window.dd;
-  }
-  return false;
-};
-
-
 class EmployeeField extends React.Component {
   static propTypes = {
     className: PropTypes.string,
@@ -41,6 +33,7 @@ class EmployeeField extends React.Component {
     value: PropTypes.array,
     disabledUsers: PropTypes.array,
     onChange: PropTypes.func,
+    enableNW: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -51,6 +44,7 @@ class EmployeeField extends React.Component {
     locale: 'zh-cn',
     startWithDepartmentId: -1,
     readOnly: false,
+    enableNW: false,
     value: [],
     disabledUsers: [],
     onChange: () => { },
@@ -59,6 +53,15 @@ class EmployeeField extends React.Component {
   };
 
   static displayName = 'EmployeeField';
+
+  componentDidMount() {
+    const Ali = window.Ali || {};
+    if (Ali.ready) {
+      Ali.ready(() => {
+        this.forceUpdate();
+      });
+    }
+  }
 
   onPickHandler() {
     if (this.getReadOnly()) {
@@ -70,7 +73,7 @@ class EmployeeField extends React.Component {
       max: this.props.max,
       isNeedSearch: this.props.isNeedSearch,
       startWithDepartmentId: this.props.startWithDepartmentId, //  SELF TOP
-      users: this.props.value.map(v => v.key),
+      users: this.props.value.map(v => ({ emplId: v.key, name: v.label, nickNameCn: v.label })),
       disabledUsers: this.props.disabledUsers,
     };
     const Ali = window.Ali || {};
@@ -84,17 +87,17 @@ class EmployeeField extends React.Component {
           return;
         }
         option.corpId = this.props.corpId;
-        Ali.contacts.get(option, (result) => {
-          if (result && !result.errorCode) {
-            this.props.onChange(transToValue(result.results));
-          } else {
-            Ali.alert({
-              message: result.errorMessage,
-              okButton: i18n.ok,
-            });
-          }
-        });
       }
+      Ali.contacts.get(option, (result) => {
+        if (result && !result.errorCode) {
+          this.props.onChange(transToValue(result.results));
+        } else {
+          Ali.alert({
+            message: result.errorMessage,
+            okButton: i18n.ok,
+          });
+        }
+      });
     } else if (window.dd) {
       // fall back to dd api
       const t = this;
@@ -133,14 +136,24 @@ class EmployeeField extends React.Component {
   }
 
   getReadOnly() {
-    if (typeof window !== 'undefined') {
-      if (!window.Ali && !window.dd) {
-        return true;
-      } else if (window.Ali && !window.Ali.isDingDing) {
-        return true;
-      }
+    const nativeEnabled = this.isNativeEnabled();
+    if (!nativeEnabled) {
+      return true;
     }
     return this.props.readOnly;
+  }
+
+  isNativeEnabled() {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+    if (window.dd) {
+      return true;
+    }
+    if (window.Ali && window.Ali.isAliwork && this.props.enableNW) {
+      return true;
+    }
+    return false;
   }
 
   renderEmployeeList() {
@@ -172,7 +185,7 @@ class EmployeeField extends React.Component {
     delete otherProps.layout;
     const i18n = locale[this.props.locale];
 
-    const modifiedTip = isDd() ? tip : <div>{i18n.onlyForDd}{tip}</div>;
+    const modifiedTip = this.isNativeEnabled() ? tip : <div>{i18n.readOnly}{tip}</div>;
 
     return (
       <div
@@ -180,16 +193,24 @@ class EmployeeField extends React.Component {
           [className]: !!className,
         })}
       >
-        <Field {...otherProps} icon={icon} tip={modifiedTip}>
-          <div className="needsclick" onClick={(e) => { t.onPickHandler(e); }}>
-            {
-              !t.props.value.length ?
-                <div className={Context.prefixClass('omit employee-field-placeholder')}>{t.props.placeholder}</div>
-                :
-                <div className={Context.prefixClass('omit employee-field-num')}>{t.getTotalText()}</div>
-            }
-          </div>
-        </Field>
+        <Field
+          {...otherProps}
+          labelRight={
+            <div>
+              <div className={classnames(Context.prefixClass('employee-field-placeholder-wrapper'), 'needsclick')} onClick={(e) => { t.onPickHandler(e); }}>
+                {
+                  !t.props.value.length ?
+                    <div className={Context.prefixClass('omit employee-field-placeholder')}>{t.props.placeholder}</div>
+                    :
+                    <div className={Context.prefixClass('omit employee-field-num')}>{t.getTotalText()}</div>
+                }
+              </div>
+              {icon}
+            </div>
+          }
+          tip={modifiedTip}
+          layout="v"
+        />
         {
           t.renderEmployeeList()
         }
