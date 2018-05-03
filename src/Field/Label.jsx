@@ -22,8 +22,15 @@ const Label = props => (
       [props.className]: !!props.className,
     })}
   >
-    {props.label}
-    {props.required && requiredTag}
+    <div className={prefixClass(`field-layout-${props.layout}-label-left`)}>
+      {props.label}
+      {props.required && requiredTag}
+    </div>
+    {props.right ? (
+      <div className={prefixClass(`field-layout-${props.layout}-label-right`)}>
+        {props.right}
+      </div>
+    ) : null}
   </div>
 );
 Label.defaultProps = {
@@ -31,6 +38,7 @@ Label.defaultProps = {
   className: undefined,
   layout: undefined,
   required: undefined,
+  right: undefined,
 };
 
 Label.propTypes = {
@@ -38,6 +46,7 @@ Label.propTypes = {
   className: PropTypes.string,
   layout: PropTypes.oneOf(['h', 'v']),
   required: PropTypes.bool,
+  right: PropTypes.node,
 };
 
 export default Label;

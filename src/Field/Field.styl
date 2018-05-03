@@ -59,10 +59,17 @@ $field-text-color = $dark-alpha-2;
     padding: (($field-min-height - $filed-line-height) / 2) $field-padding-left 0 0;
     margin-left: $field-padding-left;
     background-color: white;
-    + .{$prefix}-field-box {
+    display: flex;
+    .{$prefix}-field-layout-v-label-left {
+        flex: 1;
+    }
+    + .{$prefix}-field-content-box {
         padding-top: 12px;
         padding-bottom: 11px;
         min-height: auto;
+    }
+    + .{$prefix}-field-tip-box {
+        padding-top: 8px;
     }
 }
 
@@ -85,12 +92,12 @@ $field-text-color = $dark-alpha-2;
 
 .{$prefix}-field-tip-box {
     min-height: auto;
-    padding-right: 0px;
+    padding-right: 16px;
 }
 
 .{$prefix}-field-tip {
     flex: 1;
-    padding: 8px 16px 8px 0;
+    padding: 8px 0;
     hairline: border-top $normal-alpha-7;
     font-size: $font-size-t2;
     color: $normal-alpha-4;
