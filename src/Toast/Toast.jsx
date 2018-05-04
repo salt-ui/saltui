@@ -172,7 +172,7 @@ Toast.defaultProps = {
   visible: false,
   autoHide: true,
   content: '',
-  duration: 1500,
+  duration: 3000,
   width: undefined,
   icon: undefined,
   transitionName: undefined,

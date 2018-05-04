@@ -128,7 +128,7 @@ class CascadeSelectField extends React.Component {
       title={t.props.label}
       locale={t.props.locale}
       confirmText={t.props.confirmText || i18n[t.props.locale].confirmText}
-      cancelText={t.props.confirmText || i18n[t.props.locale].cancelText}
+      cancelText={t.props.cancelText || i18n[t.props.locale].cancelText}
       options={t.state.originOptions}
       value={t.state.value}
       onChange={t.handleChange}
