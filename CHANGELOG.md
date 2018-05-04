@@ -1,5 +1,10 @@
 
 
+## 3.9.30 / 2018-05-04
+
+* `fix`: `CascadeSelect` wrong cancel text
+* `feat`: `Toast` different default hide duration when type is different.
+
 ## 3.9.29 / 2018-05-03
 
 * `style`: `PhotoField` `EmployeeField` render action & placeholder into label right container.

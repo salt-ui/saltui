@@ -54,10 +54,13 @@ class Toast extends React.Component {
 
   startCountdown() {
     const t = this;
+    const { type } = t.props;
+    const defaultDuration = (type === 'light' || !type) ? 3000 : 1500;
+    const duration = t.props.duration || defaultDuration;
     t.timer = setTimeout(() => {
       this.hide();
       clearTimeout(t.timer);
-    }, t.props.duration);
+    }, duration);
   }
 
   hide(fn) {
@@ -172,7 +175,7 @@ Toast.defaultProps = {
   visible: false,
   autoHide: true,
   content: '',
-  duration: 3000,
+  duration: undefined,
   width: undefined,
   icon: undefined,
   transitionName: undefined,
