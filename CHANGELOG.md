@@ -1,5 +1,10 @@
 
 
+## 3.9.31 / 2018-05-07
+
+* `feat`: `Field` show error message in tip box.
+
+
 ## 3.9.30 / 2018-05-04
 
 * `fix`: `CascadeSelect` wrong cancel text
