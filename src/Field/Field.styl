@@ -60,17 +60,21 @@ $field-text-color = $dark-alpha-2;
     margin-left: $field-padding-left;
     background-color: white;
     display: flex;
+
     .{$prefix}-field-layout-v-label-left {
         flex: 1;
     }
+
     + .{$prefix}-field-content-box {
         padding-top: 12px;
         padding-bottom: 11px;
         min-height: auto;
     }
+
     + .{$prefix}-field-tip-box {
         padding-top: 8px;
     }
+
     &:last-child {
         padding-bottom: 8px;
     }
@@ -96,6 +100,13 @@ $field-text-color = $dark-alpha-2;
 .{$prefix}-field-tip-box {
     min-height: auto;
     padding-right: 16px;
+}
+
+.{$prefix}-field-tip-box-error {
+    .{$prefix}-field-tip {
+        color: $function-red;
+        hairline: border-top $function-red;
+    }
 }
 
 .{$prefix}-field-tip {

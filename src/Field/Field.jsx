@@ -16,7 +16,7 @@ import Label from './Label';
 
 class Field extends React.Component {
   renderErrMsg() {
-    if (!this.props.errMsg) return null;
+    if (!this.props.errMsg || this.props.showErrInTip) return null;
     const Toast = this.props.toastComponent;
     return (
       <NoteRound
@@ -51,11 +51,16 @@ class Field extends React.Component {
 
   renderTip() {
     const t = this;
-    if (!t.props.readOnly && t.props.tip) {
+    if (!t.props.readOnly && (t.props.tip || (t.props.errMsg && t.props.showErrInTip))) {
+      const tip = t.props.errMsg || t.props.tip;
+      const hasError = t.props.errMsg && t.props.showErrInTip;
       return (
-        <div className={classnames(prefixClass('field-box FBH field-tip-box'))}>
+        <div className={classnames(prefixClass('field-box FBH field-tip-box'), {
+          [prefixClass('field-tip-box-error')]: hasError,
+        })}
+        >
           {t.props.layout === 'h' ? t.renderLabel({ className: prefixClass('field-tip-placeholder') }) : null}
-          <div className={prefixClass('FBH FBAC LH1_5 field-tip')}>{t.props.tip}</div>
+          <div className={prefixClass('FBH FBAC LH1_5 field-tip')}>{tip}</div>
         </div>
       );
     }
@@ -85,7 +90,7 @@ class Field extends React.Component {
   renderContent() {
     const t = this;
     const {
-      children, extra, icon, errMsg, layout, tappable, multiLine,
+      children, extra, icon, errMsg, layout, tappable, multiLine, showErrInTip,
     } = t.props;
     if (layout === 'v' && !children && !extra && !icon && !errMsg) {
       return null;
@@ -147,6 +152,7 @@ Field.defaultProps = {
   extra: undefined,
   toastComponent: undefined,
   errMsg: undefined,
+  showErrInTip: true,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -168,6 +174,7 @@ Field.propTypes = {
   ]),
   toastComponent: PropTypes.func,
   errMsg: PropTypes.string,
+  showErrInTip: PropTypes.bool,
 };
 
 Field.getFieldProps = (props = {}) => {
