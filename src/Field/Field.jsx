@@ -16,7 +16,7 @@ import Label from './Label';
 
 class Field extends React.Component {
   renderErrMsg() {
-    if (!this.props.errMsg || this.props.showErrInTip) return null;
+    if (!this.props.errMsg) return null;
     const Toast = this.props.toastComponent;
     return (
       <NoteRound
@@ -113,7 +113,7 @@ class Field extends React.Component {
           {children}
         </div>
         {extra}
-        {(icon || errMsg) ?
+        {(icon || (errMsg && !showErrInTip)) ?
           <div className={prefixClass('FBH FBAC field-icon')}>
             {this.renderErrMsg()}
             {this.renderIcon()}
