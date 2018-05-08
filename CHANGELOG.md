@@ -1,17 +1,16 @@
 
 
-## 3.9.31 / 2018-05-07
+## 3.8.31 / 2018-05-07
 
 * `feat`: `Field` show error message in tip box.
 * `fix`: `CitySelectField` wrong text
 
-
-## 3.9.30 / 2018-05-04
+## 3.8.30 / 2018-05-04
 
 * `fix`: `CascadeSelect` wrong cancel text
 * `feat`: `Toast` different default hide duration when type is different.
 
-## 3.9.29 / 2018-05-03
+## 3.8.29 / 2018-05-03
 
 * `style`: `PhotoField` `EmployeeField` render action & placeholder into label right container.
 * `feat`: `Field` hide field-box in vertical layout if there's no need to show.
