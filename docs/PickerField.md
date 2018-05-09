@@ -123,19 +123,6 @@ var value = {
 <PickerField confirmText="完成"></PickerField>
 ```
 
-### cancelText
-
-描述：取消文案。
-类型：`string`
-默认：`'取消'`
-必选：否
-
-示例：
-
-```
-<PickerField cancelText="取消"></PickerField>
-```
-
 ### options
 
 描述：选项内容，可由本地传入。
@@ -268,18 +255,6 @@ afterFetch(arr) {
 <PickerField showSearch={false}></PickerField>
 ```
 
-### searchTitle
-
-描述：搜索弹框标题。
-类型：`string`
-默认：`同 placeholder`
-必选：否
-
-示例：
-
-```
-<PickerField searchTitle="请搜索地区"></PickerField>
-```
 
 ### searchDelay
 

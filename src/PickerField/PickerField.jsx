@@ -115,7 +115,6 @@ class PickerField extends React.Component {
     const panelProps = {
       value: t.state.confirmedValue,
       confirmText: t.props.confirmText || i18n[t.props.locale].confirm,
-      cancelText: t.props.cancelText,
       onConfirm: (value) => {
         t.handleConfirm(value);
         window.history.go(-1);
@@ -128,7 +127,6 @@ class PickerField extends React.Component {
       fitResponse: t.props.fitResponse,
       afterFetch: t.props.afterFetch,
       showSearch: t.props.showSearch,
-      searchTitle: t.props.searchTitle || t.props.placeholder || i18n[t.props.locale].placeholder,
       searchDelay: t.props.searchDelay,
       searchPlaceholder: t.props.searchPlaceholder || i18n[t.props.locale].searchPlaceholder,
       searchNotFoundContent: t.props.searchNotFoundContent || i18n[t.props.locale].noData,
@@ -182,7 +180,6 @@ PickerField.defaultProps = {
   }),
   afterFetch: obj => obj,
   showSearch: true,
-  searchTitle: '',
   searchDelay: 100,
   formatter: value => (value ? value.text : ''),
   phonetic: value => (value.phonetic || []),
@@ -195,7 +192,6 @@ PickerField.defaultProps = {
   options: undefined,
   placeholder: undefined,
   confirmText: undefined,
-  cancelText: undefined,
   searchPlaceholder: undefined,
   searchNotFoundContent: undefined,
   locale: 'zh-cn',
@@ -212,7 +208,6 @@ PickerField.propTypes = {
   readOnly: PropTypes.bool,
   placeholder: PropTypes.string,
   confirmText: PropTypes.string,
-  cancelText: PropTypes.string,
   options: PropTypes.array,
   fetchUrl: PropTypes.string,
   fetchDataOnOpen: PropTypes.bool,
@@ -221,7 +216,6 @@ PickerField.propTypes = {
   fitResponse: PropTypes.func,
   afterFetch: PropTypes.func,
   showSearch: PropTypes.bool,
-  searchTitle: PropTypes.string,
   searchDelay: PropTypes.number,
   searchPlaceholder: PropTypes.string,
   searchNotFoundContent: PropTypes.string,

@@ -1,5 +1,9 @@
 
 
+## 3.8.33
+
+* `docs`: `PickerField` remove useless props
+
 ## 3.8.31 / 2018-05-07
 
 * `feat`: `Field` show error message in tip box.
