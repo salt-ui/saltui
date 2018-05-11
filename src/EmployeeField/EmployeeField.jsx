@@ -88,7 +88,7 @@ class EmployeeField extends React.Component {
         }
         option.corpId = this.props.corpId;
       }
-      Ali.contacts.get(option, (result) => {
+      Ali.contacts.get({ ...option, users: option.users.map(u => u.emplId) }, (result) => {
         if (result && !result.errorCode) {
           this.props.onChange(transToValue(result.results));
         } else {
@@ -103,6 +103,7 @@ class EmployeeField extends React.Component {
       const t = this;
       window.dd.biz.contact.choose({
         ...option,
+        users: option.users.map(u => u.emplId),
         onSuccess(results) {
           /* eslint-disable no-param-reassign */
           for (let i = 0; i < results.length; i++) {
