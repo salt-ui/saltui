@@ -73,7 +73,8 @@ class EmployeeField extends React.Component {
       max: this.props.max,
       isNeedSearch: this.props.isNeedSearch,
       startWithDepartmentId: this.props.startWithDepartmentId, //  SELF TOP
-      users: this.props.value.map(v => ({ emplId: v.key, name: v.label, nickNameCn: v.label })),
+      // users: this.props.value.map(v => ({ emplId: v.key, name: v.label, nickNameCn: v.label })),
+      users: this.props.value.map(v => v.key),
       disabledUsers: this.props.disabledUsers,
     };
     const Ali = window.Ali || {};
@@ -87,6 +88,9 @@ class EmployeeField extends React.Component {
           return;
         }
         option.corpId = this.props.corpId;
+      } else if (this.props.enableNW) {
+        option.users = this.props.value.map(v =>
+          ({ emplId: v.key, name: v.label, nickNameCn: v.label }));
       }
       Ali.contacts.get(option, (result) => {
         if (result && !result.errorCode) {

@@ -1,8 +1,10 @@
 
 
-## 3.8.33
+
+## 3.8.33 / 2018-05-11
 
 * `docs`: `PickerField` remove useless props
+* `fix`: `EmployeeField` compatible for old native loader
 
 ## 3.8.31 / 2018-05-07
 
