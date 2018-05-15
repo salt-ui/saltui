@@ -8,7 +8,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import cloneDeep from 'lodash/fp/cloneDeep';
+import cloneDeep from 'lodash/cloneDeep';
+import AngleRight from 'salt-icon/lib/AngleRight';
 import Context from '../Context';
 import Slot from '../Slot';
 import Field from '../Field';
@@ -160,17 +161,19 @@ class CascadeSelectField extends React.Component {
 
   render() {
     const t = this;
+    const icon = !t.props.readOnly ? (
+      <AngleRight
+        className={Context.prefixClass('cascade-select-field-icon')}
+        width={26}
+        height={26}
+        onClick={t.handleClick}
+      />
+    ) : null;
     return (
       <Field
         {...t.props}
         layout="h"
-        icon={t.props.readOnly ? null : {
-          className: Context.prefixClass('cascade-select-field-icon'),
-          name: 'angle-right',
-          width: 26,
-          height: 26,
-          onClick: t.handleClick,
-        }}
+        icon={icon}
         className={classnames(Context.prefixClass('cascade-select-field'), {
           [t.props.className]: !!t.props.className,
         })}
