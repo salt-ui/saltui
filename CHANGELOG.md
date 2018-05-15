@@ -1,6 +1,11 @@
 
 
 
+## 3.8.34 
+
+* `docs`: `Tab` activeKey should not be number
+* `fix`: `CascadeSelectField` right arrow is not shown
+
 ## 3.8.33 / 2018-05-11
 
 * `docs`: `PickerField` remove useless props

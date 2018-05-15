@@ -68,7 +68,6 @@ class Demo extends React.Component {
   render() {
     return (
       <div>
-        <input type="file" /> 
         <PhotoField
           label="H5 图片"
           placeholder="请选择图片"
@@ -77,7 +76,7 @@ class Demo extends React.Component {
           maxUpload={9}
           name="file"
           readOnly={false}
-          url="http://eternalsky.me:8122/file/upload"
+          url="http://eternalsky.me:8122/file/upload?sleep=10000"
           photoList={this.state.photoList}
           tip="这里是提示信息"
           onChange={this.onChange.bind(this)}

@@ -47,7 +47,6 @@ class PhotoFieldUploadItem extends React.Component {
     const style = {
       width: t.props.width,
       paddingTop: t.props.width,
-      paddingBottom: '4px',
     };
     return (
       <div className={prefixClass('PR FL photo-item')} style={style} ref={(c) => { this.root = c; }} >
