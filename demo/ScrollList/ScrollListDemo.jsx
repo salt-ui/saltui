@@ -197,8 +197,8 @@ class Demo extends React.Component {
             loading={this.state.loading}
             onLoad={this.onLoad}
           >
-            <Other1 />
-            <Other2 />
+            {/* <Other1 />
+            <Other2 /> */}
             {(data, index) => {
               const itemProps = propsMap[index % 9];
               return (
