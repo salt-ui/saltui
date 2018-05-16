@@ -41,9 +41,24 @@ class DayCalendar extends React.Component {
 
   constructor(props) {
     super(props);
-    this.height = props.animationType === 'slideUp' ? 446 : document.documentElement.clientHeight;
+    this.height = this.getPanelHeight(props);
     this.value = cloneDeep(props.value);
+    // this.onWindowResize = this.onWindowResize.bind(this);
   }
+
+  componentDidMount() {
+    // window.addEventListener('resize', this.onWindowResize, false);
+  }
+
+  // onWindowResize() {
+  //   const height = this.getPanelHeight();
+  //   console.log(height);
+  //   console.log(this.height);
+  //   if (height !== this.height) {
+  //     this.height = height;
+  //     this.forceUpdate();
+  //   }
+  // }
 
 
   onTopBarOk() {
@@ -53,6 +68,10 @@ class DayCalendar extends React.Component {
   onChange(value) {
     this.value = value;
     this.props.onChange(value);
+  }
+
+  getPanelHeight(props = this.props) {
+    return props.animationType === 'slideUp' ? 446 : props.bodyHeight;
   }
 
   normalizeValue(value = this.value) {

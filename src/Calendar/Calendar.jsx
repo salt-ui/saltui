@@ -46,6 +46,8 @@ class Calendar extends React.Component {
   componentDidMount() {
     const t = this;
     t.showCalendar(t.props);
+    // cache body height for window resize on android keyboard showing and hiding
+    this.bodyHeight = document.documentElement.clientHeight;
   }
 
   componentDidUpdate() {
@@ -86,7 +88,11 @@ class Calendar extends React.Component {
       return;
     }
 
-    const calendar = <DayCalendar {...props} onOk={(val) => { t.onOk(val); }} />;
+    const calendar = (<DayCalendar
+      {...props}
+      bodyHeight={this.bodyHeight}
+      onOk={(val) => { t.onOk(val); }}
+    />);
 
     if (t.popup) {
       t.popup.update(calendar);
