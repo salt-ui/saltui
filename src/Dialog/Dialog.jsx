@@ -13,7 +13,7 @@ import classnames from 'classnames';
 import RcDialog from 'rc-dialog';
 import IconToastError from 'salt-icon/lib/ToastError';
 import Context from '../Context';
-import { stopBodyScrolling } from '../Utils';
+import { stopBodyScrolling, getLocale } from '../Utils';
 import i18nData from './i18n';
 
 const { prefixClass } = Context;
@@ -24,14 +24,14 @@ const EMPTY_FUNC = function EMPTY_FUNC() { };
 
 /**
  * 简单的 i18n 实现
- * @param {String} lang 语言类型 'zh_CN' | 'en_US'
+ * @param {String} lang 语言类型 'zh-cn' | 'en-us'
  * @param {String} key 关键 key 'ok' | 'cancel' 其他值直接返回 key
  */
-const getI18nVal = function (lang = 'zh_CN', key) {
+const getI18nVal = function (lang = 'zh-cn', key) {
   switch (lang) {
-    case 'en_US':
+    case 'en-us':
       return i18nData[lang][key] || key;
-    case 'zh_CN':
+    case 'zh-cn':
       return i18nData[lang][key] || key;
     default:
       return key;
@@ -166,7 +166,7 @@ class Dialog extends React.Component {
             })}
             onClick={this.handleClick.bind(this, callback)}
           >
-            {getI18nVal(props.locale, item.content)}
+            {getI18nVal(getLocale(props.locale), item.content)}
           </div>
         );
       });
@@ -253,7 +253,7 @@ Dialog.defaultProps = {
   cancelText: null,
   type: 'alert',
   show: true,
-  locale: 'zh_CN',
+  locale: 'zh-cn',
   buttons: null,
   btnDir: '',
   transitionName: prefixClass('dialog-superScale'),

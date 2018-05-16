@@ -273,9 +273,9 @@ render() {
 
 ### locale
 
-- 描述：国际化(包括 zh_CN, en_US)
+- 描述：国际化(包括 zh-cn, en-us)
 - 类型：`string`
-- 默认：`zh_CN`
+- 默认：`zh-cn`
 - 必选：否
 
 ## APIs

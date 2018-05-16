@@ -28,7 +28,6 @@ class Demo extends React.Component {
   handleAlert() {
     Dialog.alert({
       title: '测试',
-
       content: '我是 Dialog.alert 的调用',
       onConfirm() {
         console.log('alert confirm');

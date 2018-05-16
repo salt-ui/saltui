@@ -6,59 +6,6 @@
 * 日期还包含额外信息的情况，如日程
 * 其余情况推荐使用 DateTime
 
-## Simple Usage
-
-```javascript
-
-class CalendarDemo extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: {
-        // startDate: 1499702400000,
-        // startDateType: 'PM',
-        endDate: 1499961600000,
-        endDateType: 'PM',
-      },
-      // value: 1499702400000, // 1499961600000
-    };
-    // 禁用钉钉容器的 webViewBounce
-    window.dd && window.dd.ui.webViewBounce.disable();
-  }
-
-  render() {
-    const props = {
-      singleMode: false,
-      // locale: 'en-us',
-      showHalfDay: true,
-      renderDayBadge: Calendar.util.generateSpecialWorkdayOrHolidayRender({
-        '2017-07-22': 'work',
-        '2017-07-25': 'leave',
-      }),
-      renderCustomDayLabel(curren, value) {
-        if (util.isSameDay(curren, '2017.7.31')) {
-          return (
-            <span className="special-day">端午节</span>
-          );
-        }
-        return null;
-      },
-    };
-    return (
-      <div className="t-calendar-demo">
-        <Calendar
-          {...props}
-          value={this.state.value}
-        />
-      </div>
-    );
-  }
-}
-
-export default CalendarDemo;
-```
-
 ## Props
 
 ### className

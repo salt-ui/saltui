@@ -1,9 +1,9 @@
 module.exports = {
-  en_US: {
+  'en-us': {
     ok: 'OK',
     cancel: 'Cancel',
   },
-  zh_CN: {
+  'zh-cn': {
     ok: '确定',
     cancel: '取消',
   },
