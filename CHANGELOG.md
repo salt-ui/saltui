@@ -1,9 +1,11 @@
 
 
-## 3.8.36
+## 3.8.36 / 2018-05-17
 
 * `fix`: `Calendar` show slideUp calendar when native keyboard still exists will cause wrong panel height
 * `feat`: `Dialog` change locale value from zh_CN to zh-cn
+* `fix`: `RefreshControl` refresh loading will show on mount
+* `fix`: `ScrollView` missing method `tryEmitScrollEvent`
 
 ## 3.8.35 / 2018-05-16
 

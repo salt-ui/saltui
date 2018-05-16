@@ -272,7 +272,9 @@ class ScrollList extends React.Component {
 
   infiniteScrollOptions() {
     const onLoad = this.props.url ? this.onFetch.bind(this, false, 'bottom') : this.props.onLoad;
-    const { fetchData, noMore, hasError, refreshing } = this.state;
+    const {
+      fetchData, noMore, hasError, refreshing,
+    } = this.state;
     return {
       infiniteScroll: !refreshing && fetchData && !noMore && !hasError && this.props.scrollLoad,
       infiniteScrollOptions: {

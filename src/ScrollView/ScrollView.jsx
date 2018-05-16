@@ -53,6 +53,12 @@ class ScrollView extends React.Component {
     });
   }
 
+  tryEmitScrollEvent() {
+    if (this.infiniteScroll) {
+      this.infiniteScroll.tryEmitScrollEvent();
+    }
+  }
+
   render() {
     return (
       <InfiniteScroll
