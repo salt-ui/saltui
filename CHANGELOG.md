@@ -1,5 +1,10 @@
 
 
+## 3.8.36
+
+* `fix`: `Calendar` show slideUp calendar when native keyboard still exists will cause wrong panel height
+
+
 ## 3.8.35 / 2018-05-16
 
 * `fix`: `ActionSheet` cannot be closed programmatically.
