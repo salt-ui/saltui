@@ -61,17 +61,14 @@ const createActionSheet = (type, options, callback) => {
     }
   };
   const content = <TruePanel {...options} onItemClick={handleItemClick} />;
-  Popup.show(content, {
+  return Popup.show(content, {
     maskClosable,
   });
 };
 
-ActionSheet.show = (options, callback) => {
-  createActionSheet('NORMAL', options, callback);
-};
+ActionSheet.show = (options, callback) => createActionSheet('NORMAL', options, callback);
 
-ActionSheet.showShare = (options, callback) => {
-  createActionSheet('SHARE', options, callback);
-};
+ActionSheet.showShare = (options, callback) => createActionSheet('SHARE', options, callback);
+
 
 export default ActionSheet;

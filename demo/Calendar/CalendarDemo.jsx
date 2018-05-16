@@ -65,6 +65,7 @@ class CalendarDemo extends React.Component {
   render() {
     return (
       <div className="t-calendar-demo">
+        <input />
         <Button onClick={() => {
           this.setState({
             visible: true,

@@ -1,7 +1,11 @@
 
 
+## 3.8.35 / 2018-05-16
 
-## 3.8.34 
+* `fix`: `ActionSheet` cannot be closed programmatically.
+
+
+## 3.8.34 / 2018-05-15
 
 * `docs`: `Tab` activeKey should not be number
 * `fix`: `CascadeSelectField` right arrow is not shown

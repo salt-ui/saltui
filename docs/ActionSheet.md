@@ -36,4 +36,10 @@
 点击动作后的回调函数，支持返回 Promise，buttonIndex 为传入 options 数组的 index  
 取消时也会触发该动作，buttonIndex 为 -1  
 
-#### .close() -  关闭动作面板
+
+#### 返回值
+
+```jsx
+const instance = ActionSheet.show(options); 
+instance.close(); // 手动关闭当前面板
+```

@@ -8,15 +8,15 @@
 
 import React from 'react';
 import Button from 'salt-button';
+import ActionSheet from 'salt-action-sheet';
 import Icon from 'salt-icon';
 
-import ActionSheet from 'salt-action-sheet';
 
 const iconStyle = {
-  width: "40px",
-  height: "40px",
-  fill: "rgba(31,56,88,.4)"
-}
+  width: '40px',
+  height: '40px',
+  fill: 'rgba(31,56,88,.4)',
+};
 
 const iconList = [
   { icon: <img role="presentation" src="https://zos.alipayobjects.com/rmsportal/WmEzpOsElbbvgmrexFSH.png" />, title: '发送朋友' },
@@ -38,7 +38,7 @@ class ActionSheetDemo extends React.Component {
     return (
       <div>
         <Button onClick={() => {
-          ActionSheet.show({
+          window.instance = ActionSheet.show({
             options: ['操作一', '操作二', '操作三', '清空聊天记录'],
             destructiveButtonIndex: 3,
             title: '我是标题',
@@ -47,7 +47,8 @@ class ActionSheetDemo extends React.Component {
             console.log(index);
           });
         }}
-        >默认状态</Button>
+        >默认状态
+        </Button>
         <Button onClick={() => {
           ActionSheet.showShare({
             options: iconList,
@@ -56,7 +57,8 @@ class ActionSheetDemo extends React.Component {
             console.log(index);
           });
         }}
-        >分享面板</Button>
+        >分享面板
+        </Button>
         <Button onClick={() => {
           ActionSheet.showShare({
             options: [iconList, [iconList[5], iconList[6]]],
@@ -65,7 +67,8 @@ class ActionSheetDemo extends React.Component {
             console.log(index, rowIndex);
           });
         }}
-        >分享面板(双排)</Button>
+        >分享面板(双排)
+        </Button>
       </div>
     );
   }
