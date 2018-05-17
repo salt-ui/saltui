@@ -1,5 +1,10 @@
 
 
+## 3.8.37 / 2018-05-17
+
+* `fix`: `RefreshControl` enable GPU acceleration in area-control to fix render bug in iOS
+
+
 ## 3.8.36 / 2018-05-17
 
 * `fix`: `Calendar` show slideUp calendar when native keyboard still exists will cause wrong panel height
