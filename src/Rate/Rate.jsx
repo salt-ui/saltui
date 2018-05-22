@@ -117,10 +117,10 @@ Context.prefixClass('rate'),
           },
 )}
       >
-        <div className={classnames({ 't-FBH': true, 'show-center': t.props.size === 'large' })} style={{ width: unitize((width + 3) * 5) }}>
+        {!t.props.readOnly ? <div className={classnames({ 't-FBH': true, 'show-center': t.props.size === 'large' })} style={{ width: unitize((width + 3) * 5) }}>
           {items}
-        </div>
-        {t.props.showTip ?
+        </div> : ''}
+        {(t.props.showTip || t.props.readOnly) ?
           <div className="rate-tip" style={{ lineHeight: unitize(width), textAlign: t.props.size === 'large' ? 'center' : 'left' }}>{t.props.scoreTips[value - 1]}</div>
           : ''}
       </div>
