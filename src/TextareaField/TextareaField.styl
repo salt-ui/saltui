@@ -14,9 +14,10 @@
     background-color: transparent;
     z-index: 2;
     resize: none;
+    color: $dark-alpha-2;
 
     &::-webkit-scrollbar {
-    display: none;
+        display: none;
     }
 
     &::-webkit-input-placeholder {
@@ -25,6 +26,9 @@
 
     &[readonly] {
         color: $dark-alpha-2;
+    }
+    .{$prefix}-field-disabled & {
+        color: $normal-alpha-5;
     }
 }
 

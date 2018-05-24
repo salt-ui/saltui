@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import CheckRound from 'salt-icon/lib/CheckRound';
 import FieldRequired from 'salt-icon/lib/FieldRequired';
+import AngleRight from 'salt-icon/lib/AngleRight';
 import Context from '../Context';
 import Group from '../Group';
 import Field from '../Field';
@@ -70,7 +71,7 @@ class CheckboxField extends React.Component {
           selectedText = selectedText + this.props.titleBreakStr + item.text;
         } else {
           selectedText =
-          selectedText + this.props.titleBreakStr + (item.slotText ? item.slotText : item.text);
+            selectedText + this.props.titleBreakStr + (item.slotText ? item.slotText : item.text);
         }
       }
     });
@@ -111,7 +112,7 @@ class CheckboxField extends React.Component {
   /* eslint-enable no-param-reassign */
 
   handleClick() {
-    if (!this.props.readOnly) {
+    if (!this.props.readOnly && !this.props.disabled) {
       this.slot.show();
     }
   }
@@ -212,19 +213,21 @@ class CheckboxField extends React.Component {
 
   renderSlot() {
     const t = this;
+    const icon = !t.props.readOnly ? (
+      <AngleRight
+        className={classnames(prefixClass('checkbox-field-icon'), {
+          [`${prefixClass('checkbox-field-icon')}-slot`]: true,
+          [prefixClass('hide')]: t.props.readOnly,
+        })}
+        width={26}
+        height={26}
+        onClick={t.handleClick}
+      />
+    ) : null;
     return (
       <Field
         {...t.props}
-        icon={{
-          className: classnames(prefixClass('checkbox-field-icon'), {
-            [`${prefixClass('checkbox-field-icon')}-slot`]: true,
-            [prefixClass('hide')]: t.props.readOnly,
-          }),
-          name: 'angle-right',
-          width: 24,
-          height: 24,
-          onClick: t.handleClick,
-        }}
+        icon={icon}
         className={classnames(prefixClass('checkbox-field'), {
           [t.props.className]: !!t.props.className,
         })}
@@ -271,7 +274,7 @@ CheckboxField.defaultProps = {
   label: '',
   titleBreakStr: '，',
   data: [],
-  onChange() {},
+  onChange() { },
   placeholder: '',
   maskCloseable: true,
   groupListFlag: true,
@@ -280,6 +283,7 @@ CheckboxField.defaultProps = {
     itemIndent: 16,
   },
   required: false,
+  disabled: false,
   iconPosition: 'left',
 };
 
@@ -297,6 +301,7 @@ CheckboxField.propTypes = {
   groupListFlag: PropTypes.bool,
   groupListArgument: PropTypes.object,
   required: PropTypes.bool,
+  disabled: PropTypes.bool,
   iconPosition: PropTypes.string,
 };
 

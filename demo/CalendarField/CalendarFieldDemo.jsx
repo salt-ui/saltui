@@ -18,12 +18,12 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // value: {
-      //   startDate: '2016-01-02',
-      //   startDateType: 'AM',
-      //   endDate: '2016-01-03',
-      //   endDateType: 'PM',
-      // },
+      value: {
+        startDate: '2016-01-02',
+        startDateType: 'AM',
+        endDate: '2016-01-03',
+        endDateType: 'PM',
+      },
       // value: {
       //   startDate: 1491111113332,
       //   endDate: 1481111113332, // 错误的情况：endDate < 1491111113332
@@ -32,10 +32,10 @@ class Demo extends React.Component {
       // value: {
       //   value: '2016-01-02',
       // },
-      value: {
-        startDate: null,
-        endDate: null,
-      },
+      // value: {
+      //   startDate: null,
+      //   endDate: null,
+      // },
       // value: {
       //   startDate: null,
       //   endDate: null,
@@ -77,6 +77,8 @@ class Demo extends React.Component {
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">基本演示</Group.Head>
         <Group.List>
           <CalendarField {...props} />
+          <CalendarField {...props} label="查看态" readOnly />
+          <CalendarField {...props} label="禁用" disabled />
         </Group.List>
       </Group>
     );

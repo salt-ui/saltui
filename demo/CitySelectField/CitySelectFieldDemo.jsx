@@ -76,6 +76,12 @@ class Demo extends React.Component {
           districtData={districtData}
         />
         <CitySelectField
+          value={['110000', '110100', '110102']}
+          label="禁用"
+          disabled
+          districtData={districtData}
+        />
+        <CitySelectField
           value={this.state.value4}
           label="级联模式"
           required

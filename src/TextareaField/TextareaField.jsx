@@ -79,7 +79,9 @@ class TextareaField extends React.Component {
 
   render() {
     const t = this;
-    const { placeholder, readOnly, lineHeight } = t.props;
+    const {
+      placeholder, readOnly, lineHeight, disabled,
+    } = t.props;
     const style = {
       // height: t.state.height,
       lineHeight,
@@ -102,6 +104,7 @@ class TextareaField extends React.Component {
           placeholder={placeholder}
           value={t.props.value}
           readOnly={readOnly}
+          disabled={disabled}
           rows={t.state.rows}
           onChange={(e) => { t.handleChange(e); }}
           onFocus={(e) => { t.handleFocus(e); }}

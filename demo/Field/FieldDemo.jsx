@@ -83,6 +83,11 @@ class Demo extends React.Component {
         <Group.List>
           <Field layout="v" label="上下结构（没有 children）" tip={<div>这里是tip这里是tip这里是tip这里是tip这里是tip这里是tip这里是tip这里是tip<a href="https://salt-ui.github.io/" target="_blank">salt-ui</a>这里是tip</div>} />
         </Group.List>
+        <Group.List >
+          <Field label="左右结构（禁用）" disabled icon={<AngleRight {...angleIconProps} />} errMsg="输入有误" toastComponent={Toast}>
+            <div>自定义输入元素的区域, 带图标, 带错误提示，禁用状态</div>
+          </Field>
+        </Group.List>
       </div>
     );
   }

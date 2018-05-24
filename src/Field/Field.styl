@@ -14,6 +14,17 @@ $field-text-color = $dark-alpha-2;
 .{$prefix}-field {
     font-size: $font-size-field-text;
     color: $field-text-color;
+    &-disabled {
+        color: $normal-alpha-5;
+        .{$prefix}-field-label {
+            color: $normal-alpha-5;
+        }
+        .{$prefix}-icon {
+            svg {
+                fill: $normal-alpha-5;
+            }
+        }
+    }
 }
 
 .{$prefix}-field-icon {

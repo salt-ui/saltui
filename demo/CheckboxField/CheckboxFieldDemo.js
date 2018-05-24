@@ -9,6 +9,7 @@
 import Group from 'salt-group';
 
 import CheckboxField from 'salt-checkbox-field';
+import React from 'react';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const CheckboxField = require('../../dist');
@@ -122,6 +123,15 @@ class Demo extends React.Component {
               mode="slot"
               label="多选（slot）"
               required={false}
+            />
+          </Group.List>
+          <Group.List>
+            <CheckboxField
+              {...CheckboxFieldProps}
+              mode="slot"
+              label="禁用"
+              required={false}
+              disabled
             />
           </Group.List>
         </Group>

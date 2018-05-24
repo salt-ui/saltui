@@ -17,16 +17,15 @@ import Popup from '../Popup';
 import CascadeTab from './CascadeTab';
 import i18n from './i18n';
 
-function parseProps(p) {
-  const props = cloneDeep(p);
-  let { options, value } = props;
+function parseProps(props) {
+  const { options } = props;
+  const value = cloneDeep(props.value || []);
   let cursor = options;
-  options = [];
-  value = value || [];
+  const newOptions = [];
   const confirmedValue = value.length ? value : [];
   for (let deep = 0; cursor; deep += 1) {
     let index = 0;
-    options[deep] = cursor.map((o, i) => {
+    newOptions[deep] = cursor.map((o, i) => {
       const option = {
         value: o.value,
         text: o.label,
@@ -50,14 +49,14 @@ function parseProps(p) {
       options: [],
       value: values,
       confirmedValue: values,
-      originOptions: p.options,
+      originOptions: props.options,
     };
   }
   return {
-    options,
+    options: newOptions,
     value,
     confirmedValue,
-    originOptions: p.options,
+    originOptions: props.options,
   };
 }
 /* eslint-disable no-param-reassign */
@@ -113,7 +112,7 @@ class CascadeSelectField extends React.Component {
 
   handleClick() {
     const t = this;
-    if (!t.props.readOnly) {
+    if (!t.props.readOnly && !t.props.disabled) {
       if (t.props.mode === 'normal') {
         t.slot.show();
       } else if (t.props.mode === 'complex') {

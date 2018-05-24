@@ -38,7 +38,7 @@ class SelectField extends React.Component {
 
   handleClick() {
     const t = this;
-    if (!t.props.readOnly) {
+    if (!t.props.readOnly && !t.props.disabled) {
       t.slot.show();
     }
   }
@@ -112,6 +112,7 @@ SelectField.defaultProps = {
   placeholder: '',
   className: undefined,
   value: undefined,
+  disabled: false,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -122,8 +123,9 @@ SelectField.propTypes = {
   value: PropTypes.object,
   formatter: PropTypes.func,
   onSelect: PropTypes.func,
-  readOnly: PropTypes.bool,
   placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 SelectField.displayName = 'SelectField';

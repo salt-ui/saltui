@@ -23,6 +23,7 @@ export default class CitySelectField extends Component {
     placeholder: PropTypes.string,
     selectorType: PropTypes.string,
     layout: PropTypes.string,
+    mode: PropTypes.string,
     tip: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.element,
@@ -44,13 +45,15 @@ export default class CitySelectField extends Component {
     placeholder: '请选择',
     tip: '',
     selectorType: 'default', // default | city | province
-    provinceText: "省",
-    cityText: "市",
-    districtText: "区",
+    provinceText: '省',
+    cityText: '市',
+    districtText: '区',
     value: [],
     districtData: [],
     required: false,
     readOnly: false,
+    mode: undefined,
+    layout: undefined,
     onSelect: () => {},
     onCancel: () => {},
   };
@@ -64,6 +67,35 @@ export default class CitySelectField extends Component {
     this.setState(this.initData(nextProps));
   }
 
+  defaultSearchText() {
+    return `请输入${{ province: '省份', city: '城市' }[this.props.selectorType] || '区县'}名称进行搜索`;
+  }
+
+  getPickerValue() {
+    const arr = this.props.value;
+    const len = arr.length;
+    if (len) {
+      let parent = { children: this.props.districtData || [] };
+      const found = !arr.some((childValue) => {
+        if (parent.children) {
+          parent = find(parent.children, childValue);
+          return !parent;
+        }
+        return true;
+      });
+      if (found) {
+        const { label, value } = parent;
+        return {
+          text: label,
+          label,
+          value,
+        };
+      }
+    } else {
+      return undefined;
+    }
+  }
+
   initData(props) {
     let data = clearChildren(props.districtData, props.selectorType);
     if (props.mode === 'picker') {
@@ -74,50 +106,17 @@ export default class CitySelectField extends Component {
           data = joinArray(data.map(province => province.children));
           break;
         default:
-          data = joinArray(
-            joinArray(
-              data.map(province => province.children)
-            ).map(city => city.children)
-          );
+          data = joinArray(joinArray(data.map(province => province.children)).map(city => city.children));
       }
     }
     return {
       value: props.value || [],
-      options: data
+      options: data,
     };
-  }
-  
-  defaultSearchText() {
-    return `请输入${{ 'province': '省份', 'city': '城市' }[this.props.selectorType] || '区县'}名称进行搜索`
-  }
-
-  getPickerValue() {
-    let arr = this.props.value;
-    let len = arr.length;
-    if (len) {
-      let parent = { children: this.props.districtData || [] };
-      let found = !arr.some(childValue => {
-        if (parent.children) {
-          parent = find(parent.children, childValue);
-          return !parent;
-        } else {
-          return true;
-        }
-      })
-      if (found) {
-        let { label, value } = parent
-        return {
-          text: label,
-          label, value
-        }
-      }
-    } else {
-      return undefined;
-    }
   }
 
   pickerSelect(item) {
-    let tree = findTree(this.props.districtData || [], item.value);
+    const tree = findTree(this.props.districtData || [], item.value);
     this.props.onSelect.call(null, tree.map(node => node.value));
   }
 
@@ -127,7 +126,7 @@ export default class CitySelectField extends Component {
 
   render() {
     const {
-      className
+      className,
     } = this.props;
     const { options } = this.state;
     const fieldClassName = classnames(
@@ -135,7 +134,7 @@ export default class CitySelectField extends Component {
       { [className]: !!className },
     );
     if (this.props.mode === 'picker') {
-      return <PickerField
+      return (<PickerField
         grouping
         groupingIndicator
         searchText={this.defaultSearchText()}
@@ -144,17 +143,18 @@ export default class CitySelectField extends Component {
         options={options}
         value={this.getPickerValue()}
         onSelect={this.pickerSelect.bind(this)}
-        formatter={t => t && t.label} />
-    } else {
-      let levels = {'province': 1, 'city': 2}[this.props.selectorType] || 3;
-      let labels = ['provinceText', 'cityText', 'districtText'].map(k => this.props[k]).slice(0, levels);
-      return <CascadeSelectField
-        {...this.props}
-        className={fieldClassName}
-        options={options}
-        mode={this.props.mode === 'slot' ? 'normal' : 'complex'}
-        onSelect={this.cascadeSelect.bind(this)}
-        columns={labels} />
+        formatter={t => t && t.label}
+      />);
     }
+    const levels = { province: 1, city: 2 }[this.props.selectorType] || 3;
+    const labels = ['provinceText', 'cityText', 'districtText'].map(k => this.props[k]).slice(0, levels);
+    return (<CascadeSelectField
+      {...this.props}
+      className={fieldClassName}
+      options={options}
+      mode={this.props.mode === 'slot' ? 'normal' : 'complex'}
+      onSelect={this.cascadeSelect.bind(this)}
+      columns={labels}
+    />);
   }
 }

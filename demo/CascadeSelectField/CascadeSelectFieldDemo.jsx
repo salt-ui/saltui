@@ -104,7 +104,8 @@ class Demo extends React.Component {
           <Group.List>
             <CascadeSelectField locale="en-us" layout="v" label="普通模式" onSelect={t.handleChange.bind(t, 'value')} options={options} value={t.state.value} placeholder="请输入" tip="这里是提示信息" />
             <CascadeSelectField locale="en-us" label="级联模式" mode="complex" onSelect={t.handleChange.bind(t, 'value1')} options={options} value={t.state.value1} placeholder="请输入" columns={columns} />
-            <CascadeSelectField label="只读模式" onSelect={t.handleChange.bind(t, 'value')} options={[]} value={['***']} placeholder="请输入" columns={columns} tip="这里是提示信息" readOnly />
+            <CascadeSelectField label="查看态" onSelect={t.handleChange.bind(t, 'value')} options={options} value={t.state.value} placeholder="请输入" columns={columns} tip="这里是提示信息" readOnly />
+            <CascadeSelectField label="禁用" onSelect={t.handleChange.bind(t, 'value')} options={options} value={t.state.value} placeholder="请输入" columns={columns} tip="这里是提示信息" disabled />
           </Group.List>
         </Group>
       </div>

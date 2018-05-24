@@ -25,7 +25,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      t1: '',
+      t1: '111111111111',
       t2: '',
       number: '',
     };
@@ -108,7 +108,7 @@ class Demo extends React.Component {
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">前缀</Group.Head>
         <Group.List>
           <TextField
-            label="前缀"
+            label="前缀" disabled
             value={t.state.t1}
             onChange={(value) => { t.handleTextChange('t1', value); }}
             placeholder="请输入"
@@ -121,7 +121,7 @@ class Demo extends React.Component {
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">后缀</Group.Head>
         <Group.List>
           <TextField
-            label="后缀" value={t.state.t1}
+            label="后缀" value={t.state.t1} disabled
             onChange={(value) => { t.handleTextChange('t1', value); }}
           >
             <RightAddon>
@@ -132,7 +132,7 @@ class Demo extends React.Component {
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">计数器</Group.Head>
         <Group.List>
           <TextField
-            label="计数器" value={t.state.t1}
+            label="计数器" value={t.state.t1} disabled
             onChange={(value) => { t.handleTextChange('t1', value); }}
           >
             <Count total={20} length={t.state.t1.length} />
@@ -141,7 +141,7 @@ class Demo extends React.Component {
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">即时校验</Group.Head>
         <Group.List>
           <TextField
-            label="即时校验" value={t.state.t1}
+            label="即时校验" value={t.state.t1} disabled 
             onChange={(value) => { t.handleTextChange('t1', value); }}
             errMsg={t.state.errMsg}
             toastComponent={Toast}

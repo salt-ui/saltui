@@ -18,7 +18,7 @@ const requiredTag = (
 
 const Label = props => (
   <div
-    className={classnames(prefixClass(`field-layout-${props.layout}-label`), {
+    className={classnames(prefixClass(`field-label field-layout-${props.layout}-label`), {
       [props.className]: !!props.className,
     })}
   >
@@ -39,6 +39,7 @@ Label.defaultProps = {
   layout: undefined,
   required: undefined,
   right: undefined,
+  disabled: false,
 };
 
 Label.propTypes = {
@@ -46,6 +47,7 @@ Label.propTypes = {
   className: PropTypes.string,
   layout: PropTypes.oneOf(['h', 'v']),
   required: PropTypes.bool,
+  disabled: PropTypes.bool,
   right: PropTypes.node,
 };
 

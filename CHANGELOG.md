@@ -1,5 +1,9 @@
 
 
+## 3.8.38 / 2018-05-24
+
+* `fix`: `CascadeSelectField` low performance parseProps
+
 ## 3.8.37 / 2018-05-17
 
 * `fix`: `RefreshControl` enable GPU acceleration in area-control to fix render bug in iOS

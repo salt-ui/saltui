@@ -193,8 +193,9 @@ class PhotoFieldPane extends React.Component {
                 : null}
             </div>
           }
-        />
-        {this.renderPhotoList()}
+        >
+          {this.renderPhotoList()}
+        </Field>
       </div>
     );
   }

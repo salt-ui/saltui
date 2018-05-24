@@ -63,6 +63,7 @@ class TextField extends React.Component {
             type={t.props.type}
             value={t.props.value}
             readOnly={t.props.readOnly}
+            disabled={t.props.disabled}
             onChange={(e) => { t.handleChange(e); }}
             onFocus={(e) => { t.handleFocus(e); }}
             onBlur={(e) => { t.handleBlur(e); }}
@@ -74,8 +75,10 @@ class TextField extends React.Component {
 
 
   renderClear(addons) {
-    const { value, allowClear, readOnly } = this.props;
-    if (value && allowClear && !readOnly) {
+    const {
+      value, allowClear, readOnly, disabled,
+    } = this.props;
+    if (value && allowClear && !readOnly && !disabled) {
       return (
         <CrossRound
           onClick={(e) => { this.props.onChange('', e); }}
@@ -120,6 +123,7 @@ TextField.defaultProps = {
   onBlur: Context.noop,
   placeholder: '',
   readOnly: false,
+  disabled: false,
   type: 'text',
   value: '',
   allowClear: true,
@@ -139,6 +143,7 @@ TextField.propTypes = {
   value: PropTypes.string,
   children: PropTypes.any,
   allowClear: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 TextField.displayName = 'TextField';

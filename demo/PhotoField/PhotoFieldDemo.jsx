@@ -50,9 +50,7 @@ class Demo extends React.Component {
   }
 
   onDelete(index) {
-    const photoList = this.state.photoList.filter((item, i) =>
-      index !== i
-    ) || [];
+    const photoList = this.state.photoList.filter((item, i) => index !== i) || [];
 
     this.setState({
       photoList,
@@ -75,7 +73,7 @@ class Demo extends React.Component {
           max={4}
           maxUpload={9}
           name="file"
-          readOnly={false}
+          readOnly={true}
           url="http://eternalsky.me:8122/file/upload?sleep=10000"
           photoList={this.state.photoList}
           tip="这里是提示信息"

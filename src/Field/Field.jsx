@@ -16,7 +16,7 @@ import Label from './Label';
 
 class Field extends React.Component {
   renderErrMsg() {
-    if (!this.props.errMsg) return null;
+    if (!this.props.errMsg || this.props.readOnly || this.props.disabled) return null;
     const Toast = this.props.toastComponent;
     return (
       <NoteRound
@@ -51,16 +51,19 @@ class Field extends React.Component {
 
   renderTip() {
     const t = this;
-    if (!t.props.readOnly && (t.props.tip || (t.props.errMsg && t.props.showErrInTip))) {
-      const tip = t.props.errMsg || t.props.tip;
-      const hasError = t.props.errMsg && t.props.showErrInTip;
+    const {
+      readOnly, disabled, tip, errMsg, showErrInTip, layout,
+    } = t.props;
+    if (!readOnly && !disabled && (tip || (errMsg && showErrInTip))) {
+      const message = errMsg || tip;
+      const hasError = errMsg && showErrInTip;
       return (
         <div className={classnames(prefixClass('field-box FBH field-tip-box'), {
           [prefixClass('field-tip-box-error')]: hasError,
         })}
         >
-          {t.props.layout === 'h' ? t.renderLabel({ className: prefixClass('field-tip-placeholder') }) : null}
-          <div className={prefixClass('FBH FBAC LH1_5 field-tip')}>{tip}</div>
+          {layout === 'h' ? t.renderLabel({ className: prefixClass('field-tip-placeholder') }) : null}
+          <div className={prefixClass('FBH FBAC LH1_5 field-tip')}>{message}</div>
         </div>
       );
     }
@@ -90,7 +93,7 @@ class Field extends React.Component {
   renderContent() {
     const t = this;
     const {
-      children, extra, icon, errMsg, layout, tappable, multiLine, showErrInTip,
+      children, extra, icon, errMsg, layout, tappable, multiLine, showErrInTip, disabled,
     } = t.props;
     if (layout === 'v' && !children && !extra && !icon && !errMsg) {
       return null;
@@ -98,17 +101,17 @@ class Field extends React.Component {
     return (
       <div
         className={classnames(prefixClass('field-box field-content-box FBH'), {
-            [prefixClass('TE')]: tappable,
-            [prefixClass('FBAC')]: !multiLine,
-          })}
+          [prefixClass('TE')]: tappable,
+          [prefixClass('FBAC')]: !multiLine,
+        })}
       >
         {
-            layout === 'h' ? t.renderLabel() : null
-          }
+          layout === 'h' ? t.renderLabel() : null
+        }
         <div
           className={classnames(prefixClass('FB1 PR'), {
-              [prefixClass('field-multi')]: multiLine,
-            })}
+            [prefixClass('field-multi')]: multiLine,
+          })}
         >
           {children}
         </div>
@@ -127,6 +130,7 @@ class Field extends React.Component {
     return (
       <div
         className={classnames(prefixClass('field'), {
+          [prefixClass('field-disabled')]: t.props.disabled,
           [t.props.className]: !!t.props.className,
         })}
       >
@@ -145,6 +149,7 @@ Field.defaultProps = {
   tappable: false,
   required: false,
   readOnly: false,
+  disabled: false,
   multiLine: false,
   layout: 'h',
   tip: '',
@@ -162,6 +167,7 @@ Field.propTypes = {
   required: PropTypes.bool,
   tappable: PropTypes.bool,
   readOnly: PropTypes.bool,
+  disabled: PropTypes.bool,
   multiLine: PropTypes.bool,
   layout: PropTypes.oneOf(['h', 'v']),
   tip: PropTypes.oneOfType([

@@ -51,6 +51,7 @@ class DayField extends React.Component {
       layout: t.props.layout,
       tip: t.props.tip,
       readOnly: t.props.readOnly,
+      disabled: t.props.disabled,
     };
   }
 
@@ -97,7 +98,7 @@ class DayField extends React.Component {
 
   handleFieldClick() {
     const t = this;
-    if (t.props.readOnly) {
+    if (t.props.readOnly || t.props.disabled) {
       return;
     }
     t.setState({
