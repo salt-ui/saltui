@@ -295,12 +295,18 @@ class ScrollList extends React.Component {
       return null;
     }
     const prevs = children.slice(0, children.length - 1);
-    return prevs.map((element, i) => React.cloneElement(element, {
-      /* eslint-disable react/no-array-index-key */
-      key: `prev-sibling-${i}`,
-      /* eslint-enable react/no-array-index-key */
-      index: i,
-    }));
+    const prevSiblings = [];
+    prevs.forEach((element, i) => {
+      if (React.isValidElement(element)) {
+        prevSiblings.push(React.cloneElement(element, {
+          /* eslint-disable react/no-array-index-key */
+          key: `prev-sibling-${i}`,
+          /* eslint-enable react/no-array-index-key */
+          index: i,
+        }));
+      }
+    });
+    return prevSiblings;
   }
 
   renderList() {

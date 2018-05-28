@@ -1,8 +1,12 @@
 
 
+## 3.8.39 / 2018-05-28
+
+* `fix`: `ScrollList` vaildate element in `renderPrevSiblings`
+
 ## 3.8.38 / 2018-05-24
 
-* `fix`: `CascadeSelectField` low performance parseProps
+* `fix`: `CascadeSelectField` low perf`ormance parseProps
 
 ## 3.8.37 / 2018-05-17
 

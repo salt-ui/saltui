@@ -14,7 +14,7 @@ import './ScrollListDemo.styl';
 
 
 // 渲染demo
-// import Demo from './ScrollListDemo';
-import Demo from './dataSourceDemo';
+import Demo from './ScrollListDemo';
+// import Demo from './dataSourceDemo';
 
 export default Demo;
