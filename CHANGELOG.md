@@ -1,5 +1,9 @@
 
 
+## 3.8.40 / 2018-05-30
+
+* `fix`: `Popup` window will scroll to the top if Popup show
+
 ## 3.8.39 / 2018-05-28
 
 * `fix`: `ScrollList` vaildate element in `renderPrevSiblings`

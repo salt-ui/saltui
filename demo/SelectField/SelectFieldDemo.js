@@ -49,6 +49,7 @@ class Demo extends React.Component {
     const t = this;
     return (
       <div>
+        <div style={{ height: 500 }} />
         <Group>
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">滚动选择器演示</Group.Head>
           <Group.List>
