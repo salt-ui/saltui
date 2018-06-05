@@ -60,6 +60,13 @@ class SelectField extends React.Component {
     });
   }
 
+  renderIcon() {
+    if (this.props.icon) {
+      return this.props.icon;
+    }
+    return null;
+  }
+
   render() {
     const t = this;
     const icon = !t.props.readOnly ? (
@@ -78,16 +85,19 @@ class SelectField extends React.Component {
           [t.props.className]: !!t.props.className,
         })}
       >
-        <div onClick={t.handleClick.bind(t)}>
-          {!t.state.confirmedValue[0] ? <div className={Context.prefixClass('omit select-field-placeholder')}>{t.props.placeholder}</div> : ''}
-          <div className={Context.prefixClass('select-field-value FBH FBAC')}>
-            <span
-              className={classnames(Context.prefixClass('FB1 omit'), {
+        <div onClick={t.handleClick.bind(t)} className={Context.prefixClass('select-field-content')}>
+          {!t.state.confirmedValue[0] ? <div className={Context.prefixClass('omit select-field-placeholder')}>{t.props.placeholder}</div> : null}
+          {t.state.confirmedValue[0] ? (
+            <div className={Context.prefixClass('select-field-value FBH FBAC')}>
+              <span
+                className={classnames(Context.prefixClass('FB1 omit'), {
                 [Context.prefixClass('select-field-readonly')]: !!t.props.readOnly,
               })}
-            >{t.props.formatter(t.state.confirmedValue[0])}
-            </span>
-          </div>
+              >{t.props.formatter(t.state.confirmedValue[0])}
+              </span>
+            </div>
+          ) : null}
+          {t.renderIcon(icon)}
         </div>
         <Slot
           ref={(c) => { this.slot = c; }}
@@ -113,6 +123,7 @@ SelectField.defaultProps = {
   className: undefined,
   value: undefined,
   disabled: false,
+  icon: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -126,6 +137,7 @@ SelectField.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   disabled: PropTypes.bool,
+  icon: PropTypes.node,
 };
 
 SelectField.displayName = 'SelectField';

@@ -193,3 +193,19 @@ onSelect(value) {
 
 <SelectField value={this.state.value} onSelect={this.onSelect}></SelectField>
 ```
+
+### icon
+
+
+描述：额外的 icon，渲染在箭头前面。
+类型：`React Element`
+默认：` 无`
+必选：否
+
+示例：
+
+```jsx
+import PlusCircle from 'salt-icon/lib/PlusCircle'
+
+<SelectField icon={<PlusCircle onClick={(e) => { e.stopPropagation(); }} />} />
+...

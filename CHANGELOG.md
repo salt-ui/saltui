@@ -1,8 +1,9 @@
 
 
-## 3.8.40 / 2018-05-30
+## 3.8.40 / 2018-06-05
 
 * `fix`: `Popup` window will scroll to the top if Popup show
+* `feat`: `SelectField` support prop `icon`
 
 ## 3.8.39 / 2018-05-28
 

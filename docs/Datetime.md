@@ -45,21 +45,22 @@
 示例：`<Datetime minDate={new Date(1900, 0, 1).getTime()} />` 
 
 ### maxDate
-描述：最大可选日期。
-类型： `number, string, date`
-默认值： `new Date(2051, 0, 1).getTime() - 1`
-示例：`<Datetime maxDate={new Date(2051, 0, 1).getTime() - 1} />`
+描述：最大可选日期。  
+类型： `number, string, date`  
+默认值： `new Date(2051, 0, 1).getTime() - 1`  
+示例：`<Datetime maxDate={new Date(2051, 0, 1).getTime() - 1} />`  
 
 ### minuteStep
-描述： 分钟数递增步长设置
-类型： `Number`
-默认值： 1
-示例：`<Datetime minuteStep={5} />`
+描述： 分钟数递增步长设置  
+类型： `Number`  
+默认值： 1  
+示例：`<Datetime minuteStep={5} />`  
+
 ### disabledDate
-描述： 仅能禁止日期（年月日）
-类型： `function`
-返回值类型：`Array`
-示例
+描述： 仅当 columns 是 Datetime.YMD 时生效。  
+类型： `function`  
+返回值类型：`Array`  
+示例  
  ```javascript
  /**
 	* 数组子项是一个 start 到 end 的时间区间对象（包含 start 和 end 节点）
@@ -81,7 +82,7 @@
 	new Date(2018,0,1)
  ]
  ```
-示例：`<Datetime disabledDate={() => [ { start: new Deat(2002,0,1) },{start: new Date(2017, 0, 1), end: new Date(2017,5,1)}, new Date(2018, 11,1), { start: new Deat(2020,0,1) } ]} />`
+示例：`<Datetime disabledDate={() => [ { start: new Date(2002,0,1) },{start: new Date(2017, 0, 1), end: new Date(2017,5,1)}, new Date(2018, 11,1), { start: new Date(2020,0,1) } ]} />`
 ### slotRef  
 描述：通过 react ref 的方式获取 slot 浮窗的 ref，主要用于控制组件显隐。
 类型：`Function`  
