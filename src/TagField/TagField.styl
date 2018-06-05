@@ -1,0 +1,87 @@
+.{$prefix}-tag-field-tags {
+    padding: 12px 9px 0;
+}
+
+.{$prefix}-tag-field-action {
+    color: $function-blue;
+    font-size: 14px;
+    margin: 0 4px;
+}
+
+.{$prefix}-tag-field-item {
+    display: inline-block;
+    width: calc((100% / 3) - 18px);
+    margin: 0 9px;
+    text-align: center;
+    height: 36px;
+    line-height: 36px;
+    color: $dark-alpha-3;
+    background: $normal-alpha-8;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    padding: 0 8px;
+    position: relative;
+}
+
+.{$prefix}-tag-field-item-text {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.{$prefix}-tag-field-item-icon-delete {
+    svg {
+        fill: $normal-alpha-5;
+    }
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+.{$prefix}-tag-field-dialog-content {
+    margin-top: 7px;
+    margin-bottom: 11px;
+}
+
+.{$prefix}-tag-field-dialog-input {
+    padding: 0 16px;
+    outline: none;
+    border: 1px solid $normal-alpha-6;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+    color: $dark-alpha-3;
+    width: 100%;
+    font-size: 14px;
+}
+
+.{$prefix}-tag-field-dialog-error {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    color: $function-red;
+    line-height: 1.5;
+    margin-top: 8px;
+}
+
+.{$prefix}-tag-field-dialog-error-icon {
+    svg {
+        fill: $function-red;
+    }
+
+    margin-right: 6px;
+}
+
+.{$prefix}-tag-field-icon {
+    svg {
+        fill: $normal-alpha-5;
+    }
+
+    &.active svg {
+        fill: $normal-alpha-4;
+    }
+}

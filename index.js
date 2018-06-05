@@ -61,6 +61,7 @@
   import Tab from './lib/Tab';
   import TabBar from './lib/TabBar';
   import Table from './lib/Table';
+  import TagField from './lib/TagField';
   import TextField from './lib/TextField';
   import TextareaField from './lib/TextareaField';
   import Timeline from './lib/Timeline';
@@ -134,6 +135,7 @@ const __SALT_BUNDLE__ = {
   Tab,
   TabBar,
   Table,
+  TagField,
   TextField,
   TextareaField,
   Timeline,
