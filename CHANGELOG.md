@@ -1,5 +1,9 @@
 
 
+## 3.8.41 
+
+* `fix`: `PickerField` arrow icon is missing
+
 ## 3.8.40 / 2018-06-05
 
 * `fix`: `Popup` window will scroll to the top if Popup show

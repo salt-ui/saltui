@@ -8,6 +8,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import AngleRight from 'salt-icon/lib/AngleRight';
 import Context from '../Context';
 import Field from '../Field';
 import Popup from '../Popup';
@@ -102,15 +103,17 @@ class PickerField extends React.Component {
 
   render() {
     const t = this;
-    const icon = t.props.readOnly ? null : {
-      className: Context.prefixClass('picker-field-icon'),
-      name: 'angle-right',
-      width: 26,
-      height: 26,
-      onClick: (e) => {
-        t.handleClick(e);
-      },
-    };
+
+    const icon = !t.props.readOnly ? (
+      <AngleRight
+        className={Context.prefixClass('picker-field-icon')}
+        width={26}
+        height={26}
+        onClick={(e) => {
+          t.handleClick(e);
+        }}
+      />
+    ) : null;
 
     const panelProps = {
       value: t.state.confirmedValue,
