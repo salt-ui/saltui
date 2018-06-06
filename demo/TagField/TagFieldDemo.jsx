@@ -23,11 +23,17 @@ export default class Demo extends React.Component {
     });
   }
 
+  handleChange = (tags) => {
+    this.setState({
+      list: tags,
+    });
+  }
+
   render() {
     return (
-      <TagField label="标签" tip="这是一句描述，这是一句描述，这是一句描述" onAdd={this.handleAdd}>
+      <TagField label="标签" tip="这是一句描述，这是一句描述，这是一句描述" onChange={this.handleChange}>
         {this.state.list.map((key, index) => (
-          <Item tag={key} key={index} canDelete onDelete={this.handleDelete}>{key}</Item>
+          <Item tag={key} key={index} canDelete >{key}</Item>
         ))}
       </TagField>
     );

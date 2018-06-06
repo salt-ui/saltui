@@ -14,11 +14,17 @@ import i18n from './i18n';
 export default class TagField extends React.Component {
   static displayName = 'TagField';
 
-  static propTypes = { ...Field.propTypes, locale: PropTypes.string, onAdd: PropTypes.func };
+  static propTypes = {
+    ...Field.propTypes,
+    locale: PropTypes.string,
+    onAdd: PropTypes.func,
+    onChange: PropTypes.func,
+  };
 
   static defaultProps = {
     locale: 'zh-cn',
-    onAdd: () => {},
+    onAdd: () => { },
+    onChange: () => { },
   }
 
   static Item = Item;
@@ -46,6 +52,14 @@ export default class TagField extends React.Component {
     });
   }
 
+  handleDelete(tag, onDelete) {
+    if (typeof onDelete === 'function') {
+      onDelete(tag);
+    }
+    const tags = this.getTags();
+    this.props.onChange(tags.filter(key => key !== tag));
+  }
+
   handleEdit = () => {
     this.setState({
       canEdit: true,
@@ -61,6 +75,7 @@ export default class TagField extends React.Component {
       });
     } else {
       this.props.onAdd(this.state.inputValue);
+      this.props.onChange([this.state.inputValue].concat(tags));
       this.setState({
         dialogShow: false,
       });
@@ -72,39 +87,32 @@ export default class TagField extends React.Component {
       <FoldablePane foldHeight={168} isFold>
         <div className={Context.prefixClass('tag-field-tags')}>
           {React.Children.map(this.props.children, child =>
-             React.cloneElement(child, { canEdit: this.state.canEdit }))}
+            React.cloneElement(child, {
+              canEdit: this.state.canEdit,
+              onDelete: (tag) => { this.handleDelete(tag, child.props.onDelete); },
+            }))}
         </div>
       </FoldablePane>
     );
   }
 
   renderAction() {
-    const { readOnly, locale } = this.props;
-    // const iconProps = {
-    //   className: classnames(Context.prefixClass('tag-field-icon'), {
-    //     active: !readOnly,
-    //   }),
-    //   // name: 'plus-circle',
-    //   width: 20,
-    //   height: 20,
-    //   onClick: (e) => { this.handleClick(e); },
-    // };
-    // const icon = !readOnly ? <PlusCircle {...iconProps} /> : null;
-    // return icon;
-
+    const { readOnly, locale, children } = this.props;
     if (readOnly) return null;
-
+    const childrenCount = React.Children.count(children);
     return (
       <div className={Context.prefixClass('tag-field-actions')}>
+        {childrenCount ? (
+          <span
+            className={Context.prefixClass('tag-field-action')}
+            onClick={this.handleEdit}
+          >{i18n[locale].edit}
+          </span>
+        ) : null}
         <span
           className={Context.prefixClass('tag-field-action')}
           onClick={this.handleAdd}
         >{i18n[locale].add}
-        </span>
-        <span
-          className={Context.prefixClass('tag-field-action')}
-          onClick={this.handleEdit}
-        >{i18n[locale].edit}
         </span>
       </div>
     );

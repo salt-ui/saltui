@@ -1,6 +1,11 @@
 
 
-## 3.8.41 
+## 3.8.42 / 2018-06-06
+
+* `feat`: new component `TagField`
+
+
+## 3.8.41 / 2018-06-05
 
 * `fix`: `PickerField` arrow icon is missing
 
