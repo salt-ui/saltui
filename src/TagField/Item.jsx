@@ -26,11 +26,11 @@ export default class TagFieldItem extends React.Component {
     this.props.onDelete(this.props.tag);
   }
   render() {
-    const { canDelete, canEdit, children } = this.props;
+    const { canDelete, canEdit, tag } = this.props;
     return (
       <div className={Context.prefixClass('tag-field-item')}>
         <div className={Context.prefixClass('tag-field-item-text')}>
-          {children}
+          {tag}
         </div>
         {(canEdit && canDelete) ? <CrossRound
           width={20}

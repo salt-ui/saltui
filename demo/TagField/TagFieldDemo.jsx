@@ -7,7 +7,7 @@ export default class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: ['用户体验', '精品打造', '精益求精', '用户体验', '精品打造', '精益求精'],
+      list: ['用户体验', '精品打造', '精益求精', '用户体验2', '精品打造2', '精益求精2'],
     };
   }
 
@@ -33,7 +33,7 @@ export default class Demo extends React.Component {
     return (
       <TagField label="标签" tip="这是一句描述，这是一句描述，这是一句描述" onChange={this.handleChange}>
         {this.state.list.map((key, index) => (
-          <Item tag={key} key={index} canDelete >{key}</Item>
+          <Item tag={key} key={index} canDelete />
         ))}
       </TagField>
     );
