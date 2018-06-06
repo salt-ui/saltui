@@ -81,7 +81,7 @@ class RadioField extends React.Component {
         onClick={t.showPopup.bind(t)}
       />
     ) : null;
-    let currentValue = '';
+    let currentValue;
     t.props.data.some((item) => {
       if (item.checked) {
         currentValue = item;
@@ -105,7 +105,7 @@ class RadioField extends React.Component {
               className={classnames(prefixClass('FB1 omit'), {
                 [prefixClass('radio-field-readonly')]: !!t.props.readOnly,
               })}
-            >{t.props.formatter(currentValue)}
+            >{currentValue ? t.props.formatter(currentValue) : null}
             </span>
           </div>
         </div>
