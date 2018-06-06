@@ -1,5 +1,10 @@
 
 
+## 3.8.44 / 2018-06-06
+
+* `fix`: `Popup` mask position bug if page is scrolled
+* `fix`: `RadioField` render bug if no item is checked
+
 ## 3.8.42 / 2018-06-06
 
 * `feat`: new component `TagField`

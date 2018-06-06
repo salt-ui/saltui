@@ -7,8 +7,8 @@
  */
 
 import Group from 'salt-group';
-
 import SelectField from 'salt-select-field';
+import React from 'react';
 import AngleRight from 'salt-icon/lib/AngleRight';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
@@ -50,6 +50,7 @@ class Demo extends React.Component {
     const t = this;
     return (
       <div>
+        <div style={{ marginTop: 800 }} />
         <Group>
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">滚动选择器演示</Group.Head>
           <Group.List>
