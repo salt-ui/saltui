@@ -1,5 +1,9 @@
 
 
+## 3.8.45 / 2018-06-07
+
+* `fix`: `Toast` zIndex lower than Popup
+
 ## 3.8.44 / 2018-06-06
 
 * `fix`: `Popup` mask position bug if page is scrolled
