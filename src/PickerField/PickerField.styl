@@ -10,7 +10,17 @@ $picker-field-readonly-color = $dark-alpha-2;
 $picker-field-searchbar-height = 45px;
 $picker-field-footer-hieight = 48px;
 
+
+.{$prefix}-picker-field-content {
+    display: flex;
+    align-items: center;
+    svg {
+        fill: $normal-alpha-4;
+    }
+}
+
 .{$prefix}-picker-field-value {
+  flex: 1;
   > * {
     vertical-align: middle;
   }
@@ -21,6 +31,7 @@ $picker-field-footer-hieight = 48px;
 }
 
 .{$prefix}-picker-field-placeholder {
+  flex: 1;
   max-width: 100%;
   height: 24px;
   line-height: 24px;

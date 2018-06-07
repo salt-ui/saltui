@@ -9,6 +9,7 @@
 import Group from 'salt-group';
 import PickerField from 'salt-picker-field';
 import React from 'react';
+import AngleRight from 'salt-icon/lib/AngleRight';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const PickerField = require('../../dist');
@@ -104,6 +105,7 @@ class Demo extends React.Component {
               value={t.state.value1}
             />
             <PickerField
+              icon={<AngleRight onClick={(e) => { e.stopPropagation(); alert('1'); }} />}
               fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               fetchDataOnOpen
               label="没有默认值"

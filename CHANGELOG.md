@@ -1,4 +1,6 @@
+## 3.8.46 / 2018-06-07
 
+* `feat`: `PickerField` support prop `icon`
 
 ## 3.8.45 / 2018-06-07
 
@@ -12,7 +14,6 @@
 ## 3.8.42 / 2018-06-06
 
 * `feat`: new component `TagField`
-
 
 ## 3.8.41 / 2018-06-05
 

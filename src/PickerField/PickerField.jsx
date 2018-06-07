@@ -101,6 +101,13 @@ class PickerField extends React.Component {
     return this.props.formatter(this.state.confirmedValue[0]);
   }
 
+  renderIcon() {
+    if (this.props.icon) {
+      return this.props.icon;
+    }
+    return null;
+  }
+
   render() {
     const t = this;
 
@@ -153,17 +160,22 @@ class PickerField extends React.Component {
           onClick={(e) => {
             t.handleClick(e);
           }}
+          className={Context.prefixClass('picker-field-content')}
         >
-          {!t.state.confirmedValue[0] ?
-            <div className={Context.prefixClass('omit picker-field-placeholder')}>{t.props.placeholder || i18n[t.props.locale].placeholder}</div> : ''}
-          <div className={Context.prefixClass('picker-field-value FBH FBAC')}>
-            <span
-              className={classnames(Context.prefixClass('FB1 omit'), {
+          {!t.state.confirmedValue[0]
+            ? <div className={Context.prefixClass('omit picker-field-placeholder')}>{t.props.placeholder || i18n[t.props.locale].placeholder}</div>
+            : ''}
+          {t.state.confirmedValue[0] ? (
+            <div className={Context.prefixClass('picker-field-value FBH FBAC')}>
+              <span
+                className={classnames(Context.prefixClass('FB1 omit'), {
                 [Context.prefixClass('picker-field-readonly')]: t.props.readOnly,
               })}
-            >{t.renderResult()}
-            </span>
-          </div>
+              >{t.renderResult()}
+              </span>
+            </div>
+          ) : null}
+          {t.renderIcon(icon)}
         </div>
         <Popup stopBodyScrolling={false} visible={this.state.popupVisible} animationType="slide-left" content={<SearchPanel {...panelProps} />} />
       </Field>
@@ -198,6 +210,7 @@ PickerField.defaultProps = {
   searchPlaceholder: undefined,
   searchNotFoundContent: undefined,
   locale: 'zh-cn',
+  icon: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -229,6 +242,7 @@ PickerField.propTypes = {
   grouping: PropTypes.bool,
   groupingIndicator: PropTypes.bool,
   locale: PropTypes.string,
+  icon: PropTypes.node,
 };
 
 PickerField.displayName = 'PickerField';

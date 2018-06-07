@@ -6,7 +6,7 @@
 
 ## Simple Usage
 
-```js
+```jsx
 constructor(props) {
   super(props);
   this.state = {
@@ -41,7 +41,7 @@ render() {
 
 示例：
 
-```
+```jsx
 <PickerField className="customClass"></PickerField>
 ```
 
@@ -54,7 +54,7 @@ render() {
 
 示例：
 
-```
+```jsx
 <PickerField label="名称"></PickerField>
 ```
 
@@ -67,7 +67,7 @@ render() {
 
 示例：
 
-```
+```jsx
 var value = {
   text: '江苏',
   value: 'jiangsu'
@@ -93,7 +93,7 @@ var value = {
 
 示例：
 
-```
+```jsx
 <PickerField readOnly={false}></PickerField>
 ```
 
@@ -106,7 +106,7 @@ var value = {
 
 示例：
 
-```
+```jsx
 <PickerField placeholder="请输入"></PickerField>
 ```
 
@@ -119,7 +119,7 @@ var value = {
 
 示例：
 
-```
+```jsx
 <PickerField confirmText="完成"></PickerField>
 ```
 
@@ -132,7 +132,7 @@ var value = {
 
 示例：
 
-```
+```jsx
 <PickerField options={[{ value: 1, text: '选项 1' }, { value: 2, text: '选项 2' }]}></PickerField>
 ```
 
@@ -145,7 +145,7 @@ var value = {
 
 示例：
 
-```
+```jsx
 <PickerField fetchUrl="http://domain.com/url.jsonp"></PickerField>
 ```
 
@@ -158,7 +158,7 @@ var value = {
 
 示例：
 
-```
+```jsx
 <PickerField fetchDataOnOpen={false}></PickerField>
 ```
 
@@ -171,7 +171,7 @@ var value = {
 
 示例：
 
-```
+```jsx
 <PickerField dataType="jsonp"></PickerField>
 ```
 
@@ -184,7 +184,7 @@ var value = {
 
 示例：
 
-```
+```jsx
 beforeFetch(obj) {
   obj.foo = 'bar';
   return obj;
@@ -207,7 +207,7 @@ beforeFetch(obj) {
 
 示例：
 
-```
+```jsx
 fitResponse(response) {
   return {
     content: response.content || response,
@@ -229,7 +229,7 @@ fitResponse(response) {
 
 示例：
 
-```
+```jsx
 afterFetch(arr) {
   return arr.map((item) => {
     item.foo = 'bar';
@@ -251,7 +251,7 @@ afterFetch(arr) {
 
 示例：
 
-```
+```jsx
 <PickerField showSearch={false}></PickerField>
 ```
 
@@ -265,7 +265,7 @@ afterFetch(arr) {
 
 示例：
 
-```
+```jsx
 <PickerField searchDelay={100}></PickerField>
 ```
 
@@ -278,7 +278,7 @@ afterFetch(arr) {
 
 示例：
 
-```
+```jsx
 <PickerField searchPlaceholder="搜索"></PickerField>
 ```
 
@@ -291,7 +291,7 @@ afterFetch(arr) {
 
 示例：
 
-```
+```jsx
 <PickerField searchNotFoundContent="无匹配内容"></PickerField>
 ```
 
@@ -304,7 +304,7 @@ afterFetch(arr) {
 
 示例：
 
-```
+```jsx
 formatItem(value) {
   return value ? (value.text + '自定义文字') : '';
 }
@@ -323,7 +323,7 @@ formatItem(value) {
 
 示例：
 
-```
+```jsx
 import pinyin from 'simple-pinyin';
 getPhonetic(value) {
   return pinyin(value.text, { pinyinOnly: false });
@@ -343,7 +343,7 @@ getPhonetic(value) {
 
 示例：
 
-```
+```jsx
 onSelect(value) {
   this.setState({
     value: value
@@ -364,7 +364,7 @@ onSelect(value) {
 
 示例：
 
-```
+```jsx
 <PickerField multiple></PickerField>
 ```
 
@@ -377,7 +377,7 @@ onSelect(value) {
 
 示例：
 
-```
+```jsx
 <PickerField grouping></PickerField>
 ```
 
@@ -390,7 +390,23 @@ onSelect(value) {
 
 示例：
 
-```
+```jsx
 <PickerField grouping groupingIndicator></PickerField>
 ```
 
+
+### icon
+
+
+描述：额外的 icon，渲染在箭头前面。
+类型：`React Element`
+默认：` 无`
+必选：否
+
+示例：
+
+```jsx
+import PlusCircle from 'salt-icon/lib/PlusCircle'
+
+<PickerField icon={<PlusCircle onClick={(e) => { e.stopPropagation(); }} />} />
+...
