@@ -76,7 +76,7 @@ class Field extends React.Component {
 
   renderLabel(options = {}) {
     const t = this;
-    if (t.props.label) {
+    if (t.props.label || t.props.labelRight) {
       return (
         <Label
           label={t.props.label}

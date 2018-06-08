@@ -1,3 +1,7 @@
+## 3.8.47 / 2018-06-08
+
+* `fix`: `Field` labelRight cannot be shown if label is empty
+
 ## 3.8.46 / 2018-06-07
 
 * `feat`: `PickerField` support prop `icon`
