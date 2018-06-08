@@ -82,6 +82,12 @@ export default class TagField extends React.Component {
     }
   }
 
+  handleDialogCancel = () => {
+    this.setState({
+      dialogShow: false,
+    });
+  }
+
   renderTags() {
     return (
       <FoldablePane foldHeight={168} isFold>
@@ -152,6 +158,7 @@ export default class TagField extends React.Component {
           title={i18n[locale].addTag}
           type="confirm"
           onConfirm={this.handleDialogConfirm}
+          onCancel={this.handleDialogCancel}
         >
           <div className={Context.prefixClass('tag-field-dialog-content')}>
             <input
