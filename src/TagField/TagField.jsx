@@ -89,17 +89,21 @@ export default class TagField extends React.Component {
   }
 
   renderTags() {
-    return (
-      <FoldablePane foldHeight={168} isFold>
-        <div className={Context.prefixClass('tag-field-tags')}>
-          {React.Children.map(this.props.children, child =>
-            React.cloneElement(child, {
-              canEdit: this.state.canEdit,
-              onDelete: (tag) => { this.handleDelete(tag, child.props.onDelete); },
-            }))}
-        </div>
-      </FoldablePane>
-    );
+    const count = React.Children.count(this.props.children);
+    if (count) {
+      return (
+        <FoldablePane foldHeight={168} isFold>
+          <div className={Context.prefixClass('tag-field-tags')}>
+            {React.Children.map(this.props.children, child =>
+              React.cloneElement(child, {
+                canEdit: this.state.canEdit,
+                onDelete: (tag) => { this.handleDelete(tag, child.props.onDelete); },
+              }))}
+          </div>
+        </FoldablePane>
+      );
+    }
+    return null;
   }
 
   renderAction() {

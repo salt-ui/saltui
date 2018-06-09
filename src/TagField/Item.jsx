@@ -6,7 +6,6 @@ import Context from '../Context';
 export default class TagFieldItem extends React.Component {
   static displayName = 'TagFieldItem';
   static propTypes = {
-    children: PropTypes.node.isRequired,
     canEdit: PropTypes.bool,
     canDelete: PropTypes.bool,
     onDelete: PropTypes.func,
