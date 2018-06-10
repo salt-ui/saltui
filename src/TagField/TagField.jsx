@@ -147,14 +147,15 @@ export default class TagField extends React.Component {
     } = this.props;
 
     const fieldProps = {
-      className: classnames(Context.prefixClass('tag-field'), {
-        [className]: !!className,
-      }),
       labelRight: this.renderAction(),
       layout: 'v',
     };
     return (
-      <div>
+      <div
+        className={classnames(Context.prefixClass('tag-field'), {
+          [className]: !!className,
+        })}
+      >
         <Field {...otherProps} {...fieldProps} />
         {this.renderTags()}
         <Dialog
