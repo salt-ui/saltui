@@ -28,7 +28,7 @@ class LayerBody extends React.Component {
     maskCloseable: false,
     hasMask: true,
     visible: false,
-    zIndex: 1000,
+    zIndex: 1010,
     fullScreen: false,
     onMaskClick: undefined,
   };

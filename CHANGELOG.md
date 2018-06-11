@@ -1,3 +1,7 @@
+## 3.8.52 / 2018-06-11
+
+* `fix`: `Layer` up default z-index to `1010`, equal to `Popup`
+
 ## 3.8.51 / 2018-06-11
 
 * `fix`: `CascadeSelect` did not remove dom node when unmount

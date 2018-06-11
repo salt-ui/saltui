@@ -108,11 +108,14 @@ $slot-option-font-size = $font-size-t4;
         background-color: $slot-item-pressed-bgcolor;
       }
 
-      svg {
-        fill: $slot-confirm-color;
+      .{$prefix}-icon {
         margin-left: 5px;
         vertical-align: middle;
         margin-top: -2px;
+
+        svg {
+          fill: $slot-confirm-color;
+        }
       }
 
       > .text {

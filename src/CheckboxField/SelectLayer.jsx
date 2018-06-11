@@ -128,9 +128,9 @@ class SelectLayer extends React.Component {
       >
         <div
           className={
-                        classnames(prefixClass('select-layer'), {
-                            [className]: !!className,
-                        })}
+            classnames(prefixClass('select-layer'), {
+              [className]: !!className,
+            })}
         >
           <div className={prefixClass('select-layer-header FBH FBAC')}>
             <div
@@ -155,31 +155,31 @@ class SelectLayer extends React.Component {
             >
               <ul className="select-list">
                 {
-                                t.props.data.map((m, i) => (
-                                  <li
-                                    key={`item${i}`}
-                                    onClick={t.handleClick.bind(t, m)}
-                                    className={classnames(prefixClass('FBH'), {
-                                                'select-layer-item': true,
-                                                disable: m.disable,
-                                            })}
-                                    role="menuitem"
-                                  >
-                                    {
-                                            iconPosition === 'left' && renderIcon(m.checked, m.disable)
-                                        }
-                                    <div className={classnames(prefixClass('FB1'), {
-                                            'item-content': true,
-                                        })}
-                                    >{m.content || m.text}
-                                    </div>
-                                    {
-                                            iconPosition === 'right' && renderIcon(m.checked, m.disable, 'right')
-                                        }
-                                    {
-                                            m.disable && <div className={prefixClass('checkbox-field-disable-mask')} />
-                                        }
-                                  </li>))}
+                  t.props.data.map((m, i) => (
+                    <li
+                      key={`item${i}`}
+                      onClick={t.handleClick.bind(t, m)}
+                      className={classnames(prefixClass('FBH'), {
+                        'select-layer-item': true,
+                        disable: m.disable,
+                      })}
+                      role="menuitem"
+                    >
+                      {
+                        iconPosition === 'left' && renderIcon(m.checked, m.disable)
+                      }
+                      <div className={classnames(prefixClass('FB1'), {
+                        'item-content': true,
+                      })}
+                      >{m.content || m.text}
+                      </div>
+                      {
+                        iconPosition === 'right' && renderIcon(m.checked, m.disable, 'right')
+                      }
+                      {
+                        m.disable && <div className={prefixClass('checkbox-field-disable-mask')} />
+                      }
+                    </li>))}
               </ul>
             </Scroller>
           </div>
@@ -198,8 +198,8 @@ SelectLayer.defaultProps = {
   confirmText: '完成',
   cancelText: '取消',
   iconPosition: 'left',
-  onConfirm() {},
-  onCancel() {},
+  onConfirm() { },
+  onCancel() { },
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
