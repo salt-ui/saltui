@@ -1,3 +1,7 @@
+## 3.8.51 / 2018-06-11
+
+* `fix`: `CascadeSelect` did not remove dom node when unmount
+
 ## 3.8.47 / 2018-06-08
 
 * `fix`: `Field` labelRight cannot be shown if label is empty

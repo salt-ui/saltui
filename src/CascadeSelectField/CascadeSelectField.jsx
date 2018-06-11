@@ -97,6 +97,7 @@ class CascadeSelectField extends React.Component {
 
     // 数据格式化
     t.state = parseProps(props);
+    t.state.popupVisible = false;
     t.state.confirmedValue = props.value ? t.state.value : [];
     t.handleClick = t.handleClick.bind(t);
     t.handleCancel = t.handleCancel.bind(t);
@@ -123,18 +124,16 @@ class CascadeSelectField extends React.Component {
 
   showCascadeTab() {
     const t = this;
-    Popup.show(<CascadeTab
-      visible
-      title={t.props.label}
-      locale={t.props.locale}
-      confirmText={t.props.confirmText || i18n[t.props.locale].confirmText}
-      cancelText={t.props.cancelText || i18n[t.props.locale].cancelText}
-      options={t.state.originOptions}
-      value={t.state.value}
-      onChange={t.handleChange}
-      onCancel={t.handleCancel}
-      onConfirm={t.handleConfirm}
-    />, { maskClosable: false });
+    t.setState({
+      popupVisible: true,
+    });
+  }
+
+  hideCascadeTab() {
+    const t = this;
+    t.setState({
+      popupVisible: false,
+    });
   }
 
   handleChange(value) {
@@ -145,8 +144,8 @@ class CascadeSelectField extends React.Component {
   handleConfirm(value) {
     const t = this;
     // 确认选中项目
+    t.hideCascadeTab();
     t.props.onSelect(value);
-    Popup.hide();
   }
 
   handleCancel() {
@@ -154,7 +153,7 @@ class CascadeSelectField extends React.Component {
     if (t.state.confirmedValue.length) {
       t.setState(parseState(t.state.confirmedValue, t.props.options));
     }
-    Popup.hide();
+    t.hideCascadeTab();
     t.props.onCancel();
   }
 
@@ -188,6 +187,21 @@ class CascadeSelectField extends React.Component {
             </span>
           </div>
         </div>
+        <Popup
+          content={<CascadeTab
+            title={t.props.label}
+            locale={t.props.locale}
+            confirmText={t.props.confirmText || i18n[t.props.locale].confirmText}
+            cancelText={t.props.cancelText || i18n[t.props.locale].cancelText}
+            options={t.state.originOptions}
+            value={t.state.value}
+            onChange={t.handleChange}
+            onCancel={t.handleCancel}
+            onConfirm={t.handleConfirm}
+          />}
+          visible={this.state.popupVisible}
+          maskClosable={false}
+        />
         {
           this.props.mode === 'normal' ?
             <Slot
