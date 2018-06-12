@@ -18,6 +18,7 @@
 | speed |   多页模式下，TabBar 滑动的速度      |  Number: 1 ~ 10    |    8        |
 | tabBarhammerOptions |   同 hammerOptions，对 TabBar 的滑动手势进行配置      |  Obejct    |    {}        |
 | showExpandAll | 是否显示展开全部按钮 | boolean | true |
+| locale | 组件文案的国际化地区 | string | `zh-cn` |
 
 ### 子项目item
 
