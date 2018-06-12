@@ -409,4 +409,29 @@ onSelect(value) {
 import PlusCircle from 'salt-icon/lib/PlusCircle'
 
 <PickerField icon={<PlusCircle onClick={(e) => { e.stopPropagation(); }} />} />
-...
+```
+
+### resultFormatter
+
+
+描述：自定义选择结果显示格式化方法。
+类型：`function`
+默认：`无`
+必选：否
+
+```jsx
+import PlusCircle from 'salt-icon/lib/PlusCircle'
+
+<PickerField resultFormatter={value => (`我已经选择了${value.length}项`) } />} />
+```
+
+
+### optionLabel
+
+
+描述：指定选项回填值的key。
+类型：`string`
+默认：`无`
+必选：否
+
+
