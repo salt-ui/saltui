@@ -9,6 +9,7 @@ import SwipeableInkTabBar from 'rc-tabs/lib/SwipeableInkTabBar';
 import Bottom from 'salt-icon/lib/DirectionBottom';
 import Top from 'salt-icon/lib/DirectionTop';
 import Context from '../Context';
+import i18n from './i18n';
 
 const { prefixClass } = Context;
 
@@ -73,6 +74,7 @@ export default class Tabs extends React.Component {
     tabBarhammerOptions: PropTypes.any,
     hammerOptions: PropTypes.any,
     inkBarWidth: PropTypes.number,
+    locale: PropTypes.string,
   };
 
   static defaultProps = {
@@ -96,6 +98,7 @@ export default class Tabs extends React.Component {
     children: undefined,
     className: undefined,
     destroyInactiveTabPane: undefined,
+    locale: 'zh-cn',
   };
 
   constructor(props) {
@@ -232,6 +235,7 @@ export default class Tabs extends React.Component {
 
 
   renderAllBtn(fix) {
+    const { locale } = this.props;
     const bottom = fix === 'fix-bottom';
     const BottomIcon = bottom ? Top : Bottom;
     /* eslint-disable react/no-array-index-key */
@@ -243,7 +247,7 @@ export default class Tabs extends React.Component {
           }}
           className={prefixClass('tab-all-title PA')}
         >
-          <span>全部类目</span>
+          <span>{i18n[locale].allCategories}</span>
         </div>
         <div
           ref={(ref) => {
