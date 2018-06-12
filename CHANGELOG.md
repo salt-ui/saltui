@@ -1,3 +1,7 @@
+## 3.8.53 / 2018-06-12
+
+* `feat`: normalize z-index of `Popup`, `Dialog`, `Toast` and `Layer`
+
 ## 3.8.52 / 2018-06-11
 
 * `fix`: `Layer` up default z-index to `1010`, equal to `Popup`

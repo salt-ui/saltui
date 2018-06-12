@@ -28,7 +28,7 @@ class LayerBody extends React.Component {
     maskCloseable: false,
     hasMask: true,
     visible: false,
-    zIndex: 1010,
+    zIndex: 1001,
     fullScreen: false,
     onMaskClick: undefined,
   };
@@ -123,15 +123,6 @@ class LayerBody extends React.Component {
     } = t.props;
     return (
       <div>
-        <div
-          {...other}
-          className={classnames(prefixClass('layer'), {
-            [className]: !!className,
-          })}
-          style={t.getStyle()}
-        >
-          {t.props.children}
-        </div>
         {
           this.props.hasMask &&
             <Mask
@@ -142,6 +133,15 @@ class LayerBody extends React.Component {
               opacity={0.6}
             />
         }
+        <div
+          {...other}
+          className={classnames(prefixClass('layer'), {
+            [className]: !!className,
+          })}
+          style={t.getStyle()}
+        >
+          {t.props.children}
+        </div>
       </div>
     );
   }
