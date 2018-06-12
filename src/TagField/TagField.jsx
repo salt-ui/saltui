@@ -161,6 +161,7 @@ export default class TagField extends React.Component {
         <Dialog
           show={this.state.dialogShow}
           title={i18n[locale].addTag}
+          locale={locale}
           type="confirm"
           onConfirm={this.handleDialogConfirm}
           onCancel={this.handleDialogCancel}
