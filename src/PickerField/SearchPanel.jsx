@@ -40,6 +40,7 @@ class SearchPanel extends React.Component {
       isOpenSearch: false,
       hasKeyword: false,
       popupVisible: false,
+      selectedResult: undefined,
     };
     t.delaySearch = utils.debounce(t.search.bind(t), t.props.searchDelay);
     t.handleLeaveResultView = t.handleLeaveResultView.bind(t);
@@ -54,6 +55,7 @@ class SearchPanel extends React.Component {
         isOpenSearch: true,
       });
     }
+    t.handleSelectedResult()
   }
 
 
@@ -173,16 +175,21 @@ class SearchPanel extends React.Component {
         value.splice(found, 1);
         t.setState({
           value,
+        }, () => {
+          t.handleSelectedResult()
         });
       } else {
         t.setState({
           value: [...value, item],
+        }, () => {
+          t.handleSelectedResult()
         });
       }
     } else {
       t.setState({
         value: [item],
       }, () => {
+        t.handleSelectedResult()
         t.handleConfirm();
       });
     }
@@ -225,6 +232,12 @@ class SearchPanel extends React.Component {
 
   handleConfirm() {
     this.props.onConfirm(this.state.value);
+  }
+
+  handleSelectedResult() {
+    this.setState({
+      selectedResult: this.props.resultFormatter(this.state.value)
+    })
   }
 
   handleEnterResultView() {
@@ -394,6 +407,7 @@ class SearchPanel extends React.Component {
     } = t.props;
     const pageSize = utils.getPageSize();
     const { length } = this.state.value;
+
     const resultProps = {
       value: [...this.state.value],
       confirmText: this.props.confirmText,
@@ -462,7 +476,7 @@ class SearchPanel extends React.Component {
                   t.handleEnterResultView(e);
                 }}
               >
-                <a href="javacript:;">{i18n[locale].selected(length)}</a>
+                <a href="javacript:;">{t.state.selectedResult || i18n[locale].selected(length)}</a>
               </div>
             </div>
           ) : null}
@@ -487,12 +501,13 @@ SearchPanel.defaultProps = {
   searchDelay: undefined,
   searchPlaceholder: undefined,
   searchNotFoundContent: undefined,
-  formatter: undefined,
+  formatter() { },
   phonetic: undefined,
   options: undefined,
   fetchUrl: undefined,
   grouping: undefined,
   locale: undefined,
+  resultFormatter() { },
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -516,6 +531,7 @@ SearchPanel.propTypes = {
   multiple: PropTypes.bool,
   grouping: PropTypes.bool,
   locale: PropTypes.string,
+  resultFormatter: PropTypes.func,
 };
 
 SearchPanel.displayName = 'SearchPanel';

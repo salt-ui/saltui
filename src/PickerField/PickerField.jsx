@@ -51,7 +51,6 @@ class PickerField extends React.Component {
     });
   }
 
-
   handleHidePopup(e) {
     const { state } = e;
     if (!state || !state.PickerField) {
@@ -95,10 +94,16 @@ class PickerField extends React.Component {
   }
 
   renderResult() {
-    if (this.props.multiple) {
-      return this.state.confirmedValue.map(this.props.formatter).join('；');
+    let labelFormatter = this.props.formatter
+
+    if (this.props.optionLabel) {
+      labelFormatter = value => value && value[this.props.optionLabel] || ''
     }
-    return this.props.formatter(this.state.confirmedValue[0]);
+
+    if (this.props.multiple) {
+      return this.state.confirmedValue.map(labelFormatter).join('；');
+    }
+    return labelFormatter(this.state.confirmedValue[0]);
   }
 
   renderIcon() {
@@ -146,6 +151,7 @@ class PickerField extends React.Component {
       grouping: t.props.grouping,
       groupingIndicator: t.props.groupingIndicator,
       locale: t.props.locale,
+      resultFormatter: t.props.resultFormatter,
     };
 
     return (
@@ -183,6 +189,8 @@ class PickerField extends React.Component {
   }
 }
 
+
+
 PickerField.defaultProps = {
   readOnly: false,
   fetchUrl: '',
@@ -211,6 +219,8 @@ PickerField.defaultProps = {
   searchNotFoundContent: undefined,
   locale: 'zh-cn',
   icon: undefined,
+  resultFormatter() { },
+  optionLabel: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -243,6 +253,8 @@ PickerField.propTypes = {
   groupingIndicator: PropTypes.bool,
   locale: PropTypes.string,
   icon: PropTypes.node,
+  resultFormatter: PropTypes.func,
+  optionLabel: PropTypes.string,
 };
 
 PickerField.displayName = 'PickerField';
