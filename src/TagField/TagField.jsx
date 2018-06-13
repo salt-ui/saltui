@@ -62,7 +62,7 @@ export default class TagField extends React.Component {
 
   handleEdit = () => {
     this.setState({
-      canEdit: true,
+      canEdit: !this.state.canEdit,
     });
   }
 
@@ -116,7 +116,7 @@ export default class TagField extends React.Component {
           <span
             className={Context.prefixClass('tag-field-action')}
             onClick={this.handleEdit}
-          >{i18n[locale].edit}
+          >{this.state.canEdit ? i18n[locale].finish : i18n[locale].edit}
           </span>
         ) : null}
         <span

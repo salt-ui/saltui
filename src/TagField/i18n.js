@@ -5,6 +5,7 @@ export default {
     errorTip: '亲，标签内容重复！',
     add: '添加',
     edit: '编辑',
+    finish: '完成',
   },
   'en-us': {
     addTag: 'Add new tag',
@@ -12,5 +13,6 @@ export default {
     errorTip: 'duplicate tag',
     add: 'add',
     edit: 'edit',
+    finish: 'finish',
   },
 };
