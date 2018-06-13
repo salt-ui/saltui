@@ -95,9 +95,9 @@ class PickerField extends React.Component {
 
   renderResult() {
     if (this.props.multiple) {
-      return this.state.confirmedValue.map(value => this.props.formatter(value, utils.FORMATTER_TYPES.VALUE_FORMATTER)).join('；');
+      return this.state.confirmedValue.map(value => this.props.formatter(value, utils.FORMATTER_TYPES.LABEL_FORMATTER)).join('；');
     }
-    return this.props.formatter(this.state.confirmedValue[0], utils.FORMATTER_TYPES.VALUE_FORMATTER);
+    return this.props.formatter(this.state.confirmedValue[0], utils.FORMATTER_TYPES.LABEL_FORMATTER);
   }
 
   renderIcon() {

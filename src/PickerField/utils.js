@@ -66,8 +66,9 @@ const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#';
 
 // 格式化方法类型
 const FORMATTER_TYPES = {
-  VALUE_FORMATTER: 1,
-  LABEL_FORMATTER: 2
+  LABEL_FORMATTER: 'label', // 回填值显示
+  OPTION_FORMATTER: 'option', // panel选项显示
+
 }
 
 export default {

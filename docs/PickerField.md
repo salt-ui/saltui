@@ -306,11 +306,11 @@ afterFetch(arr) {
 
 ```jsx
 formatItem(value, type) {
-  if (type === 1) { // 对回填值格式化
+  if (type === 'label') { // 对回填值格式化
     return value && value.label || ''
   }
   
-  if (type === 2) { // 对panel中的显示值格式化
+  if (type === 'option') { // 对panel中的显示值格式化
     return value ? (value.text + '自定义文字') : '';
   }
   

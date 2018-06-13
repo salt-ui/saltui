@@ -139,7 +139,7 @@ class Demo extends React.Component {
               tip="这里是tip"
               multiple
               formatter={(value, type) => {
-                if (type === 1) {
+                if (type === 'label') {
                   return value && value.label || ''
                 }
                 return value && value.text || ''
