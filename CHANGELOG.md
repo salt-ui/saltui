@@ -1,9 +1,10 @@
-
-
-## 3.8.54 / 2018-06-12
+## 3.9.0 / 2018-06-13
 
 * `feat`: `Tab` support locale 
+* `feat`: `PickerField`  support prop `resultFormatter` and 
+* `feat`: `PickerField` add `type` param for formatter method
 * `fix`: `Collapse` hairline border-width
+* `fix`: `Tab` all items' panel layout style bug
 
 ## 3.8.53 / 2018-06-12
 
