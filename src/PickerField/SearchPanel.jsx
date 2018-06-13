@@ -55,7 +55,6 @@ class SearchPanel extends React.Component {
         isOpenSearch: true,
       });
     }
-    t.handleSelectedResult()
   }
 
 
@@ -138,7 +137,7 @@ class SearchPanel extends React.Component {
         const processFunc = (value) => {
           const phonetic = t.props.phonetic(value);
           return [
-            t.props.formatter(value).toString().toLowerCase(),
+            t.props.formatter(value, utils.FORMATTER_TYPES.LABEL_FORMATTER).toString().toLowerCase(),
             phonetic.join('').toLowerCase(),
             phonetic.map(str => (str[0] || '')).join('').toLowerCase(),
           ];
@@ -175,21 +174,16 @@ class SearchPanel extends React.Component {
         value.splice(found, 1);
         t.setState({
           value,
-        }, () => {
-          t.handleSelectedResult()
         });
       } else {
         t.setState({
           value: [...value, item],
-        }, () => {
-          t.handleSelectedResult()
         });
       }
     } else {
       t.setState({
         value: [item],
       }, () => {
-        t.handleSelectedResult()
         t.handleConfirm();
       });
     }
@@ -232,12 +226,6 @@ class SearchPanel extends React.Component {
 
   handleConfirm() {
     this.props.onConfirm(this.state.value);
-  }
-
-  handleSelectedResult() {
-    this.setState({
-      selectedResult: this.props.resultFormatter(this.state.value)
-    })
   }
 
   handleEnterResultView() {
@@ -362,7 +350,7 @@ class SearchPanel extends React.Component {
         )}
         >{iconHTML}
         </span>
-        <span className={classnames(Context.prefixClass('picker-field-search-result-item-entry'), t.props.grouping ? null : Context.prefixClass('picker-field-right-icon'))}>{t.props.formatter(item)}</span>
+        <span className={classnames(Context.prefixClass('picker-field-search-result-item-entry'), t.props.grouping ? null : Context.prefixClass('picker-field-right-icon'))}>{t.props.formatter(item, utils.FORMATTER_TYPES.LABEL_FORMATTER)}</span>
       </div>
     );
   }
@@ -476,7 +464,7 @@ class SearchPanel extends React.Component {
                   t.handleEnterResultView(e);
                 }}
               >
-                <a href="javacript:;">{t.state.selectedResult || i18n[locale].selected(length)}</a>
+                <a href="javacript:;">{t.props.resultFormatter ? t.props.resultFormatter(this.state.value) : i18n[locale].selected(length)}</a>
               </div>
             </div>
           ) : null}
@@ -507,7 +495,7 @@ SearchPanel.defaultProps = {
   fetchUrl: undefined,
   grouping: undefined,
   locale: undefined,
-  resultFormatter() { },
+  resultFormatter: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

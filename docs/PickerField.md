@@ -305,8 +305,15 @@ afterFetch(arr) {
 示例：
 
 ```jsx
-formatItem(value) {
-  return value ? (value.text + '自定义文字') : '';
+formatItem(value, type) {
+  if (type === 1) { // 对回填值格式化
+    return value && value.label || ''
+  }
+  
+  if (type === 2) { // 对panel中的显示值格式化
+    return value ? (value.text + '自定义文字') : '';
+  }
+  
 }
 
 ...
@@ -424,14 +431,5 @@ import PlusCircle from 'salt-icon/lib/PlusCircle'
 
 <PickerField resultFormatter={value => (`我已经选择了${value.length}项`) } />} />
 ```
-
-
-### optionLabel
-
-
-描述：指定选项回填值的key。
-类型：`string`
-默认：`无`
-必选：否
 
 

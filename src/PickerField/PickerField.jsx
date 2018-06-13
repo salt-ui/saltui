@@ -94,16 +94,10 @@ class PickerField extends React.Component {
   }
 
   renderResult() {
-    let labelFormatter = this.props.formatter
-
-    if (this.props.optionLabel) {
-      labelFormatter = value => value && value[this.props.optionLabel] || ''
-    }
-
     if (this.props.multiple) {
-      return this.state.confirmedValue.map(labelFormatter).join('；');
+      return this.state.confirmedValue.map(value => this.props.formatter(value, utils.FORMATTER_TYPES.VALUE_FORMATTER)).join('；');
     }
-    return labelFormatter(this.state.confirmedValue[0]);
+    return this.props.formatter(this.state.confirmedValue[0], utils.FORMATTER_TYPES.VALUE_FORMATTER);
   }
 
   renderIcon() {
@@ -219,8 +213,7 @@ PickerField.defaultProps = {
   searchNotFoundContent: undefined,
   locale: 'zh-cn',
   icon: undefined,
-  resultFormatter() { },
-  optionLabel: undefined,
+  resultFormatter: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -254,7 +247,6 @@ PickerField.propTypes = {
   locale: PropTypes.string,
   icon: PropTypes.node,
   resultFormatter: PropTypes.func,
-  optionLabel: PropTypes.string,
 };
 
 PickerField.displayName = 'PickerField';

@@ -64,6 +64,12 @@ const addUrlParam = (name, value) => {
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#';
 
+// 格式化方法类型
+const FORMATTER_TYPES = {
+  VALUE_FORMATTER: 1,
+  LABEL_FORMATTER: 2
+}
+
 export default {
   getPageSize,
   processData,
@@ -71,4 +77,5 @@ export default {
   isArray,
   addUrlParam,
   alphabet,
+  FORMATTER_TYPES,
 };

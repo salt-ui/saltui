@@ -138,8 +138,13 @@ class Demo extends React.Component {
               value={t.state.value4}
               tip="这里是tip"
               multiple
+              formatter={(value, type) => {
+                if (type === 1) {
+                  return value && value.label || ''
+                }
+                return value && value.text || ''
+              }}
               resultFormatter={value => (`我已经选择了${value.length}项`) }
-              optionLabel="label"
             />
             <PickerField
               label="按字母分组"
