@@ -11,15 +11,18 @@ $select-field-readonly-color = $dark-alpha-2;
 .{$prefix}-select-field-content {
     display: flex;
     align-items: center;
+
     svg {
         fill: $normal-alpha-4;
+    }
+
+    .{$prefix}-select-field-value {
+        flex: 1;
+        width: 0;
     }
 }
 
 .{$prefix}-select-field-value {
-    flex: 1;
-    width: 0;
-
     > * {
         vertical-align: middle;
     }

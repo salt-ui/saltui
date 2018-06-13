@@ -1,3 +1,10 @@
+
+
+## 3.8.54 / 2018-06-12
+
+* `feat`: `Tab` support locale 
+* `fix`: `Collapse` hairline border-width
+
 ## 3.8.53 / 2018-06-12
 
 * `feat`: normalize z-index of `Popup`, `Dialog`, `Toast` and `Layer`

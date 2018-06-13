@@ -10,18 +10,21 @@ $picker-field-readonly-color = $dark-alpha-2;
 $picker-field-searchbar-height = 45px;
 $picker-field-footer-hieight = 48px;
 
-
 .{$prefix}-picker-field-content {
-    display: flex;
-    align-items: center;
-    svg {
-        fill: $normal-alpha-4;
-    }
+  display: flex;
+  align-items: center;
+
+  svg {
+    fill: $normal-alpha-4;
+  }
+
+  .{$prefix}-picker-field-value {
+    flex: 1;
+    width: 0;
+  }
 }
 
 .{$prefix}-picker-field-value {
-  flex: 1;
-  width: 0;
   > * {
     vertical-align: middle;
   }
@@ -91,6 +94,7 @@ $picker-field-footer-hieight = 48px;
   font-size: 16px;
   color: $dark-alpha-2;
 }
+
 .{$prefix}-picker-field-searchpanel-head-bar-button {
   position: absolute;
   line-height: 45px;
