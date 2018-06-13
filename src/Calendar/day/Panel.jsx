@@ -250,9 +250,9 @@ class Panel extends React.Component {
         if (t.root.scrollTop === 0) {
           t.root.scrollTop = 10;
         }
-        if (util.isIos()) {
-          t.root.scrollTop += t.getHeadNewMonthHeight();
-        }
+        // if (util.isIos()) {
+        t.root.scrollTop += t.getHeadNewMonthHeight();
+        // }
       });
     }
   }

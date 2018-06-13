@@ -137,7 +137,8 @@ class SearchPanel extends React.Component {
         const processFunc = (value) => {
           const phonetic = t.props.phonetic(value);
           return [
-            t.props.formatter(value, utils.FORMATTER_TYPES.OPTION_FORMATTER).toString().toLowerCase(),
+            t.props.formatter(value, utils.FORMATTER_TYPES.OPTION_FORMATTER)
+              .toString().toLowerCase(),
             phonetic.join('').toLowerCase(),
             phonetic.map(str => (str[0] || '')).join('').toLowerCase(),
           ];

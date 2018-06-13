@@ -1,3 +1,7 @@
+## 3.9.1 / 2016-06-13
+
+* `feat`: `Calendar` maintain scrollTop not only in iOS
+
 ## 3.9.0 / 2018-06-13
 
 * `feat`: `Tab` support locale 
