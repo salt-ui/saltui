@@ -305,8 +305,15 @@ afterFetch(arr) {
 示例：
 
 ```jsx
-formatItem(value) {
-  return value ? (value.text + '自定义文字') : '';
+formatItem(value, type) {
+  if (type === 'label') { // 对回填值格式化
+    return value && value.label || ''
+  }
+  
+  if (type === 'option') { // 对panel中的显示值格式化
+    return value ? (value.text + '自定义文字') : '';
+  }
+  
 }
 
 ...
@@ -409,4 +416,20 @@ onSelect(value) {
 import PlusCircle from 'salt-icon/lib/PlusCircle'
 
 <PickerField icon={<PlusCircle onClick={(e) => { e.stopPropagation(); }} />} />
-...
+```
+
+### resultFormatter
+
+
+描述：自定义选择结果显示格式化方法。
+类型：`function`
+默认：`无`
+必选：否
+
+```jsx
+import PlusCircle from 'salt-icon/lib/PlusCircle'
+
+<PickerField resultFormatter={value => (`我已经选择了${value.length}项`) } />} />
+```
+
+

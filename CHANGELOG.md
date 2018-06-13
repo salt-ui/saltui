@@ -1,3 +1,6 @@
+## 3.8.54 / 2018-06-13
+* `feat`: support prop `resultFormatter` and add `type` param for formatter method
+
 ## 3.8.53 / 2018-06-12
 
 * `feat`: normalize z-index of `Popup`, `Dialog`, `Toast` and `Layer`

@@ -64,6 +64,13 @@ const addUrlParam = (name, value) => {
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#';
 
+// 格式化方法类型
+const FORMATTER_TYPES = {
+  LABEL_FORMATTER: 'label', // 回填值显示
+  OPTION_FORMATTER: 'option', // panel选项显示
+
+}
+
 export default {
   getPageSize,
   processData,
@@ -71,4 +78,5 @@ export default {
   isArray,
   addUrlParam,
   alphabet,
+  FORMATTER_TYPES,
 };
