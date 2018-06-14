@@ -470,7 +470,7 @@ class SearchPanel extends React.Component {
             </div>
           ) : null}
         </div>
-        <Popup content={<SearchResult {...resultProps} />} animationType="slide-left" visible={this.state.popupVisible} />
+        <Popup stopBodyScrolling={false} content={<SearchResult {...resultProps} />} animationType="slide-left" visible={this.state.popupVisible} />
       </div>
     );
   }
