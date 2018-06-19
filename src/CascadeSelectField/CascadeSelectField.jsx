@@ -199,6 +199,7 @@ class CascadeSelectField extends React.Component {
             onCancel={t.handleCancel}
             onConfirm={t.handleConfirm}
           />}
+          stopBodyScrolling={false}
           visible={this.state.popupVisible}
           maskClosable={false}
         />
