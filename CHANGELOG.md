@@ -1,3 +1,7 @@
+## 3.9.6 / 2018-06-20
+
+* `feat`: `PickerField` iphoneX compatible
+
 ## 3.9.5 / 2018-06-19
 
 * `fix`: `CascadeSelectField` make `parseState` without re-assigning  params
