@@ -19,6 +19,16 @@ import MonthBody from './MonthBody';
 import MonthTitle from './MonthTitle';
 import formatter from '../formatter';
 
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-expressions */
+const forceRepaint = (ele) => {
+  ele.style.display = 'none';
+  ele.offsetHeight; // no need to store this anywhere, the reference is enough
+  ele.style.display = '';
+};
+/* eslint-enable no-unused-expressions */
+/* eslint-enable no-param-reassign */
+
 const shadowArray = [1, 2]; // 只是用来提供一个长度的数组，本身的值没什么用
 // const maxMonth = 5; // 最多渲染这么多个月
 
@@ -102,11 +112,11 @@ class Panel extends React.Component {
           t.direction = 'down';
           if (!t.locked) {
             t.loadMonth();
-            t.locked = true;
-            setTimeout(() => {
-              t.locked = false;
-              this.loadMonth();
-            }, 30);
+            // t.locked = true;
+            // setTimeout(() => {
+            //   t.locked = false;
+            //   this.loadMonth();
+            // }, 30);
           }
         }
         this.moveTimer = null;
@@ -168,7 +178,7 @@ class Panel extends React.Component {
   /*
    * 设置monthPool
    * @param pre 向队列的头部插入
-   * 每次向队首或队尾添加或减少与shadowArray相同长度的月
+   * 每次向队首或队尾添加或减少与 shadowArray 相同长度的月
    */
   updateMonthPool(pre = false, callback) {
     const t = this;
@@ -244,15 +254,15 @@ class Panel extends React.Component {
       });
     } else if (t.direction === 'down' && scrollTop < t.bufferDistance) { // 向下滑动，加载过去的月份
       t.monthLoading = true;
-
       t.updateMonthPool(true, () => {
-        t.monthLoading = false;
         if (t.root.scrollTop === 0) {
-          t.root.scrollTop = 10;
+          t.root.scrollTop = t.bufferDistance;
         }
         // if (util.isIos()) {
         t.root.scrollTop += t.getHeadNewMonthHeight();
         // }
+        forceRepaint(t.root);
+        t.monthLoading = false;
       });
     }
   }

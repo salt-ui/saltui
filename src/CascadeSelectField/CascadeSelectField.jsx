@@ -59,36 +59,36 @@ function parseProps(props) {
     originOptions: props.options,
   };
 }
-/* eslint-disable no-param-reassign */
+
 function parseState(value, options) {
   let cursor = options;
-  options = [];
+  const newOptions = [];
+  const newValue = cloneDeep(value);
   for (let deep = 0; cursor; deep += 1) {
     let index = 0;
     let valueIsFound = false;
-    options[deep] = cursor.map((o, i) => {
+    newOptions[deep] = cursor.map((o, i) => {
       const option = {
         value: o.value,
         text: o.label,
       };
       if ((deep in value) && o.value === value[deep].value) {
         index = i;
-        value[deep] = option;
+        newValue[deep] = option;
         valueIsFound = true;
       }
       return option;
     });
     if (!valueIsFound) {
-      [value[deep]] = options[deep];
+      [newValue[deep]] = newOptions[deep];
     }
     cursor = cursor[index] ? cursor[index].children : null;
   }
   return {
-    options,
-    value,
+    options: newOptions,
+    value: newValue,
   };
 }
-/* eslint-enable no-param-reassign */
 
 class CascadeSelectField extends React.Component {
   constructor(props) {

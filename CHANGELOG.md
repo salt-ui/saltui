@@ -1,4 +1,9 @@
-## 3.9.1 / 2016-06-13
+## 3.9.5 / 2018-06-19
+
+* `fix`: `CascadeSelectField` make `parseState` without re-assigning  params
+* `fix`: `Calendar` improve scroll positioning when pulling down to fetch prev months
+
+## 3.9.1 / 2018-06-13
 
 * `feat`: `Calendar` maintain scrollTop not only in iOS
 
@@ -58,7 +63,7 @@
 
 ## 3.8.38 / 2018-05-24
 
-* `fix`: `CascadeSelectField` low perf`ormance parseProps
+* `fix`: `CascadeSelectField` low performance parseProps
 
 ## 3.8.37 / 2018-05-17
 
