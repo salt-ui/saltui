@@ -105,9 +105,11 @@ hairline(attribute, color)
 
 fix-safe-area(prop, value = 0, direction = 'bottom')
     if value != 0
+        {prop} value
         {prop} unquote('calc(constant(safe-area-inset-' + direction + ') + ' + value + ')')
         {prop} unquote('calc(env(safe-area-inset-' + direction + ') + ' + value + ')')
     else
+        {prop} value
         {prop} unquote('constant(safe-area-inset-' + direction + ')')
         {prop} unquote('env(safe-area-inset-' + direction + ')')
 
