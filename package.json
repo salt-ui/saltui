@@ -1,6 +1,6 @@
 {
   "name": "saltui",
-  "version": "3.9.9",
+  "version": "3.9.10",
   "description": "React components for mobile",
   "main": "build/salt-ui.js",
   "scripts": {
@@ -67,10 +67,12 @@
     "webpack-bundle-analyzer": "^2.9.0"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "hammerjs": "^2.0.8",
     "lie": "^3.1.1",
     "lodash": "^4.17.10",
     "natty-fetch": "^2.5.2",
+    "object-assign": "^4.1.1",
     "prop-types": "15.x",
     "rc-collapse": "^1.7.6",
     "rc-dialog": "^6.5.11",

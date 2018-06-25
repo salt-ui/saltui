@@ -1,3 +1,7 @@
+## 3.9.10 / 2018-06-25
+
+* `fix`: missing dependencies
+
 ## 3.9.6 / 2018-06-20
 
 * `feat`: `PickerField` iphoneX compatible
