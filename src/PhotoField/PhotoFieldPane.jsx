@@ -118,10 +118,11 @@ class PhotoFieldPane extends React.Component {
           <PhotoFieldUploadItem {...props} />
         );
       });
+    const shouldHide = photoItem.length === 0 && files.length === 0;
+    if (shouldHide) return null;
     const list = (
       <div
         className={classnames(prefixClass('photo-list'), {
-          [prefixClass('hide')]: photoItem.length === 0 && files.length === 0,
         })}
         ref={(c) => { this.list = c; }}
       >

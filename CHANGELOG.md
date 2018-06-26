@@ -1,3 +1,7 @@
+## 3.9.11 / 2018-06-26
+
+* `fix`: `PhotoField` incorrect label height 
+
 ## 3.9.10 / 2018-06-25
 
 * `fix`: missing dependencies
