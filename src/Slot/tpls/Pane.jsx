@@ -27,7 +27,10 @@ class SlotPane extends React.Component {
     visible: PropTypes.bool,
     // className: PropTypes.string,
     data: PropTypes.array,
-    value: PropTypes.array,
+    value: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object,
+    ]),
     onChange: PropTypes.func,
     onScrolling: PropTypes.func,
     scrollMod: PropTypes.string,

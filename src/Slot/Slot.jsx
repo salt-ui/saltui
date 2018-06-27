@@ -184,7 +184,10 @@ Slot.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
   data: PropTypes.array,
-  value: PropTypes.array,
+  value: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]),
   maskCloseable: PropTypes.bool,
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,

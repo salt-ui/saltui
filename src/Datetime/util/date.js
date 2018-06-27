@@ -54,8 +54,8 @@ function parseValue(value) {
  * @param {*} sure
  */
 
+/* eslint-disable no-param-reassign */
 function addDayOfWeek(days, props, sure = true) {
-  const daysNew = cloneDeep(days);
   if (isArray(days)) {
     days.forEach((day) => {
       const dayNew = day;
@@ -70,11 +70,12 @@ function addDayOfWeek(days, props, sure = true) {
   }
   const date = new Date(numToDate(days.value));
   if (sure) {
-    daysNew.text = `${dateFormat(date, 'YYYY/MM/DD')} ${locale[props.locale].week[date.getDay()]}`;
+    days.text = `${dateFormat(date, 'YYYY/MM/DD')} ${locale[props.locale].week[date.getDay()]}`;
   } else {
-    daysNew.text = dateFormat(date, 'YYYY/MM/DD');
+    days.text = dateFormat(date, 'YYYY/MM/DD');
   }
 }
+/* eslint-enable no-param-reassign */
 
 /**
  * 根据 props columns 计算 slot list

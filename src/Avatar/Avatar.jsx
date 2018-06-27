@@ -23,8 +23,6 @@ const iconWrapperStyle = {
 };
 
 export default class Avatar extends Component {
-  static displayName = 'Avatar';
-
   static hashCode = (strKey, isLong) => {
     const MAX_VALUE = 0x7fffffff;
     const MIN_VALUE = -0x80000000;
@@ -58,6 +56,8 @@ export default class Avatar extends Component {
       ? formattedName.slice(0, 2)
       : formattedName.slice(formattedName.length - 2, formattedName.length);
   };
+
+  static displayName = 'Avatar';
 
   static propTypes = {
     className: PropTypes.string,
