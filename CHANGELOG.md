@@ -1,3 +1,7 @@
+## 3.9.12
+
+* `fix`: `DatetimeField` incorrect value format caused by method `addDayOfWeek` bug
+
 ## 3.9.11 / 2018-06-26
 
 * `fix`: `PhotoField` incorrect label height 
