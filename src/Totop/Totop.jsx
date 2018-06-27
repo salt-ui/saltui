@@ -7,7 +7,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import debounce from 'lodash/fp/debounce';
+import debounce from 'lodash/debounce';
 import IconToTop from 'salt-icon/lib/Totop';
 import Animate from 'rc-animate';
 import classnames from 'classnames';

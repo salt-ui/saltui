@@ -176,7 +176,6 @@ class EmployeeField extends React.Component {
       className: classnames(Context.prefixClass('employee-field-icon'), {
         active: !t.getReadOnly(),
       }),
-      // name: 'plus-circle',
       width: 20,
       height: 20,
       onClick(e) {

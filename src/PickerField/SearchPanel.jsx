@@ -11,7 +11,7 @@ import classnames from 'classnames';
 import IconCheck from 'salt-icon/lib/Check';
 import IconCheckRound from 'salt-icon/lib/CheckRound';
 import Promise from 'lie';
-import NattyFetch from 'natty-fetch/dist/natty-fetch';
+import NattyFetch from 'natty-fetch';
 import Context from '../Context';
 import ScrollView from '../ScrollView';
 import Button from '../Button';
@@ -156,7 +156,7 @@ class SearchPanel extends React.Component {
     }
   }
 
-  handleItemClick(item) {
+  handleItemClick = (item) => {
     const t = this;
 
     if (t.props.multiple) {
@@ -336,6 +336,7 @@ class SearchPanel extends React.Component {
         />
       );
     }
+
 
     return (
       <div

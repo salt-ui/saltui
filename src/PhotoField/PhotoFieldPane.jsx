@@ -11,18 +11,6 @@ import PhotoFieldItem from './PhotoFieldItem';
 import PhotoFieldUploadItem from './PhotoFieldUploadItem';
 import { getData } from './util';
 
-
-const getStyle = (oElm, strCssRule) => {
-  let strValue = '';
-  if (window && window.getComputedStyle) {
-    strValue = window.getComputedStyle(oElm, '').getPropertyValue(strCssRule);
-  } else if (oElm.currentStyle) {
-    const camelCssRule = strCssRule.replace(/-(\w)/g, (strMatch, p1) => p1.toUpperCase());
-    strValue = oElm.currentStyle[camelCssRule];
-  }
-  return strValue;
-};
-
 class PhotoFieldPane extends React.Component {
   constructor(props) {
     super(props);

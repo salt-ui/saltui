@@ -1,3 +1,5 @@
+import debounce from 'lodash/debounce';
+
 const getPageSize = (() => {
   const width = window.innerWidth
     || document.documentElement.clientWidth
@@ -27,20 +29,20 @@ const processData = (data) => {
   return values;
 };
 
-const debounce = (func, wait, immediate) => {
-  let timeout;
-  return function origin(...args) {
-    const t = this;
-    const later = () => {
-      timeout = null;
-      if (!immediate) func.apply(t, args);
-    };
-    const callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(t, args);
-  };
-};
+// const debounce = (func, wait, immediate) => {
+//   let timeout;
+//   return function origin(...args) {
+//     const t = this;
+//     const later = () => {
+//       timeout = null;
+//       if (!immediate) func.apply(t, args);
+//     };
+//     const callNow = immediate && !timeout;
+//     clearTimeout(timeout);
+//     timeout = setTimeout(later, wait);
+//     if (callNow) func.apply(t, args);
+//   };
+// };
 
 const { toString } = Object.prototype;
 
@@ -69,7 +71,7 @@ const FORMATTER_TYPES = {
   LABEL_FORMATTER: 'label', // 回填值显示
   OPTION_FORMATTER: 'option', // panel选项显示
 
-}
+};
 
 export default {
   getPageSize,

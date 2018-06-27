@@ -1,4 +1,4 @@
-## 3.9.12
+## 3.9.12 / 2018-06-27
 
 * `fix`: `DatetimeField` incorrect value format caused by method `addDayOfWeek` bug
 * `feat`: `SelectField` `PickerField` show value if text is not found
