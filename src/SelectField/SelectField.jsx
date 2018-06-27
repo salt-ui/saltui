@@ -116,7 +116,17 @@ class SelectField extends React.Component {
 }
 
 SelectField.defaultProps = {
-  formatter: value => (value ? value.text : ''),
+  formatter: (value) => {
+    if (value) {
+      if (value.text !== undefined) {
+        return value.text;
+      }
+      if (value.value !== undefined) {
+        return value.value;
+      }
+    }
+    return '';
+  },
   onSelect() {},
   readOnly: false,
   placeholder: '',

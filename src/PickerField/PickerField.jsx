@@ -97,7 +97,10 @@ class PickerField extends React.Component {
     if (this.props.multiple) {
       return this.state.confirmedValue.map(value => this.props.formatter(value, utils.FORMATTER_TYPES.LABEL_FORMATTER)).join('；');
     }
-    return this.props.formatter(this.state.confirmedValue[0], utils.FORMATTER_TYPES.LABEL_FORMATTER);
+    return this.props.formatter(
+      this.state.confirmedValue[0],
+      utils.FORMATTER_TYPES.LABEL_FORMATTER,
+    );
   }
 
   renderIcon() {
@@ -184,7 +187,6 @@ class PickerField extends React.Component {
 }
 
 
-
 PickerField.defaultProps = {
   readOnly: false,
   fetchUrl: '',
@@ -198,7 +200,17 @@ PickerField.defaultProps = {
   afterFetch: obj => obj,
   showSearch: true,
   searchDelay: 100,
-  formatter: value => (value ? value.text : ''),
+  formatter: (value) => {
+    if (value) {
+      if (value.text !== undefined) {
+        return value.text;
+      }
+      if (value.value !== undefined) {
+        return value.value;
+      }
+    }
+    return '';
+  },
   phonetic: value => (value.phonetic || []),
   onSelect() { },
   multiple: false,
