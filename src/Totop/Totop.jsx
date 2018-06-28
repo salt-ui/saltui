@@ -16,6 +16,8 @@ import util from './utils';
 import Box from './Box';
 
 class Totop extends React.Component {
+  static displayName = 'Totop';
+
   static propTypes = {
     className: PropTypes.string,
     hideToTopButton: PropTypes.bool,
@@ -39,7 +41,6 @@ class Totop extends React.Component {
     size: undefined,
     icon: undefined,
   };
-  static displayName = 'Totop';
 
   constructor(props) {
     super(props);

@@ -20,6 +20,8 @@ import locale from './locale';
 import { transToValue } from './utils';
 
 class EmployeeField extends React.Component {
+  static displayName = 'EmployeeField';
+
   static propTypes = {
     className: PropTypes.string,
     corpId: PropTypes.string,
@@ -52,7 +54,6 @@ class EmployeeField extends React.Component {
     corpId: undefined,
   };
 
-  static displayName = 'EmployeeField';
 
   componentDidMount() {
     const Ali = window.Ali || {};

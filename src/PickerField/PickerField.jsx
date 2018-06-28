@@ -51,6 +51,13 @@ class PickerField extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    if (this.confirmTimer) {
+      clearTimeout(this.confirmTimer);
+      this.confirmTimer = null;
+    }
+  }
+
   handleHidePopup(e) {
     const { state } = e;
     if (!state || !state.PickerField || state.PickerField !== this.state.historyStamp) {
@@ -130,6 +137,11 @@ class PickerField extends React.Component {
       historyStamp: t.state.historyStamp,
       confirmText: t.props.confirmText || i18n[t.props.locale].confirm,
       onConfirm: (value) => {
+        if (t.isConfirmLocked) return;
+        t.isConfirmLocked = true;
+        t.confirmTimer = setTimeout(() => {
+          t.isConfirmLocked = false;
+        }, 200);
         t.handleConfirm(value);
         window.history.go(-1);
       },

@@ -14,6 +14,24 @@ import Context from '../Context';
 
 
 class InfiniteScroll extends React.Component {
+  static propTypes = {
+    enabled: PropTypes.bool,
+    loading: PropTypes.bool,
+    threshold: PropTypes.number,
+    throttle: PropTypes.number,
+    showIcon: PropTypes.bool,
+    showText: PropTypes.bool,
+    loadingIcon: PropTypes.element,
+    loadingText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ]),
+    onLoad: PropTypes.func,
+    onScroll: PropTypes.func,
+    children: PropTypes.element,
+    getDOMNode: PropTypes.func,
+  };
+
   static defaultProps = {
     children: undefined,
     enabled: true,
@@ -33,24 +51,6 @@ class InfiniteScroll extends React.Component {
     getDOMNode() {
 
     },
-  };
-
-  static propTypes = {
-    enabled: PropTypes.bool,
-    loading: PropTypes.bool,
-    threshold: PropTypes.number,
-    throttle: PropTypes.number,
-    showIcon: PropTypes.bool,
-    showText: PropTypes.bool,
-    loadingIcon: PropTypes.element,
-    loadingText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-    ]),
-    onLoad: PropTypes.func,
-    onScroll: PropTypes.func,
-    children: PropTypes.element,
-    getDOMNode: PropTypes.func,
   };
 
   constructor(props) {

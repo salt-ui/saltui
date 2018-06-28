@@ -23,7 +23,7 @@ import utils from './utils';
 import i18n from './i18n';
 
 class SearchPanel extends React.Component {
-  static renderSearchTips() {
+  static getSearchTips() {
     return <div />;
   }
 
@@ -80,6 +80,7 @@ class SearchPanel extends React.Component {
             compare = -1;
             return true;
           }
+          return false;
         });
         return compare;
       });
@@ -367,7 +368,7 @@ class SearchPanel extends React.Component {
     } else if (t.props.fetchDataOnOpen && t.state.openResults.length) {
       return t.renderResults(t.state.openResults);
     }
-    return SearchPanel.renderSearchTips();
+    return SearchPanel.getSearchTips();
   }
 
   renderGroupingBar() {
