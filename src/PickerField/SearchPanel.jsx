@@ -243,7 +243,7 @@ class SearchPanel extends React.Component {
 
   handleLeaveResultView(e) {
     const { state } = e;
-    if (state && state.PickerField === 'SearchPanel.index') {
+    if (state && state.PickerField === this.props.historyStamp) {
       window.removeEventListener('popstate', this.handleLeaveResultView, false);
       this.setState({
         popupVisible: false,
@@ -498,6 +498,7 @@ SearchPanel.defaultProps = {
   grouping: undefined,
   locale: undefined,
   resultFormatter: undefined,
+  historyStamp: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -522,6 +523,7 @@ SearchPanel.propTypes = {
   grouping: PropTypes.bool,
   locale: PropTypes.string,
   resultFormatter: PropTypes.func,
+  historyStamp: PropTypes.string,
 };
 
 SearchPanel.displayName = 'SearchPanel';

@@ -22,7 +22,7 @@ class PickerField extends React.Component {
       if (utils.isArray(input)) {
         return input;
       }
-      if (input.text) {
+      if (typeof input === 'object') {
         return [input];
       }
     }
@@ -53,7 +53,7 @@ class PickerField extends React.Component {
 
   handleHidePopup(e) {
     const { state } = e;
-    if (!state || !state.PickerField) {
+    if (!state || !state.PickerField || state.PickerField !== this.state.historyStamp) {
       const t = this;
       window.removeEventListener('popstate', t.listener, false);
       t.setState({
@@ -67,9 +67,10 @@ class PickerField extends React.Component {
     if (!t.props.readOnly) {
       t.setState({
         popupVisible: true,
+        historyStamp: `SearchPanel.index_${Date.now()}`,
       }, () => {
         window.history.pushState({
-          PickerField: 'SearchPanel.index',
+          PickerField: t.state.historyStamp,
         }, '', utils.addUrlParam('PICKER', Date.now()));
 
         window.addEventListener('popstate', t.listener, false);
@@ -126,6 +127,7 @@ class PickerField extends React.Component {
 
     const panelProps = {
       value: t.state.confirmedValue,
+      historyStamp: t.state.historyStamp,
       confirmText: t.props.confirmText || i18n[t.props.locale].confirm,
       onConfirm: (value) => {
         t.handleConfirm(value);

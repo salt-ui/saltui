@@ -1,3 +1,7 @@
+## 3.9.13 / 2018-06-28 
+
+* `fix`: `PickerField` Popup cannot be closed by go back action if window is reload when popup is shown.
+
 ## 3.9.12 / 2018-06-27
 
 * `fix`: `DatetimeField` incorrect value format caused by method `addDayOfWeek` bug
