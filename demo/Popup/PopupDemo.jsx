@@ -92,12 +92,10 @@ class PopupDemo extends React.Component {
         >测试内部数据透传
         </Button>
         <Popup
+          stopBodyScrolling={true}
           content={
-            <div>
-              <input
-                value={this.state.keyword}
-                onChange={(e) => { this.setState({ keyword: e.target.value }); }}
-              />
+            <div style={{ height: 400, overflow: 'scroll' }}>
+              <div style={{ height: 700, backgroundColor: 'yellow' }}>滚动区域</div>
               <Button onClick={() => { this.setState({ visible: false }); }}>关闭 Popup</Button>
             </div>
           }

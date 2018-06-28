@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Dialog from 'rc-dialog';
 import classnames from 'classnames';
-import { stopBodyScrolling } from '../Utils';
+import { stopBodyScroll } from '../Utils';
 
 function create(instanceId, config, content, afterClose = () => { }) {
   const props = {
@@ -68,6 +68,8 @@ function create(instanceId, config, content, afterClose = () => { }) {
     },
   };
 
+  let dom;
+
   const update = (newContent) => {
     ReactDOM.render(
       <Dialog
@@ -91,7 +93,9 @@ function create(instanceId, config, content, afterClose = () => { }) {
         wrapProps={props.wrapProps || {}}
         maskProps={props.maskProps || maskProps}
       >
-        {newContent || content}
+        <div ref={(c) => { dom = c; }}>
+          {newContent || content}
+        </div>
       </Dialog>,
       div,
     );
@@ -103,6 +107,7 @@ function create(instanceId, config, content, afterClose = () => { }) {
     instanceId,
     close,
     update,
+    dom,
   };
 }
 
@@ -134,6 +139,7 @@ class Popup extends React.Component {
       update: (content) => {
         j.update(content);
       },
+      getDom: () => j.dom,
     };
   }
   static show = (content, config) => {
@@ -209,8 +215,8 @@ class Popup extends React.Component {
     if (this.instance) {
       this.instance.hide();
       this.instance = null;
-      if (this.props.stopBodyScrolling) {
-        stopBodyScrolling(false);
+      if (this.props.stopBodyScrolling && this.bodyScroll) {
+        this.bodyScroll.enable();
       }
     }
   }
@@ -221,7 +227,7 @@ class Popup extends React.Component {
     }
     this.instance.show(this.props.content, this.getOptions());
     if (this.props.stopBodyScrolling) {
-      stopBodyScrolling(true);
+      this.bodyScroll = stopBodyScroll(this.instance.getDom());
     }
   }
 

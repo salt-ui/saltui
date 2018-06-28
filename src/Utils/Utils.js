@@ -1,3 +1,5 @@
+import contains from 'rc-util/lib/Dom/contains';
+
 const preventDefault = (e) => {
   e.preventDefault();
 };
@@ -8,6 +10,30 @@ const stopBodyScrolling = (bool) => {
   } else {
     document.body.removeEventListener('touchmove', preventDefault, false);
   }
+};
+
+const stopBodyScroll = (element) => {
+  const pd = (e) => {
+    if (!element || !contains(element, e.target)) {
+      e.preventDefault();
+    }
+  };
+  document.body.addEventListener('touchmove', pd, false);
+  // TODO how to stop body scroll when element is scrolled to the end?
+  // const sp = (e) => {
+  //   e.stopPropagation();
+  // };
+  // if (element) {
+  //   element.addEventListener('touchmove', sp, false);
+  // }
+  return {
+    enable: () => {
+      document.body.removeEventListener('touchmove', pd, false);
+      // if (element) {
+      //   element.removeEventListener('touchmove', sp, false);
+      // }
+    },
+  };
 };
 
 // uniform locale for en-us, en_US
@@ -25,4 +51,5 @@ const getLocale = (locale) => {
 export default {
   stopBodyScrolling,
   getLocale,
+  stopBodyScroll,
 };
