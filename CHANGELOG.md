@@ -1,3 +1,7 @@
+## 3.9.14 / 2018-07-13
+
+* `feat`: `Avatar` support custom name filter
+
 ## 3.9.13 / 2018-06-28 
 
 * `fix`: `PickerField` Popup cannot be closed by go back action if window is reload when popup is shown.

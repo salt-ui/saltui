@@ -158,6 +158,18 @@ module.exports = Demo;
 
 必填：否
 
+#### filter
+
+描述： 默认情况下 Avatar 会过滤数字和括号这些不适合在头像中展示的字符，可以通过 filter 自定义过滤规则
+
+类型：`function`
+
+默认：`prevName => prevName.replace(/[()（）\d]/g, '')`
+
+必填：否
+
+
+
 ## APIs
 
 ### Avatar.hashCode(name, isLong)

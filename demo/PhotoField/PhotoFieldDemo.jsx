@@ -74,7 +74,8 @@ class Demo extends React.Component {
           maxUpload={9}
           name="file"
           readOnly={false}
-          url="http://eternalsky.me:8122/file/upload?sleep=10000"
+          // url="http://eternalsky.me:8122/file/upload?sleep=10000"
+          url="http://xxx.aaa"
           photoList={this.state.photoList}
           tip="这里是提示信息"
           onChange={this.onChange.bind(this)}

@@ -42,6 +42,7 @@ export default () => (
       <h2>基本</h2>
       <div className="t-FBH">
         <Avatar name="tingle" />
+        <Avatar name="1231" filter={name => name.replace('1', '')} />
         <Avatar name="天晟" />
         <Avatar name="马天明" />
         <Avatar name="欧阳夏丹" />

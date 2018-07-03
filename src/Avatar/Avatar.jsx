@@ -45,10 +45,12 @@ export default class Avatar extends Component {
     return hash;
   };
 
-  static formatName = (name) => {
+  static formatName = (name, customFilter) => {
     let formattedName = name;
     const isEnglishName = /^[A-Za-z,. ]+$/.test(formattedName);
-    formattedName = formattedName.replace(/[()（）\d]/g, '').replace(/[,. ]+/g, isEnglishName ? ' ' : '');
+    const defaultNameFilter = prevName => prevName.replace(/[()（）\d]/g, '');
+    const filter = customFilter || defaultNameFilter;
+    formattedName = filter(formattedName).replace(/[,. ]+/g, isEnglishName ? ' ' : '');
     if (formattedName.indexOf(' ') !== -1) {
       formattedName = formattedName.split(' ').map(p => p.slice(0, 1)).join('');
     }
@@ -147,7 +149,7 @@ export default class Avatar extends Component {
         {
           props.icon
             ? <span style={iconWrapperStyle}>{props.icon}</span>
-            : Avatar.formatName(props.name)
+            : Avatar.formatName(props.name, props.filter)
         }
       </div>
     );
