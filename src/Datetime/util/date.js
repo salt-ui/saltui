@@ -1,4 +1,4 @@
-
+import isEuqal from 'lodash/isEqual';
 import {
   parseDate,
   addZero,
@@ -494,7 +494,18 @@ function getSlotFormattedValue(value, props) {
   const ret = Slot.formatDataValue([].concat(options), [].concat(currentValueNew));
   return formatFromProps(ret.value, props);
 }
-module.exports = {
+
+function needUpdateSlotValue(prevProps, nextProps) {
+  let shouldUpdate = false;
+  const checkedProps = ['minDate', 'maxDate', 'minuteStep', 'columns', 'value'];
+  for (let i = 0; i < checkedProps.length; i++) {
+    const key = checkedProps[i];
+    shouldUpdate = !isEuqal(prevProps[key], nextProps[key]);
+    if (shouldUpdate) break;
+  }
+  return shouldUpdate;
+}
+export default {
   parseValue,
   addDayOfWeek,
   formatFromProps,
@@ -504,5 +515,6 @@ module.exports = {
   locale,
   filterDate,
   getSlotFormattedValue,
+  needUpdateSlotValue,
 };
 

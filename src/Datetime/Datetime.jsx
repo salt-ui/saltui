@@ -15,6 +15,7 @@ import {
   Slot,
   locale,
   getSlotFormattedValue,
+  needUpdateSlotValue,
   getOptions,
   getDaysByMonth,
   addZero,
@@ -267,6 +268,7 @@ Datetime.YMDT = YMDT;
 Datetime.YMDHM = YMDHM;
 Datetime.YMDWHM = YMDWHM;
 Datetime.getSlotFormattedValue = getSlotFormattedValue;
+Datetime.needUpdateSlotValue = needUpdateSlotValue;
 Datetime.displayName = 'Datetime';
 
 export default Datetime;
