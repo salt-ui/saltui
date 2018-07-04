@@ -4,6 +4,7 @@ const defaultFormatter = {
   y: 'YYYY',
   m: 'YYYY-MM',
   d: 'YYYY-MM-DD',
+  dt: 'YYYY-MM-DD HH:mm',
 };
 
 const Locale = {

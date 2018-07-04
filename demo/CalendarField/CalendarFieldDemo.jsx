@@ -59,7 +59,7 @@ class Demo extends React.Component {
       // multiLine: true,
       // readOnly: true,
       layout: 'h',
-      type: 'day',
+      type: 'dayWithTime',
       singleMode: false,
       // formatter: 'yyyy-MM-dd',
       showWeek: false,

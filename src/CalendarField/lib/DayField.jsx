@@ -135,6 +135,12 @@ class DayField extends React.Component {
     if (Number.isNaN(new Date(result.end))) {
       result.tempEnd = result.end;
     }
+    const defaultDayFormatterMap = {
+      day: defaultFormatter.d,
+      dayWithSlot: defaultFormatter.d,
+      dayWithHalf: defaultFormatter.dt,
+      dayWithTime: defaultFormatter.dt,
+    };
     switch (t.props.type) {
       case 'year':
         result.start = Formatter.date(result.start, defaultFormatter.y);
@@ -150,8 +156,10 @@ class DayField extends React.Component {
       case 'dayWithHalf':
       case 'dayWithTime':
         // 格式化日期
-        result.start = Formatter.date(result.start, t.props.formatter || defaultFormatter.d);
-        result.end = Formatter.date(result.end, t.props.formatter || defaultFormatter.d);
+        result.start = Formatter.date(result.start, t.props.formatter
+          || defaultDayFormatterMap[t.props.type]);
+        result.end = Formatter.date(result.end, t.props.formatter
+          || defaultDayFormatterMap[t.props.type]);
         if (!Number.isNaN(new Date(result.start))) {
           result = t.makeWeekText(result, 'start');
         }
