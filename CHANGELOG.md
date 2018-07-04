@@ -1,3 +1,7 @@
+## 3.9.16 / 2018-07-04
+
+* `feat`: `DatetimeField` reduce unnecessary calculation in `cWRP`
+
 ## 3.9.15 / 2018-07-04
 
 * `feat`: `CalendarField` improve default formatter
