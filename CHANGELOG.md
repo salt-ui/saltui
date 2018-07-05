@@ -1,3 +1,7 @@
+## 3.10.0 / 2018-07-05
+
+* `feat`: performance improvement in `cWRP`
+
 ## 3.9.16 / 2018-07-05
 
 * `feat`: `DatetimeField` reduce unnecessary calculation in `cWRP`

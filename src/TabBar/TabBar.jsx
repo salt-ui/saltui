@@ -55,7 +55,7 @@ class TabBar extends React.Component {
   componentWillReceiveProps(nextProps) {
     const t = this;
     const nextActiveIndex = nextProps.activeIndex;
-    if (nextActiveIndex !== t.state.activeIndex) {
+    if (nextActiveIndex !== t.props.activeIndex) {
       t.setActiveIndex(nextActiveIndex);
     }
   }

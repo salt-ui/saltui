@@ -21,15 +21,12 @@ class Mask extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.renderToBody && !nextProps.renderToBody) {
-      this.unmountInBody();
-    }
-  }
-
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     if (this.props.renderToBody) {
       this.mountInBody();
+    }
+    if (prevProps.renderToBody && !this.props.renderToBody) {
+      this.unmountInBody();
     }
   }
 

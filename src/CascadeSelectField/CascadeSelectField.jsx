@@ -16,9 +16,10 @@ import Field from '../Field';
 import Popup from '../Popup';
 import CascadeTab from './CascadeTab';
 import i18n from './i18n';
+import { shouldUpdate } from '../Utils';
 
 function parseProps(props) {
-  const { options } = props;
+  const { options, readOnly } = props;
   const value = cloneDeep(props.value || []);
   let cursor = options;
   const newOptions = [];
@@ -43,20 +44,20 @@ function parseProps(props) {
     cursor = cursor[index] ? cursor[index].children : null;
   }
   // when its readOnly mode show whatever passed in values
-  if (props.readOnly && props.options && props.options.length <= 0) {
+  if (readOnly && options && options.length <= 0) {
     const values = value.map(v => ({ text: v, value: v }));
     return {
       options: [],
       value: values,
       confirmedValue: values,
-      originOptions: props.options,
+      originOptions: options,
     };
   }
   return {
     options: newOptions,
     value,
     confirmedValue,
-    originOptions: props.options,
+    originOptions: options,
   };
 }
 
@@ -107,8 +108,10 @@ class CascadeSelectField extends React.Component {
 
   // 外部变更选中值
   componentWillReceiveProps(nextProps) {
-    const t = this;
-    t.setState(parseProps(nextProps));
+    if (shouldUpdate(this.props, nextProps, ['readOnly', 'options', 'value'])) {
+      const t = this;
+      t.setState(parseProps(nextProps));
+    }
   }
 
   handleClick() {

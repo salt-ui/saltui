@@ -32,6 +32,8 @@ import {
   YMDWHM,
 } from './util/index';
 
+import { shouldUpdate } from '../Utils';
+
 const columnsFlexMap = {
   YMD: [1.24, 1.1, 1.1],
   YMDT: [0.98, 0.83, 0.83, 0.79],
@@ -49,7 +51,10 @@ class Datetime extends React.Component {
     this.state = this.getState(props);
   }
   componentWillReceiveProps(nextProps) {
-    this.setState(this.getState(nextProps));
+    const keys = ['columns', 'minDate', 'maxDate', 'value', 'locale', 'columns'];
+    if (shouldUpdate(this.props, nextProps, keys)) {
+      this.setState(this.getState(nextProps));
+    }
   }
   getState = (props) => {
     const { columns, minDate, maxDate } = props;

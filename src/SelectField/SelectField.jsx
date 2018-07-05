@@ -12,6 +12,7 @@ import AngleRight from 'salt-icon/lib/AngleRight';
 import Context from '../Context';
 import Slot from '../Slot';
 import Field from '../Field';
+import { shouldUpdate } from '../Utils';
 
 const isNil = value => (value === null || value === undefined);
 
@@ -28,12 +29,14 @@ class SelectField extends React.Component {
 
   // 外部变更选中值
   componentWillReceiveProps(nextProps) {
-    const t = this;
-    const { value } = nextProps;
-    t.setState({
-      value: isNil(value) ? value : [value],
-      confirmedValue: [value],
-    });
+    if (shouldUpdate(this.props, nextProps, ['value'])) {
+      const t = this;
+      const { value } = nextProps;
+      t.setState({
+        value: isNil(value) ? value : [value],
+        confirmedValue: [value],
+      });
+    }
   }
 
   handleClick() {

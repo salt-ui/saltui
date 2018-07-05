@@ -36,7 +36,7 @@ class Demo extends React.Component {
 
   handleChange(value) {
     this.setState({
-      value,
+      value1: value,
     });
   }
 
@@ -53,7 +53,15 @@ class Demo extends React.Component {
         <Group>
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">滚动选择器演示</Group.Head>
           <Group.List>
-            <SelectField icon={<AngleRight onClick={(e) => { e.stopPropagation(); alert('1'); }} />} readOnly={false} label="没有默认值" options={monthArray} onSelect={t.handleChange.bind(t)} value={t.state.value1} placeholder="请输入" />
+            <SelectField
+              icon={<AngleRight onClick={(e) => { e.stopPropagation(); alert('1'); }} />}
+              readOnly={false}
+              label="没有默认值"
+              options={monthArray}
+              onSelect={t.handleChange.bind(t)}
+              value={t.state.value1}
+              placeholder="请输入"
+            />
             <SelectField label="有默认值" options={monthArray} onSelect={t.handleChange1.bind(t)} value={t.state.value1} tip="这里是tip" />
             <SelectField readOnly label="查看态" options={monthArray} value={t.state.value1} />
             <SelectField disabled label="禁用" options={monthArray} value={t.state.value1} />

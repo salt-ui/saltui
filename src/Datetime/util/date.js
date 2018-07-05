@@ -14,6 +14,7 @@ import {
 import locale from './locale';
 import dateFormat from './dateFormat';
 import Slot from '../../Slot';
+import { shouldUpdate } from '../../Utils';
 
 const { warn, error } = console;
 const colFlags = ['Y', 'M', 'D', 'T', 'h', 'H', 'm', 's', 'YMD', 'YMDW'];
@@ -496,14 +497,8 @@ function getSlotFormattedValue(value, props) {
 }
 
 function needUpdateSlotValue(prevProps, nextProps) {
-  let shouldUpdate = false;
   const checkedProps = ['minDate', 'maxDate', 'minuteStep', 'columns', 'value'];
-  for (let i = 0; i < checkedProps.length; i++) {
-    const key = checkedProps[i];
-    shouldUpdate = !isEuqal(prevProps[key], nextProps[key]);
-    if (shouldUpdate) break;
-  }
-  return shouldUpdate;
+  return shouldUpdate(prevProps, nextProps, checkedProps);
 }
 export default {
   parseValue,

@@ -13,8 +13,31 @@ import { prefixClass } from '../Context';
 import CascadeSelectField from '../CascadeSelectField';
 import PickerField from '../PickerField';
 import { find, findTree, clearChildren, joinArray } from './utils';
+import { shouldUpdate } from '../Utils';
 
 export default class CitySelectField extends Component {
+  static initData(props) {
+    const {
+      districtData, selectorType, mode, value,
+    } = props;
+    let data = clearChildren(districtData, selectorType);
+    if (mode === 'picker') {
+      switch (selectorType) {
+        case 'province':
+          break;
+        case 'city':
+          data = joinArray(data.map(province => province.children));
+          break;
+        default:
+          data = joinArray(joinArray(data.map(province => province.children))
+            .map(city => city.children));
+      }
+    }
+    return {
+      value: value || [],
+      options: data,
+    };
+  }
   static displayName = 'CitySelectField';
 
   static propTypes = {
@@ -60,15 +83,13 @@ export default class CitySelectField extends Component {
 
   constructor(props) {
     super(props);
-    this.state = this.initData(props);
+    this.state = CitySelectField.initData(props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(this.initData(nextProps));
-  }
-
-  defaultSearchText() {
-    return `请输入${{ province: '省份', city: '城市' }[this.props.selectorType] || '区县'}名称进行搜索`;
+    if (shouldUpdate(this.props, nextProps, ['districtData', 'selectorType', 'mode', 'value'])) {
+      this.setState(CitySelectField.initData(nextProps));
+    }
   }
 
   getPickerValue() {
@@ -91,28 +112,12 @@ export default class CitySelectField extends Component {
           value,
         };
       }
-    } else {
-      return undefined;
     }
+    return undefined;
   }
 
-  initData(props) {
-    let data = clearChildren(props.districtData, props.selectorType);
-    if (props.mode === 'picker') {
-      switch (props.selectorType) {
-        case 'province':
-          break;
-        case 'city':
-          data = joinArray(data.map(province => province.children));
-          break;
-        default:
-          data = joinArray(joinArray(data.map(province => province.children)).map(city => city.children));
-      }
-    }
-    return {
-      value: props.value || [],
-      options: data,
-    };
+  defaultSearchText() {
+    return `请输入${{ province: '省份', city: '城市' }[this.props.selectorType] || '区县'}名称进行搜索`;
   }
 
   pickerSelect(item) {
@@ -134,17 +139,19 @@ export default class CitySelectField extends Component {
       { [className]: !!className },
     );
     if (this.props.mode === 'picker') {
-      return (<PickerField
-        grouping
-        groupingIndicator
-        searchText={this.defaultSearchText()}
-        {...this.props}
-        className={fieldClassName}
-        options={options}
-        value={this.getPickerValue()}
-        onSelect={this.pickerSelect.bind(this)}
-        formatter={t => t && t.label}
-      />);
+      return (
+        <PickerField
+          grouping
+          groupingIndicator
+          searchText={this.defaultSearchText()}
+          {...this.props}
+          className={fieldClassName}
+          options={options}
+          value={this.getPickerValue()}
+          onSelect={this.pickerSelect.bind(this)}
+          formatter={t => t && t.label}
+        />
+      );
     }
     const levels = { province: 1, city: 2 }[this.props.selectorType] || 3;
     const labels = ['provinceText', 'cityText', 'districtText'].map(k => this.props[k]).slice(0, levels);

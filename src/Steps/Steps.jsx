@@ -68,7 +68,7 @@ class Steps extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.children.length !== this.props.children.length) {
+    if (React.Children.count(nextProps.children) !== React.Children.count(this.props.children)) {
       if (this.props.direction === 'vertical') {
         return;
       }

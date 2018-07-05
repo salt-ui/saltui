@@ -15,6 +15,7 @@ import Context from '../Context';
 import Group from '../Group';
 import Field from '../Field';
 import SelectLayer from './SelectLayer';
+import { shouldUpdate } from '../Utils';
 
 const { prefixClass } = Context;
 
@@ -49,18 +50,18 @@ class CheckboxField extends React.Component {
 
     const t = this;
     t.state = {
-      selectedText: '',
+      selectedText: this.getSelectedText(props.data),
     };
     t.handleClick = t.handleClick.bind(t);
     t.handleConfirm = t.handleConfirm.bind(t);
   }
 
-  componentWillMount() {
-    this.getSelectedText(this.props.data);
-  }
-
   componentWillReceiveProps(nextProps) {
-    this.getSelectedText(nextProps.data);
+    if (shouldUpdate(this.props, nextProps, ['data'])) {
+      this.setState({
+        selectedText: this.getSelectedText(nextProps.data),
+      });
+    }
   }
 
   getSelectedText(data) {
@@ -80,7 +81,7 @@ class CheckboxField extends React.Component {
       selectedText = selectedText.substring(this.props.titleBreakStr.length);
     }
 
-    this.state.selectedText = selectedText;
+    return selectedText;
   }
 
   getData() {

@@ -15,6 +15,7 @@ import Popup from '../Popup';
 import SearchPanel from './SearchPanel';
 import utils from './utils';
 import i18n from './i18n';
+import { shouldUpdate } from '../Utils';
 
 class PickerField extends React.Component {
   static normalizeValue(input) {
@@ -43,12 +44,14 @@ class PickerField extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const t = this;
-    const value = PickerField.normalizeValue(nextProps.value);
-    t.setState({
-      value,
-      confirmedValue: value,
-    });
+    if (shouldUpdate(this.props, nextProps, ['value'])) {
+      const t = this;
+      const value = PickerField.normalizeValue(nextProps.value);
+      t.setState({
+        value,
+        confirmedValue: value,
+      });
+    }
   }
 
   componentWillUnmount() {
