@@ -1,6 +1,7 @@
-## 3.9.16 / 2018-07-04
+## 3.9.16 / 2018-07-05
 
 * `feat`: `DatetimeField` reduce unnecessary calculation in `cWRP`
+* `fix`: `Slide` bug when Slide items'number change
 
 ## 3.9.15 / 2018-07-04
 
