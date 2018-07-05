@@ -36,7 +36,7 @@ const POS_MAP = {
 
 // 创建translate字符串
 // TODO: translate(0,0) translateZ(0);
-const makeTranslate = (function () {
+const makeTranslate = (function makeTransFactory() {
   const prefix = support3D ? 'translate3d(' : 'translate(';
   const suffix = support3D ? ', 0)' : ')';
   const join = ',';
@@ -47,17 +47,13 @@ const makeTranslate = (function () {
     return back;
   }
 
-  return function (x, y) {
-    return prefix + v(x) + join + v(y) + suffix;
-  };
+  return (x, y) => prefix + v(x) + join + v(y) + suffix;
 }());
 
 // 获取兼容PC和Device的event对象的page属性
-const getCursorPage = supportTouch ? function (event, page) {
-  return event.changedTouches[0][page];
-} : function (event, page) {
-  return event[page];
-};
+const getCursorPage = supportTouch
+  ? (event, page) => event.changedTouches[0][page]
+  : (event, page) => event[page];
 
 class Slide extends React.Component {
   constructor(props) {
@@ -74,15 +70,11 @@ class Slide extends React.Component {
 
     this.state = {
       auto: props.auto,
-      // 当前item的索引值 以0开始
+      // 当前 item 的索引值 以 0 开始
       index: props.active,
       disabled: false,
     };
-  }
-
-  componentWillMount() {
-    const t = this;
-    t._getLength();
+    this._getLength();
   }
 
   componentDidMount() {
@@ -111,7 +103,7 @@ class Slide extends React.Component {
     const newChildrenLength = React.Children.count(this.props.children);
     if (newChildrenLength !== oldChildrenLength) {
       t._getLength();
-      t._setContext(this.props);
+      t._setContext(prevProps);
     }
   }
 

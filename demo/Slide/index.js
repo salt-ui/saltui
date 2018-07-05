@@ -7,11 +7,12 @@
  */
 import 'salt-context';
 
+import Demo from './SlideDemo';
 import './SlideDemo.styl';
-window.FastClick && FastClick.attach(document.body);
-
 
 // 渲染demo
-import Demo from './SlideDemo';
+if (window.FastClick) {
+  window.FastClick.attach(document.body);
+}
 
 export default Demo;

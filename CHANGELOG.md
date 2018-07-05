@@ -10,6 +10,7 @@
 ## 3.9.14 / 2018-07-03
 
 * `feat`: `Avatar` support custom name filter
+* `feat`: `Utils` make popup content scrollable when body's scrolling is prevented.
 
 ## 3.9.13 / 2018-06-28 
 
