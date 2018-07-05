@@ -9,6 +9,7 @@
 import React from 'react';
 
 import Table from 'salt-table';
+import Dialog from 'salt-dialog';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const Table = require('../../dist');
@@ -96,14 +97,41 @@ class Demo extends React.Component {
         totalCount: 20,
       },
       columns: [
-        { dataKey: 'title', title: '表头', align: 'center' },
+        {
+          dataKey: 'title',
+          title: '表头',
+          align: 'center',
+        },
         { dataKey: 'name', title: '姓名', align: 'center' },
         { dataKey: 'sex', title: '性别', align: 'center' },
         { dataKey: 'age', title: '邮件', align: 'center' },
         { dataKey: 'city', title: '城市', align: 'center' },
       ],
       columns2: [
-        { dataKey: 'city', title: '城市', align: 'center' },
+        {
+          dataKey: 'city',
+          title: '城市',
+          align: 'center',
+          render: cellData => (
+            <div
+              onClick={() => {
+                Dialog.alert({
+                  title: '测试',
+
+                  content: '我是 Dialog.alert 的调用',
+                  onConfirm() {
+                    console.log('alert confirm');
+                  },
+                });
+              }}
+            >
+              {cellData}
+              <span style={{ fontSize: 18, color: '#ee3225', marginLeft: 1 }}>
+                ↑
+              </span>
+            </div>
+          ),
+        },
         { dataKey: 'name', title: '姓名', align: 'center' },
         { dataKey: 'email', title: '邮件', align: 'center' },
         { dataKey: 'email', title: '邮件', align: 'center' },

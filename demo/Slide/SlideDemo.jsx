@@ -15,23 +15,27 @@ class Demo extends React.Component {
     super(props);
     this.state = {
       freeCount: 0,
-      slideList: [{
-        img: 'https://img.alicdn.com/tfs/TB147.cRXXXXXaiXpXXXXXXXXXX-640-387.jpg',
-        url: '',
-        title: 'item0',
-      }, {
-        img: 'https://img.alicdn.com/tfs/TB1WpnPRXXXXXa0aXXXXXXXXXXX-640-340.jpg',
-        url: '',
-        title: 'item1',
-      }, {
-        img: 'https://img.alicdn.com/tfs/TB1KIH2RXXXXXc8XFXXXXXXXXXX-640-340.jpg',
-        url: '',
-        title: 'item2',
-      }, {
-        img: 'https://img.alicdn.com/tfs/TB1gXTqRXXXXXXfaVXXXXXXXXXX-640-340.jpg',
-        url: '',
-        title: 'item3',
-      }],
+      slideList: [
+        {
+          img: 'https://img.alicdn.com/tfs/TB147.cRXXXXXaiXpXXXXXXXXXX-640-387.jpg',
+          url: '',
+          title: 'item0',
+        },
+        // {
+        //   img: 'https://img.alicdn.com/tfs/TB1WpnPRXXXXXa0aXXXXXXXXXXX-640-340.jpg',
+        //   url: '',
+        //   title: 'item1',
+        // },
+        //  {
+        //   img: 'https://img.alicdn.com/tfs/TB1KIH2RXXXXXc8XFXXXXXXXXXX-640-340.jpg',
+        //   url: '',
+        //   title: 'item2',
+        // }, {
+        //   img: 'https://img.alicdn.com/tfs/TB1gXTqRXXXXXXfaVXXXXXXXXXX-640-340.jpg',
+        //   url: '',
+        //   title: 'item3',
+        // },
+      ],
       ajaxList: [],
       slideList2: [
         {
@@ -104,21 +108,23 @@ class Demo extends React.Component {
     console.log(this.state.dynamicList);
     return (<div>
 
-      <h3 className="t-P10">动态添加Slide.Item</h3>
+      {/* <h3 className="t-P10">动态添加Slide.Item</h3>
       <Slide
         loop={false}
         active={this.state.dynamicListActive}
-        height={'2rem'}
+        height="2rem"
         onSlideEnd={(option) => {
-          let dynamicList = this.state.dynamicList;
+          let { dynamicList } = this.state;
           if (option.index === 2) {
-            dynamicList = dynamicList.slice(1, dynamicList.length).concat({ name: dynamicList[dynamicList.length - 1].name + 1 });
+            dynamicList = dynamicList.slice(1, dynamicList.length)
+              .concat({ name: dynamicList[dynamicList.length - 1].name + 1 });
             this.setState({
               dynamicListActive: 1,
               dynamicList,
             });
           } else if (option.index === 0 && dynamicList[option.index].name > 1) {
-            dynamicList = [{ name: dynamicList[0].name - 1 }].concat(dynamicList.slice(0, dynamicList.length - 1));
+            dynamicList = [{ name: dynamicList[0].name - 1 }]
+              .concat(dynamicList.slice(0, dynamicList.length - 1));
             this.setState({
               dynamicListActive: 1,
               dynamicList,
@@ -170,27 +176,31 @@ class Demo extends React.Component {
             <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
           </div>
         </Slide.Item>
-      </Slide>
+      </Slide> */}
 
       <h3 className="t-P10">有title</h3>
       <Slide
         showTitle
         showNav
         auto
-        active={2}
+        // active={2}
         onSlideClick={this._onSlideClick.bind(this)}
         onMount={this.onMount.bind(this)}
         onSlideEnd={this.onSlideEnd.bind(this)}
       >
         {
-          t.state.slideList.map((item, index) => (<Slide.Item key={index} className="t-image-slide-item" title="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试" style={{
+          t.state.slideList.map((item, index) => (<Slide.Item
+            key={index}
+            className="t-image-slide-item"
+            title="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试"
+            style={{
             backgroundImage: `url(${item.img})`,
           }}
           />))
         }
       </Slide>
 
-      <h3 className="t-P10">无title</h3>
+      {/* <h3 className="t-P10">无title</h3>
       <Slide
         showTitle={false}
         showNav
@@ -201,7 +211,10 @@ class Demo extends React.Component {
         onSlideEnd={this.onSlideEnd.bind(this)}
       >
         {
-          t.state.slideList.map((item, index) => (<Slide.Item key={index} className="t-image-slide-item" style={{
+          t.state.slideList.map((item, index) => (<Slide.Item
+            key={index}
+            className="t-image-slide-item"
+            style={{
             backgroundImage: `url(${item.img})`,
           }}
           />))
@@ -216,12 +229,12 @@ class Demo extends React.Component {
       >
         {
           t.state.slideList2.map((item, index) => (
-            <Slide.Item key={ index }>
+            <Slide.Item key={index}>
               <a href="//work.alibaba-inc.com"><img src={item.img} /></a>
             </Slide.Item>
           ))
         }
-      </Slide>
+      </Slide> */}
     </div>);
   }
 }

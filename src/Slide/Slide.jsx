@@ -107,11 +107,11 @@ class Slide extends React.Component {
 
   componentDidUpdate(prevProps) {
     const t = this;
-    const oldChildrenLength = prevProps.children.length;
-    const newChildrenLength = this.props.children.length;
+    const oldChildrenLength = React.Children.count(prevProps.children);
+    const newChildrenLength = React.Children.count(this.props.children);
     if (newChildrenLength !== oldChildrenLength) {
       t._getLength();
-      t._setContext(prevProps);
+      t._setContext(this.props);
     }
   }
 
@@ -579,7 +579,7 @@ class Slide extends React.Component {
   }
 
   /**
-  * 渲染items 当item数量为2时，该方法会被调用两次，第二次函数为true，以实现循环轮播
+  * 渲染items 当 item 数量为 2 时，该方法会被调用两次，第二次函数为true，以实现循环轮播
   * @param {boolean} dummyMode 是否是在渲染补位的item，
   * @note 只有当`props.children`的长度为2时，才需要进行补位
   */
