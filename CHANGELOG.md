@@ -1,3 +1,7 @@
+## 3.10.2 / 2018-07-06
+
+* `fix`: `PhotoField` list upload icon fail to work if total files' length become 0
+ 
 ## 3.10.0 / 2018-07-05
 
 * `feat`: performance improvement in `cWRP`

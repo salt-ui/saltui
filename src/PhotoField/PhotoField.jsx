@@ -45,20 +45,31 @@ class PhotoField extends React.Component {
       this.picker = picker.addArea(uploadIcon);
     }
     if (listUploadIcon) {
-      picker.addArea(listUploadIcon);
+      this.listPicker = picker.addArea(listUploadIcon);
     }
   }
 
 
   componentDidUpdate() {
+    // destory picker when max is 0
     if (this.getMax() === 0 && this.picker) {
       this.picker.destroy();
       this.picker = null;
+    // recreate picker when picker is distroyed and max is larger than 0
     } else if (this.getMax() > 0 && !this.picker) {
       const uploadIcon = this.pane.getUploadIcon();
       const picker = this.core.getPickerCollector();
       if (uploadIcon) {
         this.picker = picker.addArea(uploadIcon);
+      }
+    }
+    if (this.getTotalFilesLength() === 0) {
+      this.listPicker = null;
+    } else {
+      const listUploadIcon = this.pane.getListUploadIcon();
+      if (listUploadIcon) {
+        const picker = this.core.getPickerCollector();
+        this.listPicker = picker.addArea(listUploadIcon);
       }
     }
     if (this.core) {
@@ -141,6 +152,10 @@ class PhotoField extends React.Component {
         [Status.CANCELLED, Status.SUCCESS, Status.QUEUED].indexOf(file.status) === -1);
     }
     return [];
+  }
+
+  getTotalFilesLength() {
+    return this.props.photoList.length + this.core.getTotal();
   }
 
   handleSuccess(file) {
