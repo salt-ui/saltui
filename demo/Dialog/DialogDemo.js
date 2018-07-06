@@ -10,6 +10,8 @@ import React from 'react';
 
 import Button from 'salt-button';
 import Dialog from 'salt-dialog';
+import DialogWrap from 'rc-dialog';
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,10 @@ class Demo extends React.Component {
       showNoPadding: false,
       text: '测试文本',
     };
+  }
+
+  componentWillUnmount() {
+    Dialog.hide();
   }
 
   handleAlert() {
@@ -120,7 +126,7 @@ class Demo extends React.Component {
           onConfirm={() => { console.log('confirm confirm'); this.handleShow('showConfirm', false); }}
           onCancel={() => { console.log('cancel confirm'); this.handleShow('showConfirm', false); }}
         >
-          {/* <textarea value={this.state.text} onChange={e => this.setState({ text: e.target.value })} />*/}
+          {/* <textarea value={this.state.text} onChange={e => this.setState({ text: e.target.value })} /> */}
           <h3>{this.state.text}</h3>
         </Dialog>
 

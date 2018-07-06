@@ -77,6 +77,7 @@ class EmployeeField extends React.Component {
       // users: this.props.value.map(v => ({ emplId: v.key, name: v.label, nickNameCn: v.label })),
       users: this.props.value.map(v => v.key),
       disabledUsers: this.props.disabledUsers,
+      enableAutoJumpDepart: this.props.enableAutoJumpDepart,
     };
     const Ali = window.Ali || {};
     if (Ali.contacts) {
