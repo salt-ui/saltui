@@ -212,6 +212,7 @@ class Datetime extends React.Component {
         data={data}
         value={value}
         confirmText={props.confirmText || locale[props.locale].confirmText}
+        cancelText={props.cancelText || locale[props.locale].cancelText}
         onChange={this.handleChange}
         onCancel={this.handleCancel}
         onConfirm={this.handleConfirm}

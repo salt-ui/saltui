@@ -83,12 +83,12 @@ class Slide extends React.Component {
     t.el = t.root;
 
     // 确定容器宽度
-    t.width = isPC ? t.el.clientWidth : win.innerWidth;
+    t.width = isPC ? t.el.clientWidth : window.innerWidth;
 
     t._setContext();
 
     // 当屏幕旋转的时候，修正布局
-    win.addEventListener(RESIZE, t, false);
+    window.addEventListener(RESIZE, t, false);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -129,7 +129,8 @@ class Slide extends React.Component {
       t.setState({
         disabled: true,
       });
-    } else if (originLength === 2) { // item的长度经处理后不存在为2的情况
+    } else if (originLength === 2) {
+      // item 的长度经处理后不存在为2的情况
       t._dummy = true;
       t._realIndex = {
         0: 0,
@@ -296,7 +297,7 @@ class Slide extends React.Component {
   _getItemReady(offset, noAnimation) {
     const t = this;
     const targetPosIndex = t._getPosIndex(offset);
-    const item = t.refs[`item${targetPosIndex}`];
+    const item = t[`item${targetPosIndex}`];
     item.classList.add('ready');
     item.setAttribute(OFFSET, offset);
     item.style.webkitTransform = makeTranslate(t._getPosX(offset));
@@ -578,19 +579,22 @@ class Slide extends React.Component {
   _renderItems(dummyMode) {
     const t = this;
     /* eslint-disable react/no-array-index-key */
-    return t.props.children.map((child, index) => (
-      <div
-        key={index + (dummyMode ? 2 : 0)}
-        ref={`item${index + (dummyMode ? 2 : 0)}`}
-        className={classnames({
-          [prefixClass('slide-item')]: true,
-          [`${prefixClass('slide-item')}${t._getRealIndex(index)}`]: true,
-          //  [prefixClass('slide-item-active')]: index === t._getRealIndex(t.currentPosIndex),
-        })}
-      >
-        {child}
-      </div>
-    ));
+    return t.props.children.map((child, index) => {
+      const key = index + (dummyMode ? 2 : 0);
+      return (
+        <div
+          key={key}
+          ref={(c) => { t[`item${key}`] = c; }}
+          className={classnames({
+            [prefixClass('slide-item')]: true,
+            [`${prefixClass('slide-item')}${t._getRealIndex(index)}`]: true,
+            //  [prefixClass('slide-item-active')]: index === t._getRealIndex(t.currentPosIndex),
+          })}
+        >
+          {child}
+        </div>
+      );
+    });
     /* eslint-enable react/no-array-index-key */
   }
 

@@ -19,7 +19,7 @@ export default {
     },
 
     confirmText: '确定',
-    cancelText: '返回',
+    cancelText: '取消',
   },
 
   'en-us': {

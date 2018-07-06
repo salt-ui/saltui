@@ -51,6 +51,7 @@ class Demo extends React.Component {
             <DatetimeField
               label="日期选择"
               layout="v"
+              locale="en-us"
               placeholder="请选择日期"
               disabledDate={() => [
                 {
