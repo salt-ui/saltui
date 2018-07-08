@@ -119,9 +119,10 @@ class CheckboxField extends React.Component {
   }
 
   handleConfirm(data) {
-    this.state.value = data;
-    this.getSelectedText(data);
-    this.setState(this.state);
+    this.setState({
+      value: data,
+      selectedText: this.getSelectedText(data),
+    });
     this.props.onChange(data);
   }
 

@@ -91,12 +91,6 @@ class Slide extends React.Component {
     window.addEventListener(RESIZE, t, false);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (typeof nextProps.active !== 'undefined' && nextProps.active !== this.props.active) {
-      this._goto(nextProps.active, true, true);
-    }
-  }
-
   componentDidUpdate(prevProps) {
     const t = this;
     const oldChildrenLength = React.Children.count(prevProps.children);
@@ -104,6 +98,9 @@ class Slide extends React.Component {
     if (newChildrenLength !== oldChildrenLength) {
       t._getLength();
       t._setContext(prevProps);
+    }
+    if (typeof this.props.active !== 'undefined' && this.props.active !== prevProps.active) {
+      this._goto(this.props.active, true, true);
     }
   }
 
@@ -155,10 +152,10 @@ class Slide extends React.Component {
     t.el.removeEventListener(TOUCH_START, t, false);
     clearTimeout(t._autoSlideTimer);
 
-    // 至少有2张slide时，才初始化事件
+    // 至少有 2 张 slide 时，才初始化事件
     if (t.length > 1) {
       t.el.addEventListener(TOUCH_START, t, false);
-    } else {
+    } else if (t.length === 1) {
       t.el.addEventListener('click', () => {
         t.props.onSlideClick({
           index: 0,
@@ -168,7 +165,7 @@ class Slide extends React.Component {
       });
     }
 
-    // 前一个，当前的，后一个item的element引用
+    // 前一个，当前的，后一个 item 的 element 引用
     t._prevEl = null;
     t._currentEl = null;
     t._nextEl = null;
@@ -218,13 +215,13 @@ class Slide extends React.Component {
 
       // t._slideEnd();
     } else if (!callFromDidMountBool) {
-      // 通过goNext/goPrev调用的_goto，一直有方向(_dir)值 向左:-1 / 向右:1
+      // 通过 goNext/goPrev 调用的 _goto，一直有方向(_dir)值 向左: -1 / 向右: 1
       if (t._dir) {
         _getItemUnready(t._dir === 1 ? t._nextEl : t._prevEl);
         t._moveItem(t._currentEl, t._dir);
         t._moveItem(t._dir === 1 ? t._prevEl : t._nextEl, t._dir);
 
-        // `_getItemReady`方法被调用之前，需要先更新`currentPosIndex`的值
+        // `_getItemReady` 方法被调用之前，需要先更新 `currentPosIndex` 的值
         t.currentPosIndex = posIndex;
         t._getItemReady(t._dir * -1);
 
@@ -234,8 +231,8 @@ class Slide extends React.Component {
       } else if (posIndex === t.currentPosIndex) { // 归位的情况：移动距离小于有效距离时
         // 归位当前item
         t._moveItem(t._currentEl, 0);
-        // 归位进入屏幕的另一个item
-        // 说明:任意一个时间点,出现在屏幕内的item数量最多为2个,要么左边,要么右边,取决于移动方向
+        // 归位进入屏幕的另一个 item
+        // 说明:任意一个时间点,出现在屏幕内的 item 数量最多为 2 个,要么左边,要么右边,取决于移动方向
         if (t._moveBack) {
           t._moveItem(t._moveBack, 0);
         } else { // 当resize时
@@ -269,7 +266,7 @@ class Slide extends React.Component {
   * @param {number} dir 移动的方向 -1:向左移动 / 1:向右移动 / 0:移动到原位
   */
   /* eslint-disable no-param-reassign */
-  // DOM节点
+  // DOM 节点
   _moveItem(item, dir) {
     const t = this;
     item.style.webkitTransitionDuration = `${t.duration}ms`;
@@ -278,7 +275,7 @@ class Slide extends React.Component {
 
     t._setItemX(item, t._getPosX(newOffset));
 
-    // 如果进行了切换行为，即dir为-1或1
+    // 如果进行了切换行为，即 dir 为 -1 或 1
     if (dir) {
       item.setAttribute(OFFSET, newOffset);
       t[POS_MAP[newOffset]] = item;
