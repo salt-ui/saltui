@@ -74,7 +74,7 @@ class Slide extends React.Component {
       index: props.active,
       disabled: false,
     };
-    this._getLength();
+    this._getLength({ fromMount: true });
   }
 
   componentDidMount() {
@@ -117,15 +117,19 @@ class Slide extends React.Component {
   * 获取 slide 列表的真正长度，主要是考虑 children
   * 长度是 1 和 2 的情况下
   */
-  _getLength() {
+  _getLength({ fromMount = true }) {
     const t = this;
     const originLength = React.Children.count(t.props.children);
 
     // check
     if (originLength === 1) {
-      t.setState({
-        disabled: true,
-      });
+      if (fromMount) {
+        t.state.disabled = true;
+      } else {
+        t.setState({
+          disabled: true,
+        });
+      }
     } else if (originLength === 2) {
       // item 的长度经处理后不存在为2的情况
       t._dummy = true;

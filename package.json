@@ -52,8 +52,8 @@
     "happypack": "^4.0.0-beta.2",
     "inquirer": "^3.3.0",
     "progress-bar-webpack-plugin": "^1.10.0",
-    "react": "15.x",
-    "react-dom": "15.x",
+    "react": "16.x",
+    "react-dom": "16.x",
     "react-router-dom": "^4.2.2",
     "rimraf": "^2.6.1",
     "run-sequence": "^2.2.0",
@@ -67,6 +67,7 @@
     "webpack-bundle-analyzer": "^2.9.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "hammerjs": "^2.0.8",
     "lie": "^3.1.1",

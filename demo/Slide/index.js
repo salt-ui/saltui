@@ -10,7 +10,7 @@ import 'salt-context';
 import Demo from './SlideDemo';
 import './SlideDemo.styl';
 
-// 渲染demo
+// 渲染 demo
 if (window.FastClick) {
   window.FastClick.attach(document.body);
 }

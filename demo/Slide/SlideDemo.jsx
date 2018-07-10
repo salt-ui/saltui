@@ -21,20 +21,20 @@ class Demo extends React.Component {
           url: '',
           title: 'item0',
         },
-        // {
-        //   img: 'https://img.alicdn.com/tfs/TB1WpnPRXXXXXa0aXXXXXXXXXXX-640-340.jpg',
-        //   url: '',
-        //   title: 'item1',
-        // },
-        //  {
-        //   img: 'https://img.alicdn.com/tfs/TB1KIH2RXXXXXc8XFXXXXXXXXXX-640-340.jpg',
-        //   url: '',
-        //   title: 'item2',
-        // }, {
-        //   img: 'https://img.alicdn.com/tfs/TB1gXTqRXXXXXXfaVXXXXXXXXXX-640-340.jpg',
-        //   url: '',
-        //   title: 'item3',
-        // },
+        {
+          img: 'https://img.alicdn.com/tfs/TB1WpnPRXXXXXa0aXXXXXXXXXXX-640-340.jpg',
+          url: '',
+          title: 'item1',
+        },
+        {
+          img: 'https://img.alicdn.com/tfs/TB1KIH2RXXXXXc8XFXXXXXXXXXX-640-340.jpg',
+          url: '',
+          title: 'item2',
+        }, {
+          img: 'https://img.alicdn.com/tfs/TB1gXTqRXXXXXXfaVXXXXXXXXXX-640-340.jpg',
+          url: '',
+          title: 'item3',
+        },
       ],
       ajaxList: [],
       slideList2: [
@@ -105,15 +105,14 @@ class Demo extends React.Component {
 
   render() {
     const t = this;
-    console.log(this.state.dynamicList);
-    return (<div>
-
-      {/* <h3 className="t-P10">动态添加Slide.Item</h3>
-      <Slide
-        loop={false}
-        active={this.state.dynamicListActive}
-        height="2rem"
-        onSlideEnd={(option) => {
+    return (
+      <div>
+        <h3 className="t-P10">动态添加Slide.Item</h3>
+        <Slide
+          loop={false}
+          active={this.state.dynamicListActive}
+          height="2rem"
+          onSlideEnd={(option) => {
           let { dynamicList } = this.state;
           if (option.index === 2) {
             dynamicList = dynamicList.slice(1, dynamicList.length)
@@ -131,8 +130,8 @@ class Demo extends React.Component {
             });
           }
         }}
-      >
-        {
+        >
+          {
           this.state.dynamicList.map(item => (
             <Slide.Item
               key={item.name}
@@ -142,53 +141,52 @@ class Demo extends React.Component {
             </Slide.Item>
           ))
         }
-      </Slide>
+        </Slide>
+        <h3 className="t-P10">默认</h3>
+        <Slide onSlideEnd={(e) => { t.handleSlideCount(e); }}>
+          <Slide.Item title="测试标题1">
+            <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
+              <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
+            </div>
+          </Slide.Item>
+          <Slide.Item title="测试标题2">
+            <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
+              <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
+            </div>
+          </Slide.Item>
+          <Slide.Item title="测试标题3">
+            <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
+              <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
+            </div>
+          </Slide.Item>
+          <Slide.Item title="测试标题4">
+            <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'green', height: '100%' }}>
+              <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
+            </div>
+          </Slide.Item>
+          <Slide.Item title="测试标题5">
+            <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
+              <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
+            </div>
+          </Slide.Item>
+          <Slide.Item title="测试标题6">
+            <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'green', height: '100%' }}>
+              <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
+            </div>
+          </Slide.Item>
+        </Slide>
 
-      <h3 className="t-P10">默认</h3>
-      <Slide onSlideEnd={(e) => { t.handleSlideCount(e); }}>
-        <Slide.Item title="测试标题1">
-          <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
-            <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
-          </div>
-        </Slide.Item>
-        <Slide.Item title="测试标题2">
-          <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
-            <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
-          </div>
-        </Slide.Item>
-        <Slide.Item title="测试标题3">
-          <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
-            <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
-          </div>
-        </Slide.Item>
-        <Slide.Item title="测试标题4">
-          <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'green', height: '100%' }}>
-            <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
-          </div>
-        </Slide.Item>
-        <Slide.Item title="测试标题5">
-          <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
-            <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
-          </div>
-        </Slide.Item>
-        <Slide.Item title="测试标题6">
-          <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'green', height: '100%' }}>
-            <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
-          </div>
-        </Slide.Item>
-      </Slide> */}
-
-      <h3 className="t-P10">有title</h3>
-      <Slide
-        showTitle
-        showNav
-        auto
+        <h3 className="t-P10">有title</h3>
+        <Slide
+          showTitle
+          showNav
+          auto
         // active={2}
-        onSlideClick={this._onSlideClick.bind(this)}
-        onMount={this.onMount.bind(this)}
-        onSlideEnd={this.onSlideEnd.bind(this)}
-      >
-        {
+          onSlideClick={this._onSlideClick.bind(this)}
+          onMount={this.onMount.bind(this)}
+          onSlideEnd={this.onSlideEnd.bind(this)}
+        >
+          {
           t.state.slideList.map((item, index) => (<Slide.Item
             key={index}
             className="t-image-slide-item"
@@ -198,19 +196,18 @@ class Demo extends React.Component {
           }}
           />))
         }
-      </Slide>
-
-      {/* <h3 className="t-P10">无title</h3>
-      <Slide
-        showTitle={false}
-        showNav
-        auto
-        active={2}
-        onSlideClick={this._onSlideClick.bind(this)}
-        onMount={this.onMount.bind(this)}
-        onSlideEnd={this.onSlideEnd.bind(this)}
-      >
-        {
+        </Slide>
+        <h3 className="t-P10">无title</h3>
+        <Slide
+          showTitle={false}
+          showNav
+          auto
+          active={2}
+          onSlideClick={this._onSlideClick.bind(this)}
+          onMount={this.onMount.bind(this)}
+          onSlideEnd={this.onSlideEnd.bind(this)}
+        >
+          {
           t.state.slideList.map((item, index) => (<Slide.Item
             key={index}
             className="t-image-slide-item"
@@ -219,74 +216,25 @@ class Demo extends React.Component {
           }}
           />))
         }
-      </Slide>
+        </Slide>
 
-      <h3 className="t-P10">单个 slide</h3>
-      <Slide
-        onSlideClick={this._onSlideClick.bind(this)}
-        showNav
-        auto
-      >
-        {
+        <h3 className="t-P10">单个 slide</h3>
+        <Slide
+          onSlideClick={this._onSlideClick.bind(this)}
+          showNav
+          auto
+        >
+          {
           t.state.slideList2.map((item, index) => (
             <Slide.Item key={index}>
               <a href="//work.alibaba-inc.com"><img src={item.img} /></a>
             </Slide.Item>
           ))
         }
-      </Slide> */}
-    </div>);
-  }
-}
-
-class Demo1 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      slideList: [],
-    };
-  }
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        slideList: [
-          {
-            img: '//img.alicdn.com/tps/TB1hhOmPFXXXXaSXXXXXXXXXXXX-640-387.jpg',
-            url: '',
-            title: 'item0',
-          }, {
-            img: '//img.alicdn.com/tps/TB1LxF5PFXXXXXoXFXXXXXXXXXX-640-340.jpg',
-            url: '',
-            title: 'item1',
-          },
-        ],
-      });
-    }, 1000);
-  }
-
-  render() {
-    return (
-      <Slide showNav>
-        {
-          this.state.slideList.length ?
-            this.state.slideList.map((item, index) => (
-              <div
-                key={index}
-                style={{
-                  backgroundImage: `url(${item.img})`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  backgroundSize: 'cover',
-                }}
-              />
-            )) : [
-              <img width="48" alt="" src="//aliwork.alicdn.com/tps/TB1fPYRMXXXXXcdXFXXXXXXXXXX-480-238.svg" />,
-            ]
-        }
-      </Slide>
+        </Slide>
+      </div>
     );
   }
 }
 
-export default Demo1;
+export default Demo;

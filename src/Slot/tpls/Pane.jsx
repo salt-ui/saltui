@@ -6,11 +6,11 @@
  * All rights reserved.
  */
 
-const React = require('react');
-const classnames = require('classnames');
-const Context = require('../../Context');
-const Scroller = require('../../Scroller');
-const PropTypes = require('prop-types');
+import React from 'react';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import Context from '../../Context';
+import Scroller from '../../Scroller';
 
 // 滑动效果的动画函数
 const LINEAR_EASE = {
@@ -170,7 +170,7 @@ class SlotPane extends React.Component {
     }, () => {
       t.props.onScrolling(t.state.scrolling);
     });
-    const { scroller } = t.refs[`scroller${column}`];
+    const { scroller } = t[`scroller${column}`];
     const height = t.itemHeight;
     const remainder = Math.abs(scroller.y % height);
     let index = scroller.y / height;
@@ -236,7 +236,7 @@ class SlotPane extends React.Component {
     const t = this;
     if (t.props.scrollMod === 'keep' && t.selectedIndex) {
       t.selectedIndex.forEach((index, column) => {
-        const { scroller } = t.refs[`scroller${column}`];
+        const { scroller } = t[`scroller${column}`];
         if (t.columnChanged[column]) {
           scroller.scrollTo(0, -index * t.itemHeight, 0, LINEAR_EASE);
         }
@@ -244,13 +244,13 @@ class SlotPane extends React.Component {
       delete t.selectedIndex;
       setTimeout(() => {
         t.state.selectedIndex.forEach((index, column) => {
-          const { scroller } = t.refs[`scroller${column}`];
+          const { scroller } = t[`scroller${column}`];
           scroller.scrollTo(0, -index * t.itemHeight, time, LINEAR_EASE);
         });
       }, 5);
     } else {
       t.state.selectedIndex.forEach((index, column) => {
-        const { scroller } = t.refs[`scroller${column}`];
+        const { scroller } = t[`scroller${column}`];
         scroller.scrollTo(0, -index * t.itemHeight, time, LINEAR_EASE);
       });
     }
@@ -292,7 +292,7 @@ class SlotPane extends React.Component {
             }
             return (
               <Scroller
-                ref={`scroller${i}`}
+                ref={(c) => { t[`scroller${i}`] = c; }}
                 key={`scroller${i}`}
                 className={Context.prefixClass('FB1')}
                 style={style}

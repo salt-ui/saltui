@@ -25,7 +25,6 @@ class Crumb extends React.Component {
       }
 
       scrollEl.style.width = `${w}px`;
-      // t.refs.root.scroller.scrollTo(-w, 0, 1000, IScroll.utils.ease.elastic);
       t.root.scroller.scrollTo(-w);
       // 实例化滚动
       t.root.scroller.refresh();
