@@ -39,6 +39,8 @@ class FoldablePane extends React.Component {
       fold: !!props.isFold,
       // 高度是否达到可以折叠
       foldable: false,
+      //是否点击折叠图标
+      clickToChange: false
     };
 
     this.events = {
@@ -51,19 +53,21 @@ class FoldablePane extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(nextProps.isFold, prevState.fold)
     if (nextProps.isFold !== prevState.fold) {
       return {
-        fold: !nextProps.isFold
+        fold: nextProps.isFold
       };
     }
-
+    if (prevState.clickToChange) {
+      return {
+        fold: !prevState.fold
+      }
+    }
     return null;
   }
 
 
   // componentWillReceiveProps(nextProps) {
-  //   console.log(nextProps.isFold, this.state.fold)
   //   if (nextProps.isFold !== this.state.fold) {
   //     this.setState({
   //       fold: nextProps.isFold,
@@ -107,7 +111,7 @@ class FoldablePane extends React.Component {
       this.props.onFold.call(this, !this.state.fold);
     }
     this.setState({
-      fold: !this.state.fold,
+      clickToChange: true,
     });
   }
 
