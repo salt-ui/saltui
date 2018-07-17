@@ -50,13 +50,26 @@ class FoldablePane extends React.Component {
     this.checkFoldable();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isFold !== this.state.fold) {
-      this.setState({
-        fold: nextProps.isFold,
-      });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(nextProps.isFold, prevState.fold)
+    if (nextProps.isFold !== prevState.fold) {
+      return {
+        fold: !nextProps.isFold
+      };
     }
+
+    return null;
   }
+
+
+  // componentWillReceiveProps(nextProps) {
+  //   console.log(nextProps.isFold, this.state.fold)
+  //   if (nextProps.isFold !== this.state.fold) {
+  //     this.setState({
+  //       fold: nextProps.isFold,
+  //     });
+  //   }
+  // }
 
 
   componentDidUpdate() {
