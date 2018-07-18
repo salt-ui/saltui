@@ -61,17 +61,6 @@ class LayerBody extends React.Component {
     this.state.visible ? this.props.onDidShow() : this.props.onDidHide();
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   const t = this;
-  //   const { visible } = nextProps;
-  //   if (visible === false && t.props.onWillHide() === false) {
-  //     return;
-  //   }
-  //   this.setState({
-  //     visible: nextProps.visible,
-  //   }, visible ? t.props.onDidShow : t.props.onDidHide);
-  // }
-
   getStyle() {
     const t = this;
     const { visible } = t.state;
