@@ -23,6 +23,12 @@ const equals = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2);
 class SlotPane extends React.Component {
   static displayName = 'SlotPane'
 
+  // scrolling标志位指示是否是用户发起的滚动
+  // true: 用户发起的滚动，scrollEnd事件需要处理
+  // false: 非用户发起的滚动（比如此函数中this.scrollAll()产生的滚动），scrollEnd事件不需要处理
+  // 增加此标志位的原因是为了在用户滚动结束的scrollEnd处理函数中调整滚动区域的精确位置，改之前是在scrollEnd中触发onChange事件并在下一次ComponentDidMount中进行调整的
+  scrolling = false;
+
   static propTypes = {
     visible: PropTypes.bool,
     // className: PropTypes.string,
@@ -56,7 +62,6 @@ class SlotPane extends React.Component {
     const t = this;
     // 初始状态
     t.state = {
-      scrolling: false,
       data: this.props.data || [],
       selectedIndex: t.findSelectedIndex(this.props),
     };
@@ -136,6 +141,31 @@ class SlotPane extends React.Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    // 仅在发生下列变化时进行更新：
+    // 1. state中data和selectedIndex
+    // 2. props中的data和value
+    // todo: render还需要优化性能，目前渲染一次的成本很高（如果data太多，map花了太多时间）
+    // 考虑减少data的数量（特别是针对年月日时分这种类型，一次render年月日选项有1000多个<li>）
+    if (typeof nextState.data !== "undefined" &&
+      !equals(this.state.data, nextState.data))
+      return true;
+
+    if (typeof nextState.selectedIndex !== "undefined" &&
+      !equals(this.state.selectedIndex, nextState.selectedIndex))
+      return true;
+
+    if (typeof nextProps.data !== "undefined" &&
+      !equals(this.state.data, nextProps.data))
+      return true;
+
+    let selectedIndex = this.findSelectedIndex(nextProps);
+    if (!equals(this.state.selectedIndex, selectedIndex))
+      return true;
+
+    return false;
+  }
+
   // 获取值的时候指定变更的列，为什么要这么做，是因为有变更后我不直接改 state！
   getData(sColumn, sIndex) {
     const t = this;
@@ -165,11 +195,9 @@ class SlotPane extends React.Component {
 
   handleScrollEnd(column) {
     const t = this;
-    t.setState({
-      scrolling: false,
-    }, () => {
-      t.props.onScrolling(t.state.scrolling);
-    });
+    // 如果不是用户发起的滚动结束事件，不做处理
+    if (!t.scrolling)
+      return;
     const { scroller } = t[`scroller${column}`];
     const height = t.itemHeight;
     const remainder = Math.abs(scroller.y % height);
@@ -191,22 +219,26 @@ class SlotPane extends React.Component {
         func = 'ceil';
       }
 
-
       index = Math[func](scroller.y / height);
     }
 
-    // 在 onChange 中设置状态
     index = Math.abs(index);
-    t.props.onChange(t.getData(column, index), column, index);
+    // 设置标志位，指示在调用scrollAll()以后再次触发的scrollEnd事件不需要处理了
+    t.scrolling = false;
+    // 滚动到选项所在的精确位置
+    t.scrollAll(200);
+    t.props.onScrolling(t.scrolling);
+    // 仅在index有改变的时候才触发onChange
+    if (index !== t.state.selectedIndex[column]) {
+      t.props.onChange(t.getData(column, index), column, index);
+    }
   }
 
   handleScrollStart() {
     const t = this;
-    t.setState({
-      scrolling: true,
-    }, () => {
-      t.props.onScrolling(t.state.scrolling);
-    });
+    // 设置标志位，指示本次滚动是用户发起的滚动
+    t.scrolling = true;
+    t.props.onScrolling(t.scrolling);
   }
 
 
