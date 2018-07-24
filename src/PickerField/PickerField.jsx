@@ -154,7 +154,7 @@ class PickerField extends React.Component {
           }}
         >
           {!t.state.confirmedValue[0] ?
-            <div className={Context.prefixClass('omit picker-field-placeholder')}>{t.props.placeholder}</div> : ''}
+            <div className={Context.prefixClass('omit picker-field-placeholder')}>{t.props.readOnly ? '' : t.props.placeholder}</div> : ''}
           <div className={Context.prefixClass('picker-field-value FBH FBAC')}>
             <span
               className={classnames(Context.prefixClass('FB1 omit'), {
