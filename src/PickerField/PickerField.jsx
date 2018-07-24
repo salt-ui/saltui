@@ -183,7 +183,7 @@ class PickerField extends React.Component {
           className={Context.prefixClass('picker-field-content')}
         >
           {!t.state.confirmedValue[0]
-            ? <div className={Context.prefixClass('omit picker-field-placeholder')}>{t.props.placeholder || i18n[t.props.locale].placeholder}</div>
+            ? <div className={Context.prefixClass('omit picker-field-placeholder')}>{t.props.readOnly ? '' : (t.props.placeholder || i18n[t.props.locale].placeholder)}</div>
             : ''}
           {t.state.confirmedValue[0] ? (
             <div className={Context.prefixClass('picker-field-value FBH FBAC')}>
