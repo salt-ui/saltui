@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import DirectionBottomIcon from 'salt-icon/lib/DirectionBottom';
 import classnames from 'classnames';
@@ -152,5 +153,7 @@ class FoldablePane extends React.Component {
     );
   }
 }
+
+polyfill(FoldablePane);
 
 export default FoldablePane;

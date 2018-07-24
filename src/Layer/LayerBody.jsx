@@ -1,4 +1,5 @@
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass, noop } from '../Context';
@@ -170,5 +171,7 @@ class LayerBody extends React.Component {
     );
   }
 }
+
+polyfill(LayerBody);
 
 export default LayerBody;
