@@ -1,4 +1,8 @@
 
+## 3.10.6 / 2018-07-24
+
+* `fix`: `PickerField` should not show placeholder in readOnly mode 
+
 ## 3.10.3 / 2018-07-06
 
 * `fix`: `Datetime` cancelText locale bug
