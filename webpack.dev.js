@@ -24,10 +24,6 @@ module.exports = {
         ],
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'env', 'stage-1'],
-          plugins: [
-            'add-module-exports',
-          ],
           cacheDirectory: true,
         },
       },

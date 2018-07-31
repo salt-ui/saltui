@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar renders correctly 1`] = `
+initialize {
+  "0": Object {
+    "attribs": Object {
+      "alt": "",
+      "class": "t-avatar",
+      "src": "https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png",
+      "style": "width:40px;height:40px;line-height:40px;font-size:14px;position:relative",
+    },
+    "children": Array [],
+    "name": "img",
+    "namespace": "http://www.w3.org/1999/xhtml",
+    "next": null,
+    "parent": null,
+    "prev": null,
+    "root": Object {
+      "attribs": Object {},
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-attribsNamespace": Object {},
+      "x-attribsPrefix": Object {},
+    },
+    "type": "tag",
+    "x-attribsNamespace": Object {
+      "alt": undefined,
+      "class": undefined,
+      "src": undefined,
+      "style": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "alt": undefined,
+      "class": undefined,
+      "src": undefined,
+      "style": undefined,
+    },
+  },
+  "_root": [Circular],
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "normalizeWhitespace": false,
+    "withDomLvl1": true,
+    "xml": false,
+  },
+}
+`;
+
+exports[`Avatar renders text correctly 1`] = `
+initialize {
+  "0": Object {
+    "attribs": Object {
+      "alt": "",
+      "class": "t-avatar",
+      "src": "https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png",
+      "style": "width:40px;height:40px;line-height:40px;font-size:14px;position:relative",
+    },
+    "children": Array [],
+    "name": "img",
+    "namespace": "http://www.w3.org/1999/xhtml",
+    "next": null,
+    "parent": null,
+    "prev": null,
+    "root": Object {
+      "attribs": Object {},
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-attribsNamespace": Object {},
+      "x-attribsPrefix": Object {},
+    },
+    "type": "tag",
+    "x-attribsNamespace": Object {
+      "alt": undefined,
+      "class": undefined,
+      "src": undefined,
+      "style": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "alt": undefined,
+      "class": undefined,
+      "src": undefined,
+      "style": undefined,
+    },
+  },
+  "_root": [Circular],
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "normalizeWhitespace": false,
+    "withDomLvl1": true,
+    "xml": false,
+  },
+}
+`;
