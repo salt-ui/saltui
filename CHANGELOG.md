@@ -1,4 +1,8 @@
 
+## 3.10.7 / 2018-08-02
+
+* `feat` `Slot` scrolling performance improvement [#237](https://github.com/salt-ui/saltui/pull/237)
+
 ## 3.10.6 / 2018-07-24
 
 * `fix`: `PickerField` should not show placeholder in readOnly mode 

@@ -9,9 +9,9 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import deepEqual from 'lodash/isEqual';
 import Context from '../../Context';
 import Scroller from '../../Scroller';
-import deepEqual from 'lodash/isEqual';
 
 // 滑动效果的动画函数
 const LINEAR_EASE = {
@@ -23,12 +23,6 @@ const equals = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2);
 
 class SlotPane extends React.Component {
   static displayName = 'SlotPane'
-
-  // scrolling标志位指示是否是用户发起的滚动
-  // true: 用户发起的滚动，scrollEnd事件需要处理
-  // false: 非用户发起的滚动（比如此函数中this.scrollAll()产生的滚动），scrollEnd事件不需要处理
-  // 增加此标志位的原因是为了在用户滚动结束的scrollEnd处理函数中调整滚动区域的精确位置，改之前是在scrollEnd中触发onChange事件并在下一次ComponentDidMount中进行调整的
-  scrolling = false;
 
   static propTypes = {
     visible: PropTypes.bool,
@@ -59,13 +53,14 @@ class SlotPane extends React.Component {
 
   constructor(props) {
     super(props);
-
     const t = this;
     // 初始状态
     t.state = {
       data: this.props.data || [],
       selectedIndex: t.findSelectedIndex(this.props),
     };
+    // scrolling标志位指示是否是用户发起的滚动
+    t.scrolling = false;
   }
 
 
@@ -129,6 +124,10 @@ class SlotPane extends React.Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return !deepEqual(nextProps, this.props) || !deepEqual(nextState, this.state);
+  }
+
   componentDidUpdate() {
     const t = this;
 
@@ -142,9 +141,6 @@ class SlotPane extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !deepEqual(nextProps, this.props) || !deepEqual(nextState, this.state);
-  }
 
   // 获取值的时候指定变更的列，为什么要这么做，是因为有变更后我不直接改 state！
   getData(sColumn, sIndex) {
@@ -176,8 +172,7 @@ class SlotPane extends React.Component {
   handleScrollEnd(column) {
     const t = this;
     // 如果不是用户发起的滚动结束事件，不做处理
-    if (!t.scrolling)
-      return;
+    if (!t.scrolling) { return; }
     const { scroller } = t[`scroller${column}`];
     const height = t.itemHeight;
     const remainder = Math.abs(scroller.y % height);
