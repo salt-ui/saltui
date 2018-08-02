@@ -32,6 +32,11 @@ class Slot extends React.Component {
       childPaneIsScrolling: false,
       visible: false,
     };
+
+    t.handleChange = t.handleChange.bind(t);
+    t.childPaneOnScrolling = t.childPaneOnScrolling.bind(t);
+    t.handleConfirm = t.handleConfirm.bind(t);
+    t.handleCancel = t.handleCancel.bind(t);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,8 +71,8 @@ class Slot extends React.Component {
       title,
       cancelText,
       confirmText,
-      onConfirm: () => { t.handleConfirm(); },
-      onCancel: () => { t.handleCancel(); },
+      onConfirm: t.handleConfirm,
+      onCancel: t.handleCancel,
       isScrolling: t.state.childPaneIsScrolling,
     };
 
@@ -75,11 +80,11 @@ class Slot extends React.Component {
       visible: t.state.visible,
       data,
       value,
-      onChange: t.handleChange.bind(t),
+      onChange: t.handleChange,
       scrollMod,
       columns,
       columnsFlex,
-      onScrolling: t.childPaneOnScrolling.bind(t),
+      onScrolling: t.childPaneOnScrolling,
     };
 
     return (

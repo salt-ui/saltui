@@ -11,6 +11,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import Context from '../../Context';
 import Scroller from '../../Scroller';
+import deepEqual from 'lodash/isEqual';
 
 // 滑动效果的动画函数
 const LINEAR_EASE = {
@@ -142,28 +143,7 @@ class SlotPane extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    // 仅在发生下列变化时进行更新：
-    // 1. state中data和selectedIndex
-    // 2. props中的data和value
-    // todo: render还需要优化性能，目前渲染一次的成本很高（如果data太多，map花了太多时间）
-    // 考虑减少data的数量（特别是针对年月日时分这种类型，一次render年月日选项有1000多个<li>）
-    if (typeof nextState.data !== "undefined" &&
-      !equals(this.state.data, nextState.data))
-      return true;
-
-    if (typeof nextState.selectedIndex !== "undefined" &&
-      !equals(this.state.selectedIndex, nextState.selectedIndex))
-      return true;
-
-    if (typeof nextProps.data !== "undefined" &&
-      !equals(this.state.data, nextProps.data))
-      return true;
-
-    let selectedIndex = this.findSelectedIndex(nextProps);
-    if (!equals(this.state.selectedIndex, selectedIndex))
-      return true;
-
-    return false;
+    return !deepEqual(nextProps, this.props) || !deepEqual(nextState, this.state);
   }
 
   // 获取值的时候指定变更的列，为什么要这么做，是因为有变更后我不直接改 state！
