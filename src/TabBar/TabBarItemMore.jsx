@@ -6,8 +6,8 @@ import { Box } from '../Boxs';
 import TabBarItemBadge from './TabBarItemBadge';
 
 /**
-* more Items of Tab Bar,  on the Mask Layer
-*/
+ * more Items of Tab Bar, on the Mask Layer
+ */
 
 class TabBarItemMore extends React.Component {
   static displayName = 'TabBarItemMore';
@@ -16,27 +16,24 @@ class TabBarItemMore extends React.Component {
     keyNew: PropTypes.string,
     path: PropTypes.string,
     hideMoreItems: PropTypes.func,
-    index: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
   static defaultProps = {
-    onClick: () => { },
+    onClick: undefined,
     path: undefined,
     hideMoreItems: undefined,
     index: undefined,
     keyNew: undefined,
-  }
-  constructor(props) {
-    super(props);
-    this.doClick = this.doClick.bind(this);
-  }
-  doClick(e) {
+  };
+
+  handleClick = (e) => {
     e.stopPropagation();
-    this.props.onClick(this.props.index, this.props.path);
-    this.props.hideMoreItems(e);
-  }
+    const {
+      index, path, onClick, hideMoreItems,
+    } = this.props;
+    onClick && onClick(index, path);
+    hideMoreItems && hideMoreItems(e);
+  };
 
   render() {
     const t = this;
@@ -45,11 +42,10 @@ class TabBarItemMore extends React.Component {
       <Box
         className={classnames(
           Context.prefixClass('tabs-bar-item'),
-          Context.prefixClass('tabs-bar-item-more'), {
-            active,
-          },
+          Context.prefixClass('tabs-bar-item-more'),
+          active,
         )}
-        onClick={this.doClick}
+        onClick={this.handleClick}
         flex={1}
       >
         <TabBarItemBadge {...t.props} iconHeight={iconHeight} active={active} showTitle={false} />

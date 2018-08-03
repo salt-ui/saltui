@@ -35,8 +35,7 @@ class TabBar extends React.Component {
     height: 50,
     iconHeight: 24,
     cIconHeight: 50,
-    onChange: () => {
-    },
+    onChange: () => {},
     tabBarStyle: {},
     menuFlat: undefined,
     children: undefined,
@@ -44,20 +43,13 @@ class TabBar extends React.Component {
     theme: undefined,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeIndex: props.activeIndex,
-      centerMoreVisible: false,
-    };
-  }
+  state = {
+    activeIndex: this.props.activeIndex,
+    centerMoreVisible: false,
+  };
 
-  componentWillReceiveProps(nextProps) {
-    const t = this;
-    const nextActiveIndex = nextProps.activeIndex;
-    if (nextActiveIndex !== t.props.activeIndex) {
-      t.setActiveIndex(nextActiveIndex);
-    }
+  static getDerivedStateFromProps({ activeIndex }) {
+    return { activeIndex };
   }
 
   onItemClick(index, path) {
@@ -72,11 +64,14 @@ class TabBar extends React.Component {
     if (t.centerTabIndex && t.centerTabIndex === index) {
       t.props.onChange(index, path);
     } else {
-      t.setState({
-        activeIndex: index,
-      }, () => {
-        t.props.onChange(index, path);
-      });
+      t.setState(
+        {
+          activeIndex: index,
+        },
+        () => {
+          t.props.onChange(index, path);
+        },
+      );
     }
   }
 
@@ -87,9 +82,9 @@ class TabBar extends React.Component {
   }
 
   /**
-  * Tab bar items data from child React Element
-  * like: <TabBar><TabBar.Item></TabBar.Item></TabBar> Render way
-  */
+   * Tab bar items data from child React Element
+   * like: <TabBar><TabBar.Item></TabBar.Item></TabBar> Render way
+   */
   childrenRenderWay() {
     const t = this;
     return React.Children.map(this.props.children, (child, idx) => {
@@ -105,7 +100,9 @@ class TabBar extends React.Component {
             item={child}
             moreVisible={this.state.centerMoreVisible}
             iconHeight={child.cIconHeight || t.props.cIconHeight}
-            onMoreVisibleChange={(visible) => { this.handleCenterMoreVisibleChange(visible); }}
+            onMoreVisibleChange={(visible) => {
+              this.handleCenterMoreVisibleChange(visible);
+            }}
             childIconHeight={36}
             active={idx === t.state.activeIndex}
             activeIndex={t.state.activeIndex}
@@ -131,8 +128,8 @@ class TabBar extends React.Component {
   }
 
   /**
-  * Tab bar items data from props, like <TabBar items={}/>
-  */
+   * Tab bar items data from props, like <TabBar items={}/>
+   */
   propsRenderWay() {
     const t = this;
     return this.props.items.map((item, idx) => {
@@ -144,7 +141,9 @@ class TabBar extends React.Component {
             key={idx.toString()}
             index={idx}
             moreVisible={this.state.centerMoreVisible}
-            onMoreVisibleChange={(visible) => { this.handleCenterMoreVisibleChange(visible); }}
+            onMoreVisibleChange={(visible) => {
+              this.handleCenterMoreVisibleChange(visible);
+            }}
             iconHeight={item.cIconHeight || t.props.cIconHeight}
             childIconHeight={36}
             active={idx === t.state.activeIndex}

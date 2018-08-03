@@ -27,5 +27,6 @@ module.exports = {
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     // "import/no-unresolved": [2, { ignore: ['^salt\-'] }],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }]
   }
 };
