@@ -75,7 +75,7 @@ class PhotoField extends React.Component {
       multiple: !!this.props.multiple,
       max: this.getMax(),
     };
-    if (Ali.isDingDing) {
+    if (Ali.isDingDing || Ali.isAliwork) {
       if (!this.props.corpId) {
         Ali.alert({
           message: locale.corpIdError,
