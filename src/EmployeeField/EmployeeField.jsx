@@ -81,7 +81,7 @@ class EmployeeField extends React.Component {
     };
     const Ali = window.Ali || {};
     if (Ali.contacts) {
-      if (Ali.isDingDing) {
+      if (Ali.isDingDing || Ali.isAliwork) {
         if (!this.props.corpId) {
           Ali.alert({
             message: i18n.corpIdRequired,
