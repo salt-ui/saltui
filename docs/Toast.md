@@ -90,13 +90,6 @@ height
 * 默认：'auto'
 * 必填：否
 
-onDidHide
-
-* 描述：关闭后的回调函数
-* 类型：Function
-* 默认：noop
-* 必填：否
-
 hasMask
 
 * 描述：是有遮罩层
