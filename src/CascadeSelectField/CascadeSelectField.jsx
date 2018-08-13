@@ -32,7 +32,7 @@ function parseProps(props) {
         text: o.label,
       };
       let val = value[deep];
-      if ((typeof val === 'object') && ('value' in value[deep])) {
+      if (typeof val === 'object' && 'value' in value[deep]) {
         val = value[deep].value;
       }
       if (o.value === val) {
@@ -73,7 +73,7 @@ function parseState(value, options) {
         value: o.value,
         text: o.label,
       };
-      if ((deep in value) && o.value === value[deep].value) {
+      if (deep in value && o.value === value[deep].value) {
         index = i;
         newValue[deep] = option;
         valueIsFound = true;
@@ -107,11 +107,9 @@ class CascadeSelectField extends React.Component {
   }
 
   // 外部变更选中值
-  componentWillReceiveProps(nextProps) {
-    if (shouldUpdate(this.props, nextProps, ['readOnly', 'options', 'value'])) {
-      const t = this;
-      t.setState(parseProps(nextProps));
-    }
+  static getDerivedStateFromProps(props) {
+    // TODO: memories func shouldUpdate(this.props, nextProps, ['readOnly', 'options', 'value'])
+    return parseProps(props);
   }
 
   handleClick() {
@@ -180,48 +178,57 @@ class CascadeSelectField extends React.Component {
         })}
       >
         <div onClick={t.handleClick}>
-          {!t.state.confirmedValue.length ? <div className={Context.prefixClass('omit cascade-select-field-placeholder')}>{t.props.placeholder}</div> : ''}
+          {!t.state.confirmedValue.length ? (
+            <div className={Context.prefixClass('omit cascade-select-field-placeholder')}>
+              {t.props.placeholder}
+            </div>
+          ) : (
+            ''
+          )}
           <div className={Context.prefixClass('cascade-select-field-value FBH FBAC')}>
             <span
               className={classnames(Context.prefixClass('FB1 omit'), {
                 [Context.prefixClass('cascade-select-field-readonly')]: !!t.props.readOnly,
               })}
-            >{t.props.formatter(t.state.confirmedValue)}
+            >
+              {t.props.formatter(t.state.confirmedValue)}
             </span>
           </div>
         </div>
         <Popup
-          content={<CascadeTab
-            title={t.props.label}
-            locale={t.props.locale}
-            confirmText={t.props.confirmText || i18n[t.props.locale].confirmText}
-            cancelText={t.props.cancelText || i18n[t.props.locale].cancelText}
-            options={t.state.originOptions}
-            value={t.state.value}
-            onChange={t.handleChange}
-            onCancel={t.handleCancel}
-            onConfirm={t.handleConfirm}
-          />}
+          content={
+            <CascadeTab
+              title={t.props.label}
+              locale={t.props.locale}
+              confirmText={t.props.confirmText || i18n[t.props.locale].confirmText}
+              cancelText={t.props.cancelText || i18n[t.props.locale].cancelText}
+              options={t.state.originOptions}
+              value={t.state.value}
+              onChange={t.handleChange}
+              onCancel={t.handleCancel}
+              onConfirm={t.handleConfirm}
+            />
+          }
           stopBodyScrolling={false}
           visible={this.state.popupVisible}
           maskClosable={false}
         />
-        {
-          this.props.mode === 'normal' ?
-            <Slot
-              ref={(c) => { this.slot = c; }}
-              title={t.props.label}
-              data={t.state.options}
-              value={t.state.value}
-              confirmText={t.props.confirmText || i18n[t.props.locale].confirmText}
-              cancelText={t.props.cancelText || i18n[t.props.locale].cancelText}
-              onChange={t.handleChange}
-              onCancel={t.handleCancel}
-              onConfirm={t.handleConfirm}
-              columns={t.props.columns}
-            /> :
-            null
-        }
+        {this.props.mode === 'normal' ? (
+          <Slot
+            ref={(c) => {
+              this.slot = c;
+            }}
+            title={t.props.label}
+            data={t.state.options}
+            value={t.state.value}
+            confirmText={t.props.confirmText || i18n[t.props.locale].confirmText}
+            cancelText={t.props.cancelText || i18n[t.props.locale].cancelText}
+            onChange={t.handleChange}
+            onCancel={t.handleCancel}
+            onConfirm={t.handleConfirm}
+            columns={t.props.columns}
+          />
+        ) : null}
       </Field>
     );
   }
@@ -231,9 +238,9 @@ CascadeSelectField.defaultProps = {
   options: [],
   value: [],
   formatter: value => value.map(v => v.text).join('/'),
-  onChange: () => { },
-  onSelect: () => { },
-  onCancel: () => { },
+  onChange: () => {},
+  onSelect: () => {},
+  onCancel: () => {},
   readOnly: false,
   placeholder: '',
   columns: [],
