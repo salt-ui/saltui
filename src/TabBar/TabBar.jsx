@@ -47,10 +47,11 @@ class TabBar extends React.Component {
   state = {
     activeIndex: this.props.activeIndex,
     centerMoreVisible: false,
+    prevActiveIndex: this.props.activeIndex,
   };
 
-  static getDerivedStateFromProps({ activeIndex }) {
-    return { activeIndex };
+  static getDerivedStateFromProps({ activeIndex }, { prevActiveIndex }) {
+    return prevActiveIndex !== activeIndex ? { activeIndex, prevActiveIndex: activeIndex } : null;
   }
 
   onItemClick(index, path) {
