@@ -29,6 +29,9 @@ const iconCompMap = {
 };
 
 class Toast extends React.Component {
+
+  static displayName = 'Toast'
+
   constructor(props) {
     super(props);
     this.state = {
@@ -37,11 +40,55 @@ class Toast extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      visible: nextProps.visible,
-      hasMask: nextProps.hasMask,
-    });
+  static defaultProps = {
+    prefixCls: 't-toast',
+    hasMask: false,
+    onDidHide: noop,
+    visible: false,
+    autoHide: true,
+    content: '',
+    duration: undefined,
+    width: undefined,
+    icon: undefined,
+    transitionName: undefined,
+    type: undefined,
+  }
+
+  static propTypes = {
+    prefixCls: PropTypes.string,
+    visible: PropTypes.bool,
+    hasMask: PropTypes.bool,
+    autoHide: PropTypes.bool,
+    onDidHide: PropTypes.func,
+    width: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    content: PropTypes.string,
+    icon: PropTypes.string,
+    duration: PropTypes.number,
+    transitionName: PropTypes.string,
+    type: PropTypes.string,
+  }
+
+  static show = props => {
+    ReactDOM.render(<Toast visible {...props} ref={(c) => { globalInstance = c; }} />, wrapper);
+  }
+
+  static hide = fn => {
+    if (globalInstance) {
+      globalInstance.hide(fn);
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.visible !== state.visible || props.hasMask !== state.hasMask) {
+      return {
+        visible: props.visible,
+        hasMask: props.hasMask,
+      };
+    }
+    return null;
   }
 
   getIconComp() {
@@ -168,37 +215,6 @@ class Toast extends React.Component {
   }
 }
 
-Toast.defaultProps = {
-  prefixCls: 't-toast',
-  hasMask: false,
-  onDidHide: noop,
-  visible: false,
-  autoHide: true,
-  content: '',
-  duration: undefined,
-  width: undefined,
-  icon: undefined,
-  transitionName: undefined,
-  type: undefined,
-};
-
-// http://facebook.github.io/react/docs/reusable-components.html
-Toast.propTypes = {
-  prefixCls: PropTypes.string,
-  visible: PropTypes.bool,
-  hasMask: PropTypes.bool,
-  autoHide: PropTypes.bool,
-  onDidHide: PropTypes.func,
-  width: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  content: PropTypes.string,
-  icon: PropTypes.string,
-  duration: PropTypes.number,
-  transitionName: PropTypes.string,
-  type: PropTypes.string,
-};
 
 const WRAPPER_ID = '__TingleGlobalToast__';
 const doc = document;
@@ -209,17 +225,5 @@ if (!wrapper) {
   doc.body.appendChild(wrapper);
 }
 ReactDOM.render(<Toast visible={false} />, wrapper);
-
-Toast.show = (props) => {
-  ReactDOM.render(<Toast visible {...props} ref={(c) => { globalInstance = c; }} />, wrapper);
-};
-
-Toast.hide = (fn) => {
-  if (globalInstance) {
-    globalInstance.hide(fn);
-  }
-};
-
-Toast.displayName = 'Toast';
 
 export default Toast;
