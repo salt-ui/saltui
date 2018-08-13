@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import CheckRound from 'salt-icon/lib/CheckRound';
@@ -18,6 +19,7 @@ import SelectLayer from './SelectLayer';
 import { shouldUpdate } from '../Utils';
 
 const { prefixClass } = Context;
+
 
 const renderIcon = (checked, disable, position) => {
   const iconClassName = classnames(prefixClass('checkbox-field-icon'), {
@@ -50,35 +52,44 @@ class CheckboxField extends React.Component {
 
     const t = this;
     t.state = {
-      selectedText: this.getSelectedText(props.data),
+      selectedText: CheckboxField.getSelectedText(props.data, props),
+      prevData: props.data,
     };
     t.handleClick = t.handleClick.bind(t);
     t.handleConfirm = t.handleConfirm.bind(t);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (shouldUpdate(this.props, nextProps, ['data'])) {
-      this.setState({
-        selectedText: this.getSelectedText(nextProps.data),
-      });
+  static getDerivedStateFromProps(nextProps, { prevData }) {
+    if (shouldUpdate(nextProps, { data: prevData }, ['data'])) {
+      return {
+        selectedText: CheckboxField.getSelectedText(nextProps.data, nextProps),
+        prevData: nextProps.data,
+      };
     }
+    return null;
   }
 
-  getSelectedText(data) {
+  // componentWillReceiveProps(nextProps) {
+  //   if (shouldUpdate(this.props.data, nextProps, ['data'])) {
+  //     this.setState();
+  //   }
+  // }
+
+  static getSelectedText(data, props) {
     let selectedText = '';
     data.forEach((item) => {
       if (item.checked) {
-        if (this.props.mode === 'list') {
-          selectedText = selectedText + this.props.titleBreakStr + item.text;
+        if (props.mode === 'list') {
+          selectedText = selectedText + props.titleBreakStr + item.text;
         } else {
           selectedText =
-            selectedText + this.props.titleBreakStr + (item.slotText ? item.slotText : item.text);
+            selectedText + props.titleBreakStr + (item.slotText ? item.slotText : item.text);
         }
       }
     });
 
     if (selectedText) {
-      selectedText = selectedText.substring(this.props.titleBreakStr.length);
+      selectedText = selectedText.substring(props.titleBreakStr.length);
     }
 
     return selectedText;
@@ -121,7 +132,7 @@ class CheckboxField extends React.Component {
   handleConfirm(data) {
     this.setState({
       value: data,
-      selectedText: this.getSelectedText(data),
+      selectedText: CheckboxField.getSelectedText(data, this.props),
     });
     this.props.onChange(data);
   }
@@ -308,5 +319,7 @@ CheckboxField.propTypes = {
 };
 
 CheckboxField.displayName = 'CheckboxField';
+
+polyfill(CheckboxField);
 
 export default CheckboxField;
