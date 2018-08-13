@@ -11,7 +11,6 @@ import ReactDOM from 'react-dom';
 import NattyFetch from 'natty-fetch';
 import isEmpty from 'lodash/isEmpty';
 import cloneDeep from 'lodash/cloneDeep';
-import isEqual from 'lodash/isEqual';
 import assign from 'lodash/assign';
 import classnames from 'classnames';
 import Context from '../Context';
@@ -20,44 +19,12 @@ import BottomTip from './BottomTip';
 import EmptyContent from './EmptyContent';
 import Item from './Item';
 
-
 function odd(i) {
   return !!((i + 1) % 2);
 }
 
-
 class ScrollList extends React.Component {
   static displayName = 'ScrollList';
-  static defaultProps = {
-    scrollLoad: true, // 是否支持滚动,来自设计器配置
-    scrollRefresh: true,
-    dataGetted: false,
-    data: [],
-    refreshing: false,
-    prefixCls: 't-scroll-list',
-    pullLoadTip: '下拉显示更多',
-    loadDataTip: '释放加载数据',
-    onRefresh: null,
-    loading: false, // 触底加载
-    loadingTip: '加载中...',
-    onLoad: null,
-    beforeFetch: data => data,
-    processData: data => data,
-    currentPageKey: 'currentPage',
-    noMore: false, // 没有更多内容提示
-    noMoreDataTip: '没有更多了',
-    hasError: false,
-    errorTip: '获取数据失败',
-    noDataTip: '暂无数据',
-    noDataImage: 'https://img.alicdn.com/tps/TB1K6mHNpXXXXXiXpXXXXXXXXXX-1000-1000.svg',
-    fetchDataOnOpen: true,
-    className: undefined,
-    children: undefined,
-    url: undefined,
-    pageSize: undefined,
-    dataType: undefined,
-    fetchOption: undefined,
-  };
 
   static propTypes = {
     prefixCls: PropTypes.string,
@@ -98,6 +65,37 @@ class ScrollList extends React.Component {
     fetchDataOnOpen: PropTypes.bool,
   };
 
+  static defaultProps = {
+    scrollLoad: true, // 是否支持滚动,来自设计器配置
+    scrollRefresh: true,
+    dataGetted: false,
+    data: [],
+    refreshing: false,
+    prefixCls: 't-scroll-list',
+    pullLoadTip: '下拉显示更多',
+    loadDataTip: '释放加载数据',
+    onRefresh: null,
+    loading: false, // 触底加载
+    loadingTip: '加载中...',
+    onLoad: null,
+    beforeFetch: data => data,
+    processData: data => data,
+    currentPageKey: 'currentPage',
+    noMore: false, // 没有更多内容提示
+    noMoreDataTip: '没有更多了',
+    hasError: false,
+    errorTip: '获取数据失败',
+    noDataTip: '暂无数据',
+    noDataImage: 'https://img.alicdn.com/tps/TB1K6mHNpXXXXXiXpXXXXXXXXXX-1000-1000.svg',
+    fetchDataOnOpen: true,
+    className: undefined,
+    children: undefined,
+    url: undefined,
+    pageSize: undefined,
+    dataType: undefined,
+    fetchOption: undefined,
+  };
+
   constructor(props) {
     super(props);
 
@@ -113,38 +111,22 @@ class ScrollList extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { props } = this;
-    if (!this.props.url) {
-      const change = {};
-      if (props.dataGetted !== nextProps.dataGetted) {
-        change.dataGetted = nextProps.dataGetted;
-      }
-
-      if (props.hasError !== nextProps.hasError) {
-        change.hasError = nextProps.hasError;
-      }
-
-      if (props.refreshing !== nextProps.refreshing) {
-        change.refreshing = nextProps.refreshing;
-      }
-
-      if (props.loading !== nextProps.loading) {
-        change.loading = nextProps.loading;
-      }
-
-      if (props.noMore !== nextProps.noMore) {
-        change.noMore = nextProps.noMore;
-      }
-
-      if (!isEqual(props.data, nextProps.data)) {
-        change.data = nextProps.data;
-      }
-
-      if (Object.keys(change).length) {
-        this.setState(change);
-      }
+  static getDerivedStateFromProps(props) {
+    // TODO: memories func
+    if (!props.url) {
+      const {
+        dataGetted, hasError, refreshing, loading, noMore, data,
+      } = props;
+      return {
+        dataGetted,
+        hasError,
+        refreshing,
+        loading,
+        noMore,
+        data,
+      };
     }
+    return null;
   }
 
   onFetch(refresh, from) {
@@ -159,17 +141,19 @@ class ScrollList extends React.Component {
     const data = this.props.beforeFetch(cloneDeep(pageOption), this.fetchFrom) || pageOption;
     this.fetchFrom = '';
 
-
     const numKey = data[this.props.currentPageKey];
     delete data[this.props.currentPageKey];
     const queryData = JSON.stringify(data);
     data[this.props.currentPageKey] = numKey;
 
-    const fetchOption = assign({
-      url: this.props.url,
-      data,
-      withCredentials: false,
-    }, this.props.fetchOption);
+    const fetchOption = assign(
+      {
+        url: this.props.url,
+        data,
+        withCredentials: false,
+      },
+      this.props.fetchOption,
+    );
 
     if (this.props.dataType) {
       fetchOption.jsonp = this.props.dataType === 'jsonp';
@@ -177,51 +161,55 @@ class ScrollList extends React.Component {
       fetchOption.jsonp = /\.jsonp/.test(this.props.url);
     }
 
-    NattyFetch.create(fetchOption)().then((con) => {
-      const content = cloneDeep(this.props.processData(con));
-      const { state } = this;
-      const nextState = {
-        refreshing: false,
-        loading: false,
-        dataGetted: true,
-        hasError: false,
-      };
+    NattyFetch.create(fetchOption)()
+      .then((con) => {
+        const content = cloneDeep(this.props.processData(con));
+        const { state } = this;
+        const nextState = {
+          refreshing: false,
+          loading: false,
+          dataGetted: true,
+          hasError: false,
+        };
 
-      nextState.noMore = content.data.length < this.props.pageSize;
+        nextState.noMore = content.data.length < this.props.pageSize;
 
-      if (refresh) {
-        nextState.data = content.data;
-        nextState.currentPage = 2;
-        this.scrollTop();
-      } else {
-        if ((state.lastQueryData && queryData !== state.lastQueryData) ||
-          content.currentPage !== state.currentPage) {
-          nextState.currentPage = 1;
-          nextState.data = [];
+        if (refresh) {
+          nextState.data = content.data;
+          nextState.currentPage = 2;
           this.scrollTop();
         } else {
-          nextState.data = state.data;
-          nextState.currentPage = state.currentPage + 1;
+          if (
+            (state.lastQueryData && queryData !== state.lastQueryData) ||
+            content.currentPage !== state.currentPage
+          ) {
+            nextState.currentPage = 1;
+            nextState.data = [];
+            this.scrollTop();
+          } else {
+            nextState.data = state.data;
+            nextState.currentPage = state.currentPage + 1;
+          }
+          nextState.data = nextState.data.concat(content.data);
         }
-        nextState.data = nextState.data.concat(content.data);
-      }
-      nextState.lastQueryData = queryData;
-      nextState.showRefreshing = true;
-      this.setState(nextState, () => {
-        if (refresh) {
-          this.scrollViewRef.tryEmitScrollEvent();
-        }
+        nextState.lastQueryData = queryData;
+        nextState.showRefreshing = true;
+        this.setState(nextState, () => {
+          if (refresh) {
+            this.scrollViewRef.tryEmitScrollEvent();
+          }
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          refreshing: false,
+          loading: false,
+          dataGetted: true,
+          noMore: false,
+          hasError: true,
+        });
+        console.error(error);
       });
-    }).catch((error) => {
-      this.setState({
-        refreshing: false,
-        loading: false,
-        dataGetted: true,
-        noMore: false,
-        hasError: true,
-      });
-      console.error(error);
-    });
   }
 
   fetchData(from) {
@@ -319,17 +307,18 @@ class ScrollList extends React.Component {
     const lastChild = !Array.isArray(children) ? children : children[children.length - 1];
     const isLastChildFunc = typeof lastChild === 'function';
     if (!isLastChildFunc) {
-      return data.map((item, i) => React.cloneElement(lastChild, {
-        /* eslint-disable react/no-array-index-key */
-        key: `child-${i}`,
-        /* selint-enable react/no-array-index-key */
-        index: i,
-        first: i === 0,
-        last: i === len,
-        odd: odd(i),
-        data: item,
-        ...item,
-      }));
+      return data.map((item, i) =>
+        React.cloneElement(lastChild, {
+          /* eslint-disable react/no-array-index-key */
+          key: `child-${i}`,
+          /* selint-enable react/no-array-index-key */
+          index: i,
+          first: i === 0,
+          last: i === len,
+          odd: odd(i),
+          data: item,
+          ...item,
+        }));
     }
     return data.map((item, i) => lastChild(item, i));
   }
