@@ -79,10 +79,13 @@ class RefreshControl extends React.Component {
     this.bindDrag();
   }
 
-  componentDidUpdate(prevProps) {
+  getSnapshotBeforeUpdate(prevProps) {
     if (prevProps.refreshing !== this.props.refreshing) {
       this.onRefreshingChanged(this.props.refreshing);
     }
+  }
+
+  componentDidUpdate() {
     if (this.y > 0) {
       this.triggerStyle(this.props.showRefreshing);
     }
