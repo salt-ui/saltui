@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import cloneDeep from 'lodash/cloneDeep';
@@ -271,5 +272,7 @@ CascadeSelectField.propTypes = {
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';
+
+polyfill(CascadeSelectField);
 
 export default CascadeSelectField;

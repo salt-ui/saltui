@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
@@ -212,5 +213,7 @@ class TabBar extends React.Component {
 
 TabBar.Item = TabBarItem;
 TabBar.Item2 = TabBarItemCenter;
+
+polyfill(TabBar);
 
 export default TabBar;

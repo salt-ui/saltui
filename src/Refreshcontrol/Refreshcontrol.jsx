@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Loading from 'salt-icon/lib/Loading';
@@ -347,5 +348,7 @@ class RefreshControl extends React.Component {
     );
   }
 }
+
+polyfill(RefreshControl);
 
 export default RefreshControl;

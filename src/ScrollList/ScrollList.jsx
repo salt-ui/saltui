@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import NattyFetch from 'natty-fetch';
@@ -367,5 +368,7 @@ class ScrollList extends React.Component {
 }
 
 ScrollList.Item = Item;
+
+polyfill(ScrollList);
 
 export default ScrollList;
