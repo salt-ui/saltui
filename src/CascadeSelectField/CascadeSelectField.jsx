@@ -99,6 +99,7 @@ class CascadeSelectField extends React.Component {
 
     // 数据格式化
     t.state = parseProps(props);
+    t.state.prevProps = props;
     t.state.popupVisible = false;
     t.state.confirmedValue = props.value ? t.state.value : [];
     t.handleClick = t.handleClick.bind(t);
@@ -108,9 +109,11 @@ class CascadeSelectField extends React.Component {
   }
 
   // 外部变更选中值
-  static getDerivedStateFromProps(props) {
-    // TODO: memories func shouldUpdate(this.props, nextProps, ['readOnly', 'options', 'value'])
-    return parseProps(props);
+  static getDerivedStateFromProps(nextProps, state) {
+    if (shouldUpdate(state.prevProps, nextProps, ['readOnly', 'options', 'value'])) {
+      return { ...parseProps(nextProps), prevProps: nextProps };
+    }
+    return null;
   }
 
   handleClick() {
