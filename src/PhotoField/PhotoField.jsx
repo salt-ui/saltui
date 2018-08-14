@@ -137,12 +137,12 @@ class PhotoField extends React.Component {
         }
       });
     };
+    core.on(Events.FILE_UPLOAD_PREPARING, this.fileuploadpreparing);
     core.on(Events.FILE_UPLOAD_START, this.fileuploadstart);
     core.on(Events.FILE_UPLOAD_PROGRESS, this.fileuploadprogress);
     core.on(Events.FILE_UPLOAD_SUCCESS, this.fileuploadsuccess);
     core.on(Events.FILE_UPLOAD_ERROR, this.fileuploaderror);
     core.on(Events.FILE_CANCEL, this.filecancel);
-    core.on(Events.FILE_UPLOAD_PREPARING, this.fileuploadpreparing);
     window.core = core;
     return core;
   }
