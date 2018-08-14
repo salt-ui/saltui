@@ -30,22 +30,20 @@ class SearchBar extends React.Component {
     this.state = {
       isActive: props.isActive, // whether in search mode
       keyword: props.value,
+      _keyword: props.value,
     };
-    // this.lastSearch = '';
     this.doDebouceSearch = debounce(this.doSearch, props.searchDelay);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isActive !== this.props.isActive) {
-      this.setState({
-        isActive: nextProps.isActive,
-      });
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== state._keyword) {
+      return {
+        isActive: props.value !== undefined,
+        keyword: props.value,
+        _keyword: props.value,
+      };
     }
-    if (nextProps.value !== this.props.value) {
-      this.setState({
-        keyword: nextProps.value,
-      });
-    }
+    return null;
   }
 
   componentDidUpdate(prevProps, prevState) {
