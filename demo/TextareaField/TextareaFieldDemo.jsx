@@ -25,7 +25,6 @@ class Demo extends React.Component {
   }
 
   handleChange(name, value) {
-    console.log(value);
     this.setState({
       [name]: value,
     });
@@ -48,6 +47,9 @@ class Demo extends React.Component {
             tip={<p>这里有个tip<a href="http://www.taobao.com" target="_blank" rel="noopener noreferrer">这是个链接</a></p>}
             onChange={(value) => { t.handleChange('t2', value); }}
           />
+        </Group.List>
+        <Group.List>
+          <button onClick={() => this.setState({ t3: '12312312312312312123123123123123121231231231231231212312312312312312123123123123123121231231231231231212312312312312312123123123123123121231231231231231212312312312312312123123123123123121231231231231231212312312312312312123123123123123121231231231231231212312312312312312' })}>修改props</button>
         </Group.List>
         <Group.List>
           <TextareaField
@@ -91,6 +93,7 @@ class Demo extends React.Component {
             label="标题如果特别长，可以选择使用上下结构"
             placeholder="请输入"
             tip="这里也有个提示"
+            value={t.state.t3}
             onChange={(value) => { t.handleChange('t3', value); }}
           />
         </Group.List>
