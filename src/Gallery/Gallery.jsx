@@ -27,10 +27,13 @@ class Gallery extends React.Component {
     this._detectLazyImages();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      images: nextProps.images,
-    });
+  static getDerivedStateFromProps(props, state) {
+    if (props.images !== state.images) {
+      return {
+        images: props.images,
+      };
+    }
+    return null;
   }
 
   _onSlideEnd(o) {
