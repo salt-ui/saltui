@@ -125,6 +125,19 @@ class PhotoField extends React.Component {
     this.filecancel = () => {
       this.forceUpdate();
     };
+    this.fileuploadpreparing = (request) => {
+      const { httpRequest } = this.props;
+      return new Promise((resolve, reject) => {
+        if (httpRequest) {
+          httpRequest(this.getFiles(), request)
+            .then(res => resolve(res))
+            .catch(err => reject(err));
+        } else {
+          resolve(request);
+        }
+      });
+    };
+    core.on(Events.FILE_UPLOAD_PREPARING, this.fileuploadpreparing);
     core.on(Events.FILE_UPLOAD_START, this.fileuploadstart);
     core.on(Events.FILE_UPLOAD_PROGRESS, this.fileuploadprogress);
     core.on(Events.FILE_UPLOAD_SUCCESS, this.fileuploadsuccess);
@@ -262,6 +275,7 @@ PhotoField.defaultProps = {
   url: undefined,
   className: undefined,
   tip: undefined,
+  httpRequest: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -287,6 +301,7 @@ PhotoField.propTypes = {
   autoPending: PropTypes.bool,
   className: PropTypes.string,
   tip: PropTypes.string,
+  httpRequest: PropTypes.func,
 };
 
 PhotoField.displayName = 'PhotoField';
