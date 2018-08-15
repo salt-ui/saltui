@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import AngleRight from 'salt-icon/lib/AngleRight';
@@ -13,6 +14,7 @@ import Context from '../Context';
 import Slot from '../Slot';
 import Field from '../Field';
 import { shouldUpdate } from '../Utils';
+import isEqual from 'lodash/isEqual';
 
 const isNil = value => (value === null || value === undefined);
 
@@ -24,19 +26,32 @@ class SelectField extends React.Component {
     t.state = {
       value: isNil(value) ? value : [value],
       confirmedValue: [value],
+      _value: value,
     };
   }
 
   // 外部变更选中值
-  componentWillReceiveProps(nextProps) {
-    if (shouldUpdate(this.props, nextProps, ['value'])) {
-      const t = this;
-      const { value } = nextProps;
-      t.setState({
+  // componentWillReceiveProps(nextProps) {
+  //   if (shouldUpdate(this.props, nextProps, ['value'])) {
+  //     const t = this;
+  //     const { value } = nextProps;
+  //     t.setState({
+  //       value: isNil(value) ? value : [value],
+  //       confirmedValue: [value],
+  //     });
+  //   }
+  // }
+
+  static getDerivedStateFromProps(props, state) {
+    if (!isEqual(state._value, props.value)) {
+      const { value } = props;
+      return ({
         value: isNil(value) ? value : [value],
         confirmedValue: [value],
+        _value: value,
       });
     }
+    return null;
   }
 
   handleClick() {
@@ -94,8 +109,8 @@ class SelectField extends React.Component {
             <div className={Context.prefixClass('select-field-value FBH FBAC')}>
               <span
                 className={classnames(Context.prefixClass('FB1 omit'), {
-                [Context.prefixClass('select-field-readonly')]: !!t.props.readOnly,
-              })}
+                  [Context.prefixClass('select-field-readonly')]: !!t.props.readOnly,
+                })}
               >{t.props.formatter(t.state.confirmedValue[0])}
               </span>
             </div>
@@ -130,7 +145,7 @@ SelectField.defaultProps = {
     }
     return '';
   },
-  onSelect() {},
+  onSelect() { },
   readOnly: false,
   placeholder: '',
   className: undefined,
@@ -154,5 +169,5 @@ SelectField.propTypes = {
 };
 
 SelectField.displayName = 'SelectField';
-
+polyfill(SelectField);
 export default SelectField;

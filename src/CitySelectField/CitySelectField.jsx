@@ -7,6 +7,7 @@
  */
 
 import React, { Component } from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from '../Context';
@@ -15,7 +16,7 @@ import PickerField from '../PickerField';
 import { find, findTree, clearChildren, joinArray } from './utils';
 import { shouldUpdate } from '../Utils';
 
-export default class CitySelectField extends Component {
+class CitySelectField extends Component {
   static initData(props) {
     const {
       districtData, selectorType, mode, value,
@@ -77,19 +78,29 @@ export default class CitySelectField extends Component {
     readOnly: false,
     mode: undefined,
     layout: undefined,
-    onSelect: () => {},
-    onCancel: () => {},
+    onSelect: () => { },
+    onCancel: () => { },
   };
 
   constructor(props) {
     super(props);
     this.state = CitySelectField.initData(props);
+    this.state['_props'] = props;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (shouldUpdate(this.props, nextProps, ['districtData', 'selectorType', 'mode', 'value'])) {
-      this.setState(CitySelectField.initData(nextProps));
+  // componentWillReceiveProps(nextProps) {
+  //   if (shouldUpdate(this.props, nextProps, ['districtData', 'selectorType', 'mode', 'value'])) {
+  //     this.setState(CitySelectField.initData(nextProps));
+  //   }
+  // }
+
+  static getDerivedStateFromProps(props, state) {
+    if (shouldUpdate(state._props, props, ['districtData', 'selectorType', 'mode', 'value'])) {
+      const newState = CitySelectField.initData(props);
+      newState['_props'] = props;
+      return (newState);
     }
+    return null;
   }
 
   getPickerValue() {
@@ -165,3 +176,6 @@ export default class CitySelectField extends Component {
     />);
   }
 }
+
+polyfill(CitySelectField);
+export default CitySelectField;
