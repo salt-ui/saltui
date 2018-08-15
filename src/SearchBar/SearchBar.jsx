@@ -14,6 +14,7 @@ import React from 'react';
 import Context from '../Context';
 import locale from './locale';
 import { getLocale } from '../Utils';
+import { polyfill } from 'react-lifecycles-compat';
 
 const formatPlaceholder = (placeholder = {}) => {
   const newPlaceholder = {};
@@ -244,5 +245,7 @@ SearchBar.propTypes = {
 };
 
 SearchBar.displayName = 'SearchBar';
+
+polyfill(SearchBar);
 
 export default SearchBar;

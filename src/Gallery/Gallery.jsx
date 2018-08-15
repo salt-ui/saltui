@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Slide from '../Slide';
 import Context from '../Context';
+import { polyfill } from 'react-lifecycles-compat';
 
 const prefixClass = name => (Context.prefixClass ? Context.prefixClass(name) : `t-${name}`);
 
@@ -168,5 +169,7 @@ Gallery.propTypes = {
 };
 
 Gallery.displayName = 'Gallery';
+
+polyfill(Gallery);
 
 export default Gallery;

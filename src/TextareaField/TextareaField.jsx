@@ -12,6 +12,7 @@ import Context, { prefixClass } from '../Context';
 import Field from '../Field';
 import calculateHeight from './calculateHeight';
 import { shouldUpdate } from '../Utils';
+import { polyfill } from 'react-lifecycles-compat';
 
 class TextareaField extends React.Component {
   constructor(props) {
@@ -149,5 +150,7 @@ TextareaField.propTypes = {
 };
 
 TextareaField.displayName = 'TextareaField';
+
+polyfill(TextareaField);
 
 export default TextareaField;

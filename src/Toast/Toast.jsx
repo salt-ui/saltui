@@ -17,6 +17,7 @@ import IconToastLoading from 'salt-icon/lib/ToastLoading';
 import IconInfoRound from 'salt-icon/lib/InfoRound';
 import { VBox } from '../Boxs';
 import { prefixClass, noop } from '../Context';
+import { polyfill } from 'react-lifecycles-compat';
 
 let globalInstance;
 
@@ -225,5 +226,7 @@ if (!wrapper) {
   doc.body.appendChild(wrapper);
 }
 ReactDOM.render(<Toast visible={false} />, wrapper);
+
+polyfill(Toast);
 
 export default Toast;

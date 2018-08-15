@@ -42,18 +42,17 @@ class List extends React.Component {
 }
 
 class Demo extends React.Component {
-
   constructor() {
     super();
     this.state = {
       value: '',
-    }
+    };
   }
 
   modifyProps() {
     this.setState({
-      value: '修改props后的值'
-    })
+      value: '修改props后的值',
+    });
   }
 
   render() {
@@ -87,8 +86,10 @@ class Demo extends React.Component {
         <WithContainer {...props}>
           <List ref={(c) => { this.list = c; }} />
         </WithContainer>
-        <br/>
-        <a onClick={this.modifyProps.bind(this)} href="javascript:void();">修改props</a>
+        <br />
+        <button onClick={this.modifyProps.bind(this)}>
+          修改props
+        </button>
       </div>
     );
   }
