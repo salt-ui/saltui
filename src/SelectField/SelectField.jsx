@@ -30,18 +30,6 @@ class SelectField extends React.Component {
     };
   }
 
-  // 外部变更选中值
-  // componentWillReceiveProps(nextProps) {
-  //   if (shouldUpdate(this.props, nextProps, ['value'])) {
-  //     const t = this;
-  //     const { value } = nextProps;
-  //     t.setState({
-  //       value: isNil(value) ? value : [value],
-  //       confirmedValue: [value],
-  //     });
-  //   }
-  // }
-
   static getDerivedStateFromProps(props, state) {
     if (!isEqual(state._value, props.value)) {
       const { value } = props;

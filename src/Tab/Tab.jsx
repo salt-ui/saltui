@@ -116,16 +116,6 @@ class Tabs extends React.Component {
     }
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(nextProps);
-  //   if (nextProps.active !== this.props.active ||
-  //     nextProps.activeKey !== this.props.activeKey) {
-  //     this.setState({
-  //       activeKey: getActiveKey(nextProps),
-  //     });
-  //   }
-  // }
-
   static getDerivedStateFromProps(props, state) {
     if (props.active !== state.lastActive ||
       props.activeKey !== state.lastActiveKey) {

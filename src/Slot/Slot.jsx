@@ -41,12 +41,6 @@ class Slot extends React.Component {
     t.handleCancel = t.handleCancel.bind(t);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (!isEqual(this.props.value, nextProps.value)) {
-  //     this.lastChoose = cloneDeep(nextProps.value);
-  //   }
-  // }
-
   componentDidUpdate() {
     if (this.state.lastChooseChange === null) {
       this.lastChoose = cloneDeep(this.state.nextValue);

@@ -88,12 +88,6 @@ class CitySelectField extends Component {
     this.state['_props'] = props;
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (shouldUpdate(this.props, nextProps, ['districtData', 'selectorType', 'mode', 'value'])) {
-  //     this.setState(CitySelectField.initData(nextProps));
-  //   }
-  // }
-
   static getDerivedStateFromProps(props, state) {
     if (shouldUpdate(state._props, props, ['districtData', 'selectorType', 'mode', 'value'])) {
       const newState = CitySelectField.initData(props);
