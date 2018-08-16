@@ -40,7 +40,7 @@ class TabBarItemCenter extends React.Component {
     this.props.onMoreVisibleChange(!this.props.moreVisible);
   }
 
-  doClick() {
+  handleClick() {
     this.props.onClick(this.props.index, this.props.path);
   }
 
@@ -52,7 +52,7 @@ class TabBarItemCenter extends React.Component {
     if (item.props.items.length > 0) {
       clickCB = (e) => { t.toggleMoreItems(e); };
     } else {
-      clickCB = (e) => { t.doClick(e); };
+      clickCB = () => { t.handleClick(); };
     }
     return (
       <Box
