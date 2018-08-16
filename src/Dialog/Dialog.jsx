@@ -6,8 +6,9 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
-import cloneDeep from 'lodash/cloneDeep';
+// import cloneDeep from 'lodash/cloneDeep';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import RcDialog from 'rc-dialog';
@@ -22,12 +23,14 @@ const TYPES = ['alert', 'confirm'];
 
 const EMPTY_FUNC = function EMPTY_FUNC() { };
 
+const FORCE_HIDE = function FORCE_HIDE() {};
+
 /**
  * 简单的 i18n 实现
  * @param {String} lang 语言类型 'zh-cn' | 'en-us'
  * @param {String} key 关键 key 'ok' | 'cancel' 其他值直接返回 key
  */
-const getI18nVal = function (lang = 'zh-cn', key) {
+const getI18nVal = function getI18nVal(lang = 'zh-cn', key) {
   switch (lang) {
     case 'en-us':
       return i18nData[lang][key] || key;
@@ -55,10 +58,21 @@ class Dialog extends React.Component {
   }
 
   // 属性变化时把响应状态设置到 state
-  componentWillReceiveProps(nextProps) {
-    const changeState = {};
-    changeState.show = nextProps.show;
-    this.setState(changeState);
+  // componentWillReceiveProps(nextProps) {
+  //   const changeState = {};
+  //   changeState.show = nextProps.show;
+  //   this.setState(changeState);
+  // }
+  static getDerivedStateFromProps(nextProps, { show }) {
+    let showResult = false;
+    if (show === FORCE_HIDE) {
+      showResult = false;
+    } else {
+      showResult = nextProps.show;
+    }
+    return {
+      show: showResult,
+    };
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -106,7 +120,7 @@ class Dialog extends React.Component {
   hide() {
     const { props } = this;
     this.setState({
-      show: false,
+      show: FORCE_HIDE,
     });
     // 未写在文档中
     if (props.onClose && typeof props.onClose === 'function') {
@@ -299,8 +313,8 @@ Dialog.global = null;
  * @param {object} options 弹窗相关参数
  */
 const show = function show(options = {}) {
-  const optionsN = cloneDeep(options);
-  optionsN.show = true;
+  // const optionsN = cloneDeep(options);
+  // optionsN.show = true;
   if (!wrapper) {
     wrapper = doc.getElementById(WRAPPER_ID);
     const { ...other } = options;
@@ -374,5 +388,7 @@ Dialog.custom = function custom(options) {
 Dialog.rcDialog = RcDialog;
 
 Dialog.displayName = 'Dialog';
+
+polyfill(Dialog);
 
 export default Dialog;

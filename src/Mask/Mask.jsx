@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import MaskBody from './MaskBody';
@@ -66,5 +67,7 @@ Mask.propTypes = {
   ...MaskBody.propTypes,
   renderToBody: PropTypes.bool,
 };
+
+polyfill(Mask);
 
 export default Mask;
