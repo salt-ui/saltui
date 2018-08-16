@@ -30,30 +30,16 @@ const iconCompMap = {
 };
 
 class Toast extends React.Component {
+  static show = (props) => {
+    ReactDOM.render(<Toast visible {...props} ref={(c) => { globalInstance = c; }} />, wrapper);
+  }
 
+  static hide = (fn) => {
+    if (globalInstance) {
+      globalInstance.hide(fn);
+    }
+  }
   static displayName = 'Toast'
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: props.visible,
-      hasMask: props.hasMask,
-    };
-  }
-
-  static defaultProps = {
-    prefixCls: 't-toast',
-    hasMask: false,
-    onDidHide: noop,
-    visible: false,
-    autoHide: true,
-    content: '',
-    duration: undefined,
-    width: undefined,
-    icon: undefined,
-    transitionName: undefined,
-    type: undefined,
-  }
 
   static propTypes = {
     prefixCls: PropTypes.string,
@@ -72,24 +58,33 @@ class Toast extends React.Component {
     type: PropTypes.string,
   }
 
-  static show = props => {
-    ReactDOM.render(<Toast visible {...props} ref={(c) => { globalInstance = c; }} />, wrapper);
+  static defaultProps = {
+    prefixCls: 't-toast',
+    hasMask: false,
+    onDidHide: noop,
+    visible: false,
+    autoHide: true,
+    content: '',
+    duration: undefined,
+    width: undefined,
+    icon: undefined,
+    transitionName: undefined,
+    type: undefined,
   }
 
-  static hide = fn => {
-    if (globalInstance) {
-      globalInstance.hide(fn);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: props.visible,
+      hasMask: props.hasMask,
+    };
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.visible !== state.visible || props.hasMask !== state.hasMask) {
-      return {
-        visible: props.visible,
-        hasMask: props.hasMask,
-      };
-    }
-    return null;
+  static getDerivedStateFromProps(props) {
+    return {
+      visible: props.visible,
+      hasMask: props.hasMask,
+    };
   }
 
   getIconComp() {
