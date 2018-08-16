@@ -109,23 +109,50 @@ class ScrollList extends React.Component {
       noMore: props.noMore,
       currentPage: 1,
       fetchData: props.fetchDataOnOpen,
+      prevProps: {
+        dataGetted: props.dataGetted,
+        hasError: props.hasError,
+        refreshing: props.refreshing,
+        loading: props.loading,
+        noMore: props.noMore,
+        data: props.data,
+      },
     };
   }
 
-  static getDerivedStateFromProps(props) {
-    // TODO: memories func
+  static getDerivedStateFromProps(props, { prevProps }) {
     if (!props.url) {
       const {
         dataGetted, hasError, refreshing, loading, noMore, data,
       } = props;
-      return {
-        dataGetted,
-        hasError,
-        refreshing,
-        loading,
-        noMore,
-        data,
-      };
+      const {
+        dataGetted: prevDataGetted,
+        hasError: prevHasError,
+        refreshing: prevRefreshing,
+        loading: prevLoading,
+        noMore: prevNoMore,
+        data: prevData,
+      } = prevProps;
+      const changes = {};
+      if (dataGetted !== prevDataGetted) {
+        changes.dataGetted = dataGetted;
+      }
+      if (hasError !== prevHasError) {
+        changes.hasError = hasError;
+      }
+      if (refreshing !== prevRefreshing) {
+        changes.refreshing = refreshing;
+      }
+      if (loading !== prevLoading) {
+        changes.loading = loading;
+      }
+      if (noMore !== prevNoMore) {
+        changes.noMore = noMore;
+      }
+      if (data !== prevData) {
+        changes.data = data;
+      }
+      return changes;
     }
     return null;
   }
