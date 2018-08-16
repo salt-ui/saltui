@@ -12,8 +12,6 @@ import Context, { prefixClass } from '../Context';
 import Field from '../Field';
 import calculateHeight from './calculateHeight';
 import { shouldUpdate } from '../Utils';
-import { polyfill } from 'react-lifecycles-compat';
-
 class TextareaField extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +25,7 @@ class TextareaField extends React.Component {
     this.resize();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if ('value' in this.props
     && shouldUpdate(prevProps, this.props, ['value', 'rows', 'minRows', 'maxRows'])) {
       this.resize();
@@ -150,7 +148,5 @@ TextareaField.propTypes = {
 };
 
 TextareaField.displayName = 'TextareaField';
-
-polyfill(TextareaField);
 
 export default TextareaField;
