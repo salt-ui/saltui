@@ -31,17 +31,17 @@ class SearchBar extends React.Component {
     this.state = {
       isActive: props.isActive, // whether in search mode
       keyword: props.value,
-      _keyword: props.value,
+      prevKeyword: props.value,
     };
     this.doDebouceSearch = debounce(this.doSearch, props.searchDelay);
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.value !== state._keyword) {
+    if (props.value !== state.prevKeyword) {
       return {
         isActive: props.value !== undefined,
         keyword: props.value,
-        _keyword: props.value,
+        prevKeyword: props.value,
       };
     }
     return null;
