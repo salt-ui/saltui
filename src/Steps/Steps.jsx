@@ -14,6 +14,16 @@ import Step from './Step';
 
 const { prefixClass } = Context;
 
+const computedWidth = (offsetWidth, length, itemsWidth) => {
+  const width = Math.floor(offsetWidth);
+  const tw = itemsWidth.reduce((prew, w) => prew + w, 0);
+  const dw = Math.floor((width - tw) / length) - 1;
+  return {
+    width,
+    dw,
+  };
+};
+
 class Steps extends React.Component {
   constructor(props) {
     super(props);
@@ -38,10 +48,7 @@ class Steps extends React.Component {
     for (let i = 0; i <= len; i++) {
       itemsWidth[i] = this.props.maxDescriptionWidth;
     }
-    const width = Math.floor(this.root.offsetWidth);
-    const length = this.props.children.length - 1;
-    const tw = itemsWidth.reduce((prev, w) => prev + w, 0);
-    const dw = Math.floor((width - tw) / length) - 1;
+    const { dw, width } = computedWidth(this.root.offsetWidth, len, itemsWidth);
     if (dw <= 0) {
       this.setState({
         itemsWidth,
@@ -96,8 +103,7 @@ class Steps extends React.Component {
     for (let i = 0; i <= len; i++) {
       itemsWidth[i] = maxDescriptionWidth;
     }
-    const tw = itemsWidth.reduce((prew, w) => prew + w, 0);
-    const dw = Math.floor((previousStepsWidth - tw) / len) - 1;
+    const { dw } = computedWidth(previousStepsWidth, len, itemsWidth);
     if (dw <= 0) {
       return {
         itemsWidth,
@@ -111,23 +117,6 @@ class Steps extends React.Component {
       prevProps: nextProps,
     };
   }
-
-  // update(props = this.props) {
-  //   const len = props.children.length - 1;
-  //   const tw = this.itemsWidth.reduce(
-  //     (prev, w) =>
-  //       prev + w
-  //     , 0,
-  //   );
-  //   const dw = Math.floor((this.previousStepsWidth - tw) / len) - 1;
-  //   if (dw <= 0) {
-  //     return;
-  //   }
-  //   this.setState({
-  //     init: true,
-  //     tailWidth: dw,
-  //   });
-  // }
 
   componentDidUpdate() {
     this.resize();
@@ -158,13 +147,16 @@ class Steps extends React.Component {
 
   resize() {
     this.fixLastDetailHeight();
-    const width = Math.floor(this.root.offsetWidth);
+    const { width, dw } = computedWidth(
+      this.root.offsetWidth,
+      this.props.children.length - 1,
+      this.state.itemsWidth,
+    );
+    console.log(this.root.offsetWidth);
+    console.log(width, dw);
     if (this.state.previousStepsWidth === width) {
       return;
     }
-    const len = this.props.children.length - 1;
-    const tw = this.state.itemsWidth.reduce((prew, w) => prew + w, 0);
-    const dw = Math.floor((width - tw) / len) - 1;
     if (dw <= 0) {
       return;
     }
@@ -187,23 +179,6 @@ class Steps extends React.Component {
     } else {
       $dom.style.height = 'auto';
     }
-  }
-
-  update(props = this.props) {
-    const len = props.children.length - 1;
-    const tw = this.itemsWidth.reduce(
-      (prev, w) =>
-        prev + w
-      , 0,
-    );
-    const dw = Math.floor((this.previousStepsWidth - tw) / len) - 1;
-    if (dw <= 0) {
-      return;
-    }
-    this.setState({
-      init: true,
-      tailWidth: dw,
-    });
   }
 
   render() {
