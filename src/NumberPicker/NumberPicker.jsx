@@ -53,21 +53,12 @@ class NumberPicker extends React.Component {
     const t = this;
     t.processingWidth();
   }
-
-  getSnapshotBeforeUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     const t = this;
     const newValueLength = t.props.value.toString().length;
     const valueLength = prevProps.value.toString().length;
     if (newValueLength !== valueLength) {
-      return newValueLength;
-    }
-    return null;
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const t = this;
-    if (snapshot !== null) {
-      t.processingWidth(snapshot);
+      t.processingWidth(newValueLength);
     }
   }
   // 获得当前值所占的宽度，给予组件，实现可根据输入的内容来变宽

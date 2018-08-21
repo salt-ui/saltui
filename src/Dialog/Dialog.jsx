@@ -43,7 +43,6 @@ class Dialog extends React.Component {
     super(props);
 
     // 设置到 state 作为渲染的依据
-    // innerShow 为内部开关
     this.state = {
       show: props.show,
       forceHide: true,

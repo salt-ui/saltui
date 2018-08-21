@@ -69,12 +69,6 @@ class CheckboxField extends React.Component {
     return null;
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (shouldUpdate(this.props.data, nextProps, ['data'])) {
-  //     this.setState();
-  //   }
-  // }
-
   static getSelectedText(data, props) {
     let selectedText = '';
     data.forEach((item) => {
