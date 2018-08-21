@@ -22,8 +22,6 @@ const { prefixClass } = Context;
 const TYPES = ['alert', 'confirm'];
 
 const EMPTY_FUNC = function EMPTY_FUNC() { };
-
-const FORCE_HIDE = function FORCE_HIDE() {};
 /**
  * 简单的 i18n 实现
  * @param {String} lang 语言类型 'zh-cn' | 'en-us'
@@ -48,7 +46,7 @@ class Dialog extends React.Component {
     // innerShow 为内部开关
     this.state = {
       show: props.show,
-      innerShow: true,
+      forceHide: true,
     };
   }
 
@@ -58,15 +56,15 @@ class Dialog extends React.Component {
     }
   }
 
-  static getDerivedStateFromProps(nextProps, { innerShow }) {
-    if (innerShow) {
+  static getDerivedStateFromProps(nextProps, { forceHide }) {
+    if (!forceHide) {
       return {
         show: nextProps.show,
       };
     }
     return {
       show: false,
-      innerShow: true,
+      forceHide: false,
     };
   }
 
@@ -115,9 +113,8 @@ class Dialog extends React.Component {
   hide() {
     const { props } = this;
     this.setState({
-      // show: FORCE_HIDE,
       show: false,
-      innerShow: false,
+      forceHide: true,
     });
     // 未写在文档中
     if (props.onClose && typeof props.onClose === 'function') {
