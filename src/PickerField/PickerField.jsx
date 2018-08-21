@@ -11,8 +11,7 @@ import classnames from 'classnames';
 import AngleRight from 'salt-icon/lib/AngleRight';
 import Context from '../Context';
 import Field from '../Field';
-import Popup from '../Popup';
-import SearchPanel from './SearchPanel';
+import Picker from '../Picker';
 import utils from './utils';
 import i18n from './i18n';
 import { shouldUpdate } from '../Utils';
@@ -167,7 +166,6 @@ class PickerField extends React.Component {
       locale: t.props.locale,
       resultFormatter: t.props.resultFormatter,
     };
-
     return (
       <Field
         {...t.props}
@@ -197,7 +195,7 @@ class PickerField extends React.Component {
           ) : null}
           {t.renderIcon(icon)}
         </div>
-        <Popup stopBodyScrolling={false} visible={this.state.popupVisible} animationType="slide-left" content={<SearchPanel {...panelProps} />} />
+        <Picker visible={this.state.popupVisible} {...panelProps} />
       </Field>
     );
   }
