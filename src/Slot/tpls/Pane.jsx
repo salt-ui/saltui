@@ -9,6 +9,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import deepEqual from 'lodash/isEqual';
 import Context from '../../Context';
 import Scroller from '../../Scroller';
 
@@ -52,14 +53,14 @@ class SlotPane extends React.Component {
 
   constructor(props) {
     super(props);
-
     const t = this;
     // 初始状态
     t.state = {
-      scrolling: false,
       data: this.props.data || [],
       selectedIndex: t.findSelectedIndex(this.props),
     };
+    // scrolling标志位指示是否是用户发起的滚动
+    t.scrolling = false;
   }
 
 
@@ -123,6 +124,10 @@ class SlotPane extends React.Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return !deepEqual(nextProps, this.props) || !deepEqual(nextState, this.state);
+  }
+
   componentDidUpdate() {
     const t = this;
 
@@ -135,6 +140,7 @@ class SlotPane extends React.Component {
       t.scrollAll(200);
     }
   }
+
 
   // 获取值的时候指定变更的列，为什么要这么做，是因为有变更后我不直接改 state！
   getData(sColumn, sIndex) {
@@ -165,11 +171,8 @@ class SlotPane extends React.Component {
 
   handleScrollEnd(column) {
     const t = this;
-    t.setState({
-      scrolling: false,
-    }, () => {
-      t.props.onScrolling(t.state.scrolling);
-    });
+    // 如果不是用户发起的滚动结束事件，不做处理
+    if (!t.scrolling) { return; }
     const { scroller } = t[`scroller${column}`];
     const height = t.itemHeight;
     const remainder = Math.abs(scroller.y % height);
@@ -191,22 +194,26 @@ class SlotPane extends React.Component {
         func = 'ceil';
       }
 
-
       index = Math[func](scroller.y / height);
     }
 
-    // 在 onChange 中设置状态
     index = Math.abs(index);
-    t.props.onChange(t.getData(column, index), column, index);
+    // 设置标志位，指示在调用scrollAll()以后再次触发的scrollEnd事件不需要处理了
+    t.scrolling = false;
+    // 滚动到选项所在的精确位置
+    t.scrollAll(200);
+    t.props.onScrolling(t.scrolling);
+    // 仅在index有改变的时候才触发onChange
+    if (index !== t.state.selectedIndex[column]) {
+      t.props.onChange(t.getData(column, index), column, index);
+    }
   }
 
   handleScrollStart() {
     const t = this;
-    t.setState({
-      scrolling: true,
-    }, () => {
-      t.props.onScrolling(t.state.scrolling);
-    });
+    // 设置标志位，指示本次滚动是用户发起的滚动
+    t.scrolling = true;
+    t.props.onScrolling(t.scrolling);
   }
 
 
