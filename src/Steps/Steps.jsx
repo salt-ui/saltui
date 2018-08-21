@@ -152,8 +152,6 @@ class Steps extends React.Component {
       this.props.children.length - 1,
       this.state.itemsWidth,
     );
-    console.log(this.root.offsetWidth);
-    console.log(width, dw);
     if (this.state.previousStepsWidth === width) {
       return;
     }
