@@ -88,25 +88,25 @@ class Demo extends React.Component {
 
         <Button key="aler" className="demo" onClick={this.handleAlert.bind(this)}>Alert</Button>
 
-        <Button key="confirm" className="demo" onClick={this.handleConfirm.bind(this)}>Confirm</Button>
+        {/* <Button key="confirm" className="demo" onClick={this.handleConfirm.bind(this)}>Confirm</Button>
 
         <Button key="notitle" className="demo" onClick={this.handleTitle.bind(this)}>No title</Button>
 
-        <Button key="multi line" className="demo" onClick={this.handleMultiLines.bind(this)}>Multi lines</Button>
+        <Button key="multi line" className="demo" onClick={this.handleMultiLines.bind(this)}>Multi lines</Button> */}
 
-        <Button key="show-alert" className="demo" onClick={this.handleShow.bind(this, 'showAlert', true)}>Use show prop Alert</Button>
+        {/* <Button key="show-alert" className="demo" onClick={this.handleShow.bind(this, 'showAlert', true)}>Use show prop Alert</Button>
 
         <Button key="show-confirm" className="demo" onClick={this.handleShow.bind(this, 'showConfirm', true)}>Use show prop Confirm</Button>
 
         <Button key="show-multi-btn" className="demo" onClick={this.handleShow.bind(this, 'showMultiBtns', true)}>Multi Horizontal Btns</Button>
 
-        <Button key="show-multi-btn-vertical" className="demo" onClick={this.handleShow.bind(this, 'showMultiBtnsVertical', true)}>Multi Vertical Btns</Button>
+        <Button key="show-multi-btn-vertical" className="demo" onClick={this.handleShow.bind(this, 'showMultiBtnsVertical', true)}>Multi Vertical Btns</Button> */}
 
         <Button key="show-trans" className="demo" onClick={this.handleShow.bind(this, 'showTransBg', true)}>showTransBg</Button>
 
         <Button key="no-padding" className="demo" onClick={this.handleShow.bind(this, 'showNoPadding', true)}>showNoPadding</Button>
 
-        <Dialog
+        {/* <Dialog
           key="d-alert"
           title="2.0版本上线啦"
           show={this.state.showAlert}
@@ -116,7 +116,7 @@ class Demo extends React.Component {
             <p>我们来自阿里巴巴信息平台事业部用户体验平台，我们的日常是支持集团200+系统／产品的迭代与升级。</p>
             <p>面对200+复杂的产品／系统，我们先进行了调研，其中有鲜活的门户页面也有逻辑复杂的后台页面，更不乏诸多工具类的系统界面。然后，我们记录了每一条业务线上产品的特性，最终提炼出 “通用” “高效” “亲切” 三个关键词，它将指导基础规范的落地和成为我们后续不断迭代的一份指南。</p>
           </div>
-        </Dialog>
+        </Dialog> */}
 
         <Dialog
           key="d-confirm"

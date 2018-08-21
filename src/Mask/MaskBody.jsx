@@ -14,11 +14,6 @@ class MaskBody extends React.Component {
     };
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     visible: nextProps.visible,
-  //   });
-  // }
   static getDerivedStateFromProps(nextProps) {
     return {
       visible: nextProps.visible,

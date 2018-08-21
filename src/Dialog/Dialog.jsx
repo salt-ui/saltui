@@ -8,7 +8,7 @@
 import React from 'react';
 import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
-// import cloneDeep from 'lodash/cloneDeep';
+import cloneDeep from 'lodash/cloneDeep';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import RcDialog from 'rc-dialog';
@@ -24,7 +24,6 @@ const TYPES = ['alert', 'confirm'];
 const EMPTY_FUNC = function EMPTY_FUNC() { };
 
 const FORCE_HIDE = function FORCE_HIDE() {};
-
 /**
  * 简单的 i18n 实现
  * @param {String} lang 语言类型 'zh-cn' | 'en-us'
@@ -46,8 +45,10 @@ class Dialog extends React.Component {
     super(props);
 
     // 设置到 state 作为渲染的依据
+    // innerShow 为内部开关
     this.state = {
       show: props.show,
+      innerShow: true,
     };
   }
 
@@ -57,21 +58,15 @@ class Dialog extends React.Component {
     }
   }
 
-  // 属性变化时把响应状态设置到 state
-  // componentWillReceiveProps(nextProps) {
-  //   const changeState = {};
-  //   changeState.show = nextProps.show;
-  //   this.setState(changeState);
-  // }
-  static getDerivedStateFromProps(nextProps, { show }) {
-    let showResult = false;
-    if (show === FORCE_HIDE) {
-      showResult = false;
-    } else {
-      showResult = nextProps.show;
+  static getDerivedStateFromProps(nextProps, { innerShow }) {
+    if (innerShow) {
+      return {
+        show: nextProps.show,
+      };
     }
     return {
-      show: showResult,
+      show: false,
+      innerShow: true,
     };
   }
 
@@ -120,7 +115,9 @@ class Dialog extends React.Component {
   hide() {
     const { props } = this;
     this.setState({
-      show: FORCE_HIDE,
+      // show: FORCE_HIDE,
+      show: false,
+      innerShow: false,
     });
     // 未写在文档中
     if (props.onClose && typeof props.onClose === 'function') {
@@ -313,8 +310,8 @@ Dialog.global = null;
  * @param {object} options 弹窗相关参数
  */
 const show = function show(options = {}) {
-  // const optionsN = cloneDeep(options);
-  // optionsN.show = true;
+  const optionsN = cloneDeep(options);
+  optionsN.show = true;
   if (!wrapper) {
     wrapper = doc.getElementById(WRAPPER_ID);
     const { ...other } = options;

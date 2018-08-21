@@ -53,39 +53,22 @@ class NumberPicker extends React.Component {
     const t = this;
     t.processingWidth();
   }
-  // componentWillReceiveProps(nextProps) {
-  //   const t = this;
-  //   const newValueLength = nextProps.value.toString().length;
-  //   const valueLength = t.props.value.toString().length;
-  //   if (newValueLength !== valueLength) {
-  //     t.processingWidth(newValueLength);
-  //   }
-  // }
+
   getSnapshotBeforeUpdate(prevProps) {
     const t = this;
     const newValueLength = t.props.value.toString().length;
     const valueLength = prevProps.value.toString().length;
     if (newValueLength !== valueLength) {
-      let width = t.reference.offsetWidth;
-      width = newValueLength && newValueLength <= 4 ? 108 : width;
-      // rc-input-number的input框最宽的宽度为185px
-      if (width > 185) {
-        width = 185;
-      }
-      return width;
+      return newValueLength;
     }
     return null;
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    const t = this;
     if (snapshot !== null) {
-      this.setWidth(snapshot);
+      t.processingWidth(snapshot);
     }
-  }
-  setWidth(snapshot) {
-    this.setState({
-      width: snapshot,
-    });
   }
   // 获得当前值所占的宽度，给予组件，实现可根据输入的内容来变宽
   processingWidth(length) {
