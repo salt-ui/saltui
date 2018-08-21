@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from '../../Context';
-import locale from '../locale';
+import i18n from '../locale';
 
 
 class WeekBar extends React.Component {
@@ -25,21 +25,18 @@ class WeekBar extends React.Component {
 
   static displayName = 'WeekBar';
 
-  componentWillMount() {
-    this.locale = locale[this.props.locale];
-  }
-
   render() {
     const t = this;
+    const { locale, className } = t.props;
     /* eslint-disable react/no-array-index-key */
     return (
       <div
         className={classnames(prefixClass('day-calendar-week-bar FBH'), {
-          [t.props.className]: !!t.props.className,
+          [className]: !!className,
         })}
       >
         {
-          t.locale.weekTitle.map((item, index) => (
+          i18n[locale].weekTitle.map((item, index) => (
             <div
               className={classnames(prefixClass('FB1 FBAC'), 'week-bar-item', {
                 first: index === 0,
