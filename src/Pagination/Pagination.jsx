@@ -30,14 +30,15 @@ class Pagination extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.current !== this.state.current ||
-    nextProps.pageSize !== this.state.pageSize) {
-      this.setState({
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.current !== prevState.current ||
+    nextProps.pageSize !== prevState.pageSize) {
+      return {
         current: nextProps.current,
         pageSize: nextProps.pageSize,
-      });
+      };
     }
+    return null;
   }
 
   onChange(current) {

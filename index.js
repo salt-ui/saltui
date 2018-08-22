@@ -40,6 +40,7 @@
   import Pagination from './lib/Pagination';
   import PasswordInput from './lib/PasswordInput';
   import PhotoField from './lib/PhotoField';
+  import Picker from './lib/Picker';
   import PickerField from './lib/PickerField';
   import Popover from './lib/Popover';
   import Popup from './lib/Popup';
@@ -114,6 +115,7 @@ const __SALT_BUNDLE__ = {
   Pagination,
   PasswordInput,
   PhotoField,
+  Picker,
   PickerField,
   Popover,
   Popup,
