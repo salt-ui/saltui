@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import PlusThin from 'salt-icon/lib/PlusThin';
@@ -27,8 +28,7 @@ class NumberPicker extends React.Component {
     useTouch: PropTypes.bool,
     onChange: PropTypes.func,
     disabled: PropTypes.bool,
-  };
-
+  }
   static defaultProps = {
     step: 1,
     value: 2,
@@ -42,21 +42,21 @@ class NumberPicker extends React.Component {
     max: undefined,
     min: undefined,
   };
-  static displayName = 'NumberPicker';
   constructor(props) {
     super(props);
     this.state = {
       width: 108,
+      value: props.value,
     };
   }
   componentDidMount() {
     const t = this;
     t.processingWidth();
   }
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const t = this;
-    const newValueLength = nextProps.value.toString().length;
-    const valueLength = t.props.value.toString().length;
+    const newValueLength = t.props.value.toString().length;
+    const valueLength = prevProps.value.toString().length;
     if (newValueLength !== valueLength) {
       t.processingWidth(newValueLength);
     }
@@ -102,5 +102,9 @@ class NumberPicker extends React.Component {
     );
   }
 }
+
+NumberPicker.displayName = 'NumberPicker';
+
+polyfill(NumberPicker);
 
 export default NumberPicker;

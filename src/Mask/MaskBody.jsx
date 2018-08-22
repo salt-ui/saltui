@@ -1,4 +1,5 @@
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import Animate from 'rc-animate';
 import cssAnim from 'css-animation';
@@ -13,10 +14,10 @@ class MaskBody extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
+  static getDerivedStateFromProps(nextProps) {
+    return {
       visible: nextProps.visible,
-    });
+    };
   }
 
   componentDidUpdate(prevPorps) {
@@ -126,5 +127,7 @@ MaskBody.propTypes = {
 };
 
 MaskBody.displayName = 'MaskBody';
+
+polyfill(MaskBody);
 
 export default MaskBody;
