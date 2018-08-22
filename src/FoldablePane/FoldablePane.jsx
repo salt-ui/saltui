@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import DirectionBottomIcon from 'salt-icon/lib/DirectionBottom';
 import classnames from 'classnames';
@@ -39,6 +40,8 @@ class FoldablePane extends React.Component {
       fold: !!props.isFold,
       // 高度是否达到可以折叠
       foldable: false,
+      //是否点击折叠图标
+      clickToChange: false
     };
 
     this.events = {
@@ -50,14 +53,19 @@ class FoldablePane extends React.Component {
     this.checkFoldable();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isFold !== this.state.fold) {
-      this.setState({
-        fold: nextProps.isFold,
-      });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.isFold !== prevState.fold) {
+      return {
+        fold: nextProps.isFold
+      };
     }
+    if (prevState.clickToChange) {
+      return {
+        fold: !prevState.fold
+      }
+    }
+    return null;
   }
-
 
   componentDidUpdate() {
     this.checkFoldable();
@@ -94,7 +102,7 @@ class FoldablePane extends React.Component {
       this.props.onFold.call(this, !this.state.fold);
     }
     this.setState({
-      fold: !this.state.fold,
+      clickToChange: true,
     });
   }
 
@@ -145,5 +153,7 @@ class FoldablePane extends React.Component {
     );
   }
 }
+
+polyfill(FoldablePane);
 
 export default FoldablePane;

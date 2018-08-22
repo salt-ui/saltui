@@ -204,8 +204,8 @@ class CascadePanel extends Panel {
       (
         <li
           className={classnames(prefixClass('tap'), 'day-type-item full', {
-          active: halfType === halfDayType.FULL,
-        })}
+            active: halfType === halfDayType.FULL,
+          })}
           key="half-day-full"
           onClick={(e) => { t.onHalfButtonClick(halfDayType.FULL, e); }}
           role="menuitem"
