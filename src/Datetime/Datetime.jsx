@@ -9,6 +9,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { polyfill } from 'react-lifecycles-compat';
 import Context from '../Context';
 
 import {
@@ -48,15 +49,22 @@ class Datetime extends React.Component {
     if (props.columns.indexOf('T') !== -1 && props.columns.indexOf('H') !== -1) {
       throw new Error('Please refer to the component document.');
     }
-    this.state = this.getState(props);
+    this.state = Datetime.getState(props);
+    this.state = { ...this.state, prevProps: props };
   }
-  componentWillReceiveProps(nextProps) {
+
+  static getDerivedStateFromProps(props, state) {
     const keys = ['columns', 'minDate', 'maxDate', 'value', 'locale', 'columns'];
-    if (shouldUpdate(this.props, nextProps, keys)) {
-      this.setState(this.getState(nextProps));
+    if (shouldUpdate(props, state.prevProps, keys)) {
+      return {
+        ...Datetime.getState(props),
+        prevProps: props,
+      };
     }
+    return null;
   }
-  getState = (props) => {
+
+  static getState(props) {
     const { columns, minDate, maxDate } = props;
     const currentValue = parseValue(props.value);
     const options = getOptions(props.value, props);
@@ -85,6 +93,7 @@ class Datetime extends React.Component {
       value,
     };
   }
+
   getPlainDate = (value) => {
     const date = [];
     const { columns } = this.props;
@@ -127,12 +136,14 @@ class Datetime extends React.Component {
   }
 
   handleConfirm = (value) => {
+    const { onConfirm } = this.props;
     const outputDate = this.getPlainDate(value);
-    this.props.onConfirm(outputDate);
+    onConfirm(outputDate);
   }
 
   handleCancel = () => {
-    this.props.onCancel();
+    const { onCancel } = this.props;
+    onCancel();
   };
 
   handleChange = (value, columnIndex) => {
@@ -190,10 +201,10 @@ class Datetime extends React.Component {
       });
       // dayArr = formatText(dayArr, undefined, this.props);
       const unit = locale[this.props.locale].surfix.D;
-      dayArr = dayArr.map((item) => {
-        item.text = addZero(item.text) + (unit || '');
-        return item;
-      });
+      dayArr = dayArr.map(item => ({
+        ...item,
+        text: addZero(item.text) + (unit || ''),
+      }));
       data[2] = dayArr;
       updateObj.data = data;
     }
@@ -276,5 +287,7 @@ Datetime.YMDWHM = YMDWHM;
 Datetime.getSlotFormattedValue = getSlotFormattedValue;
 Datetime.needUpdateSlotValue = needUpdateSlotValue;
 Datetime.displayName = 'Datetime';
+
+polyfill(Datetime);
 
 export default Datetime;

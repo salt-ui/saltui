@@ -42,9 +42,23 @@ class List extends React.Component {
 }
 
 class Demo extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      value: '',
+    };
+  }
+
+  modifyProps() {
+    this.setState({
+      value: '修改props后的值',
+    });
+  }
+
   render() {
     const t = this;
     const props = {
+      value: this.state.value,
       locale: 'zh_CN',
       instantSearch: true,
       hasHistory: true,
@@ -72,6 +86,10 @@ class Demo extends React.Component {
         <WithContainer {...props}>
           <List ref={(c) => { this.list = c; }} />
         </WithContainer>
+        <br />
+        <button onClick={this.modifyProps.bind(this)}>
+          修改props
+        </button>
       </div>
     );
   }

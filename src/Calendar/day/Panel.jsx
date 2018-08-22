@@ -12,9 +12,9 @@ import cloneDeep from 'lodash/cloneDeep';
 import isObject from 'lodash/isObject';
 import isArray from 'lodash/isArray';
 import deepEqual from 'lodash/isEqual';
+import { polyfill } from 'react-lifecycles-compat';
 import util, { getMonthDays, getRealMonthPool } from '../util';
 import { prefixClass } from '../../Context';
-import locale from '../locale';
 import MonthBody from './MonthBody';
 import MonthTitle from './MonthTitle';
 import formatter from '../formatter';
@@ -65,7 +65,9 @@ class Panel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      monthPool: [], // 数据结构如：['m201707_150', [1501545600000, 1501632000000], 'm201709_166']
+      monthPool: this.getMonthPool({ monthPool: [], value: props.value }),
+      // 数据结构如：['m201707_150', [1501545600000, 1501632000000], 'm201709_166']
+      value: props.value,
     };
     this.monthAreaHeight = props.showHalfDay ? props.height - 104 : 'auto';
     // 距顶或距底小于这个距离时，就动态加载
@@ -76,19 +78,14 @@ class Panel extends React.Component {
     this.direction = '';
   }
 
-  componentWillMount() {
-    const t = this;
-    t.locale = locale[t.props.locale];
-    t.processValue(t.props.value);
-    // 初始化添加一些月份
-    t.updateMonthPool();
-  }
-
   componentDidMount() {
     const t = this;
 
-    t.updateMonthPool(true, () => {
-      t.root.scrollTop = t.getHeadNewMonthHeight();
+    t.updateMonthPool({
+      pre: true,
+      callback: () => {
+        t.root.scrollTop = t.getHeadNewMonthHeight();
+      },
     });
 
     t.root.addEventListener('touchstart', (ev) => {
@@ -112,11 +109,6 @@ class Panel extends React.Component {
           t.direction = 'down';
           if (!t.locked) {
             t.loadMonth();
-            // t.locked = true;
-            // setTimeout(() => {
-            //   t.locked = false;
-            //   this.loadMonth();
-            // }, 30);
           }
         }
         this.moveTimer = null;
@@ -180,23 +172,24 @@ class Panel extends React.Component {
    * @param pre 向队列的头部插入
    * 每次向队首或队尾添加或减少与 shadowArray 相同长度的月
    */
-  updateMonthPool(pre = false, callback) {
-    const t = this;
-    const monthPool = cloneDeep(t.state.monthPool);
+  getMonthPool({
+    pre = false, monthPool = this.state.monthPool, value = this.props.value,
+  }) {
+    const newMonthPool = cloneDeep(monthPool);
     let {
       firstRealMonthIndex,
       lastRealMonthIndex,
-    } = getRealMonthPool(monthPool);
+    } = getRealMonthPool(newMonthPool);
     if (pre) {
       shadowArray.forEach(() => {
-        const firstDayInFirstMonth = monthPool[firstRealMonthIndex][0];
+        const firstDayInFirstMonth = newMonthPool[firstRealMonthIndex][0];
         // 月份-1
         const preMonth = new Date(parseInt(firstDayInFirstMonth, 10))
           .setMonth(new Date(parseInt(firstDayInFirstMonth, 10)).getMonth() - 1);
         if (firstRealMonthIndex === 0) {
-          monthPool.splice(0, 0, getMonthDays(preMonth));
+          newMonthPool.splice(0, 0, getMonthDays(preMonth));
         } else {
-          monthPool.splice(firstRealMonthIndex - 1, 1, getMonthDays(preMonth));
+          newMonthPool.splice(firstRealMonthIndex - 1, 1, getMonthDays(preMonth));
           firstRealMonthIndex -= 1;
         }
         lastRealMonthIndex += 1;
@@ -204,29 +197,38 @@ class Panel extends React.Component {
     } else {
       shadowArray.forEach(() => {
         // 取队列尾部的月份
-        const lastMonth = monthPool[lastRealMonthIndex] || [];
+        const lastMonth = newMonthPool[lastRealMonthIndex] || [];
         // 取该月中的第一天，有可能为 undefined
         const firstDayInLastMonth = lastMonth[0];
         if (!firstDayInLastMonth) {
-          let firstValue = !util.isNil(t.props.value) ? t.props.value : Date.now();
+          let firstValue = !util.isNil(value) ? value : Date.now();
           if (isObject(firstValue)) {
             firstValue = firstValue.startDate || firstValue.endDate ||
             firstValue.value || Date.now();
           } else if (isArray(firstValue)) {
             firstValue = firstValue[0] || Date.now();
           }
-          monthPool.splice(lastRealMonthIndex, 0, getMonthDays(firstValue));
+          newMonthPool.splice(lastRealMonthIndex, 0, getMonthDays(firstValue));
         } else {
           // 月份加1
           const nextMonth = new Date(parseInt(firstDayInLastMonth, 10))
             .setMonth(new Date(parseInt(firstDayInLastMonth, 10)).getMonth() + 1);
-          monthPool.splice(lastRealMonthIndex + 1, 1, getMonthDays(nextMonth));
+          newMonthPool.splice(lastRealMonthIndex + 1, 1, getMonthDays(nextMonth));
           lastRealMonthIndex += 1;
         }
       });
     }
+    return newMonthPool;
+  }
+
+  updateMonthPool({
+    pre = false, callback, monthPool = this.state.monthPool, value = this.props.value,
+  }) {
+    const t = this;
+    const newMonthPool = this.getMonthPool({ pre, monthPool, value });
+
     t.setState({
-      monthPool,
+      monthPool: newMonthPool,
     }, callback);
   }
 
@@ -249,20 +251,24 @@ class Panel extends React.Component {
 
     if (t.direction === 'up' && scrollBottom < t.bufferDistance) { // 向上滑动，加载未来的月份
       t.monthLoading = true;
-      t.updateMonthPool(false, () => {
-        t.monthLoading = false;
+      t.updateMonthPool({
+        pre: false,
+        callback: () => {
+          t.monthLoading = false;
+        },
       });
     } else if (t.direction === 'down' && scrollTop < t.bufferDistance) { // 向下滑动，加载过去的月份
       t.monthLoading = true;
-      t.updateMonthPool(true, () => {
-        if (t.root.scrollTop === 0) {
-          t.root.scrollTop = t.bufferDistance;
-        }
-        // if (util.isIos()) {
-        t.root.scrollTop += t.getHeadNewMonthHeight();
-        // }
-        forceRepaint(t.root);
-        t.monthLoading = false;
+      t.updateMonthPool({
+        pre: true,
+        callback: () => {
+          if (t.root.scrollTop === 0) {
+            t.root.scrollTop = t.bufferDistance;
+          }
+          t.root.scrollTop += t.getHeadNewMonthHeight();
+          forceRepaint(t.root);
+          t.monthLoading = false;
+        },
       });
     }
   }

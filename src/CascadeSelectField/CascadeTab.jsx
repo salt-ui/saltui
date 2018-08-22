@@ -93,7 +93,9 @@ export default class CascadeTab extends React.Component {
       <div className={TingleCtx.prefixClass('cascade-slot-header-wrap FBH')}>
         <button onClick={this.handleEvent.bind(this, 'cancel')}>{cancelText}</button>
         <h1 className={TingleCtx.prefixClass('FB1')}>{title}</h1>
-        <button disabled={!confirmEnabled} onClick={this.handleEvent.bind(this, 'confirm')}>{confirmText}</button>
+        <button disabled={!confirmEnabled} onClick={this.handleEvent.bind(this, 'confirm')}>
+          {confirmText}
+        </button>
       </div>
     );
   }
@@ -109,37 +111,41 @@ export default class CascadeTab extends React.Component {
           activeKey={this.state.activeTab}
           swipeable={false}
           speed={1}
-          onChange={(tabData) => { this.handleTabChange(tabData); }}
+          onChange={(tabData) => {
+            this.handleTabChange(tabData);
+          }}
         >
-          {
-            value.map((val, index) => {
-              if (index === 0) {
-                loopOptions = options;
-              } else {
-                loopOptions = getOptionsByValue(loopOptions, value[index - 1]);
-              }
-              return (
-                <Tab.Item key={`tab-${index + 1}`} title={<div className="title">{val.text || textPleaseSelect}</div>}>
-                  <ul className={TingleCtx.prefixClass('cascade-slot-list')}>
-                    {
-                        loopOptions.map((level, levelIndex) => (
-                          <li key={level.value}>
-                            <button
-                              className={classnames(TingleCtx.prefixClass('cascade-slot-list-button'), {
-                                active: this.state.value[index].value === level.value,
-                              })}
-                              onClick={this.onItemClick.bind(this, index, level, levelIndex)}
-                            >
-                              <span className="text">{level.label}</span> {this.state.value[index].value === level.value ? <IconCheck width={16} height={16} /> : null }
-                            </button>
-                          </li>
-                        ))
-                      }
-                  </ul>
-                </Tab.Item>
-              );
-            })
-          }
+          {value.map((val, index) => {
+            if (index === 0) {
+              loopOptions = options;
+            } else {
+              loopOptions = getOptionsByValue(loopOptions, value[index - 1]);
+            }
+            return (
+              <Tab.Item
+                key={`tab-${index + 1}`}
+                title={<div className="title">{val.text || textPleaseSelect}</div>}
+              >
+                <ul className={TingleCtx.prefixClass('cascade-slot-list')}>
+                  {loopOptions.map((level, levelIndex) => (
+                    <li key={level.value}>
+                      <button
+                        className={classnames(TingleCtx.prefixClass('cascade-slot-list-button'), {
+                          active: this.state.value[index].value === level.value,
+                        })}
+                        onClick={this.onItemClick.bind(this, index, level, levelIndex)}
+                      >
+                        <span className="text">{level.label}</span>{' '}
+                        {this.state.value[index].value === level.value ? (
+                          <IconCheck width={16} height={16} />
+                        ) : null}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </Tab.Item>
+            );
+          })}
         </Tab>
       </div>
     );
@@ -162,9 +168,9 @@ CascadeTab.defaultProps = {
   value: [],
   locale: 'zh-cn',
   title: '',
-  onChange() { },
-  onCancel() { },
-  onConfirm() { },
+  onChange() {},
+  onCancel() {},
+  onConfirm() {},
   confirmText: i18n['zh-cn'].confirmText,
   cancelText: i18n['zh-cn'].cancelText,
 };
