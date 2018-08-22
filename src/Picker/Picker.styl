@@ -1,0 +1,262 @@
+/**
+ * PickerField Component Style for tingle
+ * @author longyan
+ * 
+ * Copyright 2014-2016, Tingle Team.
+ * All rights reserved.
+ */
+ 
+$picker-searchbar-height = 45px;
+$picker-footer-hieight = 48px;
+
+.{$prefix}-picker-searchpanel {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.{$prefix}-picker-searchpanel-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $basic-100;
+}
+
+.{$prefix}-picker-searchpanel-search {
+  height: 45px;
+}
+
+.{$prefix}-picker-searchpanel-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+}
+
+.{$prefix}-picker-searchpanel.multiple {
+  .{$prefix}-picker-searchpanel-content {
+    fix-safe-area(bottom, $picker-footer-hieight);
+  }
+}
+
+.{$prefix}-picker-searchpanel-header + .{$prefix}-picker-searchpanel-content {
+  top: 45px;
+}
+
+.{$prefix}-picker-searchpanel-head-bar + .{$prefix}-picker-searchpanel-content {
+  top: 46px;
+}
+
+.{$prefix}-picker-searchpanel-head-bar {
+  position: relative;
+  line-height: 45px;
+  hairline('border-bottom', $normal-alpha-7);
+  padding: 0 16px;
+  font-size: 16px;
+  color: $dark-alpha-2;
+}
+
+.{$prefix}-picker-searchpanel-head-bar-button {
+  position: absolute;
+  line-height: 45px;
+  color: $brand-primary;
+  right: 16px;
+  top: 0;
+}
+
+.{$prefix}-picker-searchpanel-content {
+  .{$prefix}-scroll-view-inner {
+    height: 100%;
+  }
+}
+
+.{$prefix}-picker-searchpanel-footer {
+  position: absolute;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  fix-safe-area(bottom, 0px);
+  text-align: center;
+  hairline('border-top', $normal-alpha-7);
+
+  .{$prefix}-picker-searchpanel-result-summary {
+    padding-left: 12px;
+    text-align: left;
+    overflow: hidden;
+    line-height: $picker-footer-hieight;
+    font-size: 16px;
+
+    a {
+      color: $brand-primary;
+    }
+  }
+
+  .{$prefix}-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0;
+    height: $picker-footer-hieight;
+    width: 94px;
+    line-height: $picker-footer-hieight - 2px;
+    font-size: 17px;
+    // float right
+    // margin-right 12px
+    // margin-top 4px
+  }
+}
+
+.{$prefix}-picker-search-empty {
+  position: relative;
+  height: 100%;
+}
+
+.{$prefix}-picker-search-empty-inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.{$prefix}-picker-search-results {
+  padding-bottom: 18px;
+}
+
+.{$prefix}-picker-grouping-title {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+
+  .{$prefix}-picker-grouping-title-inner {
+    font-weight: bold;
+    background-color: $normal-alpha-9;
+    color: $normal-alpha-2;
+    line-height: 24px;
+    font-size: 14px;
+    padding: 0 16px;
+  }
+}
+
+.{$prefix}-picker-search-result-item {
+  position: relative;
+  hairline('border-bottom', $normal-alpha-7);
+  padding: 18px;
+  color: $dark-alpha-2;
+
+  .{$prefix}-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+
+    &.un-checked {
+      width: 18px;
+      height: 18px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        hairline('border', $brand-primary);
+        border-radius: 50%;
+        fill: #fff;
+      }
+    }
+
+    svg {
+      fill: $brand-primary;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.{$prefix}-picker-search-result-item-icon {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+
+  &.{$prefix}-picker-right-icon {
+    left: auto;
+    right: 18px;
+  }
+}
+
+.{$prefix}-picker-search-result-item-entry {
+  display: block;
+  margin-left: 26px;
+  line-height: $font-size-t4-lh;
+
+  &.{$prefix}-picker-right-icon {
+    margin-left: 0;
+    margin-right: 34px;
+  }
+}
+
+.{$prefix}-picker-grouping-bar {
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  width: 38px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 17px;
+  color: $normal-alpha-6;
+  z-index: 2;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.{$prefix}-picker-group {
+  display: none;
+}
+
+.{$prefix}-picker-avilible-group {
+  color: $normal-alpha-2;
+  display: block;
+
+  &.{$prefix}-picker-active-group {
+    color: $brand-primary;
+  }
+}
+
+.{$prefix}-picker-grouping-indicator {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  left: -60px;
+  top: -15px;
+  line-height: 46px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  background: rgb(240, 242, 245);
+  color: $normal-alpha-6;
+  border-radius: 3px;
+
+  // box-shadow 0 0 1px $dark-alpha-3
+  &.{$prefix}-picker-grouping-indicator-hide {
+    display: none;
+  }
+
+  &.{$prefix}-picker-avilible-group {
+    color: $normal-alpha-2;
+  }
+
+  &::before {
+    content: '.';
+    font-size: 0;
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transform: translate(41px, 18px) rotate(45deg);
+    background: rgb(240, 242, 245);
+    z-index: -1;
+    box-shadow: 1px -1px 0 $dark-alpha-6;
+  }
+}
