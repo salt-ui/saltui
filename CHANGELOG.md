@@ -1,4 +1,8 @@
 
+## 3.11.0 / 2018-08-22
+
+* `feat` extract `Picker` from `PickerField` 
+
 ## 3.10.7 / 2018-08-02
 
 * `feat` `Slot` scrolling performance improvement [#237](https://github.com/salt-ui/saltui/pull/237)
