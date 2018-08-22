@@ -68,7 +68,7 @@ class SearchResult extends React.Component {
   renderResults() {
     const t = this;
     return (
-      <div className={Context.prefixClass('picker-field-search-results')}>
+      <div className={Context.prefixClass('picker-search-results')}>
         {t.props.value.map((item, index) => t.renderResultItem(item, index))}
       </div>
     );
@@ -91,13 +91,13 @@ class SearchResult extends React.Component {
     return (
       <div
         key={index}
-        className={classnames(Context.prefixClass('picker-field-search-result-item'), Context.prefixClass('clear'))}
+        className={classnames(Context.prefixClass('picker-search-result-item'), Context.prefixClass('clear'))}
         onClick={() => {
           t.handleItemClick(item);
         }}
       >
-        <span className={Context.prefixClass('picker-field-search-result-item-entry picker-field-right-icon')}>{t.props.formatter(item)}</span>
-        <span className={Context.prefixClass('picker-field-search-result-item-icon picker-field-right-icon')}>
+        <span className={Context.prefixClass('picker-search-result-item-entry picker-right-icon')}>{t.props.formatter(item)}</span>
+        <span className={Context.prefixClass('picker-search-result-item-icon picker-right-icon')}>
           {iconHTML}
         </span>
       </div>
@@ -111,31 +111,31 @@ class SearchResult extends React.Component {
     const { length } = this.state.value;
     return (
       <div
-        className={classnames(Context.prefixClass('picker-field-searchpanel'), 'multiple')}
+        className={classnames(Context.prefixClass('picker-searchpanel'), 'multiple')}
         style={{
           width: `${pageSize.width}px`,
           height: `${pageSize.height}px`,
         }}
       >
-        <div className={Context.prefixClass('picker-field-searchpanel-inner')}>
-          <div className={Context.prefixClass('picker-field-searchpanel-head-bar')}>
-            <div className={Context.prefixClass('picker-field-searchpanel-head-bar-total')}>{i18n[locale].selected(length)}</div>
+        <div className={Context.prefixClass('picker-searchpanel-inner')}>
+          <div className={Context.prefixClass('picker-searchpanel-head-bar')}>
+            <div className={Context.prefixClass('picker-searchpanel-head-bar-total')}>{i18n[locale].selected(length)}</div>
             <div
-              className={Context.prefixClass('picker-field-searchpanel-head-bar-button')}
+              className={Context.prefixClass('picker-searchpanel-head-bar-button')}
               onClick={(e) => {
                 t.handleConfirm(e);
               }}
             >{i18n[locale].complete}
             </div>
           </div>
-          <div className={Context.prefixClass('picker-field-searchpanel-content')}>
+          <div className={Context.prefixClass('picker-searchpanel-content')}>
             <ScrollView>
               {t.renderResults()}
             </ScrollView>
           </div>
-          {/* <div className={Context.prefixClass('picker-field-searchpanel-footer')}>
+          {/* <div className={Context.prefixClass('picker-searchpanel-footer')}>
             <Button
-              className={Context.prefixClass('picker-field-searchpanel-btn-ok')}
+              className={Context.prefixClass('picker-searchpanel-btn-ok')}
               display="inline"
               size="small"
               onClick={(e) => {
@@ -144,7 +144,7 @@ class SearchResult extends React.Component {
             >{t.props.confirmText}
             </Button>
             <div
-              className={Context.prefixClass('picker-field-searchpanel-result-summary')}
+              className={Context.prefixClass('picker-searchpanel-result-summary')}
               onClick={(e) => {
                 t.handleEnterResultView(e);
               }}
