@@ -62,12 +62,19 @@ class Panel extends React.Component {
     animationType: undefined,
   };
 
+  static processValue(propValue) {
+    return {
+      value: propValue,
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       monthPool: this.getMonthPool({ monthPool: [], value: props.value }),
       // 数据结构如：['m201707_150', [1501545600000, 1501632000000], 'm201709_166']
-      value: props.value,
+      ...Panel.processValue(props.value),
+      prevValue: props.value,
     };
     this.monthAreaHeight = props.showHalfDay ? props.height - 104 : 'auto';
     // 距顶或距底小于这个距离时，就动态加载
@@ -116,8 +123,14 @@ class Panel extends React.Component {
     }, false);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.processValue(nextProps.value);
+  static getDerivedStateFromProps(props, state) {
+    if (!deepEqual(props.value, state.prevValue)) {
+      return {
+        ...Panel.processValue(props.value),
+        prevValue: props.value,
+      };
+    }
+    return null;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -232,11 +245,6 @@ class Panel extends React.Component {
     }, callback);
   }
 
-  processValue(propValue) {
-    this.setState({
-      value: propValue,
-    });
-  }
 
   loadMonth() {
     const t = this;
@@ -336,5 +344,7 @@ class Panel extends React.Component {
     );
   }
 }
+
+polyfill(Panel);
 
 export default Panel;

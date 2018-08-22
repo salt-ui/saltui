@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import util, { makeWeeks } from '../util';
 import { prefixClass } from '../../Context';
-import locale from '../locale';
+import i18n from '../locale';
 import formatter from '../formatter';
 import { halfDayType } from './const';
 
@@ -54,10 +54,6 @@ class MonthBody extends React.Component {
     renderCustomDayLabel: undefined,
   };
 
-  componentWillMount() {
-    this.locale = locale[this.props.locale];
-  }
-
   isDisabledDate(day) {
     const t = this;
     if (day && typeof t.props.disabledDate === 'function') {
@@ -68,8 +64,9 @@ class MonthBody extends React.Component {
 
 
   renderTodayLabel() {
+    const { locale } = this.props;
     return (
-      <span className="day-label today-label">{this.locale.today}</span>
+      <span className="day-label today-label">{i18n[locale].today}</span>
     );
   }
 
@@ -154,7 +151,7 @@ class MonthBody extends React.Component {
     const t = this;
     const today = util.isSameDay(day, Date.now());
     let selected = false;
-    const { value } = t.props;
+    const { value, locale } = t.props;
     selected =
       util.isInRange(value.startDate, value.endDate, day);
     const disabled = t.isDisabledDate(day);
@@ -277,20 +274,20 @@ class MonthBody extends React.Component {
         }
         {
           isStartDate && !isEndDate &&
-          <span className="day-label start-label">{t.locale.duration.start}</span>
+          <span className="day-label start-label">{i18n[locale].duration.start}</span>
         }
         {
           isEndDate && !isStartDate &&
-          <span className="day-label end-label">{t.locale.duration.end}</span>
+          <span className="day-label end-label">{i18n[locale].duration.end}</span>
         }
         {
-          t.props.showHalfDay && isAM && <span className="day-label am-label">{t.locale.dayTipMap.AM}</span>
+          t.props.showHalfDay && isAM && <span className="day-label am-label">{i18n[locale].dayTipMap.AM}</span>
         }
         {
-          t.props.showHalfDay && isPM && <span className="day-label pm-label">{t.locale.dayTipMap.PM}</span>
+          t.props.showHalfDay && isPM && <span className="day-label pm-label">{i18n[locale].dayTipMap.PM}</span>
         }
         {
-          t.props.showHalfDay && isFull && (isStartDate || isEndDate) && <span className="day-label full-label">{t.locale.dayTipMap.FULL}</span>
+          t.props.showHalfDay && isFull && (isStartDate || isEndDate) && <span className="day-label full-label">{i18n[locale].dayTipMap.FULL}</span>
         }
         {
           t.renderDayBadge(day)
