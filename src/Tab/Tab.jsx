@@ -106,7 +106,7 @@ class Tabs extends React.Component {
     super(props);
     this.state = {
       activeKey: getActiveKey(props),
-      lastActiveKey: getActiveKey(props),
+      preActiveKey: getActiveKey(props),
     };
   }
 
@@ -117,11 +117,10 @@ class Tabs extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.active !== state.lastActive ||
-      props.activeKey !== state.lastActiveKey) {
+    if (getActiveKey(props) !== state.preActiveKey) {
       return {
         activeKey: getActiveKey(props),
-        lastActiveKey: getActiveKey(props),
+        preActiveKey: getActiveKey(props),
       };
     }
     // Return null to indicate no change to state.

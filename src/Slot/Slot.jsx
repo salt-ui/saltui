@@ -32,7 +32,8 @@ class Slot extends React.Component {
     t.state = {
       childPaneIsScrolling: false,
       visible: false,
-      lastChooseChange: null,
+      preChooseChange: null,
+      preValue: props.value
     };
 
     t.handleChange = t.handleChange.bind(t);
@@ -42,16 +43,16 @@ class Slot extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.state.lastChooseChange === null) {
-      this.lastChoose = cloneDeep(this.state.nextValue);
+    if (this.state.preChooseChange === null) {
+      this.lastChoose = cloneDeep(this.state.preValue);
     }
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (!isEqual(state.value, props.value)) {
+    if (!isEqual(state.preValue, props.value)) {
       return {
-        lastChooseChange: null,
-        nextValue: props.value,
+        preChooseChange: null,
+        preValue: props.value,
       }
     }
     return null;

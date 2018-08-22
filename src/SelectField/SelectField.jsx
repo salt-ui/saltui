@@ -26,17 +26,17 @@ class SelectField extends React.Component {
     t.state = {
       value: isNil(value) ? value : [value],
       confirmedValue: [value],
-      _value: value,
+      preValue: value,
     };
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (!isEqual(state._value, props.value)) {
+    if (!isEqual(state.preValue, props.value)) {
       const { value } = props;
       return ({
         value: isNil(value) ? value : [value],
         confirmedValue: [value],
-        _value: value,
+        preValue: value,
       });
     }
     return null;

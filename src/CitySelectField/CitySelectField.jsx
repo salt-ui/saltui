@@ -85,13 +85,13 @@ class CitySelectField extends Component {
   constructor(props) {
     super(props);
     this.state = CitySelectField.initData(props);
-    this.state['_props'] = props;
+    this.state['preProps'] = props;
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (shouldUpdate(state._props, props, ['districtData', 'selectorType', 'mode', 'value'])) {
+    if (shouldUpdate(state.preProps, props, ['districtData', 'selectorType', 'mode', 'value'])) {
       const newState = CitySelectField.initData(props);
-      newState['_props'] = props;
+      newState['preProps'] = props;
       return (newState);
     }
     return null;
