@@ -8,10 +8,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { polyfill } from 'react-lifecycles-compat';
 import Context from '../Context';
 import Step from './Step';
 
 const { prefixClass } = Context;
+
+const computedWidth = (offsetWidth, length, itemsWidth) => {
+  const width = Math.floor(offsetWidth);
+  const tw = itemsWidth.reduce((prew, w) => prew + w, 0);
+  const dw = Math.floor((width - tw) / length) - 1;
+  return {
+    width,
+    dw,
+  };
+};
 
 class Steps extends React.Component {
   constructor(props) {
@@ -19,9 +30,10 @@ class Steps extends React.Component {
     this.state = {
       init: false,
       tailWidth: 0,
+      itemsWidth: [],
+      previousStepsWidth: 0,
+      prevProps: {},
     };
-    this.previousStepsWidth = 0;
-    this.itemsWidth = [];
   }
 
   componentDidMount() {
@@ -31,15 +43,26 @@ class Steps extends React.Component {
 
     const $dom = this.root;
     const len = $dom.children.length - 1;
-    this.itemsWidth = new Array(len + 1);
 
-    let i;
-    for (i = 0; i <= len - 1; i++) {
-      this.itemsWidth[i] = this.props.maxDescriptionWidth;
+    const itemsWidth = new Array(len + 1);
+    for (let i = 0; i <= len; i++) {
+      itemsWidth[i] = this.props.maxDescriptionWidth;
     }
-    this.itemsWidth[i] = this.props.maxDescriptionWidth;
-    this.previousStepsWidth = Math.floor(this.root.offsetWidth);
-    this.update();
+    const { dw, width } = computedWidth(this.root.offsetWidth, len, itemsWidth);
+    if (dw <= 0) {
+      this.setState({
+        itemsWidth,
+        previousStepsWidth: width,
+      });
+      return;
+    }
+    this.setState({
+      init: true,
+      tailWidth: dw,
+      itemsWidth,
+      previousStepsWidth: width,
+      prevProps: this.props,
+    });
 
     /*
      * 把最后一个元素设置为absolute，是为了防止动态添加元素后滚动条出现导致的布局问题。
@@ -67,21 +90,32 @@ class Steps extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (React.Children.count(nextProps.children) !== React.Children.count(this.props.children)) {
-      if (this.props.direction === 'vertical') {
-        return;
-      }
-      const len = nextProps.children.length - 1;
-      this.itemsWidth = new Array(len + 1);
-
-      let i;
-      for (i = 0; i <= len - 1; i++) {
-        this.itemsWidth[i] = nextProps.maxDescriptionWidth;
-      }
-      this.itemsWidth[i] = nextProps.maxDescriptionWidth;
-      this.update(nextProps);
+  static getDerivedStateFromProps(nextProps, { prevProps, previousStepsWidth }) {
+    const { children, maxDescriptionWidth } = nextProps;
+    if (React.Children.count(children) === React.Children.count(prevProps.children)) {
+      return null;
     }
+    if (prevProps.direction === 'vertical') {
+      return null;
+    }
+    const len = children.length - 1;
+    const itemsWidth = new Array(len + 1);
+    for (let i = 0; i <= len; i++) {
+      itemsWidth[i] = maxDescriptionWidth;
+    }
+    const { dw } = computedWidth(previousStepsWidth, len, itemsWidth);
+    if (dw <= 0) {
+      return {
+        itemsWidth,
+        prevProps: nextProps,
+      };
+    }
+    return {
+      init: true,
+      tailWidth: dw,
+      itemsWidth,
+      prevProps: nextProps,
+    };
   }
 
   componentDidUpdate() {
@@ -113,12 +147,22 @@ class Steps extends React.Component {
 
   resize() {
     this.fixLastDetailHeight();
-    const w = Math.floor(this.root.offsetWidth);
-    if (this.previousStepsWidth === w) {
+    const { width, dw } = computedWidth(
+      this.root.offsetWidth,
+      this.props.children.length - 1,
+      this.state.itemsWidth,
+    );
+    if (this.state.previousStepsWidth === width) {
       return;
     }
-    this.previousStepsWidth = w;
-    this.update();
+    if (dw <= 0) {
+      return;
+    }
+    this.setState({
+      init: true,
+      tailWidth: dw,
+      previousStepsWidth: width,
+    });
   }
 
   fixLastDetailHeight() {
@@ -133,23 +177,6 @@ class Steps extends React.Component {
     } else {
       $dom.style.height = 'auto';
     }
-  }
-
-  update(props = this.props) {
-    const len = props.children.length - 1;
-    const tw = this.itemsWidth.reduce(
-      (prev, w) =>
-        prev + w
-      , 0,
-    );
-    const dw = Math.floor((this.previousStepsWidth - tw) / len) - 1;
-    if (dw <= 0) {
-      return;
-    }
-    this.setState({
-      init: true,
-      tailWidth: dw,
-    });
   }
 
   render() {
@@ -167,7 +194,7 @@ class Steps extends React.Component {
       onChange,
     } = this.props;
     const len = children.length - 1;
-    const iws = this.itemsWidth;
+    const iws = this.state.itemsWidth;
     const clsName = classnames(prefixClass('steps'), className, {
       [prefixClass('steps-vertical')]: direction === 'vertical',
       [prefixClass(`steps-type-${type}`)]: direction !== 'vertical',
@@ -204,7 +231,7 @@ class Steps extends React.Component {
               marginLeft: !Number.isNaN(-(iws[idx] + this.state.tailWidth) * idx)
                 ? -(iws[idx] + this.state.tailWidth) * idx
                 : 0,
-              width: this.previousStepsWidth,
+              width: this.state.previousStepsWidth,
             },
             onChange,
             hasDetail: showDetail && direction !== 'vertical' && type !== 'long-desc',
@@ -257,5 +284,7 @@ Steps.propTypes = {
 
 Steps.displayName = 'Steps';
 Steps.Step = Step;
+
+polyfill(Steps);
 
 export default Steps;
