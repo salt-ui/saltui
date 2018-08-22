@@ -1,4 +1,5 @@
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import RcTabs, { TabPane } from 'rc-tabs';
@@ -49,7 +50,7 @@ const forceRepaint = (node) => {
   /* eslint-enable no-param-reassign */
 };
 
-export default class Tabs extends React.Component {
+class Tabs extends React.Component {
   static TabPane = TabPane;
   static Item = TabPane;
 
@@ -91,8 +92,8 @@ export default class Tabs extends React.Component {
     pageSize: 5,
     speed: 8,
     inkBarWidth: 20,
-    onChange() {},
-    onTabClick() {},
+    onChange() { },
+    onTabClick() { },
     active: undefined,
     defaultActive: undefined,
     children: undefined,
@@ -105,6 +106,7 @@ export default class Tabs extends React.Component {
     super(props);
     this.state = {
       activeKey: getActiveKey(props),
+      preActiveKey: getActiveKey(props),
     };
   }
 
@@ -114,13 +116,15 @@ export default class Tabs extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.active !== this.props.active ||
-      nextProps.activeKey !== this.props.activeKey) {
-      this.setState({
-        activeKey: getActiveKey(nextProps),
-      });
+  static getDerivedStateFromProps(props, state) {
+    if (getActiveKey(props) !== state.preActiveKey) {
+      return {
+        activeKey: getActiveKey(props),
+        preActiveKey: getActiveKey(props),
+      };
     }
+    // Return null to indicate no change to state.
+    return null;
   }
 
 
@@ -196,8 +200,8 @@ export default class Tabs extends React.Component {
     return swipeable ? (
       <SwipeableTabContent animated={animated} hammerOptions={hammerOptions} />
     ) : (
-      <TabContent animated={animated} />
-    );
+        <TabContent animated={animated} />
+      );
   }
 
   renderTabBar = () => {
@@ -339,3 +343,6 @@ export default class Tabs extends React.Component {
     );
   }
 }
+
+polyfill(Tabs);
+export default Tabs;

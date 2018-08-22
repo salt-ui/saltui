@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash/cloneDeep';
 import isEqual from 'lodash/isEqual';
@@ -39,9 +40,9 @@ class Slot extends React.Component {
     t.handleCancel = t.handleCancel.bind(t);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(this.props.value, nextProps.value)) {
-      this.lastChoose = cloneDeep(nextProps.value);
+  componentDidUpdate(preProps) {
+    if (!isEqual(this.props.value, preProps.value)) {
+      this.lastChoose = cloneDeep(this.props.value);
     }
   }
 
@@ -285,4 +286,5 @@ Slot.formatDataValue = (data = [], value = []) => {
 Slot.displayName = 'Slot';
 
 Slot.Pane = SlotPane;
+polyfill(Slot);
 export default Slot;
