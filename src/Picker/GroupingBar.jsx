@@ -50,7 +50,7 @@ class GroupingBar extends React.Component {
     const t = this;
     return (
       <div
-        className={Context.prefixClass('picker-field-grouping-bar')}
+        className={Context.prefixClass('picker-grouping-bar')}
         onTouchStart={t.hold.bind(t)}
         onTouchMove={t.hold.bind(t)}
         onTouchEnd={t.release.bind(t)}
@@ -60,9 +60,9 @@ class GroupingBar extends React.Component {
         {alphabet.map(key => (
           <div
             className={classnames(
-              Context.prefixClass('picker-field-group'),
-              t.props.keys.indexOf(key) > -1 ? Context.prefixClass('picker-field-avilible-group') : null,
-              t.state.holding === key ? Context.prefixClass('picker-field-active-group') : null,
+              Context.prefixClass('picker-group'),
+              t.props.keys.indexOf(key) > -1 ? Context.prefixClass('picker-avilible-group') : null,
+              t.state.holding === key ? Context.prefixClass('picker-active-group') : null,
             )}
             key={key}
             data-key={key}
@@ -72,9 +72,9 @@ class GroupingBar extends React.Component {
         {t.props.indicator ? (
           <div
             className={classnames(
-              Context.prefixClass('picker-field-grouping-indicator'),
-              t.state.holding ? null : Context.prefixClass('picker-field-grouping-indicator-hide'),
-              t.props.keys.indexOf(t.state.holding) > -1 ? Context.prefixClass('picker-field-avilible-group') : null,
+              Context.prefixClass('picker-grouping-indicator'),
+              t.state.holding ? null : Context.prefixClass('picker-grouping-indicator-hide'),
+              t.props.keys.indexOf(t.state.holding) > -1 ? Context.prefixClass('picker-avilible-group') : null,
             )}
             style={{ transform: `translateY(${t.state.indicatorPos}px)`, WebkitTransform: `translateY(${t.state.indicatorPos}px)` }}
           >
