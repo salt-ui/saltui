@@ -27,15 +27,23 @@ class Pagination extends Component {
     this.state = {
       current: props.current,
       pageSize: props.pageSize,
+      prevProps: {
+        current: props.current,
+        pageSize: props.pageSize,
+      },
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.current !== prevState.current ||
-    nextProps.pageSize !== prevState.pageSize) {
+  static getDerivedStateFromProps(nextProps, { prevProps }) {
+    if (nextProps.current !== prevProps.current ||
+    nextProps.pageSize !== prevProps.pageSize) {
       return {
         current: nextProps.current,
         pageSize: nextProps.pageSize,
+        prevProps: {
+          current: nextProps.current,
+          pageSize: nextProps.pageSize,
+        },
       };
     }
     return null;
