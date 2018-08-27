@@ -74,37 +74,54 @@ const renderHeader = (columns) => {
 /* eslint-enable react/no-array-index-key */
 
 class Table extends React.Component {
+  /**
+   * 为 column 添加默认值
+   */
+  static processColumns(props) {
+    const newProps = props;
+    return deepcopy(newProps.columns).map((column) => {
+      const columns = column;
+      columns.width = Context.rem((columns.width || 0.25) * 640, 640);
+      columns.align = columns.align || 'left';
+      return columns;
+    });
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      columns: this.processColumns(),
+      columns: Table.processColumns(props),
+      columnsCache: deepcopy(Table.processColumns(props)),
     };
     // columns 和 data 的类型是对象，用户在修改 props 时可能会出现 now 和 next 总是一致的问题
     // 这里对这两份数据进行一个缓存
-    this.columns = deepcopy(props.columns);
     this.data = deepcopy(props.data);
   }
 
   componentDidMount() {
     this.checkScroll(this.getIscroll());
   }
-  componentWillReceiveProps(nextProps) {
-    const t = this;
+
+  static getDerivedStateFromProps(nextProps, prevState) {
     const newState = {};
-    if (!deepEqual(t.columns, nextProps.columns)) {
-      // 不在这里更新 t.columns 是因为后面 didUpdate 时还用的到。
-      newState.columns = t.processColumns(nextProps);
+    if (!deepEqual(prevState.columnsCache, nextProps.columns)) {
+      // 不在这里更新 this.columns 是因为后面 didUpdate 时还用的到。
+      newState.columns = Table.processColumns(nextProps);
     }
     if (Object.keys(newState).length) {
-      t.setState(newState);
+      return {
+        columns: newState.columns,
+        columnsCache: deepcopy(newState.columns),
+      };
     }
+
+    return null;
   }
 
   componentDidUpdate() {
-    const t = this;
-    if (!deepEqual(t.props.columns, t.columns) || !deepEqual(t.props.data, t.data)) {
-      t.data = deepcopy(t.props.data);
-      t.columns = deepcopy(t.props.columns);
+    if (!deepEqual(this.props.columns, this.columns) || !deepEqual(this.props.data, this.data)) {
+      this.data = deepcopy(this.props.data);
+      this.columns = deepcopy(this.props.columns);
     }
     this.checkScroll(this.getIscroll());
   }
@@ -113,19 +130,6 @@ class Table extends React.Component {
     return this.scroller.scroller;
   }
 
-  /**
-   * 为 column 添加默认值
-   */
-  processColumns(props) {
-    const t = this;
-    const newProps = props || t.props;
-    return deepcopy(newProps.columns).map((column) => {
-      const columns = column;
-      columns.width = Context.rem((columns.width || 0.25) * 640, 640);
-      columns.align = columns.align || 'left';
-      return columns;
-    });
-  }
 
   handlePagerChange(current) {
     this.props.onPagerChange(current);
