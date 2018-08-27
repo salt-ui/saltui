@@ -1,4 +1,8 @@
 
+## 4.0.0 / 2018-08-27
+
+* `BREAKING CHANGED` replace lifeCycle method to fit React 16, React compatible version up to 0.14.9
+
 ## 3.11.0 / 2018-08-22
 
 * `feat` extract `Picker` from `PickerField` 
