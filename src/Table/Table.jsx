@@ -91,7 +91,7 @@ class Table extends React.Component {
     super(props);
     this.state = {
       columns: Table.processColumns(props),
-      columnsCache: deepcopy(props.columns),
+      prevColumns: deepcopy(props.columns),
     };
     // columns 和 data 的类型是对象，用户在修改 props 时可能会出现 now 和 next 总是一致的问题
     // 这里对这两份数据进行一个缓存
@@ -104,14 +104,14 @@ class Table extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const newState = {};
-    if (!deepEqual(prevState.columnsCache, nextProps.columns)) {
+    if (!deepEqual(prevState.prevColumns, nextProps.columns)) {
       // 不在这里更新 this.columns 是因为后面 didUpdate 时还用的到。
       newState.columns = Table.processColumns(nextProps);
     }
     if (Object.keys(newState).length) {
       return {
         columns: newState.columns,
-        columnsCache: deepcopy(newState.columns),
+        prevColumns: deepcopy(newState.columns),
       };
     }
 
