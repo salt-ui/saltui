@@ -74,51 +74,11 @@ const renderHeader = (columns) => {
 /* eslint-enable react/no-array-index-key */
 
 class Table extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      columns: this.processColumns(),
-    };
-    // columns 和 data 的类型是对象，用户在修改 props 时可能会出现 now 和 next 总是一致的问题
-    // 这里对这两份数据进行一个缓存
-    this.columns = deepcopy(props.columns);
-    this.data = deepcopy(props.data);
-  }
-
-  componentDidMount() {
-    this.checkScroll(this.getIscroll());
-  }
-  componentWillReceiveProps(nextProps) {
-    const t = this;
-    const newState = {};
-    if (!deepEqual(t.columns, nextProps.columns)) {
-      // 不在这里更新 t.columns 是因为后面 didUpdate 时还用的到。
-      newState.columns = t.processColumns(nextProps);
-    }
-    if (Object.keys(newState).length) {
-      t.setState(newState);
-    }
-  }
-
-  componentDidUpdate() {
-    const t = this;
-    if (!deepEqual(t.props.columns, t.columns) || !deepEqual(t.props.data, t.data)) {
-      t.data = deepcopy(t.props.data);
-      t.columns = deepcopy(t.props.columns);
-    }
-    this.checkScroll(this.getIscroll());
-  }
-
-  getIscroll() {
-    return this.scroller.scroller;
-  }
-
   /**
    * 为 column 添加默认值
    */
-  processColumns(props) {
-    const t = this;
-    const newProps = props || t.props;
+  static processColumns(props) {
+    const newProps = props;
     return deepcopy(newProps.columns).map((column) => {
       const columns = column;
       columns.width = Context.rem((columns.width || 0.25) * 640, 640);
@@ -126,6 +86,41 @@ class Table extends React.Component {
       return columns;
     });
   }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: Table.processColumns(props),
+      prevColumns: deepcopy(props.columns),
+    };
+  }
+
+  componentDidMount() {
+    this.checkScroll(this.getIscroll());
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!deepEqual(prevState.prevColumns, nextProps.columns)) {
+      // 不在这里更新 this.columns 是因为后面 didUpdate 时还用的到。
+      const columns = Table.processColumns(nextProps);
+
+      return {
+        columns,
+        prevColumns: deepcopy(nextProps.columns),
+      };
+    }
+
+    return null;
+  }
+
+  componentDidUpdate() {
+    this.checkScroll(this.getIscroll());
+  }
+
+  getIscroll() {
+    return this.scroller.scroller;
+  }
+
 
   handlePagerChange(current) {
     this.props.onPagerChange(current);

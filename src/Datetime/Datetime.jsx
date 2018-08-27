@@ -9,11 +9,16 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { polyfill } from 'react-lifecycles-compat';
 import Context from '../Context';
 
-import {
+import util from './util/index';
+
+import { shouldUpdate } from '../Utils';
+
+const {
   Slot,
-  locale,
+  locale: i18n,
   getSlotFormattedValue,
   needUpdateSlotValue,
   getOptions,
@@ -30,9 +35,7 @@ import {
   YMDT,
   YMDHM,
   YMDWHM,
-} from './util/index';
-
-import { shouldUpdate } from '../Utils';
+} = util;
 
 const columnsFlexMap = {
   YMD: [1.24, 1.1, 1.1],
@@ -48,15 +51,22 @@ class Datetime extends React.Component {
     if (props.columns.indexOf('T') !== -1 && props.columns.indexOf('H') !== -1) {
       throw new Error('Please refer to the component document.');
     }
-    this.state = this.getState(props);
+    this.state = Datetime.getState(props);
+    this.state = { ...this.state, prevProps: props };
   }
-  componentWillReceiveProps(nextProps) {
+
+  static getDerivedStateFromProps(props, state) {
     const keys = ['columns', 'minDate', 'maxDate', 'value', 'locale', 'columns'];
-    if (shouldUpdate(this.props, nextProps, keys)) {
-      this.setState(this.getState(nextProps));
+    if (shouldUpdate(props, state.prevProps, keys)) {
+      return {
+        ...Datetime.getState(props),
+        prevProps: props,
+      };
     }
+    return null;
   }
-  getState = (props) => {
+
+  static getState(props) {
     const { columns, minDate, maxDate } = props;
     const currentValue = parseValue(props.value);
     const options = getOptions(props.value, props);
@@ -85,6 +95,7 @@ class Datetime extends React.Component {
       value,
     };
   }
+
   getPlainDate = (value) => {
     const date = [];
     const { columns } = this.props;
@@ -127,12 +138,14 @@ class Datetime extends React.Component {
   }
 
   handleConfirm = (value) => {
+    const { onConfirm } = this.props;
     const outputDate = this.getPlainDate(value);
-    this.props.onConfirm(outputDate);
+    onConfirm(outputDate);
   }
 
   handleCancel = () => {
-    this.props.onCancel();
+    const { onCancel } = this.props;
+    onCancel();
   };
 
   handleChange = (value, columnIndex) => {
@@ -142,7 +155,9 @@ class Datetime extends React.Component {
       maxDate,
       disabledDate,
       onChange,
+      locale,
     } = this.props;
+    const { data: stateData } = this.state;
     const columnsStyle = columns[columnIndex];
     const outputDate = this.getPlainDate(value);
     // YMD,YMDT 等模式 更改最后一列时不做处理, Y,YM,YMDHM, YMDWHM 更任意一列都不做处理
@@ -152,7 +167,7 @@ class Datetime extends React.Component {
       return;
     }
     const disabledArr = disabledDate ? disabledDate() : [];
-    const data = [].concat(this.state.data);
+    const data = [].concat(stateData);
     const yearData = data[0];
     const monthData = data[1];
     const yearValue = value[0].value;
@@ -189,11 +204,11 @@ class Datetime extends React.Component {
         minDate, maxDate, year: yearValue, month: monthValue,
       });
       // dayArr = formatText(dayArr, undefined, this.props);
-      const unit = locale[this.props.locale].surfix.D;
-      dayArr = dayArr.map((item) => {
-        item.text = addZero(item.text) + (unit || '');
-        return item;
-      });
+      const unit = i18n[locale].surfix.D;
+      dayArr = dayArr.map(item => ({
+        ...item,
+        text: addZero(item.text) + (unit || ''),
+      }));
       data[2] = dayArr;
       updateObj.data = data;
     }
@@ -203,16 +218,19 @@ class Datetime extends React.Component {
   render() {
     const { props, state } = this;
     const { data, value } = state;
+    const {
+      locale, confirmText, cancelText, title, slotRef, columns,
+    } = props;
     return (
       <Slot
         className={Context.prefixClass('datetime-field-border-none')}
-        ref={props.slotRef}
-        columnsFlex={columnsFlexMap[props.columns.join('')]}
-        title={props.title}
+        ref={slotRef}
+        columnsFlex={columnsFlexMap[columns.join('')]}
+        title={title}
         data={data}
         value={value}
-        confirmText={props.confirmText || locale[props.locale].confirmText}
-        cancelText={props.cancelText || locale[props.locale].cancelText}
+        confirmText={confirmText || i18n[locale].confirmText}
+        cancelText={cancelText || i18n[locale].cancelText}
         onChange={this.handleChange}
         onCancel={this.handleCancel}
         onConfirm={this.handleConfirm}
@@ -276,5 +294,7 @@ Datetime.YMDWHM = YMDWHM;
 Datetime.getSlotFormattedValue = getSlotFormattedValue;
 Datetime.needUpdateSlotValue = needUpdateSlotValue;
 Datetime.displayName = 'Datetime';
+
+polyfill(Datetime);
 
 export default Datetime;

@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Loading from 'salt-icon/lib/Loading';
@@ -32,23 +33,6 @@ function op(percent) {
 }
 
 class RefreshControl extends React.Component {
-  static defaultProps = {
-    refreshing: false,
-    onRefresh() {},
-    threshold: 74,
-    max: 110,
-    className: '',
-    children: null,
-    beforePullLoadText: '下拉显示更多',
-    afterPullLoadText: '松开显示更多',
-    refreshingText: '加载中...',
-    refreshIcon: null,
-    showIcon: true,
-    showText: true,
-    showRefreshing: true,
-    getScrollContainer: undefined,
-  };
-
   static propTypes = {
     refreshing: PropTypes.bool,
     onRefresh: PropTypes.func,
@@ -66,6 +50,23 @@ class RefreshControl extends React.Component {
     getScrollContainer: PropTypes.func,
   };
 
+  static defaultProps = {
+    refreshing: false,
+    onRefresh() {},
+    threshold: 74,
+    max: 110,
+    className: '',
+    children: null,
+    beforePullLoadText: '下拉显示更多',
+    afterPullLoadText: '松开显示更多',
+    refreshingText: '加载中...',
+    refreshIcon: null,
+    showIcon: true,
+    showText: true,
+    showRefreshing: true,
+    getScrollContainer: undefined,
+  };
+
   constructor(props) {
     super(props);
     this.y = 0;
@@ -78,9 +79,9 @@ class RefreshControl extends React.Component {
     this.bindDrag();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.refreshing !== nextProps.refreshing) {
-      this.onRefreshingChanged(nextProps.refreshing);
+  getSnapshotBeforeUpdate(prevProps) {
+    if (prevProps.refreshing !== this.props.refreshing) {
+      this.onRefreshingChanged(this.props.refreshing);
     }
   }
 
@@ -90,14 +91,12 @@ class RefreshControl extends React.Component {
     }
   }
 
-
   componentWillUnmount() {
     if (!this.drager) return;
 
     this.drager.destory();
     this.drager = null;
   }
-
 
   onRefreshingChanged(val) {
     if (!val) {
@@ -147,8 +146,9 @@ class RefreshControl extends React.Component {
       this.y = 1;
     }
     if (
-      (this.oldY < threshold && this.y >= threshold)
-        || (this.oldY > threshold && this.y <= threshold)) {
+      (this.oldY < threshold && this.y >= threshold) ||
+      (this.oldY > threshold && this.y <= threshold)
+    ) {
       this.forceUpdate();
     }
     this.triggerStyle(this.props.showRefreshing);
@@ -191,7 +191,6 @@ class RefreshControl extends React.Component {
     return Math.min(Math.max(this._y, 0), this.max);
   }
 
-
   set draging(draging) {
     this._draging = draging;
   }
@@ -205,7 +204,6 @@ class RefreshControl extends React.Component {
     }
     return true;
   }
-
 
   bindDrag() {
     // const drager = new Drag(this.$container);
@@ -294,31 +292,47 @@ class RefreshControl extends React.Component {
 
     if (!this.props.showText || !refreshText) return null;
 
-    return <div className="refresh-text" key="refresh-text">{refreshText}</div>;
+    return (
+      <div className="refresh-text" key="refresh-text">
+        {refreshText}
+      </div>
+    );
   }
 
   render() {
     const {
-      className, children, showRefreshing,
-      refreshing, onRefresh, threshold, beforePullLoadText,
-      afterPullLoadText, refreshingText, refreshIcon, showIcon,
-      showText, getScrollContainer, ...otherProps
+      className,
+      children,
+      showRefreshing,
+      refreshing,
+      onRefresh,
+      threshold,
+      beforePullLoadText,
+      afterPullLoadText,
+      refreshingText,
+      refreshIcon,
+      showIcon,
+      showText,
+      getScrollContainer,
+      ...otherProps
     } = this.props;
 
     return (
       <div
         ref={(node) => {
-        this.$container = node;
-      }}
+          this.$container = node;
+        }}
         className={classnames(Context.prefixClass('refresh-control'), this.status, className, {
-        refreshing: this.refreshing,
-        draging: this.draging,
-      })}
+          refreshing: this.refreshing,
+          draging: this.draging,
+        })}
         {...otherProps}
       >
         <div
           key="refreshControl"
-          ref={(c) => { this.innerNode = c; }}
+          ref={(c) => {
+            this.innerNode = c;
+          }}
           className={classnames(Context.prefixClass('refresh-control-inner'))}
         >
           {this.renderIcon()}
@@ -327,14 +341,17 @@ class RefreshControl extends React.Component {
 
         <div
           ref={(node) => {
-          this.trigger = node;
-        }}
+            this.trigger = node;
+          }}
           className={classnames('needsclick', Context.prefixClass('refresh-control-area'))}
         >
           {children}
         </div>
-      </div>);
+      </div>
+    );
   }
 }
+
+polyfill(RefreshControl);
 
 export default RefreshControl;

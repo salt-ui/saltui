@@ -8,7 +8,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { prefixClass } from '../../Context';
-import locale from '../locale';
+import i18n from '../locale';
 import formatter from '../formatter';
 
 
@@ -29,16 +29,13 @@ class MonthTitle extends React.Component {
     locale: undefined,
   };
 
-  componentWillMount() {
-    this.locale = locale[this.props.locale];
-  }
-
   render() {
     const t = this;
+    const { locale, anyDayInMonth } = t.props;
     return (
       <div className={prefixClass('day-calendar-month-title')}>
         {
-          formatter(t.props.anyDayInMonth, t.locale.dayCalendarMonthTitleFormat)
+          formatter(anyDayInMonth, i18n[locale].dayCalendarMonthTitleFormat)
         }
       </div>
     );

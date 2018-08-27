@@ -8,6 +8,8 @@ import Calendar from '../../Calendar';
 import Datetime from '../../Datetime';
 import { defaultFormatter, Locale, isObject, isStringOrNumber } from './util';
 
+const i18n = Calendar.I18n;
+
 
 class DayField extends React.Component {
   static displayName = 'DayField';
@@ -17,10 +19,6 @@ class DayField extends React.Component {
     this.state = {
       visible: false,
     };
-  }
-
-  componentWillMount() {
-    this.locale = Calendar.I18n[this.props.locale];
   }
 
   onOk(value) {
@@ -86,10 +84,10 @@ class DayField extends React.Component {
 
   // 制造"周X"的文案
   makeWeekText(data, type) {
-    const t = this;
+    const { locale } = this.props;
     const dataNew = data;
-    dataNew[`${type}Week`] = t.locale.weekTitle[new Date(dataNew[type]).getDay()];
-    if (t.props.locale === Locale.cn) {
+    dataNew[`${type}Week`] = i18n[locale].weekTitle[new Date(dataNew[type]).getDay()];
+    if (locale === Locale.cn) {
       dataNew[`${type}Week`] = `周${dataNew[`${type}Week`]}`;
     }
     return dataNew;
@@ -111,6 +109,7 @@ class DayField extends React.Component {
   // 此方法会被子类使用，本应拆分，由子类复写，但因处理较复杂，所以未拆分
   makeViewValue() {
     const t = this;
+    const { locale } = this.props;
     let result = {};
     if (isStringOrNumber(t.props.value)) {
       result.start = t.props.value ? t.props.value : '';
@@ -169,12 +168,12 @@ class DayField extends React.Component {
         // result
         if (t.props.singleMode) {
           result.startDateType =
-          t.locale.dayTipMap[t.props.value.startDateType || t.props.value.timeType];
+          i18n[locale].dayTipMap[t.props.value.startDateType || t.props.value.timeType];
           result.endDateType =
-          t.locale.dayTipMap[t.props.value.startDateType || t.props.value.timeType];
+          i18n[locale].dayTipMap[t.props.value.startDateType || t.props.value.timeType];
         } else if (isObject(t.props.value)) {
-          result.startDateType = t.locale.dayTipMap[t.props.value.startDateType];
-          result.endDateType = t.locale.dayTipMap[t.props.value.endDateType];
+          result.startDateType = i18n[locale].dayTipMap[t.props.value.startDateType];
+          result.endDateType = i18n[locale].dayTipMap[t.props.value.endDateType];
         }
         break;
     }

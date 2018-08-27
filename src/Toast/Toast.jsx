@@ -17,6 +17,7 @@ import IconToastLoading from 'salt-icon/lib/ToastLoading';
 import IconInfoRound from 'salt-icon/lib/InfoRound';
 import { VBox } from '../Boxs';
 import { prefixClass, noop } from '../Context';
+import { polyfill } from 'react-lifecycles-compat';
 
 let globalInstance;
 
@@ -29,6 +30,48 @@ const iconCompMap = {
 };
 
 class Toast extends React.Component {
+  static show = (props) => {
+    ReactDOM.render(<Toast visible {...props} ref={(c) => { globalInstance = c; }} />, wrapper);
+  }
+
+  static hide = (fn) => {
+    if (globalInstance) {
+      globalInstance.hide(fn);
+    }
+  }
+  static displayName = 'Toast'
+
+  static propTypes = {
+    prefixCls: PropTypes.string,
+    visible: PropTypes.bool,
+    hasMask: PropTypes.bool,
+    autoHide: PropTypes.bool,
+    onDidHide: PropTypes.func,
+    width: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    content: PropTypes.string,
+    icon: PropTypes.string,
+    duration: PropTypes.number,
+    transitionName: PropTypes.string,
+    type: PropTypes.string,
+  }
+
+  static defaultProps = {
+    prefixCls: 't-toast',
+    hasMask: false,
+    onDidHide: noop,
+    visible: false,
+    autoHide: true,
+    content: '',
+    duration: undefined,
+    width: undefined,
+    icon: undefined,
+    transitionName: undefined,
+    type: undefined,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -37,11 +80,11 @@ class Toast extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      visible: nextProps.visible,
-      hasMask: nextProps.hasMask,
-    });
+  static getDerivedStateFromProps(props) {
+    return {
+      visible: props.visible,
+      hasMask: props.hasMask,
+    };
   }
 
   getIconComp() {
@@ -168,37 +211,6 @@ class Toast extends React.Component {
   }
 }
 
-Toast.defaultProps = {
-  prefixCls: 't-toast',
-  hasMask: false,
-  onDidHide: noop,
-  visible: false,
-  autoHide: true,
-  content: '',
-  duration: undefined,
-  width: undefined,
-  icon: undefined,
-  transitionName: undefined,
-  type: undefined,
-};
-
-// http://facebook.github.io/react/docs/reusable-components.html
-Toast.propTypes = {
-  prefixCls: PropTypes.string,
-  visible: PropTypes.bool,
-  hasMask: PropTypes.bool,
-  autoHide: PropTypes.bool,
-  onDidHide: PropTypes.func,
-  width: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  content: PropTypes.string,
-  icon: PropTypes.string,
-  duration: PropTypes.number,
-  transitionName: PropTypes.string,
-  type: PropTypes.string,
-};
 
 const WRAPPER_ID = '__TingleGlobalToast__';
 const doc = document;
@@ -210,16 +222,6 @@ if (!wrapper) {
 }
 ReactDOM.render(<Toast visible={false} />, wrapper);
 
-Toast.show = (props) => {
-  ReactDOM.render(<Toast visible {...props} ref={(c) => { globalInstance = c; }} />, wrapper);
-};
-
-Toast.hide = (fn) => {
-  if (globalInstance) {
-    globalInstance.hide(fn);
-  }
-};
-
-Toast.displayName = 'Toast';
+polyfill(Toast);
 
 export default Toast;

@@ -9,6 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AngleRight from 'salt-icon/lib/AngleRight';
 import classnames from 'classnames';
+import { polyfill } from 'react-lifecycles-compat';
 import Context from '../Context';
 import Group from '../Group';
 import Boxs from '../Boxs';
@@ -57,13 +58,18 @@ class List extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProp) {
-    if (nextProp.data && nextProp.data.length) {
-      const newData = nextProp.data.map((d, i) => ({ ...d, keyIndex: `index${i}`, listLeft: 0 }));
-      this.setState({
+  static getDerivedStateFromProps({ data }) {
+    if (data && data.length) {
+      const newData = data.map((d, i) => ({
+        ...d,
+        keyIndex: `index${i}`,
+        listLeft: 0,
+      }));
+      return {
         data: newData,
-      });
+      };
     }
+    return null;
   }
 
   touchstartHandle(e) {
@@ -372,5 +378,7 @@ List.propTypes = {
 };
 
 List.displayName = 'List';
+
+polyfill(List);
 
 export default List;
