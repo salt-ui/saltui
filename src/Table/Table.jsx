@@ -103,14 +103,13 @@ class Table extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const newState = {};
     if (!deepEqual(prevState.prevColumns, nextProps.columns)) {
       // 不在这里更新 this.columns 是因为后面 didUpdate 时还用的到。
-      newState.columns = Table.processColumns(nextProps);
+      const columns = Table.processColumns(nextProps);
 
       return {
-        columns: newState.columns,
-        prevColumns: deepcopy(newState.columns),
+        columns,
+        prevColumns: deepcopy(nextProps.columns),
       };
     }
 
