@@ -93,9 +93,6 @@ class Table extends React.Component {
       columns: Table.processColumns(props),
       prevColumns: deepcopy(props.columns),
     };
-    // columns 和 data 的类型是对象，用户在修改 props 时可能会出现 now 和 next 总是一致的问题
-    // 这里对这两份数据进行一个缓存
-    this.data = deepcopy(props.data);
   }
 
   componentDidMount() {
