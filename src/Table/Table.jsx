@@ -107,8 +107,7 @@ class Table extends React.Component {
     if (!deepEqual(prevState.prevColumns, nextProps.columns)) {
       // 不在这里更新 this.columns 是因为后面 didUpdate 时还用的到。
       newState.columns = Table.processColumns(nextProps);
-    }
-    if (Object.keys(newState).length) {
+
       return {
         columns: newState.columns,
         prevColumns: deepcopy(newState.columns),
@@ -119,10 +118,6 @@ class Table extends React.Component {
   }
 
   componentDidUpdate() {
-    if (!deepEqual(this.props.columns, this.columns) || !deepEqual(this.props.data, this.data)) {
-      this.data = deepcopy(this.props.data);
-      this.columns = deepcopy(this.props.columns);
-    }
     this.checkScroll(this.getIscroll());
   }
 
