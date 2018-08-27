@@ -4,6 +4,8 @@ import Animate from 'rc-animate';
 import Hammer from 'hammerjs';
 import classnames from 'classnames';
 import ReactDOM from 'react-dom';
+import { polyfill } from 'react-lifecycles-compat';
+
 import Slide from '../Slide';
 import Mask from './Mask';
 
@@ -17,17 +19,15 @@ class PopupView extends React.Component {
       current: props.current,
     };
   }
+  static getDerivedStateFromProps({ visible, current }, { prevVisible }) {
+    return (!prevVisible && visible) ? {
+      current,
+      prevVisible: visible,
+    } : null;
+  }
 
   componentDidMount() {
     this.bindHammer();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.visible && nextProps.visible) {
-      this.setState({
-        current: nextProps.current,
-      });
-    }
   }
 
   componentDidUpdate() {
@@ -182,5 +182,7 @@ PopupView.defaultProps = {
   visible: true,
   prefixCls: undefined,
 };
+
+polyfill(PopupView);
 
 export default PopupView;

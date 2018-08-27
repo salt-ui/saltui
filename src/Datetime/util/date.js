@@ -1,4 +1,3 @@
-import isEuqal from 'lodash/isEqual';
 import {
   parseDate,
   addZero,
@@ -468,10 +467,10 @@ function filterDate({
     const dayArr = filterDay(dayData, year, month, disabledArrNew);
     dayData = dayArr.length ? dayArr : dayData;
     const unit = locale[props.locale].surfix.D;
-    dayData = dayData.map((item) => {
-      item.text = addZero(item.text) + (unit || '');
-      return item;
-    });
+    dayData = dayData.map(item => ({
+      ...item,
+      text: addZero(item.text) + (unit || ''),
+    }));
   }
   if (disabledArrNew.minTime >= disabledArrNew.maxTime) {
     warn('Datetime: Please check your disabledDate props');

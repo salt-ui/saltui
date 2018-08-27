@@ -1,7 +1,7 @@
 import base from './base';
 import date from './date';
 
-module.exports = {
+export default {
   ...base,
   ...date,
 };

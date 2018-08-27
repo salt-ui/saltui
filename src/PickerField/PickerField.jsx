@@ -9,6 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import AngleRight from 'salt-icon/lib/AngleRight';
+import { polyfill } from 'react-lifecycles-compat';
 import Context from '../Context';
 import Field from '../Field';
 import Picker from '../Picker';
@@ -37,20 +38,22 @@ class PickerField extends React.Component {
       value,
       confirmedValue: value,
       popupVisible: false,
+      prevProps: this.props,
     };
 
     t.listener = t.handleHidePopup.bind(t);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (shouldUpdate(this.props, nextProps, ['value'])) {
-      const t = this;
+  static getDerivedStateFromProps(nextProps, { prevProps }) {
+    if (shouldUpdate(prevProps, nextProps, ['value'])) {
       const value = PickerField.normalizeValue(nextProps.value);
-      t.setState({
+      return {
         value,
         confirmedValue: value,
-      });
+        prevProps: nextProps,
+      };
     }
+    return null;
   }
 
   componentWillUnmount() {
@@ -277,5 +280,7 @@ PickerField.propTypes = {
 };
 
 PickerField.displayName = 'PickerField';
+
+polyfill(PickerField);
 
 export default PickerField;

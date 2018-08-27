@@ -36,7 +36,7 @@ class Demo extends React.Component {
       title: '测试',
       content: '我是 Dialog.alert 的调用',
       onConfirm() {
-        console.log('alert confirm');
+        console.log(arguments);
       },
     });
   }
@@ -92,7 +92,7 @@ class Demo extends React.Component {
 
         <Button key="notitle" className="demo" onClick={this.handleTitle.bind(this)}>No title</Button>
 
-        <Button key="multi line" className="demo" onClick={this.handleMultiLines.bind(this)}>Multi lines</Button>
+        <Button key="multi line" className="demo" onClick={this.handleMultiLines.bind(this)}>Multi lines</Button> 
 
         <Button key="show-alert" className="demo" onClick={this.handleShow.bind(this, 'showAlert', true)}>Use show prop Alert</Button>
 

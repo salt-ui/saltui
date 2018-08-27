@@ -6,7 +6,7 @@ import { Box } from '../Boxs';
 import TabBarItemBadge from './TabBarItemBadge';
 
 /**
-* more Items of Tab Bar,  on the Mask Layer
+* more Items of Tab Bar, on the Mask Layer
 */
 
 class TabBarItemMore extends React.Component {

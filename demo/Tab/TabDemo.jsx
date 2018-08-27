@@ -25,6 +25,24 @@ class Demo extends React.Component {
     console.log(obj);
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        active: '2',
+      })
+    }, 2000);
+    setTimeout(() => {
+      this.setState({
+        active: '4',
+      })
+    }, 3000);
+    setTimeout(() => {
+      this.setState({
+        active: '2',
+      })
+    }, 4000);
+  }
+
   render() {
     const t = this;
     return (
@@ -44,6 +62,7 @@ class Demo extends React.Component {
               }}
               >增加 tab
               </Button>
+              
             </div>
           </Tab.Item>
           <Tab.Item title="已完成">

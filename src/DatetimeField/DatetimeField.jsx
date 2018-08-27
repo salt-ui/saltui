@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import isObject from 'lodash/isObject';
 import AngleRight from 'salt-icon/lib/AngleRight';
+import { polyfill } from 'react-lifecycles-compat';
 import Context from '../Context';
 import Field from '../Field';
 import Datetime from '../Datetime';
@@ -25,16 +26,19 @@ class DatetimeField extends React.Component {
     super(props);
     this.state = {
       slotValue: Datetime.getSlotFormattedValue(props.value, props),
+      prevProps: props,
     };
     this.valueChanged = false;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (Datetime.needUpdateSlotValue(nextProps, this.props)) {
-      this.setState({
-        slotValue: Datetime.getSlotFormattedValue(nextProps.value, nextProps),
-      });
+  static getDerivedStateFromProps(props, state) {
+    if (Datetime.needUpdateSlotValue(props, state.prevProps)) {
+      return {
+        slotValue: Datetime.getSlotFormattedValue(props.value, props),
+        prevProps: props,
+      };
     }
+    return null;
   }
 
   handleConfirm(value) {
@@ -174,5 +178,7 @@ DatetimeField.propTypes = {
 };
 
 DatetimeField.displayName = 'DatetimeField';
+
+polyfill(DatetimeField);
 
 export default DatetimeField;

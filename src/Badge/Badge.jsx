@@ -57,7 +57,7 @@ class Badge extends React.Component {
       count = text;
     }
 
-    const style = t.props.style || {};
+    const style = { ...t.props.style } || {};
 
     if ('left' in style) {
       style.right = 'auto';

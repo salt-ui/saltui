@@ -10,12 +10,14 @@
 import React from 'react';
 import classnames from 'classnames';
 import cloneDeep from 'lodash/cloneDeep';
+import deepEqual from 'lodash/isEqual';
 import Toast from '../../Toast';
 import { prefixClass } from '../../Context';
 import Button from '../../Button';
 import Panel from './Panel';
 import { halfDayType } from './const';
 import util, { adaptCascadeDate } from '../util';
+import i18n from '../locale';
 
 class CascadePanel extends Panel {
   static propTypes = {
@@ -26,22 +28,7 @@ class CascadePanel extends Panel {
     ...Panel.defaultProps,
   };
 
-  constructor(props) {
-    super(props);
-    this.isASC = true; // 是否是正序选择。第二次点击的日期，晚于第一次点击的日期，则为正序选择
-  }
-
-  showToast(start = true) {
-    const content = start ?
-      this.locale.cascadeToastTip.start :
-      this.locale.cascadeToastTip.end;
-    Toast.show({
-      className: prefixClass('day-calendar-cascade-tip'),
-      content,
-    });
-  }
-
-  processValue(propValue) {
+  static processValue(propValue) {
     let value = cloneDeep(propValue);
     if (util.isNil(value)) {
       value = {};
@@ -72,12 +59,6 @@ class CascadePanel extends Panel {
       ...value,
     };
 
-    if (!newValue.startDate) {
-      this.showToast(true);
-    } else if (!newValue.endDate) {
-      this.showToast(false);
-    }
-
     let activeDate;
     let activeType = '';
 
@@ -90,10 +71,50 @@ class CascadePanel extends Panel {
       activeType = 'end';
     }
 
-    this.setState({
+    return {
       value: newValue,
       activeDate,
       activeType,
+    };
+  }
+
+
+  constructor(props) {
+    super(props);
+    this.isASC = true; // 是否是正序选择。第二次点击的日期，晚于第一次点击的日期，则为正序选择
+    this.state = {
+      ...this.state,
+      ...CascadePanel.processValue(props.value),
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (!deepEqual(props.value, state.prevValue)) {
+      return {
+        ...CascadePanel.processValue(props.value),
+        prevValue: props.value,
+      };
+    }
+    return null;
+  }
+
+  componentDidUpdate() {
+    const { value } = this.state;
+    if (!value.startDate) {
+      this.showToast(true);
+    } else if (!value.endDate) {
+      this.showToast(false);
+    }
+  }
+
+  showToast(start = true) {
+    const { locale } = this.props;
+    const content = start ?
+      i18n[locale].cascadeToastTip.start :
+      i18n[locale].cascadeToastTip.end;
+    Toast.show({
+      className: prefixClass('day-calendar-cascade-tip'),
+      content,
     });
   }
 
@@ -198,19 +219,20 @@ class CascadePanel extends Panel {
 
   renderHalfDay() {
     const t = this;
+    const { locale } = this.props;
     const halfType = t.state.value[`${t.state.activeType}DateType`];
 
     const full =
       (
         <li
           className={classnames(prefixClass('tap'), 'day-type-item full', {
-          active: halfType === halfDayType.FULL,
-        })}
+            active: halfType === halfDayType.FULL,
+          })}
           key="half-day-full"
           onClick={(e) => { t.onHalfButtonClick(halfDayType.FULL, e); }}
           role="menuitem"
         >
-          {t.locale.dayTipMap.FULL}
+          {i18n[locale].dayTipMap.FULL}
         </li>);
 
     const am =
@@ -223,7 +245,7 @@ class CascadePanel extends Panel {
           onClick={(e) => { t.onHalfButtonClick(halfDayType.AM, e); }}
           role="menuitem"
         >
-          {t.locale.dayTipMap.AM}
+          {i18n[locale].dayTipMap.AM}
         </li>);
 
     const pm =
@@ -235,7 +257,7 @@ class CascadePanel extends Panel {
           key="half-day-pm"
           onClick={(e) => { t.onHalfButtonClick(halfDayType.PM, e); }}
           role="menuitem"
-        >{t.locale.dayTipMap.PM}
+        >{i18n[locale].dayTipMap.PM}
         </li>);
 
     let halfButtons = [full, am, pm];
@@ -260,7 +282,7 @@ class CascadePanel extends Panel {
           type="primary"
           display="banner"
           onClick={(e) => { t.onOk(e); }}
-        >{t.locale.button.confirm}
+        >{i18n[locale].button.confirm}
         </Button>
       </div>
     );

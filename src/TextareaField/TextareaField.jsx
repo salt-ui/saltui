@@ -12,7 +12,6 @@ import Context, { prefixClass } from '../Context';
 import Field from '../Field';
 import calculateHeight from './calculateHeight';
 import { shouldUpdate } from '../Utils';
-
 class TextareaField extends React.Component {
   constructor(props) {
     super(props);
@@ -26,13 +25,12 @@ class TextareaField extends React.Component {
     this.resize();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if ('value' in nextProps
-      && shouldUpdate(this.props, nextProps, ['rows', 'minRows', 'maxRows'])) {
+  componentDidUpdate(prevProps) {
+    if ('value' in this.props
+    && shouldUpdate(prevProps, this.props, ['value', 'rows', 'minRows', 'maxRows'])) {
       this.resize();
     }
   }
-
 
   getAddons() {
     const addons = {};

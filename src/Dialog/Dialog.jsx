@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash/cloneDeep';
 import ReactDOM from 'react-dom';
@@ -21,13 +22,12 @@ const { prefixClass } = Context;
 const TYPES = ['alert', 'confirm'];
 
 const EMPTY_FUNC = function EMPTY_FUNC() { };
-
 /**
  * 简单的 i18n 实现
  * @param {String} lang 语言类型 'zh-cn' | 'en-us'
  * @param {String} key 关键 key 'ok' | 'cancel' 其他值直接返回 key
  */
-const getI18nVal = function (lang = 'zh-cn', key) {
+const getI18nVal = function getI18nVal(lang = 'zh-cn', key) {
   switch (lang) {
     case 'en-us':
       return i18nData[lang][key] || key;
@@ -45,6 +45,7 @@ class Dialog extends React.Component {
     // 设置到 state 作为渲染的依据
     this.state = {
       show: props.show,
+      forceHide: true,
     };
   }
 
@@ -54,11 +55,16 @@ class Dialog extends React.Component {
     }
   }
 
-  // 属性变化时把响应状态设置到 state
-  componentWillReceiveProps(nextProps) {
-    const changeState = {};
-    changeState.show = nextProps.show;
-    this.setState(changeState);
+  static getDerivedStateFromProps(nextProps, { forceHide }) {
+    if (!forceHide) {
+      return {
+        show: nextProps.show,
+      };
+    }
+    return {
+      show: false,
+      forceHide: false,
+    };
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -107,6 +113,7 @@ class Dialog extends React.Component {
     const { props } = this;
     this.setState({
       show: false,
+      forceHide: true,
     });
     // 未写在文档中
     if (props.onClose && typeof props.onClose === 'function') {
@@ -374,5 +381,7 @@ Dialog.custom = function custom(options) {
 Dialog.rcDialog = RcDialog;
 
 Dialog.displayName = 'Dialog';
+
+polyfill(Dialog);
 
 export default Dialog;

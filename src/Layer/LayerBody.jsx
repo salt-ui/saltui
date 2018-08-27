@@ -1,4 +1,5 @@
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass, noop } from '../Context';
@@ -37,18 +38,28 @@ class LayerBody extends React.Component {
     super(props);
     this.state = {
       visible: props.visible,
+      hideMask: false
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const t = this;
+  static getDerivedStateFromProps(nextProps, prevState) {
     const { visible } = nextProps;
-    if (visible === false && t.props.onWillHide() === false) {
-      return;
+    if (visible !== prevState.visible) {
+      return {
+        visible: nextProps.visible
+      };
     }
-    this.setState({
-      visible: nextProps.visible,
-    }, visible ? t.props.onDidShow : t.props.onDidHide);
+    if (prevState.hideMask) {
+      return {
+        visible: false
+      };
+    }
+    return null; // Return null to indicate no change to state.
+
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.state.visible ? this.props.onDidShow() : this.props.onDidHide();
   }
 
   getStyle() {
@@ -101,38 +112,52 @@ class LayerBody extends React.Component {
   }
 
   handleMaskClick() {
-    const t = this;
-    // 如果禁止了点击Mask关闭Layer, 则Mask的onWillHide必须返回false
-    if (t.props.maskCloseable === false || t.props.onWillHide() === false) {
-      return false;
-    }
-    t.setState({
-      visible: false,
-    }, () => {
-      t.props.onDidHide();
-    });
-    return null;
+     const t = this;
+     // 如果禁止了点击Mask关闭Layer, 则Mask的onWillHide必须返回false
+     if (t.props.maskCloseable === false || t.props.onWillHide() === false) {
+       return false;
+     }
+     t.setState({
+       hideMask: true,
+     }, () => {
+       t.props.onDidHide();
+     });
+     return null;
   }
 
   render() {
     const t = this;
     const {
-      className, top, left, right, bottom, visible, zIndex,
-      maskCloseable, renderToBody, onDidShow, onWillHide, onDidHide,
-      maskOpacity, hasMask, fullScreen, style, onMaskClick, ...other
+      className,
+      top,
+      left,
+      right,
+      bottom,
+      visible,
+      zIndex,
+      maskCloseable,
+      renderToBody,
+      onDidShow,
+      onWillHide,
+      onDidHide,
+      maskOpacity,
+      hasMask,
+      fullScreen,
+      style,
+      onMaskClick,
+      ...other
     } = t.props;
     return (
       <div>
-        {
-          this.props.hasMask &&
-            <Mask
-              zIndex={this.props.zIndex - 1}
-              onWillHide={() => (t.props.onMaskClick || t.handleMaskClick).call(t)}
-              closeable
-              visible={t.state.visible}
-              opacity={0.6}
-            />
-        }
+        {this.props.hasMask && (
+          <Mask
+            zIndex={this.props.zIndex - 1}
+            onWillHide={() => (t.props.onMaskClick || t.handleMaskClick).call(t)}
+            closeable
+            visible={t.state.visible}
+            opacity={0.6}
+          />
+        )}
         <div
           {...other}
           className={classnames(prefixClass('layer'), {
@@ -146,5 +171,7 @@ class LayerBody extends React.Component {
     );
   }
 }
+
+polyfill(LayerBody);
 
 export default LayerBody;
