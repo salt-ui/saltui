@@ -66,6 +66,10 @@ ReactDOM.render(<Button />, mountNode);
 * iOS
 * Android 4.0+
 
+## React 支持
+
+* 0.14.9+
+
 ## 集成开发工具
 
 1. 推荐使用 [Nowa](https://nowa-webpack.github.io/) 作为项目的开发工具

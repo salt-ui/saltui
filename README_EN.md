@@ -64,6 +64,10 @@ ReactDOM.render(<Button />, mountNode);
 * iOS
 * Android 4.0+
 
+## React version support
+
+* 0.14.9+
+
 ## Project Developing Tools
 
 1. We recommend [Nowa](https://nowa-webpack.github.io/) as the project developing tools
