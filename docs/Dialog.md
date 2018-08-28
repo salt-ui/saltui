@@ -99,6 +99,20 @@ render() {
 <Dialog title="我是标题">内容内容</Dialog>
 ```
 
+## confirmText
+
+- 描述：确定按钮的文字
+- 类型：`String`
+- 默认：`ok`
+- 必选：否
+
+## cancelText
+
+- 描述：取消按钮的文字
+- 类型：`String`
+- 默认：`cancel`
+- 必选：否
+
 ### onConfirm
 
 - 描述：点击确认按钮回调函数
@@ -286,6 +300,7 @@ render() {
 - 参数说明
     - option.title：对应 props.title
     - option.content：对应 props.children
+    - option.confirmText：对应 props.confirmText
     - option.onConfirm：对应 props.onConfirm
     - options.className：对应 props.className
     - options.wrapClassName：对应 props.wrapClassName
@@ -306,6 +321,8 @@ Dialog.alert({
 - 参数说明
     - option.title：对应 props.title
     - option.content：对应 props.children
+    - option.confirmText：对应 props.confirmText
+    - option.cancelText：对应 props.cancelText
     - options.className：对应 props.className
     - options.wrapClassName：对应 props.wrapClassName
     - option.onConfirm：对应 props.onConfirm
