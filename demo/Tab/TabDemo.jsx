@@ -66,7 +66,7 @@ class Demo extends React.Component {
             </div>
           </Tab.Item>
           <Tab.Item title="已完成">
-            <div style={{ padding: 10 }}>
+            <div style={{ padding: '300px 0' }}>
               移动互联网，就是将移动通信和互联网二者结合起来，成为一体。
               是指互联网的技术、平台、商业模式和应用与移动通信技术结合并实践的活动的总称。
               4G时代的开启以及移动终端设备的凸显必将为移动互联网的发展注入巨大的能量，2014年移动互联网...
