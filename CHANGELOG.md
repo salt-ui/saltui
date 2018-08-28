@@ -1,4 +1,8 @@
 
+## 3.11.1 / 2018-08-28
+
+* `fix` Tab cannot scroll
+
 ## 3.11.0 / 2018-08-22
 
 * `feat` extract `Picker` from `PickerField` 
