@@ -36,6 +36,7 @@ class EmployeeField extends React.Component {
     disabledUsers: PropTypes.array,
     onChange: PropTypes.func,
     enableNW: PropTypes.bool,
+    onPick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -52,6 +53,7 @@ class EmployeeField extends React.Component {
     onChange: () => { },
     className: undefined,
     corpId: undefined,
+    onPick: undefined,
   };
 
 
@@ -68,35 +70,43 @@ class EmployeeField extends React.Component {
     if (this.getReadOnly()) {
       return;
     }
+    const {
+      onPick, multiple, max, isNeedSearch, startWithDepartmentId,
+      value, disabledUsers, enableAutoJumpDepart, corpId, enableNW, onChange,
+    } = this.props;
+    if (typeof onPick === 'function') {
+      onPick();
+      return;
+    }
     const i18n = locale[this.props.locale];
     const option = {
-      multiple: this.props.multiple,
-      max: this.props.max,
-      isNeedSearch: this.props.isNeedSearch,
-      startWithDepartmentId: this.props.startWithDepartmentId, //  SELF TOP
-      // users: this.props.value.map(v => ({ emplId: v.key, name: v.label, nickNameCn: v.label })),
-      users: this.props.value.map(v => v.key),
-      disabledUsers: this.props.disabledUsers,
-      enableAutoJumpDepart: this.props.enableAutoJumpDepart,
+      multiple,
+      max,
+      isNeedSearch,
+      startWithDepartmentId, //  SELF TOP
+      // users: value.map(v => ({ emplId: v.key, name: v.label, nickNameCn: v.label })),
+      users: value.map(v => v.key),
+      disabledUsers,
+      enableAutoJumpDepart,
     };
     const Ali = window.Ali || {};
     if (Ali.contacts) {
       if (Ali.isDingDing) {
-        if (!this.props.corpId) {
+        if (!corpId) {
           Ali.alert({
             message: i18n.corpIdRequired,
             okButton: i18n.ok,
           });
           return;
         }
-        option.corpId = this.props.corpId;
-      } else if (this.props.enableNW) {
-        option.users = this.props.value.map(v =>
+        option.corpId = corpId;
+      } else if (enableNW) {
+        option.users = value.map(v =>
           ({ emplId: v.key, name: v.label, nickNameCn: v.label }));
       }
       Ali.contacts.get(option, (result) => {
         if (result && !result.errorCode) {
-          this.props.onChange(transToValue(result.results));
+          onChange(transToValue(result.results));
         } else {
           Ali.alert({
             message: result.errorMessage,
@@ -106,9 +116,9 @@ class EmployeeField extends React.Component {
       });
     } else if (window.dd) {
       // fall back to dd api
-      const t = this;
       window.dd.biz.contact.choose({
         ...option,
+        corpId,
         onSuccess(results) {
           /* eslint-disable no-param-reassign */
           for (let i = 0; i < results.length; i++) {
@@ -116,7 +126,7 @@ class EmployeeField extends React.Component {
             const result = {
               results,
             };
-            t.props.onChange(transToValue(result.results));
+            onChange(transToValue(result.results));
           }
           /* eslint-enable no-param-reassign */
         },

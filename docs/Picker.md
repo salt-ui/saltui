@@ -63,6 +63,13 @@ var value = [{
 <Picker value={value}></Picker>
 ```
 
+### visible
+
+描述：是否显示。
+类型：`boolean`
+默认：`false`
+必选：否
+
 ### locale  
 描述：国际化。  
 类型：`String`  

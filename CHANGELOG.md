@@ -1,11 +1,16 @@
 
+## 4.0.3 / 2018-08-28
+
+* `fix` `EmployeeField` corpId is not passed when call `window.dd.biz.contact.choose`
+* `feat` `EmployeeField` support new prop `onPick`
+
 ## 4.0.2 / 2018-08-28
 
-* `fix` TabContent cannot scroll [#266](https://github.com/salt-ui/saltui/pull/266)
+* `fix` `Tab` TabContent cannot scroll [#266](https://github.com/salt-ui/saltui/pull/266)
 
 ## 4.0.0 / 2018-08-27
 
-* `BREAKING CHANGED` replace lifeCycle method to fit React 16, React compatible version up to 0.14.9
+* `BREAKING CHANGED` replace lifeCycle method to fit React 16, React compatible version up to 0.14.9, update your project React version to 0.14.9+
 
 ## 3.11.0 / 2018-08-22
 
