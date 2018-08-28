@@ -1,4 +1,8 @@
 
+## 4.0.2 / 2018-08-28
+
+* `fix` TabContent cannot scroll [#266](https://github.com/salt-ui/saltui/pull/266)
+
 ## 4.0.0 / 2018-08-27
 
 * `BREAKING CHANGED` replace lifeCycle method to fit React 16, React compatible version up to 0.14.9
