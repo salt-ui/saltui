@@ -1,4 +1,8 @@
 
+## 4.0.4 / 2018-08-29
+
+* `fix` `Dialog` `show` method does not pass show parameter.
+
 ## 4.0.3 / 2018-08-28
 
 * `fix` `EmployeeField` corpId is not passed when call `window.dd.biz.contact.choose`

@@ -306,8 +306,6 @@ Dialog.global = null;
  * @param {object} options 弹窗相关参数
  */
 const show = function show(options = {}) {
-  const optionsN = cloneDeep(options);
-  optionsN.show = true;
   if (!wrapper) {
     wrapper = doc.getElementById(WRAPPER_ID);
     const { ...other } = options;
@@ -317,10 +315,10 @@ const show = function show(options = {}) {
       wrapper.id = WRAPPER_ID;
       doc.body.appendChild(wrapper);
     }
-    Dialog.global = ReactDOM.render(<Dialog key={WRAPPER_ID} {...other} />, wrapper);
+    Dialog.global = ReactDOM.render(<Dialog key={WRAPPER_ID} {...other} show />, wrapper);
   }
 
-  Dialog.global = ReactDOM.render(<Dialog key={WRAPPER_ID} {...options} />, wrapper);
+  Dialog.global = ReactDOM.render(<Dialog key={WRAPPER_ID} {...options} show />, wrapper);
 };
 
 /**
