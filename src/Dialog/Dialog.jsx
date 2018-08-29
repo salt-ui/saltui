@@ -317,7 +317,9 @@ Dialog.hide = function hide() {
 
 const getCloseFunc = func => () => {
   Dialog.hide();
-  func();
+  if (typeof func === 'function') {
+    func();
+  }
 };
 
 /**
