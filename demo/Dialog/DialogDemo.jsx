@@ -7,17 +7,15 @@
 */
 
 import React from 'react';
-
 import Button from 'salt-button';
 import Dialog from 'salt-dialog';
-import DialogWrap from 'rc-dialog';
 
 class Demo extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showAlert: true,
+      showAlert: false,
       showConfirm: false,
       showMultiBtns: false,
       showMultiBtnsVertical: false,

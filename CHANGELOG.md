@@ -1,4 +1,8 @@
 
+## 4.0.5 / 2018-08-29
+
+* `fix`: `Dialog` `Dialog.alert` fail to work in React 15.x
+
 ## 4.0.4 / 2018-08-29
 
 * `fix` `Dialog` `show` method does not pass show parameter.

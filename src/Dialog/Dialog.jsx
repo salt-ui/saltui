@@ -8,7 +8,6 @@
 import React from 'react';
 import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
-import cloneDeep from 'lodash/cloneDeep';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import RcDialog from 'rc-dialog';
@@ -45,7 +44,7 @@ class Dialog extends React.Component {
     // 设置到 state 作为渲染的依据
     this.state = {
       show: props.show,
-      forceHide: true,
+      prevShow: props.show,
     };
   }
 
@@ -55,16 +54,14 @@ class Dialog extends React.Component {
     }
   }
 
-  static getDerivedStateFromProps(nextProps, { forceHide }) {
-    if (!forceHide) {
+  static getDerivedStateFromProps(nextProps, { prevShow }) {
+    if (nextProps.show !== prevShow) {
       return {
         show: nextProps.show,
+        prevShow: nextProps.show,
       };
     }
-    return {
-      show: false,
-      forceHide: false,
-    };
+    return null;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -113,7 +110,6 @@ class Dialog extends React.Component {
     const { props } = this;
     this.setState({
       show: false,
-      forceHide: true,
     });
     // 未写在文档中
     if (props.onClose && typeof props.onClose === 'function') {
@@ -296,38 +292,32 @@ Dialog.propTypes = {
 };
 
 // 全局 Dialog 组件 render 的 DOM ID
-const WRAPPER_ID = '__TingleGlobalDialog__';
 const doc = document;
 let wrapper = null;
 
-Dialog.global = null;
 /**
  * Dialog.confirm/Dialog.alert 依赖的方法，插入 DOM 节点，并在这个 DOM 节点上实例化 Dialog 组件
  * @param {object} options 弹窗相关参数
  */
 const show = function show(options = {}) {
-  if (!wrapper) {
-    wrapper = doc.getElementById(WRAPPER_ID);
-    const { ...other } = options;
-
-    if (!wrapper) {
-      wrapper = doc.createElement('div');
-      wrapper.id = WRAPPER_ID;
-      doc.body.appendChild(wrapper);
-    }
-    Dialog.global = ReactDOM.render(<Dialog key={WRAPPER_ID} {...other} show />, wrapper);
-  }
-
-  Dialog.global = ReactDOM.render(<Dialog key={WRAPPER_ID} {...options} show />, wrapper);
+  wrapper = doc.createElement('div');
+  doc.body.appendChild(wrapper);
+  ReactDOM.render(<Dialog {...options} show />, wrapper);
 };
 
 /**
  * 隐藏通过 alert/confirm 展示出来的弹窗实例
  */
 Dialog.hide = function hide() {
-  if (Dialog.global) {
-    Dialog.global.hide();
+  ReactDOM.unmountComponentAtNode(wrapper);
+  if (document.body.contains(wrapper)) {
+    document.body.removeChild(wrapper);
   }
+};
+
+const getCloseFunc = func => () => {
+  Dialog.hide();
+  func();
 };
 
 /**
@@ -338,7 +328,7 @@ Dialog.alert = function alert(options) {
   const alertOptions = { ...options };
   alertOptions.buttons = [{
     content: alertOptions.confirmText || 'ok',
-    callback: alertOptions.onConfirm,
+    callback: getCloseFunc(alertOptions.onConfirm),
     primary: true,
   }];
   show(alertOptions);
@@ -352,10 +342,10 @@ Dialog.confirm = function confirm(options) {
   const confirmOptions = { ...options };
   confirmOptions.buttons = [{
     content: confirmOptions.cancelText || 'cancel',
-    callback: confirmOptions.onCancel,
+    callback: getCloseFunc(confirmOptions.onCancel),
   }, {
     content: confirmOptions.confirmText || 'ok',
-    callback: confirmOptions.onConfirm,
+    callback: getCloseFunc(confirmOptions.onConfirm),
     primary: true,
   }];
   show(confirmOptions);
