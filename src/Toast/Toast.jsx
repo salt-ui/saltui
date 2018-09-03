@@ -20,6 +20,9 @@ import { prefixClass, noop } from '../Context';
 import { polyfill } from 'react-lifecycles-compat';
 
 let globalInstance;
+const WRAPPER_ID = '__TingleGlobalToast__';
+const doc = document;
+let wrapper = doc.getElementById(WRAPPER_ID);
 
 const iconCompMap = {
   success: IconCheckRound,
@@ -36,7 +39,13 @@ class Toast extends React.Component {
 
   static hide = (fn) => {
     if (globalInstance) {
-      globalInstance.hide(fn);
+      if (fn && typeof fn === 'function') {
+        fn();
+      }
+      ReactDOM.unmountComponentAtNode(wrapper);
+      if (document.body.contains(wrapper)) {
+        document.body.removeChild(wrapper);
+      }
     }
   }
   static displayName = 'Toast'
@@ -77,6 +86,7 @@ class Toast extends React.Component {
     this.state = {
       visible: props.visible,
       hasMask: props.hasMask,
+      prevVisible: props.visible,
     };
   }
 
@@ -101,21 +111,9 @@ class Toast extends React.Component {
     const defaultDuration = (type === 'light' || !type) ? 3000 : 1500;
     const duration = t.props.duration || defaultDuration;
     t.timer = setTimeout(() => {
-      this.hide();
+      Toast.hide();
       clearTimeout(t.timer);
     }, duration);
-  }
-
-  hide(fn) {
-    this.setState({
-      visible: false,
-      hasMask: false,
-    }, () => {
-      this.props.onDidHide();
-      if (typeof fn === 'function') {
-        fn();
-      }
-    });
   }
 
   handleDidHide() {
@@ -212,9 +210,6 @@ class Toast extends React.Component {
 }
 
 
-const WRAPPER_ID = '__TingleGlobalToast__';
-const doc = document;
-let wrapper = doc.getElementById(WRAPPER_ID);
 if (!wrapper) {
   wrapper = doc.createElement('div');
   wrapper.id = WRAPPER_ID;
