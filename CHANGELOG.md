@@ -1,4 +1,8 @@
 
+## 4.0.8 / 2018-09-03
+
+* `fix`: `Toast` fail to work in React 15.x
+
 ## 4.0.5 / 2018-08-29
 
 * `fix`: `Dialog` `Dialog.alert` fail to work in React 15.x

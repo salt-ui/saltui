@@ -15,9 +15,9 @@ import IconCrossRound from 'salt-icon/lib/CrossRound';
 import IconToastFail from 'salt-icon/lib/ToastFail';
 import IconToastLoading from 'salt-icon/lib/ToastLoading';
 import IconInfoRound from 'salt-icon/lib/InfoRound';
+import { polyfill } from 'react-lifecycles-compat';
 import { VBox } from '../Boxs';
 import { prefixClass, noop } from '../Context';
-import { polyfill } from 'react-lifecycles-compat';
 
 const WRAPPER_ID = '__TingleGlobalToast__';
 const doc = document;
