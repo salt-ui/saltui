@@ -19,7 +19,6 @@ import { VBox } from '../Boxs';
 import { prefixClass, noop } from '../Context';
 import { polyfill } from 'react-lifecycles-compat';
 
-let globalInstance;
 const WRAPPER_ID = '__TingleGlobalToast__';
 const doc = document;
 let wrapper = doc.getElementById(WRAPPER_ID);
@@ -34,11 +33,18 @@ const iconCompMap = {
 
 class Toast extends React.Component {
   static show = (props) => {
-    ReactDOM.render(<Toast visible {...props} ref={(c) => { globalInstance = c; }} />, wrapper);
+    if (wrapper) {
+      document.body.removeChild(wrapper);
+    }
+    wrapper = doc.createElement('div');
+    wrapper.id = WRAPPER_ID;
+    doc.body.appendChild(wrapper);
+    // 挂载组件
+    ReactDOM.render(<Toast visible {...props} />, wrapper);
   }
 
   static hide = (fn) => {
-    if (globalInstance) {
+    if (wrapper) {
       if (fn && typeof fn === 'function') {
         fn();
       }
@@ -46,6 +52,7 @@ class Toast extends React.Component {
       if (document.body.contains(wrapper)) {
         document.body.removeChild(wrapper);
       }
+      wrapper = null;
     }
   }
   static displayName = 'Toast'
