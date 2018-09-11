@@ -34,7 +34,7 @@ const iconCompMap = {
 class Toast extends React.Component {
   static show = (props) => {
     if (wrapper) {
-      document.body.removeChild(wrapper);
+      Toast.hide();
     }
     wrapper = doc.createElement('div');
     wrapper.id = WRAPPER_ID;
@@ -102,6 +102,15 @@ class Toast extends React.Component {
       visible: props.visible,
       hasMask: props.hasMask,
     };
+  }
+
+  componentDidMount() {
+    const { visible } = this.state;
+    const { autoHide } = this.props;
+    // 如果可见 且 可自动关闭 则开始倒计时
+    if (visible && autoHide) {
+      this.startCountdown();
+    }
   }
 
   getIconComp() {
@@ -176,10 +185,7 @@ class Toast extends React.Component {
     } else {
       transName = prefixClass(`toast-light-${transitionName}`);
     }
-    // 如果可见 且 可自动关闭 则开始倒计时
-    if (visible && autoHide) {
-      t.startCountdown();
-    }
+
     let maskTransName;
     if (!maskTransitionName) {
       maskTransName = prefixClass('toast-fade');
@@ -215,14 +221,6 @@ class Toast extends React.Component {
     return null;
   }
 }
-
-
-if (!wrapper) {
-  wrapper = doc.createElement('div');
-  wrapper.id = WRAPPER_ID;
-  doc.body.appendChild(wrapper);
-}
-ReactDOM.render(<Toast visible={false} />, wrapper);
 
 polyfill(Toast);
 

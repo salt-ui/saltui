@@ -1,4 +1,9 @@
 
+## 4.0.9 / 2018-09-11
+
+* `fix`: `Toast` Toast.show bug if called multiple
+* `fix`: `Calenadr` Toast bug in cascade calendar
+
 ## 4.0.8 / 2018-09-03
 
 * `fix`: `Toast` fail to work in React 15.x

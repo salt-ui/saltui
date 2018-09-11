@@ -113,7 +113,8 @@ class CascadePanel extends Panel {
       i18n[locale].cascadeToastTip.start :
       i18n[locale].cascadeToastTip.end;
     Toast.show({
-      className: prefixClass('day-calendar-cascade-tip'),
+      // className: prefixClass('day-calendar-cascade-tip'),
+      duration: 1500,
       content,
     });
   }
