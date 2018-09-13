@@ -1,5 +1,3 @@
-![](https://img.alicdn.com/tfs/TB12cKiRXXXXXcNXpXXXXXXXXXX-374-665.png)
-
 ## Simple Usage
 ```js
 <Collapse>
@@ -24,47 +22,46 @@
       <tr>
           <td>activeKey</td>
           <td>String|Array<String></td>
-          <th>The first panel key</th>
-          <td>current active Panel key</td>
+          <th>第一个面板的 key</th>
+          <td>受控模式下，当前展开的面板</td>
       </tr>
       <tr>
         <td>className</td>
         <td>String or object</td>
         <th></th>
-        <td>custom className to apply</td>
+        <td>额外顶级样式类名</td>
       </tr>
       <tr>
           <td>defaultActiveKey</td>
           <td>String|Array<String></td>
           <th>null</th>
-          <td>default active key</td>
+          <td>非受控模式下，当前展开的面板</td>
       </tr>
       <tr>
           <td>destroyInactivePanel</td>
           <td>Boolean</td>
           <th>false</th>
-          <td>If destroy the panel which not active, default false. </td>
+          <td>不激活的面板是否被销毁</td>
       </tr>
       <tr>
           <td>accordion</td>
           <td>Boolean</td>
           <th>false</th>
-          <td>accordion mode, default is null, is collapse mode</td>
+          <td>手风琴模式</td>
       </tr>
       <tr>
           <td>onChange</td>
           <td>Function(key)</td>
           <th>noop</th>
-          <td>called when collapse Panel is changed</td>
+          <td>当展开情况放生变化时触发</td>
       </tr>
     </tbody>
 </table>
 
-If `accordion` is null or false, every panel can open.  Opening another panel will not close any of the other panels.
-`activeKey` should be an string, if passing an array (the first item in the array will be used).
 
-If `accordion` is true, only one panel can be open.  Opening another panel will cause the previously opened panel to close.
-`activeKey` should be an string, if passing an array (the first item in the array will be used).
+如果 `accordion` 是 null 或者 false, 面板可以被同时展开.  展开一个面板将不会收起其他面板。`activeKey` 的类型应该是一个 `array` 。
+
+如果 `accordion` 是 true, 只有一个面板可以被展开.  展开一个面板将导致之前展开的面板被收起。`activeKey` 的类型应该是一个 `string`, 如果传进一个数组，那么数组的第一个 key 对应的面板将被展开。
 
 ### Collapse.Panel
 
@@ -82,31 +79,31 @@ If `accordion` is true, only one panel can be open.  Opening another panel will 
           <td>header</td>
           <td>String or node</td>
           <th></th>
-          <td>header content of Panel</td>
+          <td>面板头部的内容</td>
       </tr>
       <tr>
           <td>headerClass</td>
           <td>String</td>
           <th>' '</th>
-          <td>custom className to apply to header</td>
+          <td>面板头部的样式类名</td>
       </tr>
       <tr>
           <td>showArrow</td>
           <td>boolean</td>
           <th>true</th>
-          <td>show arrow beside header</td>
+          <td>是否在头部显示箭头</td>
       </tr>
       <tr>
         <td>className</td>
         <td>String or object</td>
         <th></th>
-        <td>custom className to apply</td>
+        <td>额外顶级类名</td>
       </tr>
       <tr>
         <td>style</td>
         <td>object</td>
         <th></th>
-        <td>custom style</td>
+        <td>定制样式</td>
       </tr>
     </tbody>
 </table>
