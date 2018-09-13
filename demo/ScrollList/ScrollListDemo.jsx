@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import DirectionRight from 'salt-icon/lib/DirectionRight';
 import Map from 'salt-icon/lib/Map';
 import ScrollList from 'salt-scroll-list';
+import Button from 'salt-button';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // import ScrollList from  '../../dist';
@@ -196,9 +197,11 @@ class Demo extends React.Component {
             onRefresh={this.onRefresh}
             loading={this.state.loading}
             onLoad={this.onLoad}
+            ref={(c) => { this.list = c; }}
           >
             <Other1 />
             <Other2 />
+            <Button onClick={() => { this.list.fetchData(); }}>手动请求</Button>
             {(data, index) => {
               const itemProps = propsMap[index % 9];
               return (

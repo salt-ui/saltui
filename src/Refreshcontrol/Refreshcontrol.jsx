@@ -83,6 +83,7 @@ class RefreshControl extends React.Component {
     if (prevProps.refreshing !== this.props.refreshing) {
       this.onRefreshingChanged(this.props.refreshing);
     }
+    return undefined;
   }
 
   componentDidUpdate() {
