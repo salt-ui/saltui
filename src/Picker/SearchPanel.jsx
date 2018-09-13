@@ -34,11 +34,7 @@ class SearchPanel extends React.Component {
     t.state = {
       value: value || [],
       results: [],
-      openResults: [],
       searchMode: false,
-      searchEmpty: false,
-      isOpenSearch: false,
-      hasKeyword: false,
       popupVisible: false,
       selectedResult: undefined,
     };
@@ -50,10 +46,13 @@ class SearchPanel extends React.Component {
   componentDidMount() {
     const t = this;
     if (t.props.fetchDataOnOpen) {
-      t.delaySearch('');
-      t.setState({
-        isOpenSearch: true,
-      });
+      t.fetchData();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!this.props.fetchUrl && this.props.options !== prevProps.options) {
+      this.fetchData();
     }
   }
 
@@ -61,11 +60,6 @@ class SearchPanel extends React.Component {
   setData(fetchData) {
     const t = this;
     const state = {};
-    if (fetchData && fetchData.length) {
-      state.searchEmpty = false;
-    } else {
-      state.searchEmpty = true;
-    }
     if (t.props.grouping) {
       const groups = {};
       fetchData.sort((a, b) => {
@@ -99,24 +93,14 @@ class SearchPanel extends React.Component {
           items: groups[key],
         }));
     }
-    if (t.state.isOpenSearch) {
-      state.openResults = fetchData;
-      state.isOpenSearch = false;
-    } else {
-      state.results = state.searchEmpty ? [] : fetchData;
-    }
+    state.results = fetchData;
     t.setState(state);
   }
 
-  search(term) {
+  fetchRemoteData({ term } = {}) {
     const t = this;
     if (t.fetch) {
       t.fetch.abort();
-      if (t.state.isOpenSearch) {
-        t.setState({
-          isOpenSearch: false,
-        });
-      }
     }
     if (t.props.fetchUrl) {
       t.fetch = NattyFetch.create({
@@ -132,8 +116,13 @@ class SearchPanel extends React.Component {
       }).catch((e) => {
         console.error(e); // eslint-disable-line no-console
       });
-    } else {
-      const options = t.props.options || [];
+    }
+  }
+
+  fetchLocalData({ term } = {}) {
+    const t = this;
+    const options = t.props.options || [];
+    if (t.props.filterOption) {
       if (!t.searchIndex) {
         const processFunc = (value) => {
           const phonetic = t.props.phonetic(value);
@@ -154,7 +143,28 @@ class SearchPanel extends React.Component {
           indexText.indexOf(term.toLowerCase()) > -1)).map(entity => entity.item)
         : options;
       t.setData(filteredData);
+    } else {
+      t.setData(options);
     }
+  }
+
+  fetchData({ term } = {}) {
+    const t = this;
+    if (t.props.fetchUrl) {
+      t.fetchRemoteData({ term });
+    } else {
+      t.fetchLocalData({ term });
+    }
+  }
+
+  search(term) {
+    const t = this;
+    // t.fetchData({ term });
+
+    if (t.props.fetchUrl || t.props.filterOption) {
+      t.fetchData({ term });
+    }
+    t.props.onSearch(term);
   }
 
   handleItemClick = (item) => {
@@ -193,23 +203,7 @@ class SearchPanel extends React.Component {
 
   handleSearchChange(term) {
     const t = this;
-
-    if (term) {
-      t.delaySearch(term);
-      t.setState({
-        hasKeyword: true,
-        results: [],
-      });
-    } else {
-      // abort exists fetch request
-      if (t.fetch) {
-        t.fetch.abort();
-      }
-      t.setState({
-        hasKeyword: false,
-        results: [],
-      });
-    }
+    t.delaySearch(term);
   }
 
   handleSearchEnter() {
@@ -360,25 +354,15 @@ class SearchPanel extends React.Component {
 
   renderResultCondition() {
     const t = this;
-    if (t.state.hasKeyword) {
-      if (t.state.searchEmpty) {
-        return t.renderEmpty();
-      }
-      return t.renderResults(t.state.results);
-    } else if (t.props.fetchDataOnOpen && t.state.openResults.length) {
-      return t.renderResults(t.state.openResults);
+    if (!t.state.results.length) {
+      return t.renderEmpty();
     }
-    return SearchPanel.getSearchTips();
+    return t.renderResults(t.state.results);
   }
 
   renderGroupingBar() {
     const t = this;
-    let groups = [];
-    if (t.state.hasKeyword) {
-      groups = t.state.results;
-    } else if (t.props.fetchDataOnOpen && t.state.openResults.length) {
-      groups = t.state.openResults;
-    }
+    const groups = t.state.results;
     const keys = groups.map(group => group.title);
     return (
       <GroupingBar
@@ -480,6 +464,7 @@ class SearchPanel extends React.Component {
 
 SearchPanel.defaultProps = {
   onConfirm() {},
+  onSearch() {},
   showSearch: true,
   multiple: false,
   value: undefined,
@@ -500,6 +485,7 @@ SearchPanel.defaultProps = {
   locale: undefined,
   resultFormatter: undefined,
   historyStamp: undefined,
+  filterOption: true,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -507,6 +493,7 @@ SearchPanel.propTypes = {
   value: PropTypes.array,
   confirmText: PropTypes.string,
   onConfirm: PropTypes.func,
+  onSearch: PropTypes.func,
   options: PropTypes.array,
   fetchUrl: PropTypes.string,
   fetchDataOnOpen: PropTypes.bool,
@@ -525,6 +512,7 @@ SearchPanel.propTypes = {
   locale: PropTypes.string,
   resultFormatter: PropTypes.func,
   historyStamp: PropTypes.string,
+  filterOption: PropTypes.bool,
 };
 
 SearchPanel.displayName = 'SearchPanel';

@@ -287,6 +287,28 @@ afterFetch(arr) {
 <Picker searchNotFoundContent="无匹配内容"></Picker>
 ```
 
+### onSearch
+
+描述：使用本地数据源搜索时触发的回调
+类型：`function`
+默认：`noop`
+必选：否
+
+示例：
+
+```jsx
+<Picker onSearch={(keyword) => { doSth(keyword); }}></Picker>
+```
+
+### filterOption
+
+
+描述：使用本地数据源搜索时是否内部过滤选项
+类型：`boolean`
+默认：`true`
+必选：否
+
+
 ### formatter
 
 描述：显示文本格式化方法。

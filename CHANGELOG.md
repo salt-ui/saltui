@@ -3,6 +3,9 @@
 
 * `feat`: `Popup` add new prop `maskStyle`
 * `fix`: `ScrollList` gDSFP does not update prevProps
+* `fix`: `RefreshControl` can be dragged even in refreshing 
+* `feat`: `Picker` add new props `onSeach` & `filterOption`
+
 
 ## 4.0.9 / 2018-09-11
 
