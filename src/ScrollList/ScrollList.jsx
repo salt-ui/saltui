@@ -152,6 +152,7 @@ class ScrollList extends React.Component {
       if (data !== prevData) {
         changes.data = data;
       }
+      changes.prevProps = { ...changes };
       return changes;
     }
     return null;
