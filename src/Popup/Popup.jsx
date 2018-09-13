@@ -27,6 +27,7 @@ function create(instanceId, config, content, afterClose = () => { }) {
     maskClosable = true,
     animationType,
     className,
+    maskStyle,
     onClose,
   } = props;
 
@@ -80,6 +81,7 @@ function create(instanceId, config, content, afterClose = () => { }) {
         className={classnames(`${prefixCls}-${animationType}`, {
           [className]: !!className,
         })}
+        maskStyle={maskStyle}
         onClose={() => {
           if (onClose) {
             onClose();

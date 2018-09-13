@@ -16,6 +16,7 @@
 - className (string) - popup 区域的顶级样式类名
 - transitionName (string) - 自定义显示隐藏变换动画
 - maskTransitionName (string) - 自定义遮罩层变换动画
+- maskStyle (object) - 自定义遮罩的样式
 - onMaskClose (function) - 遮罩层关闭时的回调，支持返回 Promise
 
 返回 `instance` 实例：
