@@ -201,9 +201,9 @@ class RefreshControl extends React.Component {
 
   getEnable() {
     if (this.props.getScrollContainer && this.props.getScrollContainer()) {
-      return this.props.getScrollContainer().scrollTop === 0;
+      return this.props.getScrollContainer().scrollTop === 0 && !this.props.refreshing;
     }
-    return true;
+    return !this.props.refreshing;
   }
 
   bindDrag() {

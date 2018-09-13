@@ -107,14 +107,16 @@ class Demo extends React.Component {
 
     setTimeout(() => {
       this.bindJsonpCallback((noMore, items) => {
-        this.setState({
-          refreshing: false,
-          dataGetted: true,
-          data: items,
-          pageNum: 1,
-          noMore: items.length < this.state.pageSize,
-          hasError: false,
-        });
+        setTimeout(() => {
+          this.setState({
+            refreshing: false,
+            dataGetted: true,
+            data: items,
+            pageNum: 1,
+            noMore: items.length < this.state.pageSize,
+            hasError: false,
+          });
+        }, 10000);
       }, () => {
         this.setState({
           refreshing: false,
@@ -145,14 +147,16 @@ class Demo extends React.Component {
     console.log('start loading page', curr);
     setTimeout(() => {
       this.bindJsonpCallback((noMore, items) => {
-        this.setState({
-          loading: false,
-          dataGetted: true,
-          data: this.state.data.concat(items),
-          pageNum: curr + 1,
-          noMore,
-          hasError: false,
-        });
+        setTimeout(() => {
+          this.setState({
+            loading: false,
+            dataGetted: true,
+            data: this.state.data.concat(items),
+            pageNum: curr + 1,
+            noMore,
+            hasError: false,
+          });
+        }, 0);
       }, () => {
         this.setState({
           loading: false,

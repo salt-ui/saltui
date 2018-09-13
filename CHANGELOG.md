@@ -1,4 +1,9 @@
 
+## 4.0.10 / 2018-09-12
+
+* `feat`: `Popup` add new prop `maskStyle`
+* `fix`: `ScrollList` gDSFP does not update prevProps
+
 ## 4.0.9 / 2018-09-11
 
 * `fix`: `Toast` Toast.show bug if called multiple
