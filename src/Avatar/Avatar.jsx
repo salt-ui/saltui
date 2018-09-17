@@ -92,10 +92,9 @@ export default class Avatar extends Component {
     style: {},
   };
 
-  constructor(props) {
-    super(props);
+  getStyle() {
     let size;
-    switch (props.size) {
+    switch (this.props.size) {
       case 'normal':
         size = '40px';
         break;
@@ -103,21 +102,21 @@ export default class Avatar extends Component {
         size = '48px';
         break;
       default:
-        size = unitize(props.size);
+        size = unitize(this.props.size);
     }
-
-    this.style = {
+    return {
       width: size,
       height: size,
       lineHeight: size,
       fontSize: '14px',
       position: 'relative',
-      ...props.style,
+      ...this.props.style,
     };
   }
 
   render() {
-    const { props, style } = this;
+    const { props } = this;
+    const style = this.getStyle();
     if ((!props.name && !props.icon) || props.src) {
       return (
         <img

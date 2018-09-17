@@ -10,6 +10,8 @@ import React from 'react';
 import Button from 'salt-button';
 import Dialog from 'salt-dialog';
 
+window.Dialog = Dialog;
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);

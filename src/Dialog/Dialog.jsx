@@ -309,8 +309,8 @@ const show = function show(options = {}) {
  * 隐藏通过 alert/confirm 展示出来的弹窗实例
  */
 Dialog.hide = function hide() {
-  ReactDOM.unmountComponentAtNode(wrapper);
   if (document.body.contains(wrapper)) {
+    ReactDOM.unmountComponentAtNode(wrapper);
     document.body.removeChild(wrapper);
   }
 };

@@ -1,4 +1,9 @@
 
+## 4.0.11 / 2018-09-17
+
+* `fix`: `Avatar` cannot reassign readonly property bug in React@16.x
+* `doc`: update github issue template
+
 ## 4.0.10 / 2018-09-12
 
 * `feat`: `Popup` add new prop `maskStyle`
