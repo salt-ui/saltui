@@ -2,6 +2,7 @@
 ## 4.0.11 / 2018-09-17
 
 * `fix`: `Avatar` cannot reassign readonly property bug in React@16.x
+* `fix`: `Dialog` bug when `Dialog.hide` is called before `Dialog.confirm`
 * `doc`: update github issue template
 
 ## 4.0.10 / 2018-09-12
