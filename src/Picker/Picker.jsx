@@ -9,8 +9,8 @@ const Picker = ({ visible, ...panelProps }) => {
   const { locale } = panelProps;
   const fixProps = {
     confirmText: panelProps.confirmText || i18n[locale].confirmText,
-    searchPlaceholder: panelProps.confirmText || i18n[locale].searchPlaceholder,
-    noData: panelProps.confirmText || i18n[locale].noData,
+    searchPlaceholder: panelProps.searchPlaceholder || i18n[locale].searchPlaceholder,
+    searchNotFoundContent: panelProps.searchNotFoundContent || i18n[locale].noData,
   };
   return (
     <Popup
