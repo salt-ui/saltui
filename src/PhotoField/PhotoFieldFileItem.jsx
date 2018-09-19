@@ -104,7 +104,12 @@ class PhotoFieldFileItem extends React.Component {
   }
 
   handleDelete() {
-    this.props.onDeleteImage(this.props.index);
+    const { onDeleteImage, file } = this.props;
+    if (file) {
+      file.cancel();
+    } else {
+      onDeleteImage(this.props.index);
+    }
   }
 
   renderProgressIcon() {
