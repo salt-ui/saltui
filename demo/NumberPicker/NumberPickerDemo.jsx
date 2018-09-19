@@ -1,8 +1,8 @@
 /**
- * NumberPicker Component Demo for tingle
+ * NumberPicker Component Demo for SaltUI
  * @author sujingjing
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 

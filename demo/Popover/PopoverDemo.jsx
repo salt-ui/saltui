@@ -1,8 +1,8 @@
 /**
- * Popover Component Demo for tingle
+ * Popover Component Demo for SaltUI
  * @author wenzhao.fw
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 

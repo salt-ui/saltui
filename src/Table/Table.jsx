@@ -1,8 +1,8 @@
 /**
- * Table Component for tingle
+ * Table Component for SaltUI
  * @author sujingjing
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import PropTypes from 'prop-types';

@@ -1,8 +1,8 @@
 /**
- * CheckboxField Component Demo for tingle
+ * CheckboxField Component Demo for SaltUI
  * @author shanchao
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import 'salt-context';

@@ -1,8 +1,8 @@
 /**
- * Refreshcontrol Component Demo for tingle
+ * Refreshcontrol Component Demo for SaltUI
  * @author xiaohe.wp
  *
- * Copyright 2014-2017, Tingle Team.
+ * Copyright 2014-2017, SaltUI Team.
  * All rights reserved.
  */
 

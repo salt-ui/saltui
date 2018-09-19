@@ -1,8 +1,8 @@
 /**
- * Calendar2 Component Demo for tingle
+ * Calendar2 Component Demo for SaltUI
  * @author quanyun.mqy
  *
- * Copyright 2014-2017, Tingle Team.
+ * Copyright 2014-2017, SaltUI Team.
  * All rights reserved.
  */
 

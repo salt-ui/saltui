@@ -1,8 +1,8 @@
 /**
- * Timeline Component Demo for tingle
+ * Timeline Component Demo for SaltUI
  * @author zhongsisi
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import 'salt-context';

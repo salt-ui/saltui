@@ -1,8 +1,8 @@
 /**
- * Progress Component Demo for tingle
+ * Progress Component Demo for SaltUI
  * @author shallker.wxd(dongnan)
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 

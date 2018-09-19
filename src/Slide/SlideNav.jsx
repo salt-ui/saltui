@@ -1,8 +1,8 @@
 /**
-* Slide Component for tingle
+* Slide Component for SaltUI
 * @author gnosaij,changming
 *
-* Copyright 2014-2015, Tingle Team, Alinw.
+* Copyright 2014-2015, SaltUI Team, Alinw.
 * All rights reserved.
 */
 import React from 'react';

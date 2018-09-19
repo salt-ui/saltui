@@ -1,8 +1,8 @@
 /**
-* Dialog Component Demo for tingle
+* Dialog Component Demo for SaltUI
 * @author minjie
 *
-* Copyright 2014-2015, Tingle Team, Alinw.
+* Copyright 2014-2015, SaltUI Team, Alinw.
 * All rights reserved.
 */
 

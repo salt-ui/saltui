@@ -1,8 +1,8 @@
 /**
- * FoldablePane Component for tingle
+ * FoldablePane Component for SaltUI
  * @author qingnan.yqn
  *
- * Copyright 2014-2017, Tingle Team.
+ * Copyright 2014-2017, SaltUI Team.
  * All rights reserved.
  */
 import React from 'react';

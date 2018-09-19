@@ -1,8 +1,8 @@
 /**
- * Popup Component for tingle
+ * Popup Component for SaltUI
  * @author guanghong.wsj
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  * fork from https://github.com/ant-design/ant-design-mobile/blob/master/components/popup
  */

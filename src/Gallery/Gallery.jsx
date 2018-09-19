@@ -1,8 +1,8 @@
 /**
- * Gallery Component for tingle
+ * Gallery Component for SaltUI
  * @author cm
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import React from 'react';

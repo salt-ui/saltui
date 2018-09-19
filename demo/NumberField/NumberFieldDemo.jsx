@@ -1,8 +1,8 @@
 /**
- * NumberField Component Demo for tingle
+ * NumberField Component Demo for SaltUI
  * @author guanghong.wsj
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 

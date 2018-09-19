@@ -1,8 +1,8 @@
 /**
- * Totop Component for tingle
+ * Totop Component for SaltUI
  * @author shaochao.wsc
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import React from 'react';

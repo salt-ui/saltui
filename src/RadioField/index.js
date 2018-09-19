@@ -1,8 +1,8 @@
 /**
- * RadioField Component Style for tingle
+ * RadioField Component Style for SaltUI
  * @author shanchao
  *
- * Copyright 2014-2016, Tingle Team, Alinw.
+ * Copyright 2018-2019, SaltUI Team, Alinw.
  * All rights reserved.
  */
 export default from './RadioField';

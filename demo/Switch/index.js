@@ -1,8 +1,8 @@
 /**
- * Switch Component Demo for tingle
+ * Switch Component Demo for SaltUI
  * @author ruiyang.dry
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import 'salt-context';

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 const defaultProps = {
   strokeWidth: 1,
@@ -13,6 +14,7 @@ class Circle extends React.Component {
     strokeWidth: PropTypes.number,
     size: PropTypes.number,
     showInfo: PropTypes.bool,
+    onClick: PropTypes.func,
   }
   static defaultProps = {
     status: 'normal', // exception active
@@ -20,9 +22,11 @@ class Circle extends React.Component {
     strokeWidth: 10,
     size: 156,
     showInfo: true,
+    onClick: () => {},
   }
   render() {
     const props = { ...this.props };
+    const { className, onClick } = props;
     const { strokeWidth } = props;
     const radius = (50 - (strokeWidth / 2));
     const pathString = `M 50,50 m 0,-${radius}
@@ -46,7 +50,7 @@ class Circle extends React.Component {
     });
 
     return (
-      <svg className="t-progress-circle" viewBox="0 0 100 100">
+      <svg onClick={onClick} className={classnames('t-progress-circle', className)} viewBox="0 0 100 100">
         <path
           className="t-progress-circle-trail"
           d={pathString}

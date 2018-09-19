@@ -1,8 +1,8 @@
 /**
- * SearchBar Component for tingle
+ * SearchBar Component for SaltUI
  * @author zhouquan.yezq
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import classnames from 'classnames';

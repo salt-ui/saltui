@@ -1,9 +1,9 @@
 /**
- * Datetime Component for tingle
+ * Datetime Component for SaltUI
  * @author caoke.ck & shumi.lg
  * @modify quanyun.mqy 于 2017.9.8 从 tingle-datetime-field 中分拆出来
  *
- * Copyright 2014-2017, Tingle Team.
+ * Copyright 2014-2017, SaltUI Team.
  * All rights reserved.
  */
 

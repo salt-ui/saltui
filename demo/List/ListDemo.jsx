@@ -1,8 +1,8 @@
 /**
- * List Component Demo for tingle
+ * List Component Demo for SaltUI
  * @author muxin
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 

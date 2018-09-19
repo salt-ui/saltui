@@ -1,8 +1,8 @@
 /**
- * Totop Component Demo for tingle
+ * Totop Component Demo for SaltUI
  * @author shaochao.wsc
  *
- * Copyright 2014-2017, Tingle Team.
+ * Copyright 2014-2017, SaltUI Team.
  * All rights reserved.
  */
 

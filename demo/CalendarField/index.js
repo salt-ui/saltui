@@ -1,8 +1,8 @@
 /**
- * CalendarField Component Demo for tingle
+ * CalendarField Component Demo for SaltUI
  * @author quanyun.mqy
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import 'salt-context';

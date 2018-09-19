@@ -1,8 +1,8 @@
 /**
- * TabBar Component Style for tingle
+ * TabBar Component Style for SaltUI
  * @author zhouwenjie
  *
- * Copyright 2014-2016, Tingle Team, Alinw.
+ * Copyright 2018-2019, SaltUI Team, Alinw.
  * All rights reserved.
  */
 

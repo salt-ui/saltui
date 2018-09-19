@@ -1,10 +1,10 @@
 /**
- * Calendar Component for tingle
+ * Calendar Component for SaltUI
  * @author quanyun.mqy
  *
  * 继承自Panel，只处理级联相关的逻辑
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import React from 'react';

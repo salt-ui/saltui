@@ -1,8 +1,8 @@
 /**
- * Button Component Demo for tingle
+ * Button Component Demo for SaltUI
  * @author cm
  *
- * Copyright 2014-2015, Tingle Team, Alinw.
+ * Copyright 2014-2015, SaltUI Team, Alinw.
  * All rights reserved.
  */
 import React from 'react';

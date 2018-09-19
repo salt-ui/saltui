@@ -1,8 +1,8 @@
 /**
- * TextareaField Component Demo for tingle
+ * TextareaField Component Demo for SaltUI
  * @author zhangshun@alipay.com
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import Group from 'salt-group';

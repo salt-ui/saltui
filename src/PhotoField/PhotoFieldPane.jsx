@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlusThin from 'salt-icon/lib/PlusThin';
 import IconPhoto from 'salt-icon/lib/Photo';
+import IconUpload from 'salt-icon/lib/Upload';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import Field from '../Field';
@@ -9,6 +10,7 @@ import { prefixClass } from '../Context';
 import FoldablePane from '../FoldablePane';
 import PhotoFieldItem from './PhotoFieldItem';
 import PhotoFieldUploadItem from './PhotoFieldUploadItem';
+import FileItem from './PhotoFieldFileItem';
 import { getData } from './util';
 
 class PhotoFieldPane extends React.Component {
@@ -18,9 +20,16 @@ class PhotoFieldPane extends React.Component {
   }
 
   componentDidMount() {
+    const { type } = this.props;
     if (this.item && this.list) {
-      this.foldHeight = (this.item.getDom().clientHeight * 2)
+      if (type === 'photo') {
+        this.foldHeight = (this.item.getDom().clientHeight * 2)
         + parseInt(this.splitLine.clientHeight, 10) + 1;
+      } else if (type === 'file') {
+        this.foldHeight = (this.item.getDom().clientHeight * 5)
+        + parseInt(this.splitLine.clientHeight, 10) + 12;
+      }
+
       this.forceUpdate();
     }
   }
@@ -50,6 +59,9 @@ class PhotoFieldPane extends React.Component {
 
   renderUploadIcon() {
     const t = this;
+    if (t.props.type !== 'photo') {
+      return null;
+    }
     const itemWidth = `${100 / t.props.columns}%`;
     const style = { width: itemWidth, paddingTop: itemWidth, paddingBottom: '4px' };
     if (t.isUploadDisabled() || t.props.readOnly) {
@@ -88,7 +100,7 @@ class PhotoFieldPane extends React.Component {
         onPreviewImage: (i) => { t.props.onImagePreview(i); },
       };
       return (
-        <PhotoFieldItem {...props} />
+        t.props.type === 'photo' ? <PhotoFieldItem {...props} /> : <FileItem {...props} />
       );
     });
     const isItemDisabled =
@@ -103,7 +115,7 @@ class PhotoFieldPane extends React.Component {
           disabled: isItemDisabled,
         };
         return (
-          <PhotoFieldUploadItem {...props} />
+          t.props.type === 'photo' ? <PhotoFieldUploadItem {...props} /> : <FileItem {...props} />
         );
       });
     const shouldHide = photoItem.length === 0 && files.length === 0;
@@ -111,12 +123,13 @@ class PhotoFieldPane extends React.Component {
     const list = (
       <div
         className={classnames(prefixClass('photo-list'), {
+          [prefixClass('photo-file-list')]: t.props.type === 'file',
         })}
         ref={(c) => { this.list = c; }}
       >
         <div className={prefixClass('photo-list-split-line')} ref={(c) => { this.splitLine = c; }} />
+        {t.props.type === 'photo' ? photoItem.reverse() : photoItem}
         {files}
-        {photoItem.reverse()}
         {this.renderUploadIcon()}
       </div>
     );
@@ -151,6 +164,7 @@ class PhotoFieldPane extends React.Component {
 
   render() {
     const t = this;
+    const IconType = t.props.type === 'photo' ? IconPhoto : IconUpload;
     return (
       <div
         className={classnames(prefixClass('photo-field'), {
@@ -169,7 +183,7 @@ class PhotoFieldPane extends React.Component {
             <div className={classnames(prefixClass('photo-field-label-right'))}>
               {t.renderPlaceholder()}
               {!t.props.readOnly
-                ? <IconPhoto
+                ? <IconType
                   onClick={() => { if (!t.isUploadDisabled()) { t.props.onPickerClick(); } }}
                   className={classnames(prefixClass('photo-upload-icon'), {
                     [prefixClass('photo-upload-icon__disabled')]: t.isUploadDisabled(),
@@ -203,6 +217,7 @@ PhotoFieldPane.defaultProps = {
   readOnly: undefined,
   required: undefined,
   layout: 'v',
+  type: 'photo',
 };
 // http://facebook.github.io/react/docs/reusable-components.html
 PhotoFieldPane.propTypes = {
@@ -217,6 +232,7 @@ PhotoFieldPane.propTypes = {
   onImageDelete: PropTypes.func,
   onImagePreview: PropTypes.func,
   layout: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default PhotoFieldPane;

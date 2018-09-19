@@ -1,8 +1,8 @@
 /**
- * Slot Component Demo for tingle
+ * Slot Component Demo for SaltUI
  * @author caoke.ck
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 

@@ -1,8 +1,8 @@
 /**
- * Toast Component Demo for tingle
+ * Toast Component Demo for SaltUI
  * @author minjie
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import 'salt-context';

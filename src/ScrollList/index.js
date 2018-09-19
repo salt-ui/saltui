@@ -1,8 +1,8 @@
 /**
- * ScrollList Component Style for tingle
+ * ScrollList Component Style for SaltUI
  * @author zhouquan.yezq
  *
- * Copyright 2014-2016, Tingle Team, Alinw.
+ * Copyright 2018-2019, SaltUI Team, Alinw.
  * All rights reserved.
  */
 export default from './ScrollList';

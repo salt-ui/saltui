@@ -1,8 +1,8 @@
 /**
- * Refreshcontrol Component Style for tingle
+ * Refreshcontrol Component Style for SaltUI
  * @author xiaohe.wp
  *
- * Copyright 2014-2017, Tingle Team, Alinw.
+ * Copyright 2014-2017, SaltUI Team, Alinw.
  * All rights reserved.
  */
 export default from './Refreshcontrol';
