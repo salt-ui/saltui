@@ -3,6 +3,7 @@
 
 * `fix`: `Picker` wrong search placeholder & notFoundContent
 * `fix`: `CalendarField` makeViewValue bug in iOS
+* `fix`: `TextareaField` rows calculation bug
 
 ## 4.1.0 / 2018-09-19
 

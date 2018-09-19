@@ -12,6 +12,7 @@ import Context, { prefixClass } from '../Context';
 import Field from '../Field';
 import calculateHeight from './calculateHeight';
 import { shouldUpdate } from '../Utils';
+
 class TextareaField extends React.Component {
   constructor(props) {
     super(props);

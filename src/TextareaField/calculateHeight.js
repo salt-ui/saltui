@@ -95,7 +95,7 @@ const calculateHeight = (textarea, minRows, maxRows) => {
     }
   }
   return {
-    rows: (height / singleRowHeight) > maxRows ? maxRows : (height / singleRowHeight),
+    rows: Math.ceil((height / singleRowHeight) > maxRows ? maxRows : (height / singleRowHeight)),
   };
 };
 
