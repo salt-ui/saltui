@@ -1,4 +1,9 @@
 
+## 4.1.1 / 2018-09-20
+
+* `fix`: `Picker` wrong search placeholder & notFoundContent
+* `fix`: `CalendarField` makeViewValue bug in iOS
+
 ## 4.1.0 / 2018-09-19
 
 * `feat`: `PhotoField` support file type

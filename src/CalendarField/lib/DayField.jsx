@@ -155,16 +155,16 @@ class DayField extends React.Component {
       case 'dayWithHalf':
       case 'dayWithTime':
         // 格式化日期
-        result.start = Formatter.date(result.start, t.props.formatter
-          || defaultDayFormatterMap[t.props.type]);
-        result.end = Formatter.date(result.end, t.props.formatter
-          || defaultDayFormatterMap[t.props.type]);
         if (!Number.isNaN(new Date(result.start))) {
           result = t.makeWeekText(result, 'start');
         }
         if (!Number.isNaN(new Date(result.end))) {
           result = t.makeWeekText(result, 'end');
         }
+        result.start = Formatter.date(result.start, t.props.formatter
+          || defaultDayFormatterMap[t.props.type]);
+        result.end = Formatter.date(result.end, t.props.formatter
+          || defaultDayFormatterMap[t.props.type]);
         // result
         if (t.props.singleMode) {
           result.startDateType =
