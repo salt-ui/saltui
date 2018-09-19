@@ -1,8 +1,8 @@
 /**
- * Collection Component Demo for tingle
+ * Collection Component Demo for SaltUI
  * @author gnosaij, changming.zy
  *
- * Copyright 2014-2017, Tingle Team, Alinw.
+ * Copyright 2014-2017, SaltUI Team, Alinw.
  * All rights reserved.
  */
 import React from 'react';

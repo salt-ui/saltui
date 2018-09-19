@@ -1,8 +1,8 @@
 /**
- * Totop Component Style for tingle
+ * Totop Component Style for SaltUI
  * @author shaochao.wsc
  *
- * Copyright 2014-2017, Tingle Team, Alinw.
+ * Copyright 2014-2017, SaltUI Team, Alinw.
  * All rights reserved.
  */
 

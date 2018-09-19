@@ -1,8 +1,8 @@
 /**
- * Tip Component Demo for tingle
+ * Tip Component Demo for SaltUI
  * @author minjie
  *
- * Copyright 2014-2016, Tingle Team, Alinw.
+ * Copyright 2018-2019, SaltUI Team, Alinw.
  * All rights reserved.
  */
 

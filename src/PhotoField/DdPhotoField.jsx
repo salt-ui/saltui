@@ -1,8 +1,8 @@
 /**
- * PhotoField Component for tingle
+ * PhotoField Component for SaltUI
  * @author
  * alex.mm
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 
@@ -137,7 +137,7 @@ class PhotoField extends React.Component {
       columns, placeholder, label,
       photoList, required,
       maxUpload, readOnly, className, tip,
-      onImagePreview,
+      onImagePreview, type,
     } = this.props;
     const paneProps = {
       columns,
@@ -148,6 +148,7 @@ class PhotoField extends React.Component {
       maxUpload,
       readOnly,
       required,
+      type,
       tip,
       onPickerClick: () => { this.onPickHandler(); },
       onImageDelete: (index) => { this.handleDeleteImage(index); },

@@ -1,8 +1,8 @@
 /**
- * Menu Component for tingle
+ * Menu Component for SaltUI
  * @author wb-cq231719 chenqiu
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import React, { Component } from 'react';

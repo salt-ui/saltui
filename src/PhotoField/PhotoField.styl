@@ -1,165 +1,230 @@
 /**
- * PhotoField Component Style for tingle
+ * PhotoField Component Style for SaltUI
  * @author
- * 
- * Copyright 2014-2016, Tingle Team.
+ *
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 .{$prefix}-photo-field {
-    .{$prefix}-progress-circle {
-        &-trail {
-            stroke: $normal-alpha-7;
-        }
-
-        &-path {
-            stroke: $function-blue;
-        }
+  .{$prefix}-progress-circle {
+    &-trail {
+      stroke: $normal-alpha-7;
     }
 
-    .{$prefix}-photo-field-placeholder {
-        text-align: right;
-        color: $normal-alpha-4;
-        padding-right: 6px;
-        font-size: 12px;
-        display: inline-block;
+    &-path {
+      stroke: $function-blue;
     }
-    .{$prefix}-field-content-box {
-        padding: 0px;
-    }
+  }
+
+  .{$prefix}-photo-field-placeholder {
+    text-align: right;
+    color: $normal-alpha-4;
+    padding-right: 6px;
+    font-size: 12px;
+    display: inline-block;
+  }
+
+  .{$prefix}-field-content-box {
+    padding: 0px;
+  }
 }
 
-
 .{$prefix}-photo-field-label-right {
-    height: 24px;
+  height: 24px;
 }
 
 .{$prefix}-photo-item {
-    padding: 16px 12px 0 0;
+  padding: 16px 12px 0 0;
 
-    &-img {
-        width: 100%;
-        height: 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        border-radius: $global-border-radius;
-        display: block;
-    }
+  &-img {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: $global-border-radius;
+    display: block;
+  }
 }
 
 .{$prefix}-photo-upload-icon {
-    position: relative;
-    top: -1px;
+  position: relative;
+  top: -1px;
+
+  svg {
+    fill: $normal-alpha-4;
+  }
+
+  &__disabled {
+    display: inline-block;
 
     svg {
-        fill: $normal-alpha-4;
+      fill: $normal-alpha-6;
     }
-
-    &__disabled {
-        display: inline-block;
-
-        svg {
-            fill: $normal-alpha-6;
-        }
-    }
+  }
 }
 
 .{$prefix}-photo-upload-item,
 .{$prefix}-photo-upload-icon-item {
-    position: absolute;
-    padding: 16px 12px 0 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  padding: 16px 12px 0 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes circleRotation {
-    0% {
-        transform: rotate(0);
-    }
+  0% {
+    transform: rotate(0);
+  }
 
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .{$prefix}-photo-upload-item-box {
-    width: 100%;
-    height: 100%;
-    hairline: border $normal-alpha-6;
-    align-items: center;
-    justify-content: center;
-    border-radius: $global-border-radius;
-    display: flex;
+  width: 100%;
+  height: 100%;
+  hairline: border $normal-alpha-6;
+  align-items: center;
+  justify-content: center;
+  border-radius: $global-border-radius;
+  display: flex;
 
-    &__progress {
-        .{$prefix}-progress-circle {
-            width: 20px;
-            height: 20px;
-            animation: circleRotation linear 2s;
-            animation-iteration-count: infinite;
-        }
+  &__progress {
+    .{$prefix}-progress-circle {
+      width: 20px;
+      height: 20px;
+      animation: circleRotation linear 2s;
+      animation-iteration-count: infinite;
     }
+  }
 
-    &__error {
-        hairline: border $function-red;
-        background: $function-red-alpha-8;
-        flex-direction: column;
+  &__error {
+    hairline: border $function-red;
+    background: $function-red-alpha-8;
+    flex-direction: column;
 
-        svg {
-            width: 20px;
-            height: 20px;
-            fill: $function-red;
-        }
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: $function-red;
     }
+  }
 }
 
 .{$prefix}-photo-upload-error-msg {
-    font-size: 12px;
-    color: $function-red;
-    margin-top: 8px;
+  font-size: 12px;
+  color: $function-red;
+  margin-top: 8px;
 }
 
 .{$prefix}-photo-list-upload-icon {
-    display: flex;
-    border: 1px dashed $normal-alpha-6;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    border-radius: $global-border-radius;
+  display: flex;
+  border: 1px dashed $normal-alpha-6;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: $global-border-radius;
 
-    svg {
-        fill: $normal-alpha-4;
-    }
+  svg {
+    fill: $normal-alpha-4;
+  }
 }
 
 .{$prefix}-photo-list {
-    // hairline: border-top $normal-alpha-7;
-    padding: 8px 4px 20px 16px;
-    width: 100%;
-    overflow: hidden;
+  // hairline: border-top $normal-alpha-7;
+  padding: 8px 4px 20px 16px;
+  width: 100%;
+  overflow: hidden;
 
-    .{$prefix}-photo-field .{$prefix}-foldable-pane & {
-        padding-bottom: 0;
-    }
+  .{$prefix}-photo-field .{$prefix}-foldable-pane & {
+    padding-bottom: 0;
+  }
+}
+
+.{$prefix}-photo-file-list {
+  padding-right: 0px;
+  padding-bottom: 0px;
 }
 
 .{$prefix}-photo-list-split-line {
-    hairline: border-top $normal-alpha-7;    
-    height: 5px;
-    margin-right: 12px;
+  hairline: border-top $normal-alpha-7;
+  height: 5px;
+  margin-right: 12px;
 }
 
 .{$prefix}-photo-delete-icon {
-    top: 8px;
-    right: 4px;
-    z-index: 2;
-    position: absolute;
+  top: 8px;
+  right: 4px;
+  z-index: 2;
+  position: absolute;
+
+  svg {
+    fill: $dark-alpha-3;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.{$prefix}-photo-file-item {
+  padding: 16px 0;
+  hairline: border-bottom $normal-alpha-7;
+  display: flex;
+  align-items: center;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  &-name {
+    color: $dark-alpha-2;
+    font-size: 14px;
+    flex: 1;
+  }
+
+  &-type-icon {
+    margin-right: 12px;
 
     svg {
-        fill: $dark-alpha-3;
-        width: 18px;
-        height: 18px;
+      width: 24px;
+      height: 24px;
+      fill: $normal-alpha-4;
     }
+  }
+
+  &-delete-icon {
+    margin-right: 17px;
+
+    svg {
+      fill: $dark-alpha-3;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &.is-error {
+    .{$prefix}-photo-file-item-name {
+      color: $function-red;
+    }
+    .{$prefix}-photo-file-item-type-icon {
+      svg {
+        fill: $function-red;
+      }
+    }
+  }
+
+  &.is-progress {
+    .{$prefix}-photo-progress-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 14px;
+      margin-left: 2px;
+    }
+    .{$prefix}-photo-file-item-name {
+      color: $normal-alpha-4;
+    }
+  }
 }

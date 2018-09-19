@@ -1,8 +1,8 @@
 /**
- * Collapse Component Demo for tingle
+ * Collapse Component Demo for SaltUI
  * @author 
  *
- * Copyright 2014-2017, Tingle Team.
+ * Copyright 2014-2017, SaltUI Team.
  * All rights reserved.
  */
 

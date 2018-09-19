@@ -1,8 +1,8 @@
 /**
- * Steps Component for tingle
+ * Steps Component for SaltUI
  * @author muwen.lb
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import React from 'react';

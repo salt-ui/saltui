@@ -1,8 +1,8 @@
 /**
- * List Component Style for tingle
+ * List Component Style for SaltUI
  * @author muxin
  *
- * Copyright 2014-2016, Tingle Team, Alinw.
+ * Copyright 2018-2019, SaltUI Team, Alinw.
  * All rights reserved.
  */
 export default from './List';

@@ -1,9 +1,9 @@
 /**
  * Tingle Context
- * The environment for tingle's initialization
+ * The environment for SaltUI's initialization
  * @author yize
  *
- * Copyright 2014-2015, Tingle Team, Alinw.
+ * Copyright 2014-2015, SaltUI Team, Alinw.
  * All rights reserved.
  */
 

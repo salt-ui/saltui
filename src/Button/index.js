@@ -1,8 +1,8 @@
 /**
- * Button Component Style for tingle
+ * Button Component Style for SaltUI
  * @author cm
  *
- * Copyright 2014-2016, Tingle Team, Alinw.
+ * Copyright 2018-2019, SaltUI Team, Alinw.
  * All rights reserved.
  */
 import Button from './Button';

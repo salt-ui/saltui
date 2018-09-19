@@ -1,8 +1,8 @@
 /**
- * Field Component Demo for tingle
+ * Field Component Demo for SaltUI
  * @author
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 

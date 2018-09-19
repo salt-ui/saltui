@@ -1,8 +1,8 @@
 /**
- * Group Component Demo for tingle
+ * Group Component Demo for SaltUI
  * @author jiasong.js
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import 'salt-context';

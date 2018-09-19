@@ -1,8 +1,8 @@
 /**
- * Pagination Component for tingle
+ * Pagination Component for SaltUI
  * @author changming.zy
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import React, { Component } from 'react';

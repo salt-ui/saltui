@@ -1,8 +1,8 @@
 /**
- * Switch Component for tingle
+ * Switch Component for SaltUI
  * @author ruiyang.dry
  *
- * Copyright 2014-2016, Tingle Team, Alinw.
+ * Copyright 2018-2019, SaltUI Team, Alinw.
  * All rights reserved.
  */
 import React from 'react';

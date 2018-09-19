@@ -1,8 +1,8 @@
 /**
- * Avatar Component for tingle
+ * Avatar Component for SaltUI
  *
  *
- * Copyright 2014-2017, Tingle Team.
+ * Copyright 2014-2017, SaltUI Team.
  * All rights reserved.
  */
 import React, { Component } from 'react';

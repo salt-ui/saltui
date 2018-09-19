@@ -1,8 +1,8 @@
 /**
- * Box Component Demo for tingle
+ * Box Component Demo for SaltUI
  * @author
  *
- * Copyright 2014-2015, Tingle Team, Alinw.
+ * Copyright 2014-2015, SaltUI Team, Alinw.
  * All rights reserved.
  */
 

@@ -1,8 +1,8 @@
 /**
- * Slide Component Demo for tingle
+ * Slide Component Demo for SaltUI
  * @author cm
  *
- * Copyright 2014-2017, Tingle Team.
+ * Copyright 2014-2017, SaltUI Team.
  * All rights reserved.
  */
 import 'salt-context';

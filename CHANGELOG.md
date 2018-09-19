@@ -1,4 +1,8 @@
 
+## 4.1.0 / 2018-09-19
+
+* `feat`: `PhotoField` support file type
+
 ## 4.0.11 / 2018-09-17
 
 * `fix`: `Avatar` cannot reassign readonly property bug in React@16.x

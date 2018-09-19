@@ -1,8 +1,8 @@
 /**
- * PhotoField Component for tingle
+ * PhotoField Component for SaltUI
  * @author
  * alex.mm
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 
@@ -90,8 +90,11 @@ class PhotoField extends React.Component {
   getCore() {
     const options = {
       queueCapcity: this.getMax(),
-      accept: 'images',
     };
+    const { type } = this.props;
+    if (type === 'photo') {
+      options.accept = 'images';
+    }
     ['name', 'url', 'params', 'action', 'data', 'headers', 'withCredentials', 'timeout',
       'chunkEnable', 'chunkSize', 'chunkRetries', 'chunkProcessThreads', 'processThreads',
       'autoPending', 'multiple', 'accept', 'sizeLimit', 'preventDuplicate',
@@ -209,12 +212,13 @@ class PhotoField extends React.Component {
       columns, placeholder, label,
       photoList, required, locale,
       maxUpload, readOnly, className, tip,
-      onImagePreview,
+      onImagePreview, type,
     } = this.props;
     const paneProps = {
       columns,
       placeholder,
       className,
+      type,
       label,
       locale,
       photoList,
@@ -262,6 +266,7 @@ PhotoField.defaultProps = {
   url: undefined,
   className: undefined,
   tip: undefined,
+  type: 'photo',
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -287,6 +292,7 @@ PhotoField.propTypes = {
   autoPending: PropTypes.bool,
   className: PropTypes.string,
   tip: PropTypes.string,
+  type: PropTypes.oneOf(['file', 'photo']),
 };
 
 PhotoField.displayName = 'PhotoField';

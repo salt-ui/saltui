@@ -1,8 +1,8 @@
 /**
- * PhotoField Component Demo for tingle
+ * PhotoField Component Demo for SaltUI
  * @author
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 
@@ -74,7 +74,8 @@ class Demo extends React.Component {
           maxUpload={9}
           name="file"
           readOnly={false}
-          // url="http://eternalsky.me:8122/file/upload?sleep=10000"
+          type="file"
+          // url="http://eternalsky.me:8122/file/upload?sleep=50"
           url="http://xxx.aaa"
           photoList={this.state.photoList}
           tip="这里是提示信息"

@@ -1,9 +1,9 @@
 /**
  * Layer Component, all model tips's base backbone
- * (Dialog, loading...) for tinglejs
+ * (Dialog, loading...) for SaltUIjs
  * @author gnosaij
  *
- * Copyright 2014-2016, Tingle Team, Alinw.
+ * Copyright 2018-2019, SaltUI Team, Alinw.
  * All rights reserved.
  */
 

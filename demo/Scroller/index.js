@@ -1,8 +1,8 @@
 /**
- * Scroller Component Demo for tingle
+ * Scroller Component Demo for SaltUI
  * @author gbk
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import 'salt-context';

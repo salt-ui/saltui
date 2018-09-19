@@ -1,8 +1,8 @@
 /**
- * SelectField Component Style for tingle
+ * SelectField Component Style for SaltUI
  * @author longyan
  *
- * Copyright 2014-2016, Tingle Team, Alinw.
+ * Copyright 2018-2019, SaltUI Team, Alinw.
  * All rights reserved.
  */
 export default from './PickerField';

@@ -1,8 +1,8 @@
 /**
- * Dialog Component for tingle
+ * Dialog Component for SaltUI
  * @author minjie,cm
  *
- * Copyright 2014-2016, Tingle Team, Alinw.
+ * Copyright 2018-2019, SaltUI Team, Alinw.
  * All rights reserved.
  */
 import React from 'react';

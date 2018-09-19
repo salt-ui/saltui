@@ -1,8 +1,8 @@
 /**
- * Group Component for tingle
+ * Group Component for SaltUI
  * @author gnosaij
  *
- * Copyright 2014-2016, Tingle Team.
+ * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 import React from 'react';

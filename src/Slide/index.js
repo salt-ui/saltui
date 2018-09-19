@@ -1,8 +1,8 @@
 /**
- * Slide Component Style for tingle
+ * Slide Component Style for SaltUI
  * @author changming
  *
- * Copyright 2014-2017, Tingle Team, Alinw.
+ * Copyright 2014-2017, SaltUI Team, Alinw.
  * All rights reserved.
  */
 
