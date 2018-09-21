@@ -1,4 +1,8 @@
 
+## 4.1.3 / 2018-09-21
+
+* `feat`: `Picker` support `fetchMethod`
+
 ## 4.1.1 / 2018-09-20
 
 * `fix`: `Picker` wrong search placeholder & notFoundContent
