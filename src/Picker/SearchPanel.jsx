@@ -105,6 +105,7 @@ class SearchPanel extends React.Component {
     if (t.props.fetchUrl) {
       t.fetch = NattyFetch.create({
         url: t.props.fetchUrl,
+        method: t.props.fetchMethod,
         jsonp: t.props.dataType ? t.props.dataType === 'jsonp' : (/\.jsonp/.test(t.props.fetchUrl)),
         data: t.props.beforeFetch({ q: term }),
         fit: t.props.fitResponse,
@@ -481,6 +482,7 @@ SearchPanel.defaultProps = {
   phonetic: undefined,
   options: undefined,
   fetchUrl: undefined,
+  fetchMethod: 'GET',
   grouping: undefined,
   locale: undefined,
   resultFormatter: undefined,
@@ -496,6 +498,7 @@ SearchPanel.propTypes = {
   onSearch: PropTypes.func,
   options: PropTypes.array,
   fetchUrl: PropTypes.string,
+  fetchMethod: PropTypes.string,
   fetchDataOnOpen: PropTypes.bool,
   dataType: PropTypes.string,
   beforeFetch: PropTypes.func,
