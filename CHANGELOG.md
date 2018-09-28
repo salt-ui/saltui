@@ -1,4 +1,8 @@
 
+## 4.1.4 / 2018-09-28
+
+* `feat`: `CascadeSelectField` improve style
+
 ## 4.1.3 / 2018-09-21
 
 * `feat`: `Picker` support `fetchMethod`

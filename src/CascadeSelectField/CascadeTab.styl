@@ -1,12 +1,12 @@
 // size
 $slot-item-height = 40px;
-$slot-columns-height = 36px;
+$slot-columns-height = 48px;
 // border color
 $slot-border-color = hsvTransform($basic-600, 0, 0, -2);
 // background color
 $slot-header-bgcolor = hsvTransform($basic-100, 0, 0, -3);
 $slot-body-bgcolor = $basic-100;
-$slot-item-pressed-bgcolor = rgba(31, 56, 88, 0.06);
+$slot-item-pressed-bgcolor = white;
 // text color
 $slot-primary-color = rgba(0, 0, 0, 0.8);
 $slot-secondary-color = rgba(31, 56, 88, 0.6);
@@ -52,17 +52,19 @@ $slot-option-font-size = $font-size-t4;
 
 .{$prefix}-cascade-slot-body-wrap {
   background-color: #fff;
+  font-size: 16px;
 
   .{$prefix}-tab {
     border: none;
   }
 
   .{$prefix}-tab-bar {
-    hairline('border-bottom', $slot-border-color);
+    hairline('border-bottom', transparent);
 
     .{$prefix}-tab-tab {
       border: none;
       max-width: 20%;
+      font-size: 16px;
 
       > .title {
         white-space: nowrap;
@@ -72,6 +74,9 @@ $slot-option-font-size = $font-size-t4;
         text-align: center;
       }
     }
+    .{$prefix}-tab-ink-bar {
+      bottom: -1px;
+    }
   }
 
   .{$prefix}-tab-all {
@@ -79,11 +84,12 @@ $slot-option-font-size = $font-size-t4;
   }
 
   .{$prefix}-tab-content {
-    height: 5 * $slot-columns-height !important;
+    height: 7 * $slot-columns-height !important;
   }
 }
 
 .{$prefix}-cascade-slot-list {
+  hairline('border-top', $normal-alpha-7);
   background-color: $slot-body-bgcolor;
   padding: 10px 0;
   -webkit-overflow-scrolling: touch;
@@ -91,7 +97,7 @@ $slot-option-font-size = $font-size-t4;
   li {
     button {
       height: $slot-columns-height;
-      line-height: $slot-columns-height;
+      // line-height: $slot-columns-height;
       text-overflow: ellipsis;
       white-space: nowrap;
       padding: 0 15px;
@@ -102,10 +108,12 @@ $slot-option-font-size = $font-size-t4;
       display: block;
       width: 100%;
       text-align: left;
+      -webkit-tap-highlight-color: $normal-alpha-8;
 
       &:active,
       &.active {
         background-color: $slot-item-pressed-bgcolor;
+        font-weight: bold;
       }
 
       .{$prefix}-icon {
