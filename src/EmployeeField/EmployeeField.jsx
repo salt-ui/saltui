@@ -37,6 +37,7 @@ class EmployeeField extends React.Component {
     onChange: PropTypes.func,
     enableNW: PropTypes.bool,
     onPick: PropTypes.func,
+    enableAutoJumpDepart: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -54,6 +55,7 @@ class EmployeeField extends React.Component {
     className: undefined,
     corpId: undefined,
     onPick: undefined,
+    enableAutoJumpDepart: true,
   };
 
 
@@ -90,7 +92,7 @@ class EmployeeField extends React.Component {
       enableAutoJumpDepart,
     };
     const Ali = window.Ali || {};
-    if (Ali.contacts) {
+    if (false) {
       if (Ali.isDingDing) {
         if (!corpId) {
           Ali.alert({
@@ -115,20 +117,17 @@ class EmployeeField extends React.Component {
         }
       });
     } else if (window.dd) {
+      alert('dd');
       // fall back to dd api
-      window.dd.biz.contact.choose({
+      window.dd.biz.contact.complexPicker({
         ...option,
+        pickedUsers: option.users,
+        maxUsers: option.max,
+        startWithDepartmentId: 0,
+        showRootOrg: true,
         corpId,
-        onSuccess(results) {
-          /* eslint-disable no-param-reassign */
-          for (let i = 0; i < results.length; i++) {
-            results[i].phoneNumber = results[i].mobilePhone;
-            const result = {
-              results,
-            };
-            onChange(transToValue(result.results));
-          }
-          /* eslint-enable no-param-reassign */
+        onSuccess(result) {
+          onChange(transToValue(result.users));
         },
         onFail(err) {
           window.dd.device.notification.alert({
