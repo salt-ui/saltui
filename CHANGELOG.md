@@ -1,4 +1,8 @@
 
+## 4.1.6 
+
+* `feat`: `EmployeeField` replace `dd.biz.contact.choose` with `dd.biz.contact.complexPicker`
+
 ## 4.1.5 / 2018-10-10
 
 * `feat`: `PhotoField` support onImagePreview when type is file
