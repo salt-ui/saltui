@@ -198,13 +198,16 @@ class PhotoField extends React.Component {
   // 点击预览
   handlePreview(current) {
     const t = this;
-    const photos = t.props.photoList.map(item => (
-      { src: autoFixUrl(item.url || (item.response && item.response.url) || '') }
-    ));
-    this.viewer = ImageViewer.show({
-      photos,
-      current,
-    });
+    const { type } = t.props;
+    if (type === 'photo') {
+      const photos = t.props.photoList.map(item => (
+        { src: autoFixUrl(item.url || (item.response && item.response.url) || '') }
+      ));
+      this.viewer = ImageViewer.show({
+        photos,
+        current,
+      });
+    }
   }
 
   render() {

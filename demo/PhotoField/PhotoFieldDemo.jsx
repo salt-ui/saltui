@@ -76,6 +76,7 @@ class Demo extends React.Component {
           readOnly={false}
           type="file"
           url="http://eternalsky.me:8122/file/upload?sleep=50"
+          // onImagePreview={(index) => { alert(index); }}
           // url="http://xxx.aaa"
           photoList={this.state.photoList}
           tip="这里是提示信息"

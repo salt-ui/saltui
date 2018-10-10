@@ -165,6 +165,7 @@ class PhotoFieldFileItem extends React.Component {
           'is-progress': file ? file.status === Status.PROGRESS : false,
         })}
         ref={(c) => { this.root = c; }}
+        onClick={() => { this.handlePreview(); }}
       >
         {t.renderIcon()}
         {t.renderFileName()}
@@ -172,7 +173,6 @@ class PhotoFieldFileItem extends React.Component {
           !t.props.readOnly &&
           <DelIcon className={prefixClass('photo-file-item-delete-icon')} onClick={() => { this.handleDelete(); }} />
         }
-
       </div>
     );
   }

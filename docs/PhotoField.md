@@ -61,6 +61,7 @@ H5 版是对 [uploadcore](https://github.com/uxcore/uploadcore) 的 H5 封装，
 |accept              | string/array  | null    |            | 允许文件类型, [chrome 下的已知问题](http://stackoverflow.com/questions/39187857/inputfile-accept-image-open-dialog-so-slow-with-chrome) |
 |sizeLimit           | size          | 0       |            | 文件大小限制, 0表示不限制 |
 |preventDuplicate    | bool          | false   |            | 是否防止文件重复 |
+|type                | string        | photo   |            | 列表以图片（photo）还是文件（file）形式展示 |
 
 ### Events
 
