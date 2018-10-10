@@ -1,4 +1,8 @@
 
+## 4.1.5 / 2018-10-10
+
+* `feat`: `PhotoField` support onImagePreview when type is file
+
 ## 4.1.4 / 2018-09-28
 
 * `feat`: `CascadeSelectField` improve style
