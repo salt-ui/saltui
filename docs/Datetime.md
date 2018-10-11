@@ -116,7 +116,7 @@ this.slot.show();
 ```
 ### onChange
 
-描述：取消选择时触发的回调。  
+描述：值发生变化时触发的回调。  
 类型：`Function`  
 默认：`new Function`  
 必选：否  

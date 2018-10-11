@@ -34,6 +34,7 @@ class SlotPane extends React.Component {
     ]),
     onChange: PropTypes.func,
     onScrolling: PropTypes.func,
+    onDataChange: PropTypes.func,
     scrollMod: PropTypes.string,
     columns: PropTypes.array,
     columnsFlex: PropTypes.array,
@@ -46,6 +47,7 @@ class SlotPane extends React.Component {
     data: [],
     onChange() { },
     onScrolling() { },
+    onDataChange() { },
     scrollMod: 'reset',
     columns: [],
     columnsFlex: undefined,
@@ -56,7 +58,7 @@ class SlotPane extends React.Component {
     const t = this;
     // 初始状态
     t.state = {
-      data: this.props.data || [],
+      data: props.data || [],
       selectedIndex: t.findSelectedIndex(this.props),
     };
     // scrolling标志位指示是否是用户发起的滚动
@@ -101,7 +103,7 @@ class SlotPane extends React.Component {
     // 数据变化需要重新初始化 scroller
     const state = {};
     let willRefresh = false;
-    if (!equals(t.state.data, data)) {
+    if (!equals(t.props.data, data)) {
       state.data = data;
       if (t.props.scrollMod === 'keep') { // 替换列后仍保留指定值的位置
         // 记录旧值在新数据中的索引
@@ -113,6 +115,9 @@ class SlotPane extends React.Component {
         t.columnChanged = t.state.data.map((n, i) => !equals(data[i], n));
       }
       willRefresh = true;
+      // 数据发生变化后，value 其实也随之发生了变化，在 Slot 中这种变化是实时的，因此有必要触发 onDataChange
+      // 否则就会出现面板中的值已经改变，但是外界无法感知的情况。
+      t.shouldFireDataChange = true;
     }
     if (!equals(t.state.selectedIndex, selectedIndex)) {
       state.selectedIndex = selectedIndex;
@@ -138,6 +143,11 @@ class SlotPane extends React.Component {
     if (t.willRefresh) {
       t.willRefresh = false;
       t.scrollAll(200);
+    }
+    if (t.shouldFireDataChange) {
+      t.shouldFireDataChange = false;
+      const value = t.state.selectedIndex.map((n, i) => t.state.data[i][n]);
+      t.props.onDataChange(value);
     }
   }
 

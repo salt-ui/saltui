@@ -38,6 +38,7 @@ class Slot extends React.Component {
     t.childPaneOnScrolling = t.childPaneOnScrolling.bind(t);
     t.handleConfirm = t.handleConfirm.bind(t);
     t.handleCancel = t.handleCancel.bind(t);
+    t.handleDataChange = t.handleChange.bind(t);
   }
 
   componentDidUpdate(preProps) {
@@ -82,6 +83,7 @@ class Slot extends React.Component {
       data,
       value,
       onChange: t.handleChange,
+      onDataChange: t.handleDataChange,
       scrollMod,
       columns,
       columnsFlex,
@@ -147,6 +149,12 @@ class Slot extends React.Component {
     t.props.onChange(cloneDeep(data), column, index);
   }
 
+  handleDataChange(value) {
+    const t = this;
+    t.lastChoose = value;
+    t.props.onDataChange(value);
+  }
+
   handleMaskClick() {
     if (this.props.maskCloseable) {
       this.setState({ visible: false });
@@ -181,6 +189,7 @@ Slot.defaultProps = {
   onConfirm() { },
   onCancel() { },
   onChange() { },
+  onDataChange() { },
   scrollMod: 'reset',
   columns: [],
 };
@@ -200,6 +209,7 @@ Slot.propTypes = {
   onConfirm: PropTypes.func,
   onCancel: PropTypes.func,
   onChange: PropTypes.func,
+  onDataChange: PropTypes.func,
   scrollMod: PropTypes.string,
   columns: PropTypes.array,
 };

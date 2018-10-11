@@ -254,8 +254,22 @@ Slot 对数据格式的要求比较苛刻，但这是必要的！为了方便用
 
 ```js
 <Slot onChange={(value, column, index) => {
-  // value（当前选中值数组）, column（当前变更的列）, index（当前选中的项）
+  // value（当前选中值）, column（当前变更的列）, index（当前选中的项）
   // DO SOMETHING
+}}></Slot>
+```
+
+### onDataChange(value)
+
+描述：props.data 发生变化时触发，props.data 的变化可能会导致 value 的变化，通过此回调进行监听。
+类型：`function`
+必选：否
+
+示例：
+
+```js
+<Slot onDataChange={(value) => {
+  // value（当前选中值)
 }}></Slot>
 ```
 

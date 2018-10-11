@@ -148,7 +148,7 @@ class Datetime extends React.Component {
     onCancel();
   };
 
-  handleChange = (value, columnIndex) => {
+  handleChange = (value, columnIndex = 0) => {
     const {
       columns,
       minDate,

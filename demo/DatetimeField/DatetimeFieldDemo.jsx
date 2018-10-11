@@ -21,7 +21,7 @@ class Demo extends React.Component {
     const now = new Date().getTime();// 1500353913176
 
     t.state = {
-      value1: '',
+      value1: new Date(2018, 8, 29).getTime(),
       value2: {
         value: '',
         timeType: 'PM',
@@ -53,29 +53,31 @@ class Demo extends React.Component {
               layout="v"
               locale="en-us"
               placeholder="请选择日期"
-              disabledDate={() => [
-                {
-                  end: new Date(),
-                },
-                {
-                  start: new Date(2017, 0, 1),
-                  end: new Date(2017, 4, 31),
-                },
-                {
-                  start: new Date(2017, 5, 1),
-                  end: new Date(2017, 6, 31),
-                },
-                {
-                  start: new Date(2017, 7, 2),
-                  end: new Date(2017, 7, 30),
-                },
-                {
-                  start: new Date(2018, 7, 3),
-                  end: new Date(2018, 7, 20),
-                },
-                new Date(2013, 11, 1),
-              ]}
+              // disabledDate={() => [
+              //   {
+              //     end: new Date(),
+              //   },
+              //   {
+              //     start: new Date(2017, 0, 1),
+              //     end: new Date(2017, 4, 31),
+              //   },
+              //   {
+              //     start: new Date(2017, 5, 1),
+              //     end: new Date(2017, 6, 31),
+              //   },
+              //   {
+              //     start: new Date(2017, 7, 2),
+              //     end: new Date(2017, 7, 30),
+              //   },
+              //   {
+              //     start: new Date(2018, 7, 3),
+              //     end: new Date(2018, 7, 20),
+              //   },
+              //   new Date(2013, 11, 1),
+              // ]}
               // minDate={new Date()}
+              minDate={new Date(2018, 8, 28).getTime()}
+              maxDate={new Date(2018, 9, 28).getTime()}
               onSelect={t.handleChange.bind(t, 'value1')}
               value={t.state.value1}
               columns={DatetimeField.YMD}
