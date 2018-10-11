@@ -1,7 +1,8 @@
-
 ## 4.1.6 
 
 * `feat`: `EmployeeField` replace `dd.biz.contact.choose` with `dd.biz.contact.complexPicker`
+* `feat`: `Slot` new props `onDataChange` to help user get latest value if data change.
+* `fix`: `Datetime` value is not correct sometimes in `onConfirm` when `minDate` & `maxDate` is set
 
 ## 4.1.5 / 2018-10-10
 
