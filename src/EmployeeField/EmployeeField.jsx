@@ -117,7 +117,6 @@ class EmployeeField extends React.Component {
         }
       });
     } else if (window.dd) {
-      alert('dd');
       // fall back to dd api
       window.dd.biz.contact.complexPicker({
         ...option,
