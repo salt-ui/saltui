@@ -31,6 +31,10 @@ class TextField extends React.Component {
     return addons;
   }
 
+  getInput() {
+    return this.input;
+  }
+
   handleChange(e) {
     const value = this.props.filter(e.target.value);
     this.props.onChange(value, e);
@@ -59,6 +63,7 @@ class TextField extends React.Component {
         </div>
         {!readOnly ? (
           <input
+            ref={(c) => { this.input = c; }}
             className={prefixClass('text-field-input')}
             type={t.props.type}
             value={t.props.value}
