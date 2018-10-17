@@ -12,6 +12,7 @@ import CrossRound from 'salt-icon/lib/CrossRound';
 import Context, { prefixClass } from '../Context';
 import { renderRight, renderLeft } from './utils';
 import Field from '../Field';
+import Input from './Input';
 
 
 class TextField extends React.Component {
@@ -29,6 +30,10 @@ class TextField extends React.Component {
       }
     });
     return addons;
+  }
+
+  getInput() {
+    return this.input;
   }
 
   handleChange(e) {
@@ -59,6 +64,7 @@ class TextField extends React.Component {
         </div>
         {!readOnly ? (
           <input
+            ref={(c) => { this.input = c; }}
             className={prefixClass('text-field-input')}
             type={t.props.type}
             value={t.props.value}
@@ -147,5 +153,7 @@ TextField.propTypes = {
 };
 
 TextField.displayName = 'TextField';
+
+TextField.Input = Input;
 
 export default TextField;
