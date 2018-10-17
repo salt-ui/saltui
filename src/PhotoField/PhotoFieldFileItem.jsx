@@ -103,7 +103,8 @@ class PhotoFieldFileItem extends React.Component {
     this.props.onPreviewImage(this.props.index);
   }
 
-  handleDelete() {
+  handleDelete(e) {
+    e.stopPropagation();
     const { onDeleteImage, file } = this.props;
     if (file) {
       file.cancel();
@@ -171,7 +172,7 @@ class PhotoFieldFileItem extends React.Component {
         {t.renderFileName()}
         {
           !t.props.readOnly &&
-          <DelIcon className={prefixClass('photo-file-item-delete-icon')} onClick={() => { this.handleDelete(); }} />
+          <DelIcon className={prefixClass('photo-file-item-delete-icon')} onClick={(e) => { this.handleDelete(e); }} />
         }
       </div>
     );
