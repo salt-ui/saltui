@@ -1,4 +1,8 @@
-## 4.1.6 
+## 4.1.9 / 2018-11-18
+
+ * `fix`: `NumberField` input cursor position jumping when value is formatted.
+
+## 4.1.6 / 2018-10-11
 
 * `feat`: `EmployeeField` replace `dd.biz.contact.choose` with `dd.biz.contact.complexPicker`
 * `feat`: `Slot` new props `onDataChange` to help user get latest value if data change.
