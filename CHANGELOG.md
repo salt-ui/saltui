@@ -1,6 +1,10 @@
+## 4.1.10 
+
+* `feat`: `NumberField` filter unexpected char [#238](https://github.com/salt-ui/saltui/issues/238)
+
 ## 4.1.9 / 2018-11-18
 
- * `fix`: `NumberField` input cursor position jumping when value is formatted.
+ * `fix`: `NumberField` input cursor position jumping when value is formatted. [#288](https://github.com/salt-ui/saltui/issues/288)
 
 ## 4.1.6 / 2018-10-11
 

@@ -126,7 +126,8 @@ class NumberField extends React.Component {
     this.saveCursorPosition();
     setTimeout(() => {
       const { deFormat, onChange, delimiter } = this.props;
-      onChange(deFormat(value, delimiter));
+      const newValue = value.replace(/[^\d.\sx]/g, '');
+      onChange(deFormat(newValue, delimiter));
     });
   }
 
