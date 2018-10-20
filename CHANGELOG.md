@@ -1,3 +1,7 @@
+## 4.1.11
+
+* `feat`: `DatetimeField` new prop `defaultOpenValue`
+
 ## 4.1.10 
 
 * `feat`: `NumberField` filter unexpected char [#238](https://github.com/salt-ui/saltui/issues/238)

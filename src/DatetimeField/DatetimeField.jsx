@@ -94,7 +94,7 @@ class DatetimeField extends React.Component {
       className, value, placeholder, readOnly,
       minDate, maxDate, disabledDate,
     } = t.props;
-    const DatetimeProps = {
+    const datetimeProps = {
       minDate,
       maxDate,
       disabledDate,
@@ -140,13 +140,13 @@ class DatetimeField extends React.Component {
           title={t.props.label}
           locale={t.props.locale}
           columns={t.props.columns}
-          value={t.props.value}
+          value={t.props.value || t.props.defaultOpenValue}
           disabledDate={t.props.disabledDate}
           confirmText={t.props.confirmText}
           cancelText={t.props.cancelText}
           onCancel={t.props.onCancel.bind(t)}
           onConfirm={t.handleConfirm.bind(t)}
-          {...DatetimeProps}
+          {...datetimeProps}
         />
       </Field>
     );
@@ -175,6 +175,11 @@ DatetimeField.propTypes = {
   readOnly: PropTypes.bool,
   placeholder: PropTypes.string,
   onSelect: PropTypes.func,
+  defaultOpenValue: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.object,
+  ]),
 };
 
 DatetimeField.displayName = 'DatetimeField';

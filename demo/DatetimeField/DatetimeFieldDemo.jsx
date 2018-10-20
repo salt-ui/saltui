@@ -89,6 +89,7 @@ class Demo extends React.Component {
               value={t.state.value2}
               columns={DatetimeField.YMDT}
               placeholder="请选择日期"
+              defaultOpenValue={new Date(2018, 9, 1).getTime()}
             />
             <DatetimeField
               label="时间选择"
