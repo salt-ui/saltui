@@ -57,10 +57,11 @@
 示例：`<Datetime minuteStep={5} />`  
 
 ### disabledDate
+
 描述： 仅当 columns 是 Datetime.YMD 时生效。  
 类型： `function`  
 返回值类型：`Array`  
-示例  
+示例：
  ```javascript
  /**
 	* 数组子项是一个 start 到 end 的时间区间对象（包含 start 和 end 节点）
@@ -83,6 +84,35 @@
  ]
  ```
 示例：`<Datetime disabledDate={() => [ { start: new Date(2002,0,1) },{start: new Date(2017, 0, 1), end: new Date(2017,5,1)}, new Date(2018, 11,1), { start: new Date(2020,0,1) } ]} />`
+
+
+### disabledTime
+
+描述： 不可选择的时间(时分秒)
+类型： `function`  
+返回值类型：`Object`  
+示例：
+```js
+function range(start, end) {
+  const result = [];
+  for (let i = start; i < end; i++) {
+    result.push(i);
+  }
+  return result;
+}
+
+function disabledTime() {
+	// 返回值应为一个对象，包含三个 function 对应禁用的时分秒，
+	// function 的返回值是一个数组，代表被禁用的时分秒。
+  return {
+    disabledHours: () => range(0, 24).splice(4, 20),
+    disabledMinutes: () => range(30, 60),
+    disabledSeconds: () => [55, 56],
+  };
+}
+```
+
+
 ### slotRef  
 描述：通过 react ref 的方式获取 slot 浮窗的 ref，主要用于控制组件显隐。
 类型：`Function`  

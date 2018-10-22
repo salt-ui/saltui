@@ -255,6 +255,7 @@ Datetime.defaultProps = {
   value: undefined,
   confirmText: undefined,
   cancelText: undefined,
+  disabledTime: undefined,
 };
 
 Datetime.propTypes = {
@@ -283,6 +284,7 @@ Datetime.propTypes = {
     PropTypes.string,
   ]),
   disabledDate: PropTypes.func,
+  disabledTime: PropTypes.func,
 };
 
 Datetime.Y = Y;

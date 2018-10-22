@@ -10,6 +10,22 @@ import React from 'react';
 import Group from 'salt-group';
 import DatetimeField from 'salt-datetime-field';
 
+function range(start, end) {
+  const result = [];
+  for (let i = start; i < end; i++) {
+    result.push(i);
+  }
+  return result;
+}
+
+function disabledTime() {
+  return {
+    disabledHours: () => range(0, 24).splice(4, 20),
+    disabledMinutes: () => range(30, 60),
+    disabledSeconds: () => [55, 56],
+  };
+}
+
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const DatetimeField = require('../../dist');
 
@@ -99,10 +115,10 @@ class Demo extends React.Component {
             />
             <DatetimeField
               label="时间选择"
-              readOnly
               onSelect={t.handleChange.bind(t, 'value4')}
               value={t.state.value4}
               columns={DatetimeField.YMDWHM}
+              disabledTime={disabledTime}
             />
             <DatetimeField
               label="日期/上下午选择"

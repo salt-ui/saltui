@@ -269,6 +269,7 @@ function getDateRangeArr(disabledDateObj, minDateTime, maxDateTime) {
  */
 function getOptions(value, props) {
   let { minDate, maxDate } = props;
+  const { disabledTime } = props;
   const { minuteStep } = props;
   minDate = parseDate(minDate);
   maxDate = parseDate(maxDate);
@@ -280,6 +281,11 @@ function getOptions(value, props) {
   maxDate = new Date(maxDate);
   const currentValue = new Date(parseDate(value));
   const dayYear = getDaysByYear({ year: currentValue.getFullYear(), minDate, maxDate });
+  const disabled = typeof disabledTime === 'function' ? disabledTime() : {};
+  const disHours = typeof disabled.disabledHours === 'function' ? disabled.disabledHours() : undefined;
+  const disMinutes = typeof disabled.disabledMinutes === 'function' ? disabled.disabledMinutes() : undefined;
+  const disSeconds = typeof disabled.disabledSeconds === 'function' ? disabled.disabledSeconds() : undefined;
+
   const options = [
     makeRange(minDate.getFullYear(), maxDate.getFullYear()),
     // makeRange(1, 12).map(v => ({ text: `${v}`, value: v - 1 })),
@@ -289,9 +295,9 @@ function getOptions(value, props) {
     }),
     locale[props.locale].noon,
     makeRange(0, 12),
-    makeRange(0, 23),
-    makeRange(0, 59, minuteStep),
-    makeRange(0, 59),
+    makeRange(0, 23, 1, disHours),
+    makeRange(0, 59, minuteStep, disMinutes),
+    makeRange(0, 59, 1, disSeconds),
     dayYear,
     dayYear,
   ];

@@ -92,12 +92,13 @@ class DatetimeField extends React.Component {
     const t = this;
     const {
       className, value, placeholder, readOnly,
-      minDate, maxDate, disabledDate,
+      minDate, maxDate, disabledDate, disabledTime,
     } = t.props;
     const datetimeProps = {
       minDate,
       maxDate,
       disabledDate,
+      disabledTime,
     };
     const iconProps = {
       className: Context.prefixClass('datetime-field-icon'),

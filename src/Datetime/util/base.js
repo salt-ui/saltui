@@ -18,10 +18,18 @@ function addZero(num) {
   return `${num < 10 ? '0' : ''}${num}`;
 }
 
-function makeRange(start, end, step = 1) {
+function makeRange(start, end, step = 1, unwanted) {
   const arr = [];
   for (let i = start; i <= end; i += step) {
-    arr.push(i);
+    if (Array.isArray(unwanted)) {
+      if (unwanted.indexOf(i) !== -1) {
+        break;
+      } else {
+        arr.push(i);
+      }
+    } else {
+      arr.push(i);
+    }
   }
   return arr;
 }
