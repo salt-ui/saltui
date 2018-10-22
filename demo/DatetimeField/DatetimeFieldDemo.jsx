@@ -20,7 +20,8 @@ function range(start, end) {
 
 function disabledTime() {
   return {
-    disabledHours: () => range(0, 24).splice(4, 20),
+    // disabledHours: () => range(0, 24).splice(4, 20),
+    disabledHours: () => [1, 2, 3, 4, 5, 6],
     disabledMinutes: () => range(30, 60),
     disabledSeconds: () => [55, 56],
   };

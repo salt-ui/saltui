@@ -22,9 +22,7 @@ function makeRange(start, end, step = 1, unwanted) {
   const arr = [];
   for (let i = start; i <= end; i += step) {
     if (Array.isArray(unwanted)) {
-      if (unwanted.indexOf(i) !== -1) {
-        break;
-      } else {
+      if (unwanted.indexOf(i) === -1) {
         arr.push(i);
       }
     } else {
