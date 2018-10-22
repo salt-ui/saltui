@@ -1,12 +1,9 @@
-## 4.1.11
-
-* `feat`: `DatetimeField` new prop `defaultOpenValue`
-
-## 4.1.10 
+## 4.1.10 / 2018-10-22
 
 * `feat`: `NumberField` filter unexpected char [#238](https://github.com/salt-ui/saltui/issues/238)
+* `feat`: `DatetimeField` new prop `defaultOpenValue`
 
-## 4.1.9 / 2018-11-18
+## 4.1.9 / 2018-10-18
 
  * `fix`: `NumberField` input cursor position jumping when value is formatted. [#288](https://github.com/salt-ui/saltui/issues/288)
 
