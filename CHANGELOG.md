@@ -1,3 +1,7 @@
+## 4.1.11
+
+* `feat`: `TextareaField` calculate textarea height depending on both value & textarea [#289](https://github.com/salt-ui/saltui/issues/289)
+
 ## 4.1.10 / 2018-10-22
 
 * `feat`: `NumberField` filter unexpected char [#238](https://github.com/salt-ui/saltui/issues/238)

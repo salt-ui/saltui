@@ -18,7 +18,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      t1: '默认',
+      t1: '',
       t2: '曾经有一份真诚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫及，人世间最痛苦的事莫过于此。曾经有一份真诚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫及，人世间最痛苦的事莫过于此。曾经有一份真诚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫及，人世间最痛苦的事莫过于此。曾经有一份真诚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫及，人世间最痛苦的事莫过于此。曾经有一份真诚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫及，人世间最痛苦的事莫过于此。曾经有一份真诚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫及，人世间最痛苦的事莫过于此。',
       t3: '',
     };
@@ -41,11 +41,11 @@ class Demo extends React.Component {
             label="俩字"
             minRows={1}
             maxRows={5}
-            placeholder="设置2个行高"
-            readOnly
+            placeholder="设置2个行高设置2个行高设置2个行高设置2个行高设置2个行高设置2个行高"
+            // readOnly
             value={t.state.t1}
             tip={<p>这里有个tip<a href="http://www.taobao.com" target="_blank" rel="noopener noreferrer">这是个链接</a></p>}
-            onChange={(value) => { t.handleChange('t2', value); }}
+            onChange={(value) => { t.handleChange('t1', value); }}
           />
         </Group.List>
         <Group.List>

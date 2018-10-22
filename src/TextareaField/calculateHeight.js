@@ -79,7 +79,7 @@ const calculateHeight = (textarea, minRows, maxRows) => {
     padding,
   } = styleInfo;
   shadowTextarea.setAttribute('style', styles.concat(HIDDEN_TEXTAREA_STYLE).join(';'));
-  shadowTextarea.value = textarea.value;
+  shadowTextarea.value = textarea.value || textarea.placeholder;
   let height = shadowTextarea.scrollHeight + heightAdjust;
   let minHeight = -Infinity;
   let maxHeight = Infinity;
