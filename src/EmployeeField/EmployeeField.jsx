@@ -92,7 +92,7 @@ class EmployeeField extends React.Component {
       enableAutoJumpDepart,
     };
     const Ali = window.Ali || {};
-    if (false) {
+    if (Ali) {
       if (Ali.isDingDing) {
         if (!corpId) {
           Ali.alert({
