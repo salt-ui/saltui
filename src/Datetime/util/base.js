@@ -53,6 +53,146 @@ function numToDate(num) {
 }
 
 /**
+ * 求时间区间的并集
+ * @param { array } arr
+ */
+function parseDisabledArr(arr) {
+  let min;
+  let max;
+  let arrNew = cloneDeep(arr);
+  arrNew = arrNew.map((item) => {
+    const { start, end } = item;
+    if (!start && !end) {
+      const dateTime = new Date(item).getTime();
+      if (dateTime) {
+        return {
+          start: dateTime,
+          end: dateTime,
+        };
+      }
+      return false;
+    }
+    return {
+      start: new Date(start).getTime(),
+      end: new Date(end).getTime(),
+    };
+  });
+  let newArr = arrNew.filter(item => !!item);
+  // 求时间并集并求出 最大值和最小值
+  newArr = newArr.filter((item) => {
+    const { start, end } = item;
+    if (start && !end) { // 求max
+      if (!max) {
+        max = start;
+      } else {
+        max = max > start ? start : max;
+      }
+      return false;
+    }
+    if (!start && end) {
+      if (!min) {
+        min = end;
+      } else {
+        min = min < end ? end : min;
+      }
+      return false;
+    }
+    if (end && start) {
+      if (start > end) {
+        warn('Datetime: Please check your disabledDate props returns');
+        return false;
+      }
+      if (min && min >= start) {
+        min = min < end ? end : min;
+        return false;
+      }
+      if (max && max <= end) {
+        max = max > start ? start : max;
+        return false;
+      }
+      return true;
+    }
+    return true;
+  });
+  let startEnd = [];
+  // 时间排序
+  startEnd = newArr.sort((a, b) => a.start - b.start);
+  return {
+    maxTime: max,
+    minTime: min,
+    startEnd,
+  };
+}
+
+/**
+ * 求有限时间范围内的 disabledDate时间区间
+ * @param { object } disabledArr
+ * @param { string | number } minDateTime
+ * @param { string | number } maxDateTime
+ */
+
+function getDateRangeArr(disabledDateObj, minDateTime, maxDateTime) {
+  const {
+    minTime,
+    maxTime,
+    startEnd,
+  } = disabledDateObj;
+  // 时间范围
+  const dateRangeArr = [];
+  // 计算时间区间
+  if (minTime) { // 计算小于区间
+    if (minDateTime <= minTime) {
+      dateRangeArr.push({
+        start: minDateTime,
+        end: minTime,
+      });
+    }
+  }
+  /* eslint no-continue:0 */
+  for (let i = 0; i < startEnd.length; i++) { // 计算中间区间
+    const { start, end } = startEnd[i];
+    if (end < start) {
+      warn('Datetime: Please check your disabledDate props returns');
+      continue;
+    }
+    if (start >= minDateTime && end <= maxDateTime) { // start end 都在 取值范围内
+      dateRangeArr.push(startEnd[i]);
+    }
+    if (start <= minDateTime && end >= minDateTime && end <= maxDateTime) { // start 不在 end 在
+      dateRangeArr.push({
+        start: minDateTime,
+        end,
+      });
+      continue;
+    }
+    if (start >= minDateTime && start <= maxDateTime && end >= maxDateTime) { // end 不在 start 在
+      dateRangeArr.push({
+        start,
+        end: maxDateTime,
+      });
+      continue;
+    }
+    if (start <= minDateTime && end >= maxDateTime) { // end 不在 start 不在
+      dateRangeArr.push({
+        start: minDateTime,
+        end: maxDateTime,
+      });
+      continue;
+    }
+  }
+  // 计算大于时间区间的范围
+  if (maxTime) {
+    if (maxDateTime > maxTime) {
+      dateRangeArr.push({
+        start: maxTime,
+        end: maxDateTime,
+      });
+    }
+  }
+  return dateRangeArr;
+}
+
+/**
  * 根据 年 月 计算 天 数
  * @param { Number } year
  * @param { Number } month
@@ -183,7 +323,9 @@ function getDaysByMonth({
  * @param {*} param0
  * @returns days<array>
  */
-function getDaysByYear({ minDate, maxDate, year }) {
+function getDaysByYear({
+  minDate, maxDate, year,
+}) {
   const days = [];
   const maxYear = new Date(maxDate).getFullYear();
   const minYear = new Date(minDate).getFullYear();
@@ -225,4 +367,6 @@ export default {
   getDaysByMonth,
   getDaysByYear,
   addZero,
+  getDateRangeArr,
+  parseDisabledArr,
 };

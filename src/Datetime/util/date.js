@@ -1,7 +1,6 @@
 import {
   parseDate,
   addZero,
-  cloneDeep,
   isArray,
   numToDate,
   makeRange,
@@ -9,6 +8,8 @@ import {
   getDaysByYear,
   getDaysByMonth,
   getMonthsByYear,
+  getDateRangeArr,
+  parseDisabledArr,
 } from './base';
 import locale from './locale';
 import dateFormat from './dateFormat';
@@ -123,153 +124,13 @@ function formatText(arr, text, props) {
 }
 
 /**
- * 求时间区间的并集
- * @param { array } arr
- */
-function parseDisabledArr(arr) {
-  let min;
-  let max;
-  let arrNew = cloneDeep(arr);
-  arrNew = arrNew.map((item) => {
-    const { start, end } = item;
-    if (!start && !end) {
-      const dateTime = new Date(item).getTime();
-      if (dateTime) {
-        return {
-          start: dateTime,
-          end: dateTime,
-        };
-      }
-      return false;
-    }
-    return {
-      start: new Date(start).getTime(),
-      end: new Date(end).getTime(),
-    };
-  });
-  let newArr = arrNew.filter(item => !!item);
-  // 求时间并集并求出 最大值和最小值
-  newArr = newArr.filter((item) => {
-    const { start, end } = item;
-    if (start && !end) { // 求max
-      if (!max) {
-        max = start;
-      } else {
-        max = max > start ? start : max;
-      }
-      return false;
-    }
-    if (!start && end) {
-      if (!min) {
-        min = end;
-      } else {
-        min = min < end ? end : min;
-      }
-      return false;
-    }
-    if (end && start) {
-      if (start > end) {
-        warn('Datetime: Please check your disabledDate props returns');
-        return false;
-      }
-      if (min && min >= start) {
-        min = min < end ? end : min;
-        return false;
-      }
-      if (max && max <= end) {
-        max = max > start ? start : max;
-        return false;
-      }
-      return true;
-    }
-    return true;
-  });
-  let startEnd = [];
-  // 时间排序
-  startEnd = newArr.sort((a, b) => a.start - b.start);
-  return {
-    maxTime: max,
-    minTime: min,
-    startEnd,
-  };
-}
-
-/**
- * 求有限时间范围内的 disabledDate时间区间
- * @param { object } disabledArr
- * @param { string | number } minDateTime
- * @param { string | number } maxDateTime
- */
-
-function getDateRangeArr(disabledDateObj, minDateTime, maxDateTime) {
-  const {
-    minTime,
-    maxTime,
-    startEnd,
-  } = disabledDateObj;
-  // 时间范围
-  const dateRangeArr = [];
-  // 计算时间区间
-  if (minTime) { // 计算小于区间
-    if (minDateTime <= minTime) {
-      dateRangeArr.push({
-        start: minDateTime,
-        end: minTime,
-      });
-    }
-  }
-  /* eslint no-continue:0 */
-  for (let i = 0; i < startEnd.length; i++) { // 计算中间区间
-    const { start, end } = startEnd[i];
-    if (end < start) {
-      warn('Datetime: Please check your disabledDate props returns');
-      continue;
-    }
-    if (start >= minDateTime && end <= maxDateTime) { // start end 都在 取值范围内
-      dateRangeArr.push(startEnd[i]);
-    }
-    if (start <= minDateTime && end >= minDateTime && end <= maxDateTime) { // start 不在 end 在
-      dateRangeArr.push({
-        start: minDateTime,
-        end,
-      });
-      continue;
-    }
-    if (start >= minDateTime && start <= maxDateTime && end >= maxDateTime) { // end 不在 start 在
-      dateRangeArr.push({
-        start,
-        end: maxDateTime,
-      });
-      continue;
-    }
-    if (start <= minDateTime && end >= maxDateTime) { // end 不在 start 不在
-      dateRangeArr.push({
-        start: minDateTime,
-        end: maxDateTime,
-      });
-      continue;
-    }
-  }
-  // 计算大于时间区间的范围
-  if (maxTime) {
-    if (maxDateTime > maxTime) {
-      dateRangeArr.push({
-        start: maxTime,
-        end: maxDateTime,
-      });
-    }
-  }
-  return dateRangeArr;
-}
-
-/**
  * 获取 options
  * @param {*} value
  * @param {*} props
  */
 function getOptions(value, props) {
   let { minDate, maxDate } = props;
-  const { disabledTime } = props;
+  const { disabledTime, disabledDate } = props;
   const { minuteStep } = props;
   minDate = parseDate(minDate);
   maxDate = parseDate(maxDate);
@@ -280,7 +141,9 @@ function getOptions(value, props) {
   minDate = new Date(minDate);
   maxDate = new Date(maxDate);
   const currentValue = new Date(parseDate(value));
-  const dayYear = getDaysByYear({ year: currentValue.getFullYear(), minDate, maxDate });
+  const dayYear = getDaysByYear({
+    year: currentValue.getFullYear(), minDate, maxDate, disabledDate,
+  });
   const disabled = typeof disabledTime === 'function' ? disabledTime() : {};
   const disHours = typeof disabled.disabledHours === 'function' ? disabled.disabledHours() : undefined;
   const disMinutes = typeof disabled.disabledMinutes === 'function' ? disabled.disabledMinutes() : undefined;
@@ -428,6 +291,42 @@ function filterDay(arr, year, month, disabledDateObj) {
 }
 
 /**
+ * 过滤YMDHM 和 YMDWHM 中的日列
+ * @param { Array } arr
+ * @param { Object } disabledDateObj
+ */
+
+function filterYMDDay(arr, disabledDateObj) {
+  const newArr = [];
+  const parseYMDValue = (value) => {
+    const date = [];
+    date[0] = (`${value}`).substring(0, 4);
+    date[1] = (`${value}`).substring(4, 6) - 1;
+    date[2] = (`${value}`).substring(6, 8);
+    return new Date(...date).getTime();
+  };
+  const minDate = parseYMDValue(arr[0].value);
+  const maxDate = parseYMDValue(arr[arr.length - 1].value);
+  const dayRangeArr = getDateRangeArr(parseDisabledArr(disabledDateObj), minDate, maxDate);
+  arr.forEach((item) => {
+    const value = parseYMDValue(item.value);
+    let shouldPass = true;
+    for (let i = 0; i < dayRangeArr.length; i++) {
+      const dis = dayRangeArr[i];
+      const { start, end } = dis;
+      if (value >= new Date(start).getTime() && value <= new Date(end).getTime()) {
+        shouldPass = false;
+        break;
+      }
+    }
+    if (shouldPass) {
+      newArr.push(item);
+    }
+  });
+  return newArr;
+}
+
+/**
  * 初始化过滤
  * @param { Array } data
  * @param { Array } value
@@ -445,51 +344,79 @@ function filterDate({
   maxDate,
   oldData = {},
   props,
+  columns,
 }) {
   const disabledArrNew = parseDisabledArr(disabledArr);
-  const year = value[0].value;
-  const month = value[1].value;
-  let yearData = data[0];
-  let monthData = getMonthsByYear({ year, minDate, maxDate });
-  monthData = monthData.map(item => ({
-    value: item.value,
-    text: `${addZero(item.text)}${locale[props.locale].surfix.M}`,
-  }));
-  let dayData = getDaysByMonth({
-    year, month, minDate, maxDate,
-  });
-  if (disabledArrNew.startEnd || disabledArrNew.minTime || disabledArrNew.maxTime) {
-    if (oldData.yearData) {
-      ({ yearData } = oldData);
-    } else {
-      yearData = filterYear(yearData, { disabledDateObj: disabledArrNew, minDate, maxDate });
+  if (columns[0] === 'Y') {
+    const year = value[0].value;
+    let month;
+    let yearData = data[0];
+    let monthData;
+    if (columns.length >= 2) {
+      monthData = getMonthsByYear({ year, minDate, maxDate }).map(item => ({
+        value: item.value,
+        text: `${addZero(item.text)}${locale[props.locale].surfix.M}`,
+      }));
+      month = value[1].value;
     }
-    if (oldData.monthData) {
-      ({ monthData } = oldData);
-    } else {
-      const monthArr = filterMonth(monthData, year, disabledArrNew);
-      monthData = monthArr.length ? monthArr : monthData;
+    let dayData;
+    if (columns.length >= 3) {
+      dayData = getDaysByMonth({
+        year, month, minDate, maxDate,
+      });
     }
-    const dayArr = filterDay(dayData, year, month, disabledArrNew);
-    dayData = dayArr.length ? dayArr : dayData;
-    const unit = locale[props.locale].surfix.D;
-    dayData = dayData.map(item => ({
-      ...item,
-      text: addZero(item.text) + (unit || ''),
-    }));
+    if (disabledArrNew.startEnd || disabledArrNew.minTime || disabledArrNew.maxTime) {
+      if (oldData.yearData) {
+        ({ yearData } = oldData);
+      } else {
+        yearData = filterYear(yearData, { disabledDateObj: disabledArrNew, minDate, maxDate });
+      }
+      if (monthData) {
+        if (oldData.monthData) {
+          ({ monthData } = oldData);
+        } else {
+          const monthArr = filterMonth(monthData, year, disabledArrNew);
+          monthData = monthArr.length ? monthArr : monthData;
+        }
+      }
+
+      if (dayData) {
+        const dayArr = filterDay(dayData, year, month, disabledArrNew);
+        dayData = dayArr.length ? dayArr : dayData;
+        const unit = locale[props.locale].surfix.D;
+        dayData = dayData.map(item => ({
+          ...item,
+          text: addZero(item.text) + (unit || ''),
+        }));
+      }
+    }
+    if (disabledArrNew.minTime >= disabledArrNew.maxTime) {
+      warn('Datetime: Please check your disabledDate props');
+      return [];
+    }
+    if (!yearData.length) {
+      return [];
+    }
+    const outArr = [yearData];
+    if (monthData) {
+      outArr.push(monthData);
+      if (dayData) {
+        outArr.push(dayData);
+      }
+    }
+
+    if (data[3]) {
+      outArr.push(data[3]);
+    }
+    return outArr;
   }
-  if (disabledArrNew.minTime >= disabledArrNew.maxTime) {
-    warn('Datetime: Please check your disabledDate props');
-    return [];
+  if (['YMD', 'YMDW'].indexOf(columns[0]) !== -1) {
+    const newData = [...data];
+    newData[0] = filterYMDDay(newData[0], disabledArr);
+
+    return newData;
   }
-  if (!yearData.length) {
-    return [];
-  }
-  const outArr = [yearData, monthData, dayData];
-  if (data[3]) {
-    outArr.push(data[3]);
-  }
-  return outArr;
+  return data;
 }
 function getSlotFormattedValue(value, props) {
   // 使用当前时间或传入时间作为默认值

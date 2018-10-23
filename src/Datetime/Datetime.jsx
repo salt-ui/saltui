@@ -75,7 +75,7 @@ class Datetime extends React.Component {
     let value = formatFromProps(formatText(ret.value, undefined, props), props);
     const columnsStyle = columns[0];
     // disabledDate 仅支持 YMD
-    if (props.disabledDate && columnsStyle === 'Y') {
+    if (props.disabledDate && ['Y', 'YMD', 'YMDW'].indexOf(columnsStyle) !== -1) {
       const disabledArr = props.disabledDate();
       if (isArray(disabledArr) && disabledArr.length) {
         data = filterDate({
@@ -87,7 +87,7 @@ class Datetime extends React.Component {
           maxDate,
           props,
         });
-        value = Slot.formatDataValue(data, value);
+        ({ value } = Slot.formatDataValue(data, value));
       }
     }
     return {

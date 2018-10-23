@@ -1,3 +1,7 @@
+## 4.1.13
+
+* `feat`: `Datetime` `disabledDate` support all column type
+
 ## 4.1.12 / 2018-10-22
 
 * `feat`: `TextareaField` calculate textarea height depending on both value & textarea [#289](https://github.com/salt-ui/saltui/issues/289)

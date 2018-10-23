@@ -15,9 +15,9 @@ const preventDefault = (e) => {
 
 const stopBodyScrolling = (bool) => {
   if (bool === true) {
-    document.body.addEventListener('touchmove', preventDefault, false);
+    document.body.addEventListener('touchmove', preventDefault, { capture: false, passive: false });
   } else {
-    document.body.removeEventListener('touchmove', preventDefault, false);
+    document.body.removeEventListener('touchmove', preventDefault, { capture: false, passive: false });
   }
 };
 
@@ -27,7 +27,7 @@ const stopBodyScroll = (element) => {
       e.preventDefault();
     }
   };
-  document.body.addEventListener('touchmove', pd, false);
+  document.body.addEventListener('touchmove', pd, { capture: false, passive: false });
   // TODO how to stop body scroll when element is scrolled to the end?
   // const sp = (e) => {
   //   e.stopPropagation();
@@ -37,7 +37,7 @@ const stopBodyScroll = (element) => {
   // }
   return {
     enable: () => {
-      document.body.removeEventListener('touchmove', pd, false);
+      document.body.removeEventListener('touchmove', pd, { capture: false, passive: false });
       // if (element) {
       //   element.removeEventListener('touchmove', sp, false);
       // }

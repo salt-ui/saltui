@@ -58,17 +58,17 @@
 
 ### disabledDate
 
-描述： 仅当 columns 是 Datetime.YMD 时生效。  
+描述： 不可选择的日期（年月日）。
 类型： `function`  
 返回值类型：`Array`  
-示例：
  ```javascript
  /**
 	* 数组子项是一个 start 到 end 的时间区间对象（包含 start 和 end 节点）
 	* 或者是一个 new Date(2017, 9, 1) 时间戳表示禁止这一天
 	* 如果只有 start 例如 { start: new Date(2019, 11, 31) }  禁止 2019-12-31 年以后（包含 2019-12-31） 
-	*  如果只有 start 例如 { end: new Date(2013,0,1) }  禁止 2013-1-1 年以前（0包含 2013-1-1）
-	*  在这个数组中，会计算出disabledDate时间的并集
+	* 如果只有 end 例如 { end: new Date(2013, 0, 1) }  禁止 2013-1-1 年以前（0 包含 2013-1-1）
+	* 在这个数组中，会计算出 disabledDate 时间的并集
+	* 注意：区间数量的增加将线性增加计算量，过大的计算量有可能会导致卡顿的发生，因此请尽量减少 disabledDate 返回值中区间的数量
 	*/ 
  [
  	{ // 禁止 2017 一年
@@ -83,7 +83,11 @@
 	new Date(2018,0,1)
  ]
  ```
-示例：`<Datetime disabledDate={() => [ { start: new Date(2002,0,1) },{start: new Date(2017, 0, 1), end: new Date(2017,5,1)}, new Date(2018, 11,1), { start: new Date(2020,0,1) } ]} />`
+示例： 
+
+```jsx
+<Datetime disabledDate={() => [ { start: new Date(2002,0,1) },{start: new Date(2017, 0, 1), end: new Date(2017,5,1)}, new Date(2018, 11,1), { start: new Date(2020,0,1) } ]} />
+```
 
 
 ### disabledTime

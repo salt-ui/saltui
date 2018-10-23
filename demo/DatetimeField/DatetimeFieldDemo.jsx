@@ -21,7 +21,7 @@ function range(start, end) {
 function disabledTime() {
   return {
     // disabledHours: () => range(0, 24).splice(4, 20),
-    disabledHours: () => [1, 2, 3, 4, 5, 6],
+    disabledHours: () => [1, 2, 3, 6, 8, 9],
     disabledMinutes: () => range(30, 60),
     disabledSeconds: () => [55, 56],
   };
@@ -65,33 +65,30 @@ class Demo extends React.Component {
         <Group>
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">时间选择器演示</Group.Head>
           <Group.List>
-            <DatetimeField
+            {/* <DatetimeField
               label="日期选择"
               layout="v"
               locale="en-us"
               placeholder="请选择日期"
-              // disabledDate={() => [
-              //   {
-              //     end: new Date(),
-              //   },
-              //   {
-              //     start: new Date(2017, 0, 1),
-              //     end: new Date(2017, 4, 31),
-              //   },
-              //   {
-              //     start: new Date(2017, 5, 1),
-              //     end: new Date(2017, 6, 31),
-              //   },
-              //   {
-              //     start: new Date(2017, 7, 2),
-              //     end: new Date(2017, 7, 30),
-              //   },
-              //   {
-              //     start: new Date(2018, 7, 3),
-              //     end: new Date(2018, 7, 20),
-              //   },
-              //   new Date(2013, 11, 1),
-              // ]}
+              disabledDate={() => [
+                {
+                  start: new Date(2017, 0, 1),
+                  end: new Date(2017, 4, 31),
+                },
+                {
+                  start: new Date(2017, 5, 1),
+                  end: new Date(2017, 6, 31),
+                },
+                {
+                  start: new Date(2017, 7, 2),
+                  end: new Date(2017, 7, 30),
+                },
+                {
+                  start: new Date(2018, 7, 3),
+                  end: new Date(2018, 7, 20),
+                },
+                new Date(2013, 11, 1),
+              ]}
               // minDate={new Date()}
               minDate={new Date(2018, 8, 28).getTime()}
               maxDate={new Date(2018, 9, 28).getTime()}
@@ -113,20 +110,27 @@ class Demo extends React.Component {
               onSelect={t.handleChange.bind(t, 'value3')}
               value={t.state.value3}
               columns={DatetimeField.YMDWHM}
-            />
+            /> */}
             <DatetimeField
               label="时间选择"
               onSelect={t.handleChange.bind(t, 'value4')}
               value={t.state.value4}
               columns={DatetimeField.YMDWHM}
               disabledTime={disabledTime}
+              // disabledDate={() => [
+              //     {
+              //       start: new Date(2017, 5, 1),
+              //       end: new Date(2017, 5, 30),
+              //     },
+              //   ]
+              // }
             />
-            <DatetimeField
+            {/* <DatetimeField
               label="日期/上下午选择"
               onSelect={t.handleChange.bind(t, 'value5')}
               value={t.state.value5}
               columns={DatetimeField.YMDT}
-            />
+            /> */}
           </Group.List>
         </Group>
       </div>
