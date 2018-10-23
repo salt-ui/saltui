@@ -27,7 +27,7 @@ class EmployeeFieldDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: testData,
+      value: [],
     };
   }
 
@@ -63,7 +63,7 @@ class EmployeeFieldDemo extends React.Component {
             label="选择人员"
             layout="v"
             multiple
-            placeholder="请选择"
+            placeholder="请选择请选择请选择请选择请选择请选择请选择"
             locale="en-us"
             enableNW
             value={this.state.value}

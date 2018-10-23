@@ -1,6 +1,7 @@
 ## 4.1.13
 
 * `feat`: `Datetime` `disabledDate` support all column type
+* `fix`: `Field` v-label-left should has min-width [#291](https://github.com/salt-ui/saltui/issues/291)
 
 ## 4.1.12 / 2018-10-22
 
