@@ -23,7 +23,8 @@ const stopBodyScrolling = (bool) => {
 
 const stopBodyScroll = (element) => {
   const pd = (e) => {
-    if (!element || !contains(element, e.target)) {
+    const ele = typeof element === 'function' ? element() : element;
+    if (!ele || !contains(ele, e.target)) {
       e.preventDefault();
     }
   };

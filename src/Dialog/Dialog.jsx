@@ -13,7 +13,7 @@ import classnames from 'classnames';
 import RcDialog from 'rc-dialog';
 import IconToastError from 'salt-icon/lib/ToastError';
 import Context from '../Context';
-import { stopBodyScrolling, getLocale } from '../Utils';
+import { stopBodyScroll, getLocale } from '../Utils';
 import i18nData from './i18n';
 
 const { prefixClass } = Context;
@@ -46,11 +46,13 @@ class Dialog extends React.Component {
       show: props.show,
       prevShow: props.show,
     };
+    this.getContentDom = this.getContentDom.bind(this);
   }
+
 
   componentDidMount() {
     if (this.state.show === true) {
-      stopBodyScrolling(true);
+      this.bodyScroll = stopBodyScroll(this.getContentDom);
     }
   }
 
@@ -66,15 +68,23 @@ class Dialog extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.show === false && this.state.show === true) {
-      stopBodyScrolling(true);
-    } else if (prevState.show === true && this.state.show === false) {
-      stopBodyScrolling(false);
+      this.bodyScroll = stopBodyScroll(this.getContentDom);
+    } else if (prevState.show === true && this.state.show === false && this.bodyScroll) {
+      this.bodyScroll.enable();
+      this.bodyScroll = null;
     }
   }
 
 
   componentWillUnmount() {
-    stopBodyScrolling(false);
+    if (this.bodyScroll) {
+      this.bodyScroll.enable();
+      this.bodyScroll = null;
+    }
+  }
+
+  getContentDom() {
+    return this.content;
   }
 
   getButtons() {
@@ -240,7 +250,13 @@ class Dialog extends React.Component {
         transitionName={prefixClass('dialog-slideDown')}
         maskTransitionName={prefixClass('dialog-fade')}
       >
-        {displayContent}
+        <div ref={(c) => {
+          console.log(c);
+          this.content = c;
+        }}
+        >
+          {displayContent}
+        </div>
       </RcDialog>
     );
   }
@@ -320,6 +336,7 @@ const getCloseFunc = func => () => {
   if (typeof func === 'function') {
     func();
   }
+  return false;
 };
 
 /**

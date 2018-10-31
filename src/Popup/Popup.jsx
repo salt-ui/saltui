@@ -69,7 +69,10 @@ function create(instanceId, config, content, afterClose = () => { }) {
     },
   };
 
-  let dom;
+  let instance = {
+    instanceId,
+    close,
+  };
 
   const update = (newContent) => {
     ReactDOM.render(
@@ -95,7 +98,7 @@ function create(instanceId, config, content, afterClose = () => { }) {
         wrapProps={props.wrapProps || {}}
         maskProps={props.maskProps || maskProps}
       >
-        <div ref={(c) => { dom = c; }}>
+        <div ref={(c) => { instance.dom = c; }}>
           {newContent || content}
         </div>
       </Dialog>,
@@ -105,12 +108,12 @@ function create(instanceId, config, content, afterClose = () => { }) {
 
   update();
 
-  return {
-    instanceId,
-    close,
+  instance = {
+    ...instance,
     update,
-    dom,
   };
+
+  return instance;
 }
 
 const ins = {
@@ -229,7 +232,7 @@ class Popup extends React.Component {
     }
     this.instance.show(this.props.content, this.getOptions());
     if (this.props.stopBodyScrolling) {
-      this.bodyScroll = stopBodyScroll(this.instance.getDom());
+      this.bodyScroll = stopBodyScroll(this.instance.getDom);
     }
   }
 
