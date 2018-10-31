@@ -1,3 +1,8 @@
+## 4.1.16 / 2018-10-31
+
+* `fix`: Dialog content fail to scroll
+* `fix`: Popup cannot stop body scrolling
+
 ## 4.1.13 / 2018-10-23
 
 * `feat`: `Datetime` `disabledDate` support all column type
