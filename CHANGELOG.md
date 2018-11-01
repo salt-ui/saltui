@@ -1,3 +1,8 @@
+## 4.1.17
+
+* `feat`: Dialog.confirm/alert support multiple instance
+* `remove`: remove Dialog.custom(useless)
+
 ## 4.1.16 / 2018-10-31
 
 * `fix`: Dialog content fail to scroll
