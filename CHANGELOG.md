@@ -1,4 +1,4 @@
-## 4.1.17
+## 4.1.17 / 2018-11-01
 
 * `feat`: Dialog.confirm/alert support multiple instance
 * `remove`: remove Dialog.custom(useless)
