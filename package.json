@@ -79,6 +79,7 @@
     "rc-dialog": "^6.5.11",
     "rc-drawer": "^0.4.9",
     "rc-input-number": "^3.6.8",
+    "rc-slider": "^8.6.3",
     "rc-tabs": "^8.0.0",
     "rc-tooltip": "^3.5.0",
     "rc-util": "^4.5.1",
