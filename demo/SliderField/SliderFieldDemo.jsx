@@ -1,8 +1,8 @@
 import React from 'react';
-import Slider from 'salt-slider';
-import './SliderDemo.styl';
+import SliderField from 'salt-slider-field';
+import './SliderFieldDemo.styl';
 
-export default class App extends React.Component {
+export default class SliderFieldDemo extends React.Component {
   log = name => (value) => {
     console.log(`${name}: ${value}`);
   }
@@ -10,16 +10,32 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="t-slider-example">
-        <p className="sub-title">基本滑块</p>
-        <Slider
-          className="slider-demo"
+        <SliderField
+          label="基本"
+          className="slider-field-demo"
           defaultValue={30}
           onChange={this.log('change')}
           onAfterChange={this.log('afterChange')}
         />
-        <p className="sub-title">滑块-禁用</p>
-        <Slider
-          className="slider-demo"
+        <SliderField
+          label="纵向"
+          layout="v"
+          className="slider-field-demo"
+          defaultValue={30}
+          onChange={this.log('change')}
+          onAfterChange={this.log('afterChange')}
+        />
+        <SliderField
+          label="显示值"
+          showValue
+          className="slider-field-demo"
+          defaultValue={30}
+          onChange={this.log('change')}
+          onAfterChange={this.log('afterChange')}
+        />
+        <SliderField
+          label="禁用"
+          className="slider-field-demo"
           defaultValue={30}
           min={0}
           max={50}
@@ -27,9 +43,9 @@ export default class App extends React.Component {
           onChange={this.log('change')}
           onAfterChange={this.log('afterChange')}
         />
-        <p className="sub-title">滑块-带刻度</p>
-        <Slider
-          className="slider-demo"
+        <SliderField
+          label="带刻度"
+          className="slider-field-demo"
           defaultValue={30}
           min={0}
           max={50}
@@ -37,9 +53,9 @@ export default class App extends React.Component {
           onChange={this.log('change')}
           onAfterChange={this.log('afterChange')}
         />
-        <p className="sub-title">滑块-自定义颜色</p>
-        <Slider
-          className="slider-demo"
+        <SliderField
+          label="自定义颜色"
+          className="slider-field-demo"
           defaultValue={30}
           min={0}
           max={50}

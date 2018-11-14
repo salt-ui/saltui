@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RcSlider from 'rc-slider/lib/Slider';
-import './Slider'
+import './Slider';
 import Context from '../Context';
+
+const { noop } = Context;
 
 export default class Slider extends React.Component {
   static defaultProps = {
@@ -21,7 +23,7 @@ export default class Slider extends React.Component {
     );
   }
 }
-
+Slider.displayName = Slider;
 Slider.propTypes = {
   value: PropTypes.number,
   min: PropTypes.number,
@@ -30,14 +32,28 @@ Slider.propTypes = {
   onChange: PropTypes.func,
   onAfterChange: PropTypes.func,
   defaultValue: PropTypes.number,
-  tipFormatter: PropTypes.func,
-  disabled: PropTypes.boolean,
-  handle: PropTypes.any,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
   marks: PropTypes.object,
-  dots: PropTypes.boolean,
-  included: PropTypes.boolean,
-  handleStyle: React.CSSProperties,
-  trackStyle: React.CSSProperties,
-  railStyle: React.CSSProperties,
-}
+  dots: PropTypes.bool,
+  included: PropTypes.bool,
+  handleStyle: PropTypes.object,
+  trackStyle: PropTypes.object,
+  railStyle: PropTypes.object,
+};
+
+Slider.defaultProps = {
+  min: 0,
+  max: 100,
+  step: 1,
+  defaultValue: 0,
+  disabled: false,
+  dots: false,
+  marks: {},
+  included: true,
+  handleStyle: {},
+  trackStyle: {},
+  railStyle: {},
+  onChange: noop,
+  onAfterChange: noop,
+};
