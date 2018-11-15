@@ -1,7 +1,6 @@
 /**
  * Filter Component for SaltUI
- * @author gnosaij
- *
+ * @author taoqili
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
@@ -9,27 +8,46 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HeaderBar from './HeaderBar.jsx'
 
-class Filter extends React.Component {
+export default class Filter extends React.Component {
   static displayName = 'Filter';
 
   static propTypes = {
-    options: PropTypes.array,
-    onSelect: PropTypes.func
+    activeIndex: PropTypes.number,
+    options: PropTypes.object,
+    onSelect: PropTypes.func,
   };
 
   static defaultProps = {
-    options: [],
+    activeIndex: -1,
+    options: {},
     onSelect: () => {}
   };
 
+  constructor(props) {
+    super(props);
+    this.selectData = {}
+  }
+
+  setSelect = (data) => {
+    if (!data || typeof data !== 'object') {
+      return
+    }
+    this.selectData = {
+      ...this.selectData,
+      ...data
+    }
+  };
+
+  getSelect = () => {
+    return this.selectData
+  };
+
   render() {
-    const {} = this.props;
     return (
       <div>
-        <HeaderBar {...this.props} />
+        <HeaderBar {...this.props} setSelect={this.setSelect} getSelect={this.getSelect} />
+        {/*<SomeOther />*/}
       </div>
     );
   }
 }
-
-export default Filter;

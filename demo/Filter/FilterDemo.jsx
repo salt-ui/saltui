@@ -23,8 +23,9 @@ class Demo extends React.Component {
     return (
       <div>
         <Filter
-          options = {
-            [
+          options = {{
+            size: 2,
+            items: [
               {
                 key: 'sort',
                 title: '排序', // or Component
@@ -44,9 +45,7 @@ class Demo extends React.Component {
                 key: 'quick',
                 title: () => {
                   return (
-                    <span>
-                      快捷支付
-                    </span>
+                    <span>快捷支付</span>
                   )
                 },
                 type: 'action',
@@ -56,16 +55,13 @@ class Demo extends React.Component {
                     text: '升序排列',
                     value: 'asc'
                   }
-                ],
-                onSelect(data) {
-                  console.log(data)
-                }
+                ]
               },
               {
                 key: 'something',
                 title: '单个网格',
                 type: 'grid',
-                multipleChoice: false,
+                multiSelect: true,
                 items: [
                   {
                     text: '距离',
@@ -86,92 +82,88 @@ class Demo extends React.Component {
               //   unit: '分'
               // },
               {
-                key: 'super',
-                title: '高级筛选',
-                type: 'super',
-                icon: 'star',
-                children: [
+                key: 'brand',
+                title: '品牌',
+                type: 'grid',
+                maxLine: 2,
+                multiSelect: true,
+                items: [
                   {
-                    key: 'brand',
-                    title: '品牌',
-                    type: 'grid',
-                    maxLine: 2,
-                    multipleChoice: true,
-                    items: [
-                      {
-                        text: '阿里巴巴',
-                        value: 'alibaba'
-                      },
-                      {
-                        text: '淘宝',
-                        value: 'taobao'
-                      },
-                      {
-                        text: '阿里巴巴',
-                        value: 'alibaba'
-                      },
-                      {
-                        text: '淘宝',
-                        value: 'taobao'
-                      },
-                      {
-                        text: '阿里巴巴',
-                        value: 'alibaba'
-                      },
-                      {
-                        text: '淘宝',
-                        value: 'taobao'
-                      },
-                      {
-                        text: '阿里巴巴',
-                        value: 'alibaba'
-                      },
-                      {
-                        text: '淘宝',
-                        value: 'taobao'
-                      }
-                    ]
+                    text: '阿里巴巴',
+                    value: 'alibaba'
+                  },
+                  {
+                    text: '淘宝',
+                    value: 'taobao'
+                  },
+                  {
+                    text: '阿里巴巴',
+                    value: 'alibaba'
+                  },
+                  {
+                    text: '淘宝',
+                    value: 'taobao'
+                  },
+                  {
+                    text: '阿里巴巴',
+                    value: 'alibaba'
+                  },
+                  {
+                    text: '淘宝',
+                    value: 'taobao'
+                  },
+                  {
+                    text: '阿里巴巴',
+                    value: 'alibaba'
+                  },
+                  {
+                    text: '淘宝',
+                    value: 'taobao'
                   }
                 ]
               }
             ]
-          }
+          }}
           onSelect={(data) => {
+            console.log(data)
             // 返回数据格式
-            data = {
-              sort: [
-                {
-                  text: '距离',
-                  value: 'distance'
-                }
-              ],
-              quick: [
-                {
-                  text: '升序排列',
-                  value: 'asc'
-                }
-              ],
-              something: [
-                {
-                  text: '距离',
-                  value: 'distance'
-                }
-              ],
-              other: [
-                {
-                  text: '区间',
-                  value: [1, 20]
-                }
-              ],
-              super: {
-                brand: [
-                  {
-                    text: '阿里巴巴',
-                    value: 'alibaba'
-                  }
-                ]
-              }
-            }
+            // data = {
+            //   key: 'quick',
+            //   currentItem: {
+            //     sort: [
+            //       {
+            //         text: '距离',
+            //         value: 'distance'
+            //       }
+            //     ],
+            //     quick: [
+            //       {
+            //         text: '升序排列',
+            //         value: 'asc'
+            //       }
+            //     ],
+            //   },
+            //   allItems: {
+            //     something: [
+            //       {
+            //         text: '距离',
+            //         value: 'distance'
+            //       }
+            //     ],
+            //     other: [
+            //       {
+            //         text: '区间',
+            //         value: [1, 20]
+            //       }
+            //     ],
+            //     brand: [
+            //       {
+            //         text: '阿里巴巴',
+            //         value: 'alibaba'
+            //       }
+            //     ]
+            //   }
+            // }
           }}
         />
       </div>

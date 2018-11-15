@@ -4,58 +4,155 @@ import { HBox, Box } from 'salt-boxs';
 import Icon from 'salt-icon'
 import classnames from 'classnames'
 import Panel from './Panel'
-import Popup from 'salt-popup'
 import React from "react";
 
 class HeaderBar extends Component{
-  static displayName = 'FilterHeader';
+  static displayName = 'FilterHeaderBar';
+
+  static propTypes = {
+    options: PropTypes.object,
+    setSelect: PropTypes.func,
+    onSelect: PropTypes.func,
+    getSelect: PropTypes.func
+  };
 
   static defaultProps = {
-    activeIndex: {
-      type: PropTypes.number,
-      default: 0
-    }
+    options: {},
+    setSelect: () => {},
+    onSelect: () => {},
+    getSelect: () => {}
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: props.activeIndex || 0
+      activeIndex: props.activeIndex,
+      popupOpen: true,
+      titles: {},
+      flags: {}
     }
   }
 
-  changeActive(index) {
+  changeActive(index, item) {
+    const hasSelected = this.state.activeIndex === index;
+
+    if (item.type === 'action') {
+      this.doActionFilter(item, hasSelected);
+    }
     this.setState({
-      activeIndex: this.state.activeIndex === index ? -1 : index
+      activeIndex: hasSelected ? -1 : index,
+      popupOpen: !hasSelected && item.key === '_super_'
     })
   }
 
-  onClosePanel = (e) => {
-    this.setState({
-      activeIndex: -1
-    })
+  doActionFilter(item, hasSelected) {
+    const {onSelect, setSelect, getSelect} = this.props;
+    !hasSelected ? setSelect({
+      [item.key]: item.items
+    }): setSelect({
+      [item.key]: null
+    });
+
+    onSelect({
+      key: item.key,
+      currentItem: hasSelected ? null : item.items[0],
+      allItems: getSelect()
+    });
   }
+
+  onClosePopup = () => {
+    this.setState({
+      activeIndex: -1,
+      popupOpen: false
+    })
+  };
+
+  setTitle(group, index) {
+    let { titles, flags, activeIndex } = this.state;
+    const classNames = classnames({active: activeIndex === index});
+    if (titles[group.key]) {
+      return (
+        <span className={classNames}>
+          {titles[group.key]}
+        </span>
+      )
+    }
+    return (
+      <span className={classNames}>
+        {typeof group.title === 'string' ? group.title : group.title()}
+      </span>
+    )
+  };
+
+  setGroupFlag = () => {
+    const selectData = this.props.getSelect();
+    let flags = {};
+    for (let index in selectData ) if (selectData.hasOwnProperty(index)) {
+      let data = selectData[index];
+      flags[index] = !!(data && data.length)
+    }
+    this.setState({
+      flags
+    });
+  };
+
+  setGroupTitle = (key, title) => {
+    this.setState({
+      titles: {
+        ...this.state.titles,
+        [key]: title
+      }
+    })
+  };
 
   render() {
-    const { activeIndex } = this.state;
-    const { options } = this.props;
+    const { activeIndex, popupOpen } = this.state;
+    const { size, items } = this.props.options;
+    let filterGroups = [];
+    if (items.length <= size) {
+      filterGroups = items
+    } else {
+      let newFilterGroups = [...items];
+      filterGroups = [
+        ...newFilterGroups.splice(0, size - 1),
+        {
+          key: '_super_',
+          title: '高级筛选',
+          type: 'super',
+          icon: 'star',
+          children: [
+            ...newFilterGroups.map(item => {
+              item._parentGroup_ = '_super';
+              return item;
+            })
+          ]
+        }
+      ]
+    }
+    const currentFilterGroup = filterGroups[activeIndex];
     return (
       <div>
         <HBox className={'wrapper'}>
-          {options.map((item, index) => {
+          {filterGroups.map((group, index) => {
             return (
-              <Box className={classnames({box: true})} flex={1} hAlign={'center'} key={item.key} onClick={() => {this.changeActive(index)} }>
-                <span className={classnames({active: activeIndex === index})}>
-                  {typeof item.title === 'string' ? item.title : item.title()}
-                </span>
+              <Box className={classnames({box: true})} flex={1} hAlign={'center'} key={group.key} onClick={() => {this.changeActive(index, group)} }>
+                {this.setTitle(group, index)}
                 {
-                  item.icon !== false ? <Icon fill={ activeIndex === index ? '#ff6f00' : '#000' } name={item.icon || (activeIndex === index ? 'angle-up' : 'angle-down')} className={'icon'} /> : null
+                  group.icon !== false ? <Icon fill={ activeIndex === index ? '#ff6f00' : '#000' } name={group.icon || (activeIndex === index ? 'angle-up' : 'angle-down')} className={'icon'} /> : null
                 }
               </Box>
             )
           })}
         </HBox>
-        <Panel {...options[activeIndex]} onClose={this.onClosePanel} />
+        <Panel
+          {...this.props}
+          hidePanel={ () => {this.setState({activeIndex: -1})} }
+          currentGroup={currentFilterGroup}
+          onClose={this.onClosePopup}
+          popupOpen={popupOpen}
+          setGroupTitle={this.setGroupTitle}
+          setGroupFlag={this.setGroupFlag}
+        />
       </div>
     )
   }
