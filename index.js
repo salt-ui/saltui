@@ -10,6 +10,7 @@
   import Calendar from './lib/Calendar';
   import CalendarField from './lib/CalendarField';
   import Card from './lib/Card';
+  import Carousel from './lib/Carousel';
   import CascadeSelectField from './lib/CascadeSelectField';
   import CheckboxField from './lib/CheckboxField';
   import CitySelectField from './lib/CitySelectField';
@@ -55,6 +56,8 @@
   import SearchBar from './lib/SearchBar';
   import SelectField from './lib/SelectField';
   import Slide from './lib/Slide';
+  import Slider from './lib/Slider';
+  import SliderField from './lib/SliderField';
   import Slot from './lib/Slot';
   import Steps from './lib/Steps';
   import Switch from './lib/Switch';
@@ -85,6 +88,7 @@ const __SALT_BUNDLE__ = {
   Calendar,
   CalendarField,
   Card,
+  Carousel,
   CascadeSelectField,
   CheckboxField,
   CitySelectField,
@@ -130,6 +134,8 @@ const __SALT_BUNDLE__ = {
   SearchBar,
   SelectField,
   Slide,
+  Slider,
+  SliderField,
   Slot,
   Steps,
   Switch,

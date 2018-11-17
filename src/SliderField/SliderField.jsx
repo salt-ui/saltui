@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Slider from '../Slider';
 import Field from '../Field';
-import './SliderField';
 import Context from '../Context';
 
 export default class SliderField extends React.Component {
-  static defaultProps = {};
-
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       value: undefined,
     };

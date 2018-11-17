@@ -1,15 +1,12 @@
 
 
-$sliderPrefixCls = 't-slider';
-$gray = #ddd;
-
-.{$sliderPrefixCls} {
+.{$prefix}-slider {
   position: relative;
 
   &-rail {
     position: absolute;
     width: 100%;
-    background-color: $gray;
+    background-color: #ddd;;
     height: 2px;
     box-sizing: border-box;
   }
@@ -95,13 +92,13 @@ $gray = #ddd;
   &-disabled {
     opacity: .3;
 
-    .{$sliderPrefixCls}-track {
+    .{$prefix}-slider-track {
       height: 2px;
     }
 
-    .{$sliderPrefixCls}-handle,
-    .{$sliderPrefixCls}-mark-text,
-    .{$sliderPrefixCls}-dot {
+    .{$prefix}-slider-handle,
+    .{$prefix}-slider-mark-text,
+    .{$prefix}-slider-dot {
       cursor: not-allowed;
       box-shadow: none;
     }

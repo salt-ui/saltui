@@ -6,8 +6,8 @@
 * All rights reserved.
 */
 import React from 'react';
-
-import classnames from 'classnames';
+import Carousel from 'salt-carousel';
+// for compatible
 import Slide from 'salt-slide';
 
 class Demo extends React.Component {
@@ -108,7 +108,7 @@ class Demo extends React.Component {
     return (
       <div>
         <h3 className="t-P10">动态添加Slide.Item</h3>
-        <Slide
+        <Carousel
           loop={false}
           active={this.state.dynamicListActive}
           height="2rem"
@@ -133,51 +133,51 @@ class Demo extends React.Component {
         >
           {
           this.state.dynamicList.map(item => (
-            <Slide.Item
+            <Carousel.Item
               key={item.name}
               title={item.name}
             >
               <div className="dynamic-item">{item.name}</div>
-            </Slide.Item>
+            </Carousel.Item>
           ))
         }
-        </Slide>
+        </Carousel>
         <h3 className="t-P10">默认</h3>
-        <Slide onSlideEnd={(e) => { t.handleSlideCount(e); }}>
-          <Slide.Item title="测试标题1">
+        <Carousel onSlideEnd={(e) => { t.handleSlideCount(e); }}>
+          <Carousel.Item title="测试标题1">
             <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
               <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
             </div>
-          </Slide.Item>
-          <Slide.Item title="测试标题2">
+          </Carousel.Item>
+          <Carousel.Item title="测试标题2">
             <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
               <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
             </div>
-          </Slide.Item>
-          <Slide.Item title="测试标题3">
+          </Carousel.Item>
+          <Carousel.Item title="测试标题3">
             <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
               <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
             </div>
-          </Slide.Item>
-          <Slide.Item title="测试标题4">
+          </Carousel.Item>
+          <Carousel.Item title="测试标题4">
             <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'green', height: '100%' }}>
               <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
             </div>
-          </Slide.Item>
-          <Slide.Item title="测试标题5">
+          </Carousel.Item>
+          <Carousel.Item title="测试标题5">
             <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'orange', height: '100%' }}>
               <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
             </div>
-          </Slide.Item>
-          <Slide.Item title="测试标题6">
+          </Carousel.Item>
+          <Carousel.Item title="测试标题6">
             <div className="t-FBV t-FBAC t-FBJC" style={{ backgroundColor: 'green', height: '100%' }}>
               <div className="t-FS20 t-FCf">数数玩：{t.state.freeCount}</div>
             </div>
-          </Slide.Item>
-        </Slide>
+          </Carousel.Item>
+        </Carousel>
 
         <h3 className="t-P10">有title</h3>
-        <Slide
+        <Carousel
           showTitle
           showNav
           auto
@@ -187,7 +187,7 @@ class Demo extends React.Component {
           onSlideEnd={this.onSlideEnd.bind(this)}
         >
           {
-          t.state.slideList.map((item, index) => (<Slide.Item
+          t.state.slideList.map((item, index) => (<Carousel.Item
             key={index}
             className="t-image-slide-item"
             title="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试"
@@ -196,8 +196,43 @@ class Demo extends React.Component {
           }}
           />))
         }
-        </Slide>
+        </Carousel>
         <h3 className="t-P10">无title</h3>
+        <Carousel
+          showTitle={false}
+          showNav
+          auto
+          active={2}
+          onSlideClick={this._onSlideClick.bind(this)}
+          onMount={this.onMount.bind(this)}
+          onSlideEnd={this.onSlideEnd.bind(this)}
+        >
+          {
+          t.state.slideList.map((item, index) => (<Carousel.Item
+            key={index}
+            className="t-image-slide-item"
+            style={{
+            backgroundImage: `url(${item.img})`,
+          }}
+          />))
+        }
+        </Carousel>
+
+        <h3 className="t-P10">单个 slide</h3>
+        <Carousel
+          onSlideClick={this._onSlideClick.bind(this)}
+          showNav
+          auto
+        >
+          {
+          t.state.slideList2.map((item, index) => (
+            <Carousel.Item key={index}>
+              <a href="//work.alibaba-inc.com"><img alt="" src={item.img} /></a>
+            </Carousel.Item>
+          ))
+        }
+        </Carousel>
+        <h3 className="t-P10">兼容原有 Slide 的名字</h3>
         <Slide
           showTitle={false}
           showNav
@@ -215,21 +250,6 @@ class Demo extends React.Component {
             backgroundImage: `url(${item.img})`,
           }}
           />))
-        }
-        </Slide>
-
-        <h3 className="t-P10">单个 slide</h3>
-        <Slide
-          onSlideClick={this._onSlideClick.bind(this)}
-          showNav
-          auto
-        >
-          {
-          t.state.slideList2.map((item, index) => (
-            <Slide.Item key={index}>
-              <a href="//work.alibaba-inc.com"><img src={item.img} /></a>
-            </Slide.Item>
-          ))
         }
         </Slide>
       </div>

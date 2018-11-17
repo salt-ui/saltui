@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RcSlider from 'rc-slider/lib/Slider';
-import './Slider';
 import Context from '../Context';
 
 const { noop } = Context;
 
 export default class Slider extends React.Component {
-  static defaultProps = {
-    className: 'salt-ui-slider',
-  };
-
   render() {
     return (
       <div className={`${this.props.className}-wrapper`}>
@@ -43,6 +38,8 @@ Slider.propTypes = {
 };
 
 Slider.defaultProps = {
+  value: undefined,
+  className: undefined,
   min: 0,
   max: 100,
   step: 1,
