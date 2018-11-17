@@ -7,8 +7,6 @@
  */
 
 import React from 'react';
-import Group from 'salt-group';
-import SelectField from 'salt-select-field';
 import Badge from 'salt-badge';
 
 
@@ -45,71 +43,145 @@ class BadgeDemo extends React.Component {
         <h1>Badge作为容器: </h1>
         <div className="demo-line">
           <Badge count={0}>
-            <a href="#1" className="demo-item" />
+            <span href="#1" className="demo-item" />
           </Badge>
         </div>
         <div className="demo-line">
           <Badge count={5}>
-            <a href="#1" className="demo-item" />
+            <span href="#1" className="demo-item" />
           </Badge>
         </div>
         <div className="demo-line">
           <Badge count={100}>
-            <a href="#1" className="demo-item" />
+            <span href="#1" className="demo-item" />
           </Badge>
         </div>
         <div className="demo-line">
           <Badge dot>
-            <a href="#1" className="demo-item" />
+            <span href="#1" className="demo-item" />
           </Badge>
         </div>
         <div className="demo-line">
-          <Badge text={'new'}>
-            <a href="#1" className="demo-item" />
+          <Badge text="new">
+            <span href="#1" className="demo-item" />
           </Badge>
         </div>
         <div className="demo-line">
-          <Badge text={'new'} corner="lt">
-            <a href="#1" className="demo-item" />
+          <Badge text="new" corner="lt">
+            <span href="#1" className="demo-item" />
+          </Badge>
+        </div>
+        <div className="demo-line">
+          <Badge text="new" corner="lb">
+            <span href="#1" className="demo-item" />
+          </Badge>
+        </div>
+        <div className="demo-line">
+          <Badge text="new" corner="rt">
+            <span href="#1" className="demo-item" />
+          </Badge>
+        </div>
+        <div className="demo-line">
+          <Badge text="new" corner="rb">
+            <span href="#1" className="demo-item" />
           </Badge>
         </div>
         <h1 className="extra-head">Badge作为子元素: </h1>
         <div
-          className="demo-line" style={{
-            position: 'relative',
-            height: 100,
-            border: '1px solid #aaa',
-            marginTop: 20,
-          }}
+          className="demo-line"
         >
           <Badge
-            text={'促'} style={{
-              left: 10,
+            text="促"
+            style={{
+              marginRight: 10,
             }}
           />
           <Badge
-            text={'减'} style={{
-              left: 40,
+            text="减"
+            style={{
+              marginRight: 10,
             }}
           />
           <Badge
-            text={'免'} style={{
-              left: 70,
+            text="免"
+            style={{
+              marginRight: 10,
               background: '#66BC5C',
             }}
           />
         </div>
 
         <div
-          className="demo-line" style={{
+          className="demo-line"
+          style={{
             position: 'relative',
             height: 100,
             width: '100%',
-            background: '#aaa',
+            background: '#e8e8e8',
             marginTop: 20,
           }}
         >
-          <Badge text={'new'} corner="lt" />
+          <Badge text="new" corner="lt" />
+          <Badge text="new" corner="rt" />
+          <Badge text="new" corner="lb" />
+          <Badge text="new" corner="rb" />
+        </div>
+        <h1 className="extra-head">Badge作为状态 </h1>
+        <div
+          className="demo-line"
+        >
+          <Badge
+            dot
+            dotType="status"
+            status="warning"
+            breath
+            style={{
+              marginRight: 10,
+            }}
+          />
+          <span className="demo-status-text">待提交</span>
+        </div>
+        <div
+          className="demo-line"
+        >
+          <Badge
+            dot
+            dotType="status"
+            status="info"
+            breath
+            style={{
+              marginRight: 10,
+            }}
+          />
+          <span className="demo-status-text">流程中</span>
+        </div>
+        <div
+          className="demo-line"
+        >
+          <Badge
+            dot
+            dotType="status"
+            status="error"
+            breath
+            style={{
+              marginRight: 10,
+            }}
+          />
+          <span className="demo-status-text">已拒绝</span>
+        </div>
+        <div
+          className="demo-line"
+        >
+          <Badge
+            dot
+            dotType="status"
+            status="success"
+            breath
+            style={{
+              marginRight: 10,
+            }}
+          />
+          <span className="demo-status-text">已通过</span>
         </div>
       </div>
     );

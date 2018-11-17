@@ -34,6 +34,7 @@
     "co": "^4.6.0",
     "colors": "^1.1.2",
     "css-loader": "^0.28.7",
+    "eslint": "^5.9.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
