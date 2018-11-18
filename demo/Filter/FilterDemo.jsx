@@ -24,11 +24,11 @@ class Demo extends React.Component {
       <div>
         <Filter
           options = {{
-            size: 2,
+            size: 4,
             items: [
               {
                 key: 'sort',
-                title: '排序', // or Component
+                title: '默认排序',
                 type: 'list',  // grid | range | action | super
                 items: [
                   {
@@ -43,11 +43,7 @@ class Demo extends React.Component {
               },
               {
                 key: 'quick',
-                title: () => {
-                  return (
-                    <span>快捷支付</span>
-                  )
-                },
+                title: '升序排列',
                 type: 'action',
                 icon: false,
                 items: [
@@ -61,7 +57,7 @@ class Demo extends React.Component {
                 key: 'something',
                 title: '单个网格',
                 type: 'grid',
-                multiSelect: true,
+                multiSelect: false,
                 items: [
                   {
                     text: '距离',
@@ -70,7 +66,31 @@ class Demo extends React.Component {
                   {
                     text: '评分',
                     value: 'grade'
-                  }
+                  },
+                  {
+                    text: '菜鸟',
+                    value: 'cainiao'
+                  },
+                  {
+                    text: '优酷',
+                    value: 'youku'
+                  },
+                  {
+                    text: '天猫',
+                    value: 'tianmao'
+                  },
+                  {
+                    text: '阿里',
+                    value: 'ali'
+                  },
+                  {
+                    text: '淘宝',
+                    value: 'taobao'
+                  },
+                  {
+                    text: '支付宝',
+                    value: 'zhifubao'
+                  },
                 ]
               },
               // {
@@ -97,6 +117,39 @@ class Demo extends React.Component {
                     value: 'taobao'
                   },
                   {
+                    text: '菜鸟',
+                    value: 'cainiao'
+                  },
+                  {
+                    text: '优酷',
+                    value: 'youku'
+                  },
+                  {
+                    text: '天猫',
+                    value: 'tianmao'
+                  },
+                  {
+                    text: '百度',
+                    value: 'baidu'
+                  },
+                  {
+                    text: '腾讯',
+                    value: 'tengxun'
+                  },
+                  {
+                    text: '有道',
+                    value: 'youdao'
+                  }
+                ]
+              },
+              {
+                key: 'brand1',
+                title: '品牌',
+                type: 'grid',
+                maxLine: 4,
+                multiSelect: true,
+                items: [
+                  {
                     text: '阿里巴巴',
                     value: 'alibaba'
                   },
@@ -105,6 +158,39 @@ class Demo extends React.Component {
                     value: 'taobao'
                   },
                   {
+                    text: '菜鸟',
+                    value: 'cainiao'
+                  },
+                  {
+                    text: '优酷',
+                    value: 'youku'
+                  },
+                  {
+                    text: '天猫',
+                    value: 'tianmao'
+                  },
+                  {
+                    text: '百度',
+                    value: 'baidu'
+                  },
+                  {
+                    text: '腾讯',
+                    value: 'tengxun'
+                  },
+                  {
+                    text: '有道',
+                    value: 'youdao'
+                  }
+                ]
+              },
+              {
+                key: 'brand2',
+                title: '品牌',
+                type: 'grid',
+                maxLine: 2,
+                multiSelect: true,
+                items: [
+                  {
                     text: '阿里巴巴',
                     value: 'alibaba'
                   },
@@ -113,18 +199,121 @@ class Demo extends React.Component {
                     value: 'taobao'
                   },
                   {
+                    text: '菜鸟',
+                    value: 'cainiao'
+                  },
+                  {
+                    text: '优酷',
+                    value: 'youku'
+                  },
+                  {
+                    text: '天猫',
+                    value: 'tianmao'
+                  },
+                  {
+                    text: '百度',
+                    value: 'baidu'
+                  },
+                  {
+                    text: '腾讯',
+                    value: 'tengxun'
+                  },
+                  {
+                    text: '有道',
+                    value: 'youdao'
+                  }
+                ]
+              },
+              {
+                key: 'brand3',
+                title: '品牌',
+                type: 'grid',
+                maxLine: 2,
+                multiSelect: true,
+                items: [
+                  {
                     text: '阿里巴巴',
                     value: 'alibaba'
                   },
                   {
                     text: '淘宝',
                     value: 'taobao'
+                  },
+                  {
+                    text: '菜鸟',
+                    value: 'cainiao'
+                  },
+                  {
+                    text: '优酷',
+                    value: 'youku'
+                  },
+                  {
+                    text: '天猫',
+                    value: 'tianmao'
+                  },
+                  {
+                    text: '百度',
+                    value: 'baidu'
+                  },
+                  {
+                    text: '腾讯',
+                    value: 'tengxun'
+                  },
+                  {
+                    text: '有道',
+                    value: 'youdao'
+                  }
+                ]
+              },
+              {
+                key: 'brand4',
+                title: '品牌',
+                type: 'grid',
+                maxLine: 3,
+                multiSelect: true,
+                items: [
+                  {
+                    text: '阿里巴巴',
+                    value: 'alibaba'
+                  },
+                  {
+                    text: '阿里巴巴2',
+                    value: 'alibaba2'
+                  },
+                  {
+                    text: '淘宝',
+                    value: 'taobao'
+                  },
+                  {
+                    text: '菜鸟',
+                    value: 'cainiao'
+                  },
+                  {
+                    text: '优酷',
+                    value: 'youku'
+                  },
+                  {
+                    text: '天猫',
+                    value: 'tianmao'
+                  },
+                  {
+                    text: '百度',
+                    value: 'baidu'
+                  },
+                  {
+                    text: '腾讯',
+                    value: 'tengxun'
+                  },
+                  {
+                    text: '有道',
+                    value: 'youdao'
                   }
                 ]
               }
             ]
           }}
           onSelect={(data) => {
+            // can do confirm
             console.log(data)
             // 返回数据格式
             // data = {
@@ -164,6 +353,13 @@ class Demo extends React.Component {
             //     ]
             //   }
             // }
+          }}
+          onConfirm={(data) => {
+             // do confirm
+          }}
+          onReset={(data) => {
+            debugger
+            // do something
           }}
         />
       </div>
