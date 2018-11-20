@@ -1,3 +1,9 @@
+## 4.2.0
+
+* `feat`: Badge new prop `dotType`, `status`, `breath`
+* `new`: new components `Slider` & `SliderField`
+* `change`: rename `Slide` as  `Carousel`
+
 ## 4.1.17 / 2018-11-01
 
 * `feat`: Dialog.confirm/alert support multiple instance

@@ -6,7 +6,7 @@
 * All rights reserved.
 */
 import React from 'react';
-import Slide from 'salt-slide';
+import Carousel from 'salt-carousel';
 
 
 class Demo1 extends React.Component {
@@ -37,7 +37,7 @@ class Demo1 extends React.Component {
 
   render() {
     return (
-      <Slide showNav>
+      <Carousel showNav>
         {
           this.state.slideList.length ?
             this.state.slideList.map((item, index) => (
@@ -54,7 +54,7 @@ class Demo1 extends React.Component {
               <img width="48" alt="" src="//aliwork.alicdn.com/tps/TB1fPYRMXXXXXcdXFXXXXXXXXXX-480-238.svg" />,
             ]
         }
-      </Slide>
+      </Carousel>
     );
   }
 }

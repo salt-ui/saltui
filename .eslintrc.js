@@ -26,6 +26,17 @@ module.exports = {
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
-    // "import/no-unresolved": [2, { ignore: ['^salt\-'] }],
-  }
+    "react/no-array-index-key": "off"
+    // ignore salt-xxx error in demo
+    "import/no-unresolved": [2, { ignore: ['salt\-'] }],
+    "import/extensions": "off"
+  },
+  // TODO how to resolve salt-xxx properly in demo? may be some config in import/resolver
+  // "settings": {
+  //   "import/resolver": {
+  //     "webpack": {
+  //       "config": "webpack.dev.js"
+  //     }
+  //   }
+  // },
 };
