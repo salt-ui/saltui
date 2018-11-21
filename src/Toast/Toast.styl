@@ -54,14 +54,17 @@
     min-width: 100px;
     max-width: 254px;
     padding: 0 7px;
+}
+
+.{$prefix}-toast-content-noWrap {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .{$prefix}-toast-content-wrap {
-     white-space: normal;
-     text-align: left!important;
+     word-wrap:break-word;
+     text-align: left;
 }
 
 .{$prefix}-toast-has-icon .{$prefix}-toast-content {

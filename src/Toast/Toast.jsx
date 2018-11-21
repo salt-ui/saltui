@@ -220,7 +220,9 @@ class Toast extends React.Component {
             {content && (
               <div
                 className={classnames(prefixClass('toast-content'), {
-                  [prefixClass('toast-content-wrap')]: textWrap
+                  [prefixClass(
+                    textWrap ? 'toast-content-wrap' : 'toast-content-noWrap'
+                  )]: true
                 })}
               >
                 {content}
