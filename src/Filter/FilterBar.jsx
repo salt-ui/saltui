@@ -72,11 +72,16 @@ class FilterBar extends React.Component {
   renderTitle(group, index) {
     const {activeIndex} = this.state;
     const {getSelect} = this.props;
+    const currentSelectData = getSelect()[group.key];
     const isFocus = activeIndex === index;
     const className = classnames({active: isFocus});
     const title = typeof group.title === 'function'
-      ? <span className={className}>{group.title(isFocus, getSelect()[group.key])}</span>
-      : <span className={className}>{group.title}</span>;
+      ? <span className={className}>{group.title(isFocus, currentSelectData)}</span>
+      : <span className={className}>{
+        (group.type === 'list' || group.type === 'grid') && currentSelectData
+          ? currentSelectData.length === 1 ? currentSelectData[0].text : (currentSelectData[0].text + '...')
+          : group.title
+      }</span>;
     return (
       title
     )
@@ -90,8 +95,8 @@ class FilterBar extends React.Component {
         ? <Icon
           fill={isFocus ? '#ff6f00' : '#000'}
           name={group.icon || (isFocus ? 'angle-up' : 'angle-down')}
-          width={20}
-          height={20}
+          width={group.type === 'super' ? 18 : 20}
+          height={group.type === 'super' ? 18 : 20}
           className={'icon'}
         />
         : null
@@ -128,7 +133,11 @@ class FilterBar extends React.Component {
   }
 
   renderSelectedFlag(group, index) {
-    return this.checkFlag(group, index) ? <span className={'flag'}>o</span> : null
+    if (group.key === '_super_') {
+      return this.checkFlag(group, index) ? <span className={'flag'}>o</span> : null
+    }
+    return null;
+
   }
 
   render() {

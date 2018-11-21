@@ -24,7 +24,7 @@ class Demo extends React.Component {
       <div>
         <Filter
           options = {{
-            size: 4,
+            size: 3,
             items: [
               {
                 key: 'sort',
@@ -57,7 +57,7 @@ class Demo extends React.Component {
                 key: 'something',
                 title: '单个网格',
                 type: 'grid',
-                multiSelect: false,
+                multiSelect: true,
                 items: [
                   {
                     text: '距离',
@@ -358,7 +358,6 @@ class Demo extends React.Component {
              // do confirm
           }}
           onReset={(data) => {
-            debugger
             // do something
           }}
         />

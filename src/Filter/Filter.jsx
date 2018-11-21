@@ -63,22 +63,23 @@ class Filter extends React.Component {
 
   formatOptions = () => {
     const {size, items} = this.props.options;
-    if (items.length <= size) {
+    let maxSize = size > 4 ? 4 : size;
+    if (items.length <= maxSize) {
       return {
-        size,
+        maxSize,
         groups: items,
         _backItems: items
       }
     }
     let newFilterGroups = [...items];
     return {
-      size,
+      maxSize,
       groups: [
-        ...newFilterGroups.splice(0, size - 1),
+        ...newFilterGroups.splice(0, maxSize - 1),
         {
           key: '_super_',
           title: '高级筛选',
-          icon: 'star',
+          icon: 'setting',
           type: 'super',
           children: [
             ...newFilterGroups.map(item => {
