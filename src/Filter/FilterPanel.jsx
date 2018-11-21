@@ -181,7 +181,9 @@ class FilterPanel extends react.Component {
         value: 'showAll',
         text: () => {
           return (
-            <span data-key={group.key} data-action="showAll">全部 ></span>
+            <div data-key={group.key} data-action="showAll">
+              全部 >
+            </div>
           )
         },
       });
