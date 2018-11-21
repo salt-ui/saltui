@@ -135,7 +135,7 @@ class FilterPanel extends react.Component {
                 {item.text}
                 {
                   isSelected
-                    ? <Icon className={'icon'} name={'check'} fill={'#ff6f00'} />
+                    ? <Icon className={'icon'} width={26} height={26} name={'check'} fill={'#ff6f00'} />
                     : null
                 }
               </div>
