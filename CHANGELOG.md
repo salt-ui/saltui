@@ -3,6 +3,7 @@
 * `feat`: Badge new prop `dotType`, `status`, `breath`
 * `new`: new components `Slider` & `SliderField`
 * `change`: rename `Slide` as  `Carousel`
+* `fix`: Toast add prop textWrap
 
 ## 4.1.17 / 2018-11-01
 
