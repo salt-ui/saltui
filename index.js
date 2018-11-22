@@ -16,6 +16,7 @@
   import Collapse from './lib/Collapse';
   import Context from './lib/Context';
   import Crumb from './lib/Crumb';
+  import DataView from './lib/DataView';
   import Datetime from './lib/Datetime';
   import DatetimeField from './lib/DatetimeField';
   import Dialog from './lib/Dialog';
@@ -91,6 +92,7 @@ const __SALT_BUNDLE__ = {
   Collapse,
   Context,
   Crumb,
+  DataView,
   Datetime,
   DatetimeField,
   Dialog,
