@@ -59,7 +59,7 @@ Data.defaultProps = {
 Data.propTypes = {
   number: PropTypes.number,
   digits: PropTypes.number,
-  group: PropTypes.number,
+  groupDigits: PropTypes.number,
   spliter: PropTypes.string,
   max: PropTypes.number,
   showSign: PropTypes.bool,

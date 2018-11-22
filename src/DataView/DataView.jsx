@@ -15,6 +15,10 @@ import Data from './Data';
 
 export default class DataView extends React.Component {
 
+  handleClick = () => {
+    this.props.onClick && this.props.onClick();
+  }
+
   renderNumber(data) {
     const { positiveColor, negativeColor, number } = data.props;
     return <span style={{
@@ -55,12 +59,16 @@ export default class DataView extends React.Component {
     const t = this;
     const { className, layout } = t.props;
     return layout === 'h' ?
-      <div className={classnames(className, Context.prefixClass('data-view'), Context.prefixClass('data-view-h'))}>
+      <div onClick={this.handleClick}
+        className={classnames(className, Context.prefixClass('data-view'), Context.prefixClass('data-view-h'))}
+      >
         {this.renderLabel()}
         {this.renderData()}
       </div>
     :
-      <div className={classnames(className, Context.prefixClass('data-view'))}>
+      <div onClick={this.handleClick}
+        className={classnames(className, Context.prefixClass('data-view'))}
+      >
         {this.renderData()}
         {this.renderLabel()}
       </div>
