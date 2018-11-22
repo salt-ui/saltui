@@ -24,12 +24,12 @@ class Demo extends React.Component {
       <div>
         <Filter
           options = {{
-            size: 3,
+            size: 4,
             items: [
               {
                 key: 'sort',
                 title: '默认排序',
-                type: 'list',  // grid | range | action | super
+                type: 'list',  // grid | range | action
                 items: [
                   {
                     text: '距离',
@@ -314,7 +314,7 @@ class Demo extends React.Component {
           }}
           onSelect={(data) => {
             // can do confirm
-            console.log(data)
+            console.log('on select: ', data)
             // 返回数据格式
             // data = {
             //   key: 'quick',
@@ -355,9 +355,11 @@ class Demo extends React.Component {
             // }
           }}
           onConfirm={(data) => {
+            console.log('on confirm: ', data)
              // do confirm
           }}
           onReset={(data) => {
+            console.log('on reset: ', data)
             // do something
           }}
         />
