@@ -32,6 +32,7 @@ ReactDOM.render(
 |type | 步骤条类型 | string | `default` `title-on-top` or `long-desc` | `default` |
 |showDetail | 可选参数[direction=vertical或type=long-desc不生效],是否显示详情面板[step的children] | bool | `true` `false` | `false` |
 |currentDetail | 可选参数[direction=vertical或type=long-desc不生效],指定当前正在显示的详情面板，从0开始记数 | number | `0` ... | `0` |
+|showCurrentTitle| 是否只显示进行中(由current指定的)步骤的标题(title) | bool | `true` `false` | `false` |
 |onChange | 可选参数[direction=vertical或type=long-desc不生效],指定步骤icon点击事件回调,参数为被点击步骤对应数字 | func |  | (v)=>{} |
 
 ### Steps.Step
