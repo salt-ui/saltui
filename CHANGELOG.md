@@ -1,8 +1,9 @@
-## 4.2.0
+## 4.2.0 / 2018-11-22
 
 * `feat`: Badge new prop `dotType`, `status`, `breath`
 * `new`: new components `Slider` & `SliderField`
 * `change`: rename `Slide` as `Carousel`
+* `fix`: ImageViewer current fail to work 
 
 ## 4.1.17 / 2018-11-01
 
