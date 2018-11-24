@@ -65,14 +65,6 @@ class Step extends React.Component {
       width: tailWidth,
     };
 
-    // if (stepWrapperStyle) {
-    //   stepWrapperStyle.width = props.tailWidth;
-    // } else {
-    //   stepWrapperStyle = {
-    //     width: props.tailWidth,
-    //   };
-    // }
-
     const detailCls = classnames(prefixClass('steps-detail'), {
       [prefixClass('steps-detail-current')]: props.showDetail,
     });
