@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-// import Badge from 'salt-badge';
+import Badge from 'salt-badge';
 
 class Item extends React.Component {
   static propTypes = {
@@ -10,6 +10,7 @@ class Item extends React.Component {
     img: PropTypes.string,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     description: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    badge: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     desMaxLine: PropTypes.number,
     extra: PropTypes.any,
   };
@@ -20,6 +21,7 @@ class Item extends React.Component {
     img: undefined,
     title: undefined,
     description: undefined,
+    badge: undefined,
     extra: undefined,
   };
 
@@ -33,16 +35,16 @@ class Item extends React.Component {
 
   renderTitle() {
     const { title, prefixCls } = this.props;
-    return <div className={`${prefixCls}-title`}>{title}</div>;
+    return <div className={`${prefixCls}-title`}>{title}{this.renderBadge()}</div>;
   }
 
-  // renderBadge() {
-  //   const { badge, prefixCls } = this.props;
-  //   if (typeof badge === 'string') {
-  //     return (<Badge text={badge} style={{ marginLeft: 8, background: '#F9BD0F', }}/>);
-  //   }
-  //   return badge;
-  // }
+  renderBadge() {
+    const { badge, prefixCls } = this.props;
+    if (typeof badge === 'string') {
+      return (<Badge text={badge} style={{ marginLeft: 8, background: '#F9BD0F', }}/>);
+    }
+    return badge;
+  }
 
   renderDes() {
     const { description, prefixCls, desMaxLine } = this.props;
@@ -85,7 +87,6 @@ class Item extends React.Component {
         {this.renderImg()}
         <div className={`${prefixCls}-content`}>
           {this.renderTitle()}
-          {/* {this.renderBadge()} */}
           {this.renderDes()}
         </div>
         {this.renderExtra()}

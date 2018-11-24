@@ -12,7 +12,7 @@ import Map from 'salt-icon/lib/Map';
 import ScrollList from 'salt-scroll-list';
 import Button from 'salt-button';
 import Avatar from 'salt-avatar';
-// import Badge from 'salt-badge';
+import Badge from 'salt-badge';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // import ScrollList from  '../../dist';
@@ -48,14 +48,14 @@ const propsMap = [
   {
     img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
     title: '标题文字(如姓名)',
-    // badge:  <Badge text="徽章文本" style={{ marginLeft: 10, background: '#ff6600', }}/>,
+    badge:  <Badge text="徽章文本" style={{ marginLeft: 10, background: '#ff6600', }}/>,
     description: '放上人物相关简介和title，使人物信息更加饱满，文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容',
     extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
   },
   {
     img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
     title: '标题文字(如姓名)',
-    // badge:  '徽章文本2',
+    badge:  '徽章文本2',
     titleTag: '<span className="newlist-demo-has-title-tag">标题带标签</span>',
     description: '多行模式，文字超长则换行；文本内容文本内容文本内容文本内容文本内容文本内容',
   },

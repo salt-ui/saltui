@@ -101,6 +101,11 @@ $scrollListPrefixCls = t-scroll-list;
     margin-right: 8px;
 }
 
+.{$scrollListPrefixCls}-item .t-badge {
+  float: right;
+  margin-bottom: 3px;
+}
+
 .{$scrollListPrefixCls}-item-content {
   flex: 1;
   // very important, make ellipsis in flexbox work
@@ -115,7 +120,10 @@ $scrollListPrefixCls = t-scroll-list;
 }
 
 .{$scrollListPrefixCls}-item-title {
+  display: flex;
+  align-items: center;
   font-size: 16px;
+  justify-content: space-between;
 }
 
 .{$scrollListPrefixCls}-item-des-inner {
