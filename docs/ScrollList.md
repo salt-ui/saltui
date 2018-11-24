@@ -214,11 +214,11 @@ class Demo extends React.Component {
 | 配置项 | 类型 | 必填 | 默认值 | 功能/备注 |
 |---|---|---|---|---|
 |img|string|optional| - | 头像或图片 |
-|title|string|optional| - | 标题 |
-|description|string|optional| -| 描述 |
+|title|React Element or string|optional| - | 标题 |
+|description|React Element or string|optional| -| 描述 |
 |extra|React Element|optional| - | 右侧自定义区域 |
 |desMaxLine|number|optional| 2 | 描述占据几行 |
-
+|badge|React Element or string|optional|-|跟在标题后的徽章|
 
 
 ### 1.x里的属性(在2.x中已经废弃)
