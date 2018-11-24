@@ -52,7 +52,23 @@ class Demo extends React.Component {
         </Group.List>
         <Group.List>
           <Field layout="v" label="上下结构" icon={<AngleRight {...angleIconProps} />}>
-            <div>自定义输入元素的区域, 带图标</div>
+            <div>
+              <p>自定义输入元素的区域, 带图标</p>
+            </div>
+          </Field>
+        </Group.List>
+        <Group.List>
+          <Field layout="v" label="上下结构" icon={<AngleRight {...angleIconProps} />} iconMiddle={true}>
+            <div>
+              <p>自定义输入元素的区域, 带图标，图标垂直居中</p>
+            </div>
+          </Field>
+        </Group.List>
+        <Group.List>
+          <Field layout="v" label="上下结构" icon={<AngleRight {...angleIconProps} />} errMsg={'输入有误'} iconMiddle={true}>
+            <div>
+              <p>自定义输入元素的区域, 带图标，图标垂直居中,带错误提示</p>
+            </div>
           </Field>
         </Group.List>
         <Group.List >

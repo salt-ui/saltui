@@ -12,125 +12,134 @@ $field-label-color = $dark-alpha-2;
 $field-text-color = $dark-alpha-2;
 
 .{$prefix}-field {
-    font-size: $font-size-field-text;
-    color: $field-text-color;
-    &-disabled {
-        color: $normal-alpha-5;
-        .{$prefix}-field-label {
-            color: $normal-alpha-5;
-        }
-        .{$prefix}-icon {
-            svg {
-                fill: $normal-alpha-5;
-            }
-        }
+  font-size: $font-size-field-text;
+  color: $field-text-color;
+  &-disabled {
+    color: $normal-alpha-5;
+    .{$prefix}-field-label {
+      color: $normal-alpha-5;
     }
+    .{$prefix}-icon {
+      svg {
+        fill: $normal-alpha-5;
+      }
+    }
+  }
 }
 
 .{$prefix}-field-icon {
-    margin: 0 0 0 8px;
-    line-height: 0;
+  margin: 0 0 0 8px;
+  line-height: 0;
+}
+
+.{$prefix}-field-pos-box {
+
+}
+
+.{$prefix}-field-pos-icon {
+  margin-left 8px
+  margin-right 16px
 }
 
 .{$prefix}-field-error-icon {
-    svg {
-        fill: $function-red;
-        width: 20px;
-        height: 20px;
-    }
+  svg {
+    fill: $function-red;
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .{$prefix}-field-box {
-    min-height: $field-min-height;
-    line-height: 1.5;
-    padding-left: $field-padding-left;
-    padding-right: $field-padding-left;
+  min-height: $field-min-height;
+  line-height: 1.5;
+  padding-left: $field-padding-left;
+  padding-right: $field-padding-left;
 }
 
 .{$prefix}-field-layout-h-label {
-    padding: (($field-min-height - $filed-line-height) / 2) 0;
-    padding-right: 20px;
-    width: 118px; // 苹果苹方字体需要增加 2 个像素，才能保证可以有 6 个字。
-    line-height: $filed-line-height;
+  padding: (($field-min-height - $filed-line-height) / 2) 0;
+  padding-right: 20px;
+  width: 118px; // 苹果苹方字体需要增加 2 个像素，才能保证可以有 6 个字。
+  line-height: $filed-line-height;
 
-    .{$prefix}-field-box.loose & {
-        width: auto;
-        max-width: 50%;
-    }
+  .{$prefix}-field-box.loose & {
+    width: auto;
+    max-width: 50%;
+  }
 
-    .{$prefix}-field-box.vertical & {
-        width: auto;
-        padding: 4px 0;
-    }
+  .{$prefix}-field-box.vertical & {
+    width: auto;
+    padding: 4px 0;
+  }
 }
 
 .{$prefix}-field-layout-v-label {
-    // hairline: border-bottom $normal-alpha-7;
-    line-height: $filed-line-height;
-    padding: (($field-min-height - $filed-line-height) / 2) $field-padding-left 0 0;
-    margin-left: $field-padding-left;
-    background-color: white;
-    display: flex;
+  // hairline: border-bottom $normal-alpha-7;
+  line-height: $filed-line-height;
+  padding: (($field-min-height - $filed-line-height) / 2) $field-padding-left 0 0;
+  margin-left: $field-padding-left;
+  background-color: white;
+  display: flex;
 
-    .{$prefix}-field-layout-v-label-left {
-        flex: 1;
-        min-width: 118px;
-    }
+  .{$prefix}-field-layout-v-label-left {
+    flex: 1;
+    min-width: 118px;
+  }
 
-    + .{$prefix}-field-content-box {
-        padding-top: 12px;
-        padding-bottom: 11px;
-        min-height: auto;
-    }
+  + .{$prefix}-field-content-box {
+    padding-top: 12px;
+    padding-bottom: 11px;
+    min-height: auto;
+  }
 
-    + .{$prefix}-field-tip-box {
-        padding-top: 8px;
-    }
+  + .{$prefix}-field-tip-box {
+    padding-top: 8px;
+  }
 
-    &:last-child {
-        padding-bottom: 8px;
-    }
+  &:last-child {
+    padding-bottom: 8px;
+  }
 }
 
 .{$prefix}-field-layout-h-label,
 .{$prefix}-field-layout-v-label {
-    color: $field-label-color;
+  color: $field-label-color;
 }
 
 .{$prefix}-field-multi {
-    padding: (($field-min-height - $filed-line-height) / 2) 0;
+  padding: (($field-min-height - $filed-line-height) / 2) 0;
 }
 
 .{$prefix}-field-layout-label-required {
-    display: inline;
+  display: inline;
 
-    svg {
-        vertical-align: middle;
-    }
+  svg {
+    vertical-align: middle;
+  }
 }
 
 .{$prefix}-field-tip-box {
-    min-height: auto;
-    padding-right: 16px;
+  min-height: auto;
+  padding-right: 16px;
 }
 
 .{$prefix}-field-tip-box-error {
-    .{$prefix}-field-tip {
-        color: $function-red;
-        hairline: border-top $function-red;
-    }
+  .{$prefix}-field-tip {
+    color: $function-red;
+    hairline: border-top $function-red;
+  }
 }
 
 .{$prefix}-field-tip {
-    flex: 1;
-    padding: 8px 0;
-    hairline: border-top $normal-alpha-7;
-    font-size: $font-size-t2;
-    color: $normal-alpha-4;
+  flex: 1;
+  padding: 8px 0;
+  hairline: border-top $normal-alpha-7;
+  font-size: $font-size-t2;
+  color: $normal-alpha-4;
 
-    &-placeholder {
-        opacity: 0;
-        font-size: 12px;
-        padding: 0;
-    }
+  &-placeholder {
+    opacity: 0;
+    font-size: 12px;
+    padding: 0;
+  }
 }

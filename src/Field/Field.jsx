@@ -49,6 +49,17 @@ class Field extends React.Component {
     return null;
   }
 
+  renderMiddleIcon() {
+    return (
+      <div className={classnames(prefixClass('field-pos-icon'), {
+        [prefixClass('FBH FBAC')]: true
+      })}>
+        {this.renderErrMsg()}
+        {this.renderIcon()}
+      </div>
+    )
+  }
+
   renderTip() {
     const t = this;
     const {
@@ -90,7 +101,7 @@ class Field extends React.Component {
     return null;
   }
 
-  renderContent() {
+  renderContent(needMiddleIcon) {
     const t = this;
     const {
       children, extra, icon, errMsg, layout, tappable, multiLine, showErrInTip, disabled,
@@ -118,8 +129,8 @@ class Field extends React.Component {
         {extra}
         {(icon || (errMsg && !showErrInTip)) ?
           <div className={prefixClass('FBH FBAC field-icon')}>
-            {this.renderErrMsg()}
-            {this.renderIcon()}
+            {!needMiddleIcon ? this.renderErrMsg() : null}
+            {!needMiddleIcon ? this.renderIcon(): null}
           </div> : null}
       </div>
     );
@@ -127,18 +138,25 @@ class Field extends React.Component {
 
   render() {
     const t = this;
+    const {icon, iconMiddle, layout} = t.props;
+    const needMiddleIcon = icon && iconMiddle;
     return (
       <div
         className={classnames(prefixClass('field'), {
           [prefixClass('field-disabled')]: t.props.disabled,
           [t.props.className]: !!t.props.className,
+          [prefixClass('FBH FBAC')]: needMiddleIcon
         })}
       >
-        {
-          t.props.layout === 'v' ? t.renderLabel() : null
-        }
-        {this.renderContent()}
-        {this.renderTip()}
+        <div className={classnames({
+          [prefixClass('field-pos-box')]: needMiddleIcon,
+          [prefixClass('FB1 PR')]: needMiddleIcon
+        })}>
+          {layout === 'v' ? t.renderLabel(needMiddleIcon) : null}
+          {t.renderContent(needMiddleIcon)}
+          {t.renderTip(needMiddleIcon)}
+        </div>
+        {needMiddleIcon ? t.renderMiddleIcon() : null}
       </div>
     );
   }
@@ -154,6 +172,7 @@ Field.defaultProps = {
   layout: 'h',
   tip: '',
   icon: undefined,
+  iconMiddle: false,
   extra: undefined,
   toastComponent: undefined,
   errMsg: undefined,
@@ -164,6 +183,7 @@ Field.defaultProps = {
 Field.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.object,
+  iconMiddle: PropTypes.bool,
   required: PropTypes.bool,
   tappable: PropTypes.bool,
   readOnly: PropTypes.bool,
