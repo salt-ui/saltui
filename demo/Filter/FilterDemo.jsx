@@ -44,6 +44,7 @@ class Demo extends React.Component {
               {
                 key: 'quick',
                 title: '升序排列',
+                toggleTitle: '降序排列',
                 type: 'action',
                 icon: false,
                 items: [

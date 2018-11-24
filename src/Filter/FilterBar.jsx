@@ -80,7 +80,7 @@ class FilterBar extends React.Component {
       : <span className={className}>{
         (group.type === 'list' || group.type === 'grid') && currentSelectData
           ? currentSelectData.length === 1 ? currentSelectData[0].text : (currentSelectData[0].text + '...')
-          : group.title
+          : group.type === 'action' && currentSelectData && group.toggleTitle ? group.toggleTitle : group.title
       }</span>;
     return (
       title
@@ -134,7 +134,8 @@ class FilterBar extends React.Component {
 
   renderSelectedFlag(group, index) {
     if (group.key === '_super_') {
-      return this.checkFlag(group, index) ? <span className={'flag'}>o</span> : null
+      // return this.checkFlag(group, index) ? 0</span> : null
+      return this.checkFlag(group, index) ? <span className={'flag'}><Icon width={14} height={14} fill={'#ff6f00'} name={'check'} /></span> : null
     }
     return null;
 
