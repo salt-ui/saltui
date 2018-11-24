@@ -107,6 +107,22 @@ const propsMap = [
   },
 ];
 
+const tagListProps1 = {
+  onClick: (it) => {console.log(it)},
+  data: ['可以直接输入字符串', '每个标签都是显示作用']
+}
+const tagListProps2 = {
+  onClick: (it, index) => {console.log(it, '带value', index)},
+  data: [
+    { value: '信息平台极致匠心1' },
+    { value: '信息平台极致匠心2' },
+    { value: '信息平台极致匠心3' },
+    { value: '马萨拉蒂1' },
+    { value: '马萨拉蒂2' },
+    { value: '马萨拉蒂3' },
+  ]
+}
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -227,6 +243,12 @@ class Demo extends React.Component {
           >
             <Other1 />
             <Other2 />
+            <ScrollList.TagList
+              {...tagListProps1}
+            />
+            <ScrollList.TagList
+              {...tagListProps2}
+            />
             <Button onClick={() => { this.list.fetchData(); }}>手动请求</Button>
             {(data, index) => {
               const itemProps = propsMap[index % 9];

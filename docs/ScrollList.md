@@ -221,6 +221,21 @@ class Demo extends React.Component {
 |badge|React Element or string|optional|-|跟在标题后的徽章，徽章默认底色rgb(249, 189, 15)|
 
 
+## TagList.Props
+
+| 配置项 | 类型 | 必填 | 默认值 | 功能/备注 |
+|---|---|---|---|---|
+|data|array|optional| - | 传入需要渲染的标签，数字的每个对象可为string or object |
+|onClick|func|optional| - | 点击后的回调。回调出当前点击的整个对象和下标 |
+
+
+### TagList.Props.data <object>
+
+| 配置项 | 类型 | 必填 | 默认值 | 功能/备注 |
+|---|---|---|---|---|
+|value|string|required| '' | 如果用对象表示标签，必须设置value来表示标签的内容 |
+
+
 ### 1.x里的属性(在2.x中已经废弃)
 
 |属性名称|required|数据类型|默认值|备注|
