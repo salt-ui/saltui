@@ -33,18 +33,13 @@ class Field extends React.Component {
     );
   }
 
-  renderIcon() {
-    const t = this;
-    if (t.props.icon) {
-      let icon = null;
-      if (typeof t.props.icon.type === 'function') {
-        ({ icon } = t.props);
-      } else if (t.props.icon.name) {
-        icon = <Icon {...t.props.icon} />;
+  renderIcon(isMiddleIcon) {
+    let icon = this.props[isMiddleIcon ? 'middleIcon' : 'icon'];
+    if (icon) {
+      if (icon.name) {
+        icon = <Icon {...icon} />;
       }
-      if (icon) {
-        return icon;
-      }
+      return icon;
     }
     return null;
   }
@@ -55,7 +50,7 @@ class Field extends React.Component {
         [prefixClass('FBH FBAC')]: true
       })}>
         {this.renderErrMsg()}
-        {this.renderIcon()}
+        {this.renderIcon(true)}
       </div>
     )
   }
@@ -130,7 +125,7 @@ class Field extends React.Component {
         {(icon || (errMsg && !showErrInTip)) ?
           <div className={prefixClass('FBH FBAC field-icon')}>
             {!needMiddleIcon ? this.renderErrMsg() : null}
-            {!needMiddleIcon ? this.renderIcon(): null}
+            {this.renderIcon()}
           </div> : null}
       </div>
     );
@@ -138,25 +133,24 @@ class Field extends React.Component {
 
   render() {
     const t = this;
-    const {icon, iconMiddle, layout} = t.props;
-    const needMiddleIcon = icon && iconMiddle;
+    const {middleIcon, layout} = t.props;
     return (
       <div
         className={classnames(prefixClass('field'), {
           [prefixClass('field-disabled')]: t.props.disabled,
           [t.props.className]: !!t.props.className,
-          [prefixClass('FBH FBAC')]: needMiddleIcon
+          [prefixClass('FBH FBAC')]: middleIcon
         })}
       >
         <div className={classnames({
-          [prefixClass('field-pos-box')]: needMiddleIcon,
-          [prefixClass('FB1 PR')]: needMiddleIcon
+          [prefixClass('field-pos-box')]: middleIcon,
+          [prefixClass('FB1 PR')]: middleIcon
         })}>
-          {layout === 'v' ? t.renderLabel(needMiddleIcon) : null}
-          {t.renderContent(needMiddleIcon)}
-          {t.renderTip(needMiddleIcon)}
+          {layout === 'v' ? t.renderLabel() : null}
+          {t.renderContent(!!middleIcon)}
+          {t.renderTip()}
         </div>
-        {needMiddleIcon ? t.renderMiddleIcon() : null}
+        {middleIcon ? t.renderMiddleIcon() : null}
       </div>
     );
   }
@@ -173,6 +167,7 @@ Field.defaultProps = {
   tip: '',
   icon: undefined,
   iconMiddle: false,
+  middleIcon: undefined,
   extra: undefined,
   toastComponent: undefined,
   errMsg: undefined,
@@ -184,6 +179,7 @@ Field.propTypes = {
   label: PropTypes.string,
   icon: PropTypes.object,
   iconMiddle: PropTypes.bool,
+  middleIcon: PropTypes.object,
   required: PropTypes.bool,
   tappable: PropTypes.bool,
   readOnly: PropTypes.bool,
