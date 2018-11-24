@@ -218,7 +218,7 @@ class Demo extends React.Component {
 |description|React Element or string|optional| -| 描述 |
 |extra|React Element|optional| - | 右侧自定义区域 |
 |desMaxLine|number|optional| 2 | 描述占据几行 |
-|badge|React Element or string|optional|-|跟在标题后的徽章|
+|badge|React Element or string|optional|-|跟在标题后的徽章，徽章默认底色rgb(249, 189, 15)|
 
 
 ### 1.x里的属性(在2.x中已经废弃)
