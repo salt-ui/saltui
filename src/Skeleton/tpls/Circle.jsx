@@ -25,7 +25,7 @@ class SkeletonCircle extends React.Component {
       ...others
     } = this.props;
     return (
-      <div className={classnames(Context.prefixClass(`skeleton-circle${animate ? ' skeleton-loading' : ''}`))} {...others}>xxx</div>
+      <div className={classnames(Context.prefixClass(`skeleton-circle${animate ? ' skeleton-loading' : ''}`))} {...others} />
     );
   }
 }

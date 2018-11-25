@@ -6,21 +6,17 @@
  * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
-$skeleton-title-height = 24px;
-$skeleton-text-height = 12px;
-$skeleton-columns-height = 26px;
-// border color
-$skeleton-border-color = $normal-alpha-7;
+
+$skeleton-large = 36px;
+$skeleton-middle = 24px;
+$skeleton-small = 12px;
+
+$skeleton-radius = 4px;
+$skeleton-margin-bottom = 20px;
+
 // background color
-$skeleton-bg-bgcolor = $gray-lighter;
-$skeleton-body-bgcolor = $basic-100;
-// text color
-$skeleton-primary-color = $dark-alpha-2;
-$skeleton-secondary-color = $dark-alpha-3;
-$skeleton-confirm-color = $brand-primary;
-// font
-$skeleton-circle-font-size = 16px;
-$skeleton-option-font-size = $font-size-t4;
+$skeleton-bg-bgcolor = rgba(31,56,88, 0.06);
+$skeleton-middle-bgcolor = rgba(31,56,88, 0.1);
 
 @keyframes salt-skeleton-loading {
     0% {
@@ -31,110 +27,101 @@ $skeleton-option-font-size = $font-size-t4;
         background-position: 0 50%
     }
 }
-.test {
-    width 100px;
-    height 100px;
+
+.{$prefix}-skeleton-wrapper {
+    padding 0px 10px 10px 10px;
+    margin-top 10px;
+    border-bottom 1px solid #fff;
 }
-.{$prefix}-skeleton-loading {
-    background: linear-gradient(90deg,$skeleton-bg-bgcolor 25%,$gray-light 37%,$skeleton-bg-bgcolor 63%);
-    animation: salt-skeleton-loading 1.4s ease infinite;
-    background-size: 400% 100%;
+
+.{$prefix}-skeleton-header-wrapper {
+    display table-cell;
+    vertical-align top;
+    padding-right 10px;
 }
+
+.{$prefix}-skeleton-content-wrapper {
+    display table-cell;
+    vertical-align top;
+    width 100%
+}
+
 .{$prefix}-skeleton-circle {
     border-radius 50%;
-    background-color: $skeleton-bg-bgcolor;
-    width: $skeleton-title-height;
-    height: $skeleton-title-height;
+    background-color $skeleton-bg-bgcolor;
+    width 50px;
+    height 50px;
+    margin 20px 16px $skeleton-margin-bottom 0;
 }
-.{$prefix}-skeleton-title-bar {
-    background-color: $skeleton-bg-bgcolor;
-    width: 50%;
-    height: $skeleton-title-height;
-    margin-bottom 20px;
-}
+
 .{$prefix}-skeleton-text-bar {
-    background-color: $skeleton-bg-bgcolor;
-    width: 80%;
-    height: $skeleton-text-height;
-    margin-bottom 10px;
-}
-.{$prefix}-skeleton-chunk {
-    background-color: $skeleton-bg-bgcolor;
-    width: $skeleton-title-height;
-    height: $skeleton-title-height;
-}
-.{$prefix}-skeleton-columns {
-    background-color: $skeleton-circle-bgcolor;
-    hairline('border-bottom', $skeleton-border-color);
-    height: $skeleton-columns-height;
-    line-height: $skeleton-columns-height;
-    font-size: $skeleton-circle-font-size;
-    color: $skeleton-secondary-color;
-}
-
-.{$prefix}-skeleton-cancel {
-    margin-left: 16px;
-    color: $normal-alpha-3;
-}
-
-.{$prefix}-skeleton-confirm {
-    margin-right: 16px;
-    color: $normal-alpha-7;
-}
-
-.{$prefix}-skeleton-cancel,
-.{$prefix}-skeleton-confirm {
-    min-width: 29px;
-    line-height: $skeleton-title-height;
-    white-space: nowrap;
-}
-
-.{$prefix}-skeleton-confirm.enable {
-    color: $skeleton-confirm-color;
-}
-
-.{$prefix}-skeleton-title {
-    color: $dark-alpha-2;
-    font-size: 17px;
-}
-
-.{$prefix}-skeleton-body {
-    height: $skeleton-title-height * 5;
-    overflow: hidden;
-    background-color: $skeleton-body-bgcolor;
-    font-size: $skeleton-option-font-size;
-    color: $skeleton-primary-color;
-
-    > .{$prefix}-scroller > .{$prefix}-DIB {
-        width: 100%;
-    }
-
-    > div {
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.1) 100%);
-    }
-
-    li {
-        height: $skeleton-title-height;
-        line-height: $skeleton-title-height;
-        overflow: hidden;
-        text-align: center;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    width 100%;
+    height 14px;
+    margin-bottom 12px;
+    list-style none;
+    background-color $skeleton-bg-bgcolor;
+    border-radius $skeleton-radius;
+    &:last-child {
+        width 80%;
     }
 }
 
-.{$prefix}-skeleton-body:before,
-.{$prefix}-skeleton-body:after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: $skeleton-title-height * 2;
-    left: 0;
-    height: 0;
-    width: 100%;
-    hairline('border-top', $skeleton-border-color);
+.{$prefix}-skeleton-image-small {
+    width 110px;
+    height 72px;
+    margin-right 16px;
+    margin-bottom $skeleton-margin-bottom;
+    background-color $skeleton-bg-bgcolor;
+    border-radius $skeleton-radius;
 }
 
-.{$prefix}-skeleton-body:after {
-    top: $skeleton-title-height * 3;
+.{$prefix}-skeleton-image-big {
+    width 100%;
+    height 120px;
+    margin-bottom $skeleton-margin-bottom;
+    background-color $skeleton-bg-bgcolor;
+    border-radius $skeleton-radius;
+}
+
+.{$prefix}-skeleton-loading {
+    background linear-gradient(90deg,$skeleton-bg-bgcolor 25%,$skeleton-middle-bgcolor 37%,$skeleton-bg-bgcolor 63%);
+    animation salt-skeleton-loading 1.4s ease infinite;
+    background-size 400% 100%;
+}
+
+.{$prefix}-skeleton-operation-bar {
+    width 100%;
+    height 20px;
+    .{$prefix}-skeleton-operation-left {
+        width 48%;
+        height 100%;
+        display inline-block;
+        border-radius $skeleton-radius;
+    }
+    .{$prefix}-skeleton-operation-mid {
+        width 20%;
+        height 100%;
+        margin 0 6% 0 6%;
+        display inline-block;
+        border-radius $skeleton-radius;
+    }
+    .{$prefix}-skeleton-operation-right {
+        width 20%;
+        height 100%;
+        display inline-block;
+        border-radius $skeleton-radius;
+    }
+}
+
+.{$prefix}-skeleton-large {
+    width $skeleton-large;
+    height $skeleton-large;
+}
+.{$prefix}-skeleton-middle {
+    width $skeleton-middle;
+    height $skeleton-middle;
+}
+.{$prefix}-skeleton-small {
+    width $skeleton-small;
+    height $skeleton-small;
 }
