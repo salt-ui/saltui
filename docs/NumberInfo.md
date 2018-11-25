@@ -1,23 +1,23 @@
-#  数据视图
+#  数据信息展示
 
 ## Simple Usage
 
 ```javascript
-import { DataView } from 'saltui';
-const { Data } = DataView;
+import { NumberInfo } from 'saltui';
+const { NumberItem } = NumberInfo;
 
 render() {
   return (
-    <DataView label="年度申报">
-      <Data number={1.5} unit="天" />
-      <Data number={36} unit="小时" />
-      <Data number={18} unit="次" secondary />
-    </DataView>
+    <NumberInfo label="年度申报">
+      <NumberItem number={1.5} unit="天" />
+      <NumberItem number={36} unit="小时" />
+      <NumberItem number={18} unit="次" secondary />
+    </NumberInfo>
   )
 }
 ```
 
-## DataView 数据视图
+## NumberInfo 数据信息视图
 
 ### Props
 
@@ -33,7 +33,7 @@ render() {
 
 #### layout
 
-描述：数据视图的布局形式，支持水平（"h"）或垂直（"v"）。
+描述：数据信息视图的布局形式，支持水平（"h"）或垂直（"v"）。
 
 类型："v" | "h"
 
@@ -43,7 +43,7 @@ render() {
 
 #### label
 
-描述：数据视图的标签，显示在数据值的下方（垂直布局）或左方（水平布局）。
+描述：数据信息视图的标签，显示在数据值的下方（垂直布局）或左方（水平布局）。
 
 类型：String
 
@@ -63,18 +63,18 @@ render() {
 
 #### children
 
-描述：要展示的数据项，只能传入 DataView.Data 实例。若传入多个值，则默认使用逗号分隔。
+描述：要展示的数据项，只能传入 NumberItem 实例。若传入多个值，则默认使用逗号分隔。
 
-类型：DataView.Data[]
+类型：NumberItem[]
 
-默认：[]
+默认：null
 
 必填：否
 
 
-## DataView.Data 数据项
+## NumberItem 数据项
 
-> 通过 `const { Data } = DataView` 或 `DataView.Data` 引用。
+> 通过 `const { NumberItem } = NumberInfo` 或 `NumberInfo.Item` 引用。
 
 ### Props
 
@@ -171,13 +171,13 @@ render() {
 
 ## Simple Usage
 
-DataView.Data 也可单独使用，render 的结果是一段被格式化后的字符串，可用于其他组件中。
+NumberItem 也可单独使用，render 的结果是一段被格式化后的字符串，可用于其他组件中。
 
 ```javascript
-import { DataView } from 'saltui';
-<Button className="data-view-wrap-space">
-  点赞 <DataView.Data number={200} max={99} unit="次" />
+import { NumberInfo } from 'saltui';
+<Button className="number-info-wrap-space">
+  点赞 <NumberInfo.Item number={200} max={99} unit="次" />
 </Button>
 ```
 
-注意：单独使用的 Data 组件，positiveColor、negativeColor、secondary 属性不可用。
+注意：单独使用的 NumberItem 组件，positiveColor、negativeColor、secondary 属性不可用。

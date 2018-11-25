@@ -1,5 +1,5 @@
 /**
- * DataView Component for SaltUI
+ * NumberInfo Component for SaltUI
  * @author shuaige
  *
  * Copyright 2018-2019, SaltUI Team.
@@ -39,13 +39,13 @@ function renderNumber() {
   return str;
 }
 
-export default class Data extends React.Component {
+export default class NumberItem extends React.Component {
   render() {
     return `${renderNumber.call(this)}${this.props.unit || ''}`;
   }
 }
 
-Data.defaultProps = {
+NumberItem.defaultProps = {
   number: 0,
   digits: undefined,
   groupDigits: 3,
@@ -56,7 +56,7 @@ Data.defaultProps = {
   secondary: false,
 };
 
-Data.propTypes = {
+NumberItem.propTypes = {
   number: PropTypes.number,
   digits: PropTypes.number,
   groupDigits: PropTypes.number,
@@ -69,6 +69,6 @@ Data.propTypes = {
   secondary: PropTypes.bool,
 };
 
-Data.displayName = 'Data';
-Data.renderNumber = renderNumber;
+NumberItem.displayName = 'NumberItem';
+NumberItem.renderNumber = renderNumber;
 

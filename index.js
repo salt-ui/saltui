@@ -16,7 +16,6 @@
   import Collapse from './lib/Collapse';
   import Context from './lib/Context';
   import Crumb from './lib/Crumb';
-  import DataView from './lib/DataView';
   import Datetime from './lib/Datetime';
   import DatetimeField from './lib/DatetimeField';
   import Dialog from './lib/Dialog';
@@ -36,6 +35,7 @@
   import NavBar from './lib/NavBar';
   import NoticeBar from './lib/NoticeBar';
   import NumberField from './lib/NumberField';
+  import NumberInfo from './lib/NumberInfo';
   import NumberPicker from './lib/NumberPicker';
   import NumberPickerField from './lib/NumberPickerField';
   import Pagination from './lib/Pagination';
@@ -92,7 +92,6 @@ const __SALT_BUNDLE__ = {
   Collapse,
   Context,
   Crumb,
-  DataView,
   Datetime,
   DatetimeField,
   Dialog,
@@ -112,6 +111,7 @@ const __SALT_BUNDLE__ = {
   NavBar,
   NoticeBar,
   NumberField,
+  NumberInfo,
   NumberPicker,
   NumberPickerField,
   Pagination,

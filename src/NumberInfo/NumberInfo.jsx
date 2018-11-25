@@ -1,5 +1,5 @@
 /**
- * DataView Component for SaltUI
+ * NumberInfo Component for SaltUI
  * @author shuaige
  *
  * Copyright 2018-2019, SaltUI Team.
@@ -11,9 +11,9 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
-import Data from './Data';
+import NumberItem from './NumberItem';
 
-export default class DataView extends React.Component {
+export default class NumberInfo extends React.Component {
 
   handleClick = () => {
     this.props.onClick && this.props.onClick();
@@ -24,8 +24,8 @@ export default class DataView extends React.Component {
     return <span style={{
       color: number > 0 ? positiveColor : (number < 0 ? negativeColor : '')
     }}>
-      <span>{Data.renderNumber.call(data)}</span>
-      {data.props.unit ? <span className={Context.prefixClass('data-view-unit')}>{data.props.unit}</span> : null}
+      <span>{NumberItem.renderNumber.call(data)}</span>
+      {data.props.unit ? <span className={Context.prefixClass('number-info-unit')}>{data.props.unit}</span> : null}
     </span>
   }
 
@@ -38,13 +38,13 @@ export default class DataView extends React.Component {
     const primary = [];
     const secondary = [];
     React.Children.forEach(children, child => {
-      if (child.type !== Data) {
-        console.warn('Only <Data> components are allowed inside <DataView>.');
+      if (child.type !== NumberItem) {
+        console.warn('Only <NumberItem> components are allowed inside <NumberInfo>.');
         return null;
       }
       (child.props.secondary ? secondary : primary).push(this.renderNumber(child));
     });
-    return <div className={Context.prefixClass('data-view-number')}>
+    return <div className={Context.prefixClass('number-info-number')}>
       {this.renderSequence(primary)}
       {secondary.length ? <span> ({this.renderSequence(secondary)})</span> : null}
     </div>
@@ -52,7 +52,7 @@ export default class DataView extends React.Component {
 
   renderLabel() {
     const { label } = this.props;
-    return label ? <div className={classnames(Context.prefixClass('data-view-label'))}>{label}</div> : null;
+    return label ? <div className={classnames(Context.prefixClass('number-info-label'))}>{label}</div> : null;
   }
 
   render() {
@@ -60,14 +60,14 @@ export default class DataView extends React.Component {
     const { className, layout } = t.props;
     return layout === 'h' ?
       <div onClick={this.handleClick}
-        className={classnames(className, Context.prefixClass('data-view'), Context.prefixClass('data-view-h'))}
+        className={classnames(className, Context.prefixClass('number-info'), Context.prefixClass('number-info-h'))}
       >
         {this.renderLabel()}
         {this.renderData()}
       </div>
     :
       <div onClick={this.handleClick}
-        className={classnames(className, Context.prefixClass('data-view'))}
+        className={classnames(className, Context.prefixClass('number-info'))}
       >
         {this.renderData()}
         {this.renderLabel()}
@@ -75,20 +75,21 @@ export default class DataView extends React.Component {
   }
 }
 
-DataView.defaultProps = {
+NumberInfo.defaultProps = {
   className: '',
   label: '',
   layout: 'v',
   onClick: () => { },
 };
 
-DataView.propTypes = {
+NumberInfo.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string,
   layout: PropTypes.oneOf('v', 'h'),
   onClick: PropTypes.func,
 };
 
-DataView.displayName = 'DataView';
+NumberInfo.displayName = 'NumberInfo';
 
-DataView.Data = Data;
+NumberInfo.NumberItem = NumberItem;
+NumberInfo.Item = NumberItem;
