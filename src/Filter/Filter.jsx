@@ -9,12 +9,15 @@ import PropTypes from 'prop-types';
 import FilterBar from './FilterBar'
 import FilterPanel from './FilterPanel'
 import Context from '../Context'
+import classnames from 'classnames'
 
 class Filter extends React.Component {
   static displayName = 'Filter';
 
   static propTypes = {
-    options: PropTypes.object,
+    className: PropTypes.string,
+    options: PropTypes.array,
+    size: PropTypes.oneOf([1,2,3,4]),
     activeIndex: PropTypes.number,
     onSelect: PropTypes.func,
     onConfirm: PropTypes.func,
@@ -22,7 +25,9 @@ class Filter extends React.Component {
   };
 
   static defaultProps = {
-    options: {},
+    className: undefined,
+    options: [],
+    size: 4,
     activeIndex: -1,
     onSelect: () => {
     },
@@ -48,7 +53,13 @@ class Filter extends React.Component {
   };
 
   getSelect = () => {
-    return this.selectData
+    let data = this.selectData
+    Object.keys(this.selectData).map(key => {
+      if (!data[key] || !data[key].length) {
+        delete data[key]
+      }
+    });
+    return data;
   };
 
   getActiveIndex = () => {
@@ -62,16 +73,16 @@ class Filter extends React.Component {
   };
 
   formatOptions = () => {
-    const {size, items} = this.props.options;
+    const { size, options } = this.props;
     let maxSize = size > 4 ? 4 : size;
-    if (items.length <= maxSize) {
+    if (options.length <= maxSize) {
       return {
         maxSize,
-        groups: items,
-        _backItems: items
+        groups: options,
+        _backItems: options
       }
     }
-    let newFilterGroups = [...items];
+    let newFilterGroups = [...options];
     return {
       maxSize,
       groups: [
@@ -89,7 +100,7 @@ class Filter extends React.Component {
           ]
         }
       ],
-      _backItems: items
+      _backItems: options
     }
   };
 
@@ -106,7 +117,9 @@ class Filter extends React.Component {
       setActiveIndex: this.setActiveIndex,
     };
     return (
-      <div className={Context.prefixClass('filter-wrapper')}>
+      <div className={classnames(Context.prefixClass('filter-wrapper'), {
+        [props.className]: !!props.className,
+      })}>
         <FilterBar {...props} />
         <FilterPanel {...props} />
       </div>

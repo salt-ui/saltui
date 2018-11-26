@@ -23,9 +23,9 @@ class Demo extends React.Component {
     return (
       <div>
         <Filter
-          options = {{
-            size: 4,
-            items: [
+          size={4}
+          options={
+            [
               {
                 key: 'sort',
                 title: '默认排序',
@@ -312,7 +312,7 @@ class Demo extends React.Component {
                 ]
               }
             ]
-          }}
+          }
           onSelect={(data) => {
             // can do confirm
             console.log('on select: ', data)

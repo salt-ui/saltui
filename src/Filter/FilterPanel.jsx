@@ -252,10 +252,9 @@ class FilterPanel extends react.Component {
   }
 
   confirm() {
-    const { onSelect, getSelect, setActiveIndex } = this.props;
-    const selectData = getSelect();
+    const { onConfirm, getSelect, setActiveIndex } = this.props;
     setActiveIndex(-1);
-    onSelect(selectData);
+    onConfirm(getSelect());
   }
 
   renderSuper(group) {

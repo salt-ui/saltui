@@ -79,7 +79,7 @@ class FilterBar extends React.Component {
       ? <span className={className}>{group.title(isFocus, currentSelectData)}</span>
       : <span className={className}>{
         (group.type === 'list' || group.type === 'grid') && currentSelectData
-          ? currentSelectData.length === 1 ? currentSelectData[0].text : (currentSelectData[0].text + '...')
+          ? currentSelectData.length > 1 ? currentSelectData[0].text + '...' : currentSelectData.length === 1 ? currentSelectData[0].text : group.title
           : group.type === 'action' && currentSelectData && group.toggleTitle ? group.toggleTitle : group.title
       }</span>;
     return (
