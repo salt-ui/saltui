@@ -17,6 +17,7 @@ function showMore(props) {
 }
 
 function ActionRender(props, context) {
+    if (!props.actions || props.actions.length) return null;
     const text = !context.locale || context.locale === 'zh-cn' ? '更多' : 'More';
     return (
         <React.Fragment>
