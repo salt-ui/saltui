@@ -8,7 +8,7 @@
 $field-min-height = 46px;
 $field-padding-left = 16px;
 $filed-line-height = 24px;
-$field-label-color = $dark-alpha-2;
+$field-label-color = $dark-alpha-3;
 $field-text-color = $dark-alpha-2;
 
 .{$prefix}-field {
@@ -66,19 +66,24 @@ $field-text-color = $dark-alpha-2;
 
 .{$prefix}-field-layout-v-label {
     // hairline: border-bottom $normal-alpha-7;
-    line-height: $filed-line-height;
+    line-height: 1.5;
     padding: (($field-min-height - $filed-line-height) / 2) $field-padding-left 0 0;
     margin-left: $field-padding-left;
     background-color: white;
     display: flex;
+    font-size: 14px;
 
     .{$prefix}-field-layout-v-label-left {
         flex: 1;
         min-width: 118px;
     }
 
+    .{$prefix}-field-layout-v-label-right {
+        line-height: 0;
+    }
+
     + .{$prefix}-field-content-box {
-        padding-top: 12px;
+        padding-top: 2px;
         padding-bottom: 11px;
         min-height: auto;
     }
