@@ -5,6 +5,17 @@
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
+
+.{$prefix}-steps-wrapper
+  position relative
+  .{$prefix}-steps + .{$prefix}-current-title
+    text-align center  
+  .{$prefix}-steps-vertical + .{$prefix}-current-title
+    position absolute;
+    top calc(50% - 14px);
+    transform translateY(-50%);
+    left 40px;
+  
 .{$prefix}-steps
   .{$prefix}-steps-item
     position relative
@@ -35,13 +46,13 @@
   .{$prefix}-steps-tail
     position absolute 
     left 0 
-    top 19px
-    padding 0 0 0 24px 
+    top 23px
+    padding 0 8px 0 39px 
     width 100% 
     >i
       display block 
       width 100% 
-      height 2px 
+      height 1px 
       background-color rgba(31, 56, 88, 0.1)
   .{$prefix}-steps-head
     position absolute 
@@ -50,13 +61,13 @@
     z-index 1 
     .{$prefix}-steps-icon
       display inline-block 
-      width 24px 
-      height 24px 
-      border-radius 12px
+      width 32px 
+      height 32px 
+      border-radius 16px
       border 1px solid #66bc5c
       text-align center 
-      line-height 22px
-      font-size 12px 
+      line-height 30px
+      font-size 16px 
       vertical-align middle 
   .{$prefix}-steps-main
     color rgba(31, 56, 88, 0.6)
@@ -70,14 +81,15 @@
       &.{$prefix}-steps-no-desc
         margin-top 0 
     .{$prefix}-steps-main
-      position absolute 
+      position absolute
       .{$prefix}-steps-title
         position relative 
-        left 12px 
+        left 4px 
         display inline-block 
         margin-left -50% 
-        margin-top 40px 
-        text-align center 
+        margin-top 56px 
+        text-align left
+        white-space pre-wrap
       .{$prefix}-steps-description
         position absolute 
         left -1em 
@@ -120,13 +132,13 @@
           bottom 4px 
           left -5px 
         &:before
-          bottom 3px 
+          bottom 3px
           border-top-color rgba(31, 56, 88, 0.2)
   &.{$prefix}-steps-type-title-on-top
     .{$prefix}-steps-item
-      margin-top 28px 
+      margin-top 28px
     .{$prefix}-steps-main
-      position absolute 
+      position absolute
       .{$prefix}-steps-title
         position relative 
         left 12px 
@@ -160,14 +172,22 @@
       .{$prefix}-steps-tail
         i
           background-color #66bc5c
-  .{$prefix}-steps-status-finish, .{$prefix}-steps-status-process
+    .{$prefix}-steps-icon
+      background-color #fff
+      border-width 2px
+      line-height 32px
+    .{$prefix}-icon
+      //vertical-align sub
+      //color #fff
+
+  .{$prefix}-steps-status-process
     .{$prefix}-steps-icon
       background-color #66bc5c
-      color #fff 
+      color #fff
   .{$prefix}-steps-status-wait
     .{$prefix}-steps-icon
       background-color rgba(31, 56, 88, 0.04)
-      border-color rgba(31, 56, 88, 0.2)
+      border 1px dashed rgba(31,56,88,0.2)
       color rgba(31, 56, 88, 0.2)
     .{$prefix}-steps-title
       color rgba(31, 56, 88, 0.3)
@@ -180,27 +200,29 @@
     .{$prefix}-steps-item
       display block 
       margin-top 0 
-      min-height 50px 
+      min-height 66px 
       &.{$prefix}-steps-status-process
         .{$prefix}-steps-description
           color rgba(31, 56, 88, 0.6)
     .{$prefix}-steps-tail
-      left 11px
+      left 15px
       top 0 
-      padding 24px 0 0 0 
+      padding 38px 0 8px 0 
       width 0 
       height 100% 
       i
-        width 2px 
+        width 1px 
         height 100% 
         background-color rgba(31,56,88,0.1)
     .{$prefix}-steps-main
-      padding 5px 0 0 30px 
+      padding 0 0 0 30px 
       .{$prefix}-steps-title
-        margin-left 0 
+        margin-left 10px 
+        padding-top 10px
       .{$prefix}-steps-description
         margin-top 4px 
-        text-indent 0 
+        margin-left 10px
+        text-indent 0
   .{$prefix}-steps-small
     margin-left 20px 
     .{$prefix}-steps-head
@@ -265,3 +287,4 @@
   .{$prefix}-steps-detail.{$prefix}-steps-detail-current
     >.{$prefix}-steps-detail-con
       display block 
+      
