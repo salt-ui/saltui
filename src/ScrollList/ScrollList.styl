@@ -97,6 +97,15 @@ $scrollListPrefixCls = t-scroll-list;
   margin-right: 12px;
 }
 
+.{$scrollListPrefixCls}-item .t-avatar {
+    margin-right: 8px;
+}
+
+.{$scrollListPrefixCls}-item .t-badge {
+  float: right;
+  margin-bottom: 3px;
+}
+
 .{$scrollListPrefixCls}-item-content {
   flex: 1;
   // very important, make ellipsis in flexbox work
@@ -111,7 +120,10 @@ $scrollListPrefixCls = t-scroll-list;
 }
 
 .{$scrollListPrefixCls}-item-title {
+  display: flex;
+  align-items: center;
   font-size: 16px;
+  justify-content: space-between;
 }
 
 .{$scrollListPrefixCls}-item-des-inner {
@@ -130,5 +142,21 @@ $scrollListPrefixCls = t-scroll-list;
     &:after {
       border-width: 0.5px;
     }
+  }
+}
+
+
+.{$scrollListPrefixCls}-taglist {
+  padding: 12px 4px 0 16px;
+  .{$scrollListPrefixCls}-taglist-item {
+    display: inline-block;
+    padding: 0 8px;
+    font-size: 12px;
+    margin: 0 12px 12px 0;
+    height: 18px;
+    line-height: 18px;
+    color: $dark-alpha-3;
+    border: 1px solid $dark-alpha-5;
+    border-radius: 16px;
   }
 }

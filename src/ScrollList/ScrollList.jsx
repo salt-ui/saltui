@@ -19,6 +19,7 @@ import ScrollView from '../ScrollView';
 import BottomTip from './BottomTip';
 import EmptyContent from './EmptyContent';
 import Item from './Item';
+import TagList from './TagList';
 
 function odd(i) {
   return !!((i + 1) % 2);
@@ -396,6 +397,7 @@ class ScrollList extends React.Component {
 }
 
 ScrollList.Item = Item;
+ScrollList.TagList = TagList;
 
 polyfill(ScrollList);
 
