@@ -11,6 +11,8 @@ import DirectionRight from 'salt-icon/lib/DirectionRight';
 import Map from 'salt-icon/lib/Map';
 import ScrollList from 'salt-scroll-list';
 import Button from 'salt-button';
+import Avatar from 'salt-avatar';
+import Badge from 'salt-badge';
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // import ScrollList from  '../../dist';
@@ -37,6 +39,26 @@ function getJsonp(page, size) {
 }
 
 const propsMap = [
+  {
+    title: <span className="newlist-demo-has-avatar"><Avatar name="tingle" size={20} src="https://img.alicdn.com/tps/TB1amOaKpXXXXbsXVXXXXXXXXXX-144-144.png"/>标题文字(如姓名)</span>,
+  },
+  {
+    description: <span className="newlist-demo-has-avatar"><Avatar name="tingle" size={20} src="https://img.alicdn.com/tps/TB1amOaKpXXXXbsXVXXXXXXXXXX-144-144.png"/>标题文字(如姓名)</span>,
+  },
+  {
+    img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
+    title: '标题文字(如姓名)',
+    badge:  <Badge text="徽章文本" style={{ marginLeft: 10, background: '#ff6600', }}/>,
+    description: '放上人物相关简介和title，使人物信息更加饱满，文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容',
+    extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
+  },
+  {
+    img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
+    title: '标题文字(如姓名)',
+    badge:  '徽章文本2',
+    titleTag: '<span className="newlist-demo-has-title-tag">标题带标签</span>',
+    description: '多行模式，文字超长则换行；文本内容文本内容文本内容文本内容文本内容文本内容',
+  },
   {
     title: '标题文字',
   },
@@ -84,6 +106,22 @@ const propsMap = [
     extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
   },
 ];
+
+const tagListProps1 = {
+  onClick: (it) => {console.log(it)},
+  data: ['可以直接输入字符串', '每个标签都是显示作用']
+}
+const tagListProps2 = {
+  onClick: (it, index) => {console.log(it, '带value', index)},
+  data: [
+    { value: '信息平台极致匠心1' },
+    { value: '信息平台极致匠心2' },
+    { value: '信息平台极致匠心3' },
+    { value: '马萨拉蒂1' },
+    { value: '马萨拉蒂2' },
+    { value: '马萨拉蒂3' },
+  ]
+}
 
 class Demo extends React.Component {
   constructor(props) {
@@ -205,6 +243,12 @@ class Demo extends React.Component {
           >
             <Other1 />
             <Other2 />
+            <ScrollList.TagList
+              {...tagListProps1}
+            />
+            <ScrollList.TagList
+              {...tagListProps2}
+            />
             <Button onClick={() => { this.list.fetchData(); }}>手动请求</Button>
             {(data, index) => {
               const itemProps = propsMap[index % 9];
