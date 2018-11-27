@@ -1,3 +1,7 @@
+## 4.2.1 / 2018-11-27
+
+* `fix`: missing dependency `rc-animate`
+
 ## 4.2.0 / 2018-11-23
 
 * `feat`: Badge new prop `dotType`, `status`, `breath`
