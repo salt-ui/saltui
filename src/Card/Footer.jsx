@@ -15,7 +15,7 @@ export default class Footer extends React.Component {
       <div className={prefixClass('card-footer')}>
         <div className={prefixClass('card-footer-content')}>{content}</div>
         <div className={prefixClass('card-footer-actions')}>
-          { actions.slice(-3).map((action, key) => <span data-rule="fragment" key={`action-${key}`}>{action}</span>) }
+          { actions && actions.slice(-3).map((action, key) => <span data-rule="fragment" key={`action-${key}`}>{action}</span>) }
         </div>
       </div>
     )
