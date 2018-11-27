@@ -9,14 +9,6 @@
 import React from 'react';
 import Skeleton from 'salt-skeleton';
 
-const {
-  ImageSmall,
-  ImageBig,
-  TextBar,
-  Circle,
-  OperationBar,
-} = Skeleton;
-
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -32,12 +24,9 @@ class Demo extends React.Component {
   render() {
     return (
       <div className="demo">
-        <Circle animate />
-        <TextBar animate />
-        <ImageSmall animate />
-        <ImageBig animate />
-        <OperationBar animate />
-        {/* <Skeleton visible animate rows={10} /> */}
+        <Skeleton visible animate rows={2} type={1} />
+        <Skeleton visible animate rows={2} type={2} />
+        <Skeleton visible animate rows={2} type={3} />
       </div>
     );
   }

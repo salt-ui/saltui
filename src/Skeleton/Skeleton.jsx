@@ -9,19 +9,10 @@
 import React from 'react';
 import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
-import cloneDeep from 'lodash/cloneDeep';
-import isEqual from 'lodash/isEqual';
 import pick from 'lodash/pick';
 import classnames from 'classnames';
 import Context from '../Context';
-import SkeletonCircle from './tpls/Circle';
-import SkeletonImageSmall from './tpls/ImageSmall';
-import SkeletonTextBar from './tpls/TextBar';
-import SkeletonImageBig from './tpls/ImageBig';
-import SkeletonOperationBar from './tpls/OperationBar';
-
-
-const isArray = arr => Object.prototype.toString.call(arr) === '[object Array]';
+import Element from './tpls/Element';
 
 class Skeleton extends React.Component {
   getSkeletonContent(type, index) {
@@ -29,17 +20,37 @@ class Skeleton extends React.Component {
     if (type === 1) {
       return (
         <div key={`${type}-${index}`} className={classnames(Context.prefixClass('skeleton-wrapper'))}>
-          <div className={classnames(Context.prefixClass('skeleton-header-wrapper'))}>
-            <SkeletonChunk animate={animate} size="small" />
+          <div className={classnames(Context.prefixClass('skeleton-left-wrapper'))}>
+            <Element className="skeleton-circle" animate={animate} />
           </div>
-          <div className={classnames(Context.prefixClass('skeleton-content-wrapper'))}>
-            <SkeletonTextBar animate={animate} />
+          <div className={classnames(Context.prefixClass('skeleton-right-wrapper'))}>
+            <Element className="skeleton-text-bar" animate={animate} />
+            <Element className="skeleton-text-bar" animate={animate} />
           </div>
         </div>
       );
     } else if (type === 2) {
       return (
-        <SkeletonChunk animate={animate} width="100%" height={50} />
+        <div key={`${type}-${index}`} className={classnames(Context.prefixClass('skeleton-wrapper'))}>
+          <div className={classnames(Context.prefixClass('skeleton-left-wrapper'))}>
+            <Element className="skeleton-image-small" animate={animate} />
+          </div>
+          <div className={classnames(Context.prefixClass('skeleton-right-wrapper'))}>
+            <Element className="skeleton-text-bar" animate={animate} />
+            <Element className="skeleton-text-bar" animate={animate} />
+          </div>
+        </div>
+      );
+    } else if (type === 3) {
+      return (
+        <div key={`${type}-${index}`} className={classnames(Context.prefixClass('skeleton-wrapper'))}>
+          <Element className="skeleton-image-big" animate={animate} />
+          <div className={classnames(Context.prefixClass('skeleton-operation-bar'))}>
+            <Element className="skeleton-operation-left" animate={animate} />
+            <Element className="skeleton-operation-mid" animate={animate} />
+            <Element className="skeleton-operation-right" animate={animate} />
+          </div>
+        </div>
       );
     }
     return null;
@@ -47,10 +58,10 @@ class Skeleton extends React.Component {
 
   render() {
     const t = this;
-    const { visible, rows } = this.props;
+    const { visible, rows, type } = this.props;
     const contentList = [];
     for (let i = 0; i < rows; i++) {
-      contentList.push(t.getSkeletonContent(1, i));
+      contentList.push(t.getSkeletonContent(type, i));
     }
     if (visible) {
       return contentList;
@@ -63,6 +74,7 @@ Skeleton.defaultProps = {
   visible: false,
   animate: false,
   rows: 1,
+  type: 1,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -70,16 +82,11 @@ Skeleton.propTypes = {
   visible: PropTypes.bool,
   animate: PropTypes.bool,
   rows: PropTypes.number,
+  type: PropTypes.number,
 };
 
 
 Skeleton.displayName = 'Skeleton';
-
-Skeleton.OperationBar = SkeletonOperationBar;
-Skeleton.ImageSmall = SkeletonImageSmall;
-Skeleton.ImageBig = SkeletonImageBig;
-Skeleton.TextBar = SkeletonTextBar;
-Skeleton.Circle = SkeletonCircle;
 
 
 const traversal = (node, number) => {

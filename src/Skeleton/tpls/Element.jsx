@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../../Context';
 
-class SkeletonImageSmall extends React.Component {
-  static displayName = 'SkeletonImageSmall'
+class SkeletonElement extends React.Component {
+  static displayName = 'SkeletonElement'
 
   static propTypes = {
     className: PropTypes.any,
@@ -22,12 +22,13 @@ class SkeletonImageSmall extends React.Component {
     const {
       className,
       animate,
+      ...others
     } = this.props;
     return (
-      <div className={classnames(Context.prefixClass(`skeleton-image-small${animate ? ' skeleton-loading' : ''} ${className}`))} />
+      <div className={classnames(Context.prefixClass(`skeleton-element${animate ? ' skeleton-loading' : ''} ${className}`))} {...others} />
     );
   }
 }
 
 
-module.exports = SkeletonImageSmall;
+module.exports = SkeletonElement;
