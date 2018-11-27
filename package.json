@@ -1,6 +1,6 @@
 {
   "name": "saltui",
-  "version": "3.11.3",
+  "version": "3.11.4",
   "description": "React components for mobile",
   "main": "build/salt-ui.js",
   "scripts": {
@@ -69,6 +69,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
+    "css-animation": "^1.5.0",
     "hammerjs": "^2.0.8",
     "lie": "^3.1.1",
     "lodash": "^4.17.10",
