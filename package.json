@@ -1,6 +1,6 @@
 {
   "name": "saltui",
-  "version": "3.11.2",
+  "version": "3.11.3",
   "description": "React components for mobile",
   "main": "build/salt-ui.js",
   "scripts": {
@@ -75,6 +75,7 @@
     "natty-fetch": "^2.5.2",
     "object-assign": "^4.1.1",
     "prop-types": "15.x",
+    "rc-animate": "^2.6.0",
     "rc-collapse": "^1.7.6",
     "rc-dialog": "^6.5.11",
     "rc-drawer": "^0.4.9",
