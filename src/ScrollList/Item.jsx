@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import Badge from 'salt-badge';
+import Badge from '../Badge';
 
 class Item extends React.Component {
   static propTypes = {
