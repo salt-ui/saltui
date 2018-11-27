@@ -1,6 +1,4 @@
 import react from 'react'
-import PropTypes from 'prop-types'
-import Animate from 'rc-animate'
 import Context from "../Context/Context";
 import Popup from 'salt-popup'
 import Icon from 'salt-icon'
@@ -14,11 +12,9 @@ class FilterPanel extends react.Component {
   static displayName = 'FilterPanel';
 
   static propTypes = {
-
   };
 
   static defaultProps = {
-
   };
 
   constructor(props) {
@@ -32,19 +28,18 @@ class FilterPanel extends react.Component {
   }
 
   onItemClick = e => {
-    const target = e.target;
+    const target = e.currentTarget;
     const key = target.getAttribute('data-key');
     const value = target.getAttribute('data-value');
     const text = target.getAttribute('data-text');
     const classList = target.classList;
-    classList.toggle('active');
-    if (!value) {
-      if (target.getAttribute('data-action') === 'showAll') {
-        this.showAll(key)
-      }
+
+    if (!value || value === 'showAll') {
+      this.showAll(key);
       return
     }
-    this.doItemFilter({ value,text, key })
+    classList.toggle('active');
+    this.doItemFilter({ value, text, key })
   };
 
   showAll(key) {
@@ -65,7 +60,7 @@ class FilterPanel extends react.Component {
     })
   }
 
-  doItemFilter({value, text, key}) {
+  doItemFilter({ value, text, key }) {
     const {
       options,
       onSelect,
@@ -74,13 +69,15 @@ class FilterPanel extends react.Component {
       setActiveIndex
     } = this.props;
     const { _backItems } = options;
-    const group = _backItems.find((item) => {return item.key === key});
+    const group = _backItems.find((item) => {
+      return item.key === key
+    });
     const selectData = getSelect();
     const currentSelectData = selectData[key] || [];
 
     if (!group.multiSelect) {
       setSelect({
-        [key]: !currentSelectData.length || currentSelectData[0].value !== value ? [{text, value}] : null
+        [key]: !currentSelectData.length || currentSelectData[0].value !== value ? [{ text, value }] : null
       });
       setActiveIndex(-1)
     } else {
@@ -90,7 +87,7 @@ class FilterPanel extends react.Component {
 
       if (!hasSelected) {
         setSelect({
-          [key]: [...currentSelectData, {value, text}]
+          [key]: [...currentSelectData, { value, text }]
         })
       } else {
         setSelect({
@@ -103,12 +100,12 @@ class FilterPanel extends react.Component {
 
     onSelect({
       key,
-      currentItem: {text, value},
-      allItems: getSelect()
+      currentSelected: { text, value },
+      allSelected: getSelect()
     })
   }
 
-  renderList(group) {
+  renderOrder(group) {
     const { getSelect } = this.props;
     const { key, items } = group;
     const currentSelectData = getSelect()[key];
@@ -135,7 +132,7 @@ class FilterPanel extends react.Component {
                 {item.text}
                 {
                   isSelected
-                    ? <Icon className={'icon'} width={26} height={26} name={'check'} fill={'#ff6f00'} />
+                    ? <Icon className={'icon'} width={26} height={26} name={'check'} fill={'#ff6f00'}/>
                     : null
                 }
               </div>
@@ -146,43 +143,48 @@ class FilterPanel extends react.Component {
     );
   }
 
-  renderGridTitle(group) {
+  renderSelectTitle(group) {
     const { tip } = group;
     return (
       tip ? <p className={Context.prefixClass('filter-group-title')}>{tip}</p> : null
     )
   }
 
-  renderGridFooter(group) {
+  renderSelectFooter(group) {
     const { _groupKey_, multiSelect } = group;
     if (_groupKey_ !== '_super_' && multiSelect) {
       return (
         <div className={Context.prefixClass('filter-grid-footer')}>
           <Button.Group>
-            <Button type={'secondary'} display={'inline'} onClick={() => { this.resetGrid(group.key) }}>重 置</Button>
-            <Button type={'primary'} display={'inline'} onClick={() => { this.confirm() }}>确 定</Button>
+            <Button type={'secondary'} display={'inline'} onClick={() => {
+              this.resetSelect(group.key)
+            }}>重 置</Button>
+            <Button type={'primary'} display={'inline'} onClick={() => {
+              this.confirm()
+            }}>确 定</Button>
           </Button.Group>
         </div>
       )
     }
   }
 
-  renderGrid(group) {
+  renderSelect(group) {
     const { getSelect } = this.props;
-    const { items, maxLine, key} = group;
+    const { items, maxLine, key } = group;
     const currentSelectData = getSelect()[key];
 
     const max = maxLine || 4;
     let renderItems;
-    if (items.length > 3 * (max) ) {
+    if (items.length > 3 * (max)) {
       renderItems = deepCopy(items);
       renderItems.length = 3 * max - 1;
       renderItems.push({
         value: 'showAll',
         text: () => {
           return (
-            <div data-key={group.key} data-action="showAll">
-              全部 >
+            <div data-key={group.key}>
+              <span>全部</span>
+              <Icon className={Context.prefixClass('filter-show-all-icon')} name={'angle-right'} width={20} height={20} fill={'#555'} />
             </div>
           )
         },
@@ -191,8 +193,8 @@ class FilterPanel extends react.Component {
       renderItems = items
     }
     return (
-      <div>
-        { this.renderGridTitle(group)}
+      <div className={Context.prefixClass('filter-grid-row')}>
+        {this.renderSelectTitle(group)}
         <Grid col={3} noLine>
           {renderItems.map(item => {
             let isSelected = false;
@@ -218,7 +220,7 @@ class FilterPanel extends react.Component {
             )
           })}
         </Grid>
-        {this.renderGridFooter(group)}
+        {this.renderSelectFooter(group)}
       </div>
     );
   }
@@ -237,7 +239,7 @@ class FilterPanel extends react.Component {
     this.reset();
   }
 
-  resetGrid(key) {
+  resetSelect(key) {
     const { setSelect } = this.props;
     setSelect({
       [key]: null
@@ -267,9 +269,9 @@ class FilterPanel extends react.Component {
       <Popup
         stopBodyScrolling
         content={
-          <div className={Context.prefixClass('filter-popup-container')} style={{height: window.innerHeight - 80}}>
+          <div className={Context.prefixClass('filter-popup-container')} style={{ height: window.innerHeight - 124 }}>
             {group.children.map(item => {
-              if (item.type === 'list') {
+              if (item.type === 'order') {
                 return null;
               }
               item.tip = item.title;
@@ -284,14 +286,20 @@ class FilterPanel extends react.Component {
             })}
             <div className={Context.prefixClass('filter-popup-footer')}>
               <Button.Group>
-                <Button type={'secondary'} display={'inline'} onClick={() => { this.resetSuper() }}>重 置</Button>
-                <Button type={'primary'} display={'inline'} onClick={() => { this.confirm() }}>确 定</Button>
+                <Button type={'secondary'} display={'inline'} onClick={() => {
+                  this.resetSuper()
+                }}>重 置</Button>
+                <Button type={'primary'} display={'inline'} onClick={() => {
+                  this.confirm()
+                }}>确 定</Button>
               </Button.Group>
             </div>
           </div>
         }
         animationType="slide-left"
-        onMaskClick={() => { setActiveIndex(-1) }}
+        onMaskClick={() => {
+          setActiveIndex(-1)
+        }}
         visible={true}
       >
         {null}
@@ -304,10 +312,10 @@ class FilterPanel extends react.Component {
       return null;
     }
     switch (group.type) {
-      case 'list':
-        return this.renderList(group);
-      case 'grid':
-        return this.renderGrid(group);
+      case 'order':
+        return this.renderOrder(group);
+      case 'select':
+        return this.renderSelect(group);
       case 'super':
         return this.renderSuper(group);
       default:

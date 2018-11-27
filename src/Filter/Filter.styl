@@ -10,6 +10,9 @@ unless ($prefix is defined) {
 }
 
 .{$prefix}-filter-bar-wrapper
+  position relative
+  z-index 1001
+  background #fff
   .item
     height 44px
     line-height 44px
@@ -17,6 +20,9 @@ unless ($prefix is defined) {
     cursor pointer
     font-size 14px
     position relative
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
     .icon
       vertical-align middle
     .flag
@@ -27,6 +33,12 @@ unless ($prefix is defined) {
       color $brand-primary
     .active
       color $brand-primary
+
+.{$prefix}-filter-panel-wrapper
+  position absolute
+  z-index 1001
+  width 100%
+  background #fff
 
 .{$prefix}-filter-group-title
   font-size 14px
@@ -69,6 +81,9 @@ unless ($prefix is defined) {
   hairline border rgba(255,111,0,0)
   position relative
   color #555
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
   .icon
     position absolute
     top 5px
@@ -79,15 +94,22 @@ unless ($prefix is defined) {
     border-radius 5px
     font-family PingFangSC-Regular
     color #FF6F00
+  .{$prefix}-filter-show-all-icon
+    position absolute
+    top 8px
 
 .{$prefix}-filter-popup-container
   width 320px
   height 100%
   padding 10px 20px
+  margin-top 44px
   overflow-y scroll
   overflow-x hidden
   .{$prefix}-filter-grid-item
     width 80px
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
 
 .{$prefix}-filter-popup-footer
   width 280px

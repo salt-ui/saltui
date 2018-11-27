@@ -10,6 +10,7 @@ import FilterBar from './FilterBar'
 import FilterPanel from './FilterPanel'
 import Context from '../Context'
 import classnames from 'classnames'
+import Mask from 'salt-mask'
 
 class Filter extends React.Component {
   static displayName = 'Filter';
@@ -17,7 +18,7 @@ class Filter extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     options: PropTypes.array,
-    size: PropTypes.oneOf([1,2,3,4]),
+    size: PropTypes.oneOf([1, 2, 3, 4]),
     activeIndex: PropTypes.number,
     onSelect: PropTypes.func,
     onConfirm: PropTypes.func,
@@ -41,7 +42,8 @@ class Filter extends React.Component {
     super(props);
     this.selectData = {};
     this.state = {
-      activeIndex: props.activeIndex
+      activeIndex: props.activeIndex,
+      maskVisible: false
     }
   }
 
@@ -53,7 +55,7 @@ class Filter extends React.Component {
   };
 
   getSelect = () => {
-    let data = this.selectData
+    let data = this.selectData;
     Object.keys(this.selectData).map(key => {
       if (!data[key] || !data[key].length) {
         delete data[key]
@@ -68,7 +70,18 @@ class Filter extends React.Component {
 
   setActiveIndex = index => {
     this.setState({
-      activeIndex: index
+      activeIndex: index,
+    });
+    if (index === -1) {
+      this.setState({
+        maskVisible: false
+      })
+    }
+  };
+
+  handleMask = (isShow, group) => {
+    this.setState({
+      maskVisible: isShow && group.type !== 'action' && group.type !== 'super'
     })
   };
 
@@ -106,7 +119,10 @@ class Filter extends React.Component {
 
   render() {
     const options = this.formatOptions();
-    const { activeIndex } = this.state;
+    const {
+      activeIndex,
+      maskVisible
+    } = this.state;
     const props = {
       ...this.props,
       activeIndex,
@@ -115,6 +131,7 @@ class Filter extends React.Component {
       getSelect: this.getSelect,
       getActiveIndex: this.getActiveIndex,
       setActiveIndex: this.setActiveIndex,
+      handleMask: this.handleMask
     };
     return (
       <div className={classnames(Context.prefixClass('filter-wrapper'), {
@@ -122,6 +139,10 @@ class Filter extends React.Component {
       })}>
         <FilterBar {...props} />
         <FilterPanel {...props} />
+        <Mask
+          visible={maskVisible}
+          opacity={0.4}
+        />
       </div>
     );
   }

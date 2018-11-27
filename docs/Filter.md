@@ -2,6 +2,43 @@
 
 列表过滤器
 
+## Simple Usage
+
+```js
+import { Filter } from 'saltui';
+
+<Filter
+  size={4}
+  activeIndex={-1}
+  options={[
+    {
+      key: 'sort',
+      title: '默认排序',
+      type: 'list',  // grid | range | action
+      items: [
+        {
+          text: '距离',
+          value: 'distance'
+        },
+        {
+          text: '评分',
+          value: 'grade'
+        }
+      ]
+    },
+  ]}
+  onSelect={(data) => {
+    console.log(data)
+  }}
+  onConfirm={(data) => {
+    console.log(data)
+  }}
+  onReset={(data) => {
+    console.log(data)
+  }}
+>
+```
+
 ## Props
 
 #### className
@@ -75,35 +112,4 @@
 
 必填：否
 
-
-
-## Static Method
-
-* Field.getFieldProps(props): 获取所有可以传给 Field 的 props，返回值为一个对象。
-
-## Simple Usage
-
-```
-    class Demo extends React.Component {
-
-        constructor(props) {
-            super(props);
-            this.state = {
-            }
-        }
-
-        render() {
-            return (
-                <div>
-                    <Group.List>
-                        <Field layout='v' label="上下结构" icon={{name: 'angle-right', fill: '#ccc'}}>
-                            <div>自定义输入元素的区域, 带图标</div>
-                        </Field>
-                    </Group.List>
-                </div>
-            );
-        }
-    };
-
-```
 
