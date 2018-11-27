@@ -243,13 +243,13 @@ class Demo extends React.Component {
           >
             <Other1 />
             <Other2 />
-            <ScrollList.TagList
+            {/* <ScrollList.TagList
               {...tagListProps1}
             />
             <ScrollList.TagList
               {...tagListProps2}
-            />
-            <Button onClick={() => { this.list.fetchData(); }}>手动请求</Button>
+            /> */}
+            {/* <Button onClick={() => { this.list.fetchData(); }}>手动请求</Button> */}
             {(data, index) => {
               const itemProps = propsMap[index % 9];
               return (
