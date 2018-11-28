@@ -11,8 +11,8 @@ unless ($prefix is defined) {
 
 .{$prefix}-filter-bar-wrapper
   position relative
-  z-index 1001
-  background #fff
+  z-index 801
+  background $basic-100
   .item
     height 44px
     line-height 44px
@@ -36,9 +36,9 @@ unless ($prefix is defined) {
 
 .{$prefix}-filter-panel-wrapper
   position absolute
-  z-index 1001
+  z-index 801
   width 100%
-  background #fff
+  background $basic-100
 
 .{$prefix}-filter-group-title
   font-size 14px
@@ -48,16 +48,16 @@ unless ($prefix is defined) {
 
 .{$prefix}-filter-list-item
   width 100%
-  height 44px
-  line-height 44px
+  height 50px
+  line-height 50px
   font-size 16px
   text-align left
   cursor pointer
   padding-left 20px
   position relative
-  hairline 'border-bottom' #f0f0f0
+  hairline 'border-bottom' $normal-alpha-7
   &:nth-child(1)
-    hairline 'border-top' #f0f0f0
+    hairline 'border-top' $normal-alpha-7
 
 .{$prefix}-filter-list-item.active
   color $brand-primary
@@ -68,7 +68,14 @@ unless ($prefix is defined) {
     top 10px
 
 .{$prefix}-filter-grid-footer
-  margin 25px 20px
+  margin 25px 10px
+
+.{$prefix}-filter-grid-row
+  margin 15px 10px
+
+.{$prefix}-filter-popup-container
+  .{$prefix}-filter-grid-row
+    margin 10px 0
 
 .{$prefix}-filter-grid-item
   text-align center
@@ -77,10 +84,10 @@ unless ($prefix is defined) {
   height 36px
   line-height 36px
   margin 8px 0
-  background rgba(31,56,88,0.06)
-  hairline border rgba(255,111,0,0)
+  background $normal-alpha-8
+  hairline border $normal-alpha-8
   position relative
-  color #555
+  color $text-seconary
   overflow hidden
   text-overflow ellipsis
   white-space nowrap
@@ -89,11 +96,11 @@ unless ($prefix is defined) {
     top 5px
     right 2px
   &.active
-    background rgba(255,111,0,0.06)
-    hairline border rgba(255,111,0,1)
-    border-radius 5px
+    background $orange-alpha-6
+    hairline border $orange-alpha-1
+    border-radius $button-radius
     font-family PingFangSC-Regular
-    color #FF6F00
+    color $text-ali
   .{$prefix}-filter-show-all-icon
     position absolute
     top 8px
@@ -102,7 +109,6 @@ unless ($prefix is defined) {
   width 320px
   height 100%
   padding 10px 20px
-  margin-top 44px
   overflow-y scroll
   overflow-x hidden
   .{$prefix}-filter-grid-item

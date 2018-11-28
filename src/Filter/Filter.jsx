@@ -142,6 +142,7 @@ class Filter extends React.Component {
         <Mask
           visible={maskVisible}
           opacity={0.4}
+          zIndex={800}
         />
       </div>
     );

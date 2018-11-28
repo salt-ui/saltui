@@ -269,7 +269,7 @@ class FilterPanel extends react.Component {
       <Popup
         stopBodyScrolling
         content={
-          <div className={Context.prefixClass('filter-popup-container')} style={{ height: window.innerHeight - 124 }}>
+          <div className={Context.prefixClass('filter-popup-container')} style={{ height: window.innerHeight - 84 }}>
             {group.children.map(item => {
               if (item.type === 'order') {
                 return null;

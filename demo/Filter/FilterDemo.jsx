@@ -99,42 +99,30 @@ class Demo extends React.Component {
               },
               {
                 key: 'something',
-                title: '单个选择项',
+                title: '容纳人数',
                 type: 'select',
-                multiSelect: false,
+                multiSelect: true,
                 items: [
                   {
-                    text: '距离',
+                    text: '10人以下',
                     value: 'distance'
                   },
                   {
-                    text: '评分',
+                    text: '10-50人',
                     value: 'grade'
                   },
                   {
-                    text: '菜鸟',
+                    text: '50-100人',
                     value: 'cainiao'
                   },
                   {
-                    text: '优酷',
+                    text: '100-500人',
                     value: 'youku'
                   },
                   {
-                    text: '天猫李会计斯洛伐克',
+                    text: '500人以上',
                     value: 'tianmao'
-                  },
-                  {
-                    text: '阿里',
-                    value: 'ali'
-                  },
-                  {
-                    text: '淘宝',
-                    value: 'taobao'
-                  },
-                  {
-                    text: '支付宝',
-                    value: 'zhifubao'
-                  },
+                  }
                 ]
               },
               // {
