@@ -105,6 +105,15 @@ class FilterPanel extends react.Component {
     })
   }
 
+  renderRange(group) {
+    const { getSelect } = this.props;
+    const { key, items } = group;
+    const currentSelectData = getSelect()[key];
+    return (
+      <div>112321</div>
+    )
+  }
+
   renderOrder(group) {
     const { getSelect } = this.props;
     const { key, items } = group;
@@ -260,7 +269,8 @@ class FilterPanel extends react.Component {
   }
 
   renderSuper(group) {
-    const { setActiveIndex } = this.props;
+    const { showPicker, pickerOptions, multiple, key, value } = this.state;
+    const { setActiveIndex, setSelect } = this.props;
     const { children } = group;
     if (!children || !children.length) {
       return null;
@@ -294,6 +304,31 @@ class FilterPanel extends react.Component {
                 }}>确 定</Button>
               </Button.Group>
             </div>
+            <Picker
+              value={value}
+              options={pickerOptions}
+              multiple={multiple}
+              showSearch={false}
+              onConfirm={(value) => {
+                setSelect({
+                  [key]: value
+                });
+                this.setState({
+                  showPicker: false
+                })
+              }}
+              confirmText={'确认'}
+              filterOption={false}
+              onSearch={(keyword) => {
+                // const items = pickerOptions.find(item => {
+                //   return item.text.indexOf(keyword !== -1)
+                // });
+                // this.setState({
+                //   pickerOptions: items
+                // });
+              }}
+              visible={showPicker}
+            />
           </div>
         }
         animationType="slide-left"
@@ -324,38 +359,12 @@ class FilterPanel extends react.Component {
   }
 
   render() {
-    const { showPicker, pickerOptions, multiple, key, value } = this.state;
-    const { options, activeIndex, setSelect } = this.props;
+    const { options, activeIndex } = this.props;
     const group = options.groups[activeIndex];
     console.log(activeIndex);
     return (
       <div className={Context.prefixClass('filter-panel-wrapper')}>
         {this.renderPanel(group)}
-        <Picker
-          value={value}
-          options={pickerOptions}
-          multiple={multiple}
-          showSearch={false}
-          onConfirm={(value) => {
-            setSelect({
-              [key]: value
-            });
-            this.setState({
-              showPicker: false
-            })
-          }}
-          confirmText={'确认'}
-          filterOption={false}
-          onSearch={(keyword) => {
-            // const items = pickerOptions.find(item => {
-            //   return item.text.indexOf(keyword !== -1)
-            // });
-            // this.setState({
-            //   pickerOptions: items
-            // });
-          }}
-          visible={showPicker}
-        />
       </div>
     )
   }
