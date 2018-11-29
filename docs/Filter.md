@@ -14,7 +14,7 @@ import { Filter } from 'saltui';
     {
       key: 'sort',
       title: '默认排序',
-      type: 'list',  // grid | range | action
+      type: 'order',  // select | action
       items: [
         {
           text: '距离',
