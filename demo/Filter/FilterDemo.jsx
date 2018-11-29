@@ -12,6 +12,16 @@ import List from 'salt-list'
 import Icon from 'salt-icon'
 import AngleRight from 'salt-icon/lib/AngleRight';
 
+class TT extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <div>11231231</div>
+    )
+  }
+}
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const Field = require('../../dist');
@@ -125,14 +135,6 @@ class Demo extends React.Component {
                   }
                 ]
               },
-              // {
-              //   key: 'other',
-              //   title: '区间',
-              //   type: 'range',
-              //   min: 0,
-              //   max: 15,
-              //   unit: '分'
-              // },
               {
                 key: 'brand',
                 title: '多个选择项',
@@ -175,45 +177,34 @@ class Demo extends React.Component {
                 ]
               },
               {
-                key: 'brand1',
-                title: '品牌',
-                type: 'select',
-                maxLine: 4,
-                multiSelect: true,
-                items: [
-                  {
-                    text: '阿里巴巴',
-                    value: 'alibaba'
-                  },
-                  {
-                    text: '淘宝',
-                    value: 'taobao'
-                  },
-                  {
-                    text: '菜鸟',
-                    value: 'cainiao'
-                  },
-                  {
-                    text: '优酷',
-                    value: 'youku'
-                  },
-                  {
-                    text: '天猫',
-                    value: 'tianmao'
-                  },
-                  {
-                    text: '百度',
-                    value: 'baidu'
-                  },
-                  {
-                    text: '腾讯',
-                    value: 'tengxun'
-                  },
-                  {
-                    text: '有道',
-                    value: 'youdao'
+                key: 'someOther',
+                onClick(e, selectedData, setSelect, props) {
+                  console.log(selectedData)
+                  let currentSelectedData = selectedData[this.key]
+                  let newData = [e.target.innerText]
+                  if (currentSelectedData) {
+                    newData = [...currentSelectedData].concat(newData)
                   }
-                ]
+                  setSelect({
+                    someOther: newData
+                  })
+                },
+                // renderView: TT,
+                renderView: (instance) => {
+                  return (
+                    <div>
+                      <p style={{ lineHeight: '40px', height: '40px' }}>自定义渲染</p>
+                      <List
+                        layout="left"
+                        hasRightIcon
+                        icon={<AngleRight/>}
+                        iconWidth={20}
+                        isDelete
+                        data={this.state.listData}
+                      />
+                    </div>
+                  )
+                }
               },
               {
                 key: 'brand2',

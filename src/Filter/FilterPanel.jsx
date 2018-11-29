@@ -63,7 +63,6 @@ class FilterPanel extends react.Component {
   doItemFilter({ value, text, key }) {
     const {
       options,
-      onSelect,
       setSelect,
       getSelect,
       setActiveIndex
@@ -97,12 +96,12 @@ class FilterPanel extends react.Component {
         })
       }
     }
-
-    onSelect({
-      key,
-      currentSelected: { text, value },
-      allSelected: getSelect()
-    })
+    //
+    // onSelect({
+    //   key,
+    //   currentSelected: { text, value },
+    //   allSelected: getSelect()
+    // })
   }
 
   renderRange(group) {
@@ -135,10 +134,10 @@ class FilterPanel extends react.Component {
                 })}
                 data-key={key}
                 data-value={item.value}
-                data-text={item.text}
+                data-text={typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text().toString() : ''}
                 onClick={this.onItemClick}
               >
-                {item.text}
+                {typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text() : ''}
                 {
                   isSelected
                     ? <Icon className={'icon'} width={26} height={26} name={'check'} fill={'#ff6f00'}/>
@@ -208,7 +207,7 @@ class FilterPanel extends react.Component {
           {renderItems.map(item => {
             let isSelected = false;
             if (currentSelectData && currentSelectData.find(i => {
-              return i.value === item.value && i.text === item.text
+              return i.value === item.value
             })) {
               isSelected = true
             }
@@ -221,10 +220,10 @@ class FilterPanel extends react.Component {
                 key={item.value}
                 data-key={key}
                 data-value={item.value}
-                data-text={typeof item.text === 'string' ? item.text : ''}
+                data-text={typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text().toString() : ''}
                 onClick={this.onItemClick}
               >
-                {typeof item.text === 'string' ? item.text : item.text()}
+                {typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text() : ''}
               </div>
             )
           })}
@@ -270,7 +269,7 @@ class FilterPanel extends react.Component {
 
   renderSuper(group) {
     const { showPicker, pickerOptions, multiple, key, value } = this.state;
-    const { setActiveIndex, setSelect } = this.props;
+    const { setActiveIndex, setSelect, getSelect } = this.props;
     const { children } = group;
     if (!children || !children.length) {
       return null;
@@ -281,6 +280,26 @@ class FilterPanel extends react.Component {
         content={
           <div className={Context.prefixClass('filter-popup-container')} style={{ height: window.innerHeight - 84 }}>
             {group.children.map(item => {
+              const view = item.renderView;
+              if (view && typeof view === 'function') {
+                if (view.name && /^[A-Z]/.test(view.name)){
+                  return (
+                    <item.renderView
+                      key={item.key}
+                      selectedDate={getSelect()}
+                      setSelect={setSelect}
+                      props={this.props}
+                    />
+                  )
+                }
+                return (
+                  <div key={item.key} onClick={(e) => {
+                    item.onClick && item.onClick(e, getSelect(), setSelect, this.props)
+                  }}>
+                    {item.renderView(this)}
+                  </div>
+                )
+              }
               if (item.type === 'order') {
                 return null;
               }
@@ -361,7 +380,6 @@ class FilterPanel extends react.Component {
   render() {
     const { options, activeIndex } = this.props;
     const group = options.groups[activeIndex];
-    console.log(activeIndex);
     return (
       <div className={Context.prefixClass('filter-panel-wrapper')}>
         {this.renderPanel(group)}

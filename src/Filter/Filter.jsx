@@ -47,11 +47,18 @@ class Filter extends React.Component {
     }
   }
 
-  setSelect = (data = {}) => {
+  setSelect = (data = {}, ignoreOnSelect) => {
+    const key = Object.keys(data)[0];
+    const { onSelect } = this.props;
     this.selectData = {
       ...this.selectData,
       ...data
-    }
+    };
+    !ignoreOnSelect && onSelect({
+      key,
+      currentSelected: data[key],
+      allSelected: this.getSelect()
+    })
   };
 
   getSelect = () => {

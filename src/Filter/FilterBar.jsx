@@ -60,17 +60,12 @@ class FilterBar extends React.Component {
   }
 
   doActionFilter(group) {
-    const { onSelect, getSelect, setSelect } = this.props;
+    const { getSelect, setSelect } = this.props;
     const { key, items } = group;
     const currentSelectData = getSelect()[key];
     setSelect({
       [key]: currentSelectData && currentSelectData.length ? null : items
     });
-    onSelect({
-      key: group.key,
-      currentSelected: items[0],
-      allSelected: getSelect()
-    })
   }
 
   renderTitle(group, index) {
