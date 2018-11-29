@@ -70,8 +70,10 @@ class Skeleton extends React.Component {
   }
 }
 
+Skeleton.Element = Element;
+
 Skeleton.defaultProps = {
-  visible: false,
+  visible: true,
   animate: false,
   rows: 1,
   type: 1,
@@ -109,9 +111,10 @@ const traversal = (node, number) => {
     'display',
     'flex',
     'flexDirection']);
-  if (node.children.length > 0 && number > 1) {
+  const traversalLevel = number || 4;
+  if (node.children.length > 0 && traversalLevel > 1) {
     // 往下遍历
-    return `<SkeletonChunk style={${JSON.stringify(styleObj)}} className="${node.className}">${Array.prototype.map.call(node.children, item => (traversal(item, number - 1))).join('')}</SkeletonChunk>`;
+    return `<SkeletonChunk style={${JSON.stringify(styleObj)}} className="${node.className}">${Array.prototype.map.call(node.children, item => (traversal(item, traversalLevel - 1))).join('')}</SkeletonChunk>`;
   }
   return `<SkeletonChunk style={${JSON.stringify(styleObj)}} className="${node.className}"/>`;
 };

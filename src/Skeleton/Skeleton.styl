@@ -24,6 +24,12 @@ $skeleton-middle-bgcolor = rgba(31,56,88, 0.1);
     }
 }
 
+.{$prefix}-skeleton-loading {
+    background linear-gradient(90deg,$skeleton-bg-bgcolor 25%,$skeleton-middle-bgcolor 37%,$skeleton-bg-bgcolor 63%);
+    animation salt-skeleton-loading 1.4s ease infinite;
+    background-size 400% 100%;
+}
+
 .{$prefix}-skeleton-element {
     background-color $skeleton-bg-bgcolor;
 }
@@ -32,76 +38,73 @@ $skeleton-middle-bgcolor = rgba(31,56,88, 0.1);
     padding 0px 10px 10px 10px;
     margin-top 10px;
     border-bottom 1px solid #fff;
-    .{$prefix}-skeleton-left-wrapper {
-        display table-cell;
-        vertical-align middle;
-        padding-right 10px;
-    }
+}
 
-    .{$prefix}-skeleton-right-wrapper {
-        display table-cell;
-        vertical-align middle;
-        width 100%
-    }
+.{$prefix}-skeleton-left-wrapper {
+    display table-cell;
+    vertical-align middle;
+    padding-right 10px;
+}
 
-    .{$prefix}-skeleton-circle {
-        border-radius 50%;
-        width 50px;
-        height 50px;
-    }
+.{$prefix}-skeleton-right-wrapper {
+    display table-cell;
+    vertical-align middle;
+    width 100%
+}
 
-    .{$prefix}-skeleton-text-bar {
-            width 100%;
-            height 14px;
-            margin-bottom 12px;
-            border-radius $skeleton-radius;
-            &:last-child {
-                width 80%;
-            margin-bottom 0px;
-            }
-        }
+.{$prefix}-skeleton-circle {
+    border-radius 50%;
+    width 50px;
+    height 50px;
+}
 
-    .{$prefix}-skeleton-image-small {
-        width 110px;
-        height 72px;
-        border-radius $skeleton-radius;
+.{$prefix}-skeleton-text-bar {
+    width 100%;
+    height 14px;
+    margin-bottom 12px;
+    border-radius $skeleton-radius;
+    &:last-child {
+        width 80%;
+    margin-bottom 0px;
     }
+}
 
-    .{$prefix}-skeleton-image-big {
-        width 100%;
-        height 120px;
-        margin-bottom $skeleton-margin-bottom;
-        border-radius $skeleton-radius;
-    }
+.{$prefix}-skeleton-image-small {
+    width 110px;
+    height 72px;
+    border-radius $skeleton-radius;
+}
 
-    .{$prefix}-skeleton-loading {
-        background linear-gradient(90deg,$skeleton-bg-bgcolor 25%,$skeleton-middle-bgcolor 37%,$skeleton-bg-bgcolor 63%);
-        animation salt-skeleton-loading 1.4s ease infinite;
-        background-size 400% 100%;
-    }
+.{$prefix}-skeleton-image-big {
+    width 100%;
+    height 120px;
+    margin-bottom $skeleton-margin-bottom;
+    border-radius $skeleton-radius;
+}
 
-    .{$prefix}-skeleton-operation-bar {
-        width 100%;
-        height 20px;
-        .{$prefix}-skeleton-operation-left {
-            width 48%;
-            height 100%;
-            display inline-block;
-            border-radius $skeleton-radius;
-        }
-        .{$prefix}-skeleton-operation-mid {
-            width 20%;
-            height 100%;
-            margin 0 6% 0 6%;
-            display inline-block;
-            border-radius $skeleton-radius;
-        }
-        .{$prefix}-skeleton-operation-right {
-            width 20%;
-            height 100%;
-            display inline-block;
-            border-radius $skeleton-radius;
-        }
-    }
+.{$prefix}-skeleton-operation-bar {
+    width 100%;
+    height 20px;
+}
+
+
+.{$prefix}-skeleton-operation-left {
+    width 48%;
+    height 20px;
+    display inline-block;
+    border-radius $skeleton-radius;
+}
+.{$prefix}-skeleton-operation-mid {
+    width 20%;
+    height 20px;
+    margin 0 6% 0 6%;
+    display inline-block;
+    border-radius $skeleton-radius;
+}
+.{$prefix}-skeleton-operation-right {
+    width 20%;
+    height 20px;
+    display inline-block;
+    border-radius $skeleton-radius;
 }
 
