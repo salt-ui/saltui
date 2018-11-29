@@ -101,7 +101,7 @@ class Demo extends React.Component {
                 key: 'something',
                 title: '容纳人数',
                 type: 'select',
-                multiSelect: true,
+                multiSelect: false,
                 items: [
                   {
                     text: '10人以下',
