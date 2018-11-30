@@ -1,6 +1,8 @@
 #  数据信息展示
 
-## Simple Usage
+## NumberInfo 数据信息视图
+
+### Simple Usage
 
 ```javascript
 import { NumberInfo } from 'saltui';
@@ -16,8 +18,6 @@ render() {
   )
 }
 ```
-
-## NumberInfo 数据信息视图
 
 ### Props
 
@@ -169,7 +169,7 @@ render() {
 必填：否
 
 
-## Simple Usage
+### Simple Usage
 
 NumberItem 也可单独使用，render 的结果是一段被格式化后的字符串，可用于其他组件中。
 
@@ -181,3 +181,16 @@ import { NumberInfo } from 'saltui';
 ```
 
 注意：单独使用的 NumberItem 组件，positiveColor、negativeColor、secondary 属性不可用。
+
+
+## format() 格式化方法
+
+### Simple Usage
+
+```javascript
+import { NumberInfo } from 'saltui';
+console.log(NumberInfo.format(20000, { max: 9999, unit: '次' })); // "9,999+ 次"
+// Or NumberInfo.Item.format(...)
+```
+
+format(number, [config])，入参为将要格式化的数字，以及格式化配置。格式化配置字段同 NumberItem 的 props。

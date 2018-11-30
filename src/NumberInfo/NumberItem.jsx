@@ -9,8 +9,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function renderNumber() {
-  const { number, digits, groupDigits, spliter, max, showSign } = this.props;
+function formatNumber(params) {
+  const { number, digits, groupDigits, spliter, max, showSign } = params;
   let n = Math.min(Math.abs(number), max || Infinity);
   if (!n) {
     n = 0;
@@ -39,9 +39,18 @@ function renderNumber() {
   return str;
 }
 
+function formatUnit(params) {
+  const { unit } = params;
+  return unit ? (/^[a-zA-Z\u4E00-\u9FA5\uF900-\uFA2D]/.test(unit) ? ` ${unit}` : unit) : '';
+}
+
+function format(number, params) {
+  return `${formatNumber({ ...NumberItem.defaultProps, ...(params || {}), number })}${formatUnit(params)}`;
+}
+
 export default class NumberItem extends React.Component {
   render() {
-    return `${renderNumber.call(this)}${this.props.unit || ''}`;
+    return `${formatNumber(this.props)}${formatUnit(this.props)}`;
   }
 }
 
@@ -70,5 +79,6 @@ NumberItem.propTypes = {
 };
 
 NumberItem.displayName = 'NumberItem';
-NumberItem.renderNumber = renderNumber;
-
+NumberItem.formatNumber = formatNumber;
+NumberItem.formatUnit = formatUnit;
+NumberItem.format = format;

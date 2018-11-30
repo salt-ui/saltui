@@ -8,7 +8,6 @@
 
 import React from 'react';
 
-import Context from 'salt-context';
 import NumberInfo from 'salt-number-info';
 import Button from 'salt-button';
 
@@ -85,12 +84,19 @@ class Demo extends React.Component {
             <NumberItem number={36} unit="小时" />
             <NumberItem number={18} unit="次" secondary />
           </NumberInfo>
+          <NumberInfo label="涨跌幅" layout="h">
+            <NumberItem number={3.7} digits={2} unit="%" showSign={false} positiveColor="red" negativeColor="green" />
+            <NumberItem number={-1.4} digits={2} unit="%" showSign={false} positiveColor="red" negativeColor="green" />
+            <NumberItem number={0} digits={2} unit="%" showSign={false} positiveColor="red" negativeColor="green" />
+          </NumberInfo>
         </div>
 
         <div className="number-info-wrap">
-          <div className="number-info-wrap-title">直接使用 &lt;NumberItem&gt;</div>
-          <Button className="number-info-wrap-space">
-            点赞 <NumberItem number={200} max={99} unit="次" />
+          <div className="number-info-wrap-title">直接使用 &lt;NumberItem&gt; 和 format() 方法</div>
+          <Button className="number-info-wrap-space" onClick={() => {
+            console.log(NumberInfo.format(20000, { max: 9999, unit: '次' }));
+          }}>
+            点赞 <NumberItem number={20000} max={99} unit="次" />
           </Button>
         </div>
         

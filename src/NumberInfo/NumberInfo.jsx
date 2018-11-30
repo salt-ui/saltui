@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
 
-import NumberItem from './NumberItem';
+import NumberItem, { formatNumber, formatUnit } from './NumberItem';
 
 export default class NumberInfo extends React.Component {
 
@@ -21,11 +21,13 @@ export default class NumberInfo extends React.Component {
 
   renderNumber(data) {
     const { positiveColor, negativeColor, number } = data.props;
+    const num = formatNumber(data.props);
+    const unit = formatUnit(data.props);
     return <span style={{
       color: number > 0 ? positiveColor : (number < 0 ? negativeColor : '')
     }}>
-      <span>{NumberItem.renderNumber.call(data)}</span>
-      {data.props.unit ? <span className={Context.prefixClass('number-info-unit')}>{data.props.unit}</span> : null}
+      <span>{num}</span>
+      {unit ? <span className={Context.prefixClass('number-info-unit')}>{unit}</span> : null}
     </span>
   }
 
@@ -93,3 +95,4 @@ NumberInfo.displayName = 'NumberInfo';
 
 NumberInfo.NumberItem = NumberItem;
 NumberInfo.Item = NumberItem;
+NumberInfo.format = NumberItem.format;
