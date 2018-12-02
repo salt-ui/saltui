@@ -7,6 +7,8 @@ import classnames from "classnames";
 import deepCopy from "lodash/cloneDeep";
 import Grid from 'salt-grid'
 import Picker from 'salt-picker'
+import Switch from 'salt-switch';
+
 
 class FilterPanel extends react.Component {
   static displayName = 'FilterPanel';
@@ -23,7 +25,8 @@ class FilterPanel extends react.Component {
       showPicker: false,
       pickerOptions: [],
       multiple: false,
-      name: ''
+      name: '',
+      value: []
     }
   }
 
@@ -267,6 +270,12 @@ class FilterPanel extends react.Component {
     onConfirm(getSelect());
   }
 
+  handleSwitchChange(group, isOn) {
+    const { setSelect } = this.props;
+    setSelect({
+      [group.name]: !isOn ? null : [group.items[0]]
+    });
+  }
   renderSuper(group) {
     const { showPicker, pickerOptions, multiple, name, value } = this.state;
     const { setActiveIndex, setSelect, getSelect } = this.props;
@@ -295,8 +304,15 @@ class FilterPanel extends react.Component {
                   />
                 )
               }
-              if (item.type === 'order') {
-                return null;
+              if (item.type === 'switch') {
+                const currentSelectedData = getSelect()[item.name];
+                const isOn = !!(currentSelectedData && currentSelectedData.length);
+                return (
+                  <div className={'switch-wrapper'} key={item.name}>
+                    <label className="label">{!isOn ? item.title : currentSelectedData[0].text}</label>
+                    <Switch on={isOn} onChange={() => { this.handleSwitchChange(item, !isOn)}} />
+                  </div>
+                );
               }
               item.tip = item.title;
               if (item.items.length > 8) {

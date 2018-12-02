@@ -118,8 +118,8 @@ class Demo extends React.Component {
     return (
       <div>
         <Filter
-          size={4}
-          value = {{
+          size={3}
+          defaultValue = {{
             sort: [
               {
                 text: '距离',

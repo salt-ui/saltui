@@ -43,8 +43,8 @@ class Filter extends React.Component {
   constructor(props) {
     super(props);
     this.selectData = {};
-    if (props.value) {
-      this.setSelect(props.value)
+    if (props.defaultValue) {
+      this.setSelect(props.defaultValue)
     }
     this.state = {
       activeIndex: props.activeIndex,
