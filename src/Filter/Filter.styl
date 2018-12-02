@@ -20,9 +20,10 @@ unless ($prefix is defined) {
     cursor pointer
     font-size 14px
     position relative
-    overflow hidden
-    text-overflow ellipsis
-    white-space nowrap
+    .title-wrapper
+      overflow hidden
+      text-overflow ellipsis
+      white-space nowrap
     .icon
       vertical-align middle
     .flag
@@ -30,6 +31,8 @@ unless ($prefix is defined) {
       position absolute
       top -12px
       right 5px
+      color $brand-primary
+    .selected
       color $brand-primary
     .active
       color $brand-primary

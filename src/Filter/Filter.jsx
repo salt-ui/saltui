@@ -48,24 +48,24 @@ class Filter extends React.Component {
   }
 
   setSelect = (data = {}, ignoreOnSelect) => {
-    const key = Object.keys(data)[0];
+    const name = Object.keys(data)[0];
     const { onSelect } = this.props;
     this.selectData = {
       ...this.selectData,
       ...data
     };
     !ignoreOnSelect && onSelect({
-      key,
-      currentSelected: data[key],
+      name,
+      currentSelected: data[name],
       allSelected: this.getSelect()
     })
   };
 
   getSelect = () => {
     let data = this.selectData;
-    Object.keys(this.selectData).map(key => {
-      if (!data[key] || !data[key].length) {
-        delete data[key]
+    Object.keys(this.selectData).map(name => {
+      if (!data[name] || !data[name].length) {
+        delete data[name]
       }
     });
     return data;
@@ -88,7 +88,7 @@ class Filter extends React.Component {
 
   handleMask = (isShow, group) => {
     this.setState({
-      maskVisible: isShow && group.type !== 'action' && group.type !== 'super'
+      maskVisible: isShow && group.type !== 'switch' && group.type !== 'super'
     })
   };
 
@@ -108,7 +108,7 @@ class Filter extends React.Component {
       groups: [
         ...newFilterGroups.splice(0, maxSize - 1),
         {
-          key: '_super_',
+          name: '_super_',
           title: '高级筛选',
           icon: 'setting',
           type: 'super',

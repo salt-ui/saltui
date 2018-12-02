@@ -12,13 +12,50 @@ import List from 'salt-list'
 import Icon from 'salt-icon'
 import AngleRight from 'salt-icon/lib/AngleRight';
 
-class TT extends React.Component {
+class TestView extends React.Component {
   constructor(props) {
     super(props)
+    console.log(props)
+    this.state = {
+      listData: [
+        {
+          imgUrl: 'https://img.alicdn.com/tps/TB15YftJFXXXXafXpXXXXXXXXXX-699-698.jpg',
+          text: '前端开发工程师',
+          title: '马慧（穆心）',
+        },
+        {
+          imgUrl: 'https://img.alicdn.com/tps/TB15YftJFXXXXafXpXXXXXXXXXX-699-698.jpg',
+          text: '资深交互设计师',
+          title: '周姮',
+        },
+        {
+          imgUrl: 'https://img.alicdn.com/tps/TB1P1vaLpXXXXXxaXXXXXXXXXXX-50-50.jpg',
+          text: '交互设计师',
+          title: '郝晓敏 (钰馨）',
+          date: '2017-7-8',
+        },
+        {
+          imgUrl: 'https://img.alicdn.com/tps/TB1P1vaLpXXXXXxaXXXXXXXXXXX-50-50.jpg',
+          text: '交互设计师',
+          title: '张三丰（曾金）',
+          date: '2017-7-8',
+        }
+      ]
+    };
   }
   render() {
     return (
-      <div>11231231</div>
+      <div>
+        <p style={{ lineHeight: '40px', height: '40px' }}>自定义渲染</p>
+        <List
+          layout="left"
+          hasRightIcon
+          icon={<AngleRight/>}
+          iconWidth={20}
+          isDelete
+          data={this.state.listData}
+        />
+      </div>
     )
   }
 }
@@ -80,7 +117,7 @@ class Demo extends React.Component {
           options={
             [
               {
-                key: 'sort',
+                name: 'sort',
                 title: '默认排序',
                 type: 'order',  // select | range | action
                 items: [
@@ -95,10 +132,9 @@ class Demo extends React.Component {
                 ]
               },
               {
-                key: 'quickSort',
-                title: '升序排列',
-                toggleTitle: '降序排列',
-                type: 'action',
+                name: 'quickSort',
+                title: '降序排列',
+                type: 'switch',
                 icon: false,
                 items: [
                   {
@@ -108,10 +144,10 @@ class Demo extends React.Component {
                 ]
               },
               {
-                key: 'something',
+                name: 'something',
                 title: '容纳人数',
                 type: 'select',
-                multiSelect: false,
+                multiSelect: true,
                 items: [
                   {
                     text: '10人以下',
@@ -136,7 +172,7 @@ class Demo extends React.Component {
                 ]
               },
               {
-                key: 'brand',
+                name: 'brand',
                 title: '多个选择项',
                 type: 'select',
                 maxLine: 2,
@@ -177,37 +213,11 @@ class Demo extends React.Component {
                 ]
               },
               {
-                key: 'someOther',
-                onClick(e, selectedData, setSelect, props) {
-                  console.log(selectedData)
-                  let currentSelectedData = selectedData[this.key]
-                  let newData = [e.target.innerText]
-                  if (currentSelectedData) {
-                    newData = [...currentSelectedData].concat(newData)
-                  }
-                  setSelect({
-                    someOther: newData
-                  })
-                },
-                // renderView: TT,
-                renderView: (instance) => {
-                  return (
-                    <div>
-                      <p style={{ lineHeight: '40px', height: '40px' }}>自定义渲染</p>
-                      <List
-                        layout="left"
-                        hasRightIcon
-                        icon={<AngleRight/>}
-                        iconWidth={20}
-                        isDelete
-                        data={this.state.listData}
-                      />
-                    </div>
-                  )
-                }
+                name: 'someOther',
+                renderView: TestView,
               },
               {
-                key: 'brand2',
+                name: 'brand2',
                 title: '品牌',
                 type: 'select',
                 maxLine: 2,
@@ -248,7 +258,7 @@ class Demo extends React.Component {
                 ]
               },
               {
-                key: 'brand3',
+                name: 'brand3',
                 title: '品牌',
                 type: 'select',
                 maxLine: 2,
@@ -289,7 +299,7 @@ class Demo extends React.Component {
                 ]
               },
               {
-                key: 'brand4',
+                name: 'brand4',
                 title: '品牌',
                 type: 'select',
                 maxLine: 3,
@@ -338,7 +348,7 @@ class Demo extends React.Component {
           onSelect={(data) => {
             // can do confirm
             console.log('on select: ', data)
-            switch (data.key) {
+            switch (data.name) {
               case 'sort':
               case 'quickSort':
                 this.setState({

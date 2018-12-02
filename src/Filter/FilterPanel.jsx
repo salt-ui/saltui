@@ -23,36 +23,36 @@ class FilterPanel extends react.Component {
       showPicker: false,
       pickerOptions: [],
       multiple: false,
-      key: ''
+      name: ''
     }
   }
 
   onItemClick = e => {
     const target = e.currentTarget;
-    const key = target.getAttribute('data-key');
+    const name = target.getAttribute('data-name');
     const value = target.getAttribute('data-value');
     const text = target.getAttribute('data-text');
     const classList = target.classList;
 
     if (!value || value === 'showAll') {
-      this.showAll(key);
+      this.showAll(name);
       return
     }
     classList.toggle('active');
-    this.doItemFilter({ value, text, key })
+    this.doItemFilter({ value, text, name })
   };
 
-  showAll(key) {
+  showAll(name) {
     console.log('showAll');
     const { options, getSelect } = this.props;
     const { _backItems } = options;
-    const currentData = getSelect()[key];
+    const currentData = getSelect()[name];
     const pick = _backItems.find(item => {
-      return item.key === key
+      return item.name === name
     }) || {};
 
     this.setState({
-      key,
+      name,
       showPicker: true,
       pickerOptions: pick.items || [],
       multiple: pick.multiSelect,
@@ -60,7 +60,7 @@ class FilterPanel extends react.Component {
     })
   }
 
-  doItemFilter({ value, text, key }) {
+  doItemFilter({ value, text, name }) {
     const {
       options,
       setSelect,
@@ -69,14 +69,14 @@ class FilterPanel extends react.Component {
     } = this.props;
     const { _backItems } = options;
     const group = _backItems.find((item) => {
-      return item.key === key
+      return item.name === name
     });
     const selectData = getSelect();
-    const currentSelectData = selectData[key] || [];
+    const currentSelectData = selectData[name] || [];
 
     if (!group.multiSelect) {
       setSelect({
-        [key]: !currentSelectData.length || currentSelectData[0].value !== value ? [{ text, value }] : null
+        [name]: !currentSelectData.length || currentSelectData[0].value !== value ? [{ text, value }] : null
       });
       setActiveIndex(-1)
     } else {
@@ -86,11 +86,11 @@ class FilterPanel extends react.Component {
 
       if (!hasSelected) {
         setSelect({
-          [key]: [...currentSelectData, { value, text }]
+          [name]: [...currentSelectData, { value, text }]
         })
       } else {
         setSelect({
-          [key]: currentSelectData.filter((item) => {
+          [name]: currentSelectData.filter((item) => {
             return item.value !== value
           })
         })
@@ -106,8 +106,8 @@ class FilterPanel extends react.Component {
 
   renderRange(group) {
     const { getSelect } = this.props;
-    const { key, items } = group;
-    const currentSelectData = getSelect()[key];
+    const { name, items } = group;
+    const currentSelectData = getSelect()[name];
     return (
       <div>112321</div>
     )
@@ -115,8 +115,8 @@ class FilterPanel extends react.Component {
 
   renderOrder(group) {
     const { getSelect } = this.props;
-    const { key, items } = group;
-    const currentSelectData = getSelect()[key];
+    const { name, items } = group;
+    const currentSelectData = getSelect()[name];
     return (
       <div>
         {
@@ -132,7 +132,7 @@ class FilterPanel extends react.Component {
                   [Context.prefixClass('filter-list-item')]: true,
                   'active': isSelected
                 })}
-                data-key={key}
+                data-name={name}
                 data-value={item.value}
                 data-text={typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text().toString() : ''}
                 onClick={this.onItemClick}
@@ -165,7 +165,7 @@ class FilterPanel extends react.Component {
         <div className={Context.prefixClass('filter-grid-footer')}>
           <Button.Group>
             <Button type={'secondary'} display={'inline'} onClick={() => {
-              this.resetSelect(group.key)
+              this.resetSelect(group.name)
             }}>重 置</Button>
             <Button type={'primary'} display={'inline'} onClick={() => {
               this.confirm()
@@ -178,8 +178,8 @@ class FilterPanel extends react.Component {
 
   renderSelect(group) {
     const { getSelect } = this.props;
-    const { items, maxLine, key } = group;
-    const currentSelectData = getSelect()[key];
+    const { items, maxLine, name } = group;
+    const currentSelectData = getSelect()[name];
 
     const max = maxLine || 4;
     let renderItems;
@@ -190,7 +190,7 @@ class FilterPanel extends react.Component {
         value: 'showAll',
         text: () => {
           return (
-            <div data-key={group.key}>
+            <div data-name={group.name}>
               <span>全部</span>
               <Icon className={Context.prefixClass('filter-show-all-icon')} name={'angle-right'} width={20} height={20} fill={'#555'} />
             </div>
@@ -218,7 +218,7 @@ class FilterPanel extends react.Component {
                   'active': isSelected
                 })}
                 key={item.value}
-                data-key={key}
+                data-name={name}
                 data-value={item.value}
                 data-text={typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text().toString() : ''}
                 onClick={this.onItemClick}
@@ -238,19 +238,19 @@ class FilterPanel extends react.Component {
     const { children } = options.groups[options.groups.length - 1];
     const selectData = getSelect();
     children.forEach((item) => {
-      if (selectData[item.key]) {
+      if (selectData[item.name]) {
         setSelect({
-          [item.key]: null
+          [item.name]: null
         })
       }
     });
     this.reset();
   }
 
-  resetSelect(key) {
+  resetSelect(name) {
     const { setSelect } = this.props;
     setSelect({
-      [key]: null
+      [name]: null
     });
     this.reset();
   }
@@ -268,7 +268,7 @@ class FilterPanel extends react.Component {
   }
 
   renderSuper(group) {
-    const { showPicker, pickerOptions, multiple, key, value } = this.state;
+    const { showPicker, pickerOptions, multiple, name, value } = this.state;
     const { setActiveIndex, setSelect, getSelect } = this.props;
     const { children } = group;
     if (!children || !children.length) {
@@ -280,24 +280,19 @@ class FilterPanel extends react.Component {
         content={
           <div className={Context.prefixClass('filter-popup-container')} style={{ height: window.innerHeight - 84 }}>
             {group.children.map(item => {
-              const view = item.renderView;
-              if (view && typeof view === 'function') {
-                if (view.name && /^[A-Z]/.test(view.name)){
-                  return (
-                    <item.renderView
-                      key={item.key}
-                      selectedDate={getSelect()}
-                      setSelect={setSelect}
-                      props={this.props}
-                    />
-                  )
-                }
+              if (!item.name) {
+                return null
+              }
+              const View = item.renderView;
+              if (View && typeof View === 'function') {
                 return (
-                  <div key={item.key} onClick={(e) => {
-                    item.onClick && item.onClick(e, getSelect(), setSelect, this.props)
-                  }}>
-                    {item.renderView(this)}
-                  </div>
+                  <View
+                    key={item.name}
+                    name={item.name}
+                    selectedDate={getSelect()}
+                    setSelect={setSelect}
+                    props={this.props}
+                  />
                 )
               }
               if (item.type === 'order') {
@@ -308,7 +303,7 @@ class FilterPanel extends react.Component {
                 item.needCollapse = true
               }
               return (
-                <div key={item.key}>
+                <div key={item.name}>
                   {this.renderPanel(item)}
                 </div>
               )
@@ -330,7 +325,7 @@ class FilterPanel extends react.Component {
               showSearch={false}
               onConfirm={(value) => {
                 setSelect({
-                  [key]: value
+                  [name]: value
                 });
                 this.setState({
                   showPicker: false
