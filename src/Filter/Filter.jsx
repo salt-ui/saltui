@@ -22,7 +22,8 @@ class Filter extends React.Component {
     activeIndex: PropTypes.number,
     onSelect: PropTypes.func,
     onConfirm: PropTypes.func,
-    onReset: PropTypes.func
+    onReset: PropTypes.func,
+    value: PropTypes.object
   };
 
   static defaultProps = {
@@ -30,6 +31,7 @@ class Filter extends React.Component {
     options: [],
     size: 4,
     activeIndex: -1,
+    value: null,
     onSelect: () => {
     },
     onConfirm: () => {
@@ -41,6 +43,9 @@ class Filter extends React.Component {
   constructor(props) {
     super(props);
     this.selectData = {};
+    if (props.value) {
+      this.setSelect(props.value)
+    }
     this.state = {
       activeIndex: props.activeIndex,
       maskVisible: false

@@ -119,6 +119,30 @@ class Demo extends React.Component {
       <div>
         <Filter
           size={4}
+          value = {{
+            sort: [
+              {
+                text: '距离',
+                value: 'distance'
+              },
+            ],
+            quickSort: [
+              {
+                text: '升序排列',
+                value: 'asc'
+              }
+            ],
+            something: [
+              {
+                text: '10人以下',
+                value: 'distance'
+              },
+              {
+                text: '10-50人',
+                value: 'grade'
+              }
+            ]
+          }}
           options={
             [
               {
