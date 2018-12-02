@@ -18,8 +18,9 @@ unless ($prefix is defined) {
     line-height 44px
     text-align center
     cursor pointer
-    font-size 14px
+    font-size 12px
     position relative
+    color $text-seconary
     .title-wrapper
       overflow hidden
       text-overflow ellipsis
@@ -56,6 +57,7 @@ unless ($prefix is defined) {
   font-size 16px
   text-align left
   cursor pointer
+  color $text-primary
   padding-left 20px
   position relative
   hairline 'border-bottom' $normal-alpha-7
@@ -102,7 +104,7 @@ unless ($prefix is defined) {
     background $brand-primary-alpha-8
     hairline border $brand-primary
     border-radius $button-radius
-    color $text-ali
+    color $brand-primary
   .{$prefix}-filter-show-all-icon
     position absolute
     top 8px

@@ -74,19 +74,22 @@ class FilterBar extends React.Component {
     const currentSelectData = getSelect()[group.name];
     const isFocus = group.type !== 'switch' ? activeIndex === index : currentSelectData && currentSelectData.length && activeIndex === index;
     const isFlag = this.checkFlag(group, index);
-    const className = classnames({
-      active: isFocus,
-      selected: isFlag && ( group.name === '_super_' || currentSelectData && currentSelectData.length)
-    });
     const title = typeof group.title === 'function'
-      ? <span className={className}>{group.title(isFocus, currentSelectData)}</span>
-      : <span className={className}>{
+      ? <span>{group.title(isFocus, currentSelectData)}</span>
+      : <span>{
         isFlag && currentSelectData
           ? currentSelectData.length > 1 ? group.title : currentSelectData.length === 1 ? currentSelectData[0].text : group.title
           : group.title
       }</span>;
     return (
-      <div className={classnames(Context.prefixClass('FB1'), 'title-wrapper')}>
+      <div className={classnames(
+        Context.prefixClass('FB1'),
+        'title-wrapper',
+        {
+          active: isFocus,
+          selected: isFlag && ( group.name === '_super_' || currentSelectData && currentSelectData.length)
+        }
+      )}>
         {title}
       </div>
     )
