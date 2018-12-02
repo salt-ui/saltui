@@ -1,6 +1,6 @@
 /**
  * Field Component Demo for SaltUI
- * @author
+ * @author taoqili
  *
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
@@ -15,7 +15,6 @@ import AngleRight from 'salt-icon/lib/AngleRight';
 class TestView extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props)
     this.state = {
       listData: [
         {
@@ -43,6 +42,11 @@ class TestView extends React.Component {
       ]
     };
   }
+
+  onClick = (e) => {
+    this.props.onChange({'aa': [{text: 'xxx', value: 'xxxx'}]})
+  }
+
   render() {
     return (
       <div>
@@ -54,6 +58,7 @@ class TestView extends React.Component {
           iconWidth={20}
           isDelete
           data={this.state.listData}
+          onClick={this.onClick}
         />
       </div>
     )

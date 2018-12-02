@@ -290,7 +290,7 @@ class FilterPanel extends react.Component {
                     key={item.name}
                     name={item.name}
                     selectedDate={getSelect()}
-                    setSelect={setSelect}
+                    onChange={setSelect}
                     props={this.props}
                   />
                 )
