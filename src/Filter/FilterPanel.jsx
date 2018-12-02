@@ -99,12 +99,6 @@ class FilterPanel extends react.Component {
         })
       }
     }
-    //
-    // onSelect({
-    //   key,
-    //   currentSelected: { text, value },
-    //   allSelected: getSelect()
-    // })
   }
 
   renderRange(group) {

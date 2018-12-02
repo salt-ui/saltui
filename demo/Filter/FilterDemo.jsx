@@ -118,19 +118,13 @@ class Demo extends React.Component {
     return (
       <div>
         <Filter
-          size={3}
+          size={4}
           defaultValue = {{
             sort: [
               {
                 text: '距离',
                 value: 'distance'
               },
-            ],
-            quickSort: [
-              {
-                text: '升序排列',
-                value: 'asc'
-              }
             ],
             something: [
               {
