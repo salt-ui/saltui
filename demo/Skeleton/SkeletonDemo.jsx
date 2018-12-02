@@ -29,6 +29,13 @@ class Demo extends React.Component {
         <Element className="skeleton-operation-left" animate />
         <Element className="skeleton-operation-mid" animate />
         <Element className="skeleton-operation-right" animate />
+        {/* 以下测试自动生成skeleton */}
+        <div className="testNode" style={{ borderRadius: '50%', width: 50, height: 50 }}>
+          <p style={{ marginBottom: 10 }}>xxxxxxx</p>
+          <p>yyyyyyy</p>
+        </div>
+        {/* 执行node2skeleton(document.querySelector('.testNode')),生成一下skeleton代码 */}
+        <div style={{"width":"50px","height":"50px","borderRadius":"50%","position":"static","top":"auto","bottom":"auto","left":"auto","right":"auto","marginTop":"0px","marginBottom":"0px","marginLeft":"0px","marginRight":"0px","paddingTop":"0px","paddingBottom":"0px","paddingLeft":"0px","paddingRight":"0px","display":"block","flex":"0 1 auto","flexDirection":"row"}}><Element animate style={{"width":"50px","height":"14px","borderRadius":"0px","position":"static","top":"auto","bottom":"auto","left":"auto","right":"auto","marginTop":"0px","marginBottom":"10px","marginLeft":"0px","marginRight":"0px","paddingTop":"0px","paddingBottom":"0px","paddingLeft":"0px","paddingRight":"0px","display":"block","flex":"0 1 auto","flexDirection":"row"}}/><Element animate style={{"width":"50px","height":"14px","borderRadius":"0px","position":"static","top":"auto","bottom":"auto","left":"auto","right":"auto","marginTop":"0px","marginBottom":"0px","marginLeft":"0px","marginRight":"0px","paddingTop":"0px","paddingBottom":"0px","paddingLeft":"0px","paddingRight":"0px","display":"block","flex":"0 1 auto","flexDirection":"row"}}/></div>
       </div>
     );
   }

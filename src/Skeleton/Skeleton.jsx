@@ -1,8 +1,7 @@
 /**
- * Skeleton Component for tingle
+ * Skeleton Component for Skeleton
  * @author lj124435
  *
- * Copyright 2014-2016, Tingle Team.
  * All rights reserved.
  */
 
@@ -79,7 +78,6 @@ Skeleton.defaultProps = {
   type: 1,
 };
 
-// http://facebook.github.io/react/docs/reusable-components.html
 Skeleton.propTypes = {
   visible: PropTypes.bool,
   animate: PropTypes.bool,
@@ -95,6 +93,7 @@ const traversal = (node, number) => {
   const styleObj = pick(window.getComputedStyle(node, null), [
     'width',
     'height',
+    'borderRadius',
     'position',
     'top',
     'bottom',
@@ -113,10 +112,9 @@ const traversal = (node, number) => {
     'flexDirection']);
   const traversalLevel = number || 4;
   if (node.children.length > 0 && traversalLevel > 1) {
-    // 往下遍历
-    return `<SkeletonChunk style={${JSON.stringify(styleObj)}} className="${node.className}">${Array.prototype.map.call(node.children, item => (traversal(item, traversalLevel - 1))).join('')}</SkeletonChunk>`;
+    return `<div style={${JSON.stringify(styleObj)}}>${Array.prototype.map.call(node.children, item => (traversal(item, traversalLevel - 1))).join('')}</div>`;
   }
-  return `<SkeletonChunk style={${JSON.stringify(styleObj)}} className="${node.className}"/>`;
+  return `<Element animate style={${JSON.stringify(styleObj)}}/>`;
 };
 
 window.node2skeleton = (node, number) => {
