@@ -36,6 +36,7 @@
   import NavBar from './lib/NavBar';
   import NoticeBar from './lib/NoticeBar';
   import NumberField from './lib/NumberField';
+  import NumberInfo from './lib/NumberInfo';
   import NumberPicker from './lib/NumberPicker';
   import NumberPickerField from './lib/NumberPickerField';
   import Pagination from './lib/Pagination';
@@ -114,6 +115,7 @@ const __SALT_BUNDLE__ = {
   NavBar,
   NoticeBar,
   NumberField,
+  NumberInfo,
   NumberPicker,
   NumberPickerField,
   Pagination,

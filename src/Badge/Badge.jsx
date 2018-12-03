@@ -24,7 +24,7 @@ class Badge extends React.Component {
       PropTypes.string,
       PropTypes.number,
     ]),
-    dotType: PropTypes.oneOf(['nomral', 'status']),
+    dotType: PropTypes.oneOf(['normal', 'status']),
     status: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
     breath: PropTypes.bool,
   };

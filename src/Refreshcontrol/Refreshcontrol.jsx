@@ -77,13 +77,16 @@ class RefreshControl extends React.Component {
 
   componentDidMount() {
     this.bindDrag();
+    setTimeout(() => {
+      this.initTop = getOffset(this.trigger).top;
+    }, 200);
   }
 
   getSnapshotBeforeUpdate(prevProps) {
     if (prevProps.refreshing !== this.props.refreshing) {
       this.onRefreshingChanged(this.props.refreshing);
     }
-    return undefined;
+    return null;
   }
 
   componentDidUpdate() {
