@@ -1,3 +1,12 @@
+## 4.2.2 / 2018-11-27
+
+* `fix`: `RefreshControl` fail to drag in demo
+* `fix`: missing dependency `css-animation`
+
+## 4.2.1 / 2018-11-27
+
+* `fix`: missing dependency `rc-animate`
+
 ## 4.2.0 / 2018-11-23
 
 * `feat`: Badge new prop `dotType`, `status`, `breath`

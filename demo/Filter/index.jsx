@@ -1,20 +1,19 @@
 /**
- * Card Component Demo for SaltUI
- * @author shixin
+ * Field Component Demo for SaltUI
+ * @author jiasong.js
  *
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
-const React = window.React;
-const ReactDOM = window.ReactDOM;
 import 'salt-context';
-import './CardDemo.styl';
+import './FilterDemo.styl';
+
+
+import Demo from './FilterDemo';
 
 if (window.FastClick) {
   window.FastClick.attach(document.body);
 }
 
 // 渲染demo
-import Demo from './CardDemo';
-
 export default Demo;
