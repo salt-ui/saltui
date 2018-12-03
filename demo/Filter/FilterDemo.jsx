@@ -126,6 +126,12 @@ class Demo extends React.Component {
                 value: 'distance'
               },
             ],
+            quickSort: [
+              {
+                text: '升序排列',
+                value: 'asc'
+              }
+            ],
             something: [
               {
                 text: '10人以下',
