@@ -23,6 +23,7 @@
   import Drawer from './lib/Drawer';
   import EmployeeField from './lib/EmployeeField';
   import Field from './lib/Field';
+  import Filter from './lib/Filter';
   import FoldablePane from './lib/FoldablePane';
   import Gallery from './lib/Gallery';
   import Grid from './lib/Grid';
@@ -56,6 +57,7 @@
   import Scroller from './lib/Scroller';
   import SearchBar from './lib/SearchBar';
   import SelectField from './lib/SelectField';
+  import Skeleton from './lib/Skeleton';
   import Slide from './lib/Slide';
   import Slider from './lib/Slider';
   import SliderField from './lib/SliderField';
@@ -102,6 +104,7 @@ const __SALT_BUNDLE__ = {
   Drawer,
   EmployeeField,
   Field,
+  Filter,
   FoldablePane,
   Gallery,
   Grid,
@@ -135,6 +138,7 @@ const __SALT_BUNDLE__ = {
   Scroller,
   SearchBar,
   SelectField,
+  Skeleton,
   Slide,
   Slider,
   SliderField,

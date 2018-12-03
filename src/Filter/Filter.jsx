@@ -10,7 +10,7 @@ import FilterBar from './FilterBar'
 import FilterPanel from './FilterPanel'
 import Context from '../Context'
 import classnames from 'classnames'
-import Mask from 'salt-mask'
+import Mask from '../Mask'
 
 class Filter extends React.Component {
   static displayName = 'Filter';

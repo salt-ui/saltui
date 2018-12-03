@@ -1,13 +1,13 @@
 import react from 'react'
 import Context from "../Context/Context";
-import Popup from 'salt-popup'
+import Popup from '../Popup'
 import Icon from 'salt-icon'
-import Button from 'salt-button'
+import Button from '../Button'
 import classnames from "classnames";
 import deepCopy from "lodash/cloneDeep";
-import Grid from 'salt-grid'
-import Picker from 'salt-picker'
-import Switch from 'salt-switch';
+import Grid from '../Grid'
+import Picker from '../Picker'
+import Switch from '../Switch';
 
 
 class FilterPanel extends react.Component {
