@@ -115,7 +115,7 @@ class Filter extends React.Component {
         {
           name: '_super_',
           title: '高级筛选',
-          icon: 'setting',
+          icon: 'filter',
           type: 'super',
           children: [
             ...newFilterGroups.map(item => {

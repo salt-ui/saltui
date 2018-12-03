@@ -106,8 +106,8 @@ class FilterBar extends React.Component {
         ? <div className={'icon-wrapper'}><Icon
           fill={isFocus || isFlag && ( group.name === '_super_' || currentSelectData && currentSelectData.length) ? '#ff6f00' : '#000'}
           name={group.icon || (isFocus ? 'angle-up' : 'angle-down')}
-          width={group.type === 'super' ? 18 : 20}
-          height={group.type === 'super' ? 18 : 20}
+          width={group.type === 'super' ? 12 : 20}
+          height={group.type === 'super' ? 12 : 20}
           className={'icon'}
         /></div>
         : null
