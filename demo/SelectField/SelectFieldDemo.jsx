@@ -64,7 +64,7 @@ class Demo extends React.Component {
             />
             <SelectField label="有默认值" options={monthArray} onSelect={t.handleChange1.bind(t)} value={t.state.value1} tip="这里是tip" />
             <SelectField readOnly label="查看态" options={monthArray} value={t.state.value1} />
-            <SelectField disabled label="禁用" options={monthArray} value={t.state.value1} />
+            <SelectField layout="v" disabled label="禁用" options={monthArray} value={t.state.value1} />
           </Group.List>
         </Group>
       </div>

@@ -1,7 +1,7 @@
 import React from 'React'
 import PropTypes from 'prop-types'
 import Context from '../Context'
-import { HBox, Box } from 'salt-boxs';
+import { HBox, Box } from '../Boxs';
 import Icon from 'salt-icon'
 import classnames from 'classnames'
 
