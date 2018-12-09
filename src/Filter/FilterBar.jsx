@@ -11,7 +11,7 @@ class FilterBar extends React.Component {
   static propTypes = {
     options: PropTypes.object,
     setSelect: PropTypes.func,
-    onSelect: PropTypes.func,
+    onChange: PropTypes.func,
     getSelect: PropTypes.func
   };
 
@@ -19,7 +19,7 @@ class FilterBar extends React.Component {
     options: {},
     setSelect: () => {
     },
-    onSelect: () => {
+    onChange: () => {
     },
     getSelect: () => {
     }
