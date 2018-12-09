@@ -5,9 +5,9 @@
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
- 
- @require './SelectLayer'
- 
+
+@require './SelectLayer'
+
 $checkbox-checked-bg = $brand-primary
 $checkbox-readonly-color = $dark-alpha-2
 $checkbox-tip-color = $normal-alpha-5
@@ -15,111 +15,114 @@ $checkbox-div-height = 54px
 $checkbox-icon-size = 24px
 
 .{$prefix}-checkbox-field
-    display block
-    > .{$prefix}-field-box
-        align-items: flex-start
+  display block
+  > .{$prefix}-field-box
+    align-items: flex-start
+
 .{$prefix}-checkbox-field-value-wrap
-    padding 12px 0
+  padding 12px 0
+
 .{$prefix}-checkbox-field-readonly
-    color $checkbox-readonly-color
+  color $checkbox-readonly-color
+  background-color #f9f9f9
+  img
+    opacity 0.6
+  .{$prefix}-checkbox-field-row
+    background-color transparent
+  > .{$prefix}-group-list
     background-color #f9f9f9
-    img
-        opacity 0.6
-    .{$prefix}-checkbox-field-row
-            background-color transparent
-    > .{$prefix}-group-list
-        background-color #f9f9f9
+
 .{$prefix}-checkbox-field-slot-mode-readonly
-    color $checkbox-readonly-color
+  color $checkbox-readonly-color
 
 .{$prefix}-checkbox-field-icon-wrapper
-    width $checkbox-icon-size
-    min-height $checkbox-div-height
-    vertical-align middle
-    &.right
-        margin-left 12px
-        margin-right 16px
+  width $checkbox-icon-size
+  min-height $checkbox-div-height
+  vertical-align middle
+  &.right
+    margin-left 12px
+    margin-right 16px
 
 .{$prefix}-checkbox-field-placeholder
-    max-width 100%
-    height 20px
-    line-height 20px
-    color $checkbox-tip-color
-    
-.{$prefix}-checkbox-field-icon-slot 
-    margin-top 10px
-    svg
-        fill $checkbox-tip-color
-        
+  max-width 100%
+  height 20px
+  line-height 20px
+  color $checkbox-tip-color
+
+.{$prefix}-checkbox-field-icon-slot
+  margin-top 0
+  svg
+    fill $checkbox-tip-color
+
 .{$prefix}-checkbox-field-icon-list
-    width $checkbox-icon-size
-    height @width
-    background-color $checkbox-checked-bg
-    border-radius 50%
-    fill #fff
-    vertical-align middle
-    
-    &.un-checked 
-        border 1px solid $normal-alpha-5
-        background-color $white-alpha-1
-    &.un-checked.disable
-        background-color $normal-alpha-7
-    
+  width $checkbox-icon-size
+  height @width
+  background-color $checkbox-checked-bg
+  border-radius 50%
+  fill #fff
+  vertical-align middle
+
+  &.un-checked
+    border 1px solid $normal-alpha-5
+    background-color $white-alpha-1
+  &.un-checked.disable
+    background-color $normal-alpha-7
 
 .{$prefix}-checkbox-field-icon-list svg
-    border-radius 11px
-.{$prefix}-checkbox-field-icon[name="check"]  svg
-    border 1px solid $checkbox-checked-bg
-    
+  border-radius 11px
+
+.{$prefix}-checkbox-field-icon[name="check"] svg
+  border 1px solid $checkbox-checked-bg
+
 .{$prefix}-checkbox-field-icon.checked svg
-    fill $checkbox-checked-bg
-    background-color $white-alpha-1
-    border none
-    margin-top -1px
-    margin-left -1px
-    
+  fill $checkbox-checked-bg
+  background-color $white-alpha-1
+  border none
+  margin-top -1px
+  margin-left -1px
+
 .{$prefix}-checkbox-field-icon.un-checked svg
-    fill $dark-alpha-1
-    border 1px solid $gray-lighter
-    background-color $white-alpha-1
+  fill $dark-alpha-1
+  border 1px solid $gray-lighter
+  background-color $white-alpha-1
 
 .{$prefix}-checkbox-field-icon.disable svg
-    fill $normal-alpha-4
+  fill $normal-alpha-4
 
 .{$prefix}-checkbox-field-content
-    min-width 0
-    //min-height $checkbox-div-height
-    padding-left 12px
-    vertical-align middle
-    font-size $font-size-t5
-    color $dark-alpha-2
-    overflow hidden
-    text-overflow ellipsis
-    white-space nowrap
+  min-width 0
+  //min-height $checkbox-div-height
+  padding-left 12px
+  vertical-align middle
+  font-size $font-size-t5
+  color $dark-alpha-2
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
 
 .{$prefix}-checkbox-field-row
-    width 100%
-    min-height $checkbox-div-height
-    box-sizing border-box
-    background-color $white-alpha-1
-    &.disable
-        position relative
-        .{$prefix}-checkbox-field-disable-mask
-            position absolute
-            left 0
-            right 0
-            top 0
-            bottom 0
-            background-color $white-alpha-3
+  width 100%
+  min-height $checkbox-div-height
+  box-sizing border-box
+  background-color $white-alpha-1
+  &.disable
+    position relative
+    .{$prefix}-checkbox-field-disable-mask
+      position absolute
+      left 0
+      right 0
+      top 0
+      bottom 0
+      background-color $white-alpha-3
 
 .{$prefix}-checkbox-field-label
-    line-height $font-size-field-label-lh
-    padding 10px 15px
-    background-color $bg
-    font-size 100%
-    color $gray-darker
+  line-height $font-size-field-label-lh
+  padding 10px 15px
+  background-color $bg
+  font-size 100%
+  color $gray-darker
 
 .{$prefix}-field-layout-label-required
-    display inline
-    svg
-        vertical-align middle
+  display inline
+  svg
+    vertical-align middle

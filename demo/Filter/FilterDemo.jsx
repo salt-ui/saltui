@@ -138,7 +138,7 @@ class Demo extends React.Component {
                 value: 'distance'
               },
               {
-                text: '10-50人',
+                text: '10-100人',
                 value: 'grade'
               }
             ]
