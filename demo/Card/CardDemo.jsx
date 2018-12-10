@@ -44,12 +44,13 @@ class Demo extends React.Component {
             通过完整还原规范，建立相应的前端组件库，可以更好地与设计师、产品经理进行沟通合作。通过完整还原规范，建立相应的前端组件库，可以更好地与设计师、产品经理进行沟通合作。
           </Card.Body>
           <Card.Footer
-            actions={[
-              <Button type="minor" size="small" display="inline" onClick={this.clickTheButton.bind(this)}>一级按钮1</Button>,
-              <Button type="minor" size="small" display="inline">一级按钮2</Button>,
-              <Button type="secondary" size="small" display="inline">一级按钮3</Button>,
-              <Button type="secondary" size="small" display="inline" onClick={this.clickTheButton.bind(this)}>一级按钮4</Button>
-            ]} 
+            actions={
+              <div>
+                <Button type="minor" size="small" display="inline" onClick={this.clickTheButton.bind(this)}>一级按钮1</Button>
+                <Button type="minor" size="small" display="inline">一级按钮2</Button>
+                <Button type="secondary" size="small" display="inline">一级按钮3</Button>
+              </div>
+            } 
             content={<span>已等待3小时</span>}>
             {/* children 会让actions和content失效 */}
           </Card.Footer>

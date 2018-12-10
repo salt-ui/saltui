@@ -10,13 +10,14 @@
   background-color: $basic-100;
   border-radius: $global-border-radius;
   padding: 0 16px;
+  overflow: auto;
   &.card-mode-full
     padding: 0;
     border-radius: 0;
   &-header
-    padding: 16px 0 0;
+    margin: 16px 0;
   &-body
-    padding: 16px 0;
+    margin: 16px 0;
     display: flex;
     &.reverse
       flex-direction: row-reverse;
@@ -38,7 +39,7 @@
       line-height: 1.5;
       color: #9d9d9d
   &-footer
-      padding: 0 0 16px;
+      margin: 16px 0;
       border-radius: 0;
       display: flex;
       justify-content: space-between;

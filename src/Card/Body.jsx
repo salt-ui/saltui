@@ -5,13 +5,13 @@ import { prefixClass } from '../Context';
 
 export default class Body extends React.Component {
   render () {
-    const { image, title, subTitle, content, reverse, children } = this.props
+    const { image, title, subTitle, content, reverse } = this.props
     return (
       <div className={classnames(prefixClass('card-body'), { 'reverse': reverse })}>
         {image && <div className={classnames(prefixClass('card-body-image'), { 'reverse': reverse })}>{image}</div>}
         <div className={prefixClass('card-body-wrapper')}>
           <div className="title"><span>{title}</span> {subTitle && <span className="title-sub">{subTitle}</span>}</div>
-          <div className="content">{children ? children : content}</div>
+          <div className="content">{content}</div>
         </div>
       </div>
     )
