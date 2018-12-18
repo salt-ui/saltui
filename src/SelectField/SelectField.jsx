@@ -13,7 +13,7 @@ import AngleRight from 'salt-icon/lib/AngleRight';
 import Context from '../Context';
 import Slot from '../Slot';
 import Field from '../Field';
-import { shouldUpdate } from '../Utils';
+// import { shouldUpdate } from '../Utils';
 import isEqual from 'lodash/isEqual';
 
 const isNil = value => (value === null || value === undefined);
@@ -75,7 +75,7 @@ class SelectField extends React.Component {
 
   render() {
     const t = this;
-    const icon = !t.props.readOnly ? (
+    const middleIcon = !t.props.readOnly ? (
       <AngleRight
         className={Context.prefixClass('select-field-icon')}
         width={26}
@@ -86,7 +86,7 @@ class SelectField extends React.Component {
     return (
       <Field
         {...t.props}
-        icon={icon}
+        middleIcon={middleIcon}
         className={classnames(Context.prefixClass('select-field'), {
           [t.props.className]: !!t.props.className,
         })}
@@ -103,7 +103,7 @@ class SelectField extends React.Component {
               </span>
             </div>
           ) : null}
-          {t.renderIcon(icon)}
+          {/*{t.renderIcon(icon)}*/}
         </div>
         <Slot
           ref={(c) => { this.slot = c; }}
@@ -140,6 +140,7 @@ SelectField.defaultProps = {
   value: undefined,
   disabled: false,
   icon: undefined,
+  layout: 'h'
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -154,6 +155,7 @@ SelectField.propTypes = {
   readOnly: PropTypes.bool,
   disabled: PropTypes.bool,
   icon: PropTypes.node,
+  layout: PropTypes.string
 };
 
 SelectField.displayName = 'SelectField';
