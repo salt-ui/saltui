@@ -126,7 +126,7 @@ class PickerField extends React.Component {
   render() {
     const t = this;
 
-    const middleIcon = !t.props.readOnly ? (
+    const icon = !t.props.readOnly ? (
       <AngleRight
         className={Context.prefixClass('picker-field-icon')}
         width={26}
@@ -172,7 +172,7 @@ class PickerField extends React.Component {
     return (
       <Field
         {...t.props}
-        middleIcon={middleIcon}
+        icon={icon}
         className={classnames(Context.prefixClass('picker-field'), {
           [t.props.className]: !!t.props.className,
         })}
@@ -196,7 +196,7 @@ class PickerField extends React.Component {
               </span>
             </div>
           ) : null}
-          {t.renderIcon(middleIcon)}
+          {t.renderIcon(icon)}
         </div>
         <Picker visible={this.state.popupVisible} {...panelProps} />
       </Field>

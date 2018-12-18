@@ -20,7 +20,7 @@ class Filter extends React.Component {
     options: PropTypes.array,
     size: PropTypes.oneOf([1, 2, 3, 4]),
     activeIndex: PropTypes.number,
-    onChange: PropTypes.func,
+    onSelect: PropTypes.func,
     onConfirm: PropTypes.func,
     onReset: PropTypes.func,
     value: PropTypes.object
@@ -32,7 +32,7 @@ class Filter extends React.Component {
     size: 4,
     activeIndex: -1,
     value: null,
-    onChange: () => {
+    onSelect: () => {
     },
     onConfirm: () => {
     },
@@ -54,12 +54,12 @@ class Filter extends React.Component {
 
   setSelect = (data = {}, ignoreOnSelect) => {
     const name = Object.keys(data)[0];
-    const { onChange } = this.props;
+    const { onSelect } = this.props;
     this.selectData = {
       ...this.selectData,
       ...data
     };
-    !ignoreOnSelect && onChange({
+    !ignoreOnSelect && onSelect({
       name,
       currentSelected: data[name],
       allSelected: this.getSelect()
@@ -115,7 +115,7 @@ class Filter extends React.Component {
         {
           name: '_super_',
           title: '高级筛选',
-          icon: 'filter',
+          icon: 'setting',
           type: 'super',
           children: [
             ...newFilterGroups.map(item => {

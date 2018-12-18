@@ -12,10 +12,10 @@ import { Filter } from 'saltui';
   activeIndex={-1}
   options={[
     {
-      key: 'sort',     // 必选，过滤器唯一标志
-      title: '默认排序', // 可选，过滤器名称
-      type: 'order',  // 可选，过滤器类型，select | action
-      items: [        // 可选，过滤器选项
+      key: 'sort',
+      title: '默认排序',
+      type: 'order',  // select | action
+      items: [
         {
           text: '距离',
           value: 'distance'
@@ -27,7 +27,7 @@ import { Filter } from 'saltui';
       ]
     },
   ]}
-  onChange={(data) => {
+  onSelect={(data) => {
     console.log(data)
   }}
   onConfirm={(data) => {
@@ -51,6 +51,15 @@ import { Filter } from 'saltui';
 
 必填：否
 
+#### options
+
+描述：过滤器设置参数
+
+类型：Array
+
+默认：[]
+
+必填：是
 
 #### size
 
@@ -61,19 +70,6 @@ import { Filter } from 'saltui';
 默认：4
 
 必填：否
-
-#### options
-
-描述：过滤器设置参数，数组中每个对象表示一个过滤器，顶部显示过滤器个数由size参数决定。
-
-当过滤器个数超出size时，将会被自动归入到"高级筛选"过滤器。
-
-类型：Array
-
-默认：[]
-
-必填：是
-
 
 #### activeIndex
 
@@ -86,9 +82,9 @@ import { Filter } from 'saltui';
 必填：否
 
 
-#### onChange
+#### onSelect
 
-描述：当过滤项改变状态时触发
+描述：当过滤项被选中时触发
 
 类型：Function
 
@@ -108,7 +104,7 @@ import { Filter } from 'saltui';
 
 #### onReset
 
-描述：当点击重置按钮时触发
+描述：当点击重置按钮时触发,
 
 类型：Function
 

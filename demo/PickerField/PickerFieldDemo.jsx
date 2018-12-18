@@ -91,15 +91,15 @@ class Demo extends React.Component {
             <PickerField
               label="从本地获取"
               options={monthArray}
-              layout={'v'}
               onSelect={(e) => {
                 t.handleChange(e);
               }}
               value={t.state.value}
+
+
             />
             <PickerField
               label="从接口中获取"
-              layout={'v'}
               fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               onSelect={(e) => {
                 t.handleChange1(e);
@@ -110,8 +110,6 @@ class Demo extends React.Component {
               icon={<AngleRight onClick={(e) => { e.stopPropagation(); alert('1'); }} />}
               fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               fetchDataOnOpen
-              layout={'v'}
-
               label="没有默认值"
               onSelect={(e) => {
                 t.handleChange2(e);
