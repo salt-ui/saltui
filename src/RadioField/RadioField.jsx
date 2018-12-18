@@ -73,7 +73,7 @@ class RadioField extends React.Component {
 
   renderField() {
     const t = this;
-    const middleIcon = !t.props.readOnly ? (
+    const icon = !t.props.readOnly ? (
       <AngleRight
         className={prefixClass('radio-field-arrow-icon')}
         width={26}
@@ -92,7 +92,8 @@ class RadioField extends React.Component {
     return (
       <Field
         {...t.props}
-        middleIcon={middleIcon}
+        layout="h"
+        icon={icon}
         className={classnames(prefixClass('radio-field'), {
           [t.props.className]: !!t.props.className,
         })}

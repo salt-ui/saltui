@@ -138,7 +138,7 @@ class Demo extends React.Component {
                 value: 'distance'
               },
               {
-                text: '10-100人',
+                text: '10-50人',
                 value: 'grade'
               }
             ]
@@ -374,9 +374,9 @@ class Demo extends React.Component {
               }
             ]
           }
-          onChange={(data) => {
+          onSelect={(data) => {
             // can do confirm
-            console.log('on change: ', data)
+            console.log('on select: ', data)
             switch (data.name) {
               case 'sort':
               case 'quickSort':

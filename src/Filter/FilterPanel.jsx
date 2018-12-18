@@ -344,7 +344,6 @@ class FilterPanel extends react.Component {
               confirmText={'确认'}
               filterOption={false}
               onSearch={(keyword) => {
-                console.log(keyword)
                 // const items = pickerOptions.find(item => {
                 //   return item.text.indexOf(keyword !== -1)
                 // });
