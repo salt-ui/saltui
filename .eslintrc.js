@@ -26,7 +26,7 @@ module.exports = {
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
-    "react/no-array-index-key": "off"
+    "react/no-array-index-key": "off",
     // ignore salt-xxx error in demo
     "import/no-unresolved": [2, { ignore: ['salt\-'] }],
     "import/extensions": "off"
