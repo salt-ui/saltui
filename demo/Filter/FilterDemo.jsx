@@ -250,7 +250,7 @@ class Demo extends React.Component {
                 title: '品牌',
                 type: 'select',
                 maxLine: 2,
-                multiSelect: true,
+                multiSelect: false,
                 items: [
                   {
                     text: '阿里巴巴',
@@ -374,9 +374,9 @@ class Demo extends React.Component {
               }
             ]
           }
-          onSelect={(data) => {
+          onChange={(data) => {
             // can do confirm
-            console.log('on select: ', data)
+            console.log('on change: ', data)
             switch (data.name) {
               case 'sort':
               case 'quickSort':
