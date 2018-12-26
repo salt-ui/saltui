@@ -133,7 +133,7 @@ class FilterPanel extends react.Component {
 
   renderOrder(group) {
     const { getSelect } = this.props;
-    const { name, items, multiSelect } = group;
+    const { name, items } = group;
     const currentSelectData = getSelect()[name];
     return (
       <div>
