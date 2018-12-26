@@ -142,7 +142,7 @@ class Demo extends React.Component {
     return (
       <div>
         <Filter
-          size={4}
+          size={2}
           defaultValue = {this.state.defaultFilterValue}
           options={
             [

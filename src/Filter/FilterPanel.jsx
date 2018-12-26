@@ -281,7 +281,7 @@ class FilterPanel extends react.Component {
   }
   renderSuper(group) {
     const { showPicker, pickerOptions, multiple, name, value } = this.state;
-    const { setActiveIndex, setSelect, getSelect } = this.props;
+    const { setActiveIndex, setSelect, getSelect, onConfirm } = this.props;
     const { children } = group;
     if (!children || !children.length) {
       return null;
@@ -302,7 +302,10 @@ class FilterPanel extends react.Component {
                     key={item.name}
                     name={item.name}
                     selectedDate={getSelect()}
-                    onChange={setSelect}
+                    onChange={(data) => {
+                      setSelect(data);
+                      onConfirm(getSelect());
+                    }}
                     props={this.props}
                   />
                 )
