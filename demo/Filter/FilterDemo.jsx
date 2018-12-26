@@ -142,14 +142,15 @@ class Demo extends React.Component {
     return (
       <div>
         <Filter
-          size={2}
+          size={4}
+          activeIndex={1}
           defaultValue = {this.state.defaultFilterValue}
           options={
             [
               {
                 name: 'sort',
                 title: '默认排序',
-                type: 'order',  // select | range | action
+                type: 'order',  // select | order | switch
                 items: [
                   {
                     text: '距离',

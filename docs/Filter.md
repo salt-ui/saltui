@@ -12,9 +12,9 @@ import { Filter } from 'saltui';
   activeIndex={-1}
   options={[
     {
-      key: 'sort',     // 必选，过滤器唯一标志
+      name: 'sort',     // 必选，过滤器唯一标志
       title: '默认排序', // 可选，过滤器名称
-      type: 'order',  // 可选，过滤器类型，select | action
+      type: 'order',  // 可选，过滤器类型(order|select|switch)
       items: [        // 可选，过滤器选项
         {
           text: '距离',
