@@ -89,10 +89,6 @@ class Demo extends React.Component {
           {
             text: '10人以下',
             value: 'distance'
-          },
-          {
-            text: '10-50人',
-            value: 'grade'
           }
         ]
       },
@@ -178,7 +174,7 @@ class Demo extends React.Component {
                 name: 'something',
                 title: '容纳人数',
                 type: 'select',
-                multiSelect: true,
+                multiSelect: false,
                 items: [
                   {
                     text: '10人以下',
@@ -243,13 +239,10 @@ class Demo extends React.Component {
                   }
                 ]
               },
-              {
-                name: 'someOther',
-                renderView: TestView,
-              },
+
               {
                 name: 'brand2',
-                title: '品牌',
+                title: '单选',
                 type: 'select',
                 maxLine: 2,
                 multiSelect: false,
@@ -328,6 +321,11 @@ class Demo extends React.Component {
                     value: 'youdao'
                   }
                 ]
+              },
+              {
+                name: 'someOther',
+                title: '自定义渲染',
+                renderView: TestView,
               },
               {
                 name: 'brand4',

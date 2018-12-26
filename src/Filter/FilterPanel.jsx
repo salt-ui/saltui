@@ -1,4 +1,5 @@
 import react from 'react'
+import ReactDom from 'react-dom'
 import Context from "../Context/Context";
 import Popup from '../Popup'
 import Icon from 'salt-icon'
@@ -28,11 +29,13 @@ class FilterPanel extends react.Component {
       name: '',
       value: []
     }
+    this.grids = {}
   }
 
   onItemClick = e => {
     const target = e.currentTarget;
     const name = target.getAttribute('data-name');
+    const multiSelect = target.getAttribute('data-multi');
     const value = target.getAttribute('data-value');
     const text = target.getAttribute('data-text');
     const classList = target.classList;
@@ -40,6 +43,15 @@ class FilterPanel extends react.Component {
     if (!value || value === 'showAll') {
       this.showAll(name);
       return
+    }
+    if (multiSelect === 'false') {
+      const itemParentNode = ReactDom.findDOMNode(this.grids[name]);
+      const items = itemParentNode.querySelectorAll(`.${Context.prefixClass('filter-grid-item')}`) || [];
+      items.forEach(item => {
+        if(item.getAttribute('data-value') !== value) {
+          item.classList.remove('active')
+        }
+      });
     }
     classList.toggle('active');
     this.doItemFilter({ value, text, name })
@@ -78,12 +90,19 @@ class FilterPanel extends react.Component {
     const selectData = getSelect();
     const currentSelectData = selectData[name] || [];
 
-    if (!group.multiSelect) {
+    if (group.multiSelect === false || group.type === 'order') {
+      if (currentSelectData.length) {
+        setSelect({
+          [name]: null
+        }, true)
+      }
       setSelect({
         [name]: !currentSelectData.length || currentSelectData[0].value !== value ? [{ text, value }] : null
       });
-      setActiveIndex(-1);
-      onConfirm(getSelect());
+      if (group._groupKey_ !== '_super_' || group.type === 'order') {
+        setActiveIndex(-1);
+        onConfirm(getSelect());
+      }
     } else {
       const hasSelected = currentSelectData.find((item) => {
         return item.value === value
@@ -114,7 +133,7 @@ class FilterPanel extends react.Component {
 
   renderOrder(group) {
     const { getSelect } = this.props;
-    const { name, items } = group;
+    const { name, items, multiSelect } = group;
     const currentSelectData = getSelect()[name];
     return (
       <div>
@@ -159,7 +178,7 @@ class FilterPanel extends react.Component {
 
   renderSelectFooter(group) {
     const { _groupKey_, multiSelect } = group;
-    if (_groupKey_ !== '_super_' && multiSelect) {
+    if (_groupKey_ !== '_super_' && multiSelect !== false) {
       return (
         <div className={Context.prefixClass('filter-grid-footer')}>
           <Button.Group>
@@ -177,7 +196,7 @@ class FilterPanel extends react.Component {
 
   renderSelect(group) {
     const { getSelect } = this.props;
-    const { items, maxLine, name } = group;
+    const { items, maxLine, name, multiSelect } = group;
     const currentSelectData = getSelect()[name];
 
     const max = maxLine || 4;
@@ -189,7 +208,7 @@ class FilterPanel extends react.Component {
         value: 'showAll',
         text: () => {
           return (
-            <div data-name={group.name}>
+            <div data-name={name}>
               <span>全部</span>
               <Icon className={Context.prefixClass('filter-show-all-icon')} name={'angle-right'} width={20} height={20} fill={'#555'} />
             </div>
@@ -202,7 +221,7 @@ class FilterPanel extends react.Component {
     return (
       <div className={Context.prefixClass('filter-grid-row')}>
         {this.renderSelectTitle(group)}
-        <Grid col={3} noLine>
+        <Grid col={3} noLine ref={c => { this.grids[name] = c}}>
           {renderItems.map(item => {
             let isSelected = false;
             if (currentSelectData && currentSelectData.find(i => {
@@ -218,6 +237,7 @@ class FilterPanel extends react.Component {
                 })}
                 key={item.value}
                 data-name={name}
+                data-multi={multiSelect}
                 data-value={item.value}
                 data-text={typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text().toString() : ''}
                 onClick={this.onItemClick}
