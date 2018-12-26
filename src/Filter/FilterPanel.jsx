@@ -68,6 +68,7 @@ class FilterPanel extends react.Component {
       options,
       setSelect,
       getSelect,
+      onConfirm,
       setActiveIndex
     } = this.props;
     const { _backItems } = options;
@@ -81,7 +82,8 @@ class FilterPanel extends react.Component {
       setSelect({
         [name]: !currentSelectData.length || currentSelectData[0].value !== value ? [{ text, value }] : null
       });
-      setActiveIndex(-1)
+      setActiveIndex(-1);
+      onConfirm(getSelect());
     } else {
       const hasSelected = currentSelectData.find((item) => {
         return item.value === value
@@ -234,14 +236,16 @@ class FilterPanel extends react.Component {
     const { setSelect, getSelect, options } = this.props;
     const { children } = options.groups[options.groups.length - 1];
     const selectData = getSelect();
+    let resetNames = [];
     children.forEach((item) => {
       if (selectData[item.name]) {
+        resetNames.push(item.name);
         setSelect({
           [item.name]: null
         })
       }
     });
-    this.reset();
+    this.reset(resetNames);
   }
 
   resetSelect(name) {
@@ -249,13 +253,18 @@ class FilterPanel extends react.Component {
     setSelect({
       [name]: null
     });
-    this.reset();
+    this.reset([name]);
   }
 
-  reset() {
-    const { onReset, setActiveIndex, getSelect } = this.props;
+  reset(names) {
+    const { onReset, setActiveIndex, getSelect, onConfirm } = this.props;
     setActiveIndex(-1);
-    onReset(getSelect());
+    const selected = getSelect();
+    onReset({
+      resetNames: names,
+      allSelected: selected
+    });
+    onConfirm(selected);
   }
 
   confirm() {
@@ -272,7 +281,7 @@ class FilterPanel extends react.Component {
   }
   renderSuper(group) {
     const { showPicker, pickerOptions, multiple, name, value } = this.state;
-    const { setActiveIndex, setSelect, getSelect } = this.props;
+    const { setActiveIndex, setSelect, getSelect, onConfirm } = this.props;
     const { children } = group;
     if (!children || !children.length) {
       return null;
@@ -293,7 +302,10 @@ class FilterPanel extends react.Component {
                     key={item.name}
                     name={item.name}
                     selectedDate={getSelect()}
-                    onChange={setSelect}
+                    onChange={(data) => {
+                      setSelect(data);
+                      onConfirm(getSelect());
+                    }}
                     props={this.props}
                   />
                 )

@@ -11,7 +11,7 @@ class FilterBar extends React.Component {
   static propTypes = {
     options: PropTypes.object,
     setSelect: PropTypes.func,
-    onSelect: PropTypes.func,
+    onChange: PropTypes.func,
     getSelect: PropTypes.func,
   };
 
@@ -19,7 +19,7 @@ class FilterBar extends React.Component {
     options: {},
     setSelect: () => {
     },
-    onSelect: () => {
+    onChange: () => {
     },
     getSelect: () => {
     },
@@ -60,12 +60,13 @@ class FilterBar extends React.Component {
   }
 
   doSwitchFilter(group) {
-    const { getSelect, setSelect } = this.props;
+    const { getSelect, setSelect, onConfirm } = this.props;
     const { name, items } = group;
     const currentSelectData = getSelect()[name];
     setSelect({
       [name]: currentSelectData && currentSelectData.length ? null : items,
     });
+    onConfirm(getSelect())
   }
 
   renderTitle(group, index) {
@@ -108,8 +109,8 @@ class FilterBar extends React.Component {
         ? <div className="icon-wrapper"><Icon
           fill={isFocus || isFlag && (group.name === '_super_' || currentSelectData && currentSelectData.length) ? '#ff6f00' : '#000'}
           name={group.icon || (isFocus ? 'angle-up' : 'angle-down')}
-          width={group.type === 'super' ? 18 : 20}
-          height={group.type === 'super' ? 18 : 20}
+          width={group.type === 'super' ? 12 : 20}
+          height={group.type === 'super' ? 12 : 20}
           className="icon"
         /></div>
         : null

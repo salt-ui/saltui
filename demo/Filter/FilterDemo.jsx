@@ -72,6 +72,30 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      defaultFilterValue: {
+        sort: [
+          {
+            text: '距离',
+            value: 'distance'
+          },
+        ],
+        quickSort: [
+          {
+            text: '升序排列',
+            value: 'asc'
+          }
+        ],
+        something: [
+          {
+            text: '10人以下',
+            value: 'distance'
+          },
+          {
+            text: '10-50人',
+            value: 'grade'
+          }
+        ]
+      },
       listData: [
         {
           imgUrl: 'https://img.alicdn.com/tps/TB15YftJFXXXXafXpXXXXXXXXXX-699-698.jpg',
@@ -119,36 +143,14 @@ class Demo extends React.Component {
       <div>
         <Filter
           size={4}
-          defaultValue = {{
-            sort: [
-              {
-                text: '距离',
-                value: 'distance'
-              },
-            ],
-            quickSort: [
-              {
-                text: '升序排列',
-                value: 'asc'
-              }
-            ],
-            something: [
-              {
-                text: '10人以下',
-                value: 'distance'
-              },
-              {
-                text: '10-50人',
-                value: 'grade'
-              }
-            ]
-          }}
+          activeIndex={1}
+          defaultValue = {this.state.defaultFilterValue}
           options={
             [
               {
                 name: 'sort',
                 title: '默认排序',
-                type: 'order',  // select | range | action
+                type: 'order',  // select | order | switch
                 items: [
                   {
                     text: '距离',
@@ -250,7 +252,7 @@ class Demo extends React.Component {
                 title: '品牌',
                 type: 'select',
                 maxLine: 2,
-                multiSelect: true,
+                multiSelect: false,
                 items: [
                   {
                     text: '阿里巴巴',
@@ -374,9 +376,9 @@ class Demo extends React.Component {
               }
             ]
           }
-          onSelect={(data) => {
+          onChange={(data) => {
             // can do confirm
-            console.log('on select: ', data)
+            console.log('on change: ', data)
             switch (data.name) {
               case 'sort':
               case 'quickSort':

@@ -234,8 +234,8 @@ class CheckboxField extends React.Component {
     return (
       <Field
         {...t.props}
-        icon={icon}
-        className={classnames(prefixClass('checkbox-field'), {
+        middleIcon={icon}
+        className={classnames({
           [t.props.className]: !!t.props.className,
         })}
       >
