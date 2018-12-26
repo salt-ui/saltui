@@ -13,8 +13,8 @@ import { Filter } from 'saltui';
   options={[
     {
       name: 'sort',     // 必选，过滤器唯一标志
-      title: '默认排序', // 可选，过滤器名称
-      type: 'order',  // 可选，过滤器类型(order|select|switch)
+      title: '默认排序', // 必选，过滤器名称
+      type: 'order',  // 必选，过滤器类型(order|select|switch)
       items: [        // 可选，过滤器选项
         {
           text: '距离',
