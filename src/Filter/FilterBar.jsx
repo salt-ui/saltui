@@ -60,12 +60,13 @@ class FilterBar extends React.Component {
   }
 
   doSwitchFilter(group) {
-    const { getSelect, setSelect } = this.props;
+    const { getSelect, setSelect, onConfirm } = this.props;
     const { name, items } = group;
     const currentSelectData = getSelect()[name];
     setSelect({
       [name]: currentSelectData && currentSelectData.length ? null : items,
     });
+    onConfirm(getSelect())
   }
 
   renderTitle(group, index) {

@@ -72,6 +72,30 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      defaultFilterValue: {
+        sort: [
+          {
+            text: '距离',
+            value: 'distance'
+          },
+        ],
+        quickSort: [
+          {
+            text: '升序排列',
+            value: 'asc'
+          }
+        ],
+        something: [
+          {
+            text: '10人以下',
+            value: 'distance'
+          },
+          {
+            text: '10-50人',
+            value: 'grade'
+          }
+        ]
+      },
       listData: [
         {
           imgUrl: 'https://img.alicdn.com/tps/TB15YftJFXXXXafXpXXXXXXXXXX-699-698.jpg',
@@ -119,30 +143,7 @@ class Demo extends React.Component {
       <div>
         <Filter
           size={4}
-          defaultValue = {{
-            sort: [
-              {
-                text: '距离',
-                value: 'distance'
-              },
-            ],
-            quickSort: [
-              {
-                text: '升序排列',
-                value: 'asc'
-              }
-            ],
-            something: [
-              {
-                text: '10人以下',
-                value: 'distance'
-              },
-              {
-                text: '10-50人',
-                value: 'grade'
-              }
-            ]
-          }}
+          defaultValue = {this.state.defaultFilterValue}
           options={
             [
               {

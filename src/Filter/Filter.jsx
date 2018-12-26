@@ -44,7 +44,7 @@ class Filter extends React.Component {
     super(props);
     this.selectData = {};
     if (props.defaultValue) {
-      this.setSelect(props.defaultValue)
+      this.setSelect(props.defaultValue, true)
     }
     this.state = {
       activeIndex: props.activeIndex,
@@ -128,7 +128,9 @@ class Filter extends React.Component {
       _backItems: options
     }
   };
-
+  reset() {
+    this.selectData = {}
+  }
   render() {
     const options = this.formatOptions();
     const {
