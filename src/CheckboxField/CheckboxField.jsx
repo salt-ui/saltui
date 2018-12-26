@@ -220,7 +220,7 @@ class CheckboxField extends React.Component {
 
   renderSlot() {
     const t = this;
-    const middleIcon = !t.props.readOnly ? (
+    const icon = !t.props.readOnly ? (
       <AngleRight
         className={classnames(prefixClass('checkbox-field-icon'), {
           [`${prefixClass('checkbox-field-icon')}-slot`]: true,
@@ -234,8 +234,8 @@ class CheckboxField extends React.Component {
     return (
       <Field
         {...t.props}
-        middleIcon={middleIcon}
-        className={classnames(prefixClass('checkbox-field'), {
+        middleIcon={icon}
+        className={classnames({
           [t.props.className]: !!t.props.className,
         })}
       >

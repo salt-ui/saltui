@@ -146,10 +146,10 @@ class CitySelectField extends Component {
     if (this.props.mode === 'picker') {
       return (
         <PickerField
+          {...this.props}
           grouping
           groupingIndicator
           searchText={this.defaultSearchText()}
-          {...this.props}
           className={fieldClassName}
           options={options}
           value={this.getPickerValue()}

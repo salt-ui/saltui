@@ -175,8 +175,7 @@ class CascadeSelectField extends React.Component {
     return (
       <Field
         {...t.props}
-        layout="h"
-        icon={icon}
+        middleIcon={icon}
         className={classnames(Context.prefixClass('cascade-select-field'), {
           [t.props.className]: !!t.props.className,
         })}

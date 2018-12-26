@@ -115,7 +115,6 @@ class DatetimeField extends React.Component {
         middleIcon={t.props.readOnly ? null : (
           <AngleRight {...iconProps} />
         )}
-        layout={t.props.layout || 'h'}
         className={classnames(Context.prefixClass('datetime-field'), {
           [className]: !!className,
         })}
