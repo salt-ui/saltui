@@ -70,6 +70,7 @@
   import Table from './lib/Table';
   import TagField from './lib/TagField';
   import TextField from './lib/TextField';
+  import Textarea from './lib/Textarea';
   import TextareaField from './lib/TextareaField';
   import Timeline from './lib/Timeline';
   import Toast from './lib/Toast';
@@ -151,6 +152,7 @@ const __SALT_BUNDLE__ = {
   Table,
   TagField,
   TextField,
+  Textarea,
   TextareaField,
   Timeline,
   Toast,
