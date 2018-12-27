@@ -14,21 +14,25 @@ import Context from '../Context';
 import NumberItem, { formatNumber, formatUnit } from './NumberItem';
 
 export default class NumberInfo extends React.Component {
-
   handleClick = () => {
-    this.props.onClick && this.props.onClick();
+    if (this.props.onClick) {
+      this.props.onClick();
+    }
   }
 
   renderNumber(data) {
     const { positiveColor, negativeColor, number } = data.props;
     const num = formatNumber(data.props);
     const unit = formatUnit(data.props);
-    return <span style={{
-      color: number > 0 ? positiveColor : (number < 0 ? negativeColor : '')
-    }}>
-      <span>{num}</span>
-      {unit ? <span className={Context.prefixClass('number-info-unit')}>{unit}</span> : null}
-    </span>
+    return (
+      <span style={{
+      color: number > 0 ? positiveColor : (number < 0 ? negativeColor : ''),
+    }}
+      >
+        <span>{num}</span>
+        {unit ? <span className={Context.prefixClass('number-info-unit')}>{unit}</span> : null}
+      </span>
+    );
   }
 
   renderSequence(datas) {
@@ -39,17 +43,19 @@ export default class NumberInfo extends React.Component {
     const { children } = this.props;
     const primary = [];
     const secondary = [];
-    React.Children.forEach(children, child => {
+    React.Children.forEach(children, (child) => {
       if (child.type !== NumberItem) {
         console.warn('Only <NumberItem> components are allowed inside <NumberInfo>.');
-        return null;
+        return;
       }
       (child.props.secondary ? secondary : primary).push(this.renderNumber(child));
     });
-    return <div className={Context.prefixClass('number-info-number')}>
-      {this.renderSequence(primary)}
-      {secondary.length ? <span> ({this.renderSequence(secondary)})</span> : null}
-    </div>
+    return (
+      <div className={Context.prefixClass('number-info-number')}>
+        {this.renderSequence(primary)}
+        {secondary.length ? <span> ({this.renderSequence(secondary)})</span> : null}
+      </div>
+    );
   }
 
   renderLabel() {
@@ -61,19 +67,21 @@ export default class NumberInfo extends React.Component {
     const t = this;
     const { className, layout } = t.props;
     return layout === 'h' ?
-      <div onClick={this.handleClick}
+      <div
+        onClick={this.handleClick}
         className={classnames(className, Context.prefixClass('number-info'), Context.prefixClass('number-info-h'))}
       >
         {this.renderLabel()}
         {this.renderData()}
       </div>
-    :
-      <div onClick={this.handleClick}
+      :
+      <div
+        onClick={this.handleClick}
         className={classnames(className, Context.prefixClass('number-info'))}
       >
         {this.renderData()}
         {this.renderLabel()}
-      </div>
+      </div>;
   }
 }
 
@@ -82,12 +90,14 @@ NumberInfo.defaultProps = {
   label: '',
   layout: 'v',
   onClick: () => { },
+  children: undefined,
 };
 
 NumberInfo.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
   label: PropTypes.string,
-  layout: PropTypes.oneOf('v', 'h'),
+  layout: PropTypes.oneOf(['v', 'h']),
   onClick: PropTypes.func,
 };
 
