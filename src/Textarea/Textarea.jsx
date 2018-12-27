@@ -20,7 +20,7 @@ export default class Textarea extends React.Component {
   }
   componentDidUpdate(prevProps) {
     if ('value' in this.props
-    && shouldUpdate(prevProps, this.props, ['value', 'rows', 'minRows', 'maxRows'])) {
+    && shouldUpdate(prevProps, this.props, ['value', 'rows', 'minRows', 'maxRows', 'placeholder'])) {
       this.resize();
     }
   }

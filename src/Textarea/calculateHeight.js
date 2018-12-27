@@ -57,6 +57,7 @@ function getStyleInfo(textarea) {
     padding,
     border,
     heightAdjust,
+    boxSizing,
   };
 }
 
@@ -94,6 +95,8 @@ const calculateHeight = (textarea, minRows, maxRows) => {
       height = Math.min(maxHeight, height);
     }
   }
+  // 需要在最终计算 rows 的时候减去外侧 padding 等，这样才能保证在一行的情况下不会计算成两排
+  height -= (padding + heightAdjust);
   return {
     rows: Math.ceil((height / singleRowHeight) > maxRows ? maxRows : (height / singleRowHeight)),
   };
