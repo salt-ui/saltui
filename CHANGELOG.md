@@ -4,6 +4,7 @@
 * `feat`: `Card` provide more layout.
 * `feat`: `Badge` new prop `status` and `breath`
 * `feat`: `Field` vertical layout style improvemnt
+* `change`: `Picker` extract browser history back hijack logic from PickerField to Picker
 
 
 ## 4.2.2 / 2018-11-27
