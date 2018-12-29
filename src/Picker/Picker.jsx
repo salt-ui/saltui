@@ -4,29 +4,74 @@ import PropTypes from 'prop-types';
 import Popup from '../Popup';
 import SearchPanel from './SearchPanel';
 import i18n from './i18n';
+import utils from './utils';
 
-const Picker = ({ visible, ...panelProps }) => {
-  const { locale } = panelProps;
-  const fixProps = {
-    confirmText: panelProps.confirmText || i18n[locale].confirmText,
-    searchPlaceholder: panelProps.searchPlaceholder || i18n[locale].searchPlaceholder,
-    searchNotFoundContent: panelProps.searchNotFoundContent || i18n[locale].noData,
-  };
-  return (
-    <Popup
-      animationType="slide-left"
-      stopBodyScrolling={false}
-      visible={visible}
-      content={<SearchPanel {...panelProps} {...fixProps} />}
-    />
-  );
-};
+class Picker extends React.Component {
+  constructor(props) {
+    super(props);
+    this.listener = this.handleHidePopup.bind(this);
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.visible === false && this.props.visible === true) {
+      this.historyStamp = `Picker.index_${Date.now()}`;
+      window.history.pushState({
+        PickerField: this.historyStamp,
+      }, '', utils.addUrlParam('PICKER', Date.now()));
+
+      window.addEventListener('popstate', this.listener, false);
+    } else if (prevProps.visible === true && this.props.visible === false) {
+      this.hide();
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('popstate', this.listener, false);
+  }
+
+  handleHidePopup(e) {
+    const { state } = e;
+    if (!state || !state.PickerField || state.PickerField !== this.historyStamp) {
+      this.hide(true);
+    }
+  }
+
+  hide(fromEvent) {
+    if (this.historyStamp) {
+      const t = this;
+      window.removeEventListener('popstate', t.listener, false);
+      if (!fromEvent) {
+        window.history.go(-1);
+      }
+      this.historyStamp = '';
+      t.props.onVisibleChange(false);
+    }
+  }
+
+  render() {
+    const { visible, ...panelProps } = this.props;
+    const { locale } = panelProps;
+    const fixProps = {
+      confirmText: panelProps.confirmText || i18n[locale].confirmText,
+      searchPlaceholder: panelProps.searchPlaceholder || i18n[locale].searchPlaceholder,
+      searchNotFoundContent: panelProps.searchNotFoundContent || i18n[locale].noData,
+    };
+    return (
+      <Popup
+        animationType="slide-left"
+        stopBodyScrolling={false}
+        visible={visible}
+        content={<SearchPanel {...panelProps} {...fixProps} />}
+      />
+    );
+  }
+}
 
 Picker.defaultProps = {
   visible: false,
   value: [],
   historyStamp: undefined,
   confirmText: undefined,
+  onVisibleChange: () => {},
   onConfirm: () => {},
   options: undefined,
   fetchUrl: '',
@@ -64,6 +109,7 @@ Picker.defaultProps = {
 
 Picker.propTypes = {
   visible: PropTypes.bool,
+  onVisibleChange: PropTypes.func,
   locale: PropTypes.string,
   fetchUrl: PropTypes.string,
   fetchMethod: PropTypes.string,

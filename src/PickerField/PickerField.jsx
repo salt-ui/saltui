@@ -41,7 +41,7 @@ class PickerField extends React.Component {
       prevProps: this.props,
     };
 
-    t.listener = t.handleHidePopup.bind(t);
+    // t.listener = t.handleHidePopup.bind(t);
   }
 
   static getDerivedStateFromProps(nextProps, { prevProps }) {
@@ -63,29 +63,29 @@ class PickerField extends React.Component {
     }
   }
 
-  handleHidePopup(e) {
-    const { state } = e;
-    if (!state || !state.PickerField || state.PickerField !== this.state.historyStamp) {
-      const t = this;
-      window.removeEventListener('popstate', t.listener, false);
-      t.setState({
-        popupVisible: false,
-      });
-    }
-  }
+  // handleHidePopup(e) {
+  //   const { state } = e;
+  //   if (!state || !state.PickerField || state.PickerField !== this.state.historyStamp) {
+  //     const t = this;
+  //     window.removeEventListener('popstate', t.listener, false);
+  //     t.setState({
+  //       popupVisible: false,
+  //     });
+  //   }
+  // }
 
   handleClick() {
     const t = this;
     if (!t.props.readOnly) {
       t.setState({
         popupVisible: true,
-        historyStamp: `SearchPanel.index_${Date.now()}`,
+        // historyStamp: `SearchPanel.index_${Date.now()}`,
       }, () => {
-        window.history.pushState({
-          PickerField: t.state.historyStamp,
-        }, '', utils.addUrlParam('PICKER', Date.now()));
+        // window.history.pushState({
+        //   PickerField: t.state.historyStamp,
+        // }, '', utils.addUrlParam('PICKER', Date.now()));
 
-        window.addEventListener('popstate', t.listener, false);
+        // window.addEventListener('popstate', t.listener, false);
       });
     }
   }
@@ -148,7 +148,15 @@ class PickerField extends React.Component {
           t.isConfirmLocked = false;
         }, 200);
         t.handleConfirm(value);
-        window.history.go(-1);
+        this.setState({
+          popupVisible: false,
+        });
+        // window.history.go(-1);
+      },
+      onVisibleChange: (visible) => {
+        this.setState({
+          popupVisible: visible,
+        });
       },
       options: t.props.options,
       fetchUrl: t.props.fetchUrl,
