@@ -6,4 +6,4 @@
  * All rights reserved.
  */
 
-export default from './FormGroup.jsx';
+export default from './FormGroup';

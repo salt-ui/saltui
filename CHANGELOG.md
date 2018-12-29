@@ -1,10 +1,12 @@
 ## 4.3.0 / 2018-12-29
 
-* `new`: new Components `Skeleton`, `FormGroup`
+* `new`: new Components `Skeleton`, `FormGroup`, `Filter`, `Slider`, `SliderField`
 * `feat`: `Card` provide more layout.
 * `feat`: `Badge` new prop `status` and `breath`
 * `feat`: `Field` vertical layout style improvemnt
 * `change`: `Picker` extract browser history back hijack logic from PickerField to Picker
+* `feat`: `ScrollList` new item for person card
+* `feat`: `Steps` style improvement
 
 
 ## 4.2.2 / 2018-11-27

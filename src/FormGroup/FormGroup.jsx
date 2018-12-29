@@ -7,9 +7,8 @@
  */
 
 import React from 'react';
+import cx from 'classnames';
 import PropTypes from 'prop-types';
-import './FormGroup.styl';
-import cx from 'classnames'
 
 const changeEvents = [
   'onChange',
@@ -24,13 +23,12 @@ const changeEventsKeyCache = {};
 const noop = () => {};
 
 export default class FormGroup extends React.Component {
-
   static propTypes = {
     onChange: PropTypes.func,
     data: PropTypes.array,
     children: PropTypes.node,
-    title: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
-    className: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ])
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    className: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   }
 
   static defaultProps = {
@@ -62,7 +60,7 @@ export default class FormGroup extends React.Component {
    * @param {*} type change类型
    * @param {*} value 变动内容
    * @param {*} data 表单组全部值
-   * 
+   *
    * value格式：
    * 新增或删除操作：只传变动的组的序号
    * {
@@ -76,7 +74,7 @@ export default class FormGroup extends React.Component {
    * }
    */
   onChange(type, value, data) {
-    this.props.onChange(type, value, data)
+    this.props.onChange(type, value, data);
   }
 
   setValue(itemIndex, name, value) {
@@ -96,7 +94,7 @@ export default class FormGroup extends React.Component {
   /**
    * 根据数组中的数据，和传入的fields，复制整个表单
    * @param {*} fields 传入的fields，即children
-   * 
+   *
    * formSlice：根据一行数据复制出来的表单切片
    * 复制field的时候，需要：
    * 1. 劫持change事件
@@ -107,7 +105,7 @@ export default class FormGroup extends React.Component {
     const { data } = this.state;
 
     return data.map((item, itemIndex) => { // 循环数据
-      const formSlice = React.Children.map(fields, field => {
+      const formSlice = React.Children.map(fields, (field) => {
         const name = field.props.name;
         if (!name) { // 如果非field,直接赋值
           return React.cloneElement(field);
@@ -134,7 +132,7 @@ export default class FormGroup extends React.Component {
 
         // 代理组件的change事件，merge进propsToMerge
         if (changeEventKey) {
-          propsToMerge[changeEventKey] = value => {
+          propsToMerge[changeEventKey] = (value) => {
             this.setValue(itemIndex, name, value);
             field.props[changeEventKey](value, itemIndex);
           };
@@ -162,7 +160,6 @@ export default class FormGroup extends React.Component {
           </div>
         </div>
       );
-
     });
   }
 
@@ -209,6 +206,6 @@ export default class FormGroup extends React.Component {
           新增一条
         </div>
       </div>
-    )
+    );
   }
 }

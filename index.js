@@ -25,6 +25,7 @@
   import Field from './lib/Field';
   import Filter from './lib/Filter';
   import FoldablePane from './lib/FoldablePane';
+  import FormGroup from './lib/FormGroup';
   import Gallery from './lib/Gallery';
   import Grid from './lib/Grid';
   import Group from './lib/Group';
@@ -107,6 +108,7 @@ const __SALT_BUNDLE__ = {
   Field,
   Filter,
   FoldablePane,
+  FormGroup,
   Gallery,
   Grid,
   Group,
