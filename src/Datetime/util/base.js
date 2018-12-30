@@ -243,7 +243,7 @@ function parseDate(value) {
  * @param { String | Number} minDate
  * @param { String | Number } maxDate
  * @param { Number } year
- * @returns year<array>
+ * @returns month<array>
  */
 function getMonthsByYear({ minDate, maxDate, year }) {
   const max = new Date(maxDate);
