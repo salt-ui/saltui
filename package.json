@@ -111,7 +111,7 @@
     "presets": [
       "env",
       "stage-1",
-      "react-app"
+      "react"
     ],
     "plugins": [
       "add-module-exports"
