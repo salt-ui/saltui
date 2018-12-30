@@ -6,7 +6,8 @@ module.exports = {
   ],
   "env": {
     "browser": true,
-    "mocha": true
+    "mocha": true,
+    "jest": true
   },
   "rules": {
     "import/no-extraneous-dependencies": "off",
