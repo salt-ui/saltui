@@ -218,9 +218,10 @@ class Datetime extends React.Component {
       monthArr = formatText(monthArr, i18n[locale].surfix.M, this.props);
       data[1] = monthArr;
 
+      const firstMonth = monthArr[0].value;
       // 修改年，动态计算日
       let dayArr = getDaysByMonth({
-        minDate, maxDate, year: yearValue, month: monthValue,
+        minDate, maxDate, year: yearValue, month: firstMonth,
       });
       dayArr = formatText(dayArr, i18n[locale].surfix.D, this.props);
       data[2] = dayArr;
