@@ -23,6 +23,7 @@ const {
   needUpdateSlotValue,
   getOptions,
   getDaysByMonth,
+  getMonthsByYear,
   addZero,
   formatFromProps,
   formatText,
@@ -210,6 +211,20 @@ class Datetime extends React.Component {
         text: addZero(item.text) + (unit || ''),
       }));
       data[2] = dayArr;
+      updateObj.data = data;
+    } else if (columnsStyle === 'Y') {
+      // 修改年，动态计算月
+      let monthArr = getMonthsByYear({ minDate, maxDate, year: yearValue });
+      monthArr = formatText(monthArr, i18n[locale].surfix.M, this.props);
+      data[1] = monthArr;
+
+      // 修改年，动态计算日
+      let dayArr = getDaysByMonth({
+        minDate, maxDate, year: yearValue, month: monthValue,
+      });
+      dayArr = formatText(dayArr, i18n[locale].surfix.D, this.props);
+      data[2] = dayArr;
+
       updateObj.data = data;
     }
     this.setState(updateObj);
