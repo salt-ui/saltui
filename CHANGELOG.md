@@ -1,3 +1,7 @@
+## 4.3.8 / 2019-01-02
+
+* `fix`: `Datetime` throw bug when minDate & maxDate are set between 2 years.
+
 ## 4.3.0 / 2018-12-29
 
 * `new`: new Components `Skeleton`, `FormGroup`, `Filter`, `Slider`, `SliderField`
