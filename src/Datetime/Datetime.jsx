@@ -68,8 +68,9 @@ class Datetime extends React.Component {
 
   static getState(props) {
     const { columns, minDate, maxDate } = props;
-    const currentValue = parseValue(props.value);
-    const options = getOptions(props.value, props);
+    const validValue = Datetime.getValidValue(props);
+    const currentValue = parseValue(validValue);
+    const options = getOptions(validValue, props);
     const ret = Slot.formatDataValue([].concat(options), [].concat(currentValue));
     let data = formatFromProps(formatText(ret.data, undefined, props), props);
     let value = formatFromProps(formatText(ret.value, undefined, props), props);
@@ -94,6 +95,20 @@ class Datetime extends React.Component {
       data,
       value,
     };
+  }
+
+  static getValidValue(props) {
+    const { minDate, maxDate, value } = props;
+    const validValue = new Date(value).getTime();
+    const minStamp = new Date(minDate).getTime();
+    const maxStamp = new Date(maxDate).getTime();
+    if (validValue < minStamp) {
+      return minStamp;
+    }
+    if (validValue > maxStamp) {
+      return maxStamp;
+    }
+    return validValue;
   }
 
   getPlainDate = (value) => {
@@ -173,8 +188,10 @@ class Datetime extends React.Component {
     const yearValue = value[0].value;
     const monthValue = value[1].value;
     // disabledDate 仅支持 YMD、YMDT
-    const updateObj = { value };
+    let updateObj = { value };
     if (isArray(disabledArr) && disabledArr.length && columns.length >= 3 && columns[0] === 'Y') {
+      // TODO: FIXME 有 disabledArr 的逻辑里也存在 value 不在合理区间，导致获取的 options 不正确的问题，
+      // 后续要参考没有 disabledArr 的逻辑进行修复。 by eternalsky@2019.01.02
       const newValue = parseValue(outputDate.value);
       const options = getOptions(outputDate.value, this.props);
       const ret = Slot.formatDataValue([].concat(options), [].concat(newValue));
@@ -198,19 +215,8 @@ class Datetime extends React.Component {
         props: this.props,
       });
       updateObj.data = AllData;
-    } else if ((columnsStyle === 'Y' && monthValue === 1) || (columnsStyle === 'M')) {
-      // 修改年根据年份，当月份是 2 月 动态计算日  或者 修改月份根据年份动态计算日
-      let dayArr = getDaysByMonth({
-        minDate, maxDate, year: yearValue, month: monthValue,
-      });
-      // dayArr = formatText(dayArr, undefined, this.props);
-      const unit = i18n[locale].surfix.D;
-      dayArr = dayArr.map(item => ({
-        ...item,
-        text: addZero(item.text) + (unit || ''),
-      }));
-      data[2] = dayArr;
-      updateObj.data = data;
+    } else if ((columnsStyle === 'Y') || (columnsStyle === 'M')) {
+      updateObj = Datetime.getState({ ...this.props, value: outputDate.value });
     }
     this.setState(updateObj);
   };
