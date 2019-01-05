@@ -46,11 +46,15 @@ $checkbox-icon-size = 24px
     line-height 20px
     color $checkbox-tip-color
     
-.{$prefix}-checkbox-field-icon-slot 
+.{$prefix}-checkbox-field-icon-slot
     margin-top 10px
     svg
         fill $checkbox-tip-color
-        
+
+.{$prefix}-fix-slot-margin
+    .{$prefix}-checkbox-field-icon-slot
+        margin-top 0
+
 .{$prefix}-checkbox-field-icon-list
     width $checkbox-icon-size
     height @width

@@ -390,6 +390,7 @@ class FilterPanel extends react.Component {
         animationType="slide-left"
         onMaskClick={() => {
           setActiveIndex(-1)
+          onConfirm(getSelect())
         }}
         visible={true}
       >
