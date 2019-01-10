@@ -116,7 +116,7 @@ class Field extends React.Component {
         }
         <div
           className={classnames(prefixClass('FB1 PR'), {
-            [prefixClass('field-multi')]: multiLine && layout === 'h',
+            [prefixClass('field-multi')]: multiLine,
           })}
         >
           {children}
