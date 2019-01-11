@@ -1,7 +1,7 @@
 /**
  * Table Component Style for SaltUI
  * @author sujingjing
- * 
+ *
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
@@ -26,13 +26,12 @@ $tablePrefixCls = t-table;
 .{$tablePrefixCls}-left-fixed,
 .{$tablePrefixCls}-right-fixed {
   top: 0;
-  background: white;
+  //background: white;
   transition: box-shadow 0.3s ease-out;
 }
 
 .{$tablePrefixCls}-left-fixed {
   left: 0;
-
   &.{$tablePrefixCls}-fixed__has-scroll {
     box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
   }
@@ -54,7 +53,7 @@ $tablePrefixCls = t-table;
 }
 
 .{$tablePrefixCls}-header-item {
-  hairline: border-right $table-split-line-color;
+  border-right: none;
   color: $normal-alpha-3;
 }
 
@@ -72,7 +71,7 @@ $tablePrefixCls = t-table;
   }
 
   .{$tablePrefixCls}-left-fixed & {
-    hairline: border-right $table-split-line-color;
+    border-right: none;
   }
 
   .{$tablePrefixCls}-right-fixed & {
@@ -93,7 +92,7 @@ $tablePrefixCls = t-table;
 .{$tablePrefixCls}-row-item {
   min-height: 40px;
   height: 100%;
-  hairline: border-right $table-split-line-color;
+  border-right: none;
   font-size: 12px;
   line-height: 18px;
   padding-top: 11px;
@@ -128,12 +127,11 @@ $tablePrefixCls = t-table;
     .{$tablePrefixCls}-left-fixed .{$tablePrefixCls}-body {
       border-right: none;
     }
-  }
-
-  &.hide-cols-split-line {
-    .{$tablePrefixCls}-header,
     .{$tablePrefixCls}-row {
-      border-bottom: none;
+      border-bottom: none
+    }
+    .{$tablePrefixCls}-header {
+      border-bottom: none
     }
   }
 }

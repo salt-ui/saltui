@@ -27,11 +27,14 @@ const renderRow = (options) => {
           width: column.width,
           textAlign: column.align,
         };
+        const isSubRowArrow = column.dataKey === 'subRowArrow';
 
         return (
           <div
-            className={classnames(Context.prefixClass('table-row-item PL12 PR12 DIB omit'), {
+            className={classnames(Context.prefixClass('table-row-item DIB omit'), {
               firstRow: index === 0,
+              [Context.prefixClass('PL12 PR12')]: !isSubRowArrow,
+              [Context.prefixClass('arrow-column')]: isSubRowArrow
             })}
             style={rowItemStyle}
             key={i}
@@ -58,9 +61,10 @@ const renderHeader = (columns) => {
         };
         return (
           <div
-            className={classnames(Context.prefixClass('table-header-item omit DIB PL12 PR12'), {
+            className={classnames(Context.prefixClass('table-header-item omit DIB'), {
             firstRow: index === 0,
             lastRow: index === cl - 1,
+            [Context.prefixClass('PL12 PR12')]: column.dataKey !== 'subRowArrow'
           })}
             style={headerItemStyle}
             key={index}
@@ -78,13 +82,24 @@ class Table extends React.Component {
    * 为 column 添加默认值
    */
   static processColumns(props) {
-    const newProps = props;
-    return deepcopy(newProps.columns).map((column) => {
+    // const newProps = props;
+    let columns = deepcopy(props.columns).map((column) => {
       const columns = column;
       columns.width = Context.rem((columns.width || 0.25) * 640, 640);
       columns.align = columns.align || 'left';
       return columns;
     });
+    // arrow
+    columns.push({
+      dataKey: 'subRowArrow',
+      title: '',
+      align: 'center',
+      width: Context.rem(40, 640),
+      render() {
+        return '>'
+      }
+    });
+    return columns
   }
 
   constructor(props) {
@@ -183,6 +198,10 @@ class Table extends React.Component {
     );
   }
 
+  renderSubRow() {
+
+  }
+
   renderEmptyContent() {
     const t = this;
     const { emptyText } = t.props;
@@ -221,7 +240,7 @@ class Table extends React.Component {
     if (direction === 'left') {
       columnsValue = columnsValue.slice(0, leftFixed);
     } else {
-      columnsValue = columnsValue.slice(columnsValue.length - rightFixed, columnsValue.length);
+      columnsValue = columnsValue.slice(columnsValue.length - rightFixed - 1, columnsValue.length);
     }
     if (columnsValue.length) {
       return (
@@ -235,6 +254,10 @@ class Table extends React.Component {
       );
     }
     return null;
+  }
+
+  renderActionColumn() {
+    return 1
   }
 
   render() {
@@ -260,8 +283,8 @@ class Table extends React.Component {
       <div
         className={classnames(Context.prefixClass('table FS12 PR'), {
           [className]: !!className,
-          'hide-cols-split-line': t.props.hideSplitLine && t.props.leftFixed === 0,
-          'hide-rows-split-line': t.props.hideSplitLine && t.props.leftFixed > 0,
+          // 'hide-cols-split-line': t.props.hideSplitLine && t.props.leftFixed === 0,
+          'hide-rows-split-line': t.props.hideSplitLine,
         })}
       >
         <Scroller {...scrollerProps} className={Context.prefixClass('table-content-container')}>
@@ -280,13 +303,19 @@ class Table extends React.Component {
 
 Table.defaultProps = {
   data: {},
+  // 展示类型
+  displayType: 'table',
   pageSize: 10,
+  // 子表格显示行数
+  subRowPageSize: 8,
   emptyText: '暂无数据',
   leftFixed: 0,
   hideSplitLine: false,
   rightFixed: 0,
   showHeader: true,
   onPagerChange: () => {},
+  // 子表格翻页回调
+  onSubRowPagerChange: () => {},
   columns: undefined,
   className: undefined,
 };
@@ -294,7 +323,10 @@ Table.defaultProps = {
 Table.propTypes = {
   columns: PropTypes.array,
   data: PropTypes.object,
+  displayType: PropTypes.oneOf(['table', 'list']),
   pageSize: PropTypes.number,
+  subRowPageSize: PropTypes.number,
+  onSubRowPagerChange: PropTypes.func,
   emptyText: PropTypes.string,
   className: PropTypes.string,
   showHeader: PropTypes.bool,

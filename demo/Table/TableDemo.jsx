@@ -28,6 +28,17 @@ class Demo extends React.Component {
             city: '北京',
             sex: '女',
             age: '16',
+            data: [
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              }
+            ]
           },
           {
             title: '人物2',
@@ -67,6 +78,17 @@ class Demo extends React.Component {
             cityId: 'bj',
             city: '北京东路的日子无与伦比的美丽',
             sex: '女',
+            data: [
+              {
+                title: '人物11',
+                nameId: 'xiaowang1',
+                name: '小王12',
+                cityId: 'b12j',
+                city: '北123京',
+                sex: '女123',
+                age: '11231236',
+              }
+            ]
           },
           {
             email: 'xl@abc.com',
@@ -147,42 +169,71 @@ class Demo extends React.Component {
     };
     return (
       <div>
-        <div className="tip">普通表格</div>
-        <Table
-          columns={t.state.columns2}
-          data={t.state.data2}
-          leftFixed={0}
-        />
-        <div className="tip">普通表格(隐藏分割线)</div>
-        <Table
-          columns={t.state.columns2}
-          data={t.state.data2}
-          hideSplitLine
-          leftFixed={0}
-        />
+        {/*<div className="tip">普通表格</div>*/}
+        {/*<Table*/}
+          {/*columns={t.state.columns2}*/}
+          {/*data={t.state.data2}*/}
+          {/*leftFixed={0}*/}
+        {/*/>*/}
+        {/*<div className="tip">普通表格(隐藏分割线)</div>*/}
+        {/*<Table*/}
+          {/*columns={t.state.columns2}*/}
+          {/*data={t.state.data2}*/}
+          {/*hideSplitLine*/}
+          {/*leftFixed={0}*/}
+        {/*/>*/}
         <div className="tip">列固定 不显示标题</div>
         <Table
           columns={t.state.columns}
           data={t.state.data}
-          leftFixed={1}
-          rightFixed={1}
-          showHeader={false}
+          leftFixed={0}
+          rightFixed={0}
+          hideSplitLine={true}
+          showHeader={true}
         />
-        <div className="tip">列固定 不显示标题（隐藏分割线）</div>
         <Table
           columns={t.state.columns}
           data={t.state.data}
-          hideSplitLine
-          leftFixed={1}
-          showHeader={false}
+          leftFixed={0}
+          rightFixed={0}
+          showHeader={true}
         />
-        <div className="tip">无数据展示</div>
         <Table
           columns={t.state.columns}
-          data={data}
+          data={t.state.data}
           leftFixed={0}
-          showHeader
+          rightFixed={0}
         />
+        <Table
+          columns={t.state.columns}
+          data={t.state.data}
+          leftFixed={1}
+          rightFixed={0}
+          hideSplitLine
+        />
+
+        <Table
+          columns={t.state.columns}
+          data={t.state.data}
+          leftFixed={0}
+          rightFixed={1}
+        />
+        {/*<div className="tip">列固定 不显示标题（隐藏分割线）</div>*/}
+        {/*<Table*/}
+          {/*columns={t.state.columns}*/}
+          {/*data={t.state.data}*/}
+          {/*hideSplitLine*/}
+          {/*leftFixed={0}*/}
+          {/*rightFixed={0}*/}
+          {/*showHeader={true}*/}
+        {/*/>*/}
+        {/*<div className="tip">无数据展示</div>*/}
+        {/*<Table*/}
+          {/*columns={t.state.columns}*/}
+          {/*data={data}*/}
+          {/*leftFixed={0}*/}
+          {/*showHeader*/}
+        {/*/>*/}
       </div>
     );
   }
