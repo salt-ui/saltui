@@ -1,3 +1,6 @@
+## 4.3.10 / 2019-01-11
+* `change` change method to fix field padding
+
 ## 4.3.9 / 2019-01-10
 * `fix`: fix field padding
 * `change`: change calendar tooltip duration to 1s
