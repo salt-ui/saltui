@@ -75,8 +75,8 @@ class Demo extends React.Component {
       defaultFilterValue: {
         sort: [
           {
-            text: '评分',
-            value: 'grade'
+            text: '默认排序',
+            value: ''
           },
         ],
         quickSort: [
@@ -148,6 +148,10 @@ class Demo extends React.Component {
                 title: '默认排序',
                 type: 'order',  // select | order | switch
                 items: [
+                  {
+                    text: '默认排序',
+                    value: ''
+                  },
                   {
                     text: '距离',
                     value: 'distance'
