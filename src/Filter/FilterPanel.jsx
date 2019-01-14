@@ -308,7 +308,7 @@ class FilterPanel extends react.Component {
     }
     return (
       <Popup
-        stopBodyScrolling
+        stopBodyScrolling = {false}
         content={
           <div className={Context.prefixClass('filter-popup-container')} style={{ height: window.innerHeight - 84 }}>
             {group.children.map(item => {
@@ -375,6 +375,13 @@ class FilterPanel extends react.Component {
               }}
               confirmText={'确认'}
               filterOption={false}
+              onVisibleChange={(visible) => {
+                if (!visible) {
+                  this.setState({
+                    showPicker: false
+                  });
+                }
+              }}
               onSearch={(keyword) => {
                 // const items = pickerOptions.find(item => {
                 //   return item.text.indexOf(keyword !== -1)
@@ -390,7 +397,6 @@ class FilterPanel extends react.Component {
         animationType="slide-left"
         onMaskClick={() => {
           setActiveIndex(-1)
-          onConfirm(getSelect())
         }}
         visible={true}
       >
