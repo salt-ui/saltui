@@ -55,24 +55,27 @@ const renderHeader = (columns) => {
     <div
       className={classnames(Context.prefixClass('table-header'))}
     >
-      {columns.map((column, index) => {
-        const headerItemStyle = {
-          width: column.width,
-          textAlign: column.align,
-        };
-        return (
-          <div
-            className={classnames(Context.prefixClass('table-header-item omit DIB'), {
-            firstRow: index === 0,
-            lastRow: index === cl - 1,
-            [Context.prefixClass('PL12 PR12')]: column.dataKey !== 'subRowArrow'
-          })}
-            style={headerItemStyle}
-            key={index}
-          >
-            {column.title}
-          </div>);
-      })}
+      <div className={Context.prefixClass('table-header-main')}>
+        {columns.map((column, index) => {
+          const headerItemStyle = {
+            width: column.width,
+            textAlign: column.align,
+          };
+          return (
+            <div
+              className={classnames(Context.prefixClass('table-header-item omit DIB'), {
+              firstRow: index === 0,
+              lastRow: index === cl - 1,
+              [Context.prefixClass('PL12 PR12')]: column.dataKey !== 'subRowArrow'
+            })}
+              style={headerItemStyle}
+              key={index}
+            >
+              {column.title}
+            </div>);
+        })}
+      </div>
+
     </div>
   );
 };
@@ -96,9 +99,11 @@ class Table extends React.Component {
       title: '',
       align: 'center',
       width: Context.rem(40, 640),
-      render(column, cellData) {
-        debugger
-        return '>'
+      render(cellData, item) {
+        if (item.data && item.data.length) {
+          return <Icon className={Context.prefixClass('table-row-item-icon')} name={'angle-right'} />
+        }
+        return null
       }
     });
     return columns

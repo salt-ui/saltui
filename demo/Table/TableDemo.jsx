@@ -47,7 +47,7 @@ class Demo extends React.Component {
             cityId: 'hz',
             city: '杭州',
             sex: '男',
-            age: '18',
+            age: '18'
           },
           {
             title: '人物3',
@@ -134,8 +134,8 @@ class Demo extends React.Component {
           dataKey: 'city',
           title: '城市',
           align: 'center',
-          render: cellData => (
-            <div
+          render: (cellData, b) => {
+            return <div
               onClick={() => {
                 Dialog.alert({
                   title: '测试',
@@ -152,7 +152,7 @@ class Demo extends React.Component {
                 ↑
               </span>
             </div>
-          ),
+          },
         },
         { dataKey: 'name', title: '姓名', align: 'center' },
         { dataKey: 'email', title: '邮件', align: 'center' },

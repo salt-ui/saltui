@@ -50,17 +50,25 @@ $tablePrefixCls = t-table;
   }
   &.only-arrow {
     .{$tablePrefixCls}-header {
-      background #F6F7F9
+      background #fff
+      .{$tablePrefixCls}-header-main{
+        height 100%
+        background $table-header-color
+      }
     }
   }
 }
 
 .{$tablePrefixCls}-header {
-  hairline: border-bottom $table-split-line-color;
+  //hairline: border-bottom $table-split-line-color;
   height: 40px;
   line-height: 39px;
   white-space: nowrap;
-  background #F6F7F9
+  background #fff
+  .{$tablePrefixCls}-header-main {
+    height 100%
+    background $table-header-color
+  }
 }
 
 .{$tablePrefixCls}-header-item {
@@ -106,9 +114,11 @@ $tablePrefixCls = t-table;
   height: 100%;
   border-right: none;
   font-size: 12px;
-  line-height: 18px;
-  padding-top: 11px;
+  line-height: 40px;
   color: $dark-alpha-3;
+}
+.{$tablePrefixCls}-row-item-icon {
+
 }
 
 .{$tablePrefixCls}-left-fixed .{$tablePrefixCls}-body .{$tablePrefixCls}-row-item {
@@ -142,8 +152,8 @@ $tablePrefixCls = t-table;
     .{$tablePrefixCls}-row {
       border-bottom: none
     }
-    .{$tablePrefixCls}-header {
-      border-bottom: none
-    }
+    //.{$tablePrefixCls}-header {
+    //  border-bottom: none
+    //}
   }
 }
