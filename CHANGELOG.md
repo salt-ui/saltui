@@ -1,3 +1,8 @@
+## 4.3.11 / 2019-01-14
+* `fix`: `Filter` fix two bugs
+* `change`: `Filter` change order from select to switch, and some style optimize
+
+
 ## 4.3.10 / 2019-01-11
 * `change` change method to fix field padding
 
