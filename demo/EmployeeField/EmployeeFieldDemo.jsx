@@ -60,7 +60,7 @@ class EmployeeFieldDemo extends React.Component {
           <EmployeeField
             tip="这是一个 tip"
             corpId="dingd8e1123006514592"
-            label="选择人员"
+            label="选择人员111"
             layout="v"
             multiple
             placeholder="请选择请选择请选择请选择请选择请选择请选择"

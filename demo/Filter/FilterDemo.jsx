@@ -75,8 +75,8 @@ class Demo extends React.Component {
       defaultFilterValue: {
         sort: [
           {
-            text: '距离',
-            value: 'distance'
+            text: '默认排序',
+            value: ''
           },
         ],
         quickSort: [
@@ -149,6 +149,10 @@ class Demo extends React.Component {
                 type: 'order',  // select | order | switch
                 items: [
                   {
+                    text: '默认排序',
+                    value: ''
+                  },
+                  {
                     text: '距离',
                     value: 'distance'
                   },
@@ -174,7 +178,7 @@ class Demo extends React.Component {
                 name: 'something',
                 title: '容纳人数',
                 type: 'select',
-                multiSelect: false,
+                multiSelect: true,
                 items: [
                   {
                     text: '10人以下',

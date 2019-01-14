@@ -97,6 +97,18 @@ class Filter extends React.Component {
     })
   };
 
+  handleMaskClick = () => {
+    const { onConfirm } = this.props;
+    const options = this.formatOptions();
+    if (options.groups[this.state.activeIndex].multiSelect) {
+      onConfirm(this.getSelect())
+    }
+    this.setState({
+      activeIndex: -1,
+      maskVisible: false
+    })
+  };
+
   formatOptions = () => {
     const { size, options } = this.props;
     let maxSize = size > 4 ? 4 : size;
@@ -157,6 +169,7 @@ class Filter extends React.Component {
           visible={maskVisible}
           opacity={0.4}
           zIndex={800}
+          onClick={this.handleMaskClick}
         />
       </div>
     );

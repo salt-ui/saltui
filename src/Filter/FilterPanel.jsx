@@ -89,7 +89,6 @@ class FilterPanel extends react.Component {
     });
     const selectData = getSelect();
     const currentSelectData = selectData[name] || [];
-
     if (group.multiSelect === false || group.type === 'order') {
       if (currentSelectData.length) {
         setSelect({
@@ -131,6 +130,28 @@ class FilterPanel extends react.Component {
     )
   }
 
+  onOrderItemClick = (e) => {
+    const target = e.currentTarget;
+    const name = target.getAttribute('data-name');
+    const value = target.getAttribute('data-value');
+    const text = target.getAttribute('data-text');
+    const classList = target.classList;
+    const { getSelect } = this.props
+    const currentSelectData = getSelect();
+    if (value === currentSelectData.sort[0].value) {
+      return
+    }
+    const parent = target.parentElement;
+    const items = parent.querySelectorAll(`.${Context.prefixClass('filter-grid-item')}`) || [];
+    items.forEach(item => {
+      if(item.getAttribute('data-value') !== value) {
+        item.classList.remove('active')
+      }
+    });
+    this.doItemFilter({value, text, name});
+    classList.toggle('toggle')
+  }
+
   renderOrder(group) {
     const { getSelect } = this.props;
     const { name, items } = group;
@@ -153,7 +174,7 @@ class FilterPanel extends react.Component {
                 data-name={name}
                 data-value={item.value}
                 data-text={typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text().toString() : ''}
-                onClick={this.onItemClick}
+                onClick={this.onOrderItemClick}
               >
                 {typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text() : ''}
                 {
@@ -308,7 +329,7 @@ class FilterPanel extends react.Component {
     }
     return (
       <Popup
-        stopBodyScrolling
+        stopBodyScrolling = {false}
         content={
           <div className={Context.prefixClass('filter-popup-container')} style={{ height: window.innerHeight - 84 }}>
             {group.children.map(item => {
@@ -375,6 +396,13 @@ class FilterPanel extends react.Component {
               }}
               confirmText={'确认'}
               filterOption={false}
+              onVisibleChange={(visible) => {
+                if (!visible) {
+                  this.setState({
+                    showPicker: false
+                  });
+                }
+              }}
               onSearch={(keyword) => {
                 // const items = pickerOptions.find(item => {
                 //   return item.text.indexOf(keyword !== -1)

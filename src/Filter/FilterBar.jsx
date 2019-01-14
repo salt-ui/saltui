@@ -85,7 +85,7 @@ class FilterBar extends React.Component {
       </span>);
     return (
       <div className={classnames(
-        Context.prefixClass('FB1'),
+        // Context.prefixClass('FB1'),
         'title-wrapper',
         {
           active: isFocus,
@@ -164,7 +164,7 @@ class FilterBar extends React.Component {
                 this.changeActiveIndex(group, index);
               }}
             >
-              <div className={Context.prefixClass('FBH')} style={{ padding: '0 5px' }}>
+              <div className={classnames(Context.prefixClass('FBH'), 'item-wrapper')}>
                 {this.renderTitle(group, index)}
                 {this.renderIcon(group, index)}
               </div>
