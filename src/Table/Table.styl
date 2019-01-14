@@ -26,21 +26,32 @@ $tablePrefixCls = t-table;
 .{$tablePrefixCls}-left-fixed,
 .{$tablePrefixCls}-right-fixed {
   top: 0;
-  //background: white;
   transition: box-shadow 0.3s ease-out;
 }
 
 .{$tablePrefixCls}-left-fixed {
   left: 0;
-  &.{$tablePrefixCls}-fixed__has-scroll {
-    box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
-  }
+  background: white;
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
+  //&.{$tablePrefixCls}-fixed__has-scroll {
+  //  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
+  //}
 }
 
 .{$tablePrefixCls}-right-fixed {
   right: 0;
+  background #fff;
+  box-shadow: -1px 0 6px rgba(0, 0, 0, 0.2);
   &.{$tablePrefixCls}-fixed__has-scroll {
-    box-shadow: -1px 0 6px rgba(0, 0, 0, 0.2);
+    //box-shadow: -1px 0 6px rgba(0, 0, 0, 0.2);
+    &.only-arrow {
+      box-shadow none
+    }
+  }
+  &.only-arrow {
+    .{$tablePrefixCls}-header {
+      background #F6F7F9
+    }
   }
 }
 
@@ -49,7 +60,7 @@ $tablePrefixCls = t-table;
   height: 40px;
   line-height: 39px;
   white-space: nowrap;
-  background: $table-header-color;
+  background #F6F7F9
 }
 
 .{$tablePrefixCls}-header-item {
@@ -63,10 +74,11 @@ $tablePrefixCls = t-table;
 
 .{$tablePrefixCls}-body {
   white-space: nowrap;
-
-  .{$tablePrefixCls}-left-fixed &,
+  .{$tablePrefixCls}-left-fixed & {
+    //background: $normal-alpha-7;
+    color: $normal-alpha-3;
+  }
   .{$tablePrefixCls}-right-fixed & {
-    background: $normal-alpha-7;
     color: $normal-alpha-3;
   }
 
@@ -75,7 +87,7 @@ $tablePrefixCls = t-table;
   }
 
   .{$tablePrefixCls}-right-fixed & {
-    hairline: border-left $table-split-line-color;
+    //hairline: border-left $table-split-line-color;
   }
 }
 

@@ -13,6 +13,7 @@ import React from 'react';
 import Scroller from '../Scroller';
 import Context from '../Context';
 import Pagination from '../Pagination';
+import Icon from 'salt-icon'
 
 /* eslint-disable react/no-array-index-key */
 const renderRow = (options) => {
@@ -95,7 +96,8 @@ class Table extends React.Component {
       title: '',
       align: 'center',
       width: Context.rem(40, 640),
-      render() {
+      render(column, cellData) {
+        debugger
         return '>'
       }
     });
@@ -245,7 +247,9 @@ class Table extends React.Component {
     if (columnsValue.length) {
       return (
         <div
-          className={classnames(Context.prefixClass(`table-${direction}-fixed PA`))}
+          className={classnames(Context.prefixClass(`table-${direction}-fixed PA`), {
+            'only-arrow': direction === 'right' && columnsValue.length === 1
+          })}
           ref={(c) => { this[`${direction}Fixed`] = c; }}
         >
           {t.props.showHeader ? renderHeader(columnsValue) : null}
