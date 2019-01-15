@@ -1,4 +1,9 @@
+## 4.3.12 / 2019-01-15
+
+* `fix`: `RefreshControl` TypeError: null is not an object (evaluating 'el.getBoundingClientRect') when ScrollList url is wrong
+
 ## 4.3.11 / 2019-01-14
+
 * `fix`: `Filter` fix two bugs
 * `change`: `Filter` change order from select to switch, and some style optimize
 

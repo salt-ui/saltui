@@ -78,7 +78,9 @@ class RefreshControl extends React.Component {
   componentDidMount() {
     this.bindDrag();
     setTimeout(() => {
-      this.initTop = getOffset(this.trigger).top;
+      if (this.trigger) {
+        this.initTop = getOffset(this.trigger).top;
+      }
     }, 200);
   }
 
