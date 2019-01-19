@@ -14,78 +14,13 @@ import Scroller from '../Scroller';
 import Context from '../Context';
 import Pagination from '../Pagination';
 import Icon from 'salt-icon'
-
-/* eslint-disable react/no-array-index-key */
-const renderRow = (options) => {
-  const { item, index, columns } = options;
-  return (
-    <div
-      className={classnames(Context.prefixClass('table-row'))}
-      key={index}
-    >
-      {columns.map((column, i) => {
-        const rowItemStyle = {
-          width: column.width,
-          textAlign: column.align,
-        };
-        const isSubRowArrow = column.dataKey === 'subRowArrow';
-
-        return (
-          <div
-            className={classnames(Context.prefixClass('table-row-item DIB omit'), {
-              firstRow: index === 0,
-              [Context.prefixClass('PL12 PR12')]: !isSubRowArrow,
-              [Context.prefixClass('arrow-column')]: isSubRowArrow
-            })}
-            style={rowItemStyle}
-            key={i}
-          >
-            {column.render ? column.render(item[column.dataKey], item) : item[column.dataKey]}
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
-
-const renderHeader = (columns) => {
-  const cl = columns.length;
-  return (
-    <div
-      className={classnames(Context.prefixClass('table-header'))}
-    >
-      <div className={Context.prefixClass('table-header-main')}>
-        {columns.map((column, index) => {
-          const headerItemStyle = {
-            width: column.width,
-            textAlign: column.align,
-          };
-          return (
-            <div
-              className={classnames(Context.prefixClass('table-header-item omit DIB'), {
-              firstRow: index === 0,
-              lastRow: index === cl - 1,
-              [Context.prefixClass('PL12 PR12')]: column.dataKey !== 'subRowArrow'
-            })}
-              style={headerItemStyle}
-              key={index}
-            >
-              {column.title}
-            </div>);
-        })}
-      </div>
-
-    </div>
-  );
-};
-/* eslint-enable react/no-array-index-key */
+import Popup from '../Popup'
 
 class Table extends React.Component {
   /**
    * 为 column 添加默认值
    */
-  static processColumns(props) {
+  processColumns(props) {
     // const newProps = props;
     let columns = deepcopy(props.columns).map((column) => {
       const columns = column;
@@ -99,9 +34,9 @@ class Table extends React.Component {
       title: '',
       align: 'center',
       width: Context.rem(40, 640),
-      render(cellData, item) {
+      render: (cellData, item) => {
         if (item.data && item.data.length) {
-          return <Icon className={Context.prefixClass('table-row-item-icon')} name={'angle-right'} />
+          return <Icon className={Context.prefixClass('table-row-item-icon')} onClick={this.handleOpenSubRow} width={20} name={'angle-right'} />
         }
         return null
       }
@@ -112,19 +47,93 @@ class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      columns: Table.processColumns(props),
+      columns: this.processColumns(props),
       prevColumns: deepcopy(props.columns),
+      subRowVisible: false
     };
+  }
+
+  handleOpenSubRow = () => {
+    console.log(this)
+
+    debugger
   }
 
   componentDidMount() {
     this.checkScroll(this.getIscroll());
   }
 
+  renderRow(options) {
+    const { item, index, columns } = options;
+    return (
+      <div
+        className={classnames(Context.prefixClass('table-row'))}
+        key={index}
+      >
+        {columns.map((column, i) => {
+          const rowItemStyle = {
+            width: column.width,
+            textAlign: column.align,
+          };
+          const isSubRowArrow = column.dataKey === 'subRowArrow';
+
+          return (
+            <div
+              className={classnames(Context.prefixClass('table-row-item DIB omit'), {
+                firstRow: index === 0,
+                [Context.prefixClass('PL12 PR12')]: !isSubRowArrow,
+                [Context.prefixClass('arrow-column')]: isSubRowArrow
+              })}
+              style={rowItemStyle}
+              key={i}
+            >
+              {column.render ? column.render(item[column.dataKey], item) : item[column.dataKey]}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  toggleSubRow = () => {
+    debugger
+  }
+
+  renderHeader(columns){
+    const cl = columns.length;
+    return (
+      <div
+        className={classnames(Context.prefixClass('table-header'))}
+      >
+        <div className={Context.prefixClass('table-header-main')}>
+          {columns.map((column, index) => {
+            const headerItemStyle = {
+              width: column.width,
+              textAlign: column.align,
+            };
+            return (
+              <div
+                className={classnames(Context.prefixClass('table-header-item omit DIB'), {
+                  firstRow: index === 0,
+                  lastRow: index === cl - 1,
+                  [Context.prefixClass('PL12 PR12')]: column.dataKey !== 'subRowArrow'
+                })}
+                style={headerItemStyle}
+                key={index}
+              >
+                {column.title}
+              </div>);
+          })}
+        </div>
+
+      </div>
+    );
+  }
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (!deepEqual(prevState.prevColumns, nextProps.columns)) {
       // 不在这里更新 this.columns 是因为后面 didUpdate 时还用的到。
-      const columns = Table.processColumns(nextProps);
+      const columns = this.processColumns(nextProps);
 
       return {
         columns,
@@ -185,7 +194,7 @@ class Table extends React.Component {
         if (index === data.data.length - 1) {
           last = true;
         }
-        return renderRow({
+        return this.renderRow({
           item,
           index,
           last,
@@ -257,7 +266,7 @@ class Table extends React.Component {
           })}
           ref={(c) => { this[`${direction}Fixed`] = c; }}
         >
-          {t.props.showHeader ? renderHeader(columnsValue) : null}
+          {t.props.showHeader ? this.renderHeader(columnsValue) : null}
           {t.renderBody(columnsValue, true)}
         </div>
       );
@@ -298,7 +307,7 @@ class Table extends React.Component {
       >
         <Scroller {...scrollerProps} className={Context.prefixClass('table-content-container')}>
           <div ref={(c) => { t.mainTable = c; }} className={Context.prefixClass('table-content')}>
-            {t.props.showHeader ? renderHeader(columns) : null}
+            {t.props.showHeader ? this.renderHeader(columns) : null}
             {t.renderBody(columns)}
           </div>
         </Scroller>

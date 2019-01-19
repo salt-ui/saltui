@@ -126,8 +126,8 @@ class Demo extends React.Component {
         },
         { dataKey: 'name', title: '姓名', align: 'center' },
         { dataKey: 'sex', title: '性别', align: 'center' },
-        { dataKey: 'age', title: '邮件', align: 'center' },
-        { dataKey: 'city', title: '城市', align: 'center' },
+        // { dataKey: 'age', title: '邮件', align: 'center' },
+        // { dataKey: 'city', title: '城市', align: 'center' },
       ],
       columns2: [
         {
@@ -182,15 +182,15 @@ class Demo extends React.Component {
           {/*hideSplitLine*/}
           {/*leftFixed={0}*/}
         {/*/>*/}
-        <div className="tip">列固定 不显示标题</div>
-        <Table
-          columns={t.state.columns}
-          data={t.state.data}
-          leftFixed={0}
-          rightFixed={0}
-          hideSplitLine={true}
-          showHeader={true}
-        />
+        {/*<div className="tip">列固定 不显示标题</div>*/}
+        {/*<Table*/}
+          {/*columns={t.state.columns}*/}
+          {/*data={t.state.data}*/}
+          {/*leftFixed={0}*/}
+          {/*rightFixed={0}*/}
+          {/*hideSplitLine={true}*/}
+          {/*showHeader={true}*/}
+        {/*/>*/}
         <Table
           columns={t.state.columns}
           data={t.state.data}
