@@ -5,6 +5,7 @@
  * All rights reserved.
  */
 import React from 'react';
+import ReactDom from 'react-dom'
 import PropTypes from 'prop-types';
 import FilterBar from './FilterBar'
 import FilterPanel from './FilterPanel'
@@ -48,7 +49,8 @@ class Filter extends React.Component {
     }
     this.state = {
       activeIndex: props.activeIndex,
-      maskVisible: false
+      maskVisible: false,
+      maskOffset: 0
     }
   }
 
@@ -143,11 +145,19 @@ class Filter extends React.Component {
   reset() {
     this.selectData = {}
   }
+  componentDidMount() {
+    const filterBar = ReactDom.findDOMNode(this.filterBar)
+    const rect = filterBar.getBoundingClientRect()
+    this.setState({
+      maskOffset: rect.top
+    })
+  }
   render() {
     const options = this.formatOptions();
     const {
       activeIndex,
-      maskVisible
+      maskVisible,
+      maskOffset
     } = this.state;
     const props = {
       ...this.props,
@@ -163,12 +173,13 @@ class Filter extends React.Component {
       <div className={classnames(Context.prefixClass('filter-wrapper'), {
         [props.className]: !!props.className,
       })}>
-        <FilterBar {...props} />
+        <FilterBar {...props} ref={c => {this.filterBar = c}} />
         <FilterPanel {...props} />
         <Mask
           visible={maskVisible}
           opacity={0.4}
           zIndex={800}
+          topOffset={`${maskOffset}px`}
           onClick={this.handleMaskClick}
         />
       </div>

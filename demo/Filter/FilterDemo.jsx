@@ -137,6 +137,11 @@ class Demo extends React.Component {
   render() {
     return (
       <div>
+        <div style={{ lineHeight: 2 }}>
+          <p>something else</p>
+          <p>something else</p>
+          <p>something else</p>
+        </div>
         <Filter
           size={4}
           activeIndex={1}
