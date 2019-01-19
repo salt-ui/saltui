@@ -126,8 +126,8 @@ class Demo extends React.Component {
         },
         { dataKey: 'name', title: '姓名', align: 'center' },
         { dataKey: 'sex', title: '性别', align: 'center' },
-        // { dataKey: 'age', title: '邮件', align: 'center' },
-        // { dataKey: 'city', title: '城市', align: 'center' },
+        { dataKey: 'age', title: '邮件', align: 'center' },
+        { dataKey: 'city', title: '城市', align: 'center' },
       ],
       columns2: [
         {

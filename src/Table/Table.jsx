@@ -30,15 +30,12 @@ class Table extends React.Component {
     });
     // arrow
     columns.push({
-      dataKey: 'subRowArrow',
+      dataKey: 'actionColumn',
       title: '',
       align: 'center',
       width: Context.rem(40, 640),
       render: (cellData, item) => {
-        if (item.data && item.data.length) {
-          return <Icon className={Context.prefixClass('table-row-item-icon')} onClick={this.handleOpenSubRow} width={20} name={'angle-right'} />
-        }
-        return null
+        return this.renderActionColumn(cellData, item)
       }
     });
     return columns
@@ -53,10 +50,17 @@ class Table extends React.Component {
     };
   }
 
-  handleOpenSubRow = () => {
+  toggleSubRow = () => {
     console.log(this)
 
     debugger
+  }
+
+  renderActionColumn(cellData, item) {
+    if (item.data && item.data.length) {
+      return <Icon className={Context.prefixClass('table-row-item-icon')} onClick={this.toggleSubRow} width={20} name={'angle-right'} />
+    }
+    return null
   }
 
   componentDidMount() {
@@ -75,14 +79,14 @@ class Table extends React.Component {
             width: column.width,
             textAlign: column.align,
           };
-          const isSubRowArrow = column.dataKey === 'subRowArrow';
+          const isActionColumn = column.dataKey === 'actionColumn';
 
           return (
             <div
               className={classnames(Context.prefixClass('table-row-item DIB omit'), {
                 firstRow: index === 0,
-                [Context.prefixClass('PL12 PR12')]: !isSubRowArrow,
-                [Context.prefixClass('arrow-column')]: isSubRowArrow
+                [Context.prefixClass('PL12 PR12')]: !isActionColumn,
+                [Context.prefixClass('arrow-column')]: isActionColumn
               })}
               style={rowItemStyle}
               key={i}
@@ -93,10 +97,6 @@ class Table extends React.Component {
         })}
       </div>
     );
-  }
-
-  toggleSubRow = () => {
-    debugger
   }
 
   renderHeader(columns){
@@ -116,7 +116,7 @@ class Table extends React.Component {
                 className={classnames(Context.prefixClass('table-header-item omit DIB'), {
                   firstRow: index === 0,
                   lastRow: index === cl - 1,
-                  [Context.prefixClass('PL12 PR12')]: column.dataKey !== 'subRowArrow'
+                  [Context.prefixClass('PL12 PR12')]: column.dataKey !== 'actionColumn'
                 })}
                 style={headerItemStyle}
                 key={index}
@@ -257,6 +257,9 @@ class Table extends React.Component {
       columnsValue = columnsValue.slice(0, leftFixed);
     } else {
       columnsValue = columnsValue.slice(columnsValue.length - rightFixed - 1, columnsValue.length);
+      if (columnsValue.length === 1 && columns.length < 5) {
+        columnsValue = []
+      }
     }
     if (columnsValue.length) {
       return (
@@ -272,10 +275,6 @@ class Table extends React.Component {
       );
     }
     return null;
-  }
-
-  renderActionColumn() {
-    return 1
   }
 
   render() {
