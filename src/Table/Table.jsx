@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import deepcopy from 'lodash/cloneDeep';
 import deepEqual from 'lodash/isEqual';
+import chunk from "lodash/chunk";
 import React from 'react';
 import Scroller from '../Scroller';
 import Context from '../Context';
@@ -67,9 +68,13 @@ class Table extends React.Component {
   }
 
   toggleSubTable = (data) => {
+    this.subTablePageData = chunk(data.data, this.props.subTablePageSize);
     this.setState({
       subTableVisible: !this.state.subTableVisible,
-      subTableData: data
+      subTableData: {
+        ...data,
+        data: this.subTablePageData[0]
+      },
     })
   }
 
@@ -186,6 +191,12 @@ class Table extends React.Component {
     console.log(current, isSubTable)
     const { onSubTablePagerChange, onPagerChange } = this.props;
     if (isSubTable) {
+      this.setState({
+        subTableData: {
+          ...this.state.subTableData,
+          data: this.subTablePageData[current - 1]
+        }
+      })
       onSubTablePagerChange(current)
     } else {
       onPagerChange(current)
