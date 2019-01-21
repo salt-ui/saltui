@@ -38,10 +38,11 @@ $tablePrefixCls = t-table;
   //}
 }
 
+
 .{$tablePrefixCls}-right-fixed {
   right: 0;
   background #fff;
-  box-shadow: -1px 0 6px rgba(0, 0, 0, 0.2);
+  box-shadow: -1px 0 4px rgba(0, 0, 0, 0.2);
   &.{$tablePrefixCls}-fixed__has-scroll {
     //box-shadow: -1px 0 6px rgba(0, 0, 0, 0.2);
     &.only-arrow {
@@ -55,6 +56,44 @@ $tablePrefixCls = t-table;
         height 100%
         background $table-header-color
       }
+    }
+  }
+}
+.{$tablePrefixCls} {
+  &.t-sub-table {
+    .{$tablePrefixCls}-right-fixed {
+      .{$tablePrefixCls}-body,
+      .{$tablePrefixCls}-header {
+        hairline border-left $table-split-line-color
+      }
+      box-shadow none
+      &.only-arrow {
+        box-shadow none
+      }
+    }
+    .{$tablePrefixCls}-left-fixed {
+      .{$tablePrefixCls}-body,
+      .{$tablePrefixCls}-header {
+        hairline border-right $table-split-line-color
+      }
+      box-shadow none
+    }
+    .{$tablePrefixCls}-body {
+      .{$tablePrefixCls}-row:last-child {
+        hairline: border-bottom $table-split-line-color;
+      }
+    }
+    .{$tablePrefixCls}-pager {
+      margin-bottom 12px
+    }
+
+    .sub-table-back {
+      line-height 40px
+      height 40px
+      text-align left
+      padding-left 20px
+      color $brand-primary
+      cursor pointer
     }
   }
 }
@@ -83,7 +122,6 @@ $tablePrefixCls = t-table;
 .{$tablePrefixCls}-body {
   white-space: nowrap;
   .{$tablePrefixCls}-left-fixed & {
-    //background: $normal-alpha-7;
     color: $normal-alpha-3;
   }
   .{$tablePrefixCls}-right-fixed & {

@@ -37,6 +37,134 @@ class Demo extends React.Component {
                 city: '11',
                 sex: '女11',
                 age: '1111',
+                data: [
+                  {
+                    title: '人物111',
+                    nameId: 'xiaow',
+                    name: '小王11',
+                    cityId: 'bj11',
+                    city: '11',
+                    sex: '女11',
+                    age: '1111',
+                  },
+                ]
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
+              },
+              {
+                title: '人物111',
+                nameId: 'xiaowang11',
+                name: '小王11',
+                cityId: 'bj11',
+                city: '11',
+                sex: '女11',
+                age: '1111',
               }
             ]
           },
@@ -57,6 +185,26 @@ class Demo extends React.Component {
             city: '北京',
             sex: '女',
             age: '19',
+            data: [
+              {
+                title: '人物11',
+                nameId: 'xiaowang111',
+                name: '小王12',
+                cityId: 'b12j',
+                city: '北123京',
+                sex: '女123',
+                age: '11231236',
+              },
+              {
+                title: '人物11',
+                nameId: 'xiaowang222',
+                name: '小王12',
+                cityId: 'b12j',
+                city: '北123京',
+                sex: '女123',
+                age: '11231236',
+              }
+            ]
           },
           {
             title: '人物4',
@@ -68,6 +216,8 @@ class Demo extends React.Component {
             age: '26',
           },
         ],
+        totalCount: 16,
+        currentPage: 1
       },
       data2: {
         data: [
@@ -82,6 +232,15 @@ class Demo extends React.Component {
               {
                 title: '人物11',
                 nameId: 'xiaowang1',
+                name: '小王12',
+                cityId: 'b12j',
+                city: '北123京',
+                sex: '女123',
+                age: '11231236',
+              },
+              {
+                title: '人物11',
+                nameId: 'xiaowang2',
                 name: '小王12',
                 cityId: 'b12j',
                 city: '北123京',
@@ -113,6 +272,26 @@ class Demo extends React.Component {
             cityId: 'hz',
             city: '杭州',
             sex: '男',
+            data: [
+              {
+                title: '人物11',
+                nameId: 'xiaowang1',
+                name: '小王12',
+                cityId: 'b12j',
+                city: '北123京',
+                sex: '女123',
+                age: '11231236',
+              },
+              {
+                title: '人物11',
+                nameId: 'xiaowang2',
+                name: '小王12',
+                cityId: 'b12j',
+                city: '北123京',
+                sex: '女123',
+                age: '11231236',
+              }
+            ]
           },
         ],
         currentPage: 1,
@@ -191,33 +370,42 @@ class Demo extends React.Component {
           {/*hideSplitLine={true}*/}
           {/*showHeader={true}*/}
         {/*/>*/}
-        <Table
-          columns={t.state.columns}
-          data={t.state.data}
-          leftFixed={0}
-          rightFixed={0}
-          showHeader={true}
-        />
-        <Table
-          columns={t.state.columns}
-          data={t.state.data}
-          leftFixed={0}
-          rightFixed={0}
-        />
-        <Table
-          columns={t.state.columns}
-          data={t.state.data}
-          leftFixed={1}
-          rightFixed={0}
-          hideSplitLine
-        />
+        {/*<Table*/}
+          {/*columns={t.state.columns}*/}
+          {/*data={t.state.data}*/}
+          {/*leftFixed={0}*/}
+          {/*rightFixed={0}*/}
+          {/*showHeader={true}*/}
+        {/*/>*/}
+        {/*<Table*/}
+          {/*columns={t.state.columns}*/}
+          {/*data={t.state.data}*/}
+          {/*leftFixed={0}*/}
+          {/*rightFixed={0}*/}
+        {/*/>*/}
+        {/*<Table*/}
+          {/*columns={t.state.columns}*/}
+          {/*data={t.state.data}*/}
+          {/*leftFixed={1}*/}
+          {/*rightFixed={0}*/}
+          {/*hideSplitLine*/}
+        {/*/>*/}
 
         <Table
           columns={t.state.columns}
           data={t.state.data}
-          leftFixed={0}
+          leftFixed={1}
           rightFixed={1}
+          pageSize={8}
+          subTablePageSize={4}
         />
+
+        {/*<Table*/}
+          {/*columns={t.state.columns}*/}
+          {/*data={t.state.data}*/}
+          {/*leftFixed={0}*/}
+          {/*rightFixed={1}*/}
+        {/*/>*/}
         {/*<div className="tip">列固定 不显示标题（隐藏分割线）</div>*/}
         {/*<Table*/}
           {/*columns={t.state.columns}*/}
