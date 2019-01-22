@@ -32,22 +32,17 @@ $tablePrefixCls = t-table;
 .{$tablePrefixCls}-left-fixed {
   left: 0;
   background: white;
-  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
-  //&.{$tablePrefixCls}-fixed__has-scroll {
-  //  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
-  //}
+  &.{$tablePrefixCls}-fixed__has-scroll {
+    box-shadow: 1px 0 4px rgba(100, 100, 100, 0.2);
+  }
 }
 
 
 .{$tablePrefixCls}-right-fixed {
   right: 0;
   background #fff;
-  box-shadow: -1px 0 4px rgba(0, 0, 0, 0.2);
   &.{$tablePrefixCls}-fixed__has-scroll {
-    //box-shadow: -1px 0 6px rgba(0, 0, 0, 0.2);
-    &.only-arrow {
-      box-shadow none
-    }
+    box-shadow: -1px 0 4px rgba(100, 100, 100, 0.2);
   }
   &.only-arrow {
     .{$tablePrefixCls}-header {
@@ -64,19 +59,19 @@ $tablePrefixCls = t-table;
     .{$tablePrefixCls}-right-fixed {
       .{$tablePrefixCls}-body,
       .{$tablePrefixCls}-header {
-        hairline border-left $table-split-line-color
+        //hairline border-left $table-split-line-color
       }
-      box-shadow none
-      &.only-arrow {
-        box-shadow none
-      }
+      //box-shadow none
+      //&.only-arrow {
+      //  box-shadow none
+      //}
     }
     .{$tablePrefixCls}-left-fixed {
       .{$tablePrefixCls}-body,
       .{$tablePrefixCls}-header {
-        hairline border-right $table-split-line-color
+        //hairline border-right $table-split-line-color
       }
-      box-shadow none
+      //box-shadow none
     }
     .{$tablePrefixCls}-body {
       .{$tablePrefixCls}-row:last-child {

@@ -215,6 +215,42 @@ class Demo extends React.Component {
             sex: '男',
             age: '26',
           },
+          {
+            title: '人物4',
+            nameId: 'xiaoli62345',
+            name: '小李李李李李李刘丽',
+            cityId: 'hz',
+            city: '杭州',
+            sex: '男',
+            age: '26',
+          },
+          {
+            title: '人物4',
+            nameId: 'xiaoli2134',
+            name: '小李李李李李李刘丽',
+            cityId: 'hz',
+            city: '杭州',
+            sex: '男',
+            age: '26',
+          },
+          {
+            title: '人物4',
+            nameId: 'xiaoli523',
+            name: '小李李李李李李刘丽',
+            cityId: 'hz',
+            city: '杭州',
+            sex: '男',
+            age: '26',
+          },
+          {
+            title: '人物4',
+            nameId: 'xiaoli233',
+            name: '小李李李李李李刘丽',
+            cityId: 'hz',
+            city: '杭州',
+            sex: '男',
+            age: '26',
+          },
         ],
         totalCount: 16,
         currentPage: 1
@@ -302,8 +338,14 @@ class Demo extends React.Component {
           dataKey: 'title',
           title: '表头',
           align: 'center',
+          // fixed: true
         },
-        { dataKey: 'name', title: '姓名', align: 'center' },
+        {
+          dataKey: 'name',
+          title: '姓名',
+          align: 'center',
+          // rightFixed: true
+        },
         { dataKey: 'sex', title: '性别', align: 'center' },
         { dataKey: 'age', title: '邮件', align: 'center' },
         { dataKey: 'city', title: '城市', align: 'center' },
@@ -397,7 +439,7 @@ class Demo extends React.Component {
           leftFixed={1}
           rightFixed={1}
           pageSize={8}
-          subTablePageSize={4}
+          subTablePageSize={6}
         />
 
         {/*<Table*/}

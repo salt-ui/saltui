@@ -21,24 +21,25 @@ class Table extends React.Component {
 
   constructor(props) {
     super(props);
+    const hasSubTable = this.hasSubTable();
     this.state = {
-      columns: this.processColumns(props),
+      columns: this.processColumns(props, hasSubTable),
       prevColumns: deepcopy(props.columns),
       subTableVisible: false,
       subTableData: [],
       // 是否存在子表格，用于初始状态下最右侧列的显示判断
-      hasSubTable: this.hasSubTable()
+      hasSubTable
     };
   }
 
   /**
    * 为 column 添加默认值
    */
-  processColumns(props) {
+  processColumns(props, hasSubTable) {
     // const newProps = props;
     let columns = deepcopy(props.columns).map((column) => {
       const columns = column;
-      columns.width = Context.rem((columns.width || 0.25) * 640, 640);
+      columns.width = Context.rem((columns.width || 0.25) * (hasSubTable && props.columns.length > 3 ? 598 : 640), 640);
       columns.align = columns.align || 'left';
       return columns;
     });
@@ -48,8 +49,9 @@ class Table extends React.Component {
       title: '',
       align: 'center',
       width: Context.rem(40, 640),
-      render: (cellData, item) => {
-        return this.renderActionColumn(cellData, item)
+      rightFixed: true,
+      render: (cellData, item, isSubTable) => {
+        return this.renderActionColumn(cellData, item, isSubTable)
       }
     });
     return columns
@@ -78,13 +80,28 @@ class Table extends React.Component {
     })
   }
 
-  renderActionColumn(cellData, item) {
+  renderActionColumn(cellData, item, isSubTable) {
     if (item.data && item.data.length) {
-      return <Icon className={Context.prefixClass('table-row-item-icon')} onClick={() => { this.toggleSubTable({
-        totalCount: item.data.length,
-        currentPage: 1,
-        data: item.data
-      }) }} width={20} name={'angle-right'} />
+      return (
+        <Icon
+          className={Context.prefixClass('table-row-item-icon')}
+          style={{
+            opacity: isSubTable ? 0 : 1
+          }}
+          onClick={() => {
+            if (isSubTable) {
+              return
+            }
+            this.toggleSubTable({
+              totalCount: item.data.length,
+              currentPage: 1,
+              data: item.data
+            })
+          }}
+          width={20}
+          name={'angle-right'}
+        />
+      )
     }
     return null
   }
@@ -107,7 +124,7 @@ class Table extends React.Component {
           };
           const isActionColumn = column.dataKey === 'actionColumn';
           // todo don't support third subrow
-          if (isActionColumn && (isSubTable || !this.state.hasSubTable)) {
+          if (isActionColumn && (!this.state.hasSubTable)) {
             return null
           }
           return (
@@ -120,7 +137,7 @@ class Table extends React.Component {
               style={rowItemStyle}
               key={i}
             >
-              {column.render ? column.render(item[column.dataKey], item) : item[column.dataKey]}
+              {column.render ? column.render(item[column.dataKey], item, isSubTable) : item[column.dataKey]}
             </div>
           );
         })}
@@ -142,7 +159,7 @@ class Table extends React.Component {
             };
             const isActionColumn = column.dataKey === 'actionColumn';
             // todo don't support third subrow
-            if (isActionColumn && (isSubTable || !this.state.hasSubTable)) {
+            if (isActionColumn && (!this.state.hasSubTable)) {
               return null
             }
 
@@ -208,26 +225,30 @@ class Table extends React.Component {
     const scrollClassName = Context.prefixClass('table-fixed__has-scroll');
 
     if (this.leftFixed) {
+      const classList = this.leftFixed.classList;
       if (startX !== undefined) {
         if (startX === 0) {
-          this.leftFixed.classList.remove(scrollClassName);
+          classList.remove(scrollClassName);
         } else {
-          this.leftFixed.classList.add(scrollClassName);
+          classList.add(scrollClassName);
         }
       }
     }
 
     if (this.rightFixed) {
+      const classList = this.rightFixed.classList
+
       if (startX !== undefined) {
-        if (startX === maxScrollX) {
-          this.rightFixed.classList.remove(scrollClassName);
+        if (startX === maxScrollX || this.state.columns.length < 5) {
+          classList.remove(scrollClassName);
         } else {
-          this.rightFixed.classList.add(scrollClassName);
+          classList.add(scrollClassName);
         }
       } else if (maxScrollX < 0) {
-        this.rightFixed.classList.add(scrollClassName);
+        classList.add(scrollClassName);
       }
     }
+
   }
 
   renderBody(columns, fixed, isSubTable) {
@@ -295,32 +316,59 @@ class Table extends React.Component {
     return null;
   }
 
-  renderFixed(columns, direction, isSubTable) {
-    const t = this;
-    let columnsValue = columns;
-    const { leftFixed, rightFixed } = t.props;
-    if (direction === 'left') {
-      columnsValue = columnsValue.slice(0, leftFixed);
-    } else {
-      columnsValue = columnsValue.slice(columnsValue.length - rightFixed - 1, columnsValue.length);
-      if (columnsValue.length === 1 && columns.length < 5) {
-        columnsValue = []
+  getFixedColumns(columns) {
+    const { leftFixed, rightFixed } = this.props;
+    let leftFixedColumns = [];
+    let rightFixedColumns = [];
+    if (leftFixed || rightFixed) {
+      if (leftFixed) {
+        leftFixedColumns = columns.slice(0, leftFixed)
       }
+      if (rightFixed) {
+        rightFixedColumns = columns.slice(columns.length - rightFixed - 1, columns.length)
+        if (rightFixedColumns.length === 1 && columns.length < 5) {
+          rightFixedColumns = []
+        }
+      }
+    } else {
+      columns.map(column => {
+        if (column.fixed) {
+          leftFixedColumns.push(column)
+        } else if (column.rightFixed){
+          rightFixedColumns.push(column)
+        }
+      });
     }
-    if (columnsValue.length) {
+    return {
+      leftFixedColumns,
+      rightFixedColumns
+    }
+  }
+
+  renderFixed(columns, isSubTable) {
+    const t = this;
+    const scrollClassName = Context.prefixClass('table-fixed__has-scroll');
+    let columnsValue = t.getFixedColumns(columns);
+    return ['left', 'right'].map(direction => {
+      const cols = columnsValue[`${direction}FixedColumns`];
+      const onlyArrow = direction === 'right' && cols.length === 1
+      if (!cols.length || onlyArrow && columns.length < 5) {
+        return null
+      }
       return (
         <div
+          key={direction}
           className={classnames(Context.prefixClass(`table-${direction}-fixed PA`), {
-            'only-arrow': direction === 'right' && columnsValue.length === 1
+            'only-arrow': onlyArrow,
+            [scrollClassName]: isSubTable && direction === 'right' && columns > 5
           })}
           ref={(c) => { this[`${direction}Fixed`] = c; }}
         >
-          {t.props.showHeader ? this.renderHeader(columnsValue, isSubTable) : null}
-          {t.renderBody(columnsValue, true, isSubTable)}
+          {t.props.showHeader ? this.renderHeader(cols, isSubTable) : null}
+          {t.renderBody(cols, true, isSubTable)}
         </div>
-      );
-    }
-    return null;
+      )
+    })
   }
 
   renderSubTable() {
@@ -372,8 +420,7 @@ class Table extends React.Component {
               {t.renderBody(columns, false, isSubTable)}
             </div>
           </Scroller>
-          {t.renderFixed(columns, 'left', isSubTable)}
-          {t.renderFixed(columns, 'right', isSubTable)}
+          {t.renderFixed(columns, isSubTable)}
           {t.renderPager(isSubTable)}
         </div>
         {isSubTable ? null : t.renderSubTable()}
