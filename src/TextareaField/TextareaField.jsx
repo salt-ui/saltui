@@ -60,7 +60,7 @@ class TextareaField extends React.Component {
   render() {
     const t = this;
     const {
-      placeholder, readOnly, lineHeight, disabled,
+      placeholder, readOnly, lineHeight, disabled, minRows, maxRows,
     } = t.props;
     const style = {
       // height: t.state.height,
@@ -82,6 +82,8 @@ class TextareaField extends React.Component {
           className={prefixClass('textarea-field-content')}
           style={style}
           placeholder={placeholder}
+          minRows={minRows}
+          maxRows={maxRows}
           value={t.props.value}
           readOnly={readOnly}
           disabled={disabled}
@@ -106,6 +108,8 @@ TextareaField.defaultProps = {
   rows: undefined,
   className: undefined,
   children: undefined,
+  minRows: undefined,
+  maxRows: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
