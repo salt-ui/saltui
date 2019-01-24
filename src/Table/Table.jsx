@@ -99,11 +99,13 @@ class Table extends React.Component {
             })
           }}
           width={20}
+          height={18}
           name={'angle-right'}
         />
       )
     }
-    return null
+    // 需要占位一下，否则会导致样式错误
+    return <div style={{display: 'inline-block'}} />
   }
 
   componentDidMount() {
@@ -129,8 +131,9 @@ class Table extends React.Component {
           }
           return (
             <div
-              className={classnames(Context.prefixClass('table-row-item DIB omit'), {
+              className={classnames({
                 firstRow: index === 0,
+                [Context.prefixClass('table-row-item DIB omit')]: true,
                 [Context.prefixClass('PL12 PR12')]: !isActionColumn,
                 [Context.prefixClass('arrow-column')]: isActionColumn
               })}
@@ -165,9 +168,10 @@ class Table extends React.Component {
 
             return (
               <div
-                className={classnames(Context.prefixClass('table-header-item omit DIB'), {
+                className={classnames({
                   firstRow: index === 0,
                   lastRow: index === cl - 1,
+                  [Context.prefixClass('table-header-item omit DIB')]: !isActionColumn,
                   [Context.prefixClass('PL12 PR12')]: isActionColumn
                 })}
                 style={headerItemStyle}

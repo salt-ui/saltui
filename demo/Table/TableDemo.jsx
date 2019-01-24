@@ -338,13 +338,13 @@ class Demo extends React.Component {
           dataKey: 'title',
           title: '表头',
           align: 'center',
-          // fixed: true
+          fixed: true
         },
         {
           dataKey: 'name',
           title: '姓名',
           align: 'center',
-          // rightFixed: true
+          rightFixed: true
         },
         { dataKey: 'sex', title: '性别', align: 'center' },
         { dataKey: 'age', title: '邮件', align: 'center' },
@@ -436,8 +436,8 @@ class Demo extends React.Component {
         <Table
           columns={t.state.columns}
           data={t.state.data}
-          leftFixed={1}
-          rightFixed={1}
+          // leftFixed={1}
+          // rightFixed={1}
           pageSize={8}
           subTablePageSize={6}
         />

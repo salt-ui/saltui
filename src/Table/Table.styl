@@ -118,6 +118,7 @@ $tablePrefixCls = t-table;
   white-space: nowrap;
   .{$tablePrefixCls}-left-fixed & {
     color: $normal-alpha-3;
+    //background $table-header-color
   }
   .{$tablePrefixCls}-right-fixed & {
     color: $normal-alpha-3;
@@ -151,7 +152,8 @@ $tablePrefixCls = t-table;
   color: $dark-alpha-3;
 }
 .{$tablePrefixCls}-row-item-icon {
-  padding-top 4px;
+  position relative
+  top 5px
   svg {
     fill $normal-alpha-3;
   }
