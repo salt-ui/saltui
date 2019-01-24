@@ -52,6 +52,9 @@ $tablePrefixCls = t-table;
         background $table-header-color
       }
     }
+    .{$tablePrefixCls}-body {
+      background none
+    }
   }
 }
 .{$tablePrefixCls} {
@@ -118,18 +121,12 @@ $tablePrefixCls = t-table;
   white-space: nowrap;
   .{$tablePrefixCls}-left-fixed & {
     color: $normal-alpha-3;
-    //background $table-header-color
+    background $table-header-color
+    border-right: none;
   }
   .{$tablePrefixCls}-right-fixed & {
     color: $normal-alpha-3;
-  }
-
-  .{$tablePrefixCls}-left-fixed & {
-    border-right: none;
-  }
-
-  .{$tablePrefixCls}-right-fixed & {
-    //hairline: border-left $table-split-line-color;
+    background $table-header-color
   }
 }
 
