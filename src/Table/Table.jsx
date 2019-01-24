@@ -23,7 +23,7 @@ class Table extends React.Component {
     super(props);
     const hasSubTable = this.hasSubTable();
     this.state = {
-      columns: this.processColumns(props, hasSubTable),
+      columns: Table.processColumns(props, hasSubTable),
       prevColumns: deepcopy(props.columns),
       subTableVisible: false,
       subTableData: [],
@@ -35,7 +35,7 @@ class Table extends React.Component {
   /**
    * 为 column 添加默认值
    */
-  processColumns(props, hasSubTable) {
+  static processColumns(props, hasSubTable) {
     // const newProps = props;
     let columns = deepcopy(props.columns).map((column) => {
       const columns = column;
@@ -50,7 +50,7 @@ class Table extends React.Component {
       align: 'center',
       width: Context.rem(40, 640),
       rightFixed: true,
-      render: (cellData, item, isSubTable) => {
+      render(cellData, item, isSubTable) {
         return this.renderActionColumn(cellData, item, isSubTable)
       }
     });
@@ -140,7 +140,7 @@ class Table extends React.Component {
               style={rowItemStyle}
               key={i}
             >
-              {column.render ? column.render(item[column.dataKey], item, isSubTable) : item[column.dataKey]}
+              {column.render ? column.render.call(this, item[column.dataKey], item, isSubTable) : item[column.dataKey]}
             </div>
           );
         })}
@@ -189,7 +189,7 @@ class Table extends React.Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (!deepEqual(prevState.prevColumns, nextProps.columns)) {
       // 不在这里更新 this.columns 是因为后面 didUpdate 时还用的到。
-      const columns = this.processColumns(nextProps);
+      const columns = Table.processColumns(nextProps);
 
       return {
         columns,

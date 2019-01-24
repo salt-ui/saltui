@@ -436,6 +436,8 @@ class Demo extends React.Component {
         <Table
           columns={t.state.columns}
           data={t.state.data}
+          // showHeader={false}
+          hideSplitLine={false}
           // leftFixed={1}
           // rightFixed={1}
           pageSize={8}
