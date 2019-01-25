@@ -1,3 +1,7 @@
+## 4.3.13 / 2019-01-23
+
+* `fix`: `TextareaField` not passing minRows and maxRows to `Textarea`
+
 ## 4.3.12 / 2019-01-15
 
 * `fix`: `RefreshControl` TypeError: null is not an object (evaluating 'el.getBoundingClientRect') when ScrollList url is wrong
