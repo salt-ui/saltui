@@ -77,8 +77,10 @@ class RefreshControl extends React.Component {
 
   componentDidMount() {
     this.bindDrag();
-    setTimeout(() => {
-      this.initTop = getOffset(this.trigger).top;
+    this.initTopTimer = setTimeout(() => {
+      if (this.trigger) {
+        this.initTop = getOffset(this.trigger).top;
+      }
     }, 200);
   }
 
@@ -96,10 +98,14 @@ class RefreshControl extends React.Component {
   }
 
   componentWillUnmount() {
-    if (!this.drager) return;
-
-    this.drager.destory();
-    this.drager = null;
+    if (this.drager) {
+      this.drager.destory();
+      this.drager = null;
+    }
+    if (this.initTopTimer) {
+      clearTimeout(this.initTopTimer);
+      this.initTopTimer = undefined;
+    }
   }
 
   onRefreshingChanged(val) {
