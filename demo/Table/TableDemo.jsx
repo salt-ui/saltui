@@ -258,6 +258,7 @@ class Demo extends React.Component {
       data2: {
         data: [
           {
+            title: '11',
             email: 'xw@abc.com',
             nameId: '是不会变得说不出街道办事处比较说的ng',
             name: '小王',
@@ -286,6 +287,7 @@ class Demo extends React.Component {
             ]
           },
           {
+            title: '222',
             email: 'xl@abc.com',
             nameId: 'xiaoli',
             name: '小李',
@@ -294,6 +296,7 @@ class Demo extends React.Component {
             sex: '男',
           },
           {
+            title: '33',
             email: 'xw@abc.com',
             nameId: 'xiaowang',
             name: '小王',
@@ -338,7 +341,7 @@ class Demo extends React.Component {
           dataKey: 'title',
           title: '表头',
           align: 'center',
-          fixed: true
+          // fixed: true
         },
         {
           dataKey: 'name',
@@ -348,7 +351,7 @@ class Demo extends React.Component {
         },
         { dataKey: 'sex', title: '性别', align: 'center' },
         { dataKey: 'age', title: '邮件', align: 'center' },
-        { dataKey: 'city', title: '城市', align: 'center' },
+        // { dataKey: 'city', title: '城市', align: 'center' },
       ],
       columns2: [
         {
@@ -380,17 +383,20 @@ class Demo extends React.Component {
         { dataKey: 'email', title: '邮件', align: 'center' },
         { dataKey: 'email', title: '邮件', align: 'center' },
       ],
+      hideSplitLine: false
     };
 
     setTimeout(() => {
       this.setState({
-        columns: [
-          {
-            dataKey: 'name',
-            title: '姓名',
-            align: 'center'
-          }
-        ]
+        // columns: [
+        //   {
+        //     dataKey: 'name',
+        //     title: '姓名',
+        //     align: 'center'
+        //   }
+        // ]
+        // data: this.state.data2,
+        // hideSplitLine: true
       })
     }, 2000)
   }
@@ -449,7 +455,7 @@ class Demo extends React.Component {
           columns={t.state.columns}
           data={t.state.data}
           // showHeader={false}
-          hideSplitLine={false}
+          hideSplitLine={t.state.hideSplitLine}
           // leftFixed={1}
           // rightFixed={1}
           pageSize={8}
