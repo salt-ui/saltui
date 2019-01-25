@@ -1,3 +1,6 @@
+## 4.4.0
+* `change` Table support sub table
+
 ## 4.3.13 / 2019-01-23
 
 * `fix`: `TextareaField` not passing minRows and maxRows to `Textarea`
