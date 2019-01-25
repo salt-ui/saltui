@@ -381,6 +381,18 @@ class Demo extends React.Component {
         { dataKey: 'email', title: '邮件', align: 'center' },
       ],
     };
+
+    setTimeout(() => {
+      this.setState({
+        columns: [
+          {
+            dataKey: 'name',
+            title: '姓名',
+            align: 'center'
+          }
+        ]
+      })
+    }, 2000)
   }
 
   render() {

@@ -8,6 +8,7 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import deepcopy from 'lodash/cloneDeep';
+import { polyfill } from 'react-lifecycles-compat';
 import deepEqual from 'lodash/isEqual';
 import chunk from "lodash/chunk";
 import React from 'react';
@@ -190,7 +191,6 @@ class Table extends React.Component {
     if (!deepEqual(prevState.prevColumns, nextProps.columns)) {
       // 不在这里更新 this.columns 是因为后面 didUpdate 时还用的到。
       const columns = Table.processColumns(nextProps);
-
       return {
         columns,
         prevColumns: deepcopy(nextProps.columns),
@@ -433,6 +433,7 @@ class Table extends React.Component {
   }
 
   render() {
+    console.log(11111)
     return this.renderTable()
   }
 }
@@ -473,6 +474,6 @@ Table.propTypes = {
 };
 
 Table.displayName = 'Table';
-
+polyfill(Table)
 
 export default Table;
