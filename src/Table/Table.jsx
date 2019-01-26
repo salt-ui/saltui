@@ -28,6 +28,7 @@ class Table extends React.Component {
       prevColumns: deepcopy(props.columns),
       subTableVisible: false,
       subTableData: [],
+      subColumns: [],
       // 是否存在子表格，用于初始状态下最右侧列的显示判断
       hasSubTable
     };
@@ -71,6 +72,7 @@ class Table extends React.Component {
   }
 
   toggleSubTable = (data) => {
+    const columns = data.columns;
     this.subTablePageData = chunk(data.data, this.props.subTablePageSize);
     this.setState({
       subTableVisible: !this.state.subTableVisible,
@@ -78,6 +80,7 @@ class Table extends React.Component {
         ...data,
         data: this.subTablePageData[0]
       },
+      subColumns: columns || []
     })
   }
 
@@ -96,7 +99,8 @@ class Table extends React.Component {
             this.toggleSubTable({
               totalCount: item.data.length,
               currentPage: 1,
-              data: item.data
+              data: item.data,
+              columns: item.columns
             })
           }}
           width={20}
@@ -392,7 +396,8 @@ class Table extends React.Component {
   renderTable(isSubTable) {
     const t = this;
     const { className } = t.props;
-    const { columns } = t.state;
+    const { columns, subColumns } = t.state;
+    const subTableColumns = subColumns.length ? Table.processColumns({columns: subColumns} ) : columns;
     const scrollerProps = {
       ref: (c) => { this.scroller = c; },
       bounce: false,
@@ -420,11 +425,11 @@ class Table extends React.Component {
         <div style={{position: 'relative'}}>
           <Scroller {...scrollerProps} className={Context.prefixClass('table-content-container')}>
             <div ref={(c) => { t.mainTable = c; }} className={Context.prefixClass('table-content')}>
-              {t.props.showHeader ? this.renderHeader(columns, isSubTable) : null}
-              {t.renderBody(columns, false, isSubTable)}
+              {t.props.showHeader ? this.renderHeader(isSubTable ? subTableColumns : columns, isSubTable) : null}
+              {t.renderBody(isSubTable ? subTableColumns : columns, false, isSubTable)}
             </div>
           </Scroller>
-          {t.renderFixed(columns, isSubTable)}
+          {t.renderFixed(isSubTable ? subTableColumns : columns, isSubTable)}
           {t.renderPager(isSubTable)}
         </div>
         {isSubTable ? null : t.renderSubTable()}
@@ -433,7 +438,6 @@ class Table extends React.Component {
   }
 
   render() {
-    console.log(11111)
     return this.renderTable()
   }
 }

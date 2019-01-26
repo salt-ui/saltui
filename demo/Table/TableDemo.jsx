@@ -28,6 +28,20 @@ class Demo extends React.Component {
             city: '北京',
             sex: '女',
             age: '16',
+            columns: [
+              {
+                dataKey: 'title',
+                title: '表头',
+                align: 'center',
+                // fixed: true
+              },
+              {
+                dataKey: 'name',
+                title: '姓名',
+                align: 'center',
+                // rightFixed: true
+              },
+            ],
             data: [
               {
                 title: '人物111',
@@ -185,6 +199,38 @@ class Demo extends React.Component {
             city: '北京',
             sex: '女',
             age: '19',
+            columns: [
+              {
+                dataKey: 'title',
+                title: '表头',
+                align: 'center',
+                fixed: true
+              },
+              {
+                dataKey: 'name',
+                title: '姓名',
+                align: 'center',
+                // rightFixed: true
+              },
+              {
+                dataKey: 'nameId',
+                title: '姓名',
+                align: 'center',
+                rightFixed: true
+              },
+              {
+                dataKey: 'city',
+                title: '姓名',
+                align: 'center',
+                // rightFixed: true
+              },
+              {
+                dataKey: 'sex',
+                title: '姓名',
+                align: 'center',
+                // rightFixed: true
+              },
+            ],
             data: [
               {
                 title: '人物11',
@@ -311,6 +357,20 @@ class Demo extends React.Component {
             cityId: 'hz',
             city: '杭州',
             sex: '男',
+            columns: [
+              {
+                dataKey: 'title',
+                title: '表头',
+                align: 'center',
+                // fixed: true
+              },
+              {
+                dataKey: 'name',
+                title: '姓名',
+                align: 'center',
+                // rightFixed: true
+              },
+            ],
             data: [
               {
                 title: '人物11',
