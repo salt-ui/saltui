@@ -461,6 +461,15 @@ class Demo extends React.Component {
     }, 2000)
   }
 
+  renderSubComp(subData, rowData) {
+    return (
+      <div style={{ height: '100px', lineHeight: '40px' }}>
+        <p>父行name: {rowData.name}</p>
+        <p>子表格内容: {subData.data.length}</p>
+      </div>
+    )
+  }
+
   render() {
     const t = this;
     const data = {
@@ -512,6 +521,8 @@ class Demo extends React.Component {
         {/*/>*/}
 
         <Table
+          className={'my-table'}
+          // subTableClassName={'sub-table'}
           columns={t.state.columns}
           data={t.state.data}
           // showHeader={false}
@@ -520,6 +531,7 @@ class Demo extends React.Component {
           // rightFixed={1}
           pageSize={8}
           subTablePageSize={6}
+          // renderSubComp={this.renderSubComp}
         />
 
         {/*<Table*/}

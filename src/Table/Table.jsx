@@ -27,7 +27,8 @@ class Table extends React.Component {
       columns: Table.processColumns(props, hasSubTable),
       prevColumns: deepcopy(props.columns),
       subTableVisible: false,
-      subTableData: [],
+      subTableData: {},
+      rowData: {},
       subColumns: [],
       // 是否存在子表格，用于初始状态下最右侧列的显示判断
       hasSubTable
@@ -52,8 +53,8 @@ class Table extends React.Component {
       align: 'center',
       width: Context.rem(40, 640),
       rightFixed: true,
-      render(cellData, item, isSubTable) {
-        return this.renderActionColumn(cellData, item, isSubTable)
+      render(cellData, rowData, isSubTable) {
+        return this.renderActionColumn(cellData, rowData, isSubTable)
       }
     });
     return columns
@@ -71,21 +72,22 @@ class Table extends React.Component {
     return ret;
   }
 
-  toggleSubTable = (data) => {
-    const columns = data.columns;
-    this.subTablePageData = chunk(data.data, this.props.subTablePageSize);
+  toggleSubTable = (subData, rowData) => {
+    const columns = subData.columns;
+    this.subTablePageData = chunk(subData.data, this.props.subTablePageSize);
     this.setState({
       subTableVisible: !this.state.subTableVisible,
       subTableData: {
-        ...data,
-        data: this.subTablePageData[0]
+        ...subData,
+        data: this.subTablePageData[0],
       },
+      rowData,
       subColumns: columns || []
     })
   }
 
-  renderActionColumn(cellData, item, isSubTable) {
-    if (item.data && item.data.length) {
+  renderActionColumn(cellData, rowData, isSubTable) {
+    if (rowData.data && rowData.data.length) {
       return (
         <Icon
           className={Context.prefixClass('table-row-item-icon')}
@@ -97,11 +99,11 @@ class Table extends React.Component {
               return
             }
             this.toggleSubTable({
-              totalCount: item.data.length,
+              totalCount: rowData.data.length,
               currentPage: 1,
-              data: item.data,
-              columns: item.columns
-            })
+              data: rowData.data,
+              columns: rowData.columns
+            }, rowData)
           }}
           width={20}
           height={18}
@@ -118,7 +120,7 @@ class Table extends React.Component {
   }
 
   renderRow(options, isSubTable) {
-    const { item, index, columns } = options;
+    const { rowData, index, columns } = options;
     return (
       <div
         className={classnames(Context.prefixClass('table-row'))}
@@ -145,7 +147,7 @@ class Table extends React.Component {
               style={rowItemStyle}
               key={i}
             >
-              {column.render ? column.render.call(this, item[column.dataKey], item, isSubTable) : item[column.dataKey]}
+              {column.render ? column.render.call(this, rowData[column.dataKey], rowData, isSubTable) : rowData[column.dataKey]}
             </div>
           );
         })}
@@ -270,7 +272,7 @@ class Table extends React.Component {
           last = true;
         }
         return this.renderRow({
-          item,
+          rowData: item,
           index,
           last,
           columns,
@@ -379,11 +381,17 @@ class Table extends React.Component {
     })
   }
 
-  renderSubTable() {
-    const { subTableVisible } = this.state;
+  renderSubTablePopup() {
+    const { renderSubComp } = this.props;
+    const { subTableVisible, subTableData, rowData } = this.state;
     return(
       <Popup
-        content={this.renderTable(true)}
+        content={renderSubComp ? (() => {
+          if (!subTableData.data || !subTableData.data.length) {
+            return null
+          }
+          return renderSubComp.bind(this)(subTableData, rowData)
+        })() : this.renderTable(true)}
         animationType="slide-up"
         onMaskClick={() => { this.setState({ subTableVisible: false }); }}
         visible={subTableVisible}
@@ -395,7 +403,7 @@ class Table extends React.Component {
 
   renderTable(isSubTable) {
     const t = this;
-    const { className } = t.props;
+    const { className, subTableClassName } = t.props;
     const { columns, subColumns } = t.state;
     const subTableColumns = subColumns.length ? Table.processColumns({columns: subColumns} ) : columns;
     const scrollerProps = {
@@ -413,10 +421,11 @@ class Table extends React.Component {
         this.checkScroll(iscroll);
       },
     };
+    const customClassName = isSubTable ? subTableClassName : className;
     return (
       <div
         className={classnames(Context.prefixClass('FS12 PR'), {
-          [className]: !!className,
+          [customClassName]: !!customClassName,
           [Context.prefixClass(isSubTable ? 'table sub-table': 'table')]: true,
           'hide-rows-split-line': t.props.hideSplitLine,
         })}
@@ -432,7 +441,7 @@ class Table extends React.Component {
           {t.renderFixed(isSubTable ? subTableColumns : columns, isSubTable)}
           {t.renderPager(isSubTable)}
         </div>
-        {isSubTable ? null : t.renderSubTable()}
+        {isSubTable ? null : t.renderSubTablePopup()}
       </div>
     );
   }
@@ -459,6 +468,8 @@ Table.defaultProps = {
   onSubTablePagerChange: () => {},
   columns: undefined,
   className: undefined,
+  subTableClassName: undefined,
+  renderSubComp: undefined
 };
 
 Table.propTypes = {
@@ -470,14 +481,16 @@ Table.propTypes = {
   onSubTablePagerChange: PropTypes.func,
   emptyText: PropTypes.string,
   className: PropTypes.string,
+  subTableClassName: PropTypes.string,
   showHeader: PropTypes.bool,
   leftFixed: PropTypes.number,
   rightFixed: PropTypes.number,
   hideSplitLine: PropTypes.bool,
   onPagerChange: PropTypes.func,
+  renderSubComp: PropTypes.func
 };
 
 Table.displayName = 'Table';
-polyfill(Table)
+polyfill(Table);
 
 export default Table;
