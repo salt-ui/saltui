@@ -1,7 +1,7 @@
 /**
  * Table Component Style for SaltUI
  * @author sujingjing
- * 
+ *
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
@@ -26,35 +26,90 @@ $tablePrefixCls = t-table;
 .{$tablePrefixCls}-left-fixed,
 .{$tablePrefixCls}-right-fixed {
   top: 0;
-  background: white;
   transition: box-shadow 0.3s ease-out;
 }
 
 .{$tablePrefixCls}-left-fixed {
   left: 0;
-
+  background: white;
   &.{$tablePrefixCls}-fixed__has-scroll {
-    box-shadow: 1px 0 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 0 4px rgba(100, 100, 100, 0.2);
   }
 }
 
+
 .{$tablePrefixCls}-right-fixed {
   right: 0;
+  background #fff;
   &.{$tablePrefixCls}-fixed__has-scroll {
-    box-shadow: -1px 0 6px rgba(0, 0, 0, 0.2);
+    box-shadow: -1px 0 4px rgba(100, 100, 100, 0.2);
+  }
+  &.only-arrow {
+    .{$tablePrefixCls}-header {
+      background #fff
+      .{$tablePrefixCls}-header-main{
+        height 100%
+        background $table-header-color
+      }
+    }
+    .{$tablePrefixCls}-body {
+      background none
+    }
+  }
+}
+.{$tablePrefixCls} {
+  &.t-sub-table {
+    .{$tablePrefixCls}-right-fixed {
+      .{$tablePrefixCls}-body,
+      .{$tablePrefixCls}-header {
+        //hairline border-left $table-split-line-color
+      }
+      //box-shadow none
+      //&.only-arrow {
+      //  box-shadow none
+      //}
+    }
+    .{$tablePrefixCls}-left-fixed {
+      .{$tablePrefixCls}-body,
+      .{$tablePrefixCls}-header {
+        //hairline border-right $table-split-line-color
+      }
+      //box-shadow none
+    }
+    .{$tablePrefixCls}-body {
+      .{$tablePrefixCls}-row:last-child {
+        hairline: border-bottom $table-split-line-color;
+      }
+    }
+    .{$tablePrefixCls}-pager {
+      margin-bottom 12px
+    }
+
+    .sub-table-back {
+      line-height 40px
+      height 40px
+      text-align left
+      padding-left 20px
+      color $brand-primary
+      cursor pointer
+    }
   }
 }
 
 .{$tablePrefixCls}-header {
-  hairline: border-bottom $table-split-line-color;
+  //hairline: border-bottom $table-split-line-color;
   height: 40px;
   line-height: 39px;
   white-space: nowrap;
-  background: $table-header-color;
+  background #fff
+  .{$tablePrefixCls}-header-main {
+    height 100%
+    background $table-header-color
+  }
 }
 
 .{$tablePrefixCls}-header-item {
-  hairline: border-right $table-split-line-color;
+  border-right: none;
   color: $normal-alpha-3;
 }
 
@@ -64,19 +119,14 @@ $tablePrefixCls = t-table;
 
 .{$tablePrefixCls}-body {
   white-space: nowrap;
-
-  .{$tablePrefixCls}-left-fixed &,
-  .{$tablePrefixCls}-right-fixed & {
-    background: $normal-alpha-7;
-    color: $normal-alpha-3;
-  }
-
   .{$tablePrefixCls}-left-fixed & {
-    hairline: border-right $table-split-line-color;
+    color: $normal-alpha-3;
+    background $table-header-color
+    border-right: none;
   }
-
   .{$tablePrefixCls}-right-fixed & {
-    hairline: border-left $table-split-line-color;
+    color: $normal-alpha-3;
+    background $table-header-color
   }
 }
 
@@ -93,11 +143,17 @@ $tablePrefixCls = t-table;
 .{$tablePrefixCls}-row-item {
   min-height: 40px;
   height: 100%;
-  hairline: border-right $table-split-line-color;
+  border-right: none;
   font-size: 12px;
-  line-height: 18px;
-  padding-top: 11px;
+  line-height: 40px;
   color: $dark-alpha-3;
+}
+.{$tablePrefixCls}-row-item-icon {
+  position relative
+  top 5px
+  svg {
+    fill $normal-alpha-3;
+  }
 }
 
 .{$tablePrefixCls}-left-fixed .{$tablePrefixCls}-body .{$tablePrefixCls}-row-item {
@@ -128,12 +184,11 @@ $tablePrefixCls = t-table;
     .{$tablePrefixCls}-left-fixed .{$tablePrefixCls}-body {
       border-right: none;
     }
-  }
-
-  &.hide-cols-split-line {
-    .{$tablePrefixCls}-header,
     .{$tablePrefixCls}-row {
-      border-bottom: none;
+      border-bottom: none
     }
+    //.{$tablePrefixCls}-header {
+    //  border-bottom: none
+    //}
   }
 }
