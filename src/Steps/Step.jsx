@@ -32,6 +32,7 @@ class Step extends React.Component {
       direction,
       fixStyle,
       tailWidth,
+      showIcon,
     } = props;
     let icon;
     const stepCls = classnames(prefixClass(`steps-item steps-status-${status}`), {
@@ -46,7 +47,7 @@ class Step extends React.Component {
     } else {
       icon = (
         <span className={prefixClass('steps-icon')}>
-          <Check width={18} height={18} fill="#66bc5c" />
+          {showIcon && <Check width={18} height={18} fill="#66bc5c" /> }
         </span>);
     }
 
@@ -99,6 +100,7 @@ class Step extends React.Component {
 
 Step.propTypes = {
   hasDetail: PropTypes.bool,
+  showIcon: PropTypes.bool,
   onChange: PropTypes.func,
   stepNumber: PropTypes.oneOfType([
     PropTypes.string,
@@ -107,6 +109,7 @@ Step.propTypes = {
 };
 Step.defaultProps = {
   hasDetail: true,
+  showIcon: true,
   onChange() {},
   stepNumber: '',
 };
