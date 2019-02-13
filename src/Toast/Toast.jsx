@@ -28,11 +28,11 @@ const iconCompMap = {
   error: IconCrossRound,
   fail: IconToastFail,
   loading: IconToastLoading,
-  light: IconInfoRound,
+  light: IconInfoRound
 };
 
 class Toast extends React.Component {
-  static show = (props) => {
+  static show = props => {
     if (wrapper) {
       Toast.hide();
     }
@@ -41,9 +41,9 @@ class Toast extends React.Component {
     doc.body.appendChild(wrapper);
     // 挂载组件
     ReactDOM.render(<Toast visible {...props} />, wrapper);
-  }
+  };
 
-  static hide = (fn) => {
+  static hide = fn => {
     if (wrapper) {
       if (fn && typeof fn === 'function') {
         fn();
@@ -54,8 +54,8 @@ class Toast extends React.Component {
       }
       wrapper = null;
     }
-  }
-  static displayName = 'Toast'
+  };
+  static displayName = 'Toast';
 
   static propTypes = {
     prefixCls: PropTypes.string,
@@ -63,16 +63,14 @@ class Toast extends React.Component {
     hasMask: PropTypes.bool,
     autoHide: PropTypes.bool,
     onDidHide: PropTypes.func,
-    width: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     content: PropTypes.string,
     icon: PropTypes.string,
     duration: PropTypes.number,
     transitionName: PropTypes.string,
     type: PropTypes.string,
-  }
+    textWrap: PropTypes.bool
+  };
 
   static defaultProps = {
     prefixCls: 't-toast',
@@ -86,21 +84,22 @@ class Toast extends React.Component {
     icon: undefined,
     transitionName: undefined,
     type: undefined,
-  }
+    textWrap: false
+  };
 
   constructor(props) {
     super(props);
     this.state = {
       visible: props.visible,
       hasMask: props.hasMask,
-      prevVisible: props.visible,
+      prevVisible: props.visible
     };
   }
 
   static getDerivedStateFromProps(props) {
     return {
       visible: props.visible,
-      hasMask: props.hasMask,
+      hasMask: props.hasMask
     };
   }
 
@@ -124,7 +123,7 @@ class Toast extends React.Component {
   startCountdown() {
     const t = this;
     const { type } = t.props;
-    const defaultDuration = (type === 'light' || !type) ? 3000 : 1500;
+    const defaultDuration = type === 'light' || !type ? 3000 : 1500;
     const duration = t.props.duration || defaultDuration;
     t.timer = setTimeout(() => {
       Toast.hide();
@@ -146,34 +145,37 @@ class Toast extends React.Component {
     // 使用 dangerouslySetInnerHTML={{__html: toastLoading}} 在 uc 内核也有问题
     // 临时方案使用 background
     if (Icon === IconToastLoading) {
-      return (
-        <div className={prefixClass('toast-icon toast-icon-loading')} />
-      );
+      return <div className={prefixClass('toast-icon toast-icon-loading')} />;
     }
     const iconProps = {
       fill: '#fff',
       width: '44px',
       height: '44px',
-      className: prefixClass('toast-icon'),
+      className: prefixClass('toast-icon')
     };
     if (icon) {
       return React.cloneElement(icon, iconProps);
     }
-    return (
-      <Icon {...iconProps} />
-    );
+    return <Icon {...iconProps} />;
   }
 
   render() {
     const t = this;
     const { visible, hasMask } = t.state;
     const {
-      className, content, autoHide, transitionName,
-      prefixCls, type, maskTransitionName, ...other
+      className,
+      content,
+      autoHide,
+      transitionName,
+      prefixCls,
+      type,
+      maskTransitionName,
+      textWrap,
+      ...other
     } = t.props;
     const customStyle = {
       width: other.width,
-      height: other.height,
+      height: other.height
     };
     let transName;
     if (!transitionName) {
@@ -206,14 +208,26 @@ class Toast extends React.Component {
           className={classnames({
             [prefixClass(`toast-${type} toast-has-icon`)]: !!this.hasIcon(),
             [className]: !!className,
-            [transName]: !!transName,
+            [transName]: !!transName
           })}
           transitionName={transName}
-          afterClose={() => { t.handleDidHide(); }}
+          afterClose={() => {
+            t.handleDidHide();
+          }}
         >
           <VBox hAlign="center">
             {this.renderIcon()}
-            {content && <div className={prefixClass('toast-content')}>{content}</div>}
+            {content && (
+              <div
+                className={classnames(prefixClass('toast-content'), {
+                  [prefixClass(
+                    textWrap ? 'toast-content-wrap' : 'toast-content-noWrap'
+                  )]: true
+                })}
+              >
+                {content}
+              </div>
+            )}
           </VBox>
         </Dialog>
       );

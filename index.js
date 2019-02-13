@@ -10,6 +10,7 @@
   import Calendar from './lib/Calendar';
   import CalendarField from './lib/CalendarField';
   import Card from './lib/Card';
+  import Carousel from './lib/Carousel';
   import CascadeSelectField from './lib/CascadeSelectField';
   import CheckboxField from './lib/CheckboxField';
   import CitySelectField from './lib/CitySelectField';
@@ -22,7 +23,9 @@
   import Drawer from './lib/Drawer';
   import EmployeeField from './lib/EmployeeField';
   import Field from './lib/Field';
+  import Filter from './lib/Filter';
   import FoldablePane from './lib/FoldablePane';
+  import FormGroup from './lib/FormGroup';
   import Gallery from './lib/Gallery';
   import Grid from './lib/Grid';
   import Group from './lib/Group';
@@ -35,6 +38,7 @@
   import NavBar from './lib/NavBar';
   import NoticeBar from './lib/NoticeBar';
   import NumberField from './lib/NumberField';
+  import NumberInfo from './lib/NumberInfo';
   import NumberPicker from './lib/NumberPicker';
   import NumberPickerField from './lib/NumberPickerField';
   import Pagination from './lib/Pagination';
@@ -54,7 +58,10 @@
   import Scroller from './lib/Scroller';
   import SearchBar from './lib/SearchBar';
   import SelectField from './lib/SelectField';
+  import Skeleton from './lib/Skeleton';
   import Slide from './lib/Slide';
+  import Slider from './lib/Slider';
+  import SliderField from './lib/SliderField';
   import Slot from './lib/Slot';
   import Steps from './lib/Steps';
   import Switch from './lib/Switch';
@@ -64,6 +71,7 @@
   import Table from './lib/Table';
   import TagField from './lib/TagField';
   import TextField from './lib/TextField';
+  import Textarea from './lib/Textarea';
   import TextareaField from './lib/TextareaField';
   import Timeline from './lib/Timeline';
   import Toast from './lib/Toast';
@@ -85,6 +93,7 @@ const __SALT_BUNDLE__ = {
   Calendar,
   CalendarField,
   Card,
+  Carousel,
   CascadeSelectField,
   CheckboxField,
   CitySelectField,
@@ -97,7 +106,9 @@ const __SALT_BUNDLE__ = {
   Drawer,
   EmployeeField,
   Field,
+  Filter,
   FoldablePane,
+  FormGroup,
   Gallery,
   Grid,
   Group,
@@ -110,6 +121,7 @@ const __SALT_BUNDLE__ = {
   NavBar,
   NoticeBar,
   NumberField,
+  NumberInfo,
   NumberPicker,
   NumberPickerField,
   Pagination,
@@ -129,7 +141,10 @@ const __SALT_BUNDLE__ = {
   Scroller,
   SearchBar,
   SelectField,
+  Skeleton,
   Slide,
+  Slider,
+  SliderField,
   Slot,
   Steps,
   Switch,
@@ -139,6 +154,7 @@ const __SALT_BUNDLE__ = {
   Table,
   TagField,
   TextField,
+  Textarea,
   TextareaField,
   Timeline,
   Toast,

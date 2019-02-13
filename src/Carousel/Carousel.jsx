@@ -9,9 +9,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context from '../Context';
-import SlideNav from './SlideNav';
-import SlideItem from './SlideItem';
+import CarouselNav from './CarouselNav';
+import CarouselItem from './CarouselItem';
 import { prefixClass, _getItemUnready } from './utils';
+
 
 const {
   TOUCH_START,
@@ -55,7 +56,7 @@ const getCursorPage = supportTouch
   ? (event, page) => event.changedTouches[0][page]
   : (event, page) => event[page];
 
-class Slide extends React.Component {
+class Carousel extends React.Component {
   constructor(props) {
     super(props);
 
@@ -623,7 +624,7 @@ class Slide extends React.Component {
         </div>
 
         {t.props.showNav && t.length > 1 && (
-          <SlideNav
+          <CarouselNav
             active={t._getRealIndex(t.currentPosIndex)}
             num={t.props.children.length}
             position={showTitle ? 'RIGHT' : 'CENTER'}
@@ -634,7 +635,7 @@ class Slide extends React.Component {
   }
 }
 
-Slide.propTypes = {
+Carousel.propTypes = {
   className: PropTypes.string,
   height: PropTypes.oneOfType([
     PropTypes.number,
@@ -653,7 +654,7 @@ Slide.propTypes = {
   displayMode: PropTypes.oneOf(['normal', 'card']),
 };
 
-Slide.defaultProps = {
+Carousel.defaultProps = {
   height: '5rem',
   active: 0,
   auto: false,
@@ -669,8 +670,8 @@ Slide.defaultProps = {
   children: undefined,
 };
 
-Slide.displayName = 'Slide';
+Carousel.displayName = 'Carousel';
 
-Slide.Item = SlideItem;
+Carousel.Item = CarouselItem;
 
-export default Slide;
+export default Carousel;

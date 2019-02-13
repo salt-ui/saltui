@@ -234,9 +234,10 @@ class CheckboxField extends React.Component {
     return (
       <Field
         {...t.props}
-        icon={icon}
-        className={classnames(prefixClass('checkbox-field'), {
+        middleIcon={icon}
+        className={classnames({
           [t.props.className]: !!t.props.className,
+          [prefixClass('fix-slot-margin')]: true
         })}
       >
         <div onClick={t.handleClick} className={prefixClass('checkbox-field-value-wrap')}>

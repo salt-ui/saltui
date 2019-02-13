@@ -1,16 +1,53 @@
 /**
  * Card Component Style for SaltUI
- * @author caiyongmin
+ * @author shixin
  *
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 
 .{$prefix}-card
-    background-color: $basic-100;
-    border-radius: $global-border-radius;
-    margin: 0 16px;
-    &.card-mode-full
-        margin: 0;
-        border-radius: 0;
-
+  background-color: $basic-100;
+  border-radius: $global-border-radius;
+  padding: 0 16px;
+  overflow: auto;
+  &.card-mode-full
+    padding: 0;
+    border-radius: 0;
+  &-header
+    margin: 16px 0;
+  &-body
+    margin: 16px 0;
+    display: flex;
+    &.reverse
+      flex-direction: row-reverse;
+    &-wrapper 
+      flex: 1;
+    &-image
+      margin-right: 20px;
+      &.reverse
+        margin-right: 0;
+        margin-left: 20px;
+    .title
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      line-height: 1.5;
+    .content
+      margin-top: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #9d9d9d
+      -webkit-user-select: auto;
+  &-footer
+      margin: 16px 0;
+      border-radius: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &-content
+        color: #9d9d9d;
+        font-size: 12px;
+      &-actions
+        .t-button
+          margin-left: 8px;

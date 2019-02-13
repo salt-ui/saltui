@@ -95,6 +95,7 @@ class Demo extends React.Component {
         onClick={() => {
           showToast({
             content: '字字字字字字字字字字字字字字字字',
+            textWrap:true
           });
         }}
       >long text overLentgh

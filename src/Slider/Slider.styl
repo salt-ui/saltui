@@ -1,0 +1,106 @@
+
+
+.{$prefix}-slider {
+  position: relative;
+
+  &-rail {
+    position: absolute;
+    width: 100%;
+    background-color: #ddd;;
+    height: 2px;
+    box-sizing: border-box;
+  }
+
+  &-track {
+    position: absolute;
+    left: 0;
+    height: 2px;
+    border-radius: 2px;
+    background-color: $brand-primary;
+  }
+
+  &-handle {
+    position: absolute;
+    margin-left: -12px;
+    margin-top: -10px;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid $brand-primary;
+    background-color: #fff;
+    box-sizing: border-box;
+
+    &:focus {
+      background-color: tint($brand-primary, 20%);
+    }
+  }
+
+  &-mark {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    font-size: 12px;
+  }
+
+  &-mark-text {
+    position: absolute;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    color: #000;
+
+    &-active {
+      opacity: .3;
+    }
+  }
+
+  &-step {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+  }
+
+  &-dot {
+    position: absolute;
+    bottom: -5px;
+    margin-left: -4px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid $gray;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 50%;
+    vertical-align: middle;
+
+    &:first-child {
+      margin-left: -4px;
+    }
+
+    &:last-child {
+      margin-left: -4px;
+    }
+
+    &-active {
+      border-color: $brand-primary;
+    }
+  }
+
+  &-disabled {
+    opacity: .3;
+
+    .{$prefix}-slider-track {
+      height: 2px;
+    }
+
+    .{$prefix}-slider-handle,
+    .{$prefix}-slider-mark-text,
+    .{$prefix}-slider-dot {
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+  }
+}

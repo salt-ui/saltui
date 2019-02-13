@@ -86,6 +86,11 @@ class Demo extends React.Component {
               alert(`value: ${JSON.stringify(value)}`);
               this.hidePicker(1);
             }}
+            onVisibleChange={(visible) => {
+              if (!visible) {
+                this.hidePicker(1);
+              }
+            }}
             visible={t.state.pickerVisible1}
           />
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">本地数据源</Group.Head>
@@ -95,6 +100,11 @@ class Demo extends React.Component {
             onConfirm={(value) => {
               alert(`value: ${JSON.stringify(value)}`);
               this.hidePicker(2);
+            }}
+            onVisibleChange={(visible) => {
+              if (!visible) {
+                this.hidePicker(2);
+              }
             }}
             filterOption={false}
             onSearch={(keyword) => {

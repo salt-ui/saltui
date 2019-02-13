@@ -10,28 +10,16 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Context, { prefixClass } from '../Context';
 import Field from '../Field';
-import calculateHeight from './calculateHeight';
-import { shouldUpdate } from '../Utils';
+import Textarea from '../Textarea';
 
 class TextareaField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       height: null,
-      rows: 1,
     };
   }
 
-  componentDidMount() {
-    this.resize();
-  }
-
-  componentDidUpdate(prevProps) {
-    if ('value' in this.props
-    && shouldUpdate(prevProps, this.props, ['value', 'rows', 'minRows', 'maxRows'])) {
-      this.resize();
-    }
-  }
 
   getAddons() {
     const addons = {};
@@ -49,16 +37,7 @@ class TextareaField extends React.Component {
     return addons;
   }
 
-  resize() {
-    this.setState(calculateHeight(
-      this.textarea,
-      this.props.minRows || this.props.rows,
-      this.props.maxRows,
-    ));
-  }
-
   handleChange(e) {
-    this.resize();
     this.props.onChange(e.target.value, e);
   }
 
@@ -81,7 +60,7 @@ class TextareaField extends React.Component {
   render() {
     const t = this;
     const {
-      placeholder, readOnly, lineHeight, disabled,
+      placeholder, readOnly, lineHeight, disabled, minRows, maxRows,
     } = t.props;
     const style = {
       // height: t.state.height,
@@ -98,15 +77,16 @@ class TextareaField extends React.Component {
           [t.props.className]: !!t.props.className,
         })}
       >
-        <textarea
+        <Textarea
           ref={(c) => { this.textarea = c; }}
           className={prefixClass('textarea-field-content')}
           style={style}
           placeholder={placeholder}
+          minRows={minRows}
+          maxRows={maxRows}
           value={t.props.value}
           readOnly={readOnly}
           disabled={disabled}
-          rows={t.state.rows}
           onChange={(e) => { t.handleChange(e); }}
           onFocus={(e) => { t.handleFocus(e); }}
           onBlur={(e) => { t.handleBlur(e); }}
@@ -123,13 +103,13 @@ TextareaField.defaultProps = {
   onFocus: Context.noop,
   onBlur: Context.noop,
   readOnly: false,
-  minRows: 1,
-  maxRows: 10,
   lineHeight: '1.3',
   value: '',
   rows: undefined,
   className: undefined,
   children: undefined,
+  minRows: undefined,
+  maxRows: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html

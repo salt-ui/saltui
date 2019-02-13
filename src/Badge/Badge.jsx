@@ -24,6 +24,9 @@ class Badge extends React.Component {
       PropTypes.string,
       PropTypes.number,
     ]),
+    dotType: PropTypes.oneOf(['normal', 'status']),
+    status: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
+    breath: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -33,21 +36,30 @@ class Badge extends React.Component {
     dot: false,
     overflowCount: 99,
     corner: undefined,
+    dotType: 'normal',
+    status: 'info',
+    breath: false,
   };
 
   static displayName = 'Badge';
 
   render() {
     const t = this;
-    const cls = {
-      [t.props.className]: !!t.props.className,
-    };
+
     const {
       dot,
       text,
       corner,
       overflowCount,
+      dotType,
+      className,
+      status,
+      breath,
     } = this.props;
+
+    const cls = {
+      [className]: !!className,
+    };
 
 
     let { count } = this.props;
@@ -70,11 +82,18 @@ class Badge extends React.Component {
       if (dot) {
         count = '';
         cls['badge-dot'] = true;
+        if (dotType === 'status') {
+          cls['badge-status-dot'] = true;
+          cls[`badge-status-dot__${status}`] = true;
+          if (breath) {
+            cls['badge-status-dot__breathing'] = true;
+          }
+        }
       }
 
       if (t.props.children) {
         style.WebkitTransform = 'translate(50%, -50%)';
-        style.transform = 'translate(50%, -50%)'; // fix https://aone.alibaba-inc.com/req/11690248
+        style.transform = 'translate(50%, -50%)';
       }
     }
 

@@ -1,3 +1,60 @@
+## 4.4.0
+* `change` Table support sub table
+
+## 4.3.13 / 2019-01-23
+
+* `fix`: `TextareaField` not passing minRows and maxRows to `Textarea`
+
+## 4.3.12 / 2019-01-15
+
+* `fix`: `RefreshControl` TypeError: null is not an object (evaluating 'el.getBoundingClientRect') when ScrollList url is wrong
+
+## 4.3.11 / 2019-01-14
+
+* `fix`: `Filter` fix two bugs
+* `change`: `Filter` change order from select to switch, and some style optimize
+
+
+## 4.3.10 / 2019-01-11
+* `change` change method to fix field padding
+
+## 4.3.9 / 2019-01-10
+* `fix`: fix field padding
+* `change`: change calendar tooltip duration to 1s
+
+
+## 4.3.8 / 2019-01-02
+
+* `fix`: `Datetime` throw bug when minDate & maxDate are set between 2 years.
+
+## 4.3.0 / 2018-12-29
+
+* `new`: new Components `Skeleton`, `FormGroup`, `Filter`, `Slider`, `SliderField`
+* `feat`: `Card` provide more layout.
+* `feat`: `Badge` new prop `status` and `breath`
+* `feat`: `Field` vertical layout style improvemnt
+* `change`: `Picker` extract browser history back hijack logic from PickerField to Picker
+* `feat`: `ScrollList` new item for person card
+* `feat`: `Steps` style improvement
+
+
+## 4.2.2 / 2018-11-27
+
+* `fix`: `RefreshControl` fail to drag in demo
+* `fix`: missing dependency `css-animation`
+
+## 4.2.1 / 2018-11-27
+
+* `fix`: missing dependency `rc-animate`
+
+## 4.2.0 / 2018-11-23
+
+* `feat`: Badge new prop `dotType`, `status`, `breath`
+* `new`: new components `Slider` & `SliderField`
+* `change`: rename `Slide` as `Carousel`
+* `fix`: ImageViewer current fail to work
+* `fix`: Toast add prop textWrap
+
 ## 4.1.17 / 2018-11-01
 
 * `feat`: Dialog.confirm/alert support multiple instance
@@ -65,7 +122,7 @@
 
 * `feat`: `Popup` add new prop `maskStyle`
 * `fix`: `ScrollList` gDSFP does not update prevProps
-* `fix`: `RefreshControl` can be dragged even in refreshing 
+* `fix`: `RefreshControl` can be dragged even in refreshing
 * `feat`: `Picker` add new props `onSeach` & `filterOption`
 
 
@@ -101,7 +158,7 @@
 
 ## 3.11.0 / 2018-08-22
 
-* `feat` extract `Picker` from `PickerField` 
+* `feat` extract `Picker` from `PickerField`
 
 ## 3.10.7 / 2018-08-02
 
@@ -109,7 +166,7 @@
 
 ## 3.10.6 / 2018-07-24
 
-* `fix`: `PickerField` should not show placeholder in readOnly mode 
+* `fix`: `PickerField` should not show placeholder in readOnly mode
 
 ## 3.10.3 / 2018-07-06
 
@@ -118,7 +175,7 @@
 ## 3.10.2 / 2018-07-06
 
 * `fix`: `PhotoField` list upload icon fail to work if total files' length become 0
- 
+
 ## 3.10.0 / 2018-07-05
 
 * `feat`: performance improvement in `cWRP`
@@ -137,7 +194,7 @@
 * `feat`: `Avatar` support custom name filter
 * `feat`: `Utils` make popup content scrollable when body's scrolling is prevented.
 
-## 3.9.13 / 2018-06-28 
+## 3.9.13 / 2018-06-28
 
 * `fix`: `PickerField` Popup cannot be closed by go back action if window is reload when popup is shown.
 
@@ -148,7 +205,7 @@
 
 ## 3.9.11 / 2018-06-26
 
-* `fix`: `PhotoField` incorrect label height 
+* `fix`: `PhotoField` incorrect label height
 
 ## 3.9.10 / 2018-06-25
 
@@ -169,8 +226,8 @@
 
 ## 3.9.0 / 2018-06-13
 
-* `feat`: `Tab` support locale 
-* `feat`: `PickerField`  support prop `resultFormatter` and 
+* `feat`: `Tab` support locale
+* `feat`: `PickerField`  support prop `resultFormatter` and
 * `feat`: `PickerField` add `type` param for formatter method
 * `fix`: `Collapse` hairline border-width
 * `fix`: `Tab` all items' panel layout style bug
@@ -326,7 +383,7 @@
 
 ## 3.8.12 / 2018-04-12
 
-* `feat`: `Slot`, `Calendar`, `CascadeSelectField` header font-size adjustment. 
+* `feat`: `Slot`, `Calendar`, `CascadeSelectField` header font-size adjustment.
 
 ## 3.8.11 / 2018-04-12
 
@@ -361,7 +418,7 @@
 
 ## 3.8.4 / 2018-04-02
 
-* `feat`: `Slot` disable iscroll's bounce to improve performance 
+* `feat`: `Slot` disable iscroll's bounce to improve performance
 
 
 ## 3.8.3 / 2018-04-02
@@ -530,7 +587,7 @@
 
 ## 3.5.5
 * `fix` group wrong style
-* `feat` generate atom css class like `t-color-brand-primary` 
+* `feat` generate atom css class like `t-color-brand-primary`
 
 ## 3.5.4
 * `fix`: none-uniform readonly color
@@ -602,7 +659,7 @@
 
 ## 3.3.0 / 2017-12-18
 
-* `feat`: TabBar iphoneX compatible 
+* `feat`: TabBar iphoneX compatible
 * `feat`: Tab force browser repaint when component mount
 
 ## 3.2.0 / 2017-12-18
@@ -662,7 +719,7 @@
 
 ## 3.1.19 / 2017-11-28
 
-* `fix`: umd build webpack wrong externals  
+* `fix`: umd build webpack wrong externals
 * `change`: git igonre build folder & `dev/index.jsx`
 
 ## 3.1.18 / 2017-11-24
@@ -672,7 +729,7 @@
 
 ## 3.1.17 / 2017-11-23
 
-* `fix`: CascadeSelect bug caused by duplicated defaultProps declaration. 
+* `fix`: CascadeSelect bug caused by duplicated defaultProps declaration.
 
 ## 3.1.16 / 2017-11-22
 
@@ -880,7 +937,7 @@
 
 ## 3.0.6 / 2017-08-11
 * 脚手架、打包方式完全重构，Readme 重写
-* 去除 blue.css 和 ui.js 
+* 去除 blue.css 和 ui.js
 
 ## 3.0.5 / 2017-8-9
 * notice-bar
@@ -1271,24 +1328,24 @@
  * Ali.alert，bugfix
 
 ## 1.1.10
-* box@1.0.2 
+* box@1.0.2
  * 增加react依赖，支持node端渲染
-* checkbox-field@1.0.13 
+* checkbox-field@1.0.13
  * feat: add required tag
-* gallery@1.1.2 
-  * 增加react依赖，支持node端渲染 
-* group@1.0.8 
+* gallery@1.1.2
+  * 增加react依赖，支持node端渲染
+* group@1.0.8
  * 增加react依赖，支持node端渲染
 * icon-source@1.0.13
  * feat: add field-required
-* mask@1.0.6 
+* mask@1.0.6
  * 增加react依赖，支持node端渲染
-* photo-field@1.0.3 
+* photo-field@1.0.3
  * feat: add required tag
-* slide@1.0.8 
-* slot@1.0.9 
+* slide@1.0.8
+* slot@1.0.9
  * fix issue #4
-* toast@1.0.10 
+* toast@1.0.10
  * feat: change loading
 
 ## 1.1.9
@@ -1300,11 +1357,11 @@
    * 新增组件
 
 ## 1.1.7
- * dialog@1.0.19 
+ * dialog@1.0.19
   * 修复国际化 bug
- * icon-source@1.0.12 
+ * icon-source@1.0.12
   * 增加 toast 图标
- * tab@1.0.23 
+ * tab@1.0.23
   * remove border-bottom in the brick mode
 
 ## 1.1.6
@@ -1317,13 +1374,13 @@
 ## 1.1.5
 * tab-bar@1.1.2
  * fix: touch scroll
-* dialog@1.0.18 
+* dialog@1.0.18
  * 支持国际化
-* grid@1.0.4 
+* grid@1.0.4
  * 代码优化
 * scroll-list@1.2.7
  * bugfix
- 
+
 ## 1.1.4
 * scroll-list@1.2.2
  * Bugfix/reset position
@@ -1331,25 +1388,25 @@
  * fix: reset overflow after unmount
 * icon-source@1.0.11
  * display none
- 
+
 ## 1.1.3
 * scroll-list@1.2.1
  * fix default background image
  * fix rchild
-* tab@1.0.22 
+* tab@1.0.22
  * fix title propType to `node`
  * style: formatting
- 
+
 ## 1.1.2
-* rate@1.0.2 
+* rate@1.0.2
  * gulpfile add plugin `add-module-exports`
-* scroll-list@1.1.5 
+* scroll-list@1.1.5
  * fix rchild is undefined
- 
+
 ## 1.1.1
 * button@1.0.10
  * onClick 传入 event 参数
- 
+
 ## 1.1.0
 * 版本号标准化
 * toast@1.0.7
@@ -1367,10 +1424,10 @@
 * layer@1.0.10
  * 文档订正
 * rate@1.0.1
- * 新增组件 
+ * 新增组件
 * photo-field@1.0.1
  * 新增组件
- 
+
 ## 1.0.29
 * scroll-list@1.1.0
  * 重构
@@ -1397,7 +1454,7 @@
   * demo 修改
 * scroll-list@1.0.5
   * 样式修改
-  
+
 ## 1.0.26
 * datetime-field@1.0.6
   * 新增
@@ -1419,10 +1476,10 @@
 * search-bar@1.0.1
  * 新增
 * tab@1.0.16
- * 添加切换销毁属性 `destroyInactiveTabPane` 
+ * 添加切换销毁属性 `destroyInactiveTabPane`
 * slot@1.0.6
  * 修复 constructor 里使用了 `this.prpps`
- 
+
 ## 1.0.23
 * slide@1.0.7
   * 修复只有一个元素时无法触发 `onSlideClick` 事件的错误
@@ -1472,7 +1529,7 @@
 ## 1.0.13
  * copy salt.js and salt.css
 
-## 1.0.12  
+## 1.0.12
  * 和 tnpm 包版本号保持一致
 
 ## 1.0.5

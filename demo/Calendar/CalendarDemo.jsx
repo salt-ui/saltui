@@ -14,6 +14,10 @@ class CalendarDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      value: {
+        startDate: '2019-01-12',
+        endDate: '2019-01-14',
+      },
       // value: {
       // value: 1499702400000,
       // startDate: 1499702400000,
@@ -105,7 +109,7 @@ class CalendarDemo extends React.Component {
           onClick={() => {
           this.setState({
             visible: true,
-            singleMode: true,
+            singleMode: false,
             animationType: 'slideUp',
             showHalfDay: true,
           });

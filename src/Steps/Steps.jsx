@@ -179,6 +179,14 @@ class Steps extends React.Component {
     }
   }
 
+  renderCurrentTitle() {
+    const { current, children } = this.props;
+    const currentTitle = children[current].props.title;
+    return (
+      <div className={prefixClass('current-title')}>{currentTitle}</div>
+    );
+  }
+
   render() {
     let { current } = this.props;
     const {
@@ -192,6 +200,7 @@ class Steps extends React.Component {
       showDetail,
       currentDetail,
       onChange,
+      showCurrentTitle,
     } = this.props;
     const len = children.length - 1;
     const iws = this.state.itemsWidth;
@@ -217,36 +226,50 @@ class Steps extends React.Component {
       current = Number(current);
     }
     return (
-      <div className={clsName} ref={(c) => { this.root = c; }}>
-        {React.Children.map(children, (ele, idx) => {
-          const np = {
-            stepNumber: showIcon ? (idx + 1).toString() : '',
-            stepLast: idx === len,
-            tailWidth: iws.length === 0 || idx === len ? 'auto' : iws[idx] + this.state.tailWidth,
-            iconPrefix,
-            maxDescriptionWidth,
-            fixStyle,
-            showDetail: showDetail && currentDetail === idx && direction !== 'vertical' && type !== 'long-desc',
-            detailContentFixStyle: {
-              marginLeft: !Number.isNaN(-(iws[idx] + this.state.tailWidth) * idx)
-                ? -(iws[idx] + this.state.tailWidth) * idx
-                : 0,
-              width: this.state.previousStepsWidth,
-            },
-            onChange,
-            hasDetail: showDetail && direction !== 'vertical' && type !== 'long-desc',
-          };
-          if (!ele.props.status) {
-            if (idx === current) {
-              np.status = 'process';
-            } else if (idx < current) {
-              np.status = 'finish';
-            } else {
-              np.status = 'wait';
+      <div className={prefixClass('steps-wrapper')}>
+        <div
+          className={clsName}
+          ref={(c) => {
+          this.root = c;
+        }}
+        >
+          {React.Children.map(children, (ele, idx) => {
+            const np = {
+              stepNumber: showIcon ? (idx + 1).toString() : '',
+              stepLast: idx === len,
+              tailWidth: iws.length === 0 || idx === len ? 'auto' : (iws[idx] || 0) + this.state.tailWidth,
+              iconPrefix,
+              maxDescriptionWidth,
+              fixStyle,
+              showDetail: showDetail && currentDetail === idx && direction !== 'vertical' && type !== 'long-desc',
+              detailContentFixStyle: {
+                marginLeft: !Number.isNaN(-(iws[idx] + this.state.tailWidth) * idx)
+                  ? -(iws[idx] + this.state.tailWidth) * idx
+                  : 0,
+                width: this.state.previousStepsWidth,
+              },
+              onChange,
+              showCurrentTitle,
+              direction,
+              hasDetail: showDetail && direction !== 'vertical' && type !== 'long-desc',
+            };
+            if (!ele.props.status) {
+              if (idx === current) {
+                np.status = 'process';
+              } else if (idx < current) {
+                np.status = 'finish';
+              } else {
+                np.status = 'wait';
+              }
             }
-          }
-          return React.cloneElement(ele, np);
-        }, this)}
+            return React.cloneElement(ele, np);
+          }, this)}
+
+        </div>
+        {showCurrentTitle ?
+          this.renderCurrentTitle()
+          : null
+        }
       </div>
     );
   }
@@ -265,6 +288,7 @@ Steps.defaultProps = {
   onChange: () => {
   },
   children: [],
+  showCurrentTitle: false,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -280,6 +304,7 @@ Steps.propTypes = {
   currentDetail: PropTypes.number,
   onChange: PropTypes.func,
   children: PropTypes.any,
+  showCurrentTitle: PropTypes.bool,
 };
 
 Steps.displayName = 'Steps';

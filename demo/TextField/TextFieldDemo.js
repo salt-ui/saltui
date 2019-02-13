@@ -76,7 +76,9 @@ class Demo extends React.Component {
           <TextField
             label="标题"
             placeholder="请输入"
-            value={t.state.t1}
+            layout={'v'}
+            readOnly
+            value={'雷克萨解放了卡死机福利卡圣诞节福利卡萨帝放假啊莱克斯顿放假啊收到了客服'}
             tip="这里是提示信息"
             onChange={(value) => { t.handleTextChange('t1', value); }}
           />
@@ -141,7 +143,7 @@ class Demo extends React.Component {
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">即时校验</Group.Head>
         <Group.List>
           <TextField
-            label="即时校验" value={t.state.t1} disabled 
+            label="即时校验" value={t.state.t1} disabled
             onChange={(value) => { t.handleTextChange('t1', value); }}
             errMsg={t.state.errMsg}
             toastComponent={Toast}

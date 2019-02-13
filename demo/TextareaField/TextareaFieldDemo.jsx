@@ -102,6 +102,7 @@ class Demo extends React.Component {
           <TextareaField
             label="计数器"
             value={t.state.t2}
+            maxRows={5}
             readOnly
             onChange={(value) => { t.handleChange('t2', value); }}
           >

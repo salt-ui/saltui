@@ -42,6 +42,7 @@ class Demo extends React.Component {
           selectorType="province"
           label="省选择"
           required
+          layout={'v'}
           confirmText="确认"
           cancelText="取消"
           mode="slot"
@@ -52,6 +53,7 @@ class Demo extends React.Component {
           value={this.state.value2}
           selectorType="city"
           label="市选择"
+          layout={'v'}
           required
           confirmText="确认"
           cancelText="取消"
@@ -84,6 +86,7 @@ class Demo extends React.Component {
         <CitySelectField
           value={this.state.value4}
           label="级联模式"
+          layout={'v'}
           required
           confirmText="确认"
           cancelText="取消"

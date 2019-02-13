@@ -119,6 +119,7 @@ class SearchBar extends React.Component {
       isActive: false,
       keyword: '',
     }, () => {
+      t.props.onChange('', 'exit', null);
       t.props.onExit();
     });
   }

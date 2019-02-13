@@ -1,0 +1,138 @@
+/**
+ * Field Component Style for SaltUI
+ * @author
+ * 
+ * Copyright 2018-2019, SaltUI Team.
+ * All rights reserved.
+ */
+unless ($prefix is defined) {
+  $prefix = 't';
+}
+
+.{$prefix}-filter-bar-wrapper
+  position relative
+  z-index 801
+  background $basic-100
+  .item
+    height 44px
+    line-height 44px
+    text-align center
+    cursor pointer
+    font-size 12px
+    position relative
+    color $text-seconary
+    .item-wrapper {
+      padding 0 5px
+      justify-content center
+    }
+    .title-wrapper
+      overflow hidden
+      text-overflow ellipsis
+      white-space nowrap
+    .icon
+      vertical-align middle
+    .flag
+      display inline-block
+      position absolute
+      top -12px
+      right 5px
+      color $brand-primary
+    .selected
+      color $brand-primary
+    .active
+      color $brand-primary
+
+.{$prefix}-filter-panel-wrapper
+  position absolute
+  z-index 801
+  width 100%
+  background $basic-100
+
+.{$prefix}-filter-group-title
+  font-size 14px
+  height 22px
+  line-height 22px
+  margin 10px 0
+
+.{$prefix}-filter-list-item
+  width 100%
+  height 50px
+  line-height 50px
+  font-size 16px
+  text-align left
+  cursor pointer
+  color $text-primary
+  padding-left 20px
+  position relative
+  hairline 'border-bottom' $normal-alpha-7
+  &:nth-child(1)
+    hairline 'border-top' $normal-alpha-7
+
+.{$prefix}-filter-list-item.active
+  color $brand-primary
+  .icon
+    position absolute
+    font-size 14px
+    right 15px
+    top 10px
+
+.{$prefix}-filter-grid-footer
+  margin 25px 10px
+
+.{$prefix}-filter-grid-row
+  margin 15px 10px
+
+.{$prefix}-filter-popup-container
+  .{$prefix}-filter-grid-row
+    margin 10px 0
+
+.{$prefix}-filter-grid-item
+  text-align center
+  font-size 14px
+  width 95px
+  height 36px
+  line-height 36px
+  margin 8px 0
+  background $normal-alpha-8
+  hairline border $normal-alpha-8
+  position relative
+  color $text-seconary
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+  .icon
+    position absolute
+    top 5px
+    right 2px
+  &.active
+    background $brand-primary-alpha-8
+    hairline border $brand-primary
+    border-radius $button-radius
+    color $brand-primary
+  .{$prefix}-filter-show-all-icon
+    position absolute
+    top 8px
+
+.{$prefix}-filter-popup-container
+  width 320px
+  height 100%
+  padding 10px 20px
+  overflow-y scroll
+  overflow-x hidden
+  .{$prefix}-filter-grid-item
+    width 80px
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
+  .{$prefix}-filter-group-title
+    color $text-seconary
+  .switch-wrapper
+    label
+      line-height 30px
+      color: $text-seconary
+
+.{$prefix}-filter-popup-footer
+  width 280px
+  height 60px
+  position absolute
+  bottom 0

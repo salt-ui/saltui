@@ -1,0 +1,40 @@
+/**
+ * NumberInfo Component Style for SaltUI
+ * @author shuaige
+ *
+ * Copyright 2018-2019, SaltUI Team.
+ * All rights reserved.
+ */
+
+
+.{$prefix}-number-info
+    text-align center
+    padding 12px 0
+    &-number
+        font-size $font-size-t5
+        line-height $font-size-t5-lh
+        font-weight bold
+        color $dark-alpha-2
+    &-label
+        font-size $font-size-t2
+        line-height $font-size-t2-lh
+        color $dark-alpha-4
+        margin-top 4px
+
+.{$prefix}-number-info-h
+    display flex
+    padding 0 16px
+    margin 8px 0
+    .{$prefix}-number-info
+        &-number
+            text-align right
+            width 0
+            flex 1
+        &-unit
+            font-size $font-size-t2
+            line-height $font-size-t2-lh
+            color $dark-alpha-4
+            margin-right 2px
+        &-label
+            flex none
+

@@ -7,8 +7,8 @@
  */
 import 'salt-context';
 
-import Demo from './SlideDemo';
-import './SlideDemo.styl';
+import Demo from './CarouselDemo';
+import './CarouselDemo.styl';
 
 // 渲染 demo
 if (window.FastClick) {

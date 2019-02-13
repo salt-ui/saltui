@@ -117,6 +117,7 @@ class Demo extends React.Component {
               value={t.state.value4}
               columns={DatetimeField.YMDWHM}
               disabledTime={disabledTime}
+              layout={'v'}
               // disabledDate={() => [
               //     {
               //       start: new Date(2017, 5, 1),

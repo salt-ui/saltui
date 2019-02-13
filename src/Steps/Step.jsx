@@ -26,9 +26,13 @@ class Step extends React.Component {
 
   render() {
     const { props } = this;
-    const status = props.status || 'wait';
-    const maxWidth = props.maxDescriptionWidth;
-    let { fixStyle } = props;
+    const {
+      status = 'wait',
+      maxDescriptionWidth: maxWidth,
+      direction,
+      fixStyle,
+      tailWidth,
+    } = props;
     let icon;
     const stepCls = classnames(prefixClass(`steps-item steps-status-${status}`), {
       [prefixClass('steps-item-last')]: props.stepLast,
@@ -37,12 +41,12 @@ class Step extends React.Component {
     });
     let tail;
     let description;
-    if ((!props.icon && status !== 'process') || !props.stepLast) {
+    if (status !== 'finish' && ((!props.icon && status !== 'process') || !props.stepLast)) {
       icon = <span className={prefixClass('steps-icon')}>{props.stepNumber}</span>;
     } else {
       icon = (
         <span className={prefixClass('steps-icon')}>
-          <Check width={20} height={20} fill="#FFF" />
+          <Check width={18} height={18} fill="#66bc5c" />
         </span>);
     }
 
@@ -56,27 +60,26 @@ class Step extends React.Component {
         </div>);
     }
 
-    if (fixStyle) {
-      fixStyle.width = props.tailWidth;
-    } else {
-      fixStyle = {
-        width: props.tailWidth,
-      };
-    }
+    const stepWrapperStyle = {
+      ...fixStyle,
+      width: tailWidth,
+    };
 
     const detailCls = classnames(prefixClass('steps-detail'), {
       [prefixClass('steps-detail-current')]: props.showDetail,
     });
     const headStyleFixed = { cursor: (props.hasDetail ? 'pointer' : 'default') };
     return (
-      <div className={stepCls} style={fixStyle}>
+      <div className={stepCls} style={stepWrapperStyle}>
         {tail}
         <div className={prefixClass('steps-head')} style={headStyleFixed} onClick={this.onIconClick}>
           <div className={prefixClass('steps-head-inner')}>{icon}</div>
         </div>
         <div className={prefixClass('steps-main')} style={{ maxWidth }}>
           <div className={prefixClass('steps-detail-arrow')} style={{ display: (props.showDetail ? 'block' : 'none') }} />
-          <div className={prefixClass('steps-title')}>{props.title}</div>
+          <div className={prefixClass('steps-title')} style={{ width: direction !== 'vertial' ? tailWidth : 'auto' }}>
+            {props.showCurrentTitle ? '' : props.title}
+          </div>
           <div>
             {description}
             {description ? <div className={prefixClass('steps-description-arrow')} /> : null}

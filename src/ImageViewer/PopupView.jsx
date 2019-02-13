@@ -17,13 +17,18 @@ class PopupView extends React.Component {
     super(props);
     this.state = {
       current: props.current,
+      prevVisible: props.visible,
     };
   }
   static getDerivedStateFromProps({ visible, current }, { prevVisible }) {
-    return (!prevVisible && visible) ? {
-      current,
-      prevVisible: visible,
-    } : null;
+    const updateState = {};
+    if (prevVisible !== visible) {
+      updateState.prevVisible = visible;
+      if (!prevVisible && visible) {
+        updateState.current = current;
+      }
+    }
+    return updateState;
   }
 
   componentDidMount() {
