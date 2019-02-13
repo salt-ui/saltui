@@ -250,6 +250,7 @@ class Steps extends React.Component {
               },
               onChange,
               showCurrentTitle,
+              showIcon,
               direction,
               hasDetail: showDetail && direction !== 'vertical' && type !== 'long-desc',
             };
