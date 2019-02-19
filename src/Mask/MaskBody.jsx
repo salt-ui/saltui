@@ -61,7 +61,7 @@ class MaskBody extends React.Component {
   render() {
     const t = this;
     const {
-      className, zIndex, visible, onWillHide, onDidHide, closeable, ...other
+      className, zIndex, visible, topOffset, onWillHide, onDidHide, closeable, ...other
     } = t.props;
     // const { className, zIndex, ...other } = t.props;
     // const { visible } = t.state;
@@ -69,6 +69,7 @@ class MaskBody extends React.Component {
     const styleMap = {
       display: visible ? 'block' : 'none',
       zIndex,
+      top: topOffset
     };
 
     return (
@@ -112,6 +113,7 @@ MaskBody.defaultProps = {
   onWillHide: noop,
   visible: false,
   zIndex: 1000,
+  topOffset: '0px',
   className: undefined,
 };
 
@@ -123,6 +125,7 @@ MaskBody.propTypes = {
   onDidHide: PropTypes.func,
   onWillHide: PropTypes.func,
   visible: PropTypes.bool,
+  topOffset: PropTypes.string,
   zIndex: PropTypes.number,
 };
 
