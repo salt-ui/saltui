@@ -102,7 +102,8 @@ class Filter extends React.Component {
   handleMaskClick = () => {
     const { onConfirm } = this.props;
     const options = this.formatOptions();
-    if (options.groups[this.state.activeIndex].multiSelect) {
+    const group = options.groups[this.state.activeIndex];
+    if (group && group.multiSelect) {
       onConfirm(this.getSelect())
     }
     this.setState({

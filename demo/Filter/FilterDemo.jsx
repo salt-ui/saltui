@@ -50,16 +50,7 @@ class TestView extends React.Component {
   render() {
     return (
       <div>
-        <p style={{ lineHeight: '40px', height: '40px' }}>自定义渲染</p>
-        <List
-          layout="left"
-          hasRightIcon
-          icon={<AngleRight/>}
-          iconWidth={20}
-          isDelete
-          data={this.state.listData}
-          onClick={this.onClick}
-        />
+        <p style={{ lineHeight: '40px', height: '40px', textAlign: 'center' }} onClick={this.onClick}>自定义渲染</p>
       </div>
     )
   }
@@ -154,10 +145,6 @@ class Demo extends React.Component {
                 type: 'order',  // select | order | switch
                 items: [
                   {
-                    text: '默认排序',
-                    value: ''
-                  },
-                  {
                     text: '距离',
                     value: 'distance'
                   },
@@ -208,94 +195,11 @@ class Demo extends React.Component {
                 ]
               },
               {
-                name: 'brand',
-                title: '多个选择项',
-                type: 'select',
-                maxLine: 2,
-                multiSelect: true,
-                items: [
-                  {
-                    text: '阿里巴巴',
-                    value: 'alibaba'
-                  },
-                  {
-                    text: '淘宝',
-                    value: 'taobao'
-                  },
-                  {
-                    text: '菜鸟',
-                    value: 'cainiao'
-                  },
-                  {
-                    text: '优酷',
-                    value: 'youku'
-                  },
-                  {
-                    text: '天猫',
-                    value: 'tianmao'
-                  },
-                  {
-                    text: '百度',
-                    value: 'baidu'
-                  },
-                  {
-                    text: '腾讯',
-                    value: 'tengxun'
-                  },
-                  {
-                    text: '有道',
-                    value: 'youdao'
-                  }
-                ]
-              },
-
-              {
-                name: 'brand2',
-                title: '单选',
-                type: 'select',
-                maxLine: 2,
-                multiSelect: false,
-                items: [
-                  {
-                    text: '阿里巴巴',
-                    value: 'alibaba'
-                  },
-                  {
-                    text: '淘宝',
-                    value: 'taobao'
-                  },
-                  {
-                    text: '菜鸟',
-                    value: 'cainiao'
-                  },
-                  {
-                    text: '优酷',
-                    value: 'youku'
-                  },
-                  {
-                    text: '天猫',
-                    value: 'tianmao'
-                  },
-                  {
-                    text: '百度',
-                    value: 'baidu'
-                  },
-                  {
-                    text: '腾讯',
-                    value: 'tengxun'
-                  },
-                  {
-                    text: '有道',
-                    value: 'youdao'
-                  }
-                ]
-              },
-              {
                 name: 'brand3',
                 title: '品牌',
                 type: 'select',
                 maxLine: 2,
-                multiSelect: true,
+                multiSelect: false,
                 items: [
                   {
                     text: '阿里巴巴',
