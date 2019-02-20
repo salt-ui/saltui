@@ -85,7 +85,6 @@ class FilterBar extends React.Component {
       </span>);
     return (
       <div className={classnames(
-        // Context.prefixClass('FB1'),
         'title-wrapper',
         {
           active: isFocus,

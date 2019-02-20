@@ -66,7 +66,7 @@ class Demo extends React.Component {
       defaultFilterValue: {
         sort: [
           {
-            text: '默认排序',
+            text: '默认',
             value: ''
           },
         ],
@@ -141,9 +141,13 @@ class Demo extends React.Component {
             [
               {
                 name: 'sort',
-                title: '默认排序',
+                title: '默认',
                 type: 'order',  // select | order | switch
                 items: [
+                  {
+                    text: '默认',
+                    value: ''
+                  },
                   {
                     text: '距离',
                     value: 'distance'

@@ -332,9 +332,13 @@ class FilterPanel extends react.Component {
         multiple={multiple}
         showSearch={false}
         onConfirm={(value) => {
-          setSelect({
-            [name]: value
-          });
+          if (!multiple) {
+            this.doItemFilter({value: value[0].value, text: value[0].text, name})
+          } else {
+            setSelect({
+              [name]: value
+            });
+          }
           this.setState({
             showPicker: false
           })

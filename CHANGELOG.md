@@ -1,4 +1,5 @@
-## 4.4.2 / 2019-02-19
+
+## 4.4.3 / 2019-02-20
 * `fix` `Filter` fix picker didn't work when out of super popup
 * `fix` `Filter` fix arrow color style
 
