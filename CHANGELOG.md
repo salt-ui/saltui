@@ -1,4 +1,9 @@
 
+
+## 4.4.6 / 2019-02-21
+
+* `fix`: `Skeleton` Item cannot be rendered using lower React version
+
 ## 4.4.5 / 2019-02-21
 
 * `fix`: `NumberInfo` Item cannot be rendered using lower React version

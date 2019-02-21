@@ -65,7 +65,7 @@ class Skeleton extends React.Component {
     if (visible) {
       return contentList;
     }
-    return null;
+    return <noscript />;
   }
 }
 
