@@ -1,4 +1,8 @@
 
+## 4.4.5 / 2019-02-21
+
+* `fix`: `NumberInfo` Item cannot be rendered using lower React version
+
 ## 4.4.4 / 2019-02-21
 
 * `fix`: `Steps` style bug when showIcon is false

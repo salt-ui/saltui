@@ -50,7 +50,11 @@ function format(number, params) {
 
 export default class NumberItem extends React.Component {
   render() {
-    return `${formatNumber(this.props)}${formatUnit(this.props)}`;
+    return (
+      <span className={this.props.className}>
+        {`${formatNumber(this.props)}${formatUnit(this.props)}`}
+      </span>
+    );
   }
 }
 
