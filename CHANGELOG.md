@@ -1,13 +1,20 @@
 
+## 4.4.4 / 2019-02-21
+
+* `fix`: `Steps` style bug when showIcon is false
+
 ## 4.4.3 / 2019-02-20
+
 * `fix` `Filter` fix picker didn't work when out of super popup
 * `fix` `Filter` fix arrow color style
 
 ## 4.4.1 / 2019-01-26
+
 * `change` `Table` support custom sub table header
 * `fix` `Button`  fix banner button style
 
 ## 4.4.0 / 2019-01-25
+
 * `change` Table support sub table
 
 ## 4.3.13 / 2019-01-23
