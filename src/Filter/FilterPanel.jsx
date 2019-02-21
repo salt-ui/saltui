@@ -367,21 +367,26 @@ class FilterPanel extends react.Component {
 
   renderCustomView(item) {
     const View = item.renderView;
-    const { setSelect, onConfirm, getSelect, setActiveIndex } = this.props;
+    const { setSelect, getSelect, setActiveIndex } = this.props;
     return (
-      <View
-        key={item.name}
-        name={item.name}
-        selectedDate={getSelect()}
-        onChange={(data, hidePanel) => {
-          if (!item.multiSelect || hidePanel) {
-            setActiveIndex(-1)
-          }
-          setSelect(data);
-          onConfirm(getSelect());
-        }}
-        props={this.props}
-      />
+      <div key={item.name}>
+        <View
+          name={item.name}
+          selectedDate={getSelect()}
+          onChange={(selected) => {
+            if (item.multiSelect === false) {
+              if (item._groupKey_ !== '_super_' ) {
+                setActiveIndex(-1)
+              }
+              this.doItemFilter({value: selected[0].value, text: selected[0].text, name: item.name})
+            } else {
+              setSelect({[item.name]: selected});
+            }
+          }}
+          props={this.props}
+        />
+        {this.renderSelectFooter(item)}
+      </div>
     )
   }
 

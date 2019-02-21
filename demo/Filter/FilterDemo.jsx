@@ -9,8 +9,8 @@
 import React from 'react';
 import Filter from 'salt-filter';
 import List from 'salt-list'
-import Icon from 'salt-icon'
 import AngleRight from 'salt-icon/lib/AngleRight';
+import Switch from 'salt-switch'
 
 class TestView extends React.Component {
   constructor(props) {
@@ -39,19 +39,22 @@ class TestView extends React.Component {
           title: '张三丰（曾金）',
           date: '2017-7-8',
         }
-      ]
+      ],
+      on1: false
     };
   }
 
   onClick = (e) => {
-    this.props.onChange({'aa': [{text: 'xxx', value: 'xxxx'}]})
+    const { on1 } = this.state
+    this.setState({
+      on1: !on1
+    })
+    this.props.onChange([{text: 'xxx', value: 'xxxx'}, {text: 'aaa', value: 'bbbb'}])
   }
 
   render() {
     return (
-      <div>
-        <p style={{ lineHeight: '40px', height: '40px', textAlign: 'center' }} onClick={this.onClick}>自定义渲染</p>
-      </div>
+      <Switch on={this.state.on1} onChange={this.onClick} />
     )
   }
 }
@@ -241,6 +244,7 @@ class Demo extends React.Component {
               },
               {
                 name: 'someOther',
+                multiSelect: false,
                 title: '自定义渲染',
                 renderView: TestView,
               },
@@ -249,7 +253,7 @@ class Demo extends React.Component {
                 title: '品牌',
                 type: 'select',
                 maxLine: 3,
-                multiSelect: true,
+                multiSelect: false,
                 items: [
                   {
                     text: '阿里巴巴',
