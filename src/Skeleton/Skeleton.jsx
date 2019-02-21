@@ -57,13 +57,19 @@ class Skeleton extends React.Component {
 
   render() {
     const t = this;
-    const { visible, rows, type } = this.props;
+    const {
+      visible, rows, type, className,
+    } = this.props;
     const contentList = [];
     for (let i = 0; i < rows; i++) {
       contentList.push(t.getSkeletonContent(type, i));
     }
     if (visible) {
-      return contentList;
+      return (
+        <div className={className}>
+          {contentList}
+        </div>
+      );
     }
     return <noscript />;
   }
@@ -76,6 +82,7 @@ Skeleton.defaultProps = {
   animate: false,
   rows: 1,
   type: 1,
+  className: '',
 };
 
 Skeleton.propTypes = {
@@ -83,6 +90,7 @@ Skeleton.propTypes = {
   animate: PropTypes.bool,
   rows: PropTypes.number,
   type: PropTypes.number,
+  className: PropTypes.string,
 };
 
 
