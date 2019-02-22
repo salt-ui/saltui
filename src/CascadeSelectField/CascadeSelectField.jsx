@@ -21,7 +21,9 @@ import { shouldUpdate } from '../Utils';
 
 function parseProps(props) {
   const { options, readOnly } = props;
-  const value = cloneDeep(props.value || []);
+  let value = cloneDeep(props.value || []);
+  // 过滤undefinded
+  value = value.filter(i => i);
   let cursor = options;
   const newOptions = [];
   const confirmedValue = value.length ? value : [];
@@ -63,9 +65,11 @@ function parseProps(props) {
 }
 
 function parseState(value, options) {
+  // 过滤value，如果数组存在undefinded则过滤掉
+  const filterdValue = value.filter(item => item);
   let cursor = options;
   const newOptions = [];
-  const newValue = cloneDeep(value);
+  const newValue = cloneDeep(filterdValue);
   for (let deep = 0; cursor; deep += 1) {
     let index = 0;
     let valueIsFound = false;
@@ -74,7 +78,7 @@ function parseState(value, options) {
         value: o.value,
         text: o.label,
       };
-      if (deep in value && o.value === value[deep].value) {
+      if (deep in filterdValue && o.value === filterdValue[deep].value) {
         index = i;
         newValue[deep] = option;
         valueIsFound = true;
