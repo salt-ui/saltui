@@ -1,3 +1,7 @@
+## 4.4.9 / 2019-02-22
+* `new` `Filter` add 3 methods：setValue，getValue，clearValue
+* `fix` `Table` fix hasSubTable function bug
+
 ## 4.4.8 / 2019-02-22
 * `change` `Button` secondary button border change to 1px
 * `new` `Table` add new prop showPager
