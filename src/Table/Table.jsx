@@ -64,7 +64,7 @@ class Table extends React.Component {
     const { data } = this.props.data || [];
     let ret = false;
     for (let i = 0; i < data.length; i++) {
-      if (data[i].data && data[i].data.length) {
+      if (data[i] && data[i].data && data[i].data.length) {
         ret = true;
         break
       }
