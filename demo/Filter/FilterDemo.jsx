@@ -9,8 +9,11 @@
 import React from 'react';
 import Filter from 'salt-filter';
 import List from 'salt-list'
+import Button from 'salt-button'
 import AngleRight from 'salt-icon/lib/AngleRight';
 import Switch from 'salt-switch'
+
+const ButtonGroup = Button.ButtonGroup
 
 class TestView extends React.Component {
   constructor(props) {
@@ -85,7 +88,8 @@ class Demo extends React.Component {
           title: '张三丰（曾金）',
           date: '2017-7-8',
         }
-      ]
+      ],
+      tip: '提示'
     };
   }
 
@@ -104,20 +108,148 @@ class Demo extends React.Component {
     console.log(dataItem);
   }
 
+  onClear = () => {
+    this.filter.clearValue()
+    this.setState({
+      tip: 'Filter被清空了'
+    })
+  }
+  onGet = () => {
+    const value = this.filter.getValue()
+    this.setState({
+      tip: 'Filter 内容：' + JSON.stringify(value)
+    })
+  }
+  onSet = () => {
+    this.filter.setValue('brand4', [
+      {
+        text: '阿里巴巴',
+        value: 'alibaba'
+      },
+      {
+        text: '阿里巴巴2',
+        value: 'alibaba2'
+      }
+    ])
+    this.setState({
+      tip: 'Filter已经被设置了！'
+    })
+  }
+
   render() {
     return (
       <div>
-        <div style={{ lineHeight: 2 }}>
-          <p>something else</p>
-          <p>something else</p>
+        <div style={{ lineHeight: 2, margin: '10px' }}>
+          <p>{this.state.tip}</p>
           <p>something else</p>
         </div>
         <Filter
+          ref={(c) => {this.filter = c}}
           size={4}
           activeIndex={1}
           defaultValue = {this.state.defaultFilterValue}
           options={
             [
+              {
+                name: 'sort',
+                title: '默认',
+                type: 'order',  // select | order | switch
+                items: [
+                  {
+                    text: '默认',
+                    value: ''
+                  },
+                  {
+                    text: () => '距离',
+                    value: 'distance'
+                  },
+                  {
+                    text: '评分',
+                    value: 'grade'
+                  }
+                ]
+              },
+              {
+                name: 'quickSort',
+                title: '降序排列',
+                type: 'switch',
+                icon: false,
+                items: [
+                  {
+                    text: '升序排列',
+                    value: 'asc'
+                  }
+                ]
+              },
+              {
+                name: 'something',
+                title: '容纳人数',
+                type: 'select',
+                multiSelect: true,
+                items: [
+                  {
+                    text: '10人以下',
+                    value: 'distance'
+                  },
+                  {
+                    text: '10-50人',
+                    value: 'grade'
+                  },
+                  {
+                    text: () => '10-25人',
+                    value: 'cainiao'
+                  },
+                  {
+                    text: '100-500人',
+                    value: 'youku'
+                  },
+                  {
+                    text: '500人以上',
+                    value: 'tianmao'
+                  }
+                ]
+              },
+              {
+                name: 'brand3',
+                title: '单选品牌',
+                type: 'select',
+                maxLine: 2,
+                multiSelect: false,
+                items: [
+                  {
+                    text: '阿里巴巴',
+                    value: 'alibaba'
+                  },
+                  {
+                    text: '淘宝',
+                    value: 'taobao'
+                  },
+                  {
+                    text: '菜鸟',
+                    value: 'cainiao'
+                  },
+                  {
+                    text: '优酷',
+                    value: 'youku'
+                  },
+                  {
+                    text: '天猫',
+                    value: 'tianmao'
+                  },
+                  {
+                    text: '百度',
+                    value: 'baidu'
+                  },
+                  {
+                    text: '腾讯',
+                    value: 'tengxun'
+                  },
+                  {
+                    text: '有道',
+                    value: 'youdao'
+                  }
+                ]
+              },
               {
                 name: 'someOther',
                 multiSelect: true,
@@ -172,9 +304,20 @@ class Demo extends React.Component {
             ]
           }
           onChange={(data, filter) => {
-            // if (data.name ==='quickSort') {
-            //   filter.clearSelect()
-            // }
+            if (data.name ==='quickSort') {
+              console.log(filter.getValue())
+              // filter.clearValue()
+              // filter.setValue('brand4', [
+              //   {
+              //     text: '阿里巴巴',
+              //     value: 'alibaba'
+              //   },
+              //   {
+              //     text: '阿里巴巴2',
+              //     value: 'alibaba2'
+              //   }
+              // ])
+            }
             // can do confirm
             console.log('on change: ', data)
             switch (data.name) {
@@ -209,6 +352,11 @@ class Demo extends React.Component {
           onDelete={this.handleDelete}
           data={this.state.listData}
         />
+        <ButtonGroup>
+          <Button type="secondary" display="inline" onClick={this.onClear}>清空</Button>
+          <Button type="secondary" display="inline" onClick={this.onGet}>获取</Button>
+          <Button type="primary" display="inline" onClick={this.onSet}>设置</Button>
+        </ButtonGroup>
       </div>
     );
   }

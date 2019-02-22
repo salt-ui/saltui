@@ -67,21 +67,32 @@ class Filter extends React.Component {
     }, this)
   };
 
-  getSelect = () => {
+  getSelect = (name) => {
     let data = this.selectData;
     Object.keys(this.selectData).map(name => {
       if (!data[name] || !data[name].length) {
         delete data[name]
       }
     });
-    return data;
+    return !name ? data : data[name];
   };
 
-  clearSelect(name) {
+  clearValue(name) {
     if (!name) {
       this.selectData = {}
     }
     delete this.selectData[name]
+  }
+  setValue(name, data) {
+    if (!name || !data || !data.length) {
+      return
+    }
+    this.setSelect({
+      [name]: data
+    })
+  }
+  getValue(name) {
+    return this.getSelect(name)
   }
 
   getActiveIndex = () => {
