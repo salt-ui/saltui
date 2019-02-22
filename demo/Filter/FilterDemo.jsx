@@ -119,108 +119,8 @@ class Demo extends React.Component {
           options={
             [
               {
-                name: 'sort',
-                title: '默认',
-                type: 'order',  // select | order | switch
-                items: [
-                  {
-                    text: '默认',
-                    value: ''
-                  },
-                  {
-                    text: () => '距离',
-                    value: 'distance'
-                  },
-                  {
-                    text: '评分',
-                    value: 'grade'
-                  }
-                ]
-              },
-              {
-                name: 'quickSort',
-                title: '降序排列',
-                type: 'switch',
-                icon: false,
-                items: [
-                  {
-                    text: () => {return '123123'},
-                    value: 'asc'
-                  }
-                ]
-              },
-              {
-                name: 'something',
-                title: '容纳人数',
-                type: 'select',
-                multiSelect: true,
-                items: [
-                  {
-                    text: '10人以下',
-                    value: 'distance'
-                  },
-                  {
-                    text: '10-50人',
-                    value: 'grade'
-                  },
-                  {
-                    text: () => '10-25人',
-                    value: 'cainiao'
-                  },
-                  {
-                    text: '100-500人',
-                    value: 'youku'
-                  },
-                  {
-                    text: '500人以上',
-                    value: 'tianmao'
-                  }
-                ]
-              },
-              {
-                name: 'brand3',
-                title: '单选品牌',
-                type: 'select',
-                maxLine: 2,
-                multiSelect: false,
-                items: [
-                  {
-                    text: '阿里巴巴',
-                    value: 'alibaba'
-                  },
-                  {
-                    text: '淘宝',
-                    value: 'taobao'
-                  },
-                  {
-                    text: '菜鸟',
-                    value: 'cainiao'
-                  },
-                  {
-                    text: '优酷',
-                    value: 'youku'
-                  },
-                  {
-                    text: '天猫',
-                    value: 'tianmao'
-                  },
-                  {
-                    text: '百度',
-                    value: 'baidu'
-                  },
-                  {
-                    text: '腾讯',
-                    value: 'tengxun'
-                  },
-                  {
-                    text: '有道',
-                    value: 'youdao'
-                  }
-                ]
-              },
-              {
                 name: 'someOther',
-                multiSelect: false,
+                multiSelect: true,
                 title: '自定义渲染',
                 renderView: TestView,
               },
@@ -276,7 +176,7 @@ class Demo extends React.Component {
             //   filter.clearSelect()
             // }
             // can do confirm
-            console.log('on change: ', data, filter)
+            console.log('on change: ', data)
             switch (data.name) {
               case 'sort':
               case 'quickSort':
@@ -290,11 +190,11 @@ class Demo extends React.Component {
             }
           }}
           onConfirm={(data, filter) => {
-            console.log('on confirm: ', data, filter)
+            console.log('on confirm: ', data)
             // do confirm
           }}
           onReset={(data, filter) => {
-            console.log('on reset: ', data, filter)
+            console.log('on reset: ', data)
             // do something
           }}
         />
