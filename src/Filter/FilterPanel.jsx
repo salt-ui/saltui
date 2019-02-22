@@ -138,7 +138,12 @@ class FilterPanel extends react.Component {
     const classList = target.classList;
     const { getSelect } = this.props
     const currentSelectData = getSelect();
-    if (value === currentSelectData.sort[0].value) {
+    if (!currentSelectData[name] || !currentSelectData[name].value) {
+      this.doItemFilter({value, text, name})
+      classList.toggle('toggle')
+      return
+    }
+    if (value === currentSelectData[name][0].value) {
       return
     }
     const parent = target.parentElement;
@@ -155,7 +160,10 @@ class FilterPanel extends react.Component {
   renderOrder(group) {
     const { getSelect } = this.props;
     const { name, items } = group;
-    const currentSelectData = getSelect()[name];
+    let currentSelectData = getSelect()[name];
+    if (!currentSelectData || !currentSelectData[0] || !currentSelectData[0].value) {
+      currentSelectData = [items[0]]
+    }
     return (
       <div>
         {

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDom from 'react-dom'
 import PropTypes from 'prop-types';
 import Context from '../Context';
 import { HBox, Box } from '../Boxs';
@@ -32,11 +33,18 @@ class FilterBar extends React.Component {
     };
   }
 
+  getMaskOffset() {
+    const filterBar = ReactDom.findDOMNode(this.filterBar)
+    const rect = filterBar.getBoundingClientRect()
+    return rect.top
+  }
+
   changeActiveIndex(group, index) {
     const { activeIndex } = this.state;
     const {
       setActiveIndex,
       handleMask,
+      setMaskOffset
     } = this.props;
     const isFocus = activeIndex !== index;
     const newIndex = !isFocus ? -1 : index;
@@ -44,6 +52,7 @@ class FilterBar extends React.Component {
     if (group.type === 'switch') {
       this.doSwitchFilter(group);
     }
+    setMaskOffset(this.getMaskOffset())
     handleMask(isFocus, group);
     this.setState({
       activeIndex: newIndex,
@@ -156,7 +165,7 @@ class FilterBar extends React.Component {
     const { options } = this.props;
     const { groups } = options;
     return (
-      <div>
+      <div ref={(c) => {this.filterBar = c}}>
         <HBox className={Context.prefixClass('filter-bar-wrapper')}>
           {groups.map((group, index) => (
             <Box
