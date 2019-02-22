@@ -403,7 +403,7 @@ class Table extends React.Component {
 
   renderTable(isSubTable) {
     const t = this;
-    const { className, subTableClassName } = t.props;
+    const { className, subTableClassName, showPager } = t.props;
     const { columns, subColumns } = t.state;
     const subTableColumns = subColumns.length ? Table.processColumns({columns: subColumns} ) : columns;
     const scrollerProps = {
@@ -439,7 +439,7 @@ class Table extends React.Component {
             </div>
           </Scroller>
           {t.renderFixed(isSubTable ? subTableColumns : columns, isSubTable)}
-          {t.renderPager(isSubTable)}
+          {showPager ? t.renderPager(isSubTable) : null}
         </div>
         {isSubTable ? null : t.renderSubTablePopup()}
       </div>
@@ -469,7 +469,8 @@ Table.defaultProps = {
   columns: undefined,
   className: undefined,
   subTableClassName: undefined,
-  renderSubComp: undefined
+  renderSubComp: undefined,
+  showPager: true
 };
 
 Table.propTypes = {
@@ -487,7 +488,8 @@ Table.propTypes = {
   rightFixed: PropTypes.number,
   hideSplitLine: PropTypes.bool,
   onPagerChange: PropTypes.func,
-  renderSubComp: PropTypes.func
+  renderSubComp: PropTypes.func,
+  showPager: PropTypes.bool
 };
 
 Table.displayName = 'Table';
