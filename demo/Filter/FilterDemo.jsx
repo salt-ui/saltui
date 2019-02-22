@@ -16,30 +16,6 @@ class TestView extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      listData: [
-        {
-          imgUrl: 'https://img.alicdn.com/tps/TB15YftJFXXXXafXpXXXXXXXXXX-699-698.jpg',
-          text: '前端开发工程师',
-          title: '马慧（穆心）',
-        },
-        {
-          imgUrl: 'https://img.alicdn.com/tps/TB15YftJFXXXXafXpXXXXXXXXXX-699-698.jpg',
-          text: '资深交互设计师',
-          title: '周姮',
-        },
-        {
-          imgUrl: 'https://img.alicdn.com/tps/TB1P1vaLpXXXXXxaXXXXXXXXXXX-50-50.jpg',
-          text: '交互设计师',
-          title: '郝晓敏 (钰馨）',
-          date: '2017-7-8',
-        },
-        {
-          imgUrl: 'https://img.alicdn.com/tps/TB1P1vaLpXXXXXxaXXXXXXXXXXX-50-50.jpg',
-          text: '交互设计师',
-          title: '张三丰（曾金）',
-          date: '2017-7-8',
-        }
-      ],
       on1: false
     };
   }
@@ -296,9 +272,9 @@ class Demo extends React.Component {
             ]
           }
           onChange={(data, filter) => {
-            if (data.name ==='quickSort') {
-              filter.clearSelect()
-            }
+            // if (data.name ==='quickSort') {
+            //   filter.clearSelect()
+            // }
             // can do confirm
             console.log('on change: ', data, filter)
             switch (data.name) {
