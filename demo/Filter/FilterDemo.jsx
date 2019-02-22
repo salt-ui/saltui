@@ -9,8 +9,8 @@
 import React from 'react';
 import Filter from 'salt-filter';
 import List from 'salt-list'
-import Icon from 'salt-icon'
 import AngleRight from 'salt-icon/lib/AngleRight';
+import Switch from 'salt-switch'
 
 class TestView extends React.Component {
   constructor(props) {
@@ -39,19 +39,22 @@ class TestView extends React.Component {
           title: '张三丰（曾金）',
           date: '2017-7-8',
         }
-      ]
+      ],
+      on1: false
     };
   }
 
   onClick = (e) => {
-    this.props.onChange({'aa': [{text: 'xxx', value: 'xxxx'}]})
+    const { on1 } = this.state
+    this.setState({
+      on1: !on1
+    })
+    this.props.onChange([{text: 'xxx', value: 'xxxx'}, {text: 'aaa', value: 'bbbb'}])
   }
 
   render() {
     return (
-      <div>
-        <p style={{ lineHeight: '40px', height: '40px', textAlign: 'center' }} onClick={this.onClick}>自定义渲染</p>
-      </div>
+      <Switch on={this.state.on1} onChange={this.onClick} />
     )
   }
 }
@@ -149,7 +152,7 @@ class Demo extends React.Component {
                     value: ''
                   },
                   {
-                    text: '距离',
+                    text: () => '距离',
                     value: 'distance'
                   },
                   {
@@ -165,7 +168,7 @@ class Demo extends React.Component {
                 icon: false,
                 items: [
                   {
-                    text: '升序排列',
+                    text: () => {return '123123'},
                     value: 'asc'
                   }
                 ]
@@ -185,7 +188,7 @@ class Demo extends React.Component {
                     value: 'grade'
                   },
                   {
-                    text: '50-100人',
+                    text: () => '10-25人',
                     value: 'cainiao'
                   },
                   {
@@ -200,7 +203,7 @@ class Demo extends React.Component {
               },
               {
                 name: 'brand3',
-                title: '品牌',
+                title: '单选品牌',
                 type: 'select',
                 maxLine: 2,
                 multiSelect: false,
@@ -241,12 +244,13 @@ class Demo extends React.Component {
               },
               {
                 name: 'someOther',
+                multiSelect: false,
                 title: '自定义渲染',
                 renderView: TestView,
               },
               {
                 name: 'brand4',
-                title: '品牌',
+                title: '多选品牌',
                 type: 'select',
                 maxLine: 3,
                 multiSelect: true,
@@ -291,9 +295,12 @@ class Demo extends React.Component {
               }
             ]
           }
-          onChange={(data) => {
+          onChange={(data, filter) => {
+            if (data.name ==='quickSort') {
+              filter.clearSelect()
+            }
             // can do confirm
-            console.log('on change: ', data)
+            console.log('on change: ', data, filter)
             switch (data.name) {
               case 'sort':
               case 'quickSort':
@@ -306,12 +313,12 @@ class Demo extends React.Component {
               default:
             }
           }}
-          onConfirm={(data) => {
-            console.log('on confirm: ', data)
+          onConfirm={(data, filter) => {
+            console.log('on confirm: ', data, filter)
             // do confirm
           }}
-          onReset={(data) => {
-            console.log('on reset: ', data)
+          onReset={(data, filter) => {
+            console.log('on reset: ', data, filter)
             // do something
           }}
         />

@@ -5,7 +5,6 @@
  * All rights reserved.
  */
 import React from 'react';
-import ReactDom from 'react-dom'
 import PropTypes from 'prop-types';
 import FilterBar from './FilterBar'
 import FilterPanel from './FilterPanel'
@@ -65,7 +64,7 @@ class Filter extends React.Component {
       name,
       currentSelected: data[name],
       allSelected: this.getSelect()
-    })
+    }, this)
   };
 
   getSelect = () => {
@@ -77,6 +76,13 @@ class Filter extends React.Component {
     });
     return data;
   };
+
+  clearSelect(name) {
+    if (!name) {
+      this.selectData = {}
+    }
+    delete this.selectData[name]
+  }
 
   getActiveIndex = () => {
     return this.state.activeIndex
@@ -98,13 +104,17 @@ class Filter extends React.Component {
       maskVisible: isShow && group.type !== 'switch' && group.type !== 'super'
     })
   };
-
+  setMaskOffset = (offset) => {
+    this.setState({
+      maskOffset: offset
+    })
+  }
   handleMaskClick = () => {
     const { onConfirm } = this.props;
     const options = this.formatOptions();
     const group = options.groups[this.state.activeIndex];
     if (group && group.multiSelect) {
-      onConfirm(this.getSelect())
+      onConfirm(this.getSelect(), this)
     }
     this.setState({
       activeIndex: -1,
@@ -143,16 +153,8 @@ class Filter extends React.Component {
       _backItems: options
     }
   };
-  reset() {
-    this.selectData = {}
-  }
-  componentDidMount() {
-    const filterBar = ReactDom.findDOMNode(this.filterBar)
-    const rect = filterBar.getBoundingClientRect()
-    this.setState({
-      maskOffset: rect.top
-    })
-  }
+
+
   render() {
     const options = this.formatOptions();
     const {
@@ -168,13 +170,24 @@ class Filter extends React.Component {
       getSelect: this.getSelect,
       getActiveIndex: this.getActiveIndex,
       setActiveIndex: this.setActiveIndex,
-      handleMask: this.handleMask
+      handleMask: this.handleMask,
+      setMaskOffset: this.setMaskOffset,
+      onConfirm: (data) => {
+        this.props.onConfirm(data, this)
+      },
+      onReset: (data) => {
+        this.props.onReset(data, this)
+      },
+      onChange: (data) => {
+        this.props.onChange(data, this)
+      }
+
     };
     return (
       <div className={classnames(Context.prefixClass('filter-wrapper'), {
         [props.className]: !!props.className,
       })}>
-        <FilterBar {...props} ref={c => {this.filterBar = c}} />
+        <FilterBar {...props} />
         <FilterPanel {...props} />
         <Mask
           visible={maskVisible}

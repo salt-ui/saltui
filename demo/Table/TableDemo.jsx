@@ -423,7 +423,6 @@ class Demo extends React.Component {
               onClick={() => {
                 Dialog.alert({
                   title: '测试',
-
                   content: '我是 Dialog.alert 的调用',
                   onConfirm() {
                     console.log('alert confirm');
@@ -530,6 +529,7 @@ class Demo extends React.Component {
           // leftFixed={1}
           // rightFixed={1}
           pageSize={8}
+          showPager={false}
           subTablePageSize={6}
           // renderSubComp={this.renderSubComp}
         />

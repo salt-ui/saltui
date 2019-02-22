@@ -138,7 +138,12 @@ class FilterPanel extends react.Component {
     const classList = target.classList;
     const { getSelect } = this.props
     const currentSelectData = getSelect();
-    if (value === currentSelectData.sort[0].value) {
+    if (!currentSelectData[name] || !currentSelectData[name].value) {
+      this.doItemFilter({value, text, name})
+      classList.toggle('toggle')
+      return
+    }
+    if (value === currentSelectData[name][0].value) {
       return
     }
     const parent = target.parentElement;
@@ -155,7 +160,10 @@ class FilterPanel extends react.Component {
   renderOrder(group) {
     const { getSelect } = this.props;
     const { name, items } = group;
-    const currentSelectData = getSelect()[name];
+    let currentSelectData = getSelect()[name];
+    if (!currentSelectData || !currentSelectData[0] || !currentSelectData[0].value) {
+      currentSelectData = [items[0]]
+    }
     return (
       <div>
         {
@@ -367,21 +375,26 @@ class FilterPanel extends react.Component {
 
   renderCustomView(item) {
     const View = item.renderView;
-    const { setSelect, onConfirm, getSelect, setActiveIndex } = this.props;
+    const { setSelect, getSelect, setActiveIndex } = this.props;
     return (
-      <View
-        key={item.name}
-        name={item.name}
-        selectedDate={getSelect()}
-        onChange={(data, hidePanel) => {
-          if (!item.multiSelect || hidePanel) {
-            setActiveIndex(-1)
-          }
-          setSelect(data);
-          onConfirm(getSelect());
-        }}
-        props={this.props}
-      />
+      <div key={item.name}>
+        <View
+          name={item.name}
+          selectedDate={getSelect()}
+          onChange={(selected) => {
+            if (item.multiSelect === false) {
+              if (item._groupKey_ !== '_super_' ) {
+                setActiveIndex(-1)
+              }
+              this.doItemFilter({value: selected[0].value, text: selected[0].text, name: item.name})
+            } else {
+              setSelect({[item.name]: selected});
+            }
+          }}
+          props={this.props}
+        />
+        {this.renderSelectFooter(item)}
+      </div>
     )
   }
 
