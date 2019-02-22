@@ -1,4 +1,7 @@
-
+## 4.4.8 / 2019-02-22
+* `change` `Button` secondary button border change to 1px
+* `new` `Table` add new prop showPager
+* `fix` `Filter` mask offset change; customView optimize; fix picker styles
 
 ## 4.4.7 / 2019-02-21
 
