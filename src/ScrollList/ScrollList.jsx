@@ -90,7 +90,7 @@ class ScrollList extends React.Component {
     noDataTip: '暂无数据',
     noDataImage: 'https://img.alicdn.com/tps/TB1K6mHNpXXXXXiXpXXXXXXXXXX-1000-1000.svg',
     fetchDataOnOpen: true,
-    className: undefined,
+    className: 'scroll-list-full-border', // scroll-list-cut-border, scroll-list-no-border
     children: undefined,
     url: undefined,
     pageSize: undefined,
