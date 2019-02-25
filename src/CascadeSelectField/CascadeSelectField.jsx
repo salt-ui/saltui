@@ -187,7 +187,7 @@ class CascadeSelectField extends React.Component {
         <div onClick={t.handleClick}>
           {!t.state.confirmedValue.length ? (
             <div className={Context.prefixClass('omit cascade-select-field-placeholder')}>
-              {t.props.placeholder}
+              {t.props.readOnly ? '' : t.props.placeholder}
             </div>
           ) : (
             ''

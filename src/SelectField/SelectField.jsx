@@ -91,7 +91,11 @@ class SelectField extends React.Component {
         })}
       >
         <div onClick={t.handleClick.bind(t)} className={Context.prefixClass('select-field-content')}>
-          {!t.state.confirmedValue[0] ? <div className={Context.prefixClass('omit select-field-placeholder')}>{t.props.placeholder}</div> : null}
+          {
+            !t.state.confirmedValue[0]
+            ? <div className={Context.prefixClass('omit select-field-placeholder')}>{t.props.placeholder}</div>
+            : null
+          }
           {t.state.confirmedValue[0] ? (
             <div className={Context.prefixClass('select-field-value FBH FBAC')}>
               <span

@@ -68,7 +68,7 @@ class Demo extends React.Component {
           slotText: '李伟（孟则）',
         },
         {
-          checked: true,
+          checked: false,
           text: '刘艳芬',
           disable: true,
           value: '3',
@@ -140,6 +140,14 @@ class Demo extends React.Component {
               layout={'h'}
               required={false}
               disabled
+            />
+            <CheckboxField
+              {...checkboxFieldProps}
+              mode="slot"
+              label="只读"
+              layout={'v'}
+              required={false}
+              readOnly
             />
           </Group.List>
         </Group>

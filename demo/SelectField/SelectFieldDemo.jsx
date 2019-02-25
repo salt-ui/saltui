@@ -63,7 +63,7 @@ class Demo extends React.Component {
               placeholder="请输入"
             />
             <SelectField layout='v' label="有默认值" options={monthArray} onSelect={t.handleChange1.bind(t)} value={t.state.value1} tip="这里是tip" />
-            <SelectField readOnly label="查看态" options={monthArray} value={t.state.value1} />
+            <SelectField readOnly label="查看态" options={monthArray} value={t.state.value2} layout={'v'}/>
             <SelectField layout="v" disabled label="禁用" options={monthArray} value={t.state.value1} />
           </Group.List>
         </Group>

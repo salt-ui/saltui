@@ -59,7 +59,7 @@ class TextField extends React.Component {
           className={classnames(prefixClass('omit text-field-placeholder'), {
             [prefixClass('DN')]: t.props.value !== '',
           })}
-        >{t.props.placeholder}
+        >{readOnly ? '' : t.props.placeholder}
         </div>
         {!readOnly ? (
           <input
@@ -73,7 +73,7 @@ class TextField extends React.Component {
             onFocus={(e) => { t.handleFocus(e); }}
             onBlur={(e) => { t.handleBlur(e); }}
           />
-        ) : <span>{t.props.value}</span>}
+        ) : <span>{t.props.value || '　'}</span>}
       </div>
     );
   }

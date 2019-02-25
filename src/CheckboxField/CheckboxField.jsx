@@ -250,7 +250,7 @@ class CheckboxField extends React.Component {
                 {t.state.selectedText}
               </div> :
               <div className={prefixClass('omit checkbox-field-placeholder')}>
-                {t.props.placeholder}
+                {t.props.readOnly ?  '' : t.props.placeholder}
               </div>
           }
         </div>
