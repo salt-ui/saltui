@@ -1,3 +1,6 @@
+## 4.4.10 / 2019-02-25
+* `change` change the default styles when the value is empty in all **Field
+
 ## 4.4.9 / 2019-02-22
 * `new` `Filter` add 3 methods：setValue，getValue，clearValue
 * `fix` `Table` fix hasSubTable function bug
