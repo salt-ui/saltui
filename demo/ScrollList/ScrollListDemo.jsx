@@ -40,19 +40,23 @@ function getJsonp(page, size) {
 
 const propsMap = [
   {
-    title: <span className="newlist-demo-has-avatar"><Avatar name="tingle" size={20} src="https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png" />标题文字(如姓名)</span>,
+    avatar: <Avatar name="tingle" size={20} src="https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png" />,
+    title: <span className="newlist-demo-has-avatar">标题文字(如姓名)</span>,
     borderType: 'full-border',
   },
   {
-    description: <span className="newlist-demo-has-avatar"><Avatar name="tingle" size={40} src="https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png" />标题文字(如姓名)</span>,
+    avatar: <Avatar name="tingle" size={40} src="https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png" />,
+    description: <span className="newlist-demo-has-avatar">标题文字(如姓名)</span>,
     borderType: 'cut-border',
+    badge: 44,
   },
   {
     avatar: <Avatar name="tingle" size={40} src="https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png" />,
     title: '标题文字(如姓名)',
     description: '放上人物相关简介和title，使人物信息更加饱满，文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容',
     borderType: 'no-border',
-    totalNumber: true,
+    badgePosition: 'indicator', // indicator/followTitle/titleRight
+    badge: true,
   },
   {
     avatar: 'https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png',
@@ -60,22 +64,23 @@ const propsMap = [
     description: '放上人物相关简介和title，使人物信息更加饱满，文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容',
     borderType: 'cut-border',
     extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
-    totalNumber: 10000,
+    badge: 10000,
+    badgePosition: 'indicator', // indicator/followTitle/titleRight
   },
   {
     img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
     title: '标题文字(如姓名)',
-    className: 'badge-top-right',
-    badge: <Badge text="徽章文本" style={{ marginLeft: 10, background: '#ff6600' }} />,
+    badge: <Badge text="HOT" style={{ marginLeft: 10, background: '#ff6600' }} />,
+    badgePosition: 'titleRight', // indicator/followTitle/titleRight
     description: '放上人物相关简介和title，使人物信息更加饱满，文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容',
     extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
-    totalNumber: 4,
     borderType: 'no-border',
   },
   {
     img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
     title: '标题文字(如姓名)',
-    badge: '徽章文本2',
+    badge: 'new',
+    badgePosition: 'followTitle', // indicator/followTitle/titleRight
     titleTag: '<span className="newlist-demo-has-title-tag">标题带标签</span>',
     description: '多行模式，文字超长则换行；文本内容文本内容文本内容文本内容文本内容文本内容',
   },

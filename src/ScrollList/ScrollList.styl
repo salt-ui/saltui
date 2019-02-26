@@ -178,27 +178,6 @@ $scrollListPrefixCls = t-scroll-list;
   min-width: 0;
 }
 
-.{$scrollListPrefixCls}-item-number {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-  text-align: center;
-  background: #F04631;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 12px;
-  margin-left: 16px;
-  &.more {
-    width: 30px;
-    border-radius: 28px;
-  }
-  &.little {
-    width: 8px;
-    height: 8px;
-  }
-}
-
 .{$scrollListPrefixCls}-item-extra {
   margin-left: 10px;
 }
@@ -212,10 +191,7 @@ $scrollListPrefixCls = t-scroll-list;
   font-size: 16px;
   // justify-content: space-between;
   color: rgba(0,0,0,.8);
-}
-
-.badge-top-right {
-  .{$scrollListPrefixCls}-item-title {
+  &.titleRight {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -231,6 +207,7 @@ $scrollListPrefixCls = t-scroll-list;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   display: -webkit-box;
+  text-align: justify;
 }
 
 .hairline {

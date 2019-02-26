@@ -11,9 +11,9 @@ class Item extends React.Component {
     avatar: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     description: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    badge: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    badge: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.number, PropTypes.bool]),
+    badgePosition: PropTypes.string,
     desMaxLine: PropTypes.number,
-    totalNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     extra: PropTypes.any,
     borderType: PropTypes.string,
   };
@@ -26,9 +26,9 @@ class Item extends React.Component {
     title: undefined,
     description: undefined,
     badge: undefined,
-    totalNumber: undefined,
+    badgePosition: 'followTitle', // indicator/followTitle/titleRight
     extra: undefined,
-    borderType: undefined,
+    borderType: '',
   };
 
   renderImg() {
@@ -48,14 +48,24 @@ class Item extends React.Component {
   }
 
   renderTitle() {
-    const { title, prefixCls } = this.props;
-    return <div className={`${prefixCls}-title`}>{title}{this.renderBadge()}</div>;
+    const { title, prefixCls, badgePosition } = this.props;
+    if (!title) return null;
+    return (
+      <div className={classnames(`${prefixCls}-title`, {
+        [badgePosition]: true,
+      })}
+      >{title}{badgePosition === 'indicator' ? null : this.renderBadge()}
+      </div>);
   }
 
   renderBadge() {
     const { badge, prefixCls } = this.props;
     if (typeof badge === 'string') {
-      return (<Badge text={badge} style={{ marginLeft: 8, marginTop: 1, background: '#F9BD0F' }} />);
+      return (<Badge text={badge} style={{ marginLeft: 8, marginTop: 1, background: '#F04631' }} />);
+    } else if (typeof badge === 'number') {
+      return (<Badge count={badge} style={{ marginLeft: 8, marginTop: 1, background: '#F04631' }} />);
+    } else if (typeof badge === 'boolean') {
+      return (<Badge dot style={{ marginLeft: 8, background: '#F04631' }} />);
     }
     return badge;
   }
@@ -79,25 +89,6 @@ class Item extends React.Component {
     return null;
   }
 
-  renderTotalNumber() {
-    const { totalNumber, prefixCls } = this.props;
-    if (!totalNumber || totalNumber <= 0) return null;
-    let num = '';
-    if (typeof totalNumber === 'number') {
-      num = totalNumber > 99 ? '99+' : totalNumber;
-    }
-    return (
-      <div
-        className={classnames(`${prefixCls}-number`, {
-        more: totalNumber > 99,
-        little: typeof totalNumber === 'boolean',
-      })}
-      >
-        {num}
-      </div>
-    );
-  }
-
   renderExtra() {
     const { extra, prefixCls } = this.props;
     if (extra) {
@@ -110,7 +101,9 @@ class Item extends React.Component {
     return null;
   }
   render() {
-    const { prefixCls, className, borderType } = this.props;
+    const {
+      prefixCls, className, borderType, badgePosition,
+    } = this.props;
     return (
       <div
         className={classnames({
@@ -125,7 +118,7 @@ class Item extends React.Component {
           {this.renderTitle()}
           {this.renderDes()}
         </div>
-        {this.renderTotalNumber()}
+        {badgePosition === 'indicator' ? this.renderBadge() : null}
         {this.renderExtra()}
       </div>
     );
