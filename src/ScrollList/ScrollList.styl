@@ -99,17 +99,8 @@ $scrollListPrefixCls = t-scroll-list;
   line-height: 1.5;
   align-items: center;
   position: relative;
-  // width: 100%;
   overflow: hidden;
   box-sizing: border-box;
-  // &:after {
-  //   content: ' ';
-  //   position: absolute;
-  //   border-bottom: 1px solid $normal-alpha-7;
-  //   width: 100%;
-  //   bottom: 0;
-  //   left: 16px;
-  // }
   &:active {
     background: $normal-alpha-7;
   }
@@ -167,8 +158,11 @@ $scrollListPrefixCls = t-scroll-list;
 }
 
 .{$scrollListPrefixCls}-item .t-badge {
-  // float: right;
   margin-bottom: 3px;
+  .badge-inner {
+    background: $function-red;
+    margin: 1px 0 0 8px;
+  }
 }
 
 .{$scrollListPrefixCls}-item-content {
@@ -186,11 +180,8 @@ $scrollListPrefixCls = t-scroll-list;
 }
 
 .{$scrollListPrefixCls}-item-title {
-  // display: flex;
-  // align-items: center;
   font-size: 16px;
-  // justify-content: space-between;
-  color: rgba(0,0,0,.8);
+  color: $dark-alpha-2;
   &.titleRight {
     display: flex;
     align-items: baseline;

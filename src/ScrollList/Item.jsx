@@ -59,13 +59,13 @@ class Item extends React.Component {
   }
 
   renderBadge() {
-    const { badge, prefixCls } = this.props;
+    const { badge } = this.props;
     if (typeof badge === 'string') {
-      return (<Badge text={badge} style={{ marginLeft: 8, marginTop: 1, background: '#F04631' }} />);
+      return (<Badge text={badge} />);
     } else if (typeof badge === 'number') {
-      return (<Badge count={badge} style={{ marginLeft: 8, marginTop: 1, background: '#F04631' }} />);
+      return (<Badge count={badge} />);
     } else if (typeof badge === 'boolean') {
-      return (<Badge dot style={{ marginLeft: 8, background: '#F04631' }} />);
+      return (<Badge dot />);
     }
     return badge;
   }

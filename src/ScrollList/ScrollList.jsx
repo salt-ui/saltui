@@ -31,6 +31,7 @@ class ScrollList extends React.Component {
   static propTypes = {
     prefixCls: PropTypes.string,
     className: PropTypes.string,
+    listBorderType: PropTypes.string,
     children: PropTypes.any,
     scrollLoad: PropTypes.bool,
     scrollRefresh: PropTypes.bool,
@@ -90,7 +91,8 @@ class ScrollList extends React.Component {
     noDataTip: '暂无数据',
     noDataImage: 'https://img.alicdn.com/tps/TB1K6mHNpXXXXXiXpXXXXXXXXXX-1000-1000.svg',
     fetchDataOnOpen: true,
-    className: 'scroll-list-no-border', // scroll-list-cut-border, scroll-list-full-border
+    className: undefined,
+    listBorderType: 'scroll-list-no-border', // scroll-list-no-border, scroll-list-cut-border, scroll-list-full-border
     children: undefined,
     url: undefined,
     pageSize: undefined,
@@ -384,6 +386,7 @@ class ScrollList extends React.Component {
         }}
         className={classnames(this.props.prefixCls, {
           [this.props.className]: !!this.props.className,
+          [this.props.listBorderType]: !!this.props.listBorderType,
         })}
         {...this.refreshOptions()}
         {...this.infiniteScrollOptions()}
