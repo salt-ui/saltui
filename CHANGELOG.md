@@ -1,14 +1,20 @@
+## 4.4.11 / 2019-02-28
+* `change`: `ScrollList` item style update
+
 ## 4.4.10 / 2019-02-25
-* `change` change the default styles when the value is empty in all **Field
+
+* `change`: change the default styles when the value is empty in all **Field
 
 ## 4.4.9 / 2019-02-22
-* `new` `Filter` add 3 methods：setValue，getValue，clearValue
-* `fix` `Table` fix hasSubTable function bug
+
+* `new`: `Filter` add 3 methods：setValue，getValue，clearValue
+* `fix`:`Table` fix hasSubTable function bug
 
 ## 4.4.8 / 2019-02-22
-* `change` `Button` secondary button border change to 1px
-* `new` `Table` add new prop showPager
-* `fix` `Filter` mask offset change; customView optimize; fix picker styles
+
+* `change`: `Button` secondary button border change to 1px
+* `new`: `Table` add new prop showPager
+* `fix`: `Filter` mask offset change; customView optimize; fix picker styles
 
 ## 4.4.7 / 2019-02-21
 
@@ -24,17 +30,17 @@
 
 ## 4.4.3 / 2019-02-20
 
-* `fix` `Filter` fix picker didn't work when out of super popup
-* `fix` `Filter` fix arrow color style
+* `fix`: `Filter` fix picker didn't work when out of super popup
+* `fix`: `Filter` fix arrow color style
 
 ## 4.4.1 / 2019-01-26
 
-* `change` `Table` support custom sub table header
-* `fix` `Button`  fix banner button style
+* `change`: `Table` support custom sub table header
+* `fix`: `Button`  fix banner button style
 
 ## 4.4.0 / 2019-01-25
 
-* `change` Table support sub table
+* `change`: Table support sub table
 
 ## 4.3.13 / 2019-01-23
 
@@ -51,7 +57,7 @@
 
 
 ## 4.3.10 / 2019-01-11
-* `change` change method to fix field padding
+* `change`: change method to fix field padding
 
 ## 4.3.9 / 2019-01-10
 * `fix`: fix field padding
