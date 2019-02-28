@@ -1,3 +1,7 @@
+## 4.4.12 / 2019-02-28
+
+* `change`: `Badge` style improvement
+
 ## 4.4.11 / 2019-02-28
 * `change`: `ScrollList` item style update
 
