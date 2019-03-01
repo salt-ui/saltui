@@ -16,6 +16,7 @@ class Item extends React.Component {
     desMaxLine: PropTypes.number,
     extra: PropTypes.any,
     borderType: PropTypes.string,
+    onClick: PropTypes.func,
   };
   static defaultProps = {
     prefixCls: 't-scroll-list-item',
@@ -29,6 +30,7 @@ class Item extends React.Component {
     badgePosition: 'followTitle', // indicator/followTitle/titleRight
     extra: undefined,
     borderType: '',
+    onClick: () => {},
   };
 
   renderImg() {
@@ -103,7 +105,7 @@ class Item extends React.Component {
   }
   render() {
     const {
-      prefixCls, className, borderType, badgePosition,
+      prefixCls, className, borderType, badgePosition, onClick,
     } = this.props;
     return (
       <div
@@ -112,6 +114,7 @@ class Item extends React.Component {
           [className]: !!className,
           [borderType]: !!borderType,
         })}
+        onClick={() => { onClick(this.props); }}
       >
         {this.renderImg()}
         {this.renderAvatar()}
