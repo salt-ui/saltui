@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import DirectionRight from 'salt-icon/lib/DirectionRight';
 import Map from 'salt-icon/lib/Map';
 import ScrollList from 'salt-scroll-list';
-import Button from 'salt-button';
 import Avatar from 'salt-avatar';
 import Badge from 'salt-badge';
 
@@ -19,8 +18,8 @@ import Badge from 'salt-badge';
 
 const Item = props => (<div className="newlist-demo-item">{`${props.index} ${props.name}`}</div>);
 Item.propTypes = {
-  index: PropTypes.number,
-  name: PropTypes.string,
+  index: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
 };
 function Other1() {
   return <div className="newlist-demo-item other1">Other1</div>;
