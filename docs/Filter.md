@@ -10,12 +10,24 @@ import { Filter } from 'saltui';
 <Filter
   size={4}
   activeIndex={-1}
+  defaultValue={{
+    sort: [
+      {
+        text: '默认',
+        value: ''
+      },
+    ]
+  }}
   options={[
     {
       name: 'sort',     // 必选，过滤器唯一标志
       title: '默认排序', // 必选，过滤器名称
       type: 'order',  // 必选，过滤器类型(order|select|switch)
       items: [        // 可选，过滤器选项
+        {
+          text: '默认',
+          value: ''
+        },
         {
           text: '距离',
           value: 'distance'
@@ -27,13 +39,13 @@ import { Filter } from 'saltui';
       ]
     },
   ]}
-  onChange={(data) => {
+  onChange={(data, filter) => {
     console.log(data)
   }}
-  onConfirm={(data) => {
+  onConfirm={(data, filter) => {
     console.log(data)
   }}
-  onReset={(data) => {
+  onReset={(data, filter) => {
     console.log(data)
   }}
 >
@@ -61,6 +73,18 @@ import { Filter } from 'saltui';
 默认：4
 
 必填：否
+
+
+#### defaultValue
+
+描述：默认选择项
+
+类型：Object
+
+默认：{}
+
+必填：否
+
 
 #### options
 
@@ -92,7 +116,7 @@ import { Filter } from 'saltui';
 
 类型：Function
 
-默认：(data) => {// data中包含当前发生change的项以及change之后的所有选中项}
+默认：(data, filter) => {// data中包含当前发生change的项以及change之后的所有选中项}
 
 必填：否
 
@@ -103,7 +127,7 @@ import { Filter } from 'saltui';
 
 类型：Function
 
-默认: (data) => {// data中包含所有选中的筛选项}
+默认: (data, filter) => {// data中包含所有选中的筛选项}
 
 必填：否
 
@@ -113,6 +137,57 @@ import { Filter } from 'saltui';
 
 类型：Function
 
-默认：(data) => {// data中包含所有被重置的过滤项名称以及重置后的所有选择项}
+默认：(data, filter) => {// data中包含所有被重置的过滤项名称以及重置后的所有选择项}
 
 必填：否
+
+## APIS
+
+#### getValue([name])
+
+描述：获取当前所有选中过滤项
+
+参数：name 过滤器名称，可选。若为空，返回所有选中项；若为指定过滤器，则返回对应选中项
+
+返回值：Object|Array，格式示例如下：
+
+```javascript
+// 若name不存在
+
+result = {
+   sort: [
+     { text: '距离', value: '1000' }
+   ],
+   quickSort: [
+     { text: '升序', value: 'asc' }
+   ]
+}
+
+
+// 若name存在
+
+result = [
+  { text: '升序', value: 'asc' }
+]
+```
+
+#### setValue(name, values)
+
+描述：设置当前选中过滤项
+
+参数：name 过滤器名称
+
+参数：values 过滤器选中项
+
+示例：
+```javascript
+filter.setValue('sort', [{text:'升序', value: 'asc'}])
+```
+
+
+#### clearValue([name])
+
+描述：重置当前所有选中项
+
+参数：name 过滤器名称，可选。存在时仅重置对应过滤器选中，省略时清空所有选中。
+
