@@ -48,6 +48,7 @@ const propsMap = [
     description: <span className="newlist-demo-has-avatar">标题文字(如姓名)</span>,
     borderType: 'cut-border',
     badge: 44,
+    onClick: (res) => { console.log(res); },
   },
   {
     avatar: <Avatar name="tingle" size={40} src="https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png" />,
@@ -56,6 +57,7 @@ const propsMap = [
     borderType: 'no-border',
     badgePosition: 'indicator', // indicator/followTitle/titleRight
     badge: true,
+    onClick: (res) => { console.log(res); },
   },
   {
     avatar: 'https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png',
