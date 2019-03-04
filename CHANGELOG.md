@@ -1,3 +1,8 @@
+## 4.4.15 / 2019-03-04
+
+* `fix`: `Card` fix styles
+* `change`: `Filter` add doc
+
 ## 4.4.14 / 2019-03-04
 
 * `feat`: `ScrollList` Item support onClick
