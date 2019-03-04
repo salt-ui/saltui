@@ -1,3 +1,7 @@
+## 4.4.16 / 2019-03-04
+
+* `fix`: `RateField` fix value of layout always keep 'h'
+
 ## 4.4.15 / 2019-03-04
 
 * `fix`: `Card` fix styles
