@@ -1,3 +1,7 @@
+## 4.4.14 / 2019-03-04
+
+* `feat`: `ScrollList` Item support onClick
+
 ## 4.4.12 / 2019-02-28
 
 * `change`: `Badge` style improvement
