@@ -174,7 +174,6 @@ $scrollListPrefixCls = t-scroll-list;
 
 .{$scrollListPrefixCls}-item-extra {
   margin-left: 10px;
-  height: 20px;
   svg {
     fill: $normal-alpha-4;
     width: 20px;
@@ -182,7 +181,8 @@ $scrollListPrefixCls = t-scroll-list;
   }
 }
 .{$scrollListPrefixCls}-item-extra-inner {
-  line-height: 
+  display: flex;
+  align-items: center;
 }
 
 .{$scrollListPrefixCls}-item-title {
