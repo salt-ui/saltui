@@ -1,3 +1,7 @@
+## 4.4.17 / 2019-03-07
+
+* `fix`: `ScrollList` fix list item arrow position
+
 ## 4.4.16 / 2019-03-04
 
 * `fix`: `RateField` fix value of layout always keep 'h'
