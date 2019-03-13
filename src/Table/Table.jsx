@@ -51,7 +51,7 @@ class Table extends React.Component {
           width = +width
         }
       }
-      if (width > 1 || width <= 0) {
+      if (!width || width > 1 || width <= 0) {
         width = 0.25
       }
 
