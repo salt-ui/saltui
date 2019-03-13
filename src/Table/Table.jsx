@@ -41,10 +41,23 @@ class Table extends React.Component {
   static processColumns(props, hasSubTable) {
     // const newProps = props;
     let columns = deepcopy(props.columns).map((column) => {
-      const columns = column;
-      columns.width = Context.rem((columns.width || 0.25) * (hasSubTable && props.columns.length > 3 ? 598 : 640), 640);
-      columns.align = columns.align || 'left';
-      return columns;
+      let width = column.mobileWidth || column.width || 0.25
+      if (typeof width === 'string') {
+        if (width.indexOf('%') !== -1) {
+          width = parseInt(width, 10) / 100
+        } else if (width.indexOf('px') !== -1) {
+          width = +width / 640
+        } else {
+          width = +width
+        }
+      }
+      if (width > 1 || width <= 0) {
+        width = 0.25
+      }
+
+      column.width = Context.rem(width * (hasSubTable && props.columns.length > 3 ? 598 : 640), 640);
+      column.align = column.align || 'left';
+      return column;
     });
     // arrow
     columns.push({
@@ -390,7 +403,7 @@ class Table extends React.Component {
           if (!subTableData.data || !subTableData.data.length) {
             return null
           }
-          return renderSubComp.bind(this)(subTableData, rowData)
+          return renderSubComp(rowData, subTableData)
         })() : this.renderTable(true)}
         animationType="slide-up"
         onMaskClick={() => { this.setState({ subTableVisible: false }); }}

@@ -33,13 +33,14 @@ class Demo extends React.Component {
                 dataKey: 'title',
                 title: '表头',
                 align: 'center',
+                mobileWidth: 0.2,
                 // fixed: true
               },
               {
                 dataKey: 'name',
                 title: '姓名',
                 align: 'center',
-                // rightFixed: true
+                mobileWidth: '70%'
               },
             ],
             data: [
@@ -460,11 +461,11 @@ class Demo extends React.Component {
     }, 2000)
   }
 
-  renderSubComp(subData, rowData) {
+  renderSubComp = (rowData, subTableData) => {
     return (
       <div style={{ height: '100px', lineHeight: '40px' }}>
         <p>父行name: {rowData.name}</p>
-        <p>子表格内容: {subData.data.length}</p>
+        <p>子表格内容: {subTableData.data.length}</p>
       </div>
     )
   }
