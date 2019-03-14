@@ -1,3 +1,7 @@
+## 4.4.18 / 2019-03-14
+
+* `feat`: `Table` check & fix for column width; changed the params order for prop `renderSubComp`
+
 ## 4.4.17 / 2019-03-07
 
 * `fix`: `ScrollList` fix list item arrow position
