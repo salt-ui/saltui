@@ -33,14 +33,14 @@ class Demo extends React.Component {
                 dataKey: 'title',
                 title: '表头',
                 align: 'center',
-                mobileWidth: 0.2,
+                width: 0.3,
                 // fixed: true
               },
               {
                 dataKey: 'name',
                 title: '姓名',
                 align: 'center',
-                mobileWidth: '70%'
+                width: '100px'
               },
             ],
             data: [

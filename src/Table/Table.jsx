@@ -41,7 +41,7 @@ class Table extends React.Component {
   static processColumns(props, hasSubTable) {
     // const newProps = props;
     let columns = deepcopy(props.columns).map((column) => {
-      let width = column.mobileWidth || column.width || 0.25
+      let width = column.width || 0.25
       if (typeof width === 'string') {
         if (width.indexOf('%') !== -1) {
           width = parseInt(width, 10) / 100
