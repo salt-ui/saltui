@@ -182,7 +182,7 @@ class Table extends React.Component {
             };
             const isActionColumn = column.dataKey === 'actionColumn';
             // todo don't support third subrow
-            if (isActionColumn && (!this.state.hasSubTable)) {
+            if (isActionColumn && !this.state.hasSubTable) {
               return null
             }
 
@@ -293,7 +293,7 @@ class Table extends React.Component {
         }, isSubTable);
       });
     } else {
-      content = t.renderEmptyContent();
+      content = t.renderEmptyContent(columns, fixed, isSubTable);
     }
     return (
       <div
@@ -304,7 +304,10 @@ class Table extends React.Component {
     );
   }
 
-  renderEmptyContent() {
+  renderEmptyContent(columns, fixed, isSubTable) {
+    if (fixed) {
+      return null
+    }
     const t = this;
     const { emptyText } = t.props;
     const screenWidth = window.innerWidth || document.body.clientWidth;
@@ -318,7 +321,6 @@ class Table extends React.Component {
         {emptyText}
       </div>);
   }
-
 
   renderPager(isSubTable) {
     const t = this;
