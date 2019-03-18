@@ -1,3 +1,8 @@
+## 4.4.19 / 2019-03-18
+
+* `fix`: `Table` fix header visible state when data is empty
+
+
 ## 4.4.18 / 2019-03-14
 
 * `feat`: `Table` check & fix for column width; changed the params order for prop `renderSubComp`
