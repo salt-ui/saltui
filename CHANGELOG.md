@@ -1,7 +1,10 @@
+## 4.4.20 / 2019-03-19
+
+* `fix`: `Textarea` input composition breaking
+
 ## 4.4.19 / 2019-03-18
 
 * `fix`: `Table` fix header visible state when data is empty
-
 
 ## 4.4.18 / 2019-03-14
 
