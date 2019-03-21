@@ -82,9 +82,12 @@ class Field extends React.Component {
 
   renderLabel(options = {}) {
     const t = this;
+    const { errMsg, showErrInTip } = this.props
+    const hasError = errMsg && showErrInTip && t.props.layout === 'v';
     if (t.props.label || t.props.labelRight) {
       return (
         <Label
+          className={hasError ? prefixClass('field-label-error') : ''}
           label={t.props.label}
           required={t.props.required}
           layout={t.props.layout}
