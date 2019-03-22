@@ -1,3 +1,8 @@
+## 4.4.21 / 2019-03-22
+
+* `fix`: `Field` fix styles
+* `fix`: `NumberField` fix the input is inconsistent with the display when fixedNum is existing
+
 ## 4.4.20 / 2019-03-19
 
 * `fix`: `Textarea` input composition breaking
