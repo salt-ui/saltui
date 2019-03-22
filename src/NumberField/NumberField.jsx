@@ -36,7 +36,18 @@ class NumberField extends React.Component {
     onChange: () => {},
     onBlur: () => {},
     delimiter: ' ',
-    deFormat: (str, delimiter) => str.split(delimiter).join(''),
+    deFormat: (str, delimiter, type, fixedNum) => {
+      str = str.split(delimiter).join('')
+      if (type === 'money' && fixedNum) {
+        let numbers = str.split('.')
+        let decimalPart = numbers[1]
+        if (decimalPart && decimalPart.length > fixedNum) {
+          numbers[1] = decimalPart.substr(0,fixedNum)
+        }
+        str = numbers.join('.')
+      }
+      return str
+    },
     className: undefined,
     format: undefined,
     type: undefined,
@@ -125,9 +136,9 @@ class NumberField extends React.Component {
   handleChange(value) {
     this.saveCursorPosition();
     setTimeout(() => {
-      const { deFormat, onChange, delimiter } = this.props;
+      const { deFormat, onChange, delimiter, type, fixedNum } = this.props;
       const newValue = value.replace(/[^\d.\sx]/g, '');
-      onChange(deFormat(newValue, delimiter));
+      onChange(deFormat(newValue, delimiter, type, fixedNum));
     });
   }
 
