@@ -47,6 +47,14 @@ const codeExts = ['js', 'css', 'java', 'php', 'html', 'xml', 'json'];
 
 const compressExts = ['zip', 'rar', '7z'];
 
+const excelExts = ['xls', 'xlsx'];
+
+const docExts = ['doc', 'docx'];
+
+const pptExts = ['ppt', 'pptx', 'key'];
+
+const txtExts = ['txt', 'text'];
+
 
 class PhotoFieldFileItem extends React.Component {
   constructor(props) {
@@ -61,17 +69,19 @@ class PhotoFieldFileItem extends React.Component {
   }
 
   getTypeIcon() {
-    const { ext } = this.props;
+    let ext = this.props.ext || '';
     const isImage = extName => imgExts.indexOf(extName) !== -1;
     const isAudios = extName => audioExts.indexOf(extName) !== -1;
     const isVideo = extName => videoExts.indexOf(extName) !== -1;
     const isCode = extName => codeExts.indexOf(extName) !== -1;
     const isZip = extName => compressExts.indexOf(extName) !== -1;
     const isPdf = extName => extName === 'pdf';
-    const isExcel = extName => extName === 'excel';
-    const isPPT = extName => extName === 'powerpoint';
-    const isWord = extName => extName === 'word';
-    const isText = extName => extName === 'text';
+    const isExcel = extName => excelExts.indexOf(extName) !== -1;
+    const isPPT = extName => pptExts.indexOf(extName) !== -1;
+    const isWord = extName => docExts.indexOf(extName) !== -1;
+    const isText = extName => txtExts.indexOf(extName) !== -1;
+
+    ext = ext.toLowerCase();
 
     switch (true) {
       case isImage(ext):
