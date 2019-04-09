@@ -80,7 +80,7 @@ class Demo extends React.Component {
             readOnly
             value={'雷克萨解放了卡死机福利卡圣诞节福利卡萨帝放假啊莱克斯顿放假啊收到了客服'}
             tip="这里是提示信息"
-            renderReadOnlyView={(value) => {
+            renderView={(value) => {
               return (
                 <div>{value}</div>
               )

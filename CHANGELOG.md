@@ -1,6 +1,6 @@
 ## 4.5.1 / 2019-04-09
 * `new` `CascadeSelectField` add new prop activeTab
-* `new` `TextField` add new prop renderReadOnlyView for read only mode
+* `new` `TextField` add new prop renderView(as same as uxcore) for read only mode
 
 ## 4.4.21 / 2019-03-22
 
