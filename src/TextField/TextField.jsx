@@ -52,7 +52,7 @@ class TextField extends React.Component {
 
   renderInput() {
     const t = this;
-    const { readOnly } = t.props;
+    const { readOnly, renderReadOnlyView } = t.props;
     return (
       <div className={prefixClass('text-field-content-main')}>
         <div
@@ -73,7 +73,7 @@ class TextField extends React.Component {
             onFocus={(e) => { t.handleFocus(e); }}
             onBlur={(e) => { t.handleBlur(e); }}
           />
-        ) : <span>{t.props.value || '　'}</span>}
+        ) : <span>{renderReadOnlyView(t.props.value || '　')}</span>}
       </div>
     );
   }
@@ -133,6 +133,7 @@ TextField.defaultProps = {
   value: '',
   allowClear: true,
   children: undefined,
+  renderReadOnlyView: value => value
 };
 
 TextField.propTypes = {
@@ -149,6 +150,7 @@ TextField.propTypes = {
   children: PropTypes.any,
   allowClear: PropTypes.bool,
   disabled: PropTypes.bool,
+  renderReadOnlyView: PropTypes.func
 };
 
 TextField.displayName = 'TextField';
