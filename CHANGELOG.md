@@ -1,3 +1,6 @@
+## 4.5.0 / 2019-04-09
+* `new` `CascadeSelectField` add new prop activeTab
+
 ## 4.4.21 / 2019-03-22
 
 * `fix`: `Field` fix styles
