@@ -78,6 +78,12 @@ class Demo extends React.Component {
             placeholder="请输入"
             value={t.state.t1}
             tip="这里是提示信息"
+            readOnly={true}
+            renderView={(value) => {
+              return (
+                <div>123123123{value}</div>
+              )
+            }}
             onChange={(value) => { t.handleTextChange('t1', value); }}
           />
           <TextField
@@ -141,7 +147,7 @@ class Demo extends React.Component {
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">即时校验</Group.Head>
         <Group.List>
           <TextField
-            label="即时校验" value={t.state.t1} disabled 
+            label="即时校验" value={t.state.t1} disabled
             onChange={(value) => { t.handleTextChange('t1', value); }}
             errMsg={t.state.errMsg}
             toastComponent={Toast}
