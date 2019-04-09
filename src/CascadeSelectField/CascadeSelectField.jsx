@@ -214,6 +214,7 @@ class CascadeSelectField extends React.Component {
               onChange={t.handleChange}
               onCancel={t.handleCancel}
               onConfirm={t.handleConfirm}
+              activeTab={`tab-${t.props.activeTab}`}
             />
           }
           stopBodyScrolling={false}
@@ -256,6 +257,7 @@ CascadeSelectField.defaultProps = {
   className: '',
   confirmText: undefined,
   cancelText: undefined,
+  activeTab: 1,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -275,6 +277,7 @@ CascadeSelectField.propTypes = {
   columns: PropTypes.array,
   locale: PropTypes.string,
   mode: PropTypes.oneOf(['normal', 'complex']),
+  activeTab: PropTypes.number,
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';
