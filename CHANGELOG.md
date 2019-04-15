@@ -1,3 +1,6 @@
+## 4.5.2 / 2019-04-15
+* `changed` `Button` remove banner button border in button group
+
 ## 4.5.1 / 2019-04-09
 * `new` `CascadeSelectField` add new prop activeTab
 * `new` `TextField` add new prop renderView(as same as uxcore) for read only mode

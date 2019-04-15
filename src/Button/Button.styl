@@ -336,11 +336,22 @@ $button-disabled-border-color = $normal-alpha-6
       margin-right 0
   .{$prefix}-button-banner
     flex 1
-    border-left 0
     border-right 0
     border-bottom 0
+    hairline('border-left', $normal-alpha-6)
+    &.disabled
+    &[disabled]
+      border-right 0
+      border-bottom 0
+    &.{$prefix}-button-primary
+      hairline('border-top', $normal-alpha-6)
+      &:first-child
+        border-left 0
+    &.{$prefix}-button-minor
+      hairline('border-top', $normal-alpha-6)
+      &:first-child
+        border-left 0
     &.{$prefix}-button-secondary
       hairline('border-top', $normal-alpha-6)
-      hairline('border-left', $normal-alpha-6)
       &:first-child
         border-left 0
