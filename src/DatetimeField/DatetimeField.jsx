@@ -105,7 +105,6 @@ class DatetimeField extends React.Component {
       name: 'angle-right',
       width: 26,
       height: 26,
-      onClick: t.handleClick.bind(t),
     };
 
     const shouldShowValue = (isObject(value) && value.value) || (!isObject(value) && value);
@@ -118,8 +117,9 @@ class DatetimeField extends React.Component {
         className={classnames(Context.prefixClass('datetime-field'), {
           [className]: !!className,
         })}
+        onClick={t.handleClick.bind(t)}
       >
-        <div onClick={t.handleClick.bind(t)}>
+        <div>
           {
             shouldShowValue ? null : <div className={Context.prefixClass('omit datetime-field-placeholder')}>{placeholder}</div>
           }

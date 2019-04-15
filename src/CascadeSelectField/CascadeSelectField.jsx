@@ -173,7 +173,6 @@ class CascadeSelectField extends React.Component {
         className={Context.prefixClass('cascade-select-field-icon')}
         width={26}
         height={26}
-        onClick={t.handleClick}
       />
     ) : null;
     return (
@@ -183,8 +182,9 @@ class CascadeSelectField extends React.Component {
         className={classnames(Context.prefixClass('cascade-select-field'), {
           [t.props.className]: !!t.props.className,
         })}
+        onClick={t.handleClick}
       >
-        <div onClick={t.handleClick}>
+        <div>
           {!t.state.confirmedValue.length ? (
             <div className={Context.prefixClass('omit cascade-select-field-placeholder')}>
               {t.props.readOnly ? '' : t.props.placeholder}

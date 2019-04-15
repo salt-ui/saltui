@@ -144,6 +144,7 @@ class Field extends React.Component {
           [t.props.className]: !!t.props.className,
           [prefixClass('FBH FBAC')]: middleIcon
         })}
+        onClick={(e) => {this.props.onClick(e)}}
       >
         <div className={classnames({
           [prefixClass('field-pos-box')]: middleIcon,
@@ -175,6 +176,7 @@ Field.defaultProps = {
   toastComponent: undefined,
   errMsg: undefined,
   showErrInTip: true,
+  onClick: () => {}
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -200,6 +202,7 @@ Field.propTypes = {
   toastComponent: PropTypes.func,
   errMsg: PropTypes.string,
   showErrInTip: PropTypes.bool,
+  onClick: PropTypes.func
 };
 
 Field.getFieldProps = (props = {}) => {
