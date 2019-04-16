@@ -1,3 +1,11 @@
+## 4.6.0 / 2019-04-16
+* `new` `ButtonGroup` add new prop fixedBottom & background suit for iphone x
+* `new` `Field` add new prop onClick
+* `changed` `xxField` change callback method onSelect or onChange bind to Field component in xxSelectField,datetimeField,pickerField,RadioField
+* `new` `TabBar` add new prop fixedBottom
+* `changed` `Filter` `ImageViewer` `Popup` suit for iphone x
+
+
 ## 4.5.2 / 2019-04-15
 * `changed` `Button` remove banner button border in button group
 
