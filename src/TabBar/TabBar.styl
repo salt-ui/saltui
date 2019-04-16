@@ -1,7 +1,7 @@
 /**
  * TabBar Component Style for SaltUI
  * @author zhouwenjie
- * 
+ *
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
@@ -26,8 +26,11 @@ $tabsBarBorderTopColor = $normal-alpha-7;
   right: 0;
   z-index: $tabsBarZIndex;
   background: $tabsBarBgColor;
-  fix-safe-area(height, $tabsBarHeight);
   hairline('border-top', $tabsBarBorderTopColor);
+  &.fixed-bottom {
+    position fixed
+    fix-safe-area padding-bottom
+  }
 }
 
 // .{$prefix}-tabs-bar-content {
@@ -99,7 +102,6 @@ $tabsBarBorderTopColor = $normal-alpha-7;
   &.{$prefix}-tabs-bar-item-icon-more-center {
     width: 48px;
     height: 48px;
-    // background-color: $tabsBarItemMoreCenterIcon;
     border-radius: 50%;
     line-height: 48px;
     position: relative;
@@ -180,7 +182,9 @@ $tabsBarBorderTopColor = $normal-alpha-7;
 
   &-inner {
     padding: 38px 10px 80px;
-    fix-safe-area(padding-bottom, 80px);
+    fix-safe-area padding-bottom 80px
+    //padding-bottom calc(constant(safe-area-inset-bottom) + 80px)
+    //padding-bottom calc(env(safe-area-inset-bottom) + 80px)
     height: 100%;
     background: $dark-alpha-6;
   }

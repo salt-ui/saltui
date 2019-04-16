@@ -28,6 +28,7 @@ class TabBar extends React.Component {
     children: PropTypes.any,
     items: PropTypes.array,
     theme: PropTypes.string,
+    fixedBottom: PropTypes.bool
   };
 
   static defaultProps = {
@@ -42,6 +43,7 @@ class TabBar extends React.Component {
     children: undefined,
     items: undefined,
     theme: undefined,
+    fixedBottom: false
   };
 
   state = {
@@ -199,6 +201,7 @@ class TabBar extends React.Component {
     const className = classnames(Context.prefixClass('tabs-bar'), {
       [t.props.className]: !!t.props.className,
       [Context.prefixClass('tabs-bar-dark')]: this.props.theme === 'dark',
+      'fixed-bottom': t.props.fixedBottom
     });
     const style = {};
     if (this.state.centerMoreVisible) {

@@ -330,8 +330,9 @@ $button-disabled-border-color = $normal-alpha-6
     position fixed
     bottom 0
     width 100%
-    padding-bottom  calc(constant(safe-area-inset-bottom))
-    padding-bottom  calc(env(safe-area-inset-bottom))
+    fix-safe-area padding-bottom
+    //padding-bottom  calc(constant(safe-area-inset-bottom))
+    //padding-bottom  calc(env(safe-area-inset-bottom))
     .{$prefix}-button
       margin-top 10px
       margin-bottom 10px
