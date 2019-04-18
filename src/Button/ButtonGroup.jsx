@@ -10,11 +10,16 @@ const disableBackground = '#f6f7f8'
 const defaultBackground = '#fff'
 class ButtonGroup extends React.Component {
   getBackground() {
-
     const { children, fixedBottom, background } = this.props
     let bg = background
     let hasBanner = false
-    children.forEach(item => {
+    let child = []
+    if (!children.length || !children.splice) {
+      child.push(children)
+    } else {
+      child = [...children]
+    }
+    child.forEach(item => {
       const { type, disabled, display } = item.props;
       if (type !== 'primary') {
         if (disabled) {
