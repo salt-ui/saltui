@@ -68,7 +68,7 @@ class TextField extends React.Component {
             onFocus={(e) => { t.handleFocus(e); }}
             onBlur={(e) => { t.handleBlur(e); }}
           />
-        ) : <span>{renderView(t.props.value || '　')}</span>}
+        ) : <span>{renderView ? renderView(t.props.value) : (t.props.value || '　')}</span>}
       </div>
     );
   }
@@ -128,7 +128,7 @@ TextField.defaultProps = {
   value: '',
   allowClear: true,
   children: undefined,
-  renderView: value => value
+  renderView: undefined
 };
 
 TextField.propTypes = {
