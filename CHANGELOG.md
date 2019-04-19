@@ -1,3 +1,9 @@
+## 4.6.2 / 2019-04-19
+* `fix` `TextField` fix a bug in renderView prop
+
+## 4.6.1 / 2019-04-18
+* `fix` `ButtonGroup` fix a bug
+
 ## 4.6.0 / 2019-04-16
 * `new` `ButtonGroup` add new prop fixedBottom & background suit for iphone x
 * `new` `Field` add new prop onClick
