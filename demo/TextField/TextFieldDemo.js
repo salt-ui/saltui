@@ -80,6 +80,11 @@ class Demo extends React.Component {
             readOnly
             value={'雷克萨解放了卡死机福利卡圣诞节福利卡萨帝放假啊莱克斯顿放假啊收到了客服'}
             tip="这里是提示信息"
+            renderView={(value) => {
+              return (
+                <div>{value}</div>
+              )
+            }}
             onChange={(value) => { t.handleTextChange('t1', value); }}
           />
           <TextField
@@ -92,7 +97,10 @@ class Demo extends React.Component {
         </Group.List>
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">不可修改</Group.Head>
         <Group.List>
-          <TextField label="只读" value="不能更改不能更改不能更改不能更改不能更改不能更改不能更改不能更改" readOnly />
+          <TextField label="只读" value="不能更改不能更改不能更改" layout={'v'} readOnly placeholder={'12312312'}/>
+          <TextField label="不是只读" value="" layout={'v'} placeholder={'请输入内容'} />
+          <TextField label="只读" value="123123" readOnly />
+          <TextField label="不是只读" value="123123"/>
         </Group.List>
         <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">只读没有placeholder</Group.Head>
         <Group.List>

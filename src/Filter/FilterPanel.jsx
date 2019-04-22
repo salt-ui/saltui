@@ -138,7 +138,12 @@ class FilterPanel extends react.Component {
     const classList = target.classList;
     const { getSelect } = this.props
     const currentSelectData = getSelect();
-    if (value === currentSelectData.sort[0].value) {
+    if (!currentSelectData[name] || !currentSelectData[name].value) {
+      this.doItemFilter({value, text, name})
+      classList.toggle('toggle')
+      return
+    }
+    if (value === currentSelectData[name][0].value) {
       return
     }
     const parent = target.parentElement;
@@ -155,7 +160,10 @@ class FilterPanel extends react.Component {
   renderOrder(group) {
     const { getSelect } = this.props;
     const { name, items } = group;
-    const currentSelectData = getSelect()[name];
+    let currentSelectData = getSelect()[name];
+    if (!currentSelectData || !currentSelectData[0] || !currentSelectData[0].value) {
+      currentSelectData = [items[0]]
+    }
     return (
       <div>
         {
@@ -179,7 +187,7 @@ class FilterPanel extends react.Component {
                 {typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text() : ''}
                 {
                   isSelected
-                    ? <Icon className={'icon'} width={26} height={26} name={'check'} fill={'#ff6f00'}/>
+                    ? <Icon className={'icon'} width={20} height={20} name={'check'}/>
                     : null
                 }
               </div>
@@ -269,6 +277,7 @@ class FilterPanel extends react.Component {
           })}
         </Grid>
         {this.renderSelectFooter(group)}
+        {this.renderPicker()}
       </div>
     );
   }
@@ -320,9 +329,77 @@ class FilterPanel extends react.Component {
       [group.name]: !isOn ? null : [group.items[0]]
     });
   }
-  renderSuper(group) {
+
+  renderPicker() {
     const { showPicker, pickerOptions, multiple, name, value } = this.state;
-    const { setActiveIndex, setSelect, getSelect, onConfirm } = this.props;
+    const { setSelect } = this.props
+    return (
+      <Picker
+        value={value}
+        options={pickerOptions}
+        multiple={multiple}
+        showSearch={false}
+        onConfirm={(value) => {
+          if (!multiple) {
+            this.doItemFilter({value: value[0].value, text: value[0].text, name})
+          } else {
+            setSelect({
+              [name]: value
+            });
+          }
+          this.setState({
+            showPicker: false
+          })
+        }}
+        confirmText={'确认'}
+        filterOption={false}
+        onVisibleChange={(visible) => {
+          if (!visible) {
+            this.setState({
+              showPicker: false
+            });
+          }
+        }}
+        onSearch={(keyword) => {
+          // const items = pickerOptions.find(item => {
+          //   return item.text.indexOf(keyword !== -1)
+          // });
+          // this.setState({
+          //   pickerOptions: items
+          // });
+        }}
+        visible={showPicker}
+      />
+    )
+  }
+
+  renderCustomView(item) {
+    const View = item.renderView;
+    const { setSelect, getSelect, setActiveIndex } = this.props;
+    return (
+      <div key={item.name}>
+        <View
+          name={item.name}
+          selectedDate={getSelect()}
+          onChange={(selected) => {
+            if (item.multiSelect === false) {
+              if (item._groupKey_ !== '_super_' ) {
+                setActiveIndex(-1)
+              }
+              this.doItemFilter({value: selected[0].value, text: selected[0].text, name: item.name})
+            } else {
+              setSelect({[item.name]: selected});
+            }
+          }}
+          props={this.props}
+        />
+        {this.renderSelectFooter(item)}
+      </div>
+    )
+  }
+
+  renderSuper(group) {
+    const { setActiveIndex, getSelect } = this.props;
     const { children } = group;
     if (!children || !children.length) {
       return null;
@@ -338,18 +415,7 @@ class FilterPanel extends react.Component {
               }
               const View = item.renderView;
               if (View && typeof View === 'function') {
-                return (
-                  <View
-                    key={item.name}
-                    name={item.name}
-                    selectedDate={getSelect()}
-                    onChange={(data) => {
-                      setSelect(data);
-                      onConfirm(getSelect());
-                    }}
-                    props={this.props}
-                  />
-                )
+                return this.renderCustomView(item)
               }
               if (item.type === 'switch') {
                 const currentSelectedData = getSelect()[item.name];
@@ -381,38 +447,7 @@ class FilterPanel extends react.Component {
                 }}>确 定</Button>
               </Button.Group>
             </div>
-            <Picker
-              value={value}
-              options={pickerOptions}
-              multiple={multiple}
-              showSearch={false}
-              onConfirm={(value) => {
-                setSelect({
-                  [name]: value
-                });
-                this.setState({
-                  showPicker: false
-                })
-              }}
-              confirmText={'确认'}
-              filterOption={false}
-              onVisibleChange={(visible) => {
-                if (!visible) {
-                  this.setState({
-                    showPicker: false
-                  });
-                }
-              }}
-              onSearch={(keyword) => {
-                // const items = pickerOptions.find(item => {
-                //   return item.text.indexOf(keyword !== -1)
-                // });
-                // this.setState({
-                //   pickerOptions: items
-                // });
-              }}
-              visible={showPicker}
-            />
+            {this.renderPicker()}
           </div>
         }
         animationType="slide-left"
@@ -438,6 +473,9 @@ class FilterPanel extends react.Component {
       case 'super':
         return this.renderSuper(group);
       default:
+        if (group.renderView && typeof group.renderView === 'function') {
+          return this.renderCustomView(group)
+        }
         return null
     }
   }

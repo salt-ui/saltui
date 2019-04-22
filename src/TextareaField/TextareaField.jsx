@@ -81,7 +81,7 @@ class TextareaField extends React.Component {
           ref={(c) => { this.textarea = c; }}
           className={prefixClass('textarea-field-content')}
           style={style}
-          placeholder={placeholder}
+          placeholder={readOnly ? '' : placeholder}
           minRows={minRows}
           maxRows={maxRows}
           value={t.props.value}

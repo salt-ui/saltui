@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import DirectionRight from 'salt-icon/lib/DirectionRight';
 import Map from 'salt-icon/lib/Map';
 import ScrollList from 'salt-scroll-list';
-import Button from 'salt-button';
 import Avatar from 'salt-avatar';
 import Badge from 'salt-badge';
 
@@ -19,8 +18,8 @@ import Badge from 'salt-badge';
 
 const Item = props => (<div className="newlist-demo-item">{`${props.index} ${props.name}`}</div>);
 Item.propTypes = {
-  index: PropTypes.number,
-  name: PropTypes.string,
+  index: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
 };
 function Other1() {
   return <div className="newlist-demo-item other1">Other1</div>;
@@ -40,22 +39,49 @@ function getJsonp(page, size) {
 
 const propsMap = [
   {
-    title: <span className="newlist-demo-has-avatar"><Avatar name="tingle" size={20} src="https://img.alicdn.com/tps/TB1amOaKpXXXXbsXVXXXXXXXXXX-144-144.png"/>标题文字(如姓名)</span>,
+    avatar: <Avatar name="tingle" size={20} src="https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png" />,
+    title: <span className="newlist-demo-has-avatar">标题文字(如姓名)</span>,
+    borderType: 'full-border',
   },
   {
-    description: <span className="newlist-demo-has-avatar"><Avatar name="tingle" size={20} src="https://img.alicdn.com/tps/TB1amOaKpXXXXbsXVXXXXXXXXXX-144-144.png"/>标题文字(如姓名)</span>,
+    avatar: <Avatar name="tingle" size={40} src="https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png" />,
+    description: <span className="newlist-demo-has-avatar">标题文字(如姓名)</span>,
+    borderType: 'cut-border',
+    badge: 44,
+    onClick: (res) => { console.log(res); },
+  },
+  {
+    avatar: <Avatar name="tingle" size={40} src="https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png" />,
+    title: '标题文字(如姓名)',
+    description: '放上人物相关简介和title，使人物信息更加饱满，文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容',
+    borderType: 'no-border',
+    badgePosition: 'indicator', // indicator/followTitle/titleRight
+    badge: true,
+    onClick: (res) => { console.log(res); },
+  },
+  {
+    avatar: 'https://img.alicdn.com/tfs/TB1TK47IHPpK1RjSZFFXXa5PpXa-238-238.png',
+    title: '标题文字(如姓名)',
+    description: '放上人物相关简介和title，使人物信息更加饱满，文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容',
+    borderType: 'cut-border',
+    extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
+    badge: 10000,
+    badgePosition: 'indicator', // indicator/followTitle/titleRight
   },
   {
     img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
     title: '标题文字(如姓名)',
-    badge:  <Badge text="徽章文本" style={{ marginLeft: 10, background: '#ff6600', }}/>,
+    badge: <Badge text="HOT" style={{ marginLeft: 10, background: '#ff6600' }} />,
+    badgePosition: 'titleRight', // indicator/followTitle/titleRight
     description: '放上人物相关简介和title，使人物信息更加饱满，文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容',
     extra: <DirectionRight name="direction-right" className="newlist-demo-icon" />,
+    borderType: 'no-border',
   },
   {
     img: 'https://gw.alicdn.com/tfs/TB15larRXXXXXbcXpXXXXXXXXXX-300-300.jpg',
     title: '标题文字(如姓名)',
-    badge:  '徽章文本2',
+    badge: 'new',
+    badgePosition: 'followTitle', // indicator/followTitle/titleRight
     titleTag: '<span className="newlist-demo-has-title-tag">标题带标签</span>',
     description: '多行模式，文字超长则换行；文本内容文本内容文本内容文本内容文本内容文本内容',
   },
@@ -108,11 +134,11 @@ const propsMap = [
 ];
 
 const tagListProps1 = {
-  onClick: (it) => {console.log(it)},
-  data: ['可以直接输入字符串', '每个标签都是显示作用']
-}
+  onClick: (it) => { console.log(it); },
+  data: ['可以直接输入字符串', '每个标签都是显示作用'],
+};
 const tagListProps2 = {
-  onClick: (it, index) => {console.log(it, '带value', index)},
+  onClick: (it, index) => { console.log(it, '带value', index); },
   data: [
     { value: '信息平台极致匠心1' },
     { value: '信息平台极致匠心2' },
@@ -120,8 +146,8 @@ const tagListProps2 = {
     { value: '马萨拉蒂1' },
     { value: '马萨拉蒂2' },
     { value: '马萨拉蒂3' },
-  ]
-}
+  ],
+};
 
 class Demo extends React.Component {
   constructor(props) {
@@ -172,6 +198,7 @@ class Demo extends React.Component {
     const curr = this.state.pageNum;
     this.setState({ loading: true });
     console.log('will load page', curr);
+    // if (curr >= 1) return;
     if (curr >= 3) {
       this.setState({
         loading: false,
@@ -180,7 +207,6 @@ class Demo extends React.Component {
         hasError: false,
       });
       console.log('no more');
-      return;
     }
     console.log('start loading page', curr);
     setTimeout(() => {
@@ -230,7 +256,7 @@ class Demo extends React.Component {
       <div >
         <div className="container">
           <ScrollList
-            className="scroll-list-demo"
+            className="scroll-list-demo scroll-list-cut-border"
             dataGetted={this.state.dataGetted}
             data={this.state.data}
             hasError={this.state.hasError}
@@ -243,12 +269,12 @@ class Demo extends React.Component {
           >
             <Other1 />
             <Other2 />
-            {/* <ScrollList.TagList
+            <ScrollList.TagList
               {...tagListProps1}
             />
             <ScrollList.TagList
               {...tagListProps2}
-            /> */}
+            />
             {/* <Button onClick={() => { this.list.fetchData(); }}>手动请求</Button> */}
             {(data, index) => {
               const itemProps = propsMap[index % 9];

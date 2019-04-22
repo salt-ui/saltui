@@ -21,7 +21,9 @@ import { shouldUpdate } from '../Utils';
 
 function parseProps(props) {
   const { options, readOnly } = props;
-  const value = cloneDeep(props.value || []);
+  let value = cloneDeep(props.value || []);
+  // 过滤undefinded
+  value = value.filter(i => i);
   let cursor = options;
   const newOptions = [];
   const confirmedValue = value.length ? value : [];
@@ -63,9 +65,11 @@ function parseProps(props) {
 }
 
 function parseState(value, options) {
+  // 过滤value，如果数组存在undefinded则过滤掉
+  const filterdValue = value.filter(item => item);
   let cursor = options;
   const newOptions = [];
-  const newValue = cloneDeep(value);
+  const newValue = cloneDeep(filterdValue);
   for (let deep = 0; cursor; deep += 1) {
     let index = 0;
     let valueIsFound = false;
@@ -74,7 +78,7 @@ function parseState(value, options) {
         value: o.value,
         text: o.label,
       };
-      if (deep in value && o.value === value[deep].value) {
+      if (deep in filterdValue && o.value === filterdValue[deep].value) {
         index = i;
         newValue[deep] = option;
         valueIsFound = true;
@@ -169,7 +173,6 @@ class CascadeSelectField extends React.Component {
         className={Context.prefixClass('cascade-select-field-icon')}
         width={26}
         height={26}
-        onClick={t.handleClick}
       />
     ) : null;
     return (
@@ -179,11 +182,12 @@ class CascadeSelectField extends React.Component {
         className={classnames(Context.prefixClass('cascade-select-field'), {
           [t.props.className]: !!t.props.className,
         })}
+        onClick={t.handleClick}
       >
-        <div onClick={t.handleClick}>
+        <div>
           {!t.state.confirmedValue.length ? (
             <div className={Context.prefixClass('omit cascade-select-field-placeholder')}>
-              {t.props.placeholder}
+              {t.props.readOnly ? '' : t.props.placeholder}
             </div>
           ) : (
             ''
@@ -210,6 +214,7 @@ class CascadeSelectField extends React.Component {
               onChange={t.handleChange}
               onCancel={t.handleCancel}
               onConfirm={t.handleConfirm}
+              activeTab={`tab-${t.props.activeTab}`}
             />
           }
           stopBodyScrolling={false}
@@ -252,6 +257,7 @@ CascadeSelectField.defaultProps = {
   className: '',
   confirmText: undefined,
   cancelText: undefined,
+  activeTab: 1,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -271,6 +277,7 @@ CascadeSelectField.propTypes = {
   columns: PropTypes.array,
   locale: PropTypes.string,
   mode: PropTypes.oneOf(['normal', 'complex']),
+  activeTab: PropTypes.number,
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';

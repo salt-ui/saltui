@@ -74,6 +74,7 @@ class Demo extends React.Component {
         <CitySelectField
           value={['110000', '110100', '110102']}
           label="只读"
+          layout={'v'}
           readOnly
           districtData={districtData}
         />

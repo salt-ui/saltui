@@ -1,5 +1,105 @@
-## 4.4.0
-* `change` Table support sub table
+## 4.6.2 / 2019-04-19
+* `fix` `TextField` fix a bug in renderView prop
+
+## 4.6.1 / 2019-04-18
+* `fix` `ButtonGroup` fix a bug
+
+## 4.6.0 / 2019-04-16
+* `new` `ButtonGroup` add new prop fixedBottom & background suit for iphone x
+* `new` `Field` add new prop onClick
+* `changed` `xxField` change callback method onSelect or onChange bind to Field component in xxSelectField,datetimeField,pickerField,RadioField
+* `new` `TabBar` add new prop fixedBottom
+* `changed` `Filter` `ImageViewer` `Popup` suit for iphone x
+
+
+## 4.5.2 / 2019-04-15
+* `changed` `Button` remove banner button border in button group
+
+## 4.5.1 / 2019-04-09
+* `new` `CascadeSelectField` add new prop activeTab
+* `new` `TextField` add new prop renderView(as same as uxcore) for read only mode
+
+## 4.4.21 / 2019-03-22
+
+* `fix`: `Field` fix styles
+* `fix`: `NumberField` fix the input is inconsistent with the display when fixedNum is existing
+
+## 4.4.20 / 2019-03-19
+
+* `fix`: `Textarea` input composition breaking
+
+## 4.4.19 / 2019-03-18
+
+* `fix`: `Table` fix header visible state when data is empty
+
+## 4.4.18 / 2019-03-14
+
+* `feat`: `Table` check & fix for column width; changed the params order for prop `renderSubComp`
+
+## 4.4.17 / 2019-03-07
+
+* `fix`: `ScrollList` fix list item arrow position
+
+## 4.4.16 / 2019-03-04
+
+* `fix`: `RateField` fix value of layout always keep 'h'
+
+## 4.4.15 / 2019-03-04
+
+* `fix`: `Card` fix styles
+* `change`: `Filter` add doc
+
+## 4.4.14 / 2019-03-04
+
+* `feat`: `ScrollList` Item support onClick
+
+## 4.4.12 / 2019-02-28
+
+* `change`: `Badge` style improvement
+
+## 4.4.11 / 2019-02-28
+* `change`: `ScrollList` item style update
+
+## 4.4.10 / 2019-02-25
+
+* `change`: change the default styles when the value is empty in all **Field
+
+## 4.4.9 / 2019-02-22
+
+* `new`: `Filter` add 3 methods：setValue，getValue，clearValue
+* `fix`:`Table` fix hasSubTable function bug
+
+## 4.4.8 / 2019-02-22
+
+* `change`: `Button` secondary button border change to 1px
+* `new`: `Table` add new prop showPager
+* `fix`: `Filter` mask offset change; customView optimize; fix picker styles
+
+## 4.4.7 / 2019-02-21
+
+* `fix`: `Skeleton` Item cannot be rendered using lower React version
+
+## 4.4.5 / 2019-02-21
+
+* `fix`: `NumberInfo` Item cannot be rendered using lower React version
+
+## 4.4.4 / 2019-02-21
+
+* `fix`: `Steps` style bug when showIcon is false
+
+## 4.4.3 / 2019-02-20
+
+* `fix`: `Filter` fix picker didn't work when out of super popup
+* `fix`: `Filter` fix arrow color style
+
+## 4.4.1 / 2019-01-26
+
+* `change`: `Table` support custom sub table header
+* `fix`: `Button`  fix banner button style
+
+## 4.4.0 / 2019-01-25
+
+* `change`: Table support sub table
 
 ## 4.3.13 / 2019-01-23
 
@@ -16,7 +116,7 @@
 
 
 ## 4.3.10 / 2019-01-11
-* `change` change method to fix field padding
+* `change`: change method to fix field padding
 
 ## 4.3.9 / 2019-01-10
 * `fix`: fix field padding

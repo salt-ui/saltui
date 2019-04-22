@@ -33,13 +33,14 @@ class Demo extends React.Component {
                 dataKey: 'title',
                 title: '表头',
                 align: 'center',
+                width: 0.3,
                 // fixed: true
               },
               {
                 dataKey: 'name',
                 title: '姓名',
                 align: 'center',
-                // rightFixed: true
+                width: '100px'
               },
             ],
             data: [
@@ -423,7 +424,6 @@ class Demo extends React.Component {
               onClick={() => {
                 Dialog.alert({
                   title: '测试',
-
                   content: '我是 Dialog.alert 的调用',
                   onConfirm() {
                     console.log('alert confirm');
@@ -461,11 +461,11 @@ class Demo extends React.Component {
     }, 2000)
   }
 
-  renderSubComp(subData, rowData) {
+  renderSubComp = (rowData, subTableData) => {
     return (
       <div style={{ height: '100px', lineHeight: '40px' }}>
         <p>父行name: {rowData.name}</p>
-        <p>子表格内容: {subData.data.length}</p>
+        <p>子表格内容: {subTableData.data.length}</p>
       </div>
     )
   }
@@ -530,6 +530,7 @@ class Demo extends React.Component {
           // leftFixed={1}
           // rightFixed={1}
           pageSize={8}
+          showPager={false}
           subTablePageSize={6}
           // renderSubComp={this.renderSubComp}
         />

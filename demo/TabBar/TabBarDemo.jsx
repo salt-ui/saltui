@@ -75,6 +75,7 @@ class Demo extends React.Component {
           iconHeight={24}
           cIconHeight={50}
           items={this.tabBarItems}
+          fixedBottom={true}
         />
       </div>
     );

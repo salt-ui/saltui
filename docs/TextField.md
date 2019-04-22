@@ -115,6 +115,17 @@
 必填：否
 
 
+#### renderReadOnlyView
+
+描述：只读态下自定义渲染视图
+
+类型：Function,
+
+默认：value => value
+
+必填：否
+
+
 ## Sub Component
 
 ### TextField.LeftAddon / TextField.RightAddon

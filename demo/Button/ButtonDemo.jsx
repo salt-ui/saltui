@@ -252,10 +252,20 @@ class Demo extends React.Component {
           <h2 className="section-title">按钮组4: 贴底四按钮</h2>
           <div className="section-content">
             <ButtonGroup>
-              <Button type="secondary" display="banner" onClick={this.handleClick}>提交</Button>
+              <Button type="minor" display="banner" onClick={this.handleClick}>提交</Button>
               <Button type="secondary" display="banner" onClick={this.handleClick}>退回</Button>
-              <Button type="secondary" display="banner" onClick={this.handleClick}>拒绝</Button>
-              <Button type="secondary" display="banner" onClick={this.handleClick}>更多</Button>
+              <Button type="primary" display="banner" onClick={this.handleClick}>拒绝</Button>
+              <Button type="secondary" display="banner" disabled={true} onClick={this.handleClick}>更多</Button>
+            </ButtonGroup>
+          </div>
+        </div>
+
+        <div className="demo-section">
+          <h2 className="section-title">按钮组5: 贴底两按钮</h2>
+          <div className="section-content">
+            <ButtonGroup fixedBottom>
+              <Button type="secondary" disabled={false} display={'banner'} onClick={this.handleClick}>提交</Button>
+              <Button type="primary" disabled={false} display={'banner'} onClick={this.handleClick}>退回</Button>
             </ButtonGroup>
           </div>
         </div>

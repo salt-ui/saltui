@@ -41,10 +41,23 @@ class Table extends React.Component {
   static processColumns(props, hasSubTable) {
     // const newProps = props;
     let columns = deepcopy(props.columns).map((column) => {
-      const columns = column;
-      columns.width = Context.rem((columns.width || 0.25) * (hasSubTable && props.columns.length > 3 ? 598 : 640), 640);
-      columns.align = columns.align || 'left';
-      return columns;
+      let width = column.width || 0.25
+      if (typeof width === 'string') {
+        if (width.indexOf('%') !== -1) {
+          width = parseInt(width, 10) / 100
+        } else if (width.indexOf('px') !== -1) {
+          width = +width / 640
+        } else {
+          width = +width
+        }
+      }
+      if (!width || width > 1 || width <= 0) {
+        width = 0.25
+      }
+
+      column.width = Context.rem(width * (hasSubTable && props.columns.length > 3 ? 598 : 640), 640);
+      column.align = column.align || 'left';
+      return column;
     });
     // arrow
     columns.push({
@@ -64,7 +77,7 @@ class Table extends React.Component {
     const { data } = this.props.data || [];
     let ret = false;
     for (let i = 0; i < data.length; i++) {
-      if (data[i].data && data[i].data.length) {
+      if (data[i] && data[i].data && data[i].data.length) {
         ret = true;
         break
       }
@@ -169,7 +182,7 @@ class Table extends React.Component {
             };
             const isActionColumn = column.dataKey === 'actionColumn';
             // todo don't support third subrow
-            if (isActionColumn && (!this.state.hasSubTable)) {
+            if (isActionColumn && !this.state.hasSubTable) {
               return null
             }
 
@@ -280,7 +293,7 @@ class Table extends React.Component {
         }, isSubTable);
       });
     } else {
-      content = t.renderEmptyContent();
+      content = t.renderEmptyContent(columns, fixed, isSubTable);
     }
     return (
       <div
@@ -291,7 +304,10 @@ class Table extends React.Component {
     );
   }
 
-  renderEmptyContent() {
+  renderEmptyContent(columns, fixed, isSubTable) {
+    if (fixed) {
+      return null
+    }
     const t = this;
     const { emptyText } = t.props;
     const screenWidth = window.innerWidth || document.body.clientWidth;
@@ -305,7 +321,6 @@ class Table extends React.Component {
         {emptyText}
       </div>);
   }
-
 
   renderPager(isSubTable) {
     const t = this;
@@ -390,7 +405,7 @@ class Table extends React.Component {
           if (!subTableData.data || !subTableData.data.length) {
             return null
           }
-          return renderSubComp.bind(this)(subTableData, rowData)
+          return renderSubComp(rowData, subTableData)
         })() : this.renderTable(true)}
         animationType="slide-up"
         onMaskClick={() => { this.setState({ subTableVisible: false }); }}
@@ -403,7 +418,7 @@ class Table extends React.Component {
 
   renderTable(isSubTable) {
     const t = this;
-    const { className, subTableClassName } = t.props;
+    const { className, subTableClassName, showPager } = t.props;
     const { columns, subColumns } = t.state;
     const subTableColumns = subColumns.length ? Table.processColumns({columns: subColumns} ) : columns;
     const scrollerProps = {
@@ -439,7 +454,7 @@ class Table extends React.Component {
             </div>
           </Scroller>
           {t.renderFixed(isSubTable ? subTableColumns : columns, isSubTable)}
-          {t.renderPager(isSubTable)}
+          {showPager ? t.renderPager(isSubTable) : null}
         </div>
         {isSubTable ? null : t.renderSubTablePopup()}
       </div>
@@ -469,7 +484,8 @@ Table.defaultProps = {
   columns: undefined,
   className: undefined,
   subTableClassName: undefined,
-  renderSubComp: undefined
+  renderSubComp: undefined,
+  showPager: true
 };
 
 Table.propTypes = {
@@ -487,7 +503,8 @@ Table.propTypes = {
   rightFixed: PropTypes.number,
   hideSplitLine: PropTypes.bool,
   onPagerChange: PropTypes.func,
-  renderSubComp: PropTypes.func
+  renderSubComp: PropTypes.func,
+  showPager: PropTypes.bool
 };
 
 Table.displayName = 'Table';

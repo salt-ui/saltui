@@ -79,7 +79,6 @@ class SelectField extends React.Component {
         className={Context.prefixClass('select-field-icon')}
         width={26}
         height={26}
-        onClick={t.handleClick.bind(t)}
       />
     ) : null;
     return (
@@ -89,9 +88,14 @@ class SelectField extends React.Component {
         className={classnames(Context.prefixClass('select-field'), {
           [t.props.className]: !!t.props.className,
         })}
+        onClick={t.handleClick.bind(t)}
       >
-        <div onClick={t.handleClick.bind(t)} className={Context.prefixClass('select-field-content')}>
-          {!t.state.confirmedValue[0] ? <div className={Context.prefixClass('omit select-field-placeholder')}>{t.props.placeholder}</div> : null}
+        <div className={Context.prefixClass('select-field-content')}>
+          {
+            !t.state.confirmedValue[0]
+            ? <div className={Context.prefixClass('omit select-field-placeholder')}>{t.props.placeholder}</div>
+            : null
+          }
           {t.state.confirmedValue[0] ? (
             <div className={Context.prefixClass('select-field-value FBH FBAC')}>
               <span

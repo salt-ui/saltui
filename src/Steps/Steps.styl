@@ -388,7 +388,7 @@
     }
 
     .{$prefix}-steps-tail {
-      padding: 0 0 0 12px;
+      padding: 0 8px 0 20px;
       top: 16px;
     }
 
@@ -402,7 +402,7 @@
     &.{$prefix}-steps-vertical {
       .{$prefix}-steps-head {
         top: -5px;
-        left: 7px;
+        left: 10px;
       }
 
       .{$prefix}-steps-main {
@@ -412,8 +412,15 @@
       }
 
       .{$prefix}-steps-tail {
-        padding: 10px 0 0 1px;
+        padding: 15px 0;
         top: 0;
+      }
+    }
+
+    .{$prefix}-steps-status-finish {
+      .{$prefix}-steps-icon {
+        background-color: $function-green;
+        color: #fff;
       }
     }
   }

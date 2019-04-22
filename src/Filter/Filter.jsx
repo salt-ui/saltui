@@ -48,7 +48,8 @@ class Filter extends React.Component {
     }
     this.state = {
       activeIndex: props.activeIndex,
-      maskVisible: false
+      maskVisible: false,
+      maskOffset: 0
     }
   }
 
@@ -63,18 +64,36 @@ class Filter extends React.Component {
       name,
       currentSelected: data[name],
       allSelected: this.getSelect()
-    })
+    }, this)
   };
 
-  getSelect = () => {
+  getSelect = (name) => {
     let data = this.selectData;
     Object.keys(this.selectData).map(name => {
       if (!data[name] || !data[name].length) {
         delete data[name]
       }
     });
-    return data;
+    return !name ? data : data[name];
   };
+
+  clearValue(name) {
+    if (!name) {
+      this.selectData = {}
+    }
+    delete this.selectData[name]
+  }
+  setValue(name, data) {
+    if (!name || !data || !data.length) {
+      return
+    }
+    this.setSelect({
+      [name]: data
+    })
+  }
+  getValue(name) {
+    return this.getSelect(name)
+  }
 
   getActiveIndex = () => {
     return this.state.activeIndex
@@ -96,12 +115,17 @@ class Filter extends React.Component {
       maskVisible: isShow && group.type !== 'switch' && group.type !== 'super'
     })
   };
-
+  setMaskOffset = (offset) => {
+    this.setState({
+      maskOffset: offset
+    })
+  }
   handleMaskClick = () => {
     const { onConfirm } = this.props;
     const options = this.formatOptions();
-    if (options.groups[this.state.activeIndex].multiSelect) {
-      onConfirm(this.getSelect())
+    const group = options.groups[this.state.activeIndex];
+    if (group && group.multiSelect) {
+      onConfirm(this.getSelect(), this)
     }
     this.setState({
       activeIndex: -1,
@@ -140,14 +164,14 @@ class Filter extends React.Component {
       _backItems: options
     }
   };
-  reset() {
-    this.selectData = {}
-  }
+
+
   render() {
     const options = this.formatOptions();
     const {
       activeIndex,
-      maskVisible
+      maskVisible,
+      maskOffset
     } = this.state;
     const props = {
       ...this.props,
@@ -157,7 +181,18 @@ class Filter extends React.Component {
       getSelect: this.getSelect,
       getActiveIndex: this.getActiveIndex,
       setActiveIndex: this.setActiveIndex,
-      handleMask: this.handleMask
+      handleMask: this.handleMask,
+      setMaskOffset: this.setMaskOffset,
+      onConfirm: (data) => {
+        this.props.onConfirm(data, this)
+      },
+      onReset: (data) => {
+        this.props.onReset(data, this)
+      },
+      onChange: (data) => {
+        this.props.onChange(data, this)
+      }
+
     };
     return (
       <div className={classnames(Context.prefixClass('filter-wrapper'), {
@@ -169,6 +204,7 @@ class Filter extends React.Component {
           visible={maskVisible}
           opacity={0.4}
           zIndex={800}
+          topOffset={`${maskOffset}px`}
           onClick={this.handleMaskClick}
         />
       </div>

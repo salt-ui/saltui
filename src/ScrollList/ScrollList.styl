@@ -7,6 +7,32 @@
  */
 $scrollListPrefixCls = t-scroll-list;
 
+.scroll-list-no-border {
+  .{$scrollListPrefixCls}-item {
+    border-bottom: 0px solid transparent;    
+  }
+}
+
+.scroll-list-full-border {
+  .{$scrollListPrefixCls}-item {
+    border-bottom: 1px solid $normal-alpha-7;    
+  }
+}
+
+.scroll-list-cut-border {
+  .{$scrollListPrefixCls}-item {
+    &:after {
+      position: absolute;
+      content: '';
+      height: 1px;
+      width: calc(100% - 16px);
+      bottom: 0;
+      right: 0;
+      background: $normal-alpha-7;
+    }
+  }
+}
+
 .{$scrollListPrefixCls} {
   overflow: hidden;
   margin: 0;
@@ -67,25 +93,46 @@ $scrollListPrefixCls = t-scroll-list;
 }
 
 .{$scrollListPrefixCls}-item {
-  padding: 16px 16px 12px;
+  padding: 16px;
   background: white;
   display: flex;
   line-height: 1.5;
   align-items: center;
   position: relative;
-  width: 100%;
   overflow: hidden;
-
-  &:after {
-    content: ' ';
-    position: absolute;
-    border-bottom: 1px solid $normal-alpha-7;
-    width: 100%;
-    bottom: 0;
-    left: 16px;
-  }
+  box-sizing: border-box;
   &:active {
     background: $normal-alpha-7;
+  }
+  &.no-border {
+    border-bottom: 0px solid transparent;
+    &:after { 
+      display: none;  
+    }
+  }
+  &.full-border {
+    border-bottom: 1px solid $normal-alpha-7;
+    &:after { 
+      display: none;  
+    }
+  }
+  &.cut-border {
+    border-bottom: 0px solid transparent;
+    &:after {
+      position: absolute;
+      content: '';
+      height: 1px;
+      width: calc(100% - 16px);
+      bottom: 0;
+      right: 0;
+      background: $normal-alpha-7;
+    }
+  }
+  &:last-child  {
+    border-bottom: 0px solid transparent;
+    &:after { 
+      display: none;  
+    }
   }
 }
 
@@ -94,16 +141,28 @@ $scrollListPrefixCls = t-scroll-list;
   height: 40px;
   border-radius: $global-border-radius;
   align-self: baseline;
-  margin-right: 12px;
+  margin-right: 16px;
+}
+
+.{$scrollListPrefixCls}-item-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-self: baseline;
+  margin-right: 16px;
 }
 
 .{$scrollListPrefixCls}-item .t-avatar {
-    margin-right: 8px;
+    margin-right: 16px;
+    align-self: baseline;
 }
 
-.{$scrollListPrefixCls}-item .t-badge {
-  float: right;
+.{$scrollListPrefixCls}-item-badge {
   margin-bottom: 3px;
+  .badge-inner {
+    background: $function-red;
+    margin: 1px 0 0 8px;
+  }
 }
 
 .{$scrollListPrefixCls}-item-content {
@@ -114,16 +173,26 @@ $scrollListPrefixCls = t-scroll-list;
 }
 
 .{$scrollListPrefixCls}-item-extra {
-  margin-left: 16px;
+  margin-left: 10px;
+  svg {
+    fill: $normal-alpha-4;
+    width: 20px;
+    height: 20px;
+  }
 }
 .{$scrollListPrefixCls}-item-extra-inner {
+  display: flex;
+  align-items: center;
 }
 
 .{$scrollListPrefixCls}-item-title {
-  display: flex;
-  align-items: center;
   font-size: 16px;
-  justify-content: space-between;
+  color: $dark-alpha-2;
+  &.titleRight {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
 }
 
 .{$scrollListPrefixCls}-item-des-inner {
@@ -135,6 +204,7 @@ $scrollListPrefixCls = t-scroll-list;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   display: -webkit-box;
+  text-align: justify;
 }
 
 .hairline {

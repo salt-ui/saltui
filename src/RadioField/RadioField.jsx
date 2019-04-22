@@ -78,7 +78,6 @@ class RadioField extends React.Component {
         className={prefixClass('radio-field-arrow-icon')}
         width={26}
         height={26}
-        onClick={t.showPopup.bind(t)}
       />
     ) : null;
     let currentValue;
@@ -96,8 +95,9 @@ class RadioField extends React.Component {
         className={classnames(prefixClass('radio-field'), {
           [t.props.className]: !!t.props.className,
         })}
+        onClick={t.showPopup.bind(t)}
       >
-        <div onClick={t.showPopup.bind(t)}>
+        <div>
           {!currentValue ? <div className={prefixClass('omit radio-field-placeholder')}>{t.props.placeholder}</div> : ''}
           <div className={prefixClass('radio-field-value FBH FBAC')}>
             <span

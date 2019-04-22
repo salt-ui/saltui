@@ -21,10 +21,14 @@
     display: flex;
     &.reverse
       flex-direction: row-reverse;
-    &-wrapper 
+    &-wrapper
       flex: 1;
     &-image
       margin-right: 20px;
+      img
+        width 110px
+        height 72px
+        border-radius 5px
       &.reverse
         margin-right: 0;
         margin-left: 20px;
@@ -32,12 +36,14 @@
       display: flex;
       justify-content: space-between;
       font-size: 16px;
+      font-weight bold;
       line-height: 1.5;
+
     .content
       margin-top: 8px;
       font-size: 14px;
       line-height: 1.5;
-      color: #9d9d9d
+      color: $dark-alpha-3
       -webkit-user-select: auto;
   &-footer
       margin: 16px 0;
@@ -46,7 +52,7 @@
       justify-content: space-between;
       align-items: center;
       &-content
-        color: #9d9d9d;
+        color: $normal-alpha-4;
         font-size: 12px;
       &-actions
         .t-button
