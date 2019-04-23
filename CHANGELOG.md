@@ -1,3 +1,6 @@
+## 4.6.3 / 2019-04-23
+* `fix` `Grid` fix a bug in click event
+
 ## 4.6.2 / 2019-04-19
 * `fix` `TextField` fix a bug in renderView prop
 
