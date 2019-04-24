@@ -1,3 +1,6 @@
+## 4.6.4 / 2019-04-24
+* `fix` adapt to dd new data structure
+
 ## 4.6.3 / 2019-04-23
 * `fix` `Grid` fix a bug in click event
 
