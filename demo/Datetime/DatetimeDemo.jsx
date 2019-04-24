@@ -62,7 +62,7 @@ class DatetimeDemo extends React.Component {
           onChange={(value, column) => { console.log(value, column); }}
           onCancel={() => { this.onCancel('value1'); }}
           minDate={new Date(2018, 11, 28).getTime()}
-          maxDate={new Date(2019, 1, 28).getTime()}
+          maxDate={new Date(2019, 4, 28).getTime()}
           // disabledDate={() => [
           //   {
           //     end: new Date(2014, 11, 31),
