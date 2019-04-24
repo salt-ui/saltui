@@ -13,7 +13,7 @@ function transToValue(list) {
     let label;
     if (orgUserName) {
       // 兼容钉钉新字段
-      if (nick) {
+      if (nick && nick !== orgUserName) {
         label = `${orgUserName}(${nick})`;
       } else {
         label = orgUserName;
