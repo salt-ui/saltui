@@ -10,21 +10,17 @@ function transToValue(list) {
       avatar,
     } = item;
 
-    let label;
-    if (orgUserName) {
-      // 兼容钉钉新字段
-      if (nick && nick !== orgUserName) {
-        label = `${orgUserName}(${nick})`;
-      } else {
-        label = orgUserName;
-      }
+    const nickName = nick || nickNameCn;
+    let label = '';
+    if (nickName) {
+      // 花名(工号)
+      label = `${nickName}(${emplId})`;
+    } else if (orgUserName) {
+      // 姓名(工号)
+      label = `${orgUserName}(${emplId})`;
     } else if (name) {
-      // 原有逻辑，调整为 姓名(花名) 的方式
-      if (nickNameCn && nickNameCn !== name) {
-        label = `${name}(${nickNameCn})`;
-      } else {
-        label = name;
-      }
+      // name = 姓名(花名)
+      label = name;
     }
 
     return {
