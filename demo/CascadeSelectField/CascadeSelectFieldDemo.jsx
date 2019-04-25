@@ -35,6 +35,7 @@ const options = [
   }, {
     value: 'jiangsu',
     label: '江苏',
+    checked: true,
     children: [{
       value: 'nanjing',
       label: '南京',

@@ -29,6 +29,7 @@ function parseProps(props) {
       const option = {
         value: o.value,
         text: o.label,
+        checked: o.checked,
       };
       let val = value[deep];
       if ((typeof val === 'object') && ('value' in value[deep])) {
@@ -40,7 +41,13 @@ function parseProps(props) {
       }
       return option;
     });
-    cursor = cursor[index] ? cursor[index].children : null;
+    const checkedCursor = cursor.find(o => o.checked);
+
+    if ((!value || !value.length) && checkedCursor) {
+      cursor = checkedCursor.children;
+    } else {
+      cursor = cursor[index] ? cursor[index].children : null;
+    }
   }
   // when its readOnly mode show whatever passed in values
   if (props.readOnly && props.options && props.options.length <= 0) {

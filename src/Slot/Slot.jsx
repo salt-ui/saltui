@@ -48,7 +48,9 @@ class Slot extends React.Component {
 
     const ret = [];
     this.props.data.forEach((item) => {
-      ret.push(item[0]);
+      const checkedItem = item.find(d => d.checked);
+
+      ret.push(checkedItem || item[0]);
     });
 
     return ret;
