@@ -1,5 +1,8 @@
+## 4.6.5 / 2019-04-25
+* `new` `EmployeeField` change employee label format to nick(id) / name(id)
+
 ## 4.6.4 / 2019-04-24
-* `fix` adapt to dd new data structure
+* `fix` `EmployeeField` adapt to dd new data structure
 
 ## 4.6.3 / 2019-04-23
 * `fix` `Grid` fix a bug in click event
