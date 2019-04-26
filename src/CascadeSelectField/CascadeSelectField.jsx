@@ -29,7 +29,7 @@ function parseProps(props) {
       const option = {
         value: o.value,
         text: o.label,
-        checked: o.checked,
+        defaultChecked: o.defaultChecked,
       };
       let val = value[deep];
       if ((typeof val === 'object') && ('value' in value[deep])) {
@@ -41,7 +41,7 @@ function parseProps(props) {
       }
       return option;
     });
-    const checkedCursor = cursor.find(o => o.checked);
+    const checkedCursor = cursor.find(o => o.defaultChecked);
 
     if ((!value || !value.length) && checkedCursor) {
       cursor = checkedCursor.children;

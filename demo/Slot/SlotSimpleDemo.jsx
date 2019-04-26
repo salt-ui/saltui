@@ -25,7 +25,7 @@ class SlotDemo extends Component {
     // ];
 
     // this.state = {
-    //   data: [data.map((itenm, index) => ({ text: itenm, value: itenm, checked: index === 5 }))], // 数据模型
+    //   data: [data.map((itenm, index) => ({ text: itenm, value: itenm, defaultChecked: index === 5 }))], // 数据模型
     //   value: [], // 选中的值
     //   confirmedValue: [], // 上次选中的值（取消选择时恢复用）
     // };
