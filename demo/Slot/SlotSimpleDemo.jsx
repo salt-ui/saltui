@@ -19,6 +19,17 @@ class SlotDemo extends Component {
       confirmedValue: value, // 上次选中的值（取消选择时恢复用）
     };
 
+
+    // const data = [
+    //   2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+    // ];
+
+    // this.state = {
+    //   data: [data.map((itenm, index) => ({ text: itenm, value: itenm, defaultChecked: index === 5 }))], // 数据模型
+    //   value: [], // 选中的值
+    //   confirmedValue: [], // 上次选中的值（取消选择时恢复用）
+    // };
+
     this.showSlot = this.showSlot.bind(this);
     this.handleConfirm = this.handleConfirm.bind(this);
     this.handleChange = this.handleChange.bind(this);
