@@ -390,6 +390,7 @@ class SearchPanel extends React.Component {
       onConfirm: (value) => {
         this.setState({
           value,
+          popupVisible: false
         }, () => {
           window.history.go(-1);
         });
