@@ -1,7 +1,10 @@
+## 4.6.7 /2019-04-29
+* `fix` `Picker` fix SearchPanel will not disappear when confirm
+* `change` `Picker` change getPageSize method
+* `change` `NumberPickerField` change label font size to 14px for v layout
+
 ## 4.6.6 /2019-04-28
 * `new` `CascadeSelectField & Slot` supporting defaultChecked option
-
-
 
 ## 4.6.5 / 2019-04-25
 * `new` `EmployeeField` change employee label format to nick(id) / name(id)
