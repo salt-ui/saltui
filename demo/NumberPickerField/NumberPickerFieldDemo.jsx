@@ -37,8 +37,8 @@ class NumberPickerFieldDemo extends React.Component {
       <div>
         <div className="tip">可编辑</div>
         <NumberPickerField label="普通样式" tip="普通样式" step={0.1} min={-5} value={t.state.a} onChange={t.handleChange.bind(t, 'a')} />
-        <NumberPickerField label="单个禁用样式" step={1} min={-5} value={t.state.b} max={1} onChange={t.handleChange.bind(t, 'b')} />
-        <NumberPickerField label="单个禁用样式" step={1} min={1} value={t.state.c} max={5} onChange={t.handleChange.bind(t, 'c')} />
+        <NumberPickerField layout={'v'} label="单个禁用样式" step={1} min={-5} value={t.state.b} max={1} onChange={t.handleChange.bind(t, 'b')} />
+        <NumberPickerField layout={'v'} label="单个禁用样式" step={1} min={1} value={t.state.c} max={5} onChange={t.handleChange.bind(t, 'c')} />
         <NumberPickerField label="禁用样式" disabled step={1} min={-5} value={t.state.d} max={5} onChange={t.handleChange.bind(t, 'd')} />
         <div className="tip">不可编辑</div>
         <NumberPickerField label="普通样式" step={1} min={-5} value={t.state.e} max={5} readOnly onChange={t.handleChange.bind(t, 'e')} />
