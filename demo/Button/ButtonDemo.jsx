@@ -264,7 +264,7 @@ class Demo extends React.Component {
           <h2 className="section-title">按钮组5: 贴底两按钮</h2>
           <div className="section-content">
             <ButtonGroup fixedBottom>
-              <Button type="secondary" disabled={false} display={'banner'} onClick={this.handleClick}>提交</Button>
+              <Button type="minor" disabled={false} display={'banner'} onClick={this.handleClick}>提交</Button>
               <Button type="primary" disabled={false} display={'banner'} onClick={this.handleClick}>退回</Button>
             </ButtonGroup>
           </div>
