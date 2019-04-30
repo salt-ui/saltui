@@ -1,3 +1,7 @@
+## 4.6.8 /2019-04-30
+* `fix` `mixin.styl` fix fix-safe-area method in some adr phone
+* `fix` `SearchPanel` fix a spell error
+
 ## 4.6.7 /2019-04-29
 * `fix` `Picker` fix SearchPanel will not disappear when confirm
 * `change` `Picker` change getPageSize method

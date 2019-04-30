@@ -453,7 +453,7 @@ class SearchPanel extends React.Component {
                   t.handleEnterResultView(e);
                 }}
               >
-                <a href="javacript:;">{t.props.resultFormatter ? t.props.resultFormatter(this.state.value) : i18n[locale].selected(length)}</a>
+                <a href="javascript:void(0);">{t.props.resultFormatter ? t.props.resultFormatter(this.state.value) : i18n[locale].selected(length)}</a>
               </div>
             </div>
           ) : null}
