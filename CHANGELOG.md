@@ -1,3 +1,7 @@
+## 4.6.9 /2019-05-13
+* `change` `SwitchField` change label font size to 14px for v layout
+* `fix` `Filter` change 'import react from ...' to 'import React from ...' in FilterPanel.js
+
 ## 4.6.8 /2019-04-30
 * `fix` `mixin.styl` fix fix-safe-area method in some adr phone
 * `fix` `SearchPanel` fix a spell error
