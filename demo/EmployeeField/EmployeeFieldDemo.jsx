@@ -59,7 +59,6 @@ class EmployeeFieldDemo extends React.Component {
         <Group.List>
           <EmployeeField
             tip="这是一个 tip"
-            corpId="dingd8e1123006514592"
             label="选择人员111"
             layout="v"
             multiple
