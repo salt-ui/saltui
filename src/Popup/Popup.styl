@@ -1,239 +1,244 @@
 /**
  * Popup Component Style for SaltUI
  * @author guanghong.wsj
- * 
+ *
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
 popupPrefixCls = t-popup;
 
 .{popupPrefixCls}-wrap {
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    position: fixed;
-    z-index: 1000;
-    transform: translateZ(0);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  z-index: 1000;
+  transform: translateZ(0);
 }
 
-.{popupPrefixCls} {
-    position: fixed;
-    display: inline-block;
-    background-color: white;
-    z-index: 1000;
-    transform: translateZ(0);
-}
+.{popupPrefixCls}
+  position: fixed;
+  display: inline-block;
+  background-color: white;
+  z-index: 1000;
+  transform: translateZ(0);
+  .{popupPrefixCls}-content
+    fix-safe-area padding-bottom
+    //padding-bottom  calc(constant(safe-area-inset-bottom))
+    //padding-bottom  calc(env(safe-area-inset-bottom))
 
 .{popupPrefixCls}-wrap,
 .{popupPrefixCls}-slide-down {
-    top: 0;
-    left: 0;
-    width: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .{popupPrefixCls}-slide-up {
-    bottom: 0;
-    left: 0;
-    width: 100%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 .{popupPrefixCls}-slide-left {
-    top: 0;
-    right: 0;
-    bottom: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
 }
 
 .{popupPrefixCls}-slide-right {
-    top: 0;
-    left: 0;
-    bottom: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow-y: scroll;
 }
 
 .{popupPrefixCls}-mask {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    height: 100%;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  z-index: 1000;
 }
 
 .{popupPrefixCls}-hidden,
 .{popupPrefixCls}-close {
-    display: none;
+  display: none;
 }
 
 @keyframes popupSlideUpIn {
-    0% {
-        transform: translate(0, 100%);
-    }
+  0% {
+    transform: translate(0, 100%);
+  }
 
-    100% {
-        transform: translate(0, 0);
-    }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 @keyframes popupSlideUpOut {
-    0% {
-        transform: translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
 
-    100% {
-        transform: translate(0, 100%);
-    }
+  100% {
+    transform: translate(0, 100%);
+  }
 }
 
 .{popupPrefixCls}-slide-up-enter,
 .{popupPrefixCls}-slide-up-appear {
-    transform: translate(0, 100%);
-    animation-duration: 0.3s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: both;
+  transform: translate(0, 100%);
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
 }
 
 .{popupPrefixCls}-slide-up-enter-active,
 .{popupPrefixCls}-slide-up-appear-active {
-    animation-name: popupSlideUpIn;
+  animation-name: popupSlideUpIn;
 }
 
 .{popupPrefixCls}-slide-up-leave {
-    animation-duration: 0.3s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: both;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
 }
 
 .{popupPrefixCls}-slide-up-leave-active {
-    animation-name: popupSlideUpOut;
+  animation-name: popupSlideUpOut;
 }
 
 @keyframes popupSlideDownIn {
-    0% {
-        transform: translate(0, -100%);
-    }
+  0% {
+    transform: translate(0, -100%);
+  }
 
-    100% {
-        transform: translate(0, 0);
-    }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 @keyframes popupSlideDownOut {
-    0% {
-        transform: translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
 
-    100% {
-        transform: translate(0, -100%);
-    }
+  100% {
+    transform: translate(0, -100%);
+  }
 }
 
 .{popupPrefixCls}-slide-down-enter,
 .{popupPrefixCls}-slide-down-appear {
-    transform: translate(0, -100%);
-    animation-duration: 0.3s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: both;
+  transform: translate(0, -100%);
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
 }
 
 .{popupPrefixCls}-slide-down-enter-active,
 .{popupPrefixCls}-slide-down-appear-active {
-    animation-name: popupSlideDownIn;
+  animation-name: popupSlideDownIn;
 }
 
 .{popupPrefixCls}-slide-down-leave {
-    animation-duration: 0.3s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: both;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
 }
 
 .{popupPrefixCls}-slide-down-leave-active {
-    animation-name: popupSlideDownOut;
+  animation-name: popupSlideDownOut;
 }
 
 @keyframes popupSlideLeftIn {
-    0% {
-        transform: translate(100%, 0);
-    }
+  0% {
+    transform: translate(100%, 0);
+  }
 
-    100% {
-        transform: translate(0, 0);
-    }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 @keyframes popupSlideLeftOut {
-    0% {
-        transform: translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
 
-    100% {
-        transform: translate(100%, 0);
-    }
+  100% {
+    transform: translate(100%, 0);
+  }
 }
 
 .{popupPrefixCls}-slide-left-enter,
 .{popupPrefixCls}-slide-left-appear {
-    transform: translate(100%, 0);
-    animation-duration: 0.3s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: both;
+  transform: translate(100%, 0);
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
 }
 
 .{popupPrefixCls}-slide-left-enter-active,
 .{popupPrefixCls}-slide-left-appear-active {
-    animation-name: popupSlideLeftIn;
+  animation-name: popupSlideLeftIn;
 }
 
 .{popupPrefixCls}-slide-left-leave {
-    animation-duration: 0.3s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: both;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
 }
 
 .{popupPrefixCls}-slide-left-leave-active {
-    animation-name: popupSlideLeftOut;
+  animation-name: popupSlideLeftOut;
 }
 
 @keyframes popupSlideRightIn {
-    0% {
-        transform: translate(-100%, 0);
-    }
+  0% {
+    transform: translate(-100%, 0);
+  }
 
-    100% {
-        transform: translate(0, 0);
-    }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 @keyframes popupSlideRightOut {
-    0% {
-        transform: translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
 
-    100% {
-        transform: translate(-100%, 0);
-    }
+  100% {
+    transform: translate(-100%, 0);
+  }
 }
 
 .{popupPrefixCls}-slide-right-enter,
 .{popupPrefixCls}-slide-right-appear {
-    transform: translate(-100%, 0);
-    animation-duration: 0.3s;
-    animation-timing-function: $transition-ease;
-    animation-fill-mode: both;
+  transform: translate(-100%, 0);
+  animation-duration: 0.3s;
+  animation-timing-function: $transition-ease;
+  animation-fill-mode: both;
 }
 
 .{popupPrefixCls}-slide-right-enter-active,
 .{popupPrefixCls}-slide-right-appear-active {
-    animation-name: popupSlideRightIn;
+  animation-name: popupSlideRightIn;
 }
 
 .{popupPrefixCls}-slide-right-leave {
-    animation-duration: 0.3s;
-    animation-timing-function: $transition-ease;
-    animation-fill-mode: both;
+  animation-duration: 0.3s;
+  animation-timing-function: $transition-ease;
+  animation-fill-mode: both;
 }
 
 .{popupPrefixCls}-slide-right-leave-active {
-    animation-name: popupSlideRightOut;
+  animation-name: popupSlideRightOut;
 }

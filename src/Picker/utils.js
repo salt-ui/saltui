@@ -1,18 +1,14 @@
 import debounce from 'lodash/debounce';
 
-const getPageSize = (() => {
+const getPageSize = () => {
   const width = window.innerWidth
     || document.documentElement.clientWidth
     || document.body.clientWidth;
-
   const height = window.innerHeight
     || document.documentElement.clientHeight
     || document.body.clientHeight;
-
-  const result = { width, height };
-
-  return () => result;
-})();
+  return { width, height };
+};
 
 const processData = (data) => {
   let values = [];

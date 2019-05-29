@@ -1,3 +1,54 @@
+## 4.6.9 /2019-05-13
+* `change` `SwitchField` change label font size to 14px for v layout
+* `fix` `Filter` change 'import react from ...' to 'import React from ...' in FilterPanel.js
+
+## 4.6.8 /2019-04-30
+* `fix` `mixin.styl` fix fix-safe-area method in some adr phone
+* `fix` `SearchPanel` fix a spell error
+
+## 4.6.7 /2019-04-29
+* `fix` `Picker` fix SearchPanel will not disappear when confirm
+* `change` `Picker` change getPageSize method
+* `change` `NumberPickerField` change label font size to 14px for v layout
+
+## 4.6.6 /2019-04-28
+* `new` `CascadeSelectField & Slot` supporting defaultChecked option
+
+## 4.6.5 / 2019-04-25
+* `new` `EmployeeField` change employee label format to nick(id) / name(id)
+
+## 4.6.4 / 2019-04-24
+* `fix` `EmployeeField` adapt to dd new data structure
+
+## 4.6.3 / 2019-04-23
+* `fix` `Grid` fix a bug in click event
+
+## 4.6.2 / 2019-04-19
+* `fix` `TextField` fix a bug in renderView prop
+
+## 4.6.1 / 2019-04-18
+* `fix` `ButtonGroup` fix a bug
+
+## 4.6.0 / 2019-04-16
+* `new` `ButtonGroup` add new prop fixedBottom & background suit for iphone x
+* `new` `Field` add new prop onClick
+* `changed` `xxField` change callback method onSelect or onChange bind to Field component in xxSelectField,datetimeField,pickerField,RadioField
+* `new` `TabBar` add new prop fixedBottom
+* `changed` `Filter` `ImageViewer` `Popup` suit for iphone x
+
+
+## 4.5.2 / 2019-04-15
+* `changed` `Button` remove banner button border in button group
+
+## 4.5.1 / 2019-04-09
+* `new` `CascadeSelectField` add new prop activeTab
+* `new` `TextField` add new prop renderView(as same as uxcore) for read only mode
+
+## 4.4.21 / 2019-03-22
+
+* `fix`: `Field` fix styles
+* `fix`: `NumberField` fix the input is inconsistent with the display when fixedNum is existing
+
 ## 4.4.20 / 2019-03-19
 
 * `fix`: `Textarea` input composition breaking

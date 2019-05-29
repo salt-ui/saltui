@@ -128,7 +128,7 @@ class Demo extends React.Component {
               {...checkboxFieldProps}
               mode="slot"
               layout={'v'}
-              label="多选（slot"
+              label="多选（slot)"
               required={false}
             />
           </Group.List>

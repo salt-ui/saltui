@@ -33,6 +33,7 @@ function parseProps(props) {
       const option = {
         value: o.value,
         text: o.label,
+        defaultChecked: o.defaultChecked,
       };
       let val = value[deep];
       if (typeof val === 'object' && 'value' in value[deep]) {
@@ -44,7 +45,13 @@ function parseProps(props) {
       }
       return option;
     });
-    cursor = cursor[index] ? cursor[index].children : null;
+    const checkedCursor = cursor.find(o => o.defaultChecked);
+
+    if ((!value || !value.length) && checkedCursor) {
+      cursor = checkedCursor.children;
+    } else {
+      cursor = cursor[index] ? cursor[index].children : null;
+    }
   }
   // when its readOnly mode show whatever passed in values
   if (readOnly && options && options.length <= 0) {
@@ -173,7 +180,6 @@ class CascadeSelectField extends React.Component {
         className={Context.prefixClass('cascade-select-field-icon')}
         width={26}
         height={26}
-        onClick={t.handleClick}
       />
     ) : null;
     return (
@@ -183,8 +189,9 @@ class CascadeSelectField extends React.Component {
         className={classnames(Context.prefixClass('cascade-select-field'), {
           [t.props.className]: !!t.props.className,
         })}
+        onClick={t.handleClick}
       >
-        <div onClick={t.handleClick}>
+        <div>
           {!t.state.confirmedValue.length ? (
             <div className={Context.prefixClass('omit cascade-select-field-placeholder')}>
               {t.props.readOnly ? '' : t.props.placeholder}
@@ -214,6 +221,7 @@ class CascadeSelectField extends React.Component {
               onChange={t.handleChange}
               onCancel={t.handleCancel}
               onConfirm={t.handleConfirm}
+              activeTab={`tab-${t.props.activeTab}`}
             />
           }
           stopBodyScrolling={false}
@@ -256,6 +264,7 @@ CascadeSelectField.defaultProps = {
   className: '',
   confirmText: undefined,
   cancelText: undefined,
+  activeTab: 1,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -275,6 +284,7 @@ CascadeSelectField.propTypes = {
   columns: PropTypes.array,
   locale: PropTypes.string,
   mode: PropTypes.oneOf(['normal', 'complex']),
+  activeTab: PropTypes.number,
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';

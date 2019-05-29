@@ -79,7 +79,11 @@ class Demo extends React.Component {
           // onImagePreview={(index) => { alert(index); }}
           // url="http://xxx.aaa"
           photoList={this.state.photoList}
+          headers={[{
+            'X-XSRF-TOKEN': 'ksjdskfjasdfj',
+          }]}
           tip="这里是提示信息"
+          params={{a: 'kjhjkhkjhjkkjhkj',_csrf: "92705c2b-194c-490c-8c8c-4cb127909e26"}}
           onChange={this.onChange.bind(this)}
           onDelete={this.onDelete.bind(this)}
         />

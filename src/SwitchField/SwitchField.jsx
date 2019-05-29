@@ -25,6 +25,7 @@ class SwitchField extends React.Component {
         layout="h"
         className={classnames(Context.prefixClass('switch-field'), t.props.className, {
           readOnly: t.props.readOnly,
+          'v-label': t.props.layout === 'v'
         })}
       >
         <div className="t-FBH">

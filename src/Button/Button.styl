@@ -16,7 +16,7 @@ $button-primary-color-active = $white-alpha-1
 $button-secondary-bg = $white-alpha-1
 $button-secondary-color = $brand-primary
 $button-secondary-border-color = $brand-primary-alpha-3
-$button-secondary-bg-active = $brand-primary-alpha-7
+$button-secondary-bg-active = #f6f7f8 // $brand-primary-alpha-7
 $button-secondary-color-active = $brand-primary-focus
 $button-secondary-border-color-active = $brand-primary
 
@@ -24,7 +24,7 @@ $button-secondary-border-color-active = $brand-primary
 $button-minor-bg = $white-alpha-1
 $button-minor-color = $normal-alpha-3
 $button-minor-border-color = $normal-alpha-4
-$button-minor-bg-active = $normal-alpha-7
+$button-minor-bg-active = #f6f7f8 // $gray-lighter
 $button-minor-color-active = $normal-alpha-2
 $button-minor-border-color-active = $normal-alpha-3
 
@@ -326,6 +326,25 @@ $button-disabled-border-color = $normal-alpha-6
 
 .{$prefix}-button-group
   display flex
+  &.fixed-bottom
+    position fixed
+    bottom 0
+    width 100%
+    fix-safe-area padding-bottom
+    //padding-bottom  calc(constant(safe-area-inset-bottom))
+    //padding-bottom  calc(env(safe-area-inset-bottom))
+    .{$prefix}-button
+      margin-top 10px
+      margin-bottom 10px
+      &:first-child
+        margin-left 10px
+      &:last-child
+        margin-right 10px
+      &.{$prefix}-button-banner
+        margin 0
+        &.disabled
+        &[disabled]
+          background #f6f7f8
   .{$prefix}-button-inline
     flex 1
     margin-left 6px
@@ -336,11 +355,22 @@ $button-disabled-border-color = $normal-alpha-6
       margin-right 0
   .{$prefix}-button-banner
     flex 1
-    border-left 0
     border-right 0
     border-bottom 0
+    hairline('border-left', $normal-alpha-6)
+    &.disabled
+    &[disabled]
+      border-right 0
+      border-bottom 0
+    &.{$prefix}-button-primary
+      hairline('border-top', $normal-alpha-6)
+      &:first-child
+        border-left 0
+    &.{$prefix}-button-minor
+      hairline('border-top', $normal-alpha-6)
+      &:first-child
+        border-left 0
     &.{$prefix}-button-secondary
       hairline('border-top', $normal-alpha-6)
-      hairline('border-left', $normal-alpha-6)
       &:first-child
         border-left 0

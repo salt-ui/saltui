@@ -24,7 +24,7 @@ export default class CascadeTab extends React.Component {
     super(props);
     this.state = {
       value: props.value && props.value.length ? props.value : [{}], // 数据结构：[{ text, value }]
-      activeTab: 'tab-1',
+      activeTab: props.activeTab,
     };
   }
 
@@ -173,6 +173,7 @@ CascadeTab.defaultProps = {
   onConfirm() {},
   confirmText: i18n['zh-cn'].confirmText,
   cancelText: i18n['zh-cn'].cancelText,
+  activeTab: 'tab-1',
 };
 
 CascadeTab.propTypes = {
@@ -186,4 +187,5 @@ CascadeTab.propTypes = {
   onCancel: PropTypes.func,
   onChange: PropTypes.func,
   locale: PropTypes.string,
+  activeTab: PropTypes.string,
 };

@@ -52,8 +52,9 @@ class NumberPickerField extends React.Component {
         {...t.props}
         layout="h"
         className={classnames(Context.prefixClass('number-picker-field'), {
-        [t.props.className]: !!t.props.className,
-      })}
+          [t.props.className]: !!t.props.className,
+          'v-label': t.props.layout === 'v'
+        })}
       >
         <NumberPicker
           onChange={t.handleChange.bind(t)}

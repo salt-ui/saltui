@@ -8,7 +8,7 @@
 
 import React from 'react';
 import Button from 'salt-button';
-import Popup from 'salt-popup';
+import Popup from '../../src/Popup';
 
 class PopupDemo extends React.Component {
   constructor(props) {

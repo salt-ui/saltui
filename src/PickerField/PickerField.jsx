@@ -131,9 +131,6 @@ class PickerField extends React.Component {
         className={Context.prefixClass('picker-field-icon')}
         width={26}
         height={26}
-        onClick={(e) => {
-          t.handleClick(e);
-        }}
       />
     ) : null;
 
@@ -184,11 +181,11 @@ class PickerField extends React.Component {
         className={classnames(Context.prefixClass('picker-field'), {
           [t.props.className]: !!t.props.className,
         })}
+        onClick={e => {
+          t.handleClick(e)
+        }}
       >
         <div
-          onClick={(e) => {
-            t.handleClick(e);
-          }}
           className={Context.prefixClass('picker-field-content')}
         >
           {(!t.state.confirmedValue[0] && !t.props.readOnly)

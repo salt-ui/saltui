@@ -173,7 +173,8 @@ class SlotPane extends React.Component {
 
     const ret = [];
     this.props.data.forEach((item) => {
-      ret.push(item[0]);
+      const checkedItem = item.find(d => d.defaultChecked);
+      ret.push(checkedItem || item[0]);
     });
 
     return ret;
@@ -228,8 +229,11 @@ class SlotPane extends React.Component {
 
 
   findSelectedIndex(props) {
+    // value can be only an array or undefined or null
+    const isNotEmptyValue = value => !!(value && value.length);
+
     const data = props.data || [];
-    const value = props.value || this.setDefaultLastChoose();
+    const value = isNotEmptyValue(props.value) ? props.value : this.setDefaultLastChoose();
     const selectedIndex = [];
 
     // 遍历数据模型

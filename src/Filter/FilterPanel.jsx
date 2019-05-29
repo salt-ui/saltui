@@ -1,4 +1,4 @@
-import react from 'react'
+import React from 'react'
 import ReactDom from 'react-dom'
 import Context from "../Context/Context";
 import Popup from '../Popup'
@@ -11,7 +11,7 @@ import Picker from '../Picker'
 import Switch from '../Switch';
 
 
-class FilterPanel extends react.Component {
+class FilterPanel extends React.Component {
   static displayName = 'FilterPanel';
 
   static propTypes = {

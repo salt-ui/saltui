@@ -103,7 +103,7 @@ hairline(attribute, color)
     .hairline &
         {attribute} 0.5px solid color
 
-fix-safe-area(prop, value = 0, direction = 'bottom')
+fix-safe-area(prop, value = '0px', direction = 'bottom')
     {prop} value
     {prop} unquote('calc(constant(safe-area-inset-' + direction + ') + ' + value + ')')
     {prop} unquote('calc(env(safe-area-inset-' + direction + ') + ' + value + ')')
@@ -113,7 +113,7 @@ getr(rgb_background, rgba)
   (1 - alpha(rgba)) * red(rgb_background) + alpha(rgba) * red(rgba)
 
 getg(rgb_background, rgba)
-  (1 - alpha(rgba)) * green(rgb_background) + alpha(rgba) * green(rgba)  
+  (1 - alpha(rgba)) * green(rgb_background) + alpha(rgba) * green(rgba)
 
 getb(rgb_background, rgba)
   (1 - alpha(rgba)) * blue(rgb_background) + alpha(rgba) * blue(rgba)

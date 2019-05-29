@@ -22,6 +22,7 @@ onCancel | function | 取消选中回调函数
 formatter | function | 格式化显示值函数
 mode | string | 'normal', 'complex' 其中之一，代表显示的模式
 locale | string | 'zh-cn', 'en-us' 国际化文案
+activeTab | number | 默认为1，表示第一层级，可以传入层级的数字
 
 ## Simple Usage
 

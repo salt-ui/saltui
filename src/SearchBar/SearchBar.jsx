@@ -166,7 +166,7 @@ class SearchBar extends React.Component {
                 </span>
               </div>
             </div>
-            <form action="javascript:;">
+            <form action="javascript:void(0);">
               <input
                 ref={(c) => { t.input = c; }}
                 type="search"

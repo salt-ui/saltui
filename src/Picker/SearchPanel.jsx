@@ -390,6 +390,7 @@ class SearchPanel extends React.Component {
       onConfirm: (value) => {
         this.setState({
           value,
+          popupVisible: false
         }, () => {
           window.history.go(-1);
         });
@@ -452,7 +453,7 @@ class SearchPanel extends React.Component {
                   t.handleEnterResultView(e);
                 }}
               >
-                <a href="javacript:;">{t.props.resultFormatter ? t.props.resultFormatter(this.state.value) : i18n[locale].selected(length)}</a>
+                <a href="javascript:void(0);">{t.props.resultFormatter ? t.props.resultFormatter(this.state.value) : i18n[locale].selected(length)}</a>
               </div>
             </div>
           ) : null}

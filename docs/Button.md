@@ -264,7 +264,26 @@ const { IconButton } = Button;
 
 ### Props
 
-> 暂无
+#### fixedBottom
+
+描述：将按钮组固定在底部
+
+类型：Boolean
+
+默认：false
+
+必填：否
+
+#### background
+
+描述：iphoneX下底部适配部分的背景色
+
+类型：String
+
+默认：undefined
+
+必填：否
+
 
 ### Simple Usage
 
