@@ -214,7 +214,7 @@ class PhotoField extends React.Component {
     const {
       columns, placeholder, label,
       photoList, required, locale,
-      maxUpload, readOnly, className, tip,
+      maxUpload, readOnly, className, tip, errMsg,
       onImagePreview, type,
     } = this.props;
     const paneProps = {
@@ -229,6 +229,7 @@ class PhotoField extends React.Component {
       readOnly,
       filesLengthInCore: this.core ? this.core.getTotal() : 0,
       tip,
+      errMsg,
       required,
       files: this.getFiles(),
       ref: (c) => { this.pane = c; },
@@ -269,6 +270,7 @@ PhotoField.defaultProps = {
   url: undefined,
   className: undefined,
   tip: undefined,
+  errMsg: undefined,
   type: 'photo',
 };
 
@@ -295,6 +297,7 @@ PhotoField.propTypes = {
   autoPending: PropTypes.bool,
   className: PropTypes.string,
   tip: PropTypes.string,
+  errMsg: PropTypes.string,
   type: PropTypes.oneOf(['file', 'photo']),
 };
 

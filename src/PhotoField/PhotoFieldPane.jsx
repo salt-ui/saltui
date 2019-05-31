@@ -177,6 +177,7 @@ class PhotoFieldPane extends React.Component {
           required={t.props.required}
           label={t.props.label}
           tip={t.props.tip}
+          errMsg={t.props.errMsg}
           layout={t.props.layout}
           readOnly={t.props.readOnly}
           labelRight={
