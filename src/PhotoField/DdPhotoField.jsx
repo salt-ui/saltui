@@ -136,7 +136,7 @@ class PhotoField extends React.Component {
     const {
       columns, placeholder, label,
       photoList, required,
-      maxUpload, readOnly, className, tip,
+      maxUpload, readOnly, className, tip, errMsg,
       onImagePreview, type,
     } = this.props;
     const paneProps = {
@@ -150,6 +150,7 @@ class PhotoField extends React.Component {
       required,
       type,
       tip,
+      errMsg,
       onPickerClick: () => { this.onPickHandler(); },
       onImageDelete: (index) => { this.handleDeleteImage(index); },
       onImagePreview: (index) => {
@@ -185,6 +186,7 @@ PhotoField.defaultProps = {
   onDelete: undefined,
   required: undefined,
   tip: undefined,
+  errMsg: undefined,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -207,6 +209,7 @@ PhotoField.propTypes = {
   onImagePreview: PropTypes.func,
   required: PropTypes.bool,
   tip: PropTypes.string,
+  errMsg: PropTypes.string,
 };
 
 PhotoField.displayName = 'PhotoField';

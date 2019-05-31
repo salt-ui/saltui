@@ -83,6 +83,7 @@ class Demo extends React.Component {
             'X-XSRF-TOKEN': 'ksjdskfjasdfj',
           }]}
           tip="这里是提示信息"
+          errMsg="出错啦!"
           params={{a: 'kjhjkhkjhjkkjhkj',_csrf: "92705c2b-194c-490c-8c8c-4cb127909e26"}}
           onChange={this.onChange.bind(this)}
           onDelete={this.onDelete.bind(this)}
