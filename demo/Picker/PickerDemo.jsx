@@ -106,6 +106,23 @@ class Demo extends React.Component {
                 this.hidePicker(2);
               }
             }}
+            categories={[
+              { value: 'FIRST', text: '上半年' },
+              { value: 'NEXT', text: '下半年' },
+            ]}
+            // 一个 filter 用于哪些数据可以展示在当前分类下。
+            shouldShowInCategory={(cat, item) => {
+              // return true;
+              if (cat === 'FIRST') {
+                return item.value <= 5;
+              }
+              if (cat === 'NEXT') {
+                return item.value >= 6;
+              }
+              return false;
+            }}
+            grouping
+            groupingIndicator
             filterOption={false}
             onSearch={(keyword) => {
               this.setState({ data: keyword ? monthArray.slice(4) : monthArray });

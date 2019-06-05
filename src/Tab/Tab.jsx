@@ -76,6 +76,7 @@ class Tabs extends React.Component {
     hammerOptions: PropTypes.any,
     inkBarWidth: PropTypes.number,
     locale: PropTypes.string,
+    wrapClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -100,7 +101,9 @@ class Tabs extends React.Component {
     className: undefined,
     destroyInactiveTabPane: undefined,
     locale: 'zh-cn',
+    wrapClassName: undefined,
   };
+
 
   constructor(props) {
     super(props);
@@ -200,8 +203,8 @@ class Tabs extends React.Component {
     return swipeable ? (
       <SwipeableTabContent animated={animated} hammerOptions={hammerOptions} />
     ) : (
-        <TabContent animated={animated} />
-      );
+      <TabContent animated={animated} />
+    );
   }
 
   renderTabBar = () => {
@@ -293,7 +296,7 @@ class Tabs extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, wrapClassName } = this.props;
     const shouldFixBug = isChromeLargerThan55();
     const clonedChildren = [];
     let fix = '';
@@ -326,6 +329,7 @@ class Tabs extends React.Component {
         className={classnames(prefixClass(`tab-wrap PR ${fix}`), {
           [prefixClass('tab-pan-bugfix')]: shouldFixBug,
           'show-all-btn': showAllBtn,
+          [wrapClassName]: !!wrapClassName,
         })}
       >
         <RcTabs

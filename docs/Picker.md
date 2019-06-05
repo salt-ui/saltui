@@ -408,4 +408,31 @@ import PlusCircle from 'salt-icon/lib/PlusCircle'
 <Picker resultFormatter={value => (`我已经选择了${value.length}项`) } />} />
 ```
 
+### categories
+
+描述：是否分类显示选项，以 Tab 的形式展示
+类型：`array`
+默认：`无`
+必选：否
+
+```jsx
+<Picker 
+  categories={[
+    { value: 'FIRST', text: '上半年' },
+    { value: 'NEXT', text: '下半年' },
+  ]} />} 
+  // 搭配使用，用来设置每个分类下应该显示哪些条目，返回当前分类 cat 和当前条目 item
+  // 返回 true 表示显示在当前分类下
+  shouldShowInCategory={(cat, item) => {
+    if (cat === 'FIRST') {
+      return item.value <= 5;
+    }
+    if (cat === 'NEXT') {
+      return item.value >= 6;
+    }
+    return false;
+  }}
+/>
+```
+
 

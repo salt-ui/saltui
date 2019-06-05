@@ -173,6 +173,8 @@ class PickerField extends React.Component {
       groupingIndicator: t.props.groupingIndicator,
       locale: t.props.locale,
       resultFormatter: t.props.resultFormatter,
+      categories: t.props.categories,
+      shouldShowInCategory: t.props.shouldShowInCategory,
     };
     return (
       <Field
