@@ -17,6 +17,7 @@ import ScrollView from '../ScrollView';
 import Button from '../Button';
 import Popup from '../Popup';
 import SearchBar from '../SearchBar';
+import Tab from '../Tab';
 import SearchResult from './SearchResult';
 import GroupingBar from './GroupingBar';
 import utils from './utils';
@@ -30,7 +31,7 @@ class SearchPanel extends React.Component {
   constructor(props) {
     super(props);
     const t = this;
-    const { value } = props;
+    const { value, categories } = props;
     t.state = {
       value: value || [],
       results: [],
@@ -38,6 +39,9 @@ class SearchPanel extends React.Component {
       popupVisible: false,
       selectedResult: undefined,
     };
+    if (categories) {
+      t.state.activeCategory = categories[0].value;
+    }
     t.delaySearch = utils.debounce(t.search.bind(t), t.props.searchDelay);
     t.handleLeaveResultView = t.handleLeaveResultView.bind(t);
     t.groupEl = {};
@@ -279,22 +283,33 @@ class SearchPanel extends React.Component {
     );
   }
 
-  renderResults(results) {
+  renderResults(results, options = {}) {
     const t = this;
+    const { shouldShowInCategory } = this.props;
+    const { category } = options;
     return (
       <div className={Context.prefixClass('picker-search-results')}>
         {t.props.grouping ?
-          t.renderGroups(results) :
-          results.map((item, index) => t.renderResultItem(item, index))
+          t.renderGroups(results, { category }) :
+          (category ? results.filter(item => shouldShowInCategory('', item)) : results).map((item, index) => t.renderResultItem(item, index))
         }
       </div>
     );
   }
 
-  renderGroups(groups) {
+  renderGroups(groups, options = {}) {
     const t = this;
+    const { category } = options;
+    const { shouldShowInCategory } = this.props;
+    let newGroups = groups;
+    if (category) {
+      newGroups = groups.map(group => ({
+        ...group,
+        items: group.items.filter(item => shouldShowInCategory(category, item)),
+      })).filter(group => group.items.length > 0);
+    }
     return (
-      groups.map(group => (
+      newGroups.map(group => (
         <div
           className={Context.prefixClass('picker-grouping')}
           key={group.title}
@@ -363,7 +378,15 @@ class SearchPanel extends React.Component {
 
   renderGroupingBar() {
     const t = this;
-    const groups = t.state.results;
+    const { activeCategory } = this.state;
+    const { shouldShowInCategory } = this.props;
+    let groups = t.state.results;
+    if (activeCategory) {
+      groups = groups.map(group => ({
+        ...group,
+        items: group.items.filter(item => shouldShowInCategory(activeCategory, item)),
+      })).filter(group => group.items.length > 0);
+    }
     const keys = groups.map(group => group.title);
     return (
       <GroupingBar
@@ -372,6 +395,33 @@ class SearchPanel extends React.Component {
         onSelect={t.selectGrouping.bind(t)}
       />
     );
+  }
+
+  renderTab() {
+    const { categories } = this.props;
+    if (categories) {
+      return (
+        <Tab
+          wrapClassName={Context.prefixClass('picker-searchpanel-tab-wrap')}
+          activeKey={this.state.activeCategory}
+          onChange={({ activeKey }) => {
+            this.setState({
+              activeCategory: activeKey,
+            });
+          }}
+        >
+          {categories.map(item => (
+            <Tab.Item key={item.value} title={item.text}>
+              <ScrollView>
+                {this.renderResults(this.state.results, { category: item.value })}
+              </ScrollView>
+
+            </Tab.Item>
+          ))}
+        </Tab>
+      );
+    }
+    return <ScrollView>{this.renderResultCondition()}</ScrollView>;
   }
 
   render() {
@@ -390,7 +440,7 @@ class SearchPanel extends React.Component {
       onConfirm: (value) => {
         this.setState({
           value,
-          popupVisible: false
+          popupVisible: false,
         }, () => {
           window.history.go(-1);
         });
@@ -421,19 +471,19 @@ class SearchPanel extends React.Component {
                 onChange={(val) => {
                   t.handleSearchChange(val);
                 }}
-                onEnterSearchMode={() => {
+                onEnter={() => {
                   t.handleSearchEnter();
                 }}
-                onLeaveSearchMode={() => {
+                onExit={() => {
                   t.handleSearchLeave();
                 }}
               />
             </div>
           ) : null}
           <div className={Context.prefixClass('picker-searchpanel-content')}>
-            <ScrollView>
-              {t.renderResultCondition()}
-            </ScrollView>
+            {t.state.searchMode ?
+              (<ScrollView>{t.renderResultCondition()}</ScrollView>)
+              : t.renderTab()}
             {t.props.grouping ? t.renderGroupingBar() : null}
           </div>
           {multiple ? (
@@ -465,8 +515,8 @@ class SearchPanel extends React.Component {
 }
 
 SearchPanel.defaultProps = {
-  onConfirm() {},
-  onSearch() {},
+  onConfirm() { },
+  onSearch() { },
   showSearch: true,
   multiple: false,
   value: undefined,
@@ -489,6 +539,8 @@ SearchPanel.defaultProps = {
   resultFormatter: undefined,
   historyStamp: undefined,
   filterOption: true,
+  categories: undefined,
+  shouldShowInCategory: () => true,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -517,6 +569,8 @@ SearchPanel.propTypes = {
   resultFormatter: PropTypes.func,
   historyStamp: PropTypes.string,
   filterOption: PropTypes.bool,
+  categories: PropTypes.array,
+  shouldShowInCategory: PropTypes.func,
 };
 
 SearchPanel.displayName = 'SearchPanel';
