@@ -1,20 +1,24 @@
-## 4.7.0 /2019-06-06
-`new` `Picker` support categories
+## 4.7.1 / 2019-06-06
+* `fix` `Picker` shouldShowInCategory fail to pass category param if grouping is false
 
-## 4.6.9 /2019-05-13
+
+## 4.7.0 / 2019-06-06
+* `new` `Picker` support categories
+
+## 4.6.9 / 2019-05-13
 * `change` `SwitchField` change label font size to 14px for v layout
 * `fix` `Filter` change 'import react from ...' to 'import React from ...' in FilterPanel.js
 
-## 4.6.8 /2019-04-30
+## 4.6.8 / 2019-04-30
 * `fix` `mixin.styl` fix fix-safe-area method in some adr phone
 * `fix` `SearchPanel` fix a spell error
 
-## 4.6.7 /2019-04-29
+## 4.6.7 / 2019-04-29
 * `fix` `Picker` fix SearchPanel will not disappear when confirm
 * `change` `Picker` change getPageSize method
 * `change` `NumberPickerField` change label font size to 14px for v layout
 
-## 4.6.6 /2019-04-28
+## 4.6.6 / 2019-04-28
 * `new` `CascadeSelectField & Slot` supporting defaultChecked option
 
 ## 4.6.5 / 2019-04-25
