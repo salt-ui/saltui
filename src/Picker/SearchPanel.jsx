@@ -291,7 +291,7 @@ class SearchPanel extends React.Component {
       <div className={Context.prefixClass('picker-search-results')}>
         {t.props.grouping ?
           t.renderGroups(results, { category }) :
-          (category ? results.filter(item => shouldShowInCategory('', item)) : results).map((item, index) => t.renderResultItem(item, index))
+          (category ? results.filter(item => shouldShowInCategory(category, item)) : results).map((item, index) => t.renderResultItem(item, index))
         }
       </div>
     );
