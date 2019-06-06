@@ -121,8 +121,8 @@ class Demo extends React.Component {
               }
               return false;
             }}
-            grouping
-            groupingIndicator
+            // grouping
+            // groupingIndicator
             filterOption={false}
             onSearch={(keyword) => {
               this.setState({ data: keyword ? monthArray.slice(4) : monthArray });
