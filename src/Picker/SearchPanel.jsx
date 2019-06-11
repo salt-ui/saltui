@@ -128,26 +128,31 @@ class SearchPanel extends React.Component {
     const t = this;
     const options = t.props.options || [];
     if (t.props.filterOption) {
-      if (!t.searchIndex) {
-        const processFunc = (value) => {
-          const phonetic = t.props.phonetic(value);
-          return [
-            t.props.formatter(value, utils.FORMATTER_TYPES.OPTION_FORMATTER)
-              .toString().toLowerCase(),
-            phonetic.join('').toLowerCase(),
-            phonetic.map(str => (str[0] || '')).join('').toLowerCase(),
-          ];
-        };
-        t.searchIndex = options.map(item => ({
-          indexes: processFunc(item),
-          item,
-        }));
+      if (typeof t.props.filterOption === 'function') {
+        const filteredData = term ? options.filter(t.props.filterOption) : options;
+        t.setData(filteredData);
+      } else {
+        if (!t.searchIndex) {
+          const processFunc = (value) => {
+            const phonetic = t.props.phonetic(value);
+            return [
+              t.props.formatter(value, utils.FORMATTER_TYPES.OPTION_FORMATTER)
+                .toString().toLowerCase(),
+              phonetic.join('').toLowerCase(),
+              phonetic.map(str => (str[0] || '')).join('').toLowerCase(),
+            ];
+          };
+          t.searchIndex = options.map(item => ({
+            indexes: processFunc(item),
+            item,
+          }));
+        }
+        const filteredData = term ?
+          t.searchIndex.filter(entity => entity.indexes.some(indexText =>
+            indexText.indexOf(term.toLowerCase()) > -1)).map(entity => entity.item)
+          : options;
+        t.setData(filteredData);
       }
-      const filteredData = term ?
-        t.searchIndex.filter(entity => entity.indexes.some(indexText =>
-          indexText.indexOf(term.toLowerCase()) > -1)).map(entity => entity.item)
-        : options;
-      t.setData(filteredData);
     } else {
       t.setData(options);
     }
@@ -568,7 +573,10 @@ SearchPanel.propTypes = {
   locale: PropTypes.string,
   resultFormatter: PropTypes.func,
   historyStamp: PropTypes.string,
-  filterOption: PropTypes.bool,
+  filterOption: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func,
+  ]),
   categories: PropTypes.array,
   shouldShowInCategory: PropTypes.func,
 };

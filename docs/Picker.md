@@ -303,8 +303,8 @@ afterFetch(arr) {
 ### filterOption
 
 
-描述：使用本地数据源搜索时是否内部过滤选项
-类型：`boolean`
+描述：使用本地数据源搜索时是否内部过滤选项，为函数时表示可以自定义过滤函数
+类型：`boolean|function`
 默认：`true`
 必选：否
 
