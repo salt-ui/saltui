@@ -40,12 +40,14 @@ class Demo extends React.Component {
       //   startDate: null,
       //   endDate: null,
       // },
+      visible: false,
     };
   }
 
   onOk(value) {
     console.log(value);
     this.setState({
+      // visible: false,
       value,
     });
   }
@@ -59,7 +61,7 @@ class Demo extends React.Component {
       // multiLine: true,
       // readOnly: true,
       layout: 'h',
-      type: 'dayWithTime',
+      // type: 'dayWithTime',
       singleMode: true,
       // formatter: 'yyyy-MM-dd',
       showWeek: true,
@@ -71,6 +73,12 @@ class Demo extends React.Component {
       animationType: 'slideLeft',
       // animationType: 'slideUp',
       onOk: this.onOk.bind(this),
+      // visible: this.state.visible,
+      onOpen: () => {
+        this.setState({
+          visible: true,
+        });
+      },
     };
     return (
       <Group>

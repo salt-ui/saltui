@@ -23,17 +23,21 @@ class DayField extends React.Component {
 
   onOk(value) {
     const t = this;
-    t.setState({
-      visible: false,
-    });
+    if (t.props.visible === undefined) {
+      t.setState({
+        visible: false,
+      });
+    }
     t.props.onOk(value);
   }
 
   onCancel() {
     const t = this;
-    t.setState({
-      visible: false,
-    });
+    if (t.props.visible === undefined) {
+      t.setState({
+        visible: false,
+      });
+    }
     t.props.onCancel();
   }
 
@@ -57,7 +61,7 @@ class DayField extends React.Component {
   getCalendarProps() {
     const t = this;
     return {
-      visible: t.state.visible,
+      visible: t.props.visible === undefined ? t.state.visible : t.props.visible,
       locale: t.props.locale,
       animationType: t.props.animationType,
       singleMode: t.props.singleMode,
@@ -99,9 +103,13 @@ class DayField extends React.Component {
     if (t.props.readOnly || t.props.disabled) {
       return;
     }
-    t.setState({
-      visible: true,
-    });
+    if (t.props.visible === undefined) {
+      t.setState({
+        visible: true,
+      });
+    } else if (typeof t.props.onOpen === 'function') {
+      t.props.onOpen();
+    }
   }
 
 
@@ -350,6 +358,7 @@ DayField.defaultProps = {
   renderDayBadge: () => {},
   renderCustomDayLabel: () => {},
   onChange: () => {},
+  onOpen: () => {},
 };
 
 DayField.propTypes = {
