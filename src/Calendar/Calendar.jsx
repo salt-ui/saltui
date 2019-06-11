@@ -63,9 +63,6 @@ class Calendar extends React.Component {
   }
 
   onOk(value) {
-    if (this.props.animationType === 'slideLeft') {
-      window.history.go(-1);
-    }
     this.props.onOk(value);
   }
 
@@ -83,6 +80,9 @@ class Calendar extends React.Component {
       if (t.popup) {
         t.popup.close();
         t.popup = null;
+        if (this.props.animationType === 'slideLeft') {
+          window.history.go(-1);
+        }
         window.removeEventListener('popstate', t.slideBackListener, false);
       }
       return;
