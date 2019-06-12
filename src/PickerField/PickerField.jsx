@@ -175,6 +175,7 @@ class PickerField extends React.Component {
       resultFormatter: t.props.resultFormatter,
       categories: t.props.categories,
       shouldShowInCategory: t.props.shouldShowInCategory,
+      filterOption: t.props.filterOption,
     };
     return (
       <Field
@@ -183,8 +184,8 @@ class PickerField extends React.Component {
         className={classnames(Context.prefixClass('picker-field'), {
           [t.props.className]: !!t.props.className,
         })}
-        onClick={e => {
-          t.handleClick(e)
+        onClick={(e) => {
+          t.handleClick(e);
         }}
       >
         <div
