@@ -1,6 +1,10 @@
+## 4.8.0 / 2019-06-12
+* `new` `Calendar` support props.visible
+* `new` `Picker` filterOption support function type
+* `fixed` `Calendar` fix a style bug when `showHalfDay` is true
+
 ## 4.7.1 / 2019-06-06
 * `fix` `Picker` shouldShowInCategory fail to pass category param if grouping is false
-
 
 ## 4.7.0 / 2019-06-06
 * `new` `Picker` support categories

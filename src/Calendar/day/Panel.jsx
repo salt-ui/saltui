@@ -76,7 +76,7 @@ class Panel extends React.Component {
       ...Panel.processValue(props.value),
       prevValue: props.value,
     };
-    this.monthAreaHeight = props.showHalfDay ? props.height - 104 : 'auto';
+    this.monthAreaHeight = props.showHalfDay ? props.height : 'auto';
     // 距顶或距底小于这个距离时，就动态加载
     this.bufferDistance = props.showHalfDay ? (this.monthAreaHeight) / 2 : props.height;
     this.startY = 0; // 手指滑动时的初始Y坐标
@@ -331,7 +331,10 @@ class Panel extends React.Component {
           showHalfDay ?
             <div
               className={`${prefixClass('month-area')}`}
-              style={{ height: t.monthAreaHeight }}
+              style={{
+                height: t.monthAreaHeight,
+                paddingBottom: showHalfDay ? 104 : 0
+              }}
               ref={(p) => { this.root = p; }}
             >{t.renderMonth(others)}
             </div> :
