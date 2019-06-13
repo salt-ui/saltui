@@ -1,3 +1,6 @@
+## 4.8.1 /2019-06-13
+* `new` style/theme目录下新增基础样式入口index.styl,排除了component.styl的引入，用于按需加载
+
 ## 4.8.0 / 2019-06-12
 * `new` `Calendar` support props.visible
 * `new` `Picker` filterOption support function type
