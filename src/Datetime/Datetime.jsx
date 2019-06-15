@@ -99,7 +99,8 @@ class Datetime extends React.Component {
 
   static getValidValue(props) {
     const { minDate, maxDate, value } = props;
-    const validValue = new Date(value).getTime();
+    // value 为 undefined 时，new Date 返回为 invalid Date，与不传的效果不同
+    const validValue = value ? new Date(value).getTime() : new Date().getTime();
     const minStamp = new Date(minDate).getTime();
     const maxStamp = new Date(maxDate).getTime();
     if (validValue < minStamp) {
