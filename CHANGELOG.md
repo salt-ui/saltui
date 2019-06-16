@@ -1,3 +1,7 @@
+## 4.8.4 / 2019-06-16
+* `fix` `Picker` filterOption does not pass searchKey
+* `fix` `Datetime` render error if minDate is set and value is undefined
+
 ## 4.8.3 /2019-06-13
 * `new` add index.styl in style/theme, add style.js in src/xxx/ for loaded on demand
 
