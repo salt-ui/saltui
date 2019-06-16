@@ -1,3 +1,6 @@
+## 4.8.5 / 2019-06-16
+* `fix` `PickerField` does not pass onSearch to Picker
+
 ## 4.8.4 / 2019-06-16
 * `fix` `Picker` filterOption does not pass searchKey
 * `fix` `Datetime` render error if minDate is set and value is undefined

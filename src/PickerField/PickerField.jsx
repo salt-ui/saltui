@@ -176,6 +176,7 @@ class PickerField extends React.Component {
       categories: t.props.categories,
       shouldShowInCategory: t.props.shouldShowInCategory,
       filterOption: t.props.filterOption,
+      onSearch: t.props.onSearch,
     };
     return (
       <Field
