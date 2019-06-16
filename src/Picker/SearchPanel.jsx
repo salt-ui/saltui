@@ -129,7 +129,9 @@ class SearchPanel extends React.Component {
     const options = t.props.options || [];
     if (t.props.filterOption) {
       if (typeof t.props.filterOption === 'function') {
-        const filteredData = term ? options.filter(t.props.filterOption) : options;
+        const filteredData = term
+          ? options.filter(item => t.props.filterOption(term, item))
+          : options;
         t.setData(filteredData);
       } else {
         if (!t.searchIndex) {
