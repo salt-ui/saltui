@@ -124,6 +124,7 @@ class Calendar extends React.Component {
     if (!state || !state.calendarType) {
       window.removeEventListener('popstate', t.slideBackListener, false);
       t.popup.close();
+      t.popup = null;
       t.props.onCancel();
     }
   }
