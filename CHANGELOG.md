@@ -1,3 +1,6 @@
+## 4.8.7 / 2019-6-21
+* `fix` `Tab` fix an runtime err when Tab.Item is null
+
 ## 4.8.6 / 2019-6-17
 * `fix` `Calendar` fail to block history back after 4.8.0
 
