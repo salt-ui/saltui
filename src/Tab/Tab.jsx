@@ -308,6 +308,7 @@ class Tabs extends React.Component {
 
     this.tabs = [];
     React.Children.forEach(children, (child, index) => {
+      if (!child) return;
       this.tabs.push({
         title: child.props.title,
         key: child.key || index,

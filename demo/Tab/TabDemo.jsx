@@ -18,7 +18,13 @@ class Demo extends React.Component {
     this.state = {
       active: '1',
       tabs: [],
+      a: true
     };
+    setTimeout(() => {
+      this.setState({
+        a: false
+      })
+    }, 2000)
   }
 
   handleChange(obj) {
@@ -48,6 +54,9 @@ class Demo extends React.Component {
 
             </div>
           </Tab.Item>
+          {
+            this.state.a ? <Tab.Item title={'111'}>1123</Tab.Item> : null
+          }
           <Tab.Item title="已完成">
             <div style={{ padding: '300px 0' }}>
               移动互联网，就是将移动通信和互联网二者结合起来，成为一体。
