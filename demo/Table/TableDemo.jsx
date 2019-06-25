@@ -21,7 +21,7 @@ class Demo extends React.Component {
       data: {
         data: [
           {
-            title: '人物1',
+            // title: '人物1',
             nameId: 'xiaowang',
             name: '小王',
             cityId: 'bj',
@@ -146,7 +146,7 @@ class Demo extends React.Component {
                 age: '1111',
               },
               {
-                title: '人物1112',
+                // title: '人物1112',
                 nameId: 'xiaowang11',
                 name: '小王11',
                 cityId: 'bj11',

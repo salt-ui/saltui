@@ -1,3 +1,6 @@
+## 4.8.8 / 2019-6-25
+* `fix` `Table` fix style bug when cell data is null
+
 ## 4.8.7 / 2019-6-21
 * `fix` `Tab` fix an runtime err when Tab.Item is null
 

@@ -160,7 +160,7 @@ class Table extends React.Component {
               style={rowItemStyle}
               key={i}
             >
-              {column.render ? column.render.call(this, rowData[column.dataKey], rowData, isSubTable) : rowData[column.dataKey]}
+              {column.render ? column.render.call(this, rowData[column.dataKey], rowData, isSubTable) : (rowData[column.dataKey] || '　')}
             </div>
           );
         })}
