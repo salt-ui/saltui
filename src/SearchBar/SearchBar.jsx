@@ -55,6 +55,7 @@ class SearchBar extends React.Component {
     }
   }
 
+
   onChange(e) {
     const { value } = e.target;
     const t = this;
@@ -78,6 +79,10 @@ class SearchBar extends React.Component {
       }
       this.input.blur();
     }
+  }
+
+  getKeyword() {
+    return this.state.keyword;
   }
 
   doSearch(from, keyword) {

@@ -56,7 +56,7 @@ class SearchPanel extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (!this.props.fetchUrl && this.props.options !== prevProps.options) {
-      this.fetchData();
+      this.fetchData({ term: this.searchBar ? this.searchBar.getKeyword() : '' });
     }
   }
 
