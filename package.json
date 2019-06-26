@@ -1,6 +1,6 @@
 {
   "name": "saltui",
-  "version": "4.8.9",
+  "version": "4.8.10",
   "description": "React components for mobile",
   "main": "build/salt-ui.js",
   "scripts": {

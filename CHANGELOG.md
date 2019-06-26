@@ -1,3 +1,6 @@
+## 4.8.10 / 2019-6-27
+* `fix` `Picker` revert to 4.8.8
+
 ## 4.8.9 / 2019-6-27
 * `fix` `Picker` SearchPanel didUpdate fetchData should use cloneDeep
 
