@@ -404,6 +404,24 @@ class SearchPanel extends React.Component {
     );
   }
 
+  renderContent() {
+    const { customRender } = this.props
+    return (
+      <div>
+        {
+          customRender
+            ? typeof customRender === 'function'
+              ? customRender()
+              : customRender
+            : null
+        }
+        {
+          this.renderTab()
+        }
+      </div>
+    )
+  }
+
   renderTab() {
     const { categories } = this.props;
     if (categories) {
@@ -488,9 +506,11 @@ class SearchPanel extends React.Component {
             </div>
           ) : null}
           <div className={Context.prefixClass('picker-searchpanel-content')}>
-            {t.state.searchMode ?
-              (<ScrollView>{t.renderResultCondition()}</ScrollView>)
-              : t.renderTab()}
+            {
+              t.state.searchMode
+                ? (<ScrollView>{t.renderResultCondition()}</ScrollView>)
+                : t.renderContent()
+            }
             {t.props.grouping ? t.renderGroupingBar() : null}
           </div>
           {multiple ? (

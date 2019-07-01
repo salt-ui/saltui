@@ -128,6 +128,9 @@ class Demo extends React.Component {
               this.setState({ data: keyword ? monthArray.slice(4) : monthArray });
             }}
             visible={t.state.pickerVisible2}
+            customRender={
+              <div data-value="自定义值" data-text="自定义文本">自定义内容</div>
+            }
           />
         </Group>
       </div>

@@ -177,6 +177,7 @@ class PickerField extends React.Component {
       shouldShowInCategory: t.props.shouldShowInCategory,
       filterOption: t.props.filterOption,
       onSearch: t.props.onSearch,
+      customRender: t.props.customRender
     };
     return (
       <Field
@@ -253,6 +254,7 @@ PickerField.defaultProps = {
   locale: 'zh-cn',
   icon: undefined,
   resultFormatter: undefined,
+  customRender: null
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -286,6 +288,7 @@ PickerField.propTypes = {
   locale: PropTypes.string,
   icon: PropTypes.node,
   resultFormatter: PropTypes.func,
+  customRender: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 PickerField.displayName = 'PickerField';

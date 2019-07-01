@@ -105,6 +105,7 @@ Picker.defaultProps = {
   showSearch: true,
   searchDelay: 100,
   searchPlaceholder: undefined,
+  customRender: null
 };
 
 Picker.propTypes = {
@@ -133,6 +134,7 @@ Picker.propTypes = {
   onConfirm: PropTypes.func,
   confirmText: PropTypes.string,
   searchPlaceholder: PropTypes.string,
+  customRender: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 Picker.displayName = 'Picker';

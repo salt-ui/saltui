@@ -7,7 +7,7 @@
  */
 
 import Group from 'salt-group';
-import PickerField from 'salt-picker-field';
+import PickerField from '../../src/PickerField';
 import React from 'react';
 import AngleRight from 'salt-icon/lib/AngleRight';
 
@@ -129,6 +129,7 @@ class Demo extends React.Component {
                 t.handleChange1(e);
               }}
               value={t.state.value1}
+              customRender={<div>自定义内容</div>}
             />
             <PickerField
               icon={<AngleRight onClick={(e) => { e.stopPropagation(); alert('1'); }} />}
