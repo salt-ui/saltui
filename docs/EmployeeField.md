@@ -2,7 +2,9 @@
 
 # 人员选择表单域
 
-该组件依赖于钉钉 API，非钉钉容器内仅提供查看。
+该组件依赖于钉钉 API `dd.biz.contact.complexPicker`，非钉钉容器内仅提供查看。
+
+由于 `dd.biz.contact.complexPicker` 需要鉴权才能使用，请在组件调用前完成 [JSAPI 鉴权，见文档](https://ding-doc.dingtalk.com/doc#/dev/uwa7vs)。
 
 ## Simple Usage
 
@@ -33,7 +35,7 @@
 | enableNW | bool | No | false | 内部应用使用，是否在内外容器中启用，注意：内外需要在 loader 版本不小于 0.1.30，且内外容器版本不小于 v3.5.0 的情况下才可以开启使用 |
 | onPick | func | No | | 一些情况下，可能只想使用选人组件的 UI，并不调用钉钉默认 API，通过这一回调的配置，可以自定义点击选人按钮时的动作 |
 
-- 钉钉api接受的参数，请查看[这里](https://open-doc.dingtalk.com/docs/doc.htm?spm=a219a.7629140.0.0.Du9ebD&treeId=171&articleId=104926&docType=1)
+- 钉钉api接受的参数，请查看[这里](https://ding-doc.dingtalk.com/doc#/dev/oawo7q#a-name8l3nmba%E9%80%89%E4%BA%BA%E4%B8%8E%E9%83%A8%E9%97%A8)
 
 ## Value 
 
