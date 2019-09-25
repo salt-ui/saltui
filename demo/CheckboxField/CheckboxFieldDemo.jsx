@@ -81,6 +81,17 @@ class Demo extends React.Component {
         },
       ],
     };
+    setTimeout(() => {
+      const data = [...this.state.data].map((item,index) => {
+        if (index === 0) {
+          item.checked = true
+        }
+        return item
+      })
+      this.setState({
+        data
+      })
+    }, 4000)
   }
 
   getCheckboxFieldProps() {

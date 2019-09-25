@@ -113,7 +113,7 @@ class PasswordInput extends React.Component {
   }
 
   renderEyeIcon() {
-    const EyeIcon = this.props.decrypted ? ClosedEyeIcon : OpenedEyeIcon;
+    const EyeIcon = !this.props.decrypted ? ClosedEyeIcon : OpenedEyeIcon;
 
     return (
       <EyeIcon
