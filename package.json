@@ -65,7 +65,7 @@
     "svg2react-loader": "^1.0.3",
     "to-case": "^2.0.0",
     "webpack": "^3.5.5",
-    "webpack-bundle-analyzer": "^2.9.0"
+    "webpack-bundle-analyzer": "^3.6.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
