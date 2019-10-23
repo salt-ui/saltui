@@ -48,7 +48,7 @@ class Picker extends React.Component {
   }
 
   render() {
-    const { visible, ...panelProps } = this.props;
+    const { visible, className, ...panelProps } = this.props;
     const { locale } = panelProps;
     const fixProps = {
       confirmText: panelProps.confirmText || i18n[locale].confirmText,
@@ -57,6 +57,7 @@ class Picker extends React.Component {
     };
     return (
       <Popup
+        className={className}
         animationType="slide-left"
         stopBodyScrolling={false}
         visible={visible}
@@ -69,6 +70,7 @@ class Picker extends React.Component {
 Picker.defaultProps = {
   visible: false,
   value: [],
+  className: '',
   historyStamp: undefined,
   confirmText: undefined,
   onVisibleChange: () => {},

@@ -81,6 +81,7 @@ class Demo extends React.Component {
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">远程数据源</Group.Head>
           <Button onClick={() => { this.showPicker(1); }}>点击显示</Button>
           <Picker
+            className={'my-picker'}
             fetchUrl="https://www.easy-mock.com/mock/5a2f75a26ce8af6869ec49f0/saltui/picker-data?jsonp_param_name=callback"
             onConfirm={(value) => {
               alert(`value: ${JSON.stringify(value)}`);
