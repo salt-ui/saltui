@@ -177,7 +177,8 @@ class PickerField extends React.Component {
       shouldShowInCategory: t.props.shouldShowInCategory,
       filterOption: t.props.filterOption,
       onSearch: t.props.onSearch,
-      customRender: t.props.customRender
+      customRender: t.props.customRender,
+      className: t.props.pickerClassName
     };
     return (
       <Field
@@ -220,6 +221,7 @@ PickerField.defaultProps = {
   fetchUrl: '',
   fetchDataOnOpen: true,
   dataType: 'jsonp',
+  pickerClassName: '',
   beforeFetch: obj => obj,
   fitResponse: response => ({
     content: response.content || response,
@@ -260,6 +262,7 @@ PickerField.defaultProps = {
 // http://facebook.github.io/react/docs/reusable-components.html
 PickerField.propTypes = {
   className: PropTypes.string,
+  pickerClassName: PropTypes.string,
   label: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.object,

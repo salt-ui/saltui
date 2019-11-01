@@ -406,20 +406,10 @@ class SearchPanel extends React.Component {
 
   renderContent() {
     const { customRender } = this.props
-    return (
-      <div>
-        {
-          customRender
-            ? typeof customRender === 'function'
-              ? customRender()
-              : customRender
-            : null
-        }
-        {
-          this.renderTab()
-        }
-      </div>
-    )
+    return [
+      customRender ? typeof customRender === 'function' ? customRender() : customRender : null,
+      this.renderTab()
+    ]
   }
 
   renderTab() {
@@ -427,6 +417,7 @@ class SearchPanel extends React.Component {
     if (categories) {
       return (
         <Tab
+          key='tab1'
           wrapClassName={Context.prefixClass('picker-searchpanel-tab-wrap')}
           activeKey={this.state.activeCategory}
           onChange={({ activeKey }) => {
