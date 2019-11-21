@@ -74,8 +74,8 @@ class NumberPicker extends React.Component {
   }
   render() {
     const t = this;
-    const fillColorUp = t.props.disabled || t.props.value >= t.props.max ? '#cccccc' : '#f37372';
-    const fillColorDown = t.props.disabled || t.props.value <= t.props.min ? '#cccccc' : '#f37372';
+    const fillColorUp = t.props.disabled || t.props.value >= t.props.max ? '#cccccc' : t.props.iconColor || '#f37372';
+    const fillColorDown = t.props.disabled || t.props.value <= t.props.min ? '#cccccc' : t.props.iconColor || '#f37372';
     const { className, showNumber, ...restProps } = t.props;
     const stepperClass = classnames({
       [className]: !!className,

@@ -37,7 +37,7 @@ class NumberPickerDemo extends React.Component {
     return (
       <div>
         <div className="tip">可编辑</div>
-        <div className="line">默认样式 <NumberPicker value={t.state.a} max={4} step={1} onChange={t.handleChange.bind(t, 'a')} /></div>
+        <div className="line">默认样式 <NumberPicker iconColor={'green'} value={t.state.a} max={4} step={1} onChange={t.handleChange.bind(t, 'a')} /></div>
         <div className="line">禁用样式单个 <NumberPicker value={t.state.b} max={5} min={2} step={1} onChange={t.handleChange.bind(t, 'b')} /></div>
         <div className="line">禁用样式单个 <NumberPicker value={t.state.c} max={2} step={1} onChange={t.handleChange.bind(t, 'c')} /></div>
         <div className="line">全部禁用<NumberPicker value={t.state.count} max={4} step={1} disabled /></div>

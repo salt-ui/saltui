@@ -65,6 +65,7 @@ class NumberPickerField extends React.Component {
           step={t.props.step}
           readOnly={t.props.readOnly}
           disabled={t.props.disabled}
+          iconColor={t.props.iconColor}
         />
       </Field>
     );
