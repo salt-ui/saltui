@@ -326,6 +326,19 @@ $button-disabled-border-color = $normal-alpha-6
 
 .{$prefix}-button-group
   display flex
+  position relative
+  .{$prefix}-button
+    position relative
+    &:after
+      content ''
+      position absolute
+      height 50%
+      width 1px
+      right 0
+      z-index 9;
+      top 11px;
+      display inline-block
+      background-color #E8EBEE
   &.fixed-bottom
     position fixed
     bottom 0
@@ -355,22 +368,11 @@ $button-disabled-border-color = $normal-alpha-6
       margin-right 0
   .{$prefix}-button-banner
     flex 1
-    border-right 0
-    border-bottom 0
-    hairline('border-left', $normal-alpha-6)
+    border none
     &.disabled
     &[disabled]
-      border-right 0
-      border-bottom 0
+      border none
+      background #fff
     &.{$prefix}-button-primary
-      hairline('border-top', $normal-alpha-6)
-      &:first-child
-        border-left 0
-    &.{$prefix}-button-minor
-      hairline('border-top', $normal-alpha-6)
-      &:first-child
-        border-left 0
-    &.{$prefix}-button-secondary
-      hairline('border-top', $normal-alpha-6)
-      &:first-child
-        border-left 0
+      background-color #fff
+      color #ff6f00
