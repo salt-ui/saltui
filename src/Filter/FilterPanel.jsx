@@ -483,8 +483,9 @@ class FilterPanel extends React.Component {
   render() {
     const { options, activeIndex } = this.props;
     const group = options.groups[activeIndex];
+    const { maxHeight } = group || {}
     return (
-      <div className={Context.prefixClass('filter-panel-wrapper')}>
+      <div className={Context.prefixClass('filter-panel-wrapper')} style={{maxHeight: maxHeight || 2000}}>
         {this.renderPanel(group)}
       </div>
     )
