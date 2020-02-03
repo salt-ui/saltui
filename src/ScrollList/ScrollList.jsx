@@ -211,10 +211,20 @@ class ScrollList extends React.Component {
           nextState.currentPage = 2;
           this.scrollTop();
         } else {
-          if (
+          const shouldClearList = this.props.shouldClearList ? this.props.shouldClearList(
+            {
+              ...JSON.parse(queryData),
+              [this.props.currentPageKey]: content.currentPage,
+            },
+            {
+              ...(state.lastQueryData ? JSON.parse(state.lastQueryData) : {}),
+              [this.props.currentPageKey]: state.currentPage - 1
+            }
+          ) : (
             (state.lastQueryData && queryData !== state.lastQueryData) ||
             content.currentPage !== state.currentPage
-          ) {
+          );
+          if (shouldClearList) {
             nextState.currentPage = 1;
             nextState.data = [];
             this.scrollTop();
