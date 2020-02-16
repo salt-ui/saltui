@@ -130,8 +130,8 @@ class Demo extends React.Component {
         <Group>
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">popup 显示</Group.Head>
           <Group.List>
-            <RadioField {...radioFieldProps1} mode="popup" layout={'v'} label="复选" />
-            <RadioField {...radioFieldProps2} iconPosition="right" label="单选（图标在右）" />
+            <RadioField {...radioFieldProps1} mode="popup" readOnly={true} layout={'v'} label="复选" />
+            <RadioField {...radioFieldProps2} iconPosition="right" readOnly={true} label="单选（图标在右）" />
           </Group.List>
         </Group>
       </div>

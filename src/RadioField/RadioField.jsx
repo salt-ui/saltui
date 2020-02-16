@@ -41,10 +41,9 @@ class RadioField extends React.Component {
   /* eslint-disable no-param-reassign */
   clickAction(value, item, index, data) {
     const t = this;
-    const { data: radioArray, onChange } = t.props;
-
+    const { data: radioArray, onChange, readOnly } = t.props;
     const { disable } = item;
-    if (disable) {
+    if (disable || readOnly) {
       return;
     }
     radioArray.map((radioItem) => {
