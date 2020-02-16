@@ -129,6 +129,7 @@ class RadioField extends React.Component {
       groupListFlag,
       label,
       mode,
+      tip
     } = t.props;
 
     const radioArrayComponent = radioArray.map((item, index, data) => {
@@ -190,6 +191,10 @@ class RadioField extends React.Component {
         <Group.List {...groupListArgument}>
           {radioArrayComponent}
         </Group.List>
+        {tip ?
+          <div className="t-field-box t-FBH t-field-tip-box">
+            <div className="t-FBH t-FBAC t-LH1_5 t-field-tip">{tip}</div>
+          </div>: null}
       </Group>
     );
 
