@@ -135,12 +135,17 @@ class RadioField extends React.Component {
     const radioArrayComponent = radioArray.map((item, index, data) => {
       const { checked, disable, value } = item;
       /* eslint-disable react/no-array-index-key */
+      let style = {}
+      if (mode !== 'popup' && index !== 0) {
+        style.borderTop = window.devicePixelRatio > 1 ? '0.5px solid #f2f2f2' : '1px solid #f2f2f2'
+      }
       return (
         <div
           key={index}
           className={classnames(prefixClass('radio-field-row FBAC FBH'), {
             disable,
           })}
+          style={style}
           onClick={t.clickAction.bind(t, value, item, index, data)}
         >
           {
@@ -174,6 +179,7 @@ class RadioField extends React.Component {
     this.finalJSX = (
       <Group className={classnames(prefixClass('radio-field'), {
         [rootClassName]: !!rootClassName,
+        'is-group': true
       }, {
           [className]: !!className,
         })}
@@ -193,7 +199,7 @@ class RadioField extends React.Component {
         </Group.List>
         {tip ?
           <div className="t-field-box t-FBH t-field-tip-box">
-            <div className="t-FBH t-FBAC t-LH1_5 t-field-tip">{tip}</div>
+            <div className="t-FBH t-FBAC t-LH1_5 t-field-tip" style={{borderTop: 'none'}}>{tip}</div>
           </div>: null}
       </Group>
     );
