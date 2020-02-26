@@ -143,17 +143,12 @@ class RadioField extends React.Component {
     const radioArrayComponent = radioArray.map((item, index, data) => {
       const { checked, disable, value } = item;
       /* eslint-disable react/no-array-index-key */
-      const style = {};
-      if (mode !== 'popup' && index !== 0) {
-        style.borderTop = window.devicePixelRatio > 1 ? '0.5px solid #f2f2f2' : '1px solid #f2f2f2';
-      }
       return (
         <div
           key={index}
           className={classnames(prefixClass('radio-field-row FBAC FBH'), {
             disable,
           })}
-          style={style}
           onClick={t.clickAction.bind(t, value, item, index, data)}
         >
           {
