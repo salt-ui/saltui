@@ -12,7 +12,7 @@ $radio-div-height = 54px
 .{$prefix}-radio-field-label
     line-height $font-size-field-label-lh
     padding 10px 15px
-    background-color $bg
+    background-color white
 
 .{$prefix}-radio-field-label-required
     vertical-align 1px
@@ -40,19 +40,23 @@ $radio-div-height = 54px
     font-size $font-size-t5
     color $dark-alpha-2
     min-width 0
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1.2
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
 
 .{$prefix}-radio-field-icon-wrapper
     width: 28px;
-    min-width 20px
+    min-width 36px
     min-height $radio-div-height
     &.right
         margin-left 12px
 
-.{$prefix}-radio-field-icon svg
-    fill $brand-primary
+.{$prefix}-radio-field-icon
+    width: 24px;
+    height: 24px;
+    .t-radio-selected-outer 
+        fill: $brand-primary
 
 .{$prefix}-radio-field-icon.un-checked svg
     visibility hidden

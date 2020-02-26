@@ -15,21 +15,29 @@ import { prefixClass } from '../Context';
 import Group from '../Group';
 import Popup from '../Popup';
 import Field from '../Field';
+import RadioNormal from './RadioNormal';
+import RadioNormalDisabled from './RadioNormalDisabled';
+import RadioSelected from './RadioSelected';
+import RadioSelectedDisabled from './RadioSelectedDisabled';
 
-const renderIcon = (checked, position) => (
-  <div className={classnames(prefixClass('radio-field-icon-wrapper FBAC FBH'), {
-    [position]: !!position,
-  })}
-  >
-    <OptionCheckedIcon
-      width={16}
-      height={16}
-      className={classnames(prefixClass('radio-field-icon'), {
-        'un-checked': !checked,
-      })}
-    />
-  </div>
-);
+const renderIcon = (checked, disabled, position) => {
+  let RenderedIcon = null;
+  if (checked) {
+    RenderedIcon = disabled ? RadioSelectedDisabled : RadioSelected;
+  } else {
+    RenderedIcon = disabled ? RadioNormalDisabled : RadioNormal;
+  }
+  return (
+    <div className={classnames(prefixClass('radio-field-icon-wrapper FBAC FBH'), {
+      [position]: !!position,
+    })}
+    >
+      <RenderedIcon
+        className={classnames(prefixClass('radio-field-icon'))}
+      />
+    </div>
+  );
+};
 class RadioField extends React.Component {
   constructor(props) {
     super(props);
@@ -129,15 +137,15 @@ class RadioField extends React.Component {
       groupListFlag,
       label,
       mode,
-      tip
+      tip,
     } = t.props;
 
     const radioArrayComponent = radioArray.map((item, index, data) => {
       const { checked, disable, value } = item;
       /* eslint-disable react/no-array-index-key */
-      let style = {}
+      const style = {};
       if (mode !== 'popup' && index !== 0) {
-        style.borderTop = window.devicePixelRatio > 1 ? '0.5px solid #f2f2f2' : '1px solid #f2f2f2'
+        style.borderTop = window.devicePixelRatio > 1 ? '0.5px solid #f2f2f2' : '1px solid #f2f2f2';
       }
       return (
         <div
@@ -149,7 +157,7 @@ class RadioField extends React.Component {
           onClick={t.clickAction.bind(t, value, item, index, data)}
         >
           {
-            t.props.iconPosition === 'left' && renderIcon(checked)
+            t.props.iconPosition === 'left' && renderIcon(checked, disable)
           }
           <div
             ref={`content${index}`}
@@ -158,7 +166,7 @@ class RadioField extends React.Component {
             {item.content || item.text}
           </div>
           {
-            t.props.iconPosition === 'right' && renderIcon(checked, 'right')
+            t.props.iconPosition === 'right' && renderIcon(checked, disable, 'right')
           }
           {
             disable && <div className={prefixClass('radio-field-disable-mask')} />
@@ -179,7 +187,7 @@ class RadioField extends React.Component {
     this.finalJSX = (
       <Group className={classnames(prefixClass('radio-field'), {
         [rootClassName]: !!rootClassName,
-        'is-group': true
+        'is-group': true,
       }, {
           [className]: !!className,
         })}
@@ -199,8 +207,8 @@ class RadioField extends React.Component {
         </Group.List>
         {tip ?
           <div className="t-field-box t-FBH t-field-tip-box">
-            <div className="t-FBH t-FBAC t-LH1_5 t-field-tip" style={{borderTop: 'none'}}>{tip}</div>
-          </div>: null}
+            <div className="t-FBH t-FBAC t-LH1_5 t-field-tip" style={{ borderTop: 'none' }}>{tip}</div>
+          </div> : null}
       </Group>
     );
 

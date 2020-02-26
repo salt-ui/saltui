@@ -17,31 +17,35 @@ import Group from '../Group';
 import Field from '../Field';
 import SelectLayer from './SelectLayer';
 import { shouldUpdate } from '../Utils';
+import CheckboxNormal from './CheckboxNormal';
+import CheckboxNormalDisabled from './CheckboxNormalDisabled';
+import CheckboxSelected from './CheckboxSelected';
+import CheckboxSelectedDisabled from './CheckboxSelectedDisabled';
 
 const { prefixClass } = Context;
 
 
-const renderIcon = (checked, disable, position) => {
+const renderIcon = (checked, disabled, position) => {
   const iconClassName = classnames(prefixClass('checkbox-field-icon'), {
     checked,
-    'un-checked': !checked,
-    disable,
-    [`${prefixClass('checkbox-field-icon')}-list`]: true,
+    // 'un-checked': !checked,
+    // disable,
+    // [`${prefixClass('checkbox-field-icon')}-list`]: true,
   });
+  let RenderedIcon = null;
+  if (checked) {
+    RenderedIcon = disabled ? CheckboxSelectedDisabled : CheckboxSelected;
+  } else {
+    RenderedIcon = disabled ? CheckboxNormalDisabled : CheckboxNormal;
+  }
   return (
     <div className={classnames(prefixClass('checkbox-field-icon-wrapper FBH FBAC'), {
       [position]: !!position,
     })}
     >
-      {
-        checked ?
-          <CheckRound
-            width={26}
-            height={26}
-            className={iconClassName}
-          /> :
-          <div className={iconClassName} />
-      }
+      <RenderedIcon
+        className={iconClassName}
+      />
     </div>
   );
 };
@@ -237,7 +241,7 @@ class CheckboxField extends React.Component {
         middleIcon={icon}
         className={classnames({
           [t.props.className]: !!t.props.className,
-          [prefixClass('fix-slot-margin')]: true
+          [prefixClass('fix-slot-margin')]: true,
         })}
       >
         <div onClick={t.handleClick} className={prefixClass('checkbox-field-value-wrap')}>
@@ -250,7 +254,7 @@ class CheckboxField extends React.Component {
                 {t.state.selectedText}
               </div> :
               <div className={prefixClass('omit checkbox-field-placeholder')}>
-                {t.props.readOnly ?  '' : t.props.placeholder}
+                {t.props.readOnly ? '' : t.props.placeholder}
               </div>
           }
         </div>
