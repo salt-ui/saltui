@@ -6,25 +6,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import CheckRound from 'salt-icon/lib/CheckRound';
 import { prefixClass } from '../Context';
 import Layer from '../Layer';
 import Scroller from '../Scroller';
+import CheckboxNormal from './CheckboxNormal';
+import CheckboxNormalDisabled from './CheckboxNormalDisabled';
+import CheckboxSelected from './CheckboxSelected';
+import CheckboxSelectedDisabled from './CheckboxSelectedDisabled';
 
-const renderIcon = (checked, disable) => {
+const renderIcon = (checked, disabled, position) => {
   const iconClassName = classnames(prefixClass('checkbox-field-icon'), {
     checked,
-    'un-checked': !checked,
-    disable,
   });
+  let RenderedIcon = null;
+  if (checked) {
+    RenderedIcon = disabled ? CheckboxSelectedDisabled : CheckboxSelected;
+  } else {
+    RenderedIcon = disabled ? CheckboxNormalDisabled : CheckboxNormal;
+  }
   return (
-    checked ?
-      <CheckRound
-        key="check-round"
-        width={26}
-        height={26}
+    <div className={classnames(prefixClass('checkbox-field-icon-wrapper FBH FBAC'), {
+      [position]: !!position,
+    })}
+    >
+      <RenderedIcon
         className={iconClassName}
-      /> : <div className={iconClassName} />
+      />
+    </div>
   );
 };
 

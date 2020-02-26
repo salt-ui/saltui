@@ -47,13 +47,16 @@ $radio-div-height = 54px
 
 .{$prefix}-radio-field-icon-wrapper
     width: 28px;
-    min-width 20px
+    min-width 36px
     min-height $radio-div-height
     &.right
         margin-left 12px
 
-.{$prefix}-radio-field-icon svg
-    fill $brand-primary
+.{$prefix}-radio-field-icon
+    width: 24px;
+    height: 24px;
+    .t-radio-selected-outer 
+        fill: $brand-primary
 
 .{$prefix}-radio-field-icon.un-checked svg
     visibility hidden
