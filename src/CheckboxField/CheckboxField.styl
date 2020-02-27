@@ -39,6 +39,9 @@ $checkbox-icon-size = 24px
     &.right
         margin-left 12px
         margin-right 16px
+    + .{$prefix}-checkbox-field-content
+        padding-right: 16px;
+        padding-left: 12px;
 
 .{$prefix}-checkbox-field-placeholder
     max-width 100%
@@ -68,11 +71,13 @@ $checkbox-icon-size = 24px
 .{$prefix}-checkbox-field-content
     min-width 0
     //min-height $checkbox-div-height
-    padding-left 12px
+    // padding-left 12px
     vertical-align middle
     font-size $font-size-t5
     color $dark-alpha-2
     line-height: 1.2
+    padding-top: 10px;
+    padding-bottom: 10px;
     // overflow hidden
     // text-overflow ellipsis
     // white-space nowrap
