@@ -75,7 +75,7 @@ class Demo extends React.Component {
         },
         {
           checked: false,
-          text: '邓丽娲',
+          text: '邓丽娲邓丽娲邓丽娲邓丽娲邓丽娲邓丽娲邓丽娲邓丽娲邓丽娲邓丽娲邓丽娲邓丽娲邓丽娲',
           disable: false,
           value: '4',
         },
