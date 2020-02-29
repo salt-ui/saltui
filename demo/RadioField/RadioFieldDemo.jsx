@@ -131,6 +131,7 @@ class Demo extends React.Component {
           <Group.Head className="t-FS14 t-LH1_5 t-LH20 t-PT10 t-PB10 t-PL18">popup 显示</Group.Head>
           <Group.List>
             <RadioField {...radioFieldProps1}  mode="popup"  layout={'v'} label="复选" />
+            <RadioField {...radioFieldProps2} iconPosition="left" label="单选（图标在左）" />
             <RadioField {...radioFieldProps2} tip={'12312肯定街坊邻居阿斯兰大姐夫龙卡四大皆空法拉克是大家3123'} iconPosition="left" label="单选（图标在左）" />
           </Group.List>
         </Group>

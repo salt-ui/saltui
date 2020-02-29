@@ -112,7 +112,7 @@ class Demo extends React.Component {
               columns={DatetimeField.YMDWHM}
             /> */}
             <DatetimeField
-              label="时间选择"
+              label="很长很长的时间选择，真的很长，我都不知道说啥，特别长"
               onSelect={t.handleChange.bind(t, 'value4')}
               value={t.state.value4}
               columns={DatetimeField.YMDWHM}

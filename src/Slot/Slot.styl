@@ -2,7 +2,7 @@
 /**
  * Slot Component Style for SaltUI
  * @author caoke.ck
- * 
+ *
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
@@ -64,6 +64,11 @@ $slot-option-font-size = $font-size-t4;
 .{$prefix}-slot-title {
     color: $dark-alpha-2;
     font-size: 17px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0 20px;
+    text-align: center;
 }
 
 .{$prefix}-slot-body {

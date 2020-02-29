@@ -57,7 +57,7 @@ $radio-div-height = 54px
 .{$prefix}-radio-field-icon
     width: 24px;
     height: 24px;
-    .t-radio-selected-outer 
+    .t-radio-selected-outer
         fill: $brand-primary
 
 .{$prefix}-radio-field-icon-border
@@ -66,6 +66,14 @@ $radio-div-height = 54px
 
 .{$prefix}-radio-field-icon.un-checked svg
     visibility hidden
+
+.{$prefix}-radio-field.is-group
+    .t-group-list
+        border-bottom none
+        border-top-color transparent
+        .t-group-list-item
+            &:after
+                border-bottom none
 
 /* Popup mode */
 $radio-field-tip-color = $normal-alpha-5
