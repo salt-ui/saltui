@@ -27,6 +27,7 @@ const {
   formatFromProps,
   formatText,
   isArray,
+  isPlainObject,
   filterDate,
   parseValue,
   Y,
@@ -100,7 +101,9 @@ class Datetime extends React.Component {
   static getValidValue(props) {
     const { minDate, maxDate, value } = props;
     // value 为 undefined 时，new Date 返回为 invalid Date，与不传的效果不同
-    const validValue = value ? new Date(value).getTime() : new Date().getTime();
+    const validValue = value
+      ? new Date(isPlainObject(value) ? value.value : value).getTime()
+      : new Date().getTime();
     const minStamp = new Date(minDate).getTime();
     const maxStamp = new Date(maxDate).getTime();
     if (validValue < minStamp) {
