@@ -20,7 +20,7 @@ function transToValue(list) {
       label = `${orgUserName}(${emplId})`;
     } else if (name) {
       // name = 姓名(花名)
-      label = name;
+      label = (name || '').replace('（', '(').replace('）', ')');
     }
 
     return {
