@@ -86,7 +86,7 @@
 示例： 
 
 ```jsx
-<Datetime disabledDate={(currentDate) => [ { start: new Date(2002,0,1) },{start: new Date(2017, 0, 1), end: new Date(2017,5,1)}, new Date(2018, 11,1), { start: new Date(2020,0,1) } ]} />
+<Datetime disabledDate={() => [ { start: new Date(2002,0,1) },{start: new Date(2017, 0, 1), end: new Date(2017,5,1)}, new Date(2018, 11,1), { start: new Date(2020,0,1) } ]} />
 ```
 
 
@@ -105,13 +105,13 @@ function range(start, end) {
   return result;
 }
 
-function disabledTime(currentTime) {
+function disabledTime() {
 	// 返回值应为一个对象，包含三个 function 对应禁用的时分秒，
 	// function 的返回值是一个数组，代表被禁用的时分秒。
   return {
-    disabledHours: (currentTime) => range(0, 24).splice(4, 20),
-    disabledMinutes: (currentTime) => range(30, 60),
-    disabledSeconds: (currentTime) => [55, 56],
+    disabledHours: () => range(0, 24).splice(4, 20),
+    disabledMinutes: () => range(30, 60),
+    disabledSeconds: () => [55, 56],
   };
 }
 ```

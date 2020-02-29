@@ -78,7 +78,7 @@ class Datetime extends React.Component {
     const columnsStyle = columns[0];
     // disabledDate 仅支持 YMD
     if (props.disabledDate && ['Y', 'YMD', 'YMDW'].indexOf(columnsStyle) !== -1) {
-      const disabledArr = props.disabledDate(validValue);
+      const disabledArr = props.disabledDate();
       if (isArray(disabledArr) && disabledArr.length) {
         data = filterDate({
           data,
@@ -185,7 +185,7 @@ class Datetime extends React.Component {
       onChange(outputDate);
       return;
     }
-    const disabledArr = disabledDate ? disabledDate(outputDate.value) : [];
+    const disabledArr = disabledDate ? disabledDate() : [];
     const data = [].concat(stateData);
     const yearData = data[0];
     const monthData = data[1];
