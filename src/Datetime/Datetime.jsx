@@ -27,6 +27,7 @@ const {
   formatFromProps,
   formatText,
   isArray,
+  isPlainObject,
   filterDate,
   parseValue,
   Y,
@@ -77,7 +78,7 @@ class Datetime extends React.Component {
     const columnsStyle = columns[0];
     // disabledDate 仅支持 YMD
     if (props.disabledDate && ['Y', 'YMD', 'YMDW'].indexOf(columnsStyle) !== -1) {
-      const disabledArr = props.disabledDate();
+      const disabledArr = props.disabledDate(validValue);
       if (isArray(disabledArr) && disabledArr.length) {
         data = filterDate({
           data,
@@ -100,7 +101,9 @@ class Datetime extends React.Component {
   static getValidValue(props) {
     const { minDate, maxDate, value } = props;
     // value 为 undefined 时，new Date 返回为 invalid Date，与不传的效果不同
-    const validValue = value ? new Date(value).getTime() : new Date().getTime();
+    const validValue = value
+      ? new Date(isPlainObject(value) ? value.value : value).getTime()
+      : new Date().getTime();
     const minStamp = new Date(minDate).getTime();
     const maxStamp = new Date(maxDate).getTime();
     if (validValue < minStamp) {
@@ -182,7 +185,7 @@ class Datetime extends React.Component {
       onChange(outputDate);
       return;
     }
-    const disabledArr = disabledDate ? disabledDate() : [];
+    const disabledArr = disabledDate ? disabledDate(outputDate.value) : [];
     const data = [].concat(stateData);
     const yearData = data[0];
     const monthData = data[1];

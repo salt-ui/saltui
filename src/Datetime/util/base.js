@@ -2,6 +2,7 @@ import isUndefined from 'lodash/isUndefined';
 import cloneDeep from 'lodash/cloneDeep';
 import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
+import isPlainObject from 'lodash/isPlainObject';
 
 const Y = ['Y'];
 const YM = ['Y', 'M'];
@@ -352,6 +353,7 @@ export default {
   isUndefined,
   isArray,
   isObject,
+  isPlainObject,
   cloneDeep,
   Y,
   YM,

@@ -144,10 +144,10 @@ function getOptions(value, props) {
   const dayYear = getDaysByYear({
     year: currentValue.getFullYear(), minDate, maxDate, disabledDate,
   });
-  const disabled = typeof disabledTime === 'function' ? disabledTime() : {};
-  const disHours = typeof disabled.disabledHours === 'function' ? disabled.disabledHours() : undefined;
-  const disMinutes = typeof disabled.disabledMinutes === 'function' ? disabled.disabledMinutes() : undefined;
-  const disSeconds = typeof disabled.disabledSeconds === 'function' ? disabled.disabledSeconds() : undefined;
+  const disabled = typeof disabledTime === 'function' ? disabledTime(value) : {};
+  const disHours = typeof disabled.disabledHours === 'function' ? disabled.disabledHours(value) : undefined;
+  const disMinutes = typeof disabled.disabledMinutes === 'function' ? disabled.disabledMinutes(value) : undefined;
+  const disSeconds = typeof disabled.disabledSeconds === 'function' ? disabled.disabledSeconds(value) : undefined;
 
   const options = [
     makeRange(minDate.getFullYear(), maxDate.getFullYear()),
