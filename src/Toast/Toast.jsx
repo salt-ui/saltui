@@ -22,6 +22,7 @@ import { prefixClass, noop } from '../Context';
 const WRAPPER_ID = '__TingleGlobalToast__';
 const doc = document;
 let wrapper = doc.getElementById(WRAPPER_ID);
+let wrapperRef = null;
 
 const iconCompMap = {
   success: IconCheckRound,
@@ -48,11 +49,13 @@ class Toast extends React.Component {
       if (fn && typeof fn === 'function') {
         fn();
       }
+      wrapperRef.props.onDidHide();
       ReactDOM.unmountComponentAtNode(wrapper);
       if (document.body.contains(wrapper)) {
         document.body.removeChild(wrapper);
       }
       wrapper = null;
+      wrapperRef = null;
     }
   };
   static displayName = 'Toast';
@@ -110,6 +113,7 @@ class Toast extends React.Component {
     if (visible && autoHide) {
       this.startCountdown();
     }
+    wrapperRef = this;
   }
 
   getIconComp() {
@@ -131,9 +135,6 @@ class Toast extends React.Component {
     }, duration);
   }
 
-  handleDidHide() {
-    this.props.onDidHide();
-  }
 
   renderIcon() {
     const Icon = this.getIconComp();
@@ -211,9 +212,6 @@ class Toast extends React.Component {
             [transName]: !!transName
           })}
           transitionName={transName}
-          afterClose={() => {
-            t.handleDidHide();
-          }}
         >
           <VBox hAlign="center">
             {this.renderIcon()}
