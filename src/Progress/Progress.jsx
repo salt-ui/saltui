@@ -16,6 +16,7 @@ class Progress extends React.Component {
     showInfo: PropTypes.bool,
     status: PropTypes.oneOf(['normal', 'exception', 'success']),
     strokeWidth: PropTypes.number,
+    color: PropTypes.string
   };
 
   static defaultProps = {
@@ -84,11 +85,13 @@ class Progress extends React.Component {
       height: `${t.props.strokeWidth}px`,
     };
 
-    const barCoreStyle = {
+    let barCoreStyle = {
       width: percentWidth,
       height: `${t.props.strokeWidth}px`,
     };
-
+    if (t.props.color) {
+      barCoreStyle.backgroundColor = t.props.color;
+    }
     const barLabelStyle = {
       lineHeight: `${t.props.strokeWidth}px`,
     };

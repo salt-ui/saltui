@@ -33,15 +33,7 @@ class ProgressDemo extends React.Component {
 
     return (
       <div>
-        <div style={{ marginBottom: '30px' }}>
-          <Progress percent={t.state.percent1} status="normal" showInfo />
-        </div>
-        <div style={{ marginBottom: '30px' }}>
-          <Progress percent={t.state.percent2} status="exception" showInfo={false} />
-        </div>
-        <div style={{ marginBottom: '30px' }}>
-          <Progress percent={t.state.percent3} showInfo strokeWidth={1} />
-        </div>
+          <Progress percent={t.state.percent2} status="exception" showInfo={true} color={'green'} />
       </div>
     );
   }
