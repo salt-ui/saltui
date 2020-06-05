@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-// import PlusCircle from 'salt-icon/lib/PlusCircle';
 import CrossRound from 'salt-icon/lib/CrossRound';
 import PropTypes from 'prop-types';
 import Context from '../Context';

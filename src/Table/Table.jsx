@@ -15,7 +15,7 @@ import React from 'react';
 import Scroller from '../Scroller';
 import Context from '../Context';
 import Pagination from '../Pagination';
-import Icon from 'salt-icon'
+import AngleRight from 'salt-icon/lib/AngleRight';
 import Popup from '../Popup'
 
 class Table extends React.Component {
@@ -102,7 +102,7 @@ class Table extends React.Component {
   renderActionColumn(cellData, rowData, isSubTable) {
     if (rowData.data && rowData.data.length) {
       return (
-        <Icon
+        <AngleRight
           className={Context.prefixClass('table-row-item-icon')}
           style={{
             opacity: isSubTable ? 0 : 1
@@ -120,7 +120,6 @@ class Table extends React.Component {
           }}
           width={20}
           height={18}
-          name={'angle-right'}
         />
       )
     }

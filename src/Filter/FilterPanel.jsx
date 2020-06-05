@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import Context from "../Context/Context";
 import Popup from '../Popup'
-import Icon from 'salt-icon'
+import Check from 'salt-icon/lib/Check';
+import AngleRight from 'salt-icon/lib/AngleRight';
 import Button from '../Button'
 import classnames from "classnames";
 import deepCopy from "lodash/cloneDeep";
@@ -187,7 +188,7 @@ class FilterPanel extends React.Component {
                 {typeof item.text === 'string' ? item.text : typeof item.text === 'function' ? item.text() : ''}
                 {
                   isSelected
-                    ? <Icon className={'icon'} width={20} height={20} name={'check'}/>
+                    ? <Check className={'icon'} width={20} height={20} />
                     : null
                 }
               </div>
@@ -239,7 +240,7 @@ class FilterPanel extends React.Component {
           return (
             <div data-name={name}>
               <span>全部</span>
-              <Icon className={Context.prefixClass('filter-show-all-icon')} name={'angle-right'} width={20} height={20} fill={'#555'} />
+              <AngleRight className={Context.prefixClass('filter-show-all-icon')}  width={20} height={20} fill={'#555'} />
             </div>
           )
         },

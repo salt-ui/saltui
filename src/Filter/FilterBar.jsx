@@ -3,7 +3,8 @@ import ReactDom from 'react-dom'
 import PropTypes from 'prop-types';
 import Context from '../Context';
 import { HBox, Box } from '../Boxs';
-import Icon from 'salt-icon';
+import AngleUp from 'salt-icon/lib/AngleUp';
+import AngleDown from 'salt-icon/lib/AngleDown';
 import classnames from 'classnames';
 
 class FilterBar extends React.Component {
@@ -112,6 +113,14 @@ class FilterBar extends React.Component {
     const { getSelect } = this.props;
     const currentSelectData = getSelect()[group.name];
     const isFlag = this.checkFlag(group, index);
+    const iconProps = {
+      width: group.type === 'super' ? 12 : 20,
+      height: group.type === 'super' ? 12 : 20,
+      className: 'icon'
+    }
+    const icon = group.icon || (isFocus ?
+      <AngleUp {...iconProps}/> : <AngleDown {...iconProps}/>
+    )
     return (
       group.icon !== false
         ? <div className={classnames("icon-wrapper", {
@@ -119,12 +128,7 @@ class FilterBar extends React.Component {
             selected: isFlag && (group.name === '_super_' || currentSelectData && currentSelectData.length),
           })}
           >
-          <Icon
-            name={group.icon || (isFocus ? 'angle-up' : 'angle-down')}
-            width={group.type === 'super' ? 12 : 20}
-            height={group.type === 'super' ? 12 : 20}
-            className={'icon'}
-          />
+          {icon}
         </div>
         : null
     );

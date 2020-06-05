@@ -11,6 +11,7 @@ import FilterPanel from './FilterPanel'
 import Context from '../Context'
 import classnames from 'classnames'
 import Mask from '../Mask'
+import FilterIcon from 'salt-icon/lib/Filter'
 
 class Filter extends React.Component {
   static displayName = 'Filter';
@@ -151,7 +152,11 @@ class Filter extends React.Component {
         {
           name: '_super_',
           title: '高级筛选',
-          icon: 'filter',
+          icon: <FilterIcon
+            width={12}
+            height={12}
+            className={'icon'}
+          />,
           type: 'super',
           children: [
             ...newFilterGroups.map(item => {
