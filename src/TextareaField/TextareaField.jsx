@@ -54,6 +54,9 @@ class TextareaField extends React.Component {
     if (addons.count && !this.props.readOnly) {
       return addons.count;
     }
+    if (addons.right) {
+      return addons.right
+    }
     return null;
   }
 

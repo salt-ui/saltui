@@ -8,7 +8,9 @@
 
 import TextareaField from './TextareaField';
 import Count from './Count';
+import RightAddon from './RightAddon'
 
 TextareaField.Count = Count;
+TextareaField.RightAddon = RightAddon;
 
 export default TextareaField;

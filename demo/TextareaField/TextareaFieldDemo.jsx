@@ -9,7 +9,7 @@ import Group from 'salt-group';
 import React from 'react';
 import TextareaField from 'salt-textarea-field';
 
-const { Count } = TextareaField;
+const { Count, RightAddon } = TextareaField;
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const TextareaField = require('../../dist');
@@ -103,10 +103,17 @@ class Demo extends React.Component {
             label="计数器"
             value={t.state.t2}
             maxRows={5}
-            readOnly
+            // readOnly
             onChange={(value) => { t.handleChange('t2', value); }}
           >
-            <Count total={300} length={t.state.t2.length} />
+            {/*<Count total={300} length={t.state.t2.length} />*/}
+            <RightAddon>
+              <div>速度发来科技开发</div>
+              <div>速度发来科技开发</div>
+              <div>速度发来科技开发</div>
+              <div>速度发来科技开发</div>
+              <div>速度发来科技开发</div>
+            </RightAddon>
           </TextareaField>
         </Group.List>
       </div>
