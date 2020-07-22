@@ -18,9 +18,10 @@ import Popup from '../Popup';
 import CascadeTab from './CascadeTab';
 import i18n from './i18n';
 import { shouldUpdate } from '../Utils';
+import { filter, concat } from 'lodash';
 
 function parseProps(props) {
-  const { options, readOnly } = props;
+  const { options, readOnly, mode } = props;
   let value = cloneDeep(props.value || []);
   // 过滤undefinded
   value = value.filter(i => i);
@@ -30,11 +31,20 @@ function parseProps(props) {
   for (let deep = 0; cursor; deep += 1) {
     let index = 0;
     newOptions[deep] = cursor.map((o, i) => {
-      const option = {
-        value: o.value,
-        text: o.label,
-        defaultChecked: o.defaultChecked,
-      };
+      let option;
+      if(mode === 'dynamic'){
+        option = {
+          value: o.value,
+          text: o.label,
+        }
+      } else {
+        option = {
+          value: o.value,
+          text: o.label,
+          defaultChecked: o.defaultChecked,
+        };
+      }
+      
       let val = value[deep];
       if (typeof val === 'object' && 'value' in value[deep]) {
         val = value[deep].value;
@@ -103,11 +113,41 @@ function parseState(value, options) {
   };
 }
 
+function findOption(target, origin) {
+  const newOrigin = origin;
+  for (let i = 0; i < newOrigin.length; i++) {
+    if (target[0].value === newOrigin[i].value) {
+      newOrigin[i].children = target[0].children;
+    } else if (newOrigin[i].children) {
+      newOrigin[i].children = findOption(target, newOrigin[i].children);
+    }
+  }
+  return newOrigin;
+}
+
+function parseOptions(subOptions, currValue, oldOptions, oldOriginOptions) {
+  if(subOptions[0].value === currValue[currValue.length - 1].value && subOptions[0].children.length !== 0) {
+    const newOriginOptions = findOption(subOptions, oldOriginOptions); 
+    const newOptions = parseState(currValue, newOriginOptions);
+
+    return {
+      options: newOptions.options,
+      originOptions: newOriginOptions,
+      value: newOptions.value,
+    };
+  }
+  return {
+    options: oldOptions,
+    originOptions: oldOriginOptions,
+    value: currValue,
+  };
+}
+
+
 class CascadeSelectField extends React.Component {
   constructor(props) {
     super(props);
     const t = this;
-
     // 数据格式化
     t.state = parseProps(props);
     t.state.prevProps = props;
@@ -132,7 +172,7 @@ class CascadeSelectField extends React.Component {
     if (!t.props.readOnly && !t.props.disabled) {
       if (t.props.mode === 'normal') {
         t.slot.show();
-      } else if (t.props.mode === 'complex') {
+      } else if (t.props.mode === 'complex' || 'dynamic') {
         this.showCascadeTab();
       }
     }
@@ -154,7 +194,15 @@ class CascadeSelectField extends React.Component {
 
   handleChange(value) {
     const t = this;
-    t.setState(parseState(value, t.props.options));
+    if(t.props.mode === 'dynamic') {
+      this.props.onChange(value[value.length - 1]).then((res) => {
+        const concatOptions = parseOptions(res, value, t.state.options, t.state.originOptions)
+        t.setState({ ...concatOptions })
+      })
+    } else {
+      t.setState(parseState(value, t.props.options));
+    }
+    
   }
 
   handleConfirm(value) {
@@ -222,6 +270,8 @@ class CascadeSelectField extends React.Component {
               onCancel={t.handleCancel}
               onConfirm={t.handleConfirm}
               activeTab={`tab-${t.props.activeTab}`}
+              isDynamic={t.props.mode === 'dynamic'}
+              cascadeSize={t.props.cascadeSize}
             />
           }
           stopBodyScrolling={false}
@@ -265,6 +315,7 @@ CascadeSelectField.defaultProps = {
   confirmText: undefined,
   cancelText: undefined,
   activeTab: 1,
+  cascadeSize: 3,
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -283,8 +334,9 @@ CascadeSelectField.propTypes = {
   cancelText: PropTypes.string,
   columns: PropTypes.array,
   locale: PropTypes.string,
-  mode: PropTypes.oneOf(['normal', 'complex']),
+  mode: PropTypes.oneOf(['normal', 'complex', 'dynamic']),
   activeTab: PropTypes.number,
+  cascadeSize: PropTypes.oneOf(1,2,3,4),
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';
