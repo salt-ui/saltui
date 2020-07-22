@@ -95,7 +95,11 @@ export default class CascadeTab extends React.Component {
     }
 
     this.setState({ value, activeTab }, () => {
-      if(this.props.isDynamic && !selectedValue.children && ( value.length < this.props.cascadeSize)) {
+      if(this.props.isDynamic) {
+        if(!selectedValue.children && ( value.length < this.props.cascadeSize)) {
+          this.handleEvent('change');
+        }
+      } else {
         this.handleEvent('change');
       }
     });
