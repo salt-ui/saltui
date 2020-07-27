@@ -195,14 +195,9 @@ class CascadeSelectField extends React.Component {
   handleChange(value) {
     const t = this;
     if(t.props.mode === 'dynamic') {
-      this.props.onChange(value[value.length - 1]).then((res) => {
-        const concatOptions = parseOptions(res, value, t.state.options, t.state.originOptions)
-        t.setState({ ...concatOptions })
-      })
-    } else {
-      t.setState(parseState(value, t.props.options));
+      this.props.onChange && this.props.onChange(value)      
     }
-    
+    t.setState(parseState(value, t.props.options));
   }
 
   handleConfirm(value) {
