@@ -230,6 +230,18 @@ function parseSubOptions(options, selected) {
     children: parseOptions(options),
   }]
 }
+
+function findOption(currVal, childOptions, origin) {
+  const newOrigin = origin;
+  for (let i = 0; i < newOrigin.length; i++) {
+    if (currVal === newOrigin[i].value) {
+      newOrigin[i].children = childOptions;
+    } else if (newOrigin[i].children) {
+      newOrigin[i].children = findOption(currVal, childOptions, newOrigin[i].children);
+    }
+  }
+  return newOrigin;
+}
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -271,13 +283,22 @@ class Demo extends React.Component {
       [field]: value,
     });
   }
-
+ 
   handleDynamicChange(selected) {
     console.log(selected)
-    return api.get('children', { iso: 'CN', id: selected.value }).then((res) => {
+    // return api.get('children', { iso: 'CN', id: selected.value }).then((res) => {
       
-      return parseSubOptions(res, selected)
+    //   return parseSubOptions(res, selected)
+    // })
+    api.get('children', { iso: 'CN', id: selected[selected.length-1].value }).then((res) => {
+      const parseRes = parseOptions(res)
+      const oldOptions = this.state.dynamicOptions
+      const concatRes = findOption(selected[selected.length-1].value, parseRes, oldOptions)
+
+      this.setState({ dynamicOptions: concatRes})
     })
+    
+
   }
 
   render() {
