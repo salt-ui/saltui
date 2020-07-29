@@ -162,6 +162,9 @@ class CascadeSelectField extends React.Component {
   // 外部变更选中值
   static getDerivedStateFromProps(nextProps, state) {
     if (shouldUpdate(state.prevProps, nextProps, ['readOnly', 'options', 'value'])) {
+      if(state.popupVisible) {
+        return { ...parseProps(nextProps), prevProps: nextProps, ...parseState(state.value, nextProps.options)};
+      } 
       return { ...parseProps(nextProps), prevProps: nextProps };
     }
     return null;
@@ -211,6 +214,8 @@ class CascadeSelectField extends React.Component {
     const t = this;
     if (t.state.confirmedValue.length) {
       t.setState(parseState(t.state.confirmedValue, t.props.options));
+    } else {
+      t.setState({value: []});
     }
     t.hideCascadeTab();
     t.props.onCancel();
@@ -331,7 +336,7 @@ CascadeSelectField.propTypes = {
   locale: PropTypes.string,
   mode: PropTypes.oneOf(['normal', 'complex', 'dynamic']),
   activeTab: PropTypes.number,
-  cascadeSize: PropTypes.oneOf(1,2,3,4),
+  cascadeSize: PropTypes.oneOf([1,2,3,4]),
 };
 
 CascadeSelectField.displayName = 'CascadeSelectField';

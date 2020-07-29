@@ -256,10 +256,10 @@ class Demo extends React.Component {
       ],
       dynamicOptions: [],
       dynamicValue: [
-        {text: "天津", value: "120000"},
-        {text: "天津市", value: "120100"},
-        {text: "和平区", value: "120101"},
-        {text: "劝业场街道", value: "120101001"}
+        // {text: "天津", value: "120000"},
+        // {text: "天津市", value: "120100"},
+        // {text: "和平区", value: "120101"},
+        // {text: "劝业场街道", value: "120101001"}
       ],
     };
   }
@@ -286,10 +286,7 @@ class Demo extends React.Component {
  
   handleDynamicChange(selected) {
     console.log(selected)
-    // return api.get('children', { iso: 'CN', id: selected.value }).then((res) => {
-      
-    //   return parseSubOptions(res, selected)
-    // })
+    
     api.get('children', { iso: 'CN', id: selected[selected.length-1].value }).then((res) => {
       const parseRes = parseOptions(res)
       const oldOptions = this.state.dynamicOptions
