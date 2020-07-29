@@ -3,6 +3,7 @@
  * @author: changming <mailto:changming.zy@alibaba-inc.com>
  */
 import React from 'react';
+import { polyfill } from 'react-lifecycles-compat';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import IconCheck from 'salt-icon/lib/Check';
@@ -248,5 +249,6 @@ CascadeTab.propTypes = {
   locale: PropTypes.string,
   activeTab: PropTypes.string,
   isDynamic: PropTypes.bool,
-  cascadeSize: PropTypes.oneOf(1,2,3,4),
+  cascadeSize: PropTypes.oneOf([1,2,3,4]),
 };
+polyfill(CascadeTab);
