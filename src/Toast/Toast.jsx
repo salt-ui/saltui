@@ -49,7 +49,7 @@ class Toast extends React.Component {
       if (fn && typeof fn === 'function') {
         fn();
       }
-      wrapperRef.props.onDidHide();
+      wrapperRef && wrapperRef.props && wrapperRef.props.onDidHide && wrapperRef.props.onDidHide();
       ReactDOM.unmountComponentAtNode(wrapper);
       if (document.body.contains(wrapper)) {
         document.body.removeChild(wrapper);
