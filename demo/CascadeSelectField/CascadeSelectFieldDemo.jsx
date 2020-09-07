@@ -9,15 +9,15 @@ import React from 'react';
 
 import Group from 'salt-group';
 import CascadeSelectField from 'salt-cascade-select-field';
-import { CndzkEntranceApi } from '@alife/cndzk-entrance-api';
-const apiModel = 'cdn';
-const apiType = 'cndzk';
-const applicationType = 'frontend';
-const api = new CndzkEntranceApi({
-  apiModel, 
-  apiType, 
-  applicationType, 
-})
+// import { CndzkEntranceApi } from '@alife/cndzk-entrance-api';
+// const apiModel = 'cdn';
+// const apiType = 'cndzk';
+// const applicationType = 'frontend';
+// const api = new CndzkEntranceApi({
+//   apiModel,
+//   apiType,
+//   applicationType,
+// })
 
 // build之后, 测试一下下面一行, 把上面一行注释掉
 // const CascadeSelectField = require('../../dist');
@@ -48,7 +48,7 @@ const options = [
     children: [{
       value: 'nanjing',
       label: '南京',
-      
+
       children: [{
         value: 'zhonghuamen',
         label: '中华门',
@@ -141,10 +141,10 @@ const options2 = [
 const temp = [
   {value: "110000", label: "北京"},
   {value: "120000",
-    label: "天津", 
+    label: "天津",
     children: [
     {value: "120100",
-    label: "天津市", 
+    label: "天津市",
     children: [
       {value: "120101", label: "和平区",
       children:
@@ -265,16 +265,16 @@ class Demo extends React.Component {
   }
 
   componentDidMount() {
-    const t = this;
-    if(t.state.dynamicValue.length === 0) {
-      api.get('children', { iso: 'CN', id: '1' }).then((res) => {
-        
-        t.setState({dynamicOptions: parseOptions(res)})
-      })
-    } else {
-      t.setState({dynamicOptions: temp });
-    }
-    
+  //   const t = this;
+  //   if(t.state.dynamicValue.length === 0) {
+  //     api.get('children', { iso: 'CN', id: '1' }).then((res) => {
+  //
+  //       t.setState({dynamicOptions: parseOptions(res)})
+  //     })
+  //   } else {
+  //     t.setState({dynamicOptions: temp });
+  //   }
+  //
   }
 
   handleChange(field, value) {
@@ -283,19 +283,19 @@ class Demo extends React.Component {
       [field]: value,
     });
   }
- 
+
   handleDynamicChange(selected) {
-    console.log(selected)
-    
-    api.get('children', { iso: 'CN', id: selected[selected.length-1].value }).then((res) => {
-      const parseRes = parseOptions(res)
-      const oldOptions = this.state.dynamicOptions
-      const concatRes = findOption(selected[selected.length-1].value, parseRes, oldOptions)
-
-      this.setState({ dynamicOptions: concatRes})
-    })
-    
-
+  //   console.log(selected)
+  //
+  //   api.get('children', { iso: 'CN', id: selected[selected.length-1].value }).then((res) => {
+  //     const parseRes = parseOptions(res)
+  //     const oldOptions = this.state.dynamicOptions
+  //     const concatRes = findOption(selected[selected.length-1].value, parseRes, oldOptions)
+  //
+  //     this.setState({ dynamicOptions: concatRes})
+  //   })
+  //
+  //
   }
 
   render() {

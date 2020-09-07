@@ -1,6 +1,6 @@
 {
   "name": "saltui",
-  "version": "4.10.3",
+  "version": "4.10.4",
   "description": "React components for mobile",
   "main": "build/salt-ui.js",
   "scripts": {
@@ -68,7 +68,6 @@
     "webpack-bundle-analyzer": "^2.9.0"
   },
   "dependencies": {
-    "@alife/cndzk-entrance-api": "^0.1.7",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "css-animation": "^1.5.0",
