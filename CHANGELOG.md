@@ -1,3 +1,6 @@
+## 4.10.3 / 2020-9-7
+* `fix` `Toast` fix a bug
+
 ## 4.8.10 / 2019-6-27
 * `fix` `Picker` revert to 4.8.8
 
