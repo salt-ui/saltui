@@ -135,6 +135,7 @@ class Demo extends React.Component {
               icon={<AngleRight onClick={(e) => { e.stopPropagation(); alert('1'); }} />}
               fetchUrl="http://dip.alibaba-inc.com/api/v2/services/schema/mock/57833.jsonp"
               fetchDataOnOpen
+              layout={'v'}
               label="没有默认值"
               onSelect={(e) => {
                 t.handleChange2(e);

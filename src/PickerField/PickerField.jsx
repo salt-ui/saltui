@@ -115,23 +115,18 @@ class PickerField extends React.Component {
       utils.FORMATTER_TYPES.LABEL_FORMATTER,
     );
   }
-
-  renderIcon() {
-    if (this.props.icon) {
-      return this.props.icon;
-    }
-    return null;
-  }
-
   render() {
     const t = this;
 
     const middleIcon = !t.props.readOnly ? (
-      <AngleRight
-        className={Context.prefixClass('picker-field-icon')}
-        width={26}
-        height={26}
-      />
+      [
+        t.props.middleIcon ? t.props.middleIcon : null,
+        <AngleRight
+          className={Context.prefixClass('picker-field-icon')}
+          width={26}
+          height={26}
+        />
+      ]
     ) : null;
 
     const panelProps = {
@@ -207,7 +202,6 @@ class PickerField extends React.Component {
               </span>
             </div>
           ) : null}
-          {t.renderIcon(middleIcon)}
         </div>
         <Picker visible={this.state.popupVisible} {...panelProps} />
       </Field>
