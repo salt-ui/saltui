@@ -67,7 +67,7 @@ class NumberField extends React.Component {
   componentDidUpdate(prevProps) {
     const { value } = prevProps;
     const { inputSelection } = this;
-    if (inputSelection) {
+    if (inputSelection && prevProps.value !== this.props.value) {
       if (inputSelection.start < this.formatValue(value).length) {
         const input = this.getInput();
         input.selectionStart = inputSelection.start;

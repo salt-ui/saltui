@@ -1,3 +1,6 @@
+## 4.10.4 / 2021-01-07
+* `fix` `NumberField` fix cursor position bug when multiple render triggered
+
 ## 4.10.3 / 2020-9-7
 * `fix` `Toast` fix a bug
 

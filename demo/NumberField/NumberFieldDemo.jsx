@@ -26,6 +26,9 @@ class NumberFieldDemo extends React.Component {
   handleChange(value, key) {
     this.setState({
       [key]: value,
+    }, () => {
+      // 测试有多余刷新时的光标问题
+      this.forceUpdate();
     });
     if (key === 'custom') {
       if (value.length > 5) {
