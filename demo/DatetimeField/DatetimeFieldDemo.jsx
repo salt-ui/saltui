@@ -116,9 +116,10 @@ class Demo extends React.Component {
               onSelect={t.handleChange.bind(t, 'value4')}
               value={t.state.value4}
               columns={DatetimeField.YMDWHM}
-              disabledTime={disabledTime}
+              // disabledTime={disabledTime}
               // minDate={new Date(2019, 8, 10).getTime()}
               layout="v"
+              // minuteStep={15}
               // disabledDate={() => [
               //     {
               //       start: new Date(2017, 5, 1),
