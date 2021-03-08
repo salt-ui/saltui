@@ -1,3 +1,6 @@
+## 4.10.7 / 2021-03-08
+* `fix` `DatetimeField` not pass prop `minuteStep` to `Datetime`
+
 ## 4.10.4 / 2021-01-07
 * `fix` `NumberField` fix cursor position bug when multiple render triggered
 
