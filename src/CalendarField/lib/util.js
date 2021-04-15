@@ -1,5 +1,3 @@
-
-
 const defaultFormatter = {
   y: 'YYYY',
   m: 'YYYY-MM',
@@ -30,6 +28,21 @@ function isStringOrNumber(str) {
   return isString(str) || isNumber(str);
 }
 
+function isNullOrUndefined(obj) {
+  return obj === undefined || obj === null;
+}
+
+function isEmptyValue(obj) {
+  if (isNullOrUndefined(obj)) return true;
+  if (isObject(obj)) {
+    return isNullOrUndefined(obj.value) && isNullOrUndefined(obj.startDate) && isNullOrUndefined(obj.endDate);
+  }
+  if (isStringOrNumber(obj)) {
+    return obj === '';
+  }
+  return false;
+}
+
 
 function getTimestamp(date) {
   let dateObj = new Date(date);
@@ -47,4 +60,5 @@ export {
   isNumber,
   isStringOrNumber,
   getTimestamp,
+  isEmptyValue,
 };

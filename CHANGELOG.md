@@ -1,3 +1,6 @@
+## 4.11.0 / 2021-04-15
+* `fix` `CalendarField` support allowClear
+
 ## 4.10.7 / 2021-03-08
 * `fix` `DatetimeField` not pass prop `minuteStep` to `Datetime`
 

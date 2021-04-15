@@ -61,6 +61,7 @@ class Demo extends React.Component {
       // multiLine: true,
       // readOnly: true,
       layout: 'h',
+      allowClear: true,
       // type: 'dayWithTime',
       singleMode: true,
       // formatter: 'yyyy-MM-dd',

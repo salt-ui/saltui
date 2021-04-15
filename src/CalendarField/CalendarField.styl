@@ -5,51 +5,87 @@
  * Copyright 2018-2019, SaltUI Team.
  * All rights reserved.
  */
+.{$prefix}-calendar-field-value {
+  > * {
+    vertical-align: middle;
+  }
 
-//{$prefix}-calendar-field
-//  display block
+  .date-text {
+    margin-right: 5px;
+  }
 
-.{$prefix}-calendar-field-value
-  > *
-    vertical-align middle
-  .date-text
-    margin-right: 5px
-  .week, .date-type
-    color $normal-alpha-5
-    margin-right 5px
+  .week,
+  .date-type {
+    color: $normal-alpha-5;
+    margin-right: 5px;
+  }
+}
 
-.{$prefix}-calendar-field-placeholder, .{$prefix}-calendar-field-value
-  max-width 100%
-  min-height 24px
-  line-height 24px
+.{$prefix}-calendar-field-placeholder,
+.{$prefix}-calendar-field-value {
+  max-width: 100%;
+  min-height: 24px;
+  line-height: 24px;
+}
 
-.{$prefix}-calendar-field-placeholder
-  color $normal-alpha-5
+.{$prefix}-calendar-field-placeholder {
+  color: $normal-alpha-5;
+}
 
-.{$prefix}-calendar-field-readonly
-  color $dark-alpha-2
-    
+.{$prefix}-calendar-field-readonly {
+  color: $dark-alpha-2;
+}
 
-.{$prefix}-calendar-field .{$prefix}-field-layout-h-label
-  display -webkit-box
-  display -webkit-flex
-  display flex
-  -webkit-box-align center
-  -webkit-align-items center
-  align-items center
+.{$prefix}-calendar-field .{$prefix}-field-layout-h-label {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
 
-.{$prefix}-calendar-field-show-box
+.{$prefix}-calendar-field-content {
+  display: flex;
+  align-items: center;
+}
+
+.{$prefix}-calendar-field-view {
+  flex: 1;
+}
+
+.{$prefix}-calendar-field-clear-icon {
+  padding-left: 8px;
+  display: block;
+  line-height: 0;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: $normal-alpha-4;
+  }
+}
+
+.{$prefix}-calendar-field-show-box {
   // 水平模式
-  &.h-layout
-    div:first-child
-      margin-bottom 7px
-  .split-line
-    display inline-block
-    height 0
-    width 15px
-    border-top 1px solid $normal-alpha-5
-    margin-left: 20px
-    margin-right: 20px
-  &.v-layout
-    .date-text
-      display block
+  &.h-layout {
+    div:first-child {
+      margin-bottom: 7px;
+    }
+  }
+
+  .split-line {
+    display: inline-block;
+    height: 0;
+    width: 15px;
+    border-top: 1px solid $normal-alpha-5;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  &.v-layout {
+    .date-text {
+      display: block;
+    }
+  }
+}

@@ -6,7 +6,8 @@ import { prefixClass } from '../../Context';
 import Field from '../../Field';
 import Calendar from '../../Calendar';
 import Datetime from '../../Datetime';
-import { defaultFormatter, Locale, isObject, isStringOrNumber } from './util';
+import CrossRound from 'salt-icon/lib/CrossRound';
+import { defaultFormatter, Locale, isObject, isStringOrNumber, isEmptyValue } from './util';
 
 const i18n = Calendar.I18n;
 
@@ -305,12 +306,27 @@ class DayField extends React.Component {
   renderView(calendarProps) {
     const t = this;
     return (
-      <div onClick={t.handleFieldClick.bind(t)}>
+      <div className={prefixClass('calendar-field-view')} onClick={t.handleFieldClick.bind(t)}>
         {
           calendarProps.singleMode ? t.renderSingleModeView() : t.renderCascadeModeView()
         }
       </div>
     );
+  }
+
+  renderClear() {
+    const {
+      value, allowClear, readOnly, disabled,
+    } = this.props;
+    if (!isEmptyValue(value) && allowClear && !readOnly && !disabled) {
+      return (
+        <CrossRound
+          onClick={(e) => { this.props.onOk({}, e); }}
+          className={classnames(prefixClass('calendar-field-clear-icon'))}
+        />
+      );
+    }
+    return null;
   }
 
   render() {
@@ -325,9 +341,10 @@ class DayField extends React.Component {
             readonly: t.props.readOnly,
           })}
         >
-          {
-            t.renderView(calendarProps)
-          }
+          <div className={prefixClass('calendar-field-content')}>
+            {t.renderView(calendarProps)}
+            {t.renderClear()}
+          </div>
         </Field>
         {
           t.renderCalendar(calendarProps)
