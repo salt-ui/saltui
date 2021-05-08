@@ -35,6 +35,7 @@ class EmployeeField extends React.Component {
     value: PropTypes.array,
     disabledUsers: PropTypes.array,
     onChange: PropTypes.func,
+    onAvatarClick: PropTypes.func,
     enableNW: PropTypes.bool,
     onPick: PropTypes.func,
     enableAutoJumpDepart: PropTypes.bool,
@@ -52,6 +53,7 @@ class EmployeeField extends React.Component {
     value: [],
     disabledUsers: [],
     onChange: () => { },
+    onAvatarClick: () => {},
     className: undefined,
     corpId: undefined,
     onPick: undefined,
@@ -171,11 +173,13 @@ class EmployeeField extends React.Component {
   }
 
   renderEmployeeList() {
+    const { onAvatarClick } = this.props;
     return (
       <EmployeeList
         readOnly={this.getReadOnly()}
         list={this.props.value}
         onDel={(id) => { this.onItemDel(id); }}
+        onClick={onAvatarClick}
       />
     );
   }

@@ -76,6 +76,7 @@ export default class Avatar extends Component {
     ]),
     src: PropTypes.string,
     style: PropTypes.object,
+    onClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -90,6 +91,7 @@ export default class Avatar extends Component {
     size: 'normal',
     src: '',
     style: {},
+    onClick: () => {},
   };
 
   getStyle() {
@@ -119,12 +121,14 @@ export default class Avatar extends Component {
     const style = this.getStyle();
     if ((!props.name && !props.icon) || props.src) {
       return (
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
         <img
           ref={(r) => { this.root = r; }}
           className={classnames(Context.prefixClass('avatar'), { [props.className]: !!props.className })}
           src={props.src || props.defaultSrc}
           style={style}
           alt=""
+          onClick={props.onClick}
         />
       );
     }
