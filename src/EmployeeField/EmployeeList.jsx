@@ -13,6 +13,7 @@ class EmployeeList extends React.Component {
     col: PropTypes.number,
     list: PropTypes.array,
     onDel: PropTypes.func,
+    onClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -20,6 +21,7 @@ class EmployeeList extends React.Component {
     col: 5,
     list: [],
     onDel: () => {},
+    onClick: () => {},
   };
 
   static displayName = 'EmployeeField';
@@ -93,6 +95,7 @@ class EmployeeList extends React.Component {
           name={item.label}
           src={item.avatar}
           size={48}
+          onClick={(e) => { this.props.onClick(item, e); }}
         />
         <p className={Context.prefixClass('omit2 employee-field-list-item-name')}>
           {item.label}
