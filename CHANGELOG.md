@@ -1,3 +1,7 @@
+
+## 4.12.0 / 2021-05-08
+* `feat` `Avatar` `EmployeeField` support avatar click callback
+
 ## 4.11.0 / 2021-04-15
 * `fix` `CalendarField` support allowClear
 
