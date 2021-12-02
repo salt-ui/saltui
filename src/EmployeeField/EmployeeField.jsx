@@ -83,6 +83,7 @@ class EmployeeField extends React.Component {
       return;
     }
     const i18n = locale[this.props.locale];
+    const showRootOrg = false;
     const option = {
       multiple,
       max,
@@ -92,6 +93,7 @@ class EmployeeField extends React.Component {
       users: value.map(v => v.key),
       disabledUsers,
       enableAutoJumpDepart,
+      showRootOrg,
     };
     const Ali = window.Ali || {};
     if (window.Ali) {
@@ -125,7 +127,7 @@ class EmployeeField extends React.Component {
         pickedUsers: option.users,
         maxUsers: option.max,
         startWithDepartmentId: 0,
-        showRootOrg: true,
+        showRootOrg,
         corpId,
         onSuccess(result) {
           onChange(transToValue(result.users));
