@@ -1,4 +1,7 @@
 
+## 4.13.0 / 2021-12-03
+* `feat` `EmployeeField` new prop `apiOptions`
+
 ## 4.12.0 / 2021-05-08
 * `feat` `Avatar` `EmployeeField` support avatar click callback
 
