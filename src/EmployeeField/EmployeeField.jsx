@@ -39,6 +39,7 @@ class EmployeeField extends React.Component {
     enableNW: PropTypes.bool,
     onPick: PropTypes.func,
     enableAutoJumpDepart: PropTypes.bool,
+    apiOptions: PropTypes.object,
   };
 
   static defaultProps = {
@@ -58,6 +59,7 @@ class EmployeeField extends React.Component {
     corpId: undefined,
     onPick: undefined,
     enableAutoJumpDepart: true,
+    apiOptions: {},
   };
 
 
@@ -77,13 +79,13 @@ class EmployeeField extends React.Component {
     const {
       onPick, multiple, max, isNeedSearch, startWithDepartmentId,
       value, disabledUsers, enableAutoJumpDepart, corpId, enableNW, onChange,
+      apiOptions,
     } = this.props;
     if (typeof onPick === 'function') {
       onPick();
       return;
     }
     const i18n = locale[this.props.locale];
-    const showRootOrg = false;
     const option = {
       multiple,
       max,
@@ -93,7 +95,7 @@ class EmployeeField extends React.Component {
       users: value.map(v => v.key),
       disabledUsers,
       enableAutoJumpDepart,
-      showRootOrg,
+      ...apiOptions,
     };
     const Ali = window.Ali || {};
     if (window.Ali) {
@@ -127,8 +129,9 @@ class EmployeeField extends React.Component {
         pickedUsers: option.users,
         maxUsers: option.max,
         startWithDepartmentId: 0,
-        showRootOrg,
+        showRootOrg: true,
         corpId,
+        ...apiOptions,
         onSuccess(result) {
           onChange(transToValue(result.users));
         },
