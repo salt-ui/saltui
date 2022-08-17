@@ -228,7 +228,7 @@ class ScrollList extends React.Component {
         nextState.showRefreshing = true;
         this.setState(nextState, () => {
           if (refresh) {
-            if(this.scrollViewRef){
+            if (this.scrollViewRef) {
               this.scrollViewRef.tryEmitScrollEvent();
             }
           }

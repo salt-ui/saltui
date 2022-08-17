@@ -1,4 +1,7 @@
 
+## 4.13.1 / 2022-08-17
+* `feat` `ScrollList` check scrollViewRef before call scrollViewRef.tryEmitScrollEvent
+
 ## 4.13.0 / 2021-12-03
 * `feat` `EmployeeField` new prop `apiOptions`
 
