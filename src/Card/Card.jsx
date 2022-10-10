@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 
-import { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { prefixClass } from '../Context';
@@ -14,7 +14,7 @@ import Header from './Header';
 import Body from './Body'
 import Footer from './Footer'
 
-class Card extends Component {
+class Card extends React.Component {
   static Header = Header;
   static Footer = Footer;
   static Body = Body;
